@@ -1,0 +1,36 @@
+table
+  overflow-x: auto
+  width: 100%
+  border-collapse: collapse
+
+  tr
+    transition: 0.3s
+
+    th
+      font-weight: 400
+      user-select: none
+
+    th, td
+      padding: 0.25rem
+      text-align: center
+
+      @media (max-width: 700px)
+        padding: 0.4rem
+
+    &.striped
+      background-color: purple-50
+
+    &:hover:not(.mobile-table-expansion)
+      background-color: purple-100 !important
+
+  tbody
+    tr:only-child
+      background-color: purple-50
+
+.mobile-table-expansion td
+  text-align: right
+
+  span
+    display: inline-block
+    padding: 0 1rem 0 2rem
+    width: 1rem

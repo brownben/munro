@@ -1,0 +1,8 @@
+http://flask.pocoo.org/docs/1.0/security/
+https://github.com/GoogleCloudPlatform/flask-talisman
+https://flask-seasurf.readthedocs.io/en/latest/
+https://pythonhosted.org/Flask-Security/
+https://pythonhosted.org/Flask-Principal/
+https://flask-login.readthedocs.io/en/latest/
+
+https://alligator.io/vuejs/file-select-component/

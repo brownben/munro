@@ -1,0 +1,11 @@
+name;ageClass;club;course;time;position;nonCompetitive;status
+Bob Jones;M10;ESOC;White;14:56;1;N;;
+Sarah Jones;W12;ESOC;White;16:02;1;N;;
+Alfie Green;M16;INT;White;18:42;3;N;;
+Susie Red;;;White;59:45;4;N;;
+Kris Reid;M35;ESOC;Yellow;21:21;1;N;;
+Martin Pitman;M18;ESOC;Yellow;24:36;2;N;;
+Tony Courtney;M40;ESOC;Yellow;33:05;3;N;;
+Linda Reid;W35;ESOC;Orange;33:06;1;N;;
+Bob Jones;M65;ESOC;Orange;34:58;;N;3;
+Pete Jones;M55;ESOC;Green;01:45:02;1;N;;

@@ -1,0 +1,54 @@
+
+label
+    display: block
+    margin-bottom: 0.25rem
+    font-size: 0.8rem
+
+input[type='text'], input[type='number'], input[type='password'], input[type='date'], select
+    display: block
+    box-sizing: border-box
+    margin: 0 0 0.3rem
+    padding: 0.1rem
+    width: calc(100% - 1rem)
+    outline: 0
+    border: 1px solid purple-300
+    background-color: white
+    font-weight: 300
+    font-size: 1rem
+    font-family: default-font
+
+    &:active, &:focus
+        border: 1px solid purple-500
+
+input[type='number']::-webkit-outer-spin-button, input[type='number']::-webkit-inner-spin-button
+    margin: 0
+    -webkit-appearance: none
+
+input[type='number']
+    -moz-appearance: textfield
+
+input:invalid
+    border: red 1px solid
+    box-shadow: none
+
+button, .button
+    no-user-select()
+    padding: 0.25rem 0.75rem
+    outline: 0
+    border: 1px solid purple-300
+    background-color: white
+    color: purple-500
+    font-weight: 300
+    font-size: 1rem
+    font-family: default-font
+    transition: 0.3s
+
+    &:hover
+        background-color: purple-300
+        color: white
+
+    &:focus
+        outline: none
+
+    &::-moz-focus-inner
+        border: 0
