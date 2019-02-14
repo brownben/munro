@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Login</h1>
+    <h1>Admin Login</h1>
     <form @submit.prevent="sendLoginRequest()">
       <label>Username:</label>
       <input v-model="username" type="text">

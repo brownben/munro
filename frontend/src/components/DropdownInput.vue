@@ -59,6 +59,7 @@ export default {
     width: 100%
     outline: 0
     border: 1px solid purple-300
+    background-color:white
     color: black
     font-weight: 300
     font-size: 1rem

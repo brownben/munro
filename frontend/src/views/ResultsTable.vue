@@ -1,111 +1,109 @@
 <template>
   <div>
-    <div v-if="found">
-      <h1 id="league-title">
-        <router-link :to="'/leagues/'+$route.params.name">{{ $route.params.name }}</router-link>
-        - {{ $route.params.course }}
-      </h1>
-      <filter-menu @changed="filterChanged"/>
-      <transition name="shrink">
-        <div v-show="filteredResults && filteredResults.length > 0" class="card">
-          <table>
-            <thead>
-              <tr>
-                <th @click="sortBy('position')">
-                  <p>Pos.</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'position'"/>
+    <h1 id="league-title">
+      <router-link :to="'/leagues/'+$route.params.name">{{ $route.params.name }}</router-link>
+      - {{ $route.params.course }}
+    </h1>
+    <filter-menu @changed="filterChanged"/>
+    <transition name="shrink">
+      <div v-show="filteredResults && filteredResults.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th @click="sortBy('position')">
+                <p>Pos.</p>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'position'"/>
+              </th>
+              <th @click="sortBy('name')">
+                <p>Name</p>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'name'"/>
+              </th>
+              <th @click="sortBy('age')">
+                <p>Class</p>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'age'"/>
+              </th>
+              <th class="club" @click="sortBy('club')">
+                <p>Club</p>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'club'"/>
+              </th>
+              <th @click="sortBy('totalPoints')">
+                <p>Points</p>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'totalPoints'"/>
+              </th>
+              <template v-if="!smallWindow">
+                <th
+                  v-for="event of eventsWithResults"
+                  :key="eventsWithResults.indexOf(event)"
+                  @click="sortBy('points-' + eventsWithResults.indexOf(event))"
+                >
+                  <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
+                  <span>{{ event.name }}</span>
+                  <up-down-arrow
+                    :ascending="ascendingSort"
+                    :active="sortedBy === ('points-' + eventsWithResults.indexOf(event))"
+                  />
                 </th>
-                <th @click="sortBy('name')">
-                  <p>Name</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'name'"/>
-                </th>
-                <th @click="sortBy('age')">
-                  <p>Class</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'age'"/>
-                </th>
-                <th class="club" @click="sortBy('club')">
-                  <p>Club</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'club'"/>
-                </th>
-                <th @click="sortBy('totalPoints')">
-                  <p>Points</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'totalPoints'"/>
-                </th>
+              </template>
+              <td v-else/>
+            </tr>
+          </thead>
+          <tbody is="transition-group" name="fade">
+            <template v-for="result of filteredResults">
+              <tr
+                :key="result.name"
+                :class="{ striped: filteredResults.indexOf(result) % 2 === 1 }"
+                class="normal-table-row"
+                @click="toggleRow(filteredResults.indexOf(result))"
+              >
+                <td>{{ result.position }}</td>
+                <td>{{ result.name }}</td>
+                <td>{{ result.ageClass }}</td>
+                <td class="club">{{ result.club }}</td>
+                <td>{{ result.totalPoints }}</td>
                 <template v-if="!smallWindow">
-                  <th
+                  <td
                     v-for="event of eventsWithResults"
                     :key="eventsWithResults.indexOf(event)"
-                    @click="sortBy('points-' + eventsWithResults.indexOf(event))"
-                  >
-                    <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
-                    <span>{{ event.name }}</span>
-                    <up-down-arrow
-                      :ascending="ascendingSort"
-                      :active="sortedBy === ('points-' + eventsWithResults.indexOf(event))"
-                    />
-                  </th>
+                    :class="{ strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event)) }"
+                  >{{ result.points[eventsWithResults.indexOf(event)] }}</td>
                 </template>
-                <td v-else/>
+                <td v-else>
+                  <svg
+                    v-if="!openedRows.includes(filteredResults.indexOf(result))"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                  </svg>
+                  <svg v-else width="16" height="16" viewBox="0 0 24 24">
+                    <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path>
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                  </svg>
+                </td>
               </tr>
-            </thead>
-            <tbody is="transition-group" name="fade">
-              <template v-for="result of filteredResults">
-                <tr
-                  :key="result.name"
-                  :class="{ striped: filteredResults.indexOf(result) % 2 === 1 }"
-                  class="normal-table-row"
-                  @click="toggleRow(filteredResults.indexOf(result))"
-                >
-                  <td>{{ result.position }}</td>
-                  <td>{{ result.name }}</td>
-                  <td>{{ result.ageClass }}</td>
-                  <td class="club">{{ result.club }}</td>
-                  <td>{{ result.totalPoints }}</td>
-                  <template v-if="!smallWindow">
-                    <td
-                      v-for="event of eventsWithResults"
-                      :key="eventsWithResults.indexOf(event)"
-                      :class="{ strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event)) }"
-                    >{{ result.points[eventsWithResults.indexOf(event)] }}</td>
-                  </template>
-                  <td v-else>
-                    <svg
-                      v-if="!openedRows.includes(filteredResults.indexOf(result))"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                    </svg>
-                    <svg v-else width="16" height="16" viewBox="0 0 24 24">
-                      <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path>
-                      <path d="M0 0h24v24H0z" fill="none"></path>
-                    </svg>
-                  </td>
-                </tr>
-                <tr
-                  v-if="smallWindow && openedRows.includes(filteredResults.indexOf(result))"
-                  :key="result.name + '-mobile'"
-                  :class="{ striped: filteredResults.indexOf(result) % 2 === 1 }"
-                  class="mobile-table-expansion"
-                >
-                  <td colspan="100%">
-                    <p v-for="event of eventsWithResults" :key="eventsWithResults.indexOf(event)">
-                      {{ event.name }}:
-                      <span
-                        :class="{strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event))}"
-                      >{{ result.points[eventsWithResults.indexOf(event)] }}</span>
-                    </p>
-                  </td>
-                </tr>
-              </template>
-            </tbody>
-          </table>
-        </div>
-      </transition>
-    </div>
-    <not-found v-if="!found"/>
+              <tr
+                v-if="smallWindow && openedRows.includes(filteredResults.indexOf(result))"
+                :key="result.name + '-mobile'"
+                :class="{ striped: filteredResults.indexOf(result) % 2 === 1 }"
+                class="mobile-table-expansion"
+              >
+                <td colspan="100%">
+                  <p v-for="event of eventsWithResults" :key="eventsWithResults.indexOf(event)">
+                    {{ event.name }}:
+                    <span
+                      :class="{strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event))}"
+                    >{{ result.points[eventsWithResults.indexOf(event)] }}</span>
+                  </p>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
+    </transition>
+    <h2 v-if="!found">Sorry, No Results Could Be Found</h2>
   </div>
 </template>
 
@@ -117,9 +115,9 @@ import UpDownArrow from '@/components/UpDownArrows'
 
 export default {
   components: {
-    'NotFound': NotFound,
-    'FilterMenu': FilterMenu,
-    'UpDownArrow': UpDownArrow,
+    NotFound: NotFound,
+    FilterMenu: FilterMenu,
+    UpDownArrow: UpDownArrow,
   },
 
   data: () => ({
@@ -153,23 +151,15 @@ export default {
     },
 
     sortedResults: function () {
-      if (this.sortedBy.includes('points-')) return this.sort(this.resultsWithAgeClassSplit, parseInt(this.sortedBy.split('-')[1]), this.ascendingSort, true)
-      return this.sort(this.resultsWithAgeClassSplit, this.sortedBy, this.ascendingSort)
+      return this.sort(this.resultsWithAgeClassSplit, parseInt(this.sortedBy.split('-')[1]), this.ascendingSort, this.sortedBy.includes('points-'))
     },
 
     filteredResults: function () {
       return this.sortedResults
         .filter(result => result.name.match(new RegExp(this.filterPreferences.name, 'i')))
         .filter(result => result.club.match(new RegExp(this.filterPreferences.club, 'i')))
-        .filter(result =>
-          (this.filterPreferences.minAge <= result.age) &&
-          (result.age <= this.filterPreferences.maxAge)
-        )
-        .filter(result =>
-          (this.filterPreferences.male && this.filterPreferences.female) ||
-          (this.filterPreferences.male && result.gender === 'M') ||
-          (this.filterPreferences.female && result.gender === 'W')
-        )
+        .filter(result => this.filterPreferences.minAge <= result.age && result.age <= this.filterPreferences.maxAge)
+        .filter(result => (this.filterPreferences.male && this.filterPreferences.female) || (this.filterPreferences.male && result.gender === 'M') || (this.filterPreferences.female && result.gender === 'W'))
     },
 
     eventsWithResults: function () {
@@ -178,15 +168,13 @@ export default {
   },
 
   watch: {
-    '$route': function () {
-      this.getResults()
-        .then(() => this.getEventList())
+    $route: function () {
+      this.getResults().then(() => this.getEventList())
     },
   },
 
   mounted: function () {
-    this.getResults()
-      .then(() => this.getEventList())
+    this.getResults().then(() => this.getEventList())
 
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
@@ -203,16 +191,20 @@ export default {
     },
 
     getResults: function () {
-      return axios.get('/api/leagues/' + this.$route.params.name + '/results/' + this.$route.params.course)
+      return axios
+        .get('/api/leagues/' + this.$route.params.name + '/results/' + this.$route.params.course)
         .then(response => {
           if (response.data.length > 0) this.rawResults = response.data
           else this.found = false
         })
-        .catch(() => { this.found = false })
+        .catch(() => {
+          this.found = false
+        })
     },
 
     getEventList: function () {
-      axios.get('/api/leagues/' + this.$route.params.name + '/events')
+      axios
+        .get('/api/leagues/' + this.$route.params.name + '/events')
         .then(response => { this.events = response.data })
         .catch(() => this.$messages.addMessage('Problem Fetching List of Events'))
     },
@@ -315,7 +307,7 @@ export default {
   padding: 0 0 0.75rem
 
   a
-    text-decoration:underline
+    text-decoration: underline
 
 table tr th p
   display: inline-flex

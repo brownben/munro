@@ -20,10 +20,10 @@
     </h1>
     <transition name="fade">
       <div v-show="showMenu" class="actions">
-        <router-link to="/leagues/Sprintelope">Sprintelope 2018</router-link>
-        <router-link to="/leagues/Test League 1">Test League 1</router-link>
-        <router-link v-if="!auth.isLoggedIn" to="/login">Login</router-link>
-        <router-link v-if="auth.isLoggedIn" to="/logout">Log Out</router-link>
+        <router-link to="/">Leagues</router-link>
+        <router-link to="/upload">Upload Results</router-link>
+        <router-link v-if="!auth.isLoggedIn" to="/login">Admin Login</router-link>
+        <router-link v-else to="/logout">Log Out</router-link>
       </div>
     </transition>
   </div>

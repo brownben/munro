@@ -8,7 +8,7 @@ import League from '@/views/League'
 import LeagueForm from '@/views/LeagueForm'
 import EventForm from '@/views/EventForm'
 import Upload from '@/views/Upload'
-import Table from '@/views/Table'
+import Table from '@/views/ResultsTable'
 import Login from '@/views/Login'
 import NotFound from '@/views/NotFound'
 
