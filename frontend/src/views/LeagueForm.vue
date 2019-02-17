@@ -13,11 +13,7 @@
         <label>Coordinator:</label>
         <input v-model.trim="coordinator" type="text">
         <label>Scoring Method:</label>
-        <dropdown-input
-          :initial="scoringMethodShorthandToFull(scoringMethod)"
-          :list="['Position Based']"
-          @changed="dropdownChanged"
-        />
+        <dropdown-input v-model="scoringMethod" :list="['Position Based']"/>
         <label>Number of Events to Count:</label>
         <input v-model.number="numberOfCountingEvents" type="number" min="1">
         <label>Courses: (Comma Separated)</label>
@@ -69,9 +65,9 @@ export default {
       if (value === 'position') return 'Position Based'
       else return ''
     },
-    dropdownChanged: function (value) {
-      if (value === 'Position Based') this.scoringMethod = 'position'
-      else this.scoringMethod = ''
+    scoringMethodFullToShorthand: function (value) {
+      if (value === 'Position Based') return 'position'
+      return ''
     },
     submit: function () {
       if (this.create) this.createLeague()
@@ -85,7 +81,7 @@ export default {
           this.name = response.data.name
           this.website = response.data.website
           this.coordinator = response.data.coordinator
-          this.scoringMethod = response.data.scoringMethod
+          this.scoringMethod = this.scoringMethodShorthandToFull(response.data.scoringMethod)
           this.numberOfCountingEvents = response.data.numberOfCountingEvents
           this.logo = response.data.logo
           this.courses = response.data.courses.join(', ')
@@ -119,7 +115,7 @@ export default {
           website: this.website,
           logo: this.logo,
           coordinator: this.coordinator,
-          scoringMethod: this.scoringMethod,
+          scoringMethod: this.scoringMethodFullToShorthand(this.scoringMethod),
           numberOfCountingEvents: this.numberOfCountingEvents,
           courses: this.courses,
           moreInformation: this.info,
@@ -137,7 +133,7 @@ export default {
           website: this.website,
           logo: this.logo,
           coordinator: this.coordinator,
-          scoringMethod: this.scoringMethod,
+          scoringMethod: this.scoringMethodFullToShorthand(this.scoringMethod),
           numberOfCountingEvents: this.numberOfCountingEvents,
           courses: this.courses,
           moreInformation: this.info,

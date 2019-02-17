@@ -3,13 +3,15 @@ export default {
   id: 0,
 
   addMessage: function (value) {
-    this.messages.push({
-      id: this.id,
-      text: value,
-    })
+    const id = this.id
     this.id += 1
 
-    setTimeout((id) => { this.removeMessage(id) }, 15000, this.id)
+    this.messages.push({
+      id: id,
+      text: value,
+    })
+
+    setTimeout((id) => { this.removeMessage(id) }, 15000, id)
   },
 
   clearMessages: function () {

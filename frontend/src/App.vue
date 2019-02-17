@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <AppMenu/>
+    <AppMenu />
 
     <div id="content">
-      <messages/>
+      <messages />
       <transition name="fade" mode="out-in">
-        <router-view id="router-view"/>
+        <router-view id="router-view" />
       </transition>
     </div>
-    <cookie-dialog/>
+    <cookie-dialog />
   </div>
 </template>
 

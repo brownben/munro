@@ -20,9 +20,8 @@
         <input v-model.trim="routegadget" type="text">
         <label>League: {{ league || this.$route.params.league }}</label>
         <dropdown-input
-          :initial="league"
+          v-model="league"
           :list="leagues.map(league => league.name)"
-          @changed="dropdownChanged"
         />
         <label>More Information:</label>
         <input v-model.trim="moreInformation" type="text">
@@ -30,7 +29,7 @@
         <button v-if="!create">Update Event</button>
       </form>
     </div>
-    <not-found v-if="notFound"/>
+    <not-found v-if="notFound" />
   </div>
 </template>
 
@@ -69,7 +68,6 @@ export default {
     }
   },
   methods: {
-    dropdownChanged: function (value) { this.league = value },
     submit: function () {
       if (this.create) this.createEvent()
       else this.updateEvent()

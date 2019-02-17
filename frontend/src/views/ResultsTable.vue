@@ -4,7 +4,7 @@
       <router-link :to="'/leagues/'+$route.params.name">{{ $route.params.name }}</router-link>
       - {{ $route.params.course }}
     </h1>
-    <filter-menu @changed="filterChanged"/>
+    <filter-menu @changed="filterChanged" />
     <transition name="shrink">
       <div v-show="filteredResults && filteredResults.length > 0">
         <table>
@@ -12,23 +12,23 @@
             <tr>
               <th @click="sortBy('position')">
                 <p>Pos.</p>
-                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'position'"/>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'position'" />
               </th>
               <th @click="sortBy('name')">
                 <p>Name</p>
-                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'name'"/>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'name'" />
               </th>
               <th @click="sortBy('age')">
                 <p>Class</p>
-                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'age'"/>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'age'" />
               </th>
               <th class="club" @click="sortBy('club')">
                 <p>Club</p>
-                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'club'"/>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'club'" />
               </th>
               <th @click="sortBy('totalPoints')">
                 <p>Points</p>
-                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'totalPoints'"/>
+                <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'totalPoints'" />
               </th>
               <template v-if="!smallWindow">
                 <th
@@ -44,7 +44,7 @@
                   />
                 </th>
               </template>
-              <td v-else/>
+              <td v-else />
             </tr>
           </thead>
           <tbody is="transition-group" name="fade">
@@ -74,12 +74,12 @@
                     height="16"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
-                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                    <path d="M0 0h24v24H0z" fill="none" />
                   </svg>
                   <svg v-else width="16" height="16" viewBox="0 0 24 24">
-                    <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path>
-                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
+                    <path d="M0 0h24v24H0z" fill="none" />
                   </svg>
                 </td>
               </tr>

@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <not-found v-if="!league"/>
+    <not-found v-if="!league" />
   </div>
 </template>
 <script>

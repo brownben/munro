@@ -22,8 +22,8 @@
       <label>Max Age:</label>
       <input v-model.number="preferences.maxAge" type="text" min="0" max="120" @change="onChange">
     </div>
-    <checkbox :state="true" class="quarter" label="Male:" @changed="maleCheckboxChanged"/>
-    <checkbox :state="true" class="quarter" label="Female:" @changed="femaleCheckboxChanged"/>
+    <checkbox v-model="preferences.male" class="quarter" label="Male:" />
+    <checkbox v-model="preferences.female" class="quarter" label="Female:" />
   </accordian-dropdown>
 </template>
 
@@ -51,16 +51,6 @@ export default {
   methods: {
     onChange: function () {
       this.$emit('changed', this.preferences)
-    },
-
-    maleCheckboxChanged: function (value) {
-      this.preferences.male = value
-      this.onChange()
-    },
-
-    femaleCheckboxChanged: function (value) {
-      this.preferences.female = value
-      this.onChange()
     },
   },
 }

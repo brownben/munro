@@ -11,13 +11,13 @@
     <div class="filter-head" @click="filterOpen = !filterOpen">
       <h2>{{ title }}</h2>
       <svg :class="{rotate:filterOpen}" viewBox="0 0 24 24">
-        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
-        <path fill="none" d="M0 0h24v24H0V0z"></path>
+        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
+        <path fill="none" d="M0 0h24v24H0V0z" />
       </svg>
     </div>
     <transition name="shrink">
       <div v-if="filterOpen" key="1" class="filter-body">
-        <slot/>
+        <slot />
       </div>
     </transition>
   </div>

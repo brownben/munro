@@ -3,16 +3,20 @@
 
   Checkbox for forms. When unchecked a grey box but when clicked it becomes a purple tick.
     It spins between states.
-  The 'props' (values passed to the component) are watched for changes and when changed it emits a
-    function with the updated data
+
+  'Emits' a value to form when changed
 -->
 
 <template>
   <div class="checkbox-input">
     <label>
       {{ label }}
-      <input v-model="output" :onchange="onChange()" type="checkbox">
-      <span/>
+      <input
+        :checked="value"
+        type="checkbox"
+        @change="$emit('input', $event.target.checked)"
+      >
+      <span />
     </label>
   </div>
 </template>
@@ -22,27 +26,14 @@ export default {
   name: 'CheckboxInput',
 
   props: {
-    'state': {
+    'value': {
       type: Boolean,
       default: false,
     },
-
     'label': {
       type: String,
       default: '',
     },
-  },
-
-  data: function () {
-    return { output: this.state }
-  },
-
-  watch: {
-    state (value) { this.output = value },
-  },
-
-  methods: {
-    onChange: function () { this.$emit('changed', this.output) },
   },
 }
 </script>

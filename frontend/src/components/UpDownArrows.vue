@@ -7,10 +7,10 @@
 <template>
   <div id="up-down-arrows">
     <svg :class="{ active: (activeValue && !ascendingValue) }" viewBox="0 0 24 24">
-      <path d="M7 14l5-5 5 5z"></path>
+      <path d="M7 14l5-5 5 5z" />
     </svg>
     <svg :class="{ active: (activeValue && ascendingValue) }" viewBox="0 0 24 24">
-      <path d="M7 10l5 5 5-5z"></path>
+      <path d="M7 10l5 5 5-5z" />
     </svg>
   </div>
 </template>

@@ -15,12 +15,7 @@
       <input id="file" type="file" accept=".csv" @change="fileChange">
       <p>{{ fileName }}</p>
     </div>
-    <Checkbox
-      v-if="event.resultUploaded"
-      :state="false"
-      label="Overwrite Existing Results:"
-      @changed="checkboxChanged"
-    />
+    <Checkbox v-if="event.resultUploaded" v-model="overwrite" label="Overwrite Existing Results:" />
     <button v-if="eventId && uploadKey && file" id="uploadButton" @click="uploadFile">Upload File</button>
   </div>
 </template>
@@ -51,7 +46,6 @@ export default {
   },
 
   methods: {
-    checkboxChanged: function (value) { this.overwrite = value },
     findEvent: function () {
       axios.get('/api/events/' + this.eventId)
         .then(response => {

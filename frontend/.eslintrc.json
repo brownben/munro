@@ -12,13 +12,11 @@
     "import",
     "node",
     "promise",
-    "standard",
-    "vue"
+    "standard"
   ],
   "parserOptions": {
-    "ecmaVersion": 2017,
-    "sourceType": "module",
-    "parser": "babel-eslint"
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   },
   "globals": {
     "document": false,
@@ -443,23 +441,27 @@
     "dot-notation": "error",
     "no-plusplus": "error",
     "no-ternary": "error",
-    "vue/max-attributes-per-line": [
+    "vue/max-attributes-per-line": "off",
+    "vue/array-bracket-spacing": "never",
+    "vue/arrow-spacing": {
+      "before": true,
+      "after": true
+    },
+    "vue/block-spacing": "always",
+    "vue/camelcase": "always",
+    "vue/component-name-in-template-casing": "kebab-case",
+    "vue/eqeqeq": "always",
+    "vue/no-boolean-default": "off",
+    "vue/script-indent": "off",
+    "vue/v-on-function-call": "always",
+    "vue/html-closing-bracket-spacing": [
       "error",
       {
-        "singleline": 5,
-        "multiline": {
-          "max": 1,
-          "allowFirstLine": false
-        }
+        "startTag": "never",
+        "endTag": "never",
+        "selfClosingTag": "always"
       }
     ],
-    "vue/script-indent": "off",
-    "no-console": "error",
-    "vue/html-self-closing": [
-      "error",
-      {
-        "svg": "never"
-      }
-    ]
+    "vue/singleline-html-element-content-newline": "off"
   }
 }

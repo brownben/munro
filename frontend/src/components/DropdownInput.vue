@@ -1,20 +1,19 @@
 <!--
   Dropdown Form Input
 
-  Dropdown input for forms wrapper for the select element. =
-  The 'props' (values passed to the component) are watched for changes and when changed it emits a
-    function with the updated data
+  Dropdown input for forms wrapper for the select element.
+  'Emits' a value when changed\
 -->
 
 <template>
   <div class="dropdown-input">
-    <select v-model="output" :onchange="onChange()">
+    <select :value="value" @input="$emit('input', $event.target.value)">
       <option v-for="item in list" :key="item">{{ item }}</option>
     </select>
     <label>
-      <svg height="24" viewBox="0 0 24 24" width="24">
-        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
-        <path d="M0-.75h24v24H0z" fill="none"></path>
+      <svg fill="#9E9E9E" height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
+        <path d="M0-.75h24v24H0z" fill="none" />
       </svg>
     </label>
   </div>
@@ -25,25 +24,14 @@ export default {
   name: 'DropdownInput',
 
   props: {
-    'initial': {
+    'value': {
       type: String,
       default: '',
     },
-
     'list': {
       type: Array,
-      default: [],
+      default: () => [],
     },
-  },
-
-  data: () => ({ output: '' }),
-
-  watch: {
-    initial (value) { this.output = value },
-  },
-
-  methods: {
-    onChange: function () { this.$emit('changed', this.output) },
   },
 }
 </script>
@@ -59,7 +47,7 @@ export default {
     width: 100%
     outline: 0
     border: 1px solid purple-300
-    background-color:white
+    background-color: white
     color: black
     font-weight: 300
     font-size: 1rem
