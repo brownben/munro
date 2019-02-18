@@ -7,7 +7,10 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
-    "lint": "eslint --ext .js,.vue src",
+    "lint": "npm run lint-styles && npm run lint-js",
+    "lint-js": "eslint ./src/ --ext .vue,.js",
+    "lint-js-fix": "eslint ./src/ --ext .vue,.js --fix",
+    "lint-styles": "stylus-supremacy format ./src/assets/styles/*.styl --options stylusSupremacy.json --replace",
     "build": "node build/build.js"
   },
   "dependencies": {

@@ -70,7 +70,7 @@ class League(Resource):
             return {'message': 'League - {} was Deleted'.format(name)}
         except:
             return {'message':'Problem Deleting League'},500
-        
+
 class LeagueEvents(Resource):
     def get(self, name):
         return events.getEventsOfLeague(name)

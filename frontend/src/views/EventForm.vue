@@ -1,8 +1,25 @@
+<!--
+  Event Form
+
+  The form for Creating/ Updating Events
+
+  On Create:
+    - Show form
+  - Fetch Leagues
+  - Autofill league if passed in the URL
+
+  On Edit:
+    - Show Form
+    - Fetch leagues
+    - Fetch event data and display it (Event ID from URL)
+-->
+
 <template>
   <div>
     <div v-if="!notFound">
       <h1 v-if="create">Create Event</h1>
       <h1 v-if="!create">Edit Event</h1>
+      <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
       <form @submit.prevent="submit()">
         <label>Name:</label>
         <input v-model.trim="name" type="text">
@@ -18,11 +35,8 @@
         <input v-model.trim="winsplits" type="text">
         <label>Routegadget: (URL)</label>
         <input v-model.trim="routegadget" type="text">
-        <label>League: {{ league || this.$route.params.league }}</label>
-        <dropdown-input
-          v-model="league"
-          :list="leagues.map(league => league.name)"
-        />
+        <label>League:</label>
+        <dropdown-input v-model="league" :list="leagues.map(league => league.name)" />
         <label>More Information:</label>
         <input v-model.trim="moreInformation" type="text">
         <button v-if="create">Create Event</button>
@@ -43,6 +57,7 @@ export default {
     'NotFound': NotFound,
     'DropdownInput': DropdownInput,
   },
+
   data: function () {
     return {
       notFound: false,
@@ -60,6 +75,8 @@ export default {
       league: this.$route.params.league,
     }
   },
+
+  // On Load
   mounted: function () {
     this.getLeagues()
     if (this.$route.path.includes('edit')) {
@@ -67,15 +84,13 @@ export default {
       this.getEventDetails()
     }
   },
+
   methods: {
     submit: function () {
       if (this.create) this.createEvent()
       else this.updateEvent()
     },
-    returnToLeaguePage: function (response) {
-      this.$messages.addMessage(response.data.message)
-      this.$router.push('/leagues/' + this.league)
-    },
+
     getEventDetails: function () {
       return axios.get('/api/events/' + this.$route.params.id)
         .then(response => {
@@ -94,6 +109,7 @@ export default {
         })
         .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
     },
+
     getLeagues: function () {
       axios.get('/api/leagues')
         .then(response => {
@@ -102,10 +118,12 @@ export default {
         })
         .catch(() => this.$messages.addMessage('Problem Fetching List of Leagues'))
     },
+
     validateForm: function () {
       if (this.name !== '' && this.league !== '') return true
       else return false
     },
+
     createEvent: function () {
       if (this.validateForm()) {
         return axios.post('/api/events', {
@@ -125,6 +143,7 @@ export default {
       }
       else this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
     },
+
     updateEvent: function () {
       if (this.validateForm()) {
         return axios.put('/api/events/' + this.id, {
@@ -143,6 +162,12 @@ export default {
           .catch(() => this.$messages.addMessage('Error: Problem Updating Event - Please Try Again'))
       }
       else this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
+    },
+
+    returnToLeaguePage: function (response) {
+      // Go to league page after successful update/ creation
+      this.$messages.addMessage(response.data.message)
+      this.$router.push('/leagues/' + this.league)
     },
   },
 }

@@ -1,3 +1,10 @@
+/*
+  main.js
+
+  The main vue instance. The authentication wrapper and messageStore
+  are bound to this instance so they can be accessed throughout the full app
+*/
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'

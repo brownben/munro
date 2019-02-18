@@ -1,3 +1,12 @@
+<!--
+  League Results for Course
+
+  Display results for course in dynamic table with searching and sorting. Click on the relevent cell in the header
+  to sort/ change sort direction/ preference
+  On mobile show overview with name, class, total points and when clicked reveal points for each event.
+  Points not included in total are strikethrough style
+-->
+
 <template>
   <div>
     <h1 id="league-title">
@@ -55,6 +64,7 @@
                 class="normal-table-row"
                 @click="toggleRow(filteredResults.indexOf(result))"
               >
+                <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
                 <td>{{ result.position }}</td>
                 <td>{{ result.name }}</td>
                 <td>{{ result.ageClass }}</td>
@@ -89,6 +99,7 @@
                 :class="{ striped: filteredResults.indexOf(result) % 2 === 1 }"
                 class="mobile-table-expansion"
               >
+                <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
                 <td colspan="100%">
                   <p v-for="event of eventsWithResults" :key="eventsWithResults.indexOf(event)">
                     {{ event.name }}:
@@ -103,6 +114,7 @@
         </table>
       </div>
     </transition>
+    <!-- If no results show, message -->
     <h2 v-if="!found">Sorry, No Results Could Be Found</h2>
   </div>
 </template>
@@ -141,6 +153,7 @@ export default {
 
   computed: {
     resultsWithAgeClassSplit: function () {
+      // Split age class into age and gender to allow easy sorting
       return this.rawResults.map(result => {
         if (result.ageClass) {
           result.gender = result.ageClass[0]
@@ -151,31 +164,43 @@ export default {
     },
 
     sortedResults: function () {
-      return this.sort(this.resultsWithAgeClassSplit, parseInt(this.sortedBy.split('-')[1]), this.ascendingSort, this.sortedBy.includes('points-'))
+      // Sort results by preference
+      return this.sort(
+        this.resultsWithAgeClassSplit,
+        parseInt(this.sortedBy.split('-')[1]),
+        this.ascendingSort,
+        this.sortedBy.includes('points-'))
     },
 
     filteredResults: function () {
+      // Filter results by preferences
       return this.sortedResults
-        .filter(result => result.name.match(new RegExp(this.filterPreferences.name, 'i')))
-        .filter(result => result.club.match(new RegExp(this.filterPreferences.club, 'i')))
-        .filter(result => this.filterPreferences.minAge <= result.age && result.age <= this.filterPreferences.maxAge)
-        .filter(result => (this.filterPreferences.male && this.filterPreferences.female) || (this.filterPreferences.male && result.gender === 'M') || (this.filterPreferences.female && result.gender === 'W'))
+        .filter(result => result.name.match(new RegExp(this.filterPreferences.name, 'i'))) // Filter by Name Case Insensitive
+        .filter(result => result.club.match(new RegExp(this.filterPreferences.club, 'i'))) // Filter by Club Case Insensitive
+        .filter(result => this.filterPreferences.minAge <= result.age && result.age <= this.filterPreferences.maxAge) // If age in range
+        .filter(result => (this.filterPreferences.male && this.filterPreferences.female) ||
+          (this.filterPreferences.male && result.gender === 'M') ||
+          (this.filterPreferences.female && result.gender === 'W')) // Filter by Gender
     },
 
     eventsWithResults: function () {
+      // Get events with results
       return this.events.filter(event => event.resultUploaded)
     },
   },
 
+  // If route changes without reload (if only course parameter changes)
   watch: {
     $route: function () {
       this.getResults().then(() => this.getEventList())
     },
   },
 
+  // On load
   mounted: function () {
     this.getResults().then(() => this.getEventList())
 
+    // Mobile resize watcher
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   },
@@ -209,22 +234,11 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Fetching List of Events'))
     },
 
-    allPlatformSort: function (array, property, ascending) {
-      // Chromium's Implementation of .sort uses 1/-1 not True/False so use the Ternary Operator to make the sort work on all platforms
-      const sortFunction = (a, b) => {
-        if (a[property] === b[property]) return 0
-        else if (a[property] === null) return 1
-        else if (b[property] === null) return -1
-        else if (a[property] < b[property]) return 1
-        else return -1
-      }
-      if (ascending) return array.sort(sortFunction)
-      else return array.sort(sortFunction).reverse()
-    },
-
     sort: function (array, property, ascending = true, byPoints = false) {
+      // Selection Sort using Single List for Sorting Results
       for (let counter = 0; counter < array.length; counter += 1) {
         let minLocation = counter
+        // If points look in points array not the main object
         if (!byPoints) minLocation = this.findMinOfProperty(array.slice(counter), property) + counter
         else minLocation = this.findMinOfPoints(array.slice(counter), property) + counter
         if (minLocation !== counter) {
@@ -238,6 +252,7 @@ export default {
     },
 
     findMinOfProperty: function (array, property) {
+      // Find Min Algorithm for the result record with property specified
       let locationOfMinValue = 0
       for (let item = 0; item < array.length; item += 1) {
         if (array[item][property] < array[locationOfMinValue][property]) locationOfMinValue = item
@@ -246,6 +261,7 @@ export default {
     },
 
     findMinOfPoints: function (array, property) {
+      // Find Min Algorithm for the result with points array value with points at index of array specified by 'property'
       let locationOfMinValue = 0
       for (let item = 0; item < array.length; item += 1) {
         if (array[item].points[property] < array[locationOfMinValue].points[property]) locationOfMinValue = item
@@ -253,28 +269,17 @@ export default {
       return locationOfMinValue
     },
 
-    allPlatformSortByPoints: function (array, property, ascending) {
-      // Chromium's Implementation of .sort uses 1/-1 not True/False so use the Ternary Operator to make the sort work on all platforms
-      const pointsColumn = parseInt(property.split('-')[1])
-      const sortFunction = (a, b) => {
-        if (a.points[pointsColumn] === b.points[pointsColumn]) return 0
-        else if (a.points[pointsColumn] === null) return 1
-        else if (b.points[pointsColumn] === null) return -1
-        else if (a.points[pointsColumn] < b.points[pointsColumn]) return 1
-        else return -1
-      }
-      if (ascending) return array.sort(sortFunction)
-      else return array.sort(sortFunction).reverse()
-    },
-
     sortBy: function (sortBy) {
+      // Change what property it is sorted by
       this.openedRows = []
+      // If it is a different property, make it sort ascending else change direction of sort
       if (sortBy !== this.sortedBy) this.ascendingSort = false
       else this.ascendingSort = !this.ascendingSort
       this.sortedBy = sortBy
     },
 
     filterChanged: function (data) {
+      // Update data of view if Filter Menu emits a change
       this.filterPreferences.name = data.name
       this.filterPreferences.club = data.club
       if (data.minAge === '') this.filterPreferences.minAge = 100
@@ -286,6 +291,7 @@ export default {
     },
 
     toggleRow: function (id) {
+      // Shows the detailed points view when the row for the results is clicked on a mobile
       const index = this.openedRows.indexOf(id)
       if (index > -1) this.openedRows.splice(index, 1)
       else this.openedRows.push(id)

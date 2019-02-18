@@ -2,6 +2,7 @@
   Navigation Menu
 
   The main navigation menu for the site. Deals with resize by monitoring window size and displaying appropriate menu style
+  If logged in display logout instead of login.
 -->
 
 <template>

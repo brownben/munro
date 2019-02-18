@@ -1,6 +1,11 @@
+<!--
+  App.vue
+
+  The main app file containing the base structure of the app, and base styling
+-->
 <template>
   <div id="app">
-    <AppMenu />
+    <app-menu />
 
     <div id="content">
       <messages />

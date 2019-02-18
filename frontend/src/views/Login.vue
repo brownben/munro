@@ -1,3 +1,9 @@
+<!--
+  Login
+
+  The login page to gain access to admin functions
+-->
+
 <template>
   <div>
     <h1>Admin Login</h1>
@@ -36,10 +42,12 @@ export default {
       this.username = ''
       this.password = ''
     },
+
     validateLogin: function () {
       if (this.username !== '' && this.password !== '') return true
       else return false
     },
+
     sendLoginRequest: function () {
       if (this.validateLogin()) {
         auth.login(this.username, this.password)

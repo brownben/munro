@@ -1,3 +1,9 @@
+<!--
+  Home
+
+  Home page of app, diaplying summary of all the leagues
+-->
+
 <template>
   <div>
     <div class="header">

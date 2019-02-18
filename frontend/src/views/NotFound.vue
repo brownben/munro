@@ -1,3 +1,9 @@
+<!--
+  Not Found
+
+  Displayed when page is not found by the router, or data is not found from API
+-->
+
 <template>
   <div>
     <h1>Sorry We Can't Find What You Are Looking For</h1>
@@ -6,6 +12,7 @@
     <button @click="$router.push('/')">Return Home</button>
   </div>
 </template>
+
 <style lang="stylus" scoped>
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'

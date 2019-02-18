@@ -1,3 +1,10 @@
+/*
+  authentication.js
+
+  Contains the functions to interact with the autthentication api.
+  Stores login state in isLoggedIn for the views to access, this is updated using checkLogin
+*/
+
 import axios from 'axios'
 
 export default {
@@ -24,5 +31,6 @@ export default {
         return response.data.logged_in
       })
   },
+
   isLoggedIn: false,
 }

@@ -1,3 +1,8 @@
+/*
+  router.js
+
+  Sets up the VueJS router, defining all routes and which view to display for each one
+*/
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -12,6 +17,7 @@ import Table from '@/views/ResultsTable'
 import Login from '@/views/Login'
 import NotFound from '@/views/NotFound'
 
+// Bind to Vue Instance
 Vue.use(Router)
 
 const router = new Router({
@@ -80,6 +86,7 @@ const router = new Router({
     {
       path: '/logout',
       beforeEnter: function (to, from, next) {
+        // Logout then redirect to the home page
         router.app.$auth.logout()
           .then(() => {
             next('/')
@@ -94,12 +101,15 @@ const router = new Router({
       component: NotFound,
     },
   ],
+
+  // Use natural looking routes (/<route>) not /#<route>
   mode: 'history',
 })
 
 export default router
 
 function requireAuthentication (to, from, next) {
+  // Check they are logged in before going to restricted route, if they are not redirect
   router.app.$auth.checkLogin()
     .then(loggedIn => {
       if (!loggedIn) {

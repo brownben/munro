@@ -1,3 +1,16 @@
+<!--
+  League Form
+
+  The form for Creating/ Updating Leagues
+
+  On Create:
+    - Show form
+
+  On Edit:
+    - Show Form
+    - Fetch league data and display it (League Name from URL)
+-->
+
 <template>
   <div>
     <div v-if="!notFound">
@@ -13,7 +26,7 @@
         <label>Coordinator:</label>
         <input v-model.trim="coordinator" type="text">
         <label>Scoring Method:</label>
-        <dropdown-input v-model="scoringMethod" :list="['Position Based']"/>
+        <dropdown-input v-model="scoringMethod" :list="['Position Based']" />
         <label>Number of Events to Count:</label>
         <input v-model.number="numberOfCountingEvents" type="number" min="1">
         <label>Courses: (Comma Separated)</label>
@@ -24,7 +37,7 @@
         <button v-if="!create">Update League</button>
       </form>
     </div>
-    <not-found v-if="notFound"/>
+    <not-found v-if="notFound" />
   </div>
 </template>
 
@@ -38,6 +51,7 @@ export default {
     'NotFound': NotFound,
     'DropdownInput': DropdownInput,
   },
+
   data: function () {
     return {
       notFound: false,
@@ -53,6 +67,8 @@ export default {
       info: '',
     }
   },
+
+  // On Load
   mounted: function () {
     if (this.$route.path.includes('edit')) {
       this.create = false
@@ -60,19 +76,41 @@ export default {
     }
     this.blankFields()
   },
+
   methods: {
+    blankFields: function () {
+      this.name = ''
+      this.website = ''
+      this.coordinator = ''
+      this.scoringMethod = ''
+      this.numberOfCountingEvents = 1
+      this.logo = ''
+      this.info = ''
+      this.courses = ''
+    },
+
+    validateForm: function () {
+      if (this.name !== '' && this.scoringMethod !== '') return true
+      else return false
+    },
+
+    returnToLeaguePage: function (response) {
+      this.$messages.addMessage(response.data.message)
+      this.$router.push('/leagues/' + this.name)
+      this.blankFields()
+    },
+
+    // Scoring Method is stored in a shorthand form in database, transfer between these two forms so it is displayed in a clear manner
     scoringMethodShorthandToFull: function (value) {
       if (value === 'position') return 'Position Based'
       else return ''
     },
+
     scoringMethodFullToShorthand: function (value) {
       if (value === 'Position Based') return 'position'
       return ''
     },
-    submit: function () {
-      if (this.create) this.createLeague()
-      else this.updateLeague()
-    },
+
     getLeagueDetails: function () {
       return axios.get('/api/leagues/' + this.$route.params.name)
         .then(response => {
@@ -89,25 +127,12 @@ export default {
         })
         .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
     },
-    blankFields: function () {
-      this.name = ''
-      this.website = ''
-      this.coordinator = ''
-      this.scoringMethod = ''
-      this.numberOfCountingEvents = 1
-      this.logo = ''
-      this.info = ''
-      this.courses = ''
+
+    submit: function () {
+      if (this.create) this.createLeague()
+      else this.updateLeague()
     },
-    validateForm: function () {
-      if (this.name !== '' && this.scoringMethod !== '') return true
-      else return false
-    },
-    returnToLeaguePage: function (response) {
-      this.$messages.addMessage(response.data.message)
-      this.$router.push('/leagues/' + this.name)
-      this.blankFields()
-    },
+
     createLeague: function () {
       if (this.validateForm()) {
         return axios.post('/api/leagues', {
@@ -125,6 +150,7 @@ export default {
       }
       else this.$messages.addMessage('Please Ensure Name and Scoring Method Fields are not Blank')
     },
+
     updateLeague: function () {
       if (this.validateForm()) {
         return axios.put('/api/leagues/' + this.oldName, {

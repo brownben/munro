@@ -1,3 +1,11 @@
+<!--
+  League Home Page
+
+  Shows all league details as well as all details for each event in the league, including
+  the upload key and event id needed for eveent upload if logged in. If logged in it also diaplays
+  options to edit/ update/ delete the events/ league. Also has links to results for each course
+-->
+
 <template>
   <div>
     <div v-if="league">
@@ -74,6 +82,7 @@ export default {
   components: {
     'NotFound': NotFound,
   },
+
   data: function () {
     return {
       league: {},
@@ -83,6 +92,7 @@ export default {
   },
 
   watch: {
+    // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
     '$route': function () {
       this.getLeague()
         .then(() => this.getLeagueEvents())
@@ -90,6 +100,7 @@ export default {
   },
 
   mounted: function () {
+    // Get details on load
     this.getLeague()
       .then(() => this.getLeagueEvents())
   },
@@ -100,6 +111,7 @@ export default {
         .then(response => { this.league = response.data })
         .catch(() => this.$messages.addMessage('Problem Getting League Details'))
     },
+
     getLeagueEvents: function () {
       if (this.league) {
         if (this.auth.isLoggedIn) {
@@ -114,6 +126,7 @@ export default {
         }
       }
     },
+
     deleteLeague: function () {
       if (confirm('Are you Sure you Want to Delete League - ' + this.league.name + '? \nThis Action Can\'t Be Recovered')) {
         axios.delete('/api/leagues/' + this.league.name)
@@ -124,6 +137,7 @@ export default {
           .catch(() => this.$messages.addMessage('Problem Deleting League - Please Try Again'))
       }
     },
+
     deleteEvent: function (event) {
       if (confirm('Are you Sure you Want to Delete Event - ' + event.name + '? \nThis Action Can\'t Be Recovered')) {
         axios.delete('/api/events/' + event.id)

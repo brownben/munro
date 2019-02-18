@@ -25,7 +25,8 @@ api.add_resource(routes.League, '/api/leagues/<name>')
 api.add_resource(routes.LeagueEvents, '/api/leagues/<name>/events')
 api.add_resource(routes.LeagueEventsWithUploadKey,
                  '/api/leagues/<name>/events/uploadKey')
-api.add_resource(routes.ResultsForCourse, '/api/leagues/<name>/results/<course>')
+api.add_resource(routes.ResultsForCourse,
+                 '/api/leagues/<name>/results/<course>')
 
 api.add_resource(routes.Events, '/api/events')
 api.add_resource(routes.EventsWithUploadKey, '/api/events/uploadKey')
