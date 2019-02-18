@@ -1,4 +1,5 @@
 def splitData(rawData):
+    # Split CSV into 2D Array
     rows = rawData.split('\n')
     splitData = []
     for row in rows:
@@ -7,6 +8,7 @@ def splitData(rawData):
 
 
 def checkAllHeadersPresent(list):
+    # Check all expected field are in the file
     if ('firstName' in list and 'surname' in list) or 'name' in list:
         otherHeaders = ['ageClass','club','course','time','position','nonCompetitive','status']
         for header in otherHeaders:
@@ -17,6 +19,7 @@ def checkAllHeadersPresent(list):
         return False
 
 def findHeaders(data):
+    # Find the location of each field in the CSV file by reading the header
     locations = {}
     headerRow = data[0]
     headerRow[-1] = headerRow[-1].strip()
@@ -47,6 +50,7 @@ def findHeaders(data):
         return False
 
 def parseToObjects(data, headerLocations):
+    # Parse each row into an object to make it clearer to read
     parsedData = []
 
     for row in data[1:]:
@@ -72,12 +76,14 @@ def parseToObjects(data, headerLocations):
     return parsedData
 
 def assignPoints(data, leagueScoringMethod):
+    # Choses which points algorithm to use
     if leagueScoringMethod == 'position':
         return positionBasedPoints(data)
     else:
         return False
 
 def positionBasedPoints(data):
+    # Assign points 100 for 1st, 99 for 2nd etc - 0 for incomplete course
     dataWithPoints = []
 
     for result in data:
@@ -95,6 +101,7 @@ def positionBasedPoints(data):
 
 
 def timeToSeconds(time):
+    # Convert time from HH:MM:SS and MMM:SS to seconds for easieer calculations
     if time != '':
         splitTime = time.split(':')
         if len(splitTime) == 2:
@@ -111,21 +118,25 @@ def timeToSeconds(time):
         return 0
 
 def nameToInitial(name):
+    # Get initial from a name, for matching of surname + initial
     splitName = name.split(' ',1)
     return splitName[0][0] + splitName[1]
 
 def matchCompetitor(competitorList, result):
+    # Find correct competitor to match to, check name and course match
     for competitor in competitorList:
         if competitor['name'] == result['name'] and competitor['course'] == result['course']:
             return competitor
 
+    # Else check that initial, surname, course and either club or age class match
     for competitor in competitorList:
-        if nameToInitial(competitor['name']) == nameToInitial(result['name'])  and competitor['course'] == result['course'] and (competitor['ageClass'] == result['ageClass'] or competitor['club'] == result['club']):
+        if nameToInitial(competitor['name']) == nameToInitial(result['name']) and (competitor['name'].split(' ')[0] == result['name'].split(' ')[0]) and competitor['course'] == result['course'] and (competitor['ageClass'] == result['ageClass'] or competitor['club'] == result['club']):
             return competitor
 
     return False
 
 def removeExtraCourses(results, courses):
+    # Remove competitors with courses that are not configured for the league
     resultsWithCoursesRemoved = []
     for result in results:
         if result['course'] in courses:

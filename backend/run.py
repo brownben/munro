@@ -7,6 +7,7 @@ import requests
 
 import routes
 
+# Set up Flask with plugins
 app = Flask(__name__,
             static_folder="../dist/static",
             template_folder="../dist")
@@ -15,6 +16,7 @@ api = Api(app)
 compress = Compress(app)
 app.secret_key = os.urandom(25)
 
+# Bind all logic with the routes
 api.add_resource(routes.UserRegistration, '/api/auth/registration')
 api.add_resource(routes.UserLogin, '/api/auth/login')
 api.add_resource(routes.UserLogout, '/api/auth/logout')
@@ -42,9 +44,11 @@ api.add_resource(routes.Upload, '/api/upload')
 api.add_resource(routes.TestLegaueResults, '/api/testleague/long')
 
 
+# Serve app files
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
+    # If in debug access files from VueJS Development Server
     if app.debug:
         return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")

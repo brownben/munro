@@ -6,6 +6,7 @@ from database import leagues, events, sessionStore
 
 
 def requireAuthentication(func):
+    # Check login before allowing user to access API
     @wraps(func)
     def decorator(*args, **kwargs):
         if not session.get('username') or not session['username'] or not sessionStore.checkLogin(session['username']):
@@ -13,7 +14,7 @@ def requireAuthentication(func):
         return func(*args, **kwargs)
     return decorator
 
-
+# Check POST request has all the relevent fields
 eventParser = reqparse.RequestParser()
 eventParser.add_argument(
     'name', help='This field cannot be blank', required=True)

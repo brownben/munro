@@ -4,6 +4,7 @@ import sqlite3
 
 
 def competitorToJSON(competitor):
+    # Convert data from SQL to Object
     if (competitor):
         return {
             'rowId': competitor[0],

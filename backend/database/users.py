@@ -2,8 +2,6 @@ import sqlite3
 from passlib.hash import pbkdf2_sha256 as sha256
 
 # Hash Functions
-
-
 def generateHash(password):
     return sha256.hash(password)
 
@@ -12,8 +10,6 @@ def verifyHash(password, hash):
     return sha256.verify(password, hash)
 
 # Convert SQL Tuple to JSON
-
-
 def userToJSON(user):
     if user:
         return {

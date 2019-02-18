@@ -45,10 +45,8 @@ def eventToJSONWithUploadKey(event):
     else:
         return False
 
-# Generate Random Upload Key
-
-
 def generateUploadKey():
+    # Generate Random Upload Key
     random = os.urandom(15)
     string = str(base64.b64encode(random))
     return string[2:22]
@@ -78,8 +76,6 @@ connection.commit()
 connection.close()
 
 # Event Database Functions
-
-
 def createEvent(name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, league):
     id = (league+name+date).replace(" ", "")
     uploadKey = generateUploadKey()

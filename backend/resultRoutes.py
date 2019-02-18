@@ -6,6 +6,7 @@ from database import results, sessionStore
 
 
 def requireAuthentication(func):
+    # Check login before allowing user to access API
     @wraps(func)
     def decorator(*args, **kwargs):
         if not session.get('username') or not session['username'] or not sessionStore.checkLogin(session['username']):
