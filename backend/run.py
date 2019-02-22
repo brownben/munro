@@ -41,10 +41,9 @@ api.add_resource(routes.Results, '/api/results')
 
 api.add_resource(routes.Upload, '/api/upload')
 
-api.add_resource(routes.TestLegaueResults, '/api/testleague/long')
-
-
 # Serve app files
+
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):

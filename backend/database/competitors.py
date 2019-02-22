@@ -34,8 +34,6 @@ connection.commit()
 connection.close()
 
 # Competitor Database Functions
-
-
 def createCompetitor(name, ageClass, club, course, league):
     connection = sqlite3.connect('./databaseFiles/2.db')
     cursor = connection.cursor()

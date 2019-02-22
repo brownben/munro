@@ -1,17 +1,7 @@
 from flask import Flask, session
 from flask_restful import Resource, reqparse
-from functools import wraps
-
+from requireAuthentication import requireAuthentication
 from database import users, sessionStore
-
-def requireAuthentication(func):
-    # Check login before allowing user to access API
-    @wraps(func)
-    def decorator(*args, **kwargs):
-        if not session.get('username') or not session['username'] or not sessionStore.checkLogin(session['username']):
-            return {'message': 'Permission Denied - You are not Logged In'}, 401
-        return func(*args, **kwargs)
-    return decorator
 
 # Check POST request has all the relevent fields
 userParser = reqparse.RequestParser()
@@ -19,6 +9,7 @@ userParser.add_argument(
     'username', help='This field cannot be blank', required=True)
 userParser.add_argument(
     'password', help='This field cannot be blank', required=True)
+
 
 class UserRegistration(Resource):
     def post(self):
