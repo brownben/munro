@@ -19,7 +19,7 @@ export default {
     })
 
     // Remove message after 15s
-    setTimeout((id) => { this.removeMessage(id) }, 15000, id)
+    setTimeout(id => this.removeMessage(id), 15000, id)
   },
 
   clearMessages: function () {

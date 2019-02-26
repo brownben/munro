@@ -25,14 +25,14 @@ export default {
   data: () => ({ show: Boolean }),
 
   created: function () {
-    if (localStorage.cookies === 'accepted') this.show = false
+    if (localStorage.getItem('cookies') === 'accepted') this.show = false
     else this.show = true
   },
 
   methods: {
     allowCookies: function () {
       this.show = false
-      localStorage.cookies = 'accepted'
+      localStorage.setItem('cookies', 'accepted')
     },
   },
 }
