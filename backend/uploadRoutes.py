@@ -3,6 +3,8 @@ from flask_restful import Resource, reqparse
 
 from database import events, competitors, results
 import uploadFunctions as upload
+import pointsFunctions as points
+import csvFunctions as csv
 from requireAuthentication import requireAuthentication
 
 
@@ -40,14 +42,14 @@ class Upload(Resource):
                 results.deleteResultsByEvent(eventData['id'])
 
             # Parse file into 2D array and then place into an object, assigning points to each results
-            splitData = upload.splitData(data['file'].strip())
-            headerLocations = upload.findHeaders(splitData)
+            splitData = csv.splitData(data['file'].strip())
+            headerLocations = csv.findHeaders(splitData)
             if(not headerLocations):
                 return {'message': 'Data is in an Uncomplete Format'}, 500
-            parsedData = upload.parseToObjects(splitData, headerLocations)
+            parsedData = csv.parseToObjects(splitData, headerLocations)
             parsedDataNoExtraCourses = upload.removeExtraCourses(
                 parsedData, leagueOfEvent['courses'])
-            dataWithPoints = upload.assignPoints(
+            dataWithPoints = points.assignPoints(
                 parsedDataNoExtraCourses, leagueOfEvent['scoringMethod'])
 
             try:
