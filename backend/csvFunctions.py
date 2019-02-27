@@ -1,5 +1,6 @@
 # Functions to read and parse the CSV files into processable records
 
+
 def splitData(rawData):
     # Split CSV into 2D Array
     rows = rawData.split('\n')
@@ -7,6 +8,7 @@ def splitData(rawData):
     for row in rows:
         splitData.append(row.strip().split(';'))
     return splitData
+
 
 def findHeaders(data):
     # Find the location of each field in the CSV file by reading the header
@@ -39,16 +41,19 @@ def findHeaders(data):
     else:
         return False
 
+
 def checkAllHeadersPresent(list):
     # Check all expected field are in the file
     if ('firstName' in list and 'surname' in list) or 'name' in list:
-        otherHeaders = ['ageClass','club','course','time','position','nonCompetitive','status']
+        otherHeaders = ['ageClass', 'club', 'course',
+                        'time', 'position', 'nonCompetitive', 'status']
         for header in otherHeaders:
             if header not in list:
                 return False
         return True
     else:
         return False
+
 
 def timeToSeconds(time):
     # Convert time from HH:MM:SS and MMM:SS to seconds for easieer calculations
@@ -58,7 +63,7 @@ def timeToSeconds(time):
             hours = 0
             minutes = int(splitTime[0])
             seconds = int(splitTime[1])
-        else :
+        else:
             hours = int(splitTime[0])
             minutes = int(splitTime[1])
             seconds = int(splitTime[2])
@@ -66,6 +71,7 @@ def timeToSeconds(time):
         return (hours * 3600) + (minutes * 60) + seconds
     else:
         return 0
+
 
 def parseToObjects(data, headerLocations):
     # Parse each row into an object to make it clearer to read
@@ -75,7 +81,8 @@ def parseToObjects(data, headerLocations):
         parsedRow = {}
 
         if 'firstName' in headerLocations:
-            parsedRow['name'] = row[headerLocations['firstName']] +' '+ row[headerLocations['surname']]
+            parsedRow['name'] = row[headerLocations['firstName']] + \
+                ' ' + row[headerLocations['surname']]
         else:
             parsedRow['name'] = row[headerLocations['name']]
 
@@ -87,7 +94,8 @@ def parseToObjects(data, headerLocations):
             parsedRow['position'] = int(row[headerLocations['position']])
         except:
             parsedRow['position'] = ''
-        parsedRow['incomplete'] = row[headerLocations['nonCompetitive']] == 'Y' or row[headerLocations['nonCompetitive']] == '1' or (row[headerLocations['status']] != '' and row[headerLocations['status']] != '0')
+        parsedRow['incomplete'] = row[headerLocations['nonCompetitive']] == 'Y' or row[headerLocations['nonCompetitive']] == '1' or (
+            row[headerLocations['status']] != '' and row[headerLocations['status']] != '0')
 
         parsedData.append(parsedRow)
 

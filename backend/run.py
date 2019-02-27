@@ -1,9 +1,10 @@
 import os
-from flask import Flask, session, render_template
+
+import requests
+from flask import Flask, render_template, session
+from flask_compress import Compress
 from flask_cors import CORS
 from flask_restful import Api
-from flask_compress import Compress
-import requests
 
 import routes
 

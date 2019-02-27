@@ -1,3 +1,6 @@
+# Functions to Match Competitors during upload and to remove competitors with the wrong course during upload
+
+
 def nameToInitial(name):
     # Get initial from a name, for matching of surname + initial
     splitName = name.split(' ', 1)

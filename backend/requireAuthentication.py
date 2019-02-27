@@ -1,5 +1,6 @@
 from functools import wraps
 
+
 def requireAuthentication(func):
     # Check login before allowing user to access API
     @wraps(func)

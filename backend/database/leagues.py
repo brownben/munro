@@ -1,5 +1,6 @@
 import sqlite3
 
+
 def leagueToJSON(league):
     # Convert SQL output to JSON Object
     if (league):
@@ -36,6 +37,8 @@ connection.commit()
 connection.close()
 
 # League Database Functions
+
+
 def createLeague(name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo):
     courses = courses.replace(' ', '')
     connection = sqlite3.connect('./databaseFiles/2.db')

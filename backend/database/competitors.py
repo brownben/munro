@@ -11,7 +11,7 @@ def competitorToJSON(competitor):
             'name': competitor[1],
             'ageClass': competitor[2],
             'club': competitor[3],
-            'course':competitor[4],
+            'course': competitor[4],
             'league': competitor[5]
         }
     else:
@@ -34,6 +34,8 @@ connection.commit()
 connection.close()
 
 # Competitor Database Functions
+
+
 def createCompetitor(name, ageClass, club, course, league):
     connection = sqlite3.connect('./databaseFiles/2.db')
     cursor = connection.cursor()

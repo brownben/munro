@@ -1,5 +1,5 @@
-import time
 import sqlite3
+import time
 
 # Set up session store database
 connection = sqlite3.connect('./databaseFiles/sessions.db')

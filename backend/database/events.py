@@ -1,8 +1,6 @@
-import sqlite3
-import os
 import base64
-
-
+import os
+import sqlite3
 
 
 def eventToJSON(event):
@@ -45,6 +43,7 @@ def eventToJSONWithUploadKey(event):
     else:
         return False
 
+
 def generateUploadKey():
     # Generate Random Upload Key
     random = os.urandom(15)
@@ -76,6 +75,8 @@ connection.commit()
 connection.close()
 
 # Event Database Functions
+
+
 def createEvent(name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, league):
     id = (league+name+date).replace(" ", "")
     uploadKey = generateUploadKey()

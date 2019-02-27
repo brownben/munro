@@ -1,7 +1,8 @@
 from flask import Flask, session
 from flask_restful import Resource, reqparse
+
+from database import sessionStore, users
 from requireAuthentication import requireAuthentication
-from database import users, sessionStore
 
 # Check POST request has all the relevent fields
 userParser = reqparse.RequestParser()

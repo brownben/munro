@@ -1,7 +1,8 @@
 from flask import Flask, session
 from flask_restful import Resource, reqparse
-from requireAuthentication import requireAuthentication
+
 from database import results, sessionStore
+from requireAuthentication import requireAuthentication
 
 
 class Results(Resource):

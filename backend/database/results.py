@@ -1,6 +1,8 @@
 import sqlite3
-from . import events, leagues
 from functools import reduce
+
+from . import events, leagues
+
 
 def resultToJSON(result):
     # Generate Random Upload Key
