@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly - No Props 1`] = `
+<div
+  id="up-down-arrows"
+>
+  <svg
+    class=""
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7 14l5-5 5 5z"
+    />
+  </svg>
+   
+  <svg
+    class=""
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7 10l5 5 5-5z"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Renders Correctly - Passed with Props 1`] = `
+<div
+  id="up-down-arrows"
+>
+  <svg
+    class="active"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7 14l5-5 5 5z"
+    />
+  </svg>
+   
+  <svg
+    class=""
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M7 10l5 5 5-5z"
+    />
+  </svg>
+</div>
+`;

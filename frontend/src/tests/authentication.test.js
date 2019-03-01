@@ -21,7 +21,7 @@ test('Successful Login', () => {
       'message': 'Hello Username',
       'loggedIn': true,
     })
-    expect(authentication.isLoggedIn).toBe(true)
+    expect(authentication.isLoggedIn).toBeTruthy()
   })
 })
 
@@ -35,7 +35,7 @@ test('Rejected Login', () => {
       'message': 'Wrong Username or Password',
       'loggedIn': false,
     })
-    expect(authentication.isLoggedIn).toBe(false)
+    expect(authentication.isLoggedIn).toBeFalsy()
   })
 })
 
@@ -43,7 +43,7 @@ test('Successful Logout', () => {
   authentication.isLoggedIn = true
   axios.post.mockResolvedValue({ 'message': 'Logged Out Successfully' })
   return authentication.logout().then(() => {
-    expect(authentication.isLoggedIn).toBe(false)
+    expect(authentication.isLoggedIn).toBeFalsy()
   })
 })
 
@@ -51,7 +51,7 @@ test('Logout Error', () => {
   authentication.isLoggedIn = true
   axios.post.mockRejectedValue({ 'message': 'Something went Wrong' })
   return authentication.logout().catch(() => {
-    expect(authentication.isLoggedIn).toBe(true)
+    expect(authentication.isLoggedIn).toBeTruthy()
   })
 })
 
@@ -59,7 +59,7 @@ test('Check Login - Logged In', () => {
   axios.get.mockResolvedValue({ 'data': { 'logged_in': true } })
   return authentication.checkLogin().then(response => {
     expect(response).toEqual(true)
-    expect(authentication.isLoggedIn).toBe(true)
+    expect(authentication.isLoggedIn).toBeTruthy()
   })
 })
 
@@ -67,6 +67,6 @@ test('Check Login - Logged Out', () => {
   axios.get.mockResolvedValue({ 'data': { 'logged_in': false } })
   return authentication.checkLogin().then(response => {
     expect(response).toEqual(false)
-    expect(authentication.isLoggedIn).toBe(false)
+    expect(authentication.isLoggedIn).toBeFalsy()
   })
 })

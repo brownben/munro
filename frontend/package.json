@@ -49,6 +49,7 @@
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.3.0",
     "eslint-plugin-node": "^5.2.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
@@ -95,6 +96,9 @@
     "not ie <= 8"
   ],
   "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "browser": true,
     "moduleFileExtensions": [
       "js",
       "json",
@@ -112,6 +116,12 @@
     },
     "snapshotSerializers": [
       "jest-serializer-vue"
-    ]
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html",
+      "text"
+    ],
+    "coverageDirectory": "<rootDir>/src/tests/coverage"
   }
 }

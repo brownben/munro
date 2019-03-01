@@ -17,6 +17,8 @@ test('Add Message', () => {
 
 test('Add Message and Check it is Remove after 15s', () => {
   messages.addMessage('This is an Message')
+  jest.advanceTimersByTime(15000)
+  expect(messages.messages).toEqual([])
   expect(setTimeout).toHaveBeenCalledTimes(1)
   expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 15000, expect.any(Number))
 })

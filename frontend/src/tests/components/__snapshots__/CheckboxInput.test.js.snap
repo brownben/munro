@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly - Checked 1`] = `
+<div
+  class="checkbox-input"
+>
+  <label>
+    
+    Test Checkbox
+    
+    <input
+      type="checkbox"
+    />
+     
+    <span />
+  </label>
+</div>
+`;
+
+exports[`Renders Correctly - Unchecked 1`] = `
+<div
+  class="checkbox-input"
+>
+  <label>
+    
+    Another Input
+    
+    <input
+      type="checkbox"
+    />
+     
+    <span />
+  </label>
+</div>
+`;

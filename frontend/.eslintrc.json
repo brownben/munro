@@ -6,6 +6,7 @@
   },
   "extends": [
     "plugin:vue/recommended",
+    "plugin:jest/recommended",
     "eslint:recommended"
   ],
   "plugins": [

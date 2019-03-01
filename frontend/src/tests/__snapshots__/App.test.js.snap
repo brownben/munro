@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  id="app"
+>
+  <app-menu-stub />
+   
+  <div
+    id="content"
+  >
+    <messages-stub />
+     
+    <router-view-stub
+      id="router-view"
+      mode="out-in"
+      name="fade"
+    />
+  </div>
+   
+  <cookie-dialog-stub />
+</div>
+`;

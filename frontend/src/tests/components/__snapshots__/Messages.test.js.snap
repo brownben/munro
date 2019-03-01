@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  id="messages"
+  mode="out-in"
+  name="fade"
+>
+  <p>
+    Message 0
+  </p>
+  <p>
+    Message 1
+  </p>
+  <p>
+    Message 2
+  </p>
+</div>
+`;
