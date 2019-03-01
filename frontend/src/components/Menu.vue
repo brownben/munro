@@ -20,7 +20,7 @@
       <router-link to="/">Munro</router-link>
     </h1>
     <transition name="fade">
-      <div v-show="showMenu" class="actions">
+      <div v-show="showMenu || !smallWindow" class="actions">
         <router-link to="/">Leagues</router-link>
         <router-link to="/upload">Upload Results</router-link>
         <router-link v-if="!auth.isLoggedIn" to="/login">Admin Login</router-link>
@@ -41,7 +41,7 @@ export default {
   },
 
   watch: {
-    '$route': function () { if (this.smallWindow) this.showMenu = false },
+    '$route': function () { this.showMenu = false },
   },
 
   mounted: function () {

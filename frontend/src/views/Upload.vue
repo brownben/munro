@@ -30,11 +30,11 @@
 
 <script>
 import axios from 'axios'
-import Checkbox from '@/components/Checkbox'
+import CheckboxInput from '@/components/CheckboxInput'
 
 export default {
   components: {
-    'Checkbox': Checkbox,
+    'Checkbox': CheckboxInput,
   },
 
   data: function () {

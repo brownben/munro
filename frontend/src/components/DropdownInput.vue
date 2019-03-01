@@ -2,7 +2,7 @@
   Dropdown Form Input
 
   Dropdown input for forms wrapper for the select element.
-  'Emits' a value when changed\
+  'Emits' a value when changed
 -->
 
 <template>

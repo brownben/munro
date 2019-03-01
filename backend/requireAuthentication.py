@@ -1,5 +1,7 @@
 from functools import wraps
 
+from flask import Flask, session
+from database import sessionStore
 
 def requireAuthentication(func):
     # Check login before allowing user to access API

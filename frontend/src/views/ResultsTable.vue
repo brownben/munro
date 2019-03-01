@@ -156,7 +156,7 @@ export default {
       // Split age class into age and gender to allow easy sorting
       return this.rawResults.map(result => {
         if (result.ageClass) {
-          result.gender = result.ageClass[0]
+          result.gender = parseInt(result.ageClass[0])
           result.age = result.ageClass.slice(1)
         }
         return result
@@ -165,9 +165,11 @@ export default {
 
     sortedResults: function () {
       // Sort results by preference
+      let property = this.sortedBy
+      if (this.sortedBy.includes('points-')) property = parseInt(property.split('-')[1])
       return this.sort(
         this.resultsWithAgeClassSplit,
-        parseInt(this.sortedBy.split('-')[1]),
+        property,
         this.ascendingSort,
         this.sortedBy.includes('points-'))
     },
@@ -237,36 +239,37 @@ export default {
     sort: function (array, property, ascending = true, byPoints = false) {
       // Selection Sort using Single List for Sorting Results
       for (let counter = 0; counter < array.length; counter += 1) {
-        let minLocation = counter
+        let itemLocation = counter
         // If points look in points array not the main object
-        if (!byPoints) minLocation = this.findMinOfProperty(array.slice(counter), property) + counter
-        else minLocation = this.findMinOfPoints(array.slice(counter), property) + counter
-        if (minLocation !== counter) {
+        if (!byPoints) itemLocation = this.findMinMaxOfProperty(array.slice(counter), property, ascending) + counter
+        else itemLocation = this.findMinMaxOfPoints(array.slice(counter), property, ascending) + counter
+        if (itemLocation !== counter) {
           const lastItem = array[counter]
-          array[counter] = array[minLocation]
-          array[minLocation] = lastItem
+          array[counter] = array[itemLocation]
+          array[itemLocation] = lastItem
         }
       }
-      if (ascending) return array
-      else return array.reverse()
+      return array
     },
 
-    findMinOfProperty: function (array, property) {
-      // Find Min Algorithm for the result record with property specified
-      let locationOfMinValue = 0
+    findMinMaxOfProperty: function (array, property, max = false) {
+      // Find Min/ Max Algorithm for the result record with property specified
+      let locationOfValue = 0
       for (let item = 0; item < array.length; item += 1) {
-        if (array[item][property] < array[locationOfMinValue][property]) locationOfMinValue = item
+        if (max && array[item][property] > array[locationOfValue][property]) locationOfValue = item
+        else if (!max && array[item][property] < array[locationOfValue][property]) locationOfValue = item
       }
-      return locationOfMinValue
+      return locationOfValue
     },
 
-    findMinOfPoints: function (array, property) {
-      // Find Min Algorithm for the result with points array value with points at index of array specified by 'property'
-      let locationOfMinValue = 0
+    findMinMaxOfPoints: function (array, property, max = false) {
+      // Find Min/ Max Algorithm for the result with points array value with points at index of array specified by 'property'
+      let locationOfValue = 0
       for (let item = 0; item < array.length; item += 1) {
-        if (array[item].points[property] < array[locationOfMinValue].points[property]) locationOfMinValue = item
+        if (max && array[item].points[property] > array[locationOfValue].points[property]) locationOfValue = item
+        else if (!max && array[item].points[property] < array[locationOfValue].points[property]) locationOfValue = item
       }
-      return locationOfMinValue
+      return locationOfValue
     },
 
     sortBy: function (sortBy) {
