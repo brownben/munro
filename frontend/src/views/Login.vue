@@ -33,10 +33,12 @@ export default {
       password: '',
     }
   },
+
   mounted: function () {
     this.blankFields()
     if (this.$route.query.redirect) this.$messages.addMessage('Please Login to Access that Page')
   },
+
   methods: {
     blankFields: function () {
       this.username = ''
@@ -50,7 +52,7 @@ export default {
 
     sendLoginRequest: function () {
       if (this.validateLogin()) {
-        auth.login(this.username, this.password)
+        return auth.login(this.username, this.password)
           .then(response => {
             if (response.data.loggedIn) this.$router.replace(this.$route.query.redirect || '/')
             this.$messages.addMessage(response.data.message)

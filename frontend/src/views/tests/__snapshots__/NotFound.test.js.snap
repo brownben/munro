@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <h1>
+    Sorry We Can't Find What You Are Looking For
+  </h1>
+   
+  <p>
+    Please check the URL and Try Again
+  </p>
+   
+  <button>
+    Go Back
+  </button>
+   
+  <button>
+    Return Home
+  </button>
+</div>
+`;

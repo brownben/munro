@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly - Multiple Leagues 1`] = `
+<div>
+  <div
+    class="header"
+  >
+    <img
+      alt="Munro Logo"
+      src="@/assets/images/MunroLogo.png"
+    />
+     
+    <div
+      id="text"
+    >
+      <h1>
+        Munro
+      </h1>
+       
+      <h3>
+        Fast and Easy Results for Orienteering Leagues
+      </h3>
+    </div>
+  </div>
+   
+  <!---->
+   
+  <div
+    id="leagues"
+  >
+    <div
+      class="league"
+    >
+      <img
+        alt="The Logo of Sprintelope"
+        height="150px"
+        src="https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/22448448_1794613283886458_7629699480886436314_n.jpg?_nc_cat=108&_nc_ht=scontent-lht6-1.xx&oh=524ef77ed09f61d232be3496d09e224d&oe=5CCD2376"
+      />
+       
+      <h1>
+        Sprintelope
+      </h1>
+       
+      <p>
+        A series of Wednesday Evening Sprint and Urban events in the Lothians
+      </p>
+       
+      <p>
+        
+        More information can be found at
+        
+        <a
+          href="https://en-gb.facebook.com/sprintelope/"
+        >
+          https://en-gb.facebook.com/sprintelope/
+        </a>
+      </p>
+       
+      <button>
+        View League
+      </button>
+    </div>
+    <div
+      class="league"
+    >
+      <img
+        alt="The Logo of Test League 1"
+        height="150px"
+        src="https://www.britishorienteering.org.uk/images/uploaded/British%20Orienteering%20LOGO.jpg"
+      />
+       
+      <h1>
+        Test League 1
+      </h1>
+       
+      <p>
+        A Test League to test the layout of the Site
+      </p>
+       
+      <p>
+        
+        More information can be found at
+        
+        <a
+          href="https://www.scottish-orienteering.org/"
+        >
+          https://www.scottish-orienteering.org/
+        </a>
+      </p>
+       
+      <button>
+        View League
+      </button>
+    </div>
+    <div
+      class="league"
+    >
+      <img
+        alt="The Logo of Test League 2"
+        height="150px"
+        src="https://www.esoc.org.uk/assets/images/ESOC_logo_200.png"
+      />
+       
+      <h1>
+        Test League 2
+      </h1>
+       
+      <!---->
+       
+      <p>
+        
+        More information can be found at
+        
+        <a
+          href="https://esoc.org.uk"
+        >
+          https://esoc.org.uk
+        </a>
+      </p>
+       
+      <button>
+        View League
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Renders Correctly - No Leagues 1`] = `
+<div>
+  <div
+    class="header"
+  >
+    <img
+      alt="Munro Logo"
+      src="@/assets/images/MunroLogo.png"
+    />
+     
+    <div
+      id="text"
+    >
+      <h1>
+        Munro
+      </h1>
+       
+      <h3>
+        Fast and Easy Results for Orienteering Leagues
+      </h3>
+    </div>
+  </div>
+   
+  <!---->
+   
+  <div
+    id="leagues"
+  />
+</div>
+`;

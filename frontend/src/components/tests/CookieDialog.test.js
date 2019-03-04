@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import CookieDialog from '../../components/CookieDialog'
+import CookieDialog from '@/components/CookieDialog'
 
 beforeEach(() => localStorage.clear())
 

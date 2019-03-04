@@ -74,21 +74,9 @@ export default {
       this.create = false
       this.getLeagueDetails()
     }
-    this.blankFields()
   },
 
   methods: {
-    blankFields: function () {
-      this.name = ''
-      this.website = ''
-      this.coordinator = ''
-      this.scoringMethod = ''
-      this.numberOfCountingEvents = 1
-      this.logo = ''
-      this.info = ''
-      this.courses = ''
-    },
-
     validateForm: function () {
       if (this.name !== '' && this.scoringMethod !== '') return true
       else return false
@@ -97,16 +85,15 @@ export default {
     returnToLeaguePage: function (response) {
       this.$messages.addMessage(response.data.message)
       this.$router.push('/leagues/' + this.name)
-      this.blankFields()
     },
 
     // Scoring Method is stored in a shorthand form in database, transfer between these two forms so it is displayed in a clear manner
-    scoringMethodShorthandToFull: function (value) {
+    scoringMethodShorthandToFull: value => {
       if (value === 'position') return 'Position Based'
       else return ''
     },
 
-    scoringMethodFullToShorthand: function (value) {
+    scoringMethodFullToShorthand: value => {
       if (value === 'Position Based') return 'position'
       return ''
     },

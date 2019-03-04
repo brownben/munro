@@ -13,13 +13,18 @@
         <h3>Fast and Easy Results for Orienteering Leagues</h3>
       </div>
     </div>
-    <div class="actions">
-      <button v-if="auth.isLoggedIn" @click="$router.push('/create-league')">Create New League</button>
-      <button v-if="auth.isLoggedIn" @click="$router.push('/upload')">Upload Results</button>
+    <div v-if="auth.isLoggedIn" class="actions">
+      <button @click="$router.push('/create-league')">Create New League</button>
+      <button @click="$router.push('/upload')">Upload Results</button>
     </div>
     <div id="leagues">
       <div v-for="league of leagues" :key="league.name" class="league">
-        <img v-if="league.logo" :src="league.logo" :alt="'The Logo of '+league.name" height="150px">
+        <img
+          v-if="league.logo"
+          :src="league.logo"
+          :alt="'The Logo of ' + league.name"
+          height="150px"
+        >
         <h1>{{ league.name }}</h1>
         <p v-if="league.moreInformation">{{ league.moreInformation }}</p>
         <p v-if="league.website">
@@ -49,7 +54,7 @@ export default {
 
   methods: {
     getLeagues: function () {
-      axios.get('/api/leagues')
+      return axios.get('/api/leagues')
         .then(response => { this.leagues = response.data })
         .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
     },

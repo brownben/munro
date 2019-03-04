@@ -122,6 +122,6 @@
       "html",
       "text"
     ],
-    "coverageDirectory": "<rootDir>/src/tests/coverage"
+    "coverageDirectory": "<rootDir>/src/test coverage"
   }
 }

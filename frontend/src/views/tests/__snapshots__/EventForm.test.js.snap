@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creation Form - Renders Correctly 1`] = `
+<div>
+  <div>
+    <h1>
+      Create Event
+    </h1>
+     
+    <!---->
+     
+    <form>
+      <label>
+        Name:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Date: (DD/MM/YYYY)
+      </label>
+       
+      <input
+        type="date"
+      />
+       
+      <label>
+        Club:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Website:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Results: (URL)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Winsplits: (URL)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Routegadget: (URL)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        League:
+      </label>
+       
+      <dropdown-input-stub
+        list=""
+        value=""
+      />
+       
+      <label>
+        More Information:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <button>
+        Create Event
+      </button>
+       
+      <!---->
+    </form>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Update Form - Renders Correctly 1`] = `
+<div>
+  <div>
+    <!---->
+     
+    <h1>
+      Edit Event
+    </h1>
+     
+    <form>
+      <label>
+        Name:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Date: (DD/MM/YYYY)
+      </label>
+       
+      <input
+        type="date"
+      />
+       
+      <label>
+        Club:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Website:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Results: (URL)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Winsplits: (URL)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Routegadget: (URL)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        League:
+      </label>
+       
+      <dropdown-input-stub
+        list=""
+        value=""
+      />
+       
+      <label>
+        More Information:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <!---->
+       
+      <button>
+        Update Event
+      </button>
+    </form>
+  </div>
+   
+  <!---->
+</div>
+`;

@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Creation Form - Renders Correctly 1`] = `
+<div>
+  <div>
+    <h1>
+      Create League
+    </h1>
+     
+    <!---->
+     
+    <form>
+      <label>
+        Name:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Website:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Logo (URL):
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Coordinator:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Scoring Method:
+      </label>
+       
+      <dropdown-input-stub
+        list="Position Based"
+        value=""
+      />
+       
+      <label>
+        Number of Events to Count:
+      </label>
+       
+      <input
+        min="1"
+        type="number"
+      />
+       
+      <label>
+        Courses: (Comma Separated)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        More Information:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <button>
+        Create League
+      </button>
+       
+      <!---->
+    </form>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Update Form - Renders Correctly 1`] = `
+<div>
+  <div>
+    <!---->
+     
+    <h1>
+      Edit League
+    </h1>
+     
+    <form>
+      <label>
+        Name:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Website:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Logo (URL):
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Coordinator:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Scoring Method:
+      </label>
+       
+      <dropdown-input-stub
+        list="Position Based"
+        value=""
+      />
+       
+      <label>
+        Number of Events to Count:
+      </label>
+       
+      <input
+        min="1"
+        type="number"
+      />
+       
+      <label>
+        Courses: (Comma Separated)
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        More Information:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <!---->
+       
+      <button>
+        Update League
+      </button>
+    </form>
+  </div>
+   
+  <!---->
+</div>
+`;

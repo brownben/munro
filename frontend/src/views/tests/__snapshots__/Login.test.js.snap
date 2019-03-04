@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <h1>
+    Admin Login
+  </h1>
+   
+  <form>
+    <label>
+      Username:
+    </label>
+     
+    <input
+      type="text"
+    />
+     
+    <label>
+      Password:
+    </label>
+     
+    <input
+      type="password"
+    />
+     
+    <button>
+      Login
+    </button>
+  </form>
+   
+  <div
+    id="link-to-upload"
+  >
+    <h3>
+      Looking for Results Upload?
+    </h3>
+     
+    <p>
+      Results are uploaded
+      
+      <router-link-stub
+        to="/upload"
+      >
+        Here
+      </router-link-stub>
+    </p>
+  </div>
+</div>
+`;

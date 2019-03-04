@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import DropdownInput from '../../components/DropdownInput'
+import DropdownInput from '@/components/DropdownInput'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(DropdownInput)

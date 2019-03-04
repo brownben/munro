@@ -60,6 +60,7 @@ export default {
 
   data: function () {
     return {
+      id: '',
       notFound: false,
       create: true,
       leagues: [],
@@ -95,27 +96,26 @@ export default {
       return axios.get('/api/events/' + this.$route.params.id)
         .then(response => {
           if (!response.data) this.notFound = true
-          this.id = this.$route.params.id
-          this.name = response.data.name
-          this.date = response.data.date
-          this.resultUploaded = response.data.resultUploaded
-          this.organiser = response.data.organiser
-          this.moreInformation = response.data.moreInformation
-          this.website = response.data.website
-          this.results = response.data.results
-          this.winsplits = response.data.winsplits
-          this.routegadget = response.data.routegadget
-          this.league = response.data.league
+          else {
+            this.id = this.$route.params.id
+            this.name = response.data.name
+            this.date = response.data.date
+            this.resultUploaded = response.data.resultUploaded
+            this.organiser = response.data.organiser
+            this.moreInformation = response.data.moreInformation
+            this.website = response.data.website
+            this.results = response.data.results
+            this.winsplits = response.data.winsplits
+            this.routegadget = response.data.routegadget
+            this.league = response.data.league
+          }
         })
         .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
     },
 
     getLeagues: function () {
-      axios.get('/api/leagues')
-        .then(response => {
-          this.leagues = response.data
-          this.league = this.$route.params.league
-        })
+      return axios.get('/api/leagues')
+        .then(response => { this.leagues = response.data })
         .catch(() => this.$messages.addMessage('Problem Fetching List of Leagues'))
     },
 

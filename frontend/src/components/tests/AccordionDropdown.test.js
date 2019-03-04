@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import AccordionDropdown from '../../components/AccordionDropdown'
+import AccordionDropdown from '@/components/AccordionDropdown'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(AccordionDropdown)

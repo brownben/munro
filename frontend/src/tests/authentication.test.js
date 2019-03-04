@@ -3,11 +3,12 @@
 */
 
 import axios from 'axios'
-import authentication from '../authentication'
+import authentication from '@/authentication'
 
 jest.mock('axios')
 
 beforeEach(() => {
+  jest.clearAllMocks()
   authentication.isLoggedIn = false
 })
 
@@ -22,6 +23,8 @@ test('Successful Login', () => {
       'loggedIn': true,
     })
     expect(authentication.isLoggedIn).toBeTruthy()
+    expect(axios.post).toHaveBeenCalledTimes(1)
+    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/login', expect.any(Object))
   })
 })
 
@@ -36,6 +39,8 @@ test('Rejected Login', () => {
       'loggedIn': false,
     })
     expect(authentication.isLoggedIn).toBeFalsy()
+    expect(axios.post).toHaveBeenCalledTimes(1)
+    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/login', expect.any(Object))
   })
 })
 
@@ -44,6 +49,8 @@ test('Successful Logout', () => {
   axios.post.mockResolvedValue({ 'message': 'Logged Out Successfully' })
   return authentication.logout().then(() => {
     expect(authentication.isLoggedIn).toBeFalsy()
+    expect(axios.post).toHaveBeenCalledTimes(1)
+    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/logout')
   })
 })
 
@@ -52,6 +59,8 @@ test('Logout Error', () => {
   axios.post.mockRejectedValue({ 'message': 'Something went Wrong' })
   return authentication.logout().catch(() => {
     expect(authentication.isLoggedIn).toBeTruthy()
+    expect(axios.post).toHaveBeenCalledTimes(1)
+    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/logout')
   })
 })
 
@@ -60,6 +69,8 @@ test('Check Login - Logged In', () => {
   return authentication.checkLogin().then(response => {
     expect(response).toEqual(true)
     expect(authentication.isLoggedIn).toBeTruthy()
+    expect(axios.get).toHaveBeenCalledTimes(1)
+    expect(axios.get).toHaveBeenLastCalledWith('/api/auth/isLoggedIn')
   })
 })
 
@@ -68,5 +79,7 @@ test('Check Login - Logged Out', () => {
   return authentication.checkLogin().then(response => {
     expect(response).toEqual(false)
     expect(authentication.isLoggedIn).toBeFalsy()
+    expect(axios.get).toHaveBeenCalledTimes(1)
+    expect(axios.get).toHaveBeenLastCalledWith('/api/auth/isLoggedIn')
   })
 })

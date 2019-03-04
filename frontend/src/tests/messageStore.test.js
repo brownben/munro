@@ -2,7 +2,7 @@
   Unit Tests for /frontend/src/messageStore.js
 */
 
-import messages from '../messageStore'
+import messages from '@/messageStore'
 
 beforeEach(() => {
   jest.useFakeTimers()
