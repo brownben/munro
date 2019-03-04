@@ -41,6 +41,8 @@ test('Add Messages and Check all are Removed after 15s', () => {
   messages.addMessage('This is an Error')
   messages.addMessage('This is a Warning')
   messages.addMessage('This is a 2nd Message')
+  jest.advanceTimersByTime(15000)
+  expect(messages.messages).toEqual([])
   expect(setTimeout).toHaveBeenCalledTimes(4)
   expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 15000, expect.any(Number))
 })
