@@ -255,7 +255,7 @@ test('Create Event - Error in Creation', async () => {
     },
     stubs: ['dropdown-input'],
   })
-  axios.post.mockResolvedValue({ 'message': 'Something went Wrong' })
+  axios.post.mockRejectedValue({ 'message': 'Something went Wrong' })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods('returnToLeaguePage', mockReturnToLeaguePage)
   wrapper.setData(sampleSingleEvent)
