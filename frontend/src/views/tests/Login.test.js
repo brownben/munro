@@ -173,7 +173,7 @@ test('Redirect on Successful Login - If No Path Specified', async () => {
   auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello User' } })
   const wrapper = mount(Login, {
     mocks: {
-      $route: { query: { redirect: '/other' } },
+      $route: { query: { redirect: false } },
       $router: { replace: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
     },
