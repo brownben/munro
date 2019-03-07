@@ -120,8 +120,7 @@ export default {
     },
 
     validateForm: function () {
-      if (this.name !== '' && this.league !== '') return true
-      else return false
+      return (this.name !== '' && this.league !== '')
     },
 
     createEvent: function () {
