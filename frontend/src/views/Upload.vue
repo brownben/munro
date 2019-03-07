@@ -73,7 +73,7 @@ export default {
 
     fileChange (e) {
       // When the file selected has been changed
-      var files = e.target.files || e.dataTransfer.files
+      const files = e.target.files || e.dataTransfer.files
       if (!files.length) return
       this.fileName = files[0].name
       this.readFile(files[0])
