@@ -78,8 +78,7 @@ export default {
 
   methods: {
     validateForm: function () {
-      if (this.name !== '' && this.scoringMethod !== '') return true
-      else return false
+      return (this.name !== '' && this.scoringMethod !== '')
     },
 
     returnToLeaguePage: function (response) {
