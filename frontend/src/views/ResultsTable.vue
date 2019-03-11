@@ -285,7 +285,7 @@ export default {
       // Update data of view if Filter Menu emits a change
       this.filterPreferences.name = data.name
       this.filterPreferences.club = data.club
-      if (data.minAge === '') this.filterPreferences.minAge = 100
+      if (data.minAge === '') this.filterPreferences.minAge = 0
       else this.filterPreferences.minAge = data.minAge
       if (data.maxAge === '') this.filterPreferences.maxAge = 100
       else this.filterPreferences.maxAge = data.maxAge
