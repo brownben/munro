@@ -44,5 +44,6 @@ export const sampleDataOneLeague = [
     'logo': 'https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/22448448_1794613283886458_7629699480886436314_n.jpg?_nc_cat=108&_nc_ht=scontent-lht6-1.xx&oh=524ef77ed09f61d232be3496d09e224d&oe=5CCD2376',
     'name': 'Sprintelope',
     'numberOfCountingEvents': 2,
+    'moreInformation': '',
   },
 ]

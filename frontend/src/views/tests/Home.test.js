@@ -82,7 +82,7 @@ test('Get Leagues - Request Called Correctly', async () => {
   axios.get.mockResolvedValue({ data: sampleDataOneLeague })
   await wrapper.vm.getLeagues()
   expect(axios.get).toHaveBeenCalledTimes(1)
-  expect(axios.get).toHaveBeenLastCalledWith('/leagues')
+  expect(axios.get).toHaveBeenLastCalledWith('/api/leagues')
 })
 
 test('Get Leagues - Processes Response Correctly', async () => {

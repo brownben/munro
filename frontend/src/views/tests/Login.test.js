@@ -89,19 +89,23 @@ test('Send Login Function - Successful', async () => {
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
+      $router: { replace: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['router-link'],
   })
-  const blankFieldsSpy = jest.spyOn(wrapper.vm, 'blankFields')
+  const mockBlankFields = jest.fn()
+  wrapper.setMethods({ blankFields: mockBlankFields })
   // Calls Auth Login Functions
   wrapper.setData({ username: 'username', password: 'password' })
+  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello User' } })
+
   await wrapper.vm.sendLoginRequest()
   expect(auth.login).toHaveBeenCalledTimes(1)
   expect(auth.login).toHaveBeenLastCalledWith('username', 'password')
 
   // Correct Actions On Completion
-  expect(blankFieldsSpy).toHaveBeenCalledTimes(1)
+  expect(mockBlankFields).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Hello User')
 })
@@ -115,6 +119,7 @@ test('Send Login Function - Validation Fails', () => {
     },
     stubs: ['router-link'],
   })
+  auth.login.mockRejectedValue()
   const blankFieldsSpy = jest.spyOn(wrapper.vm, 'blankFields')
   wrapper.setData({ username: '', password: '' })
   wrapper.vm.sendLoginRequest()

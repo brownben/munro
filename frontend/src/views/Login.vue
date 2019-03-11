@@ -45,8 +45,8 @@ export default {
       this.password = ''
     },
 
-    validateLogin: function () { 
-      return (this.username !== '' && this.password !== '') 
+    validateLogin: function () {
+      return (this.username !== '' && this.password !== '')
     },
 
     sendLoginRequest: function () {

@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <h1>
+    Upload Results
+  </h1>
+   
+  <label>
+    Event ID:
+  </label>
+   
+  <input
+    type="text"
+  />
+   
+  <p
+    id="eventName"
+    style="display: none;"
+  >
+    <b>
+      Event Name:
+    </b>
+    
+    
+  
+  </p>
+   
+  <label>
+    Upload Key:
+  </label>
+   
+  <input
+    type="text"
+  />
+   
+  <label>
+    Results File:
+  </label>
+   
+  <div
+    class="file-input"
+  >
+    <label
+      class="button"
+      for="file"
+    >
+      Browse for File
+    </label>
+     
+    <input
+      accept=".csv"
+      id="file"
+      type="file"
+    />
+     
+    <p>
+      Select a File
+    </p>
+  </div>
+   
+  <!---->
+   
+  <!---->
+</div>
+`;

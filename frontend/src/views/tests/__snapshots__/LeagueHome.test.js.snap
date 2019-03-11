@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <div>
+    <div
+      id="league-header"
+    >
+      <h1>
+        
+      </h1>
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+       
+      <p>
+        <!---->
+         
+        <!---->
+      </p>
+       
+      <!---->
+    </div>
+     
+    <!---->
+     
+    <div
+      class="actions"
+    />
+     
+    <div
+      class="events"
+    />
+  </div>
+   
+  <!---->
+</div>
+`;

@@ -1,14 +1,15 @@
 /*
-  Results Table View Unit Tests
+  League Home View Unit Tests
 */
 
 import { mount } from '@vue/test-utils'
-import ResultsTable from '@/views/ResultsTable'
+import League from '@/views/LeagueHome'
 
 test('Is a Vue Instance', () => {
-  const wrapper = mount(ResultsTable, {
+  const wrapper = mount(League, {
     mocks: {
-      $route: { params: { name: '', course: '' } },
+      $auth: { isLoggedIn: false },
+      $route: { params: { name: '' } },
     },
     stubs: ['router-link'],
   })
@@ -16,9 +17,10 @@ test('Is a Vue Instance', () => {
 })
 
 test('Renders Correctly', () => {
-  const wrapper = mount(ResultsTable, {
+  const wrapper = mount(League, {
     mocks: {
-      $route: { params: { name: '', course: '' } },
+      $auth: { isLoggedIn: false },
+      $route: { params: { name: '' } },
     },
     stubs: ['router-link'],
   })

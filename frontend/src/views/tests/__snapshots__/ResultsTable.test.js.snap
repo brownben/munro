@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <h1
+    id="league-title"
+  >
+    <router-link-stub
+      to="/leagues/"
+    >
+      
+    </router-link-stub>
+    
+    - 
+  
+  </h1>
+   
+  <div
+    id="accordion"
+  >
+    <div
+      class="accordion-head"
+    >
+      <h2>
+        Filter
+      </h2>
+       
+      <svg
+        class=""
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+        />
+         
+        <path
+          d="M0 0h24v24H0V0z"
+          fill="none"
+        />
+      </svg>
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    name="shrink"
+    style="display: none;"
+  >
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <p>
+              Pos.
+            </p>
+             
+            <div
+              id="up-down-arrows"
+            >
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 14l5-5 5 5z"
+                />
+              </svg>
+               
+              <svg
+                class="active"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </th>
+           
+          <th>
+            <p>
+              Name
+            </p>
+             
+            <div
+              id="up-down-arrows"
+            >
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 14l5-5 5 5z"
+                />
+              </svg>
+               
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </th>
+           
+          <th>
+            <p>
+              Class
+            </p>
+             
+            <div
+              id="up-down-arrows"
+            >
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 14l5-5 5 5z"
+                />
+              </svg>
+               
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </th>
+           
+          <th
+            class="club"
+          >
+            <p>
+              Club
+            </p>
+             
+            <div
+              id="up-down-arrows"
+            >
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 14l5-5 5 5z"
+                />
+              </svg>
+               
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </th>
+           
+          <th>
+            <p>
+              Points
+            </p>
+             
+            <div
+              id="up-down-arrows"
+            >
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 14l5-5 5 5z"
+                />
+              </svg>
+               
+              <svg
+                class=""
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7 10l5 5 5-5z"
+                />
+              </svg>
+            </div>
+          </th>
+           
+        </tr>
+      </thead>
+       
+      <tbody
+        name="fade"
+      />
+    </table>
+  </div>
+   
+  <!---->
+</div>
+`;

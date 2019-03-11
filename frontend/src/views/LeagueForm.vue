@@ -101,15 +101,17 @@ export default {
       return axios.get('/api/leagues/' + this.$route.params.name)
         .then(response => {
           if (!response.data) this.notFound = true
-          this.oldName = response.data.name
-          this.name = response.data.name
-          this.website = response.data.website
-          this.coordinator = response.data.coordinator
-          this.scoringMethod = this.scoringMethodShorthandToFull(response.data.scoringMethod)
-          this.numberOfCountingEvents = response.data.numberOfCountingEvents
-          this.logo = response.data.logo
-          this.courses = response.data.courses.join(', ')
-          this.info = response.data.moreInformation
+          else {
+            this.oldName = response.data.name
+            this.name = response.data.name
+            this.website = response.data.website
+            this.coordinator = response.data.coordinator
+            this.scoringMethod = this.scoringMethodShorthandToFull(response.data.scoringMethod)
+            this.numberOfCountingEvents = response.data.numberOfCountingEvents
+            this.logo = response.data.logo
+            if (response.data.courses) this.courses = response.data.courses.join(', ')
+            this.info = response.data.moreInformation
+          }
         })
         .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
     },

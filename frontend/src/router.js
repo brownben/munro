@@ -9,7 +9,7 @@ import Router from 'vue-router'
 import messageStore from '@/messageStore'
 
 import Home from '@/views/Home'
-import League from '@/views/League'
+import League from '@/views/LeagueHome'
 import LeagueForm from '@/views/LeagueForm'
 import EventForm from '@/views/EventForm'
 import Upload from '@/views/Upload'
