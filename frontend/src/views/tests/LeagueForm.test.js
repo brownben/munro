@@ -26,28 +26,36 @@ test('Is a Vue Instance', () => {
 })
 
 test('Creation Form - Renders Correctly', () => {
+  const mockGetLeagueDetails = jest.fn()
   const wrapper = mount(LeagueForm, {
     mocks: {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
+      methods: { 
+        getLeagueDetails: mockGetLeagueDetails,
+      },
     },
     stubs: ['dropdown-input'],
   })
-  const getLeagueDetailsSpy = jest.spyOn(wrapper.vm, 'getLeagueDetails')
   expect(wrapper.vm.create).toBeTruthy()
-  expect(getLeagueDetailsSpy).toHaveBeenCalledTimes(0)
+  expect(mockGetLeagueDetails).toHaveBeenCalledTimes(0)
   expect(wrapper.element).toMatchSnapshot()
 })
 
 test('Update Form - Renders Correctly', () => {
+  const mockGetLeagueDetails = jest.fn()
   const wrapper = mount(LeagueForm, {
     mocks: {
       $route: { path: '/leagues/Test/edit', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
+      methods: { 
+        getLeagueDetails: mockGetLeagueDetails,
+      },
     },
     stubs: ['dropdown-input'],
   })
   expect(wrapper.vm.create).toBeFalsy()
+  expect(mockGetLeagueDetails).toHaveBeenCalledTimes(1)
   expect(wrapper.element).toMatchSnapshot()
 })
 
