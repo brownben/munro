@@ -208,7 +208,6 @@ test('Create League - Calls Correct API Location', async () => {
   })
   jest.clearAllMocks()
   axios.post.mockResolvedValue()
-  wrapper.setData(sampleDataOneLeague[0])
   const sampleOutput = Object.assign({}, sampleDataOneLeague[0])
   sampleOutput.moreInformation = ''
   sampleOutput.scoringMethod = 'position'
