@@ -34,7 +34,7 @@ export const sampleDataThreeLeagues = [
   },
 ]
 
-export const sampleDataOneLeague = [
+export const sampleSingleLeague = [
   {
     'courses': ['Long', 'Short'],
     'coordinator': 'Graeme Ackland',

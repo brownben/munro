@@ -60,7 +60,7 @@ export default {
   methods: {
     findEvent: function () {
       // Fetch event details so name of event can be checked and if results are uploaded
-      axios.get('/api/events/' + this.eventId)
+      return axios.get('/api/events/' + this.eventId)
         .then(response => {
           this.event = response.data
           if (!this.event.name) {
@@ -71,10 +71,11 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
     },
 
-    fileChange (e) {
+    fileChange (event) {
       // When the file selected has been changed
-      const files = e.target.files || e.dataTransfer.files
-      if (!files.length) return
+      const storage = event.target || event.dataTransfer
+      const files = storage.files
+      if (!files || !files.length) return false
       this.fileName = files[0].name
       this.readFile(files[0])
     },
@@ -82,17 +83,17 @@ export default {
     readFile (file) {
       // read file using FileReader and save in data
       const reader = new FileReader()
-      reader.onload = (e) => { this.file = e.target.result }
+      reader.onload = event => { this.file = event.target.result }
       reader.readAsText(file)
     },
 
     uploadFile () {
       // Send data to the server
-      axios.post('/api/upload', {
-        'eventId': this.eventId,
-        'uploadKey': this.uploadKey,
-        'file': this.file,
-        'overwrite': this.overwrite,
+      return axios.post('/api/upload', {
+        eventId: this.eventId,
+        uploadKey: this.uploadKey,
+        file: this.file,
+        overwrite: this.overwrite,
       })
         .then(() => {
           this.$messages.addMessage('Results Uploaded Successfully')

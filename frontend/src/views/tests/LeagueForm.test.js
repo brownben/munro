@@ -5,7 +5,7 @@
 import axios from 'axios'
 import { mount } from '@vue/test-utils'
 import LeagueForm from '@/views/LeagueForm'
-import { sampleDataOneLeague } from '@/tests/test data/leagues'
+import { sampleSingleLeague } from '@/tests/test data/leagues'
 
 jest.mock('axios')
 
@@ -31,9 +31,9 @@ test('Creation Form - Renders Correctly', () => {
     mocks: {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
-      methods: { 
-        getLeagueDetails: mockGetLeagueDetails,
-      },
+    },
+    methods: {
+      getLeagueDetails: mockGetLeagueDetails,
     },
     stubs: ['dropdown-input'],
   })
@@ -48,9 +48,9 @@ test('Update Form - Renders Correctly', () => {
     mocks: {
       $route: { path: '/leagues/Test/edit', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
-      methods: { 
-        getLeagueDetails: mockGetLeagueDetails,
-      },
+    },
+    methods: {
+      getLeagueDetails: mockGetLeagueDetails,
     },
     stubs: ['dropdown-input'],
   })
@@ -208,12 +208,12 @@ test('Create League - Calls Correct API Location', async () => {
   })
   jest.clearAllMocks()
   axios.post.mockResolvedValue()
-  const sampleOutput = Object.assign({}, sampleDataOneLeague[0])
+  const sampleOutput = Object.assign({}, sampleSingleLeague[0])
   sampleOutput.moreInformation = ''
   sampleOutput.scoringMethod = 'position'
   delete sampleOutput.numberOfEvents
   delete sampleOutput.oldName
-  const sampleInput = Object.assign({}, sampleDataOneLeague[0])
+  const sampleInput = Object.assign({}, sampleSingleLeague[0])
   delete sampleInput.oldName
   sampleInput.scoringMethod = 'Position Based'
   wrapper.setData(sampleInput)
@@ -232,12 +232,12 @@ test('Update League - Calls Correct API Location', async () => {
     },
     stubs: ['dropdown-input'],
   })
-  const sampleOutput = Object.assign({}, sampleDataOneLeague[0])
+  const sampleOutput = Object.assign({}, sampleSingleLeague[0])
   sampleOutput.moreInformation = ''
   sampleOutput.scoringMethod = 'position'
   sampleOutput.oldName = 'name'
   delete sampleOutput.numberOfEvents
-  const sampleInput = Object.assign({}, sampleDataOneLeague[0])
+  const sampleInput = Object.assign({}, sampleSingleLeague[0])
   sampleInput.oldName = 'name'
   sampleInput.scoringMethod = 'Position Based'
   wrapper.setData(sampleInput)
@@ -274,7 +274,7 @@ test('Update League - Successful Creation', async () => {
   })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
-  wrapper.setData(sampleDataOneLeague[0])
+  wrapper.setData(sampleSingleLeague[0])
   await wrapper.vm.updateLeague()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(1)
   expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({ data: { message: 'Hello' } })
@@ -326,13 +326,13 @@ test('Get League Details - Success', async () => {
     stubs: ['dropdown-input'],
   })
   jest.clearAllMocks()
-  axios.get.mockResolvedValue({ data: { ...sampleDataOneLeague[0], moreInformation: '' } })
+  axios.get.mockResolvedValue({ data: { ...sampleSingleLeague[0], moreInformation: '' } })
   await wrapper.vm.getLeagueDetails()
   expect(wrapper.vm.notFound).toBeFalsy()
-  expect(wrapper.vm.logo).toBe(sampleDataOneLeague[0].logo)
-  expect(wrapper.vm.info).toBe(sampleDataOneLeague[0].moreInformation)
-  expect(wrapper.vm.website).toBe(sampleDataOneLeague[0].website)
-  expect(wrapper.vm.courses).toBe(sampleDataOneLeague[0].courses.join(', '))
+  expect(wrapper.vm.logo).toBe(sampleSingleLeague[0].logo)
+  expect(wrapper.vm.info).toBe(sampleSingleLeague[0].moreInformation)
+  expect(wrapper.vm.website).toBe(sampleSingleLeague[0].website)
+  expect(wrapper.vm.courses).toBe(sampleSingleLeague[0].courses.join(', '))
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(0)
 })
 

@@ -5,7 +5,7 @@
 import axios from 'axios'
 import { mount } from '@vue/test-utils'
 import Home from '@/views/Home'
-import { sampleDataOneLeague, sampleDataThreeLeagues } from '@/tests/test data/leagues'
+import { sampleSingleLeague, sampleDataThreeLeagues } from '@/tests/test data/leagues'
 
 jest.mock('axios')
 
@@ -33,7 +33,7 @@ test('Renders Correctly - No Leagues', () => {
 })
 
 test('Renders Correctly - One League', async () => {
-  axios.get.mockResolvedValue({ data: sampleDataOneLeague })
+  axios.get.mockResolvedValue({ data: sampleSingleLeague })
   const wrapper = mount(Home, {
     mocks: {
       $auth: { isLoggedIn: false },
@@ -79,7 +79,7 @@ test('Get Leagues - Request Called Correctly', async () => {
     },
   })
   jest.resetAllMocks()
-  axios.get.mockResolvedValue({ data: sampleDataOneLeague })
+  axios.get.mockResolvedValue({ data: sampleSingleLeague })
   await wrapper.vm.getLeagues()
   expect(axios.get).toHaveBeenCalledTimes(1)
   expect(axios.get).toHaveBeenLastCalledWith('/api/leagues')

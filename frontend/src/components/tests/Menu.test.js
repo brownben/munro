@@ -1,7 +1,6 @@
 /*
   Menu Component Unit Tests
 */
-/* global global */
 
 import VueRouter from 'vue-router'
 import { mount, createLocalVue } from '@vue/test-utils'

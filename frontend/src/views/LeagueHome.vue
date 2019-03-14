@@ -57,7 +57,9 @@
             <b>Event Upload Key:</b>
             {{ event.uploadKey }}
           </p>
-          <p>On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}</p>
+          <p
+            v-if="event.date"
+          >On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}</p>
           <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
           <p v-if="event.website">
             More Information can be found at
@@ -93,16 +95,16 @@ export default {
 
   watch: {
     // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    '$route': function () {
-      this.getLeague()
-        .then(() => this.getLeagueEvents())
+    '$route': async function () {
+      await this.getLeague()
+      return this.getLeagueEvents()
     },
   },
 
-  mounted: function () {
+  mounted: async function () {
     // Get details on load
-    this.getLeague()
-      .then(() => this.getLeagueEvents())
+    await this.getLeague()
+    return this.getLeagueEvents()
   },
 
   methods: {
@@ -115,21 +117,22 @@ export default {
     getLeagueEvents: function () {
       if (this.league) {
         if (this.auth.isLoggedIn) {
-          axios.get('/api/leagues/' + this.league.name + '/events/uploadKey')
+          return axios.get('/api/leagues/' + this.league.name + '/events/uploadKey')
             .then(response => { this.events = response.data })
             .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
         }
         else {
-          axios.get('/api/leagues/' + this.league.name + '/events')
+          return axios.get('/api/leagues/' + this.league.name + '/events')
             .then(response => { this.events = response.data })
             .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
         }
       }
+      return false
     },
 
     deleteLeague: function () {
       if (confirm('Are you Sure you Want to Delete League - ' + this.league.name + '? \nThis Action Can\'t Be Recovered')) {
-        axios.delete('/api/leagues/' + this.league.name)
+        return axios.delete('/api/leagues/' + this.league.name)
           .then(() => {
             this.$messages.addMessage('League: ' + this.league.name + ' was Deleted')
             this.$router.push('/')
@@ -140,12 +143,10 @@ export default {
 
     deleteEvent: function (event) {
       if (confirm('Are you Sure you Want to Delete Event - ' + event.name + '? \nThis Action Can\'t Be Recovered')) {
-        axios.delete('/api/events/' + event.id)
-          .then(() => {
-            this.$messages.addMessage('Event: ' + event.name + ' was Deleted')
-            this.getLeague()
-              .then(() => this.getLeagueEvents())
-          })
+        return axios.delete('/api/events/' + event.id)
+          .then(() => this.$messages.addMessage('Event: ' + event.name + ' was Deleted'))
+          .then(() => this.getLeague())
+          .then(() => this.getLeagueEvents())
           .catch(() => this.$messages.addMessage('Problem Deleting Event - Please Try Again'))
       }
     },
