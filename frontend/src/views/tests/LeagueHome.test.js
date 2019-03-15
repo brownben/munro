@@ -269,7 +269,7 @@ test('Get League Events - Error - Logged In', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { isLoggedIn: true },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
