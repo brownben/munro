@@ -249,16 +249,37 @@ test('File Change - Files', () => {
   expect(mockReadFile).toHaveBeenLastCalledWith({ name: 'a' })
 })
 
+class mockFileReader {
+  readAsText () { }
+}
+
 test('Read File', () => {
-  const mockReadFile = jest.fn()
+  const mockOnLoad = jest.fn()
   const wrapper = mount(Upload, {
     mocks: {
       $route: { params: { id: '' } },
     },
     methods: {
-      readFile: mockReadFile,
+      readFileResult: mockOnLoad,
     },
   })
+  const mockReadAsText = jest.fn(() => wrapper.vm.readFileResult())
+  mockFileReader.prototype.readAsText = mockReadAsText
+  global.FileReader = mockFileReader
+  global.FileReader.readAsText = mockReadAsText
+  wrapper.vm.readFile(new Blob())
+  expect(mockReadAsText).toHaveBeenCalledTimes(1)
+  expect(mockReadAsText).toHaveBeenLastCalledWith(expect.any(Blob))
+  expect(mockOnLoad).toHaveBeenCalledTimes(1)
+})
 
-  wrapper.vm.readFile({ name: 'a' })
+test('Read File Result', () => {
+  const wrapper = mount(Upload, {
+    attachToDocument: true,
+    mocks: {
+      $route: { params: { id: '' } },
+    },
+  })
+  wrapper.vm.readFileResult({ target: { result: 'Some Text' } })
+  expect(wrapper.vm.file).toBe('Some Text')
 })

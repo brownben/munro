@@ -140,7 +140,7 @@ export default {
     results: [],
     events: [],
     sortedBy: 'position',
-    ascendingSort: true,
+    ascendingSort: false,
     filterPreferences: {
       name: '',
       club: '',
@@ -156,8 +156,8 @@ export default {
       // Split age class into age and gender to allow easy sorting
       return this.rawResults.map(result => {
         if (result.ageClass) {
-          result.gender = parseInt(result.ageClass[0])
-          result.age = result.ageClass.slice(1)
+          result.gender = result.ageClass[0]
+          result.age = parseInt(result.ageClass.slice(1))
         }
         return result
       })
@@ -193,18 +193,21 @@ export default {
 
   // If route changes without reload (if only course parameter changes)
   watch: {
-    $route: function () {
-      this.getResults().then(() => this.getEventList())
+    $route: async function () {
+      await this.getResults()
+      this.getEventList()
     },
   },
 
   // On load
-  mounted: function () {
-    this.getResults().then(() => this.getEventList())
-
+  mounted: async function () {
     // Mobile resize watcher
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
+
+    // Fetch Data
+    await this.getResults()
+    this.getEventList()
   },
 
   destroyed () {
@@ -224,13 +227,11 @@ export default {
           if (response.data.length > 0) this.rawResults = response.data
           else this.found = false
         })
-        .catch(() => {
-          this.found = false
-        })
+        .catch(() => { this.found = false })
     },
 
     getEventList: function () {
-      axios
+      return axios
         .get('/api/leagues/' + this.$route.params.name + '/events')
         .then(response => { this.events = response.data })
         .catch(() => this.$messages.addMessage('Problem Fetching List of Events'))
@@ -253,7 +254,7 @@ export default {
     },
 
     findMinMaxOfProperty: function (array, property, max = false) {
-      // Find Min/ Max Algorithm for the result record with property specified
+      // Find Min/ Max Algorithm for the result record with property specified, returns the location of the min/ max object
       let locationOfValue = 0
       for (let item = 0; item < array.length; item += 1) {
         if (max && array[item][property] > array[locationOfValue][property]) locationOfValue = item
@@ -263,7 +264,7 @@ export default {
     },
 
     findMinMaxOfPoints: function (array, property, max = false) {
-      // Find Min/ Max Algorithm for the result with points array value with points at index of array specified by 'property'
+      // Find Min/ Max Algorithm for the result with points array value with points at index of array specified by 'property', returns the location of the min/ max object
       let locationOfValue = 0
       for (let item = 0; item < array.length; item += 1) {
         if (max && array[item].points[property] > array[locationOfValue].points[property]) locationOfValue = item

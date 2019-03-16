@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Renders Correctly 1`] = `
+exports[`Mobile Results Dropdown Works 1`] = `
 <div>
   <h1
     id="league-title"
@@ -15,37 +15,11 @@ exports[`Renders Correctly 1`] = `
   
   </h1>
    
-  <div
-    id="accordion"
-  >
-    <div
-      class="accordion-head"
-    >
-      <h2>
-        Filter
-      </h2>
-       
-      <svg
-        class=""
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-        />
-         
-        <path
-          d="M0 0h24v24H0V0z"
-          fill="none"
-        />
-      </svg>
-    </div>
-     
-    <!---->
-  </div>
+  <filter-menu-stub />
    
   <div
     name="shrink"
-    style="display: none;"
+    style=""
   >
     <table>
       <thead>
@@ -55,27 +29,9 @@ exports[`Renders Correctly 1`] = `
               Pos.
             </p>
              
-            <div
-              id="up-down-arrows"
-            >
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 14l5-5 5 5z"
-                />
-              </svg>
-               
-              <svg
-                class="active"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 10l5 5 5-5z"
-                />
-              </svg>
-            </div>
+            <up-down-arrow-stub
+              active="true"
+            />
           </th>
            
           <th>
@@ -83,27 +39,7 @@ exports[`Renders Correctly 1`] = `
               Name
             </p>
              
-            <div
-              id="up-down-arrows"
-            >
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 14l5-5 5 5z"
-                />
-              </svg>
-               
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 10l5 5 5-5z"
-                />
-              </svg>
-            </div>
+            <up-down-arrow-stub />
           </th>
            
           <th>
@@ -111,27 +47,7 @@ exports[`Renders Correctly 1`] = `
               Class
             </p>
              
-            <div
-              id="up-down-arrows"
-            >
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 14l5-5 5 5z"
-                />
-              </svg>
-               
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 10l5 5 5-5z"
-                />
-              </svg>
-            </div>
+            <up-down-arrow-stub />
           </th>
            
           <th
@@ -141,27 +57,7 @@ exports[`Renders Correctly 1`] = `
               Club
             </p>
              
-            <div
-              id="up-down-arrows"
-            >
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 14l5-5 5 5z"
-                />
-              </svg>
-               
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 10l5 5 5-5z"
-                />
-              </svg>
-            </div>
+            <up-down-arrow-stub />
           </th>
            
           <th>
@@ -169,35 +65,645 @@ exports[`Renders Correctly 1`] = `
               Points
             </p>
              
-            <div
-              id="up-down-arrows"
-            >
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 14l5-5 5 5z"
-                />
-              </svg>
-               
-              <svg
-                class=""
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 10l5 5 5-5z"
-                />
-              </svg>
-            </div>
+            <up-down-arrow-stub />
           </th>
            
+          <td />
         </tr>
       </thead>
        
       <tbody
         name="fade"
-      />
+      >
+        <tr
+          class="normal-table-row"
+        >
+          <td>
+            1
+          </td>
+           
+          <td>
+            Linda Reid
+          </td>
+           
+          <td>
+            W35
+          </td>
+           
+          <td
+            class="club"
+          >
+            ESOC
+          </td>
+           
+          <td>
+            100
+          </td>
+           
+          <td>
+            <svg
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+            >
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+               
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </td>
+        </tr>
+         
+        <!---->
+        <tr
+          class="normal-table-row striped"
+        >
+          <td>
+            2
+          </td>
+           
+          <td>
+            Harvey Blue
+          </td>
+           
+          <td>
+            M21
+          </td>
+           
+          <td
+            class="club"
+          >
+            INT
+          </td>
+           
+          <td>
+            99
+          </td>
+           
+          <td>
+            <svg
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+            >
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+               
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </td>
+        </tr>
+         
+        <!---->
+        <tr
+          class="normal-table-row"
+        >
+          <td>
+            3
+          </td>
+           
+          <td>
+            Bob Blu Jones
+          </td>
+           
+          <td>
+            M65
+          </td>
+           
+          <td
+            class="club"
+          >
+            ESOC
+          </td>
+           
+          <td>
+            98
+          </td>
+           
+          <td>
+            <svg
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+            >
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+               
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </td>
+        </tr>
+         
+        <!---->
+      </tbody>
+    </table>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Mobile Results Dropdown Works 2`] = `
+<div>
+  <h1
+    id="league-title"
+  >
+    <router-link-stub
+      to="/leagues/"
+    >
+      
+    </router-link-stub>
+    
+    - 
+  
+  </h1>
+   
+  <filter-menu-stub />
+   
+  <div
+    name="shrink"
+    style=""
+  >
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <p>
+              Pos.
+            </p>
+             
+            <up-down-arrow-stub
+              active="true"
+            />
+          </th>
+           
+          <th>
+            <p>
+              Name
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <th>
+            <p>
+              Class
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <th
+            class="club"
+          >
+            <p>
+              Club
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <th>
+            <p>
+              Points
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <td />
+        </tr>
+      </thead>
+       
+      <tbody
+        name="fade"
+      >
+        <tr
+          class="normal-table-row"
+        >
+          <td>
+            1
+          </td>
+           
+          <td>
+            Linda Reid
+          </td>
+           
+          <td>
+            W35
+          </td>
+           
+          <td
+            class="club"
+          >
+            ESOC
+          </td>
+           
+          <td>
+            100
+          </td>
+           
+          <td>
+            <svg
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+            >
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+               
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </td>
+        </tr>
+         
+        <!---->
+        <tr
+          class="normal-table-row striped"
+        >
+          <td>
+            2
+          </td>
+           
+          <td>
+            Harvey Blue
+          </td>
+           
+          <td>
+            M21
+          </td>
+           
+          <td
+            class="club"
+          >
+            INT
+          </td>
+           
+          <td>
+            99
+          </td>
+           
+          <td>
+            <svg
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+            >
+              <path
+                d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
+              />
+               
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </td>
+        </tr>
+         
+        <tr
+          class="mobile-table-expansion striped"
+        >
+          <td
+            colspan="100%"
+          >
+            <p>
+              
+                  200m:
+                  
+              <span
+                class="strikethrough"
+              >
+                
+              </span>
+            </p>
+            <p>
+              
+                  Longniddry:
+                  
+              <span
+                class=""
+              >
+                100
+              </span>
+            </p>
+            <p>
+              
+                  South Edinburgh:
+                  
+              <span
+                class="strikethrough"
+              >
+                5
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr
+          class="normal-table-row"
+        >
+          <td>
+            3
+          </td>
+           
+          <td>
+            Bob Blu Jones
+          </td>
+           
+          <td>
+            M65
+          </td>
+           
+          <td
+            class="club"
+          >
+            ESOC
+          </td>
+           
+          <td>
+            98
+          </td>
+           
+          <td>
+            <svg
+              height="16"
+              viewBox="0 0 24 24"
+              width="16"
+            >
+              <path
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+               
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+            </svg>
+          </td>
+        </tr>
+         
+        <!---->
+      </tbody>
+    </table>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Renders Correctly + Fetches Data 1`] = `
+<div>
+  <h1
+    id="league-title"
+  >
+    <router-link-stub
+      to="/leagues/"
+    >
+      
+    </router-link-stub>
+    
+    - 
+  
+  </h1>
+   
+  <filter-menu-stub />
+   
+  <div
+    name="shrink"
+    style=""
+  >
+    <table>
+      <thead>
+        <tr>
+          <th>
+            <p>
+              Pos.
+            </p>
+             
+            <up-down-arrow-stub
+              active="true"
+            />
+          </th>
+           
+          <th>
+            <p>
+              Name
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <th>
+            <p>
+              Class
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <th
+            class="club"
+          >
+            <p>
+              Club
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <th>
+            <p>
+              Points
+            </p>
+             
+            <up-down-arrow-stub />
+          </th>
+           
+          <th>
+            <p>
+              1
+            </p>
+             
+            <span>
+              200m
+            </span>
+             
+            <up-down-arrow-stub />
+          </th>
+          <th>
+            <p>
+              2
+            </p>
+             
+            <span>
+              Longniddry
+            </span>
+             
+            <up-down-arrow-stub />
+          </th>
+          <th>
+            <p>
+              3
+            </p>
+             
+            <span>
+              South Edinburgh
+            </span>
+             
+            <up-down-arrow-stub />
+          </th>
+        </tr>
+      </thead>
+       
+      <tbody
+        name="fade"
+      >
+        <tr
+          class="normal-table-row"
+        >
+          <td>
+            1
+          </td>
+           
+          <td>
+            Linda Reid
+          </td>
+           
+          <td>
+            W35
+          </td>
+           
+          <td
+            class="club"
+          >
+            ESOC
+          </td>
+           
+          <td>
+            100
+          </td>
+           
+          <td
+            class=""
+          >
+            100
+          </td>
+          <td
+            class="strikethrough"
+          >
+            95
+          </td>
+          <td
+            class="strikethrough"
+          >
+            10
+          </td>
+        </tr>
+         
+        <!---->
+        <tr
+          class="normal-table-row striped"
+        >
+          <td>
+            2
+          </td>
+           
+          <td>
+            Harvey Blue
+          </td>
+           
+          <td>
+            M21
+          </td>
+           
+          <td
+            class="club"
+          >
+            INT
+          </td>
+           
+          <td>
+            99
+          </td>
+           
+          <td
+            class="strikethrough"
+          >
+            
+          </td>
+          <td
+            class=""
+          >
+            100
+          </td>
+          <td
+            class="strikethrough"
+          >
+            5
+          </td>
+        </tr>
+         
+        <!---->
+        <tr
+          class="normal-table-row"
+        >
+          <td>
+            3
+          </td>
+           
+          <td>
+            Bob Blu Jones
+          </td>
+           
+          <td>
+            M65
+          </td>
+           
+          <td
+            class="club"
+          >
+            ESOC
+          </td>
+           
+          <td>
+            98
+          </td>
+           
+          <td
+            class="strikethrough"
+          >
+            0
+          </td>
+          <td
+            class=""
+          >
+            100
+          </td>
+          <td
+            class="strikethrough"
+          >
+            98
+          </td>
+        </tr>
+         
+        <!---->
+      </tbody>
     </table>
   </div>
    

@@ -71,7 +71,7 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
     },
 
-    fileChange (event) {
+    fileChange: function (event) {
       // When the file selected has been changed
       const storage = event.target || event.dataTransfer
       const files = storage.files
@@ -80,14 +80,18 @@ export default {
       this.readFile(files[0])
     },
 
-    readFile (file) {
+    readFile: function (file) {
       // read file using FileReader and save in data
       const reader = new FileReader()
-      reader.onload = event => { this.file = event.target.result }
+      reader.onload = this.readFileResult
       reader.readAsText(file)
     },
 
-    uploadFile () {
+    readFileResult: function (result) {
+      this.file = result.target.result
+    },
+
+    uploadFile: function () {
       // Send data to the server
       return axios.post('/api/upload', {
         eventId: this.eventId,

@@ -16,11 +16,11 @@
     </div>
     <div class="quarter input">
       <label>Min Age:</label>
-      <input v-model.number="preferences.minAge" type="text" min="0" max="120" @input="onChange">
+      <input v-model.number="preferences.minAge" type="number" min="0" max="120" @input="onChange">
     </div>
     <div class="quarter input">
       <label>Max Age:</label>
-      <input v-model.number="preferences.maxAge" type="text" min="0" max="120" @input="onChange">
+      <input v-model.number="preferences.maxAge" type="number" min="0" max="120" @input="onChange">
     </div>
     <checkbox v-model="preferences.male" class="quarter" label="Male:" @input="onChange" />
     <checkbox v-model="preferences.female" class="quarter" label="Female:" @input="onChange" />

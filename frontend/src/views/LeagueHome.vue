@@ -97,14 +97,14 @@ export default {
     // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
     '$route': async function () {
       await this.getLeague()
-      return this.getLeagueEvents()
+      this.getLeagueEvents()
     },
   },
 
   mounted: async function () {
     // Get details on load
     await this.getLeague()
-    return this.getLeagueEvents()
+    this.getLeagueEvents()
   },
 
   methods: {
