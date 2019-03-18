@@ -20,6 +20,21 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
+
+# lint stylus and javascript
+npm run lint
+
+# lint js
+npm run lint-js
+
+# lint javascript and fix
+npm run lint-js-fix
+
+# lint stylus
+npm run lint-styles
+
+# run all jest unit tests
+npm test
 ```
 
 ## Run Backend for Development
@@ -30,7 +45,10 @@ cd backend
 # run virtual enviroment
 .\venv\Scripts\activate.bat
 
-# set enviroment variables
+# install dependancies
+pip install -r requirements.txt
+
+# set enviroment variables (for development, ignore if running pre-built frontend)
 set FLASK_ENV=development
 set FLASK_DEBUG=1
 

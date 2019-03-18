@@ -100,6 +100,21 @@ def updateEvent(id, name, date, resultUploaded, organiser, moreInformation, webs
     connection.close()
 
 
+def setResultsUploaded(to, id):
+    if to:
+        setTo = 'True'
+    else:
+        setTo = 'False'
+    connection = sqlite3.connect('./databaseFiles/2.db')
+    cursor = connection.cursor()
+    cursor.execute('''
+        UPDATE events
+        SET resultUploaded=?
+        WHERE id=?''', (setTo, id))
+    connection.commit()
+    connection.close()
+
+
 def deleteEvent(id):
     connection = sqlite3.connect('./databaseFiles/2.db')
     cursor = connection.cursor()

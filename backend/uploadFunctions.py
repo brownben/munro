@@ -3,8 +3,12 @@
 
 def nameToInitial(name):
     # Get initial from a name, for matching of surname + initial
+    # Returns initial concatenated to surname
     splitName = name.split(' ', 1)
-    return splitName[0][0] + splitName[1]
+    if (len(splitName) > 1):
+        return splitName[0][0] + ' ' + splitName[1]
+    else:
+        return name
 
 
 def matchCompetitor(competitorList, result):
@@ -15,7 +19,12 @@ def matchCompetitor(competitorList, result):
 
     # Else check that initial, surname, course and either club or age class match
     for competitor in competitorList:
-        if nameToInitial(competitor['name']) == nameToInitial(result['name']) and (competitor['name'].split(' ')[0] == result['name'].split(' ')[0]) and competitor['course'] == result['course'] and (competitor['ageClass'] == result['ageClass'] or competitor['club'] == result['club']):
+        if (
+            (nameToInitial(competitor['name']) == nameToInitial(result['name'])) and
+            (competitor['course'] == result['course']) and
+            (competitor['ageClass'] == result['ageClass'] or
+             (competitor['club'] == result['club']))
+        ):
             return competitor
 
     return False

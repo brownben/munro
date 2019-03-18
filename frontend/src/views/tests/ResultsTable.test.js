@@ -401,12 +401,12 @@ test('Sort - Ascending - By Points', () => {
     },
     stubs: ['router-link'],
   })
-  expect(wrapper.vm.sort([], 0, false, true)).toEqual([])
-  expect(wrapper.vm.sort([], 1, false, true)).toEqual([])
-  expect(wrapper.vm.sort(sampleSingleResult, 0, false, true)).toEqual(sampleSingleResult)
-  expect(wrapper.vm.sort(sampleSingleResult, 1, false, true)).toEqual(sampleSingleResult)
-  expect(wrapper.vm.sort(sampleThreeResults, 0, false, true)).toEqual(sampleThreeResults)
-  expect(wrapper.vm.sort(sampleThreeResultsCopy, 2, false, true)).toEqual(sampleThreeResultsSortedByEventThreePoints)
+  expect(wrapper.vm.sort([], 0, true, true)).toEqual([])
+  expect(wrapper.vm.sort([], 1, true, true)).toEqual([])
+  expect(wrapper.vm.sort(sampleSingleResult, 0, true, true)).toEqual(sampleSingleResult)
+  expect(wrapper.vm.sort(sampleSingleResult, 1, true, true)).toEqual(sampleSingleResult)
+  expect(wrapper.vm.sort(sampleThreeResults, 0, true, true)).toEqual(sampleThreeResults)
+  expect(wrapper.vm.sort(sampleThreeResultsCopy, 2, true, true)).toEqual(sampleThreeResultsSortedByEventThreePoints.slice().reverse())
 })
 
 test('Sort - Descending - By Points', () => {
@@ -417,10 +417,10 @@ test('Sort - Descending - By Points', () => {
     },
     stubs: ['router-link'],
   })
-  expect(wrapper.vm.sort([], 0, false, false)).toEqual([])
-  expect(wrapper.vm.sort([], 1, false, false)).toEqual([])
-  expect(wrapper.vm.sort(sampleSingleResult, 0, false, false)).toEqual(sampleSingleResult)
-  expect(wrapper.vm.sort(sampleSingleResult, 1, false, false)).toEqual(sampleSingleResult)
+  expect(wrapper.vm.sort([], 0, false, true)).toEqual([])
+  expect(wrapper.vm.sort([], 1, false, true)).toEqual([])
+  expect(wrapper.vm.sort(sampleSingleResult, 0, false, true)).toEqual(sampleSingleResult)
+  expect(wrapper.vm.sort(sampleSingleResult, 1, false, true)).toEqual(sampleSingleResult)
   expect(wrapper.vm.sort(sampleThreeResults, 0, false, true)).toEqual(sampleThreeResults.reverse())
   expect(wrapper.vm.sort(sampleThreeResultsCopy, 2, false, true)).toEqual(sampleThreeResultsSortedByEventThreePoints)
 })

@@ -56,7 +56,7 @@ def checkAllHeadersPresent(list):
 
 
 def timeToSeconds(time):
-    # Convert time from HH:MM:SS and MMM:SS to seconds for easieer calculations
+    # Convert time from HH:MM:SS and MMM:SS to seconds for easier calculations
     if time != '':
         splitTime = time.split(':')
         if len(splitTime) == 2:
@@ -94,8 +94,7 @@ def parseToObjects(data, headerLocations):
             parsedRow['position'] = int(row[headerLocations['position']])
         except:
             parsedRow['position'] = ''
-        parsedRow['incomplete'] = row[headerLocations['nonCompetitive']] == 'Y' or row[headerLocations['nonCompetitive']] == '1' or (
-            row[headerLocations['status']] != '' and row[headerLocations['status']] != '0')
+        parsedRow['incomplete'] = row[headerLocations['nonCompetitive']] == 'Y' or row[headerLocations['nonCompetitive']] == '1' or (row[headerLocations['status']] != '' and row[headerLocations['status']] != '0')
 
         parsedData.append(parsedRow)
 

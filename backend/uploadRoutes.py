@@ -4,7 +4,7 @@ from flask_restful import Resource, reqparse
 import csvFunctions as csv
 import pointsFunctions as points
 import uploadFunctions as upload
-from database import competitors, events, results
+from database import competitors, leagues, events, results
 from requireAuthentication import requireAuthentication
 
 # Check POST request for upload has all the relevent fields
@@ -45,11 +45,14 @@ class Upload(Resource):
             headerLocations = csv.findHeaders(splitData)
             if(not headerLocations):
                 return {'message': 'Data is in an Uncomplete Format'}, 500
+
             parsedData = csv.parseToObjects(splitData, headerLocations)
             parsedDataNoExtraCourses = upload.removeExtraCourses(
                 parsedData, leagueOfEvent['courses'])
+            parsedDataSorted = sorted(
+                parsedDataNoExtraCourses, key=lambda result: result['time'], reverse=True)
             dataWithPoints = points.assignPoints(
-                parsedDataNoExtraCourses, leagueOfEvent['scoringMethod'])
+                parsedDataSorted, leagueOfEvent['scoringMethod'])
 
             try:
                 # Get all competitors and match the competitor to assign the result to competitor by saving competitor id in the result
@@ -72,8 +75,7 @@ class Upload(Resource):
                     results.createResult(result['time'], result['position'], result['points'],
                                          result['incomplete'], eventData['id'], result['competitor'])
 
-                eventData['resultUploaded'] = 'True'
-                events.updateEvent(**eventData)
+                events.setResultsUploaded(True, eventData['id'])
                 return {'message': str(len(dataWithCompetitors)) + ' Results Saved'}
 
             except:

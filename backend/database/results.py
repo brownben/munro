@@ -18,6 +18,7 @@ def resultToJSON(result):
     else:
         return False
 
+
 def quickSort(array):
     # Check if length 1, as at length 1 the array is sorted
     if len(array) > 1:
@@ -27,7 +28,7 @@ def quickSort(array):
         bigArray = []
         # Compare to pivot then place in relevant array
         for item in range(len(array) - 1):
-            if str(array[item]) <= str(array[pivot]):
+            if int(array[item]) <= int(array[pivot]):
                 smallArray.append(array[item])
             else:
                 bigArray.append(array[item])
@@ -35,6 +36,7 @@ def quickSort(array):
         return quickSort(smallArray) + [array[pivot]] + quickSort(bigArray)
     else:
         return array
+
 
 def getPointsForEvent(result, eventId):
     # Find Event matching the ID
@@ -46,11 +48,14 @@ def getPointsForEvent(result, eventId):
     else:
         return ''
 
+
 def biggestPoints(points, number):
     # Finds the x greatest values in the list and returns their index
-    # If less trhan number just return the array
-    if len(points) <= number:
-        return range(len(points))
+    # If less than number just return the array
+    if len(points) == 0:
+        return []
+    elif len(points) <= number:
+        return list(range(len(points)))
     else:
         biggest = []
         # Sort list then reverse it to have it descending
@@ -59,22 +64,36 @@ def biggestPoints(points, number):
             # Find index of the x largest item
             firstIndexOfValue = points.index(sortedPoints[counter])
             # If equal value is not in biggesst array add it
+
             if firstIndexOfValue not in biggest:
                 biggest.append(firstIndexOfValue)
             else:
                 # Else find the location of the values next occurance, by finding number of occurances of this value in the biggest array, then find the index of the (old number of occurances + 1)th occurance of this value
-                numberOfOccurances = 1
-                if len(biggest) != 1:
-                    numberOfOccurances = reduce((lambda count, currentValue: count + (points[currentValue] == sortedPoints[counter])), biggest, 0)
-                biggest.append(points.index(sortedPoints[counter], numberOfOccurances))
+                numberOfOccurances = 0
+                if len(biggest) > 0:
+                    numberOfOccurances = countOccurancesFromArrayOfIndexes(
+                        sortedPoints[counter], sortedPoints, biggest)
+                biggest.append(points.index(
+                    sortedPoints[counter], numberOfOccurances))
         return biggest
+
+
+def countOccurancesFromArrayOfIndexes(searchItem, array, arrayOfIndexes):
+    occurances = 0
+    for item in arrayOfIndexes:
+        if searchItem == array[item]:
+            occurances += 1
+    return occurances
+
 
 def calculateTotal(pointsList, points):
     # Sum all points in array
     totalPoints = 0
     for point in pointsList:
-        totalPoints += points[point]
+        if points[point] != '':
+            totalPoints += int(points[point])
     return totalPoints
+
 
 def assignPosition(results):
     # Assign 1st, 2nd, 3rd, etc based off total points
@@ -84,12 +103,13 @@ def assignPosition(results):
         if result['totalPoints'] == lastPoints:
             result['position'] = position
         else:
-          position += 1
-          result['position'] = position
+            position += 1
+            result['position'] = position
 
         lastPoints = result['totalPoints']
 
     return results
+
 
 def courseResultToJSON(result, league):
     # Get all required fields from other parts of the database
@@ -101,7 +121,8 @@ def courseResultToJSON(result, league):
         # Get number of events to count in league
         numberOfCountingEvents = currentLeague['numberOfCountingEvents']
         # Get events with results uploaded
-        eventsWithResults = filter(lambda event: event['resultUploaded'], eventsList)
+        eventsWithResults = filter(
+            lambda event: event['resultUploaded'], eventsList)
 
         # Split Points and events from database string
         # Place in record for each event
@@ -113,7 +134,6 @@ def courseResultToJSON(result, league):
                 'event': eventList[event],
                 'points': int(pointsList[event])
             })
-
         # Get points for each event in order
         points = []
         for event in eventsWithResults:
@@ -130,8 +150,8 @@ def courseResultToJSON(result, league):
                 'ageClass': result[1],
                 'club': result[2],
                 'points': points,
-                'totalPoints':totalPoints,
-                'largestPoints':largestPoints
+                'totalPoints': totalPoints,
+                'largestPoints': largestPoints
             }
         else:
             return False
@@ -257,7 +277,7 @@ def getResultsByEvent(competitor):
 def getResultsForCourse(league, course):
     connection = sqlite3.connect('./databaseFiles/2.db')
     cursor = connection.cursor()
-    result = cursor.execute('''
+    results = cursor.execute('''
         SELECT competitors.name, competitors.ageClass, competitors.club,  GROUP_CONCAT(results.event,';'), GROUP_CONCAT(results.points,';')
         FROM competitors, results
         WHERE results.competitor=competitors.rowid AND competitors.course=? AND competitors.league=?
@@ -265,8 +285,8 @@ def getResultsForCourse(league, course):
         ''', (course, league)).fetchall()
     connection.close()
     resultsList = []
-    for result in list(result):
+    for result in list(results):
         resultsList.append(courseResultToJSON(result, league))
 
     # Return results sorted with positions assigned
-    return assignPosition(sorted(resultsList, key = lambda result: result['totalPoints'], reverse=True))
+    return assignPosition(sorted(resultsList, key=lambda result: result['totalPoints'], reverse=True))
