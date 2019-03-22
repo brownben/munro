@@ -1,7 +1,15 @@
+# Hack to Allow Import from parent Folder (For Sort Functions)
+import os, sys, inspect
+currentDir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+del sys.path[0]
+sys.path.insert(0, os.path.dirname(currentDir))
+
 import sqlite3
 from functools import reduce
 
 from . import events, leagues
+import sortFunctions
+import pointsFunctions
 
 
 def resultToJSON(result):
@@ -19,96 +27,15 @@ def resultToJSON(result):
         return False
 
 
-def quickSort(array):
-    # Check if length 1, as at length 1 the array is sorted
-    if len(array) > 1:
-        # Set pivot value
-        pivot = len(array) - 1
-        smallArray = []
-        bigArray = []
-        # Compare to pivot then place in relevant array
-        for item in range(len(array) - 1):
-            if int(array[item]) <= int(array[pivot]):
-                smallArray.append(array[item])
-            else:
-                bigArray.append(array[item])
-        # Combine the two lists and quicksort each to ensure sort
-        return quickSort(smallArray) + [array[pivot]] + quickSort(bigArray)
-    else:
-        return array
-
-
-def getPointsForEvent(result, eventId):
+def getPointsForEvent(results, eventId):
     # Find Event matching the ID
-    filteredPoints = filter(lambda event: event['event'] == eventId, result)
+    filteredPoints = filter(lambda event: event['event'] == eventId, results)
     filteredPoints = list(filteredPoints)
     # If found return event
     if len(filteredPoints) != 0:
         return filteredPoints[0]['points']
     else:
         return ''
-
-
-def biggestPoints(points, number):
-    # Finds the x greatest values in the list and returns their index
-    # If less than number just return the array
-    if len(points) == 0:
-        return []
-    elif len(points) <= number:
-        return list(range(len(points)))
-    else:
-        biggest = []
-        # Sort list then reverse it to have it descending
-        sortedPoints = quickSort(points)[::-1]
-        for counter in range(number):
-            # Find index of the x largest item
-            firstIndexOfValue = points.index(sortedPoints[counter])
-            # If equal value is not in biggesst array add it
-
-            if firstIndexOfValue not in biggest:
-                biggest.append(firstIndexOfValue)
-            else:
-                # Else find the location of the values next occurance, by finding number of occurances of this value in the biggest array, then find the index of the (old number of occurances + 1)th occurance of this value
-                numberOfOccurances = 0
-                if len(biggest) > 0:
-                    numberOfOccurances = countOccurancesFromArrayOfIndexes(
-                        sortedPoints[counter], sortedPoints, biggest)
-                biggest.append(points.index(
-                    sortedPoints[counter], numberOfOccurances))
-        return biggest
-
-
-def countOccurancesFromArrayOfIndexes(searchItem, array, arrayOfIndexes):
-    occurances = 0
-    for item in arrayOfIndexes:
-        if searchItem == array[item]:
-            occurances += 1
-    return occurances
-
-
-def calculateTotal(pointsList, points):
-    # Sum all points in array
-    totalPoints = 0
-    for point in pointsList:
-        if points[point] != '':
-            totalPoints += int(points[point])
-    return totalPoints
-
-
-def assignPosition(results):
-    # Assign 1st, 2nd, 3rd, etc based off total points
-    position = 0
-    lastPoints = 0
-    for result in results:
-        if result['totalPoints'] == lastPoints:
-            result['position'] = position
-        else:
-            position += 1
-            result['position'] = position
-
-        lastPoints = result['totalPoints']
-
-    return results
 
 
 def courseResultToJSON(result, league):
@@ -140,8 +67,8 @@ def courseResultToJSON(result, league):
             points.append(getPointsForEvent(eventsByCompetitor, event['id']))
 
         # Calculate the total and which scores make this
-        largestPoints = biggestPoints(points, numberOfCountingEvents)
-        totalPoints = calculateTotal(largestPoints, points)
+        largestPoints = pointsFunctions.biggestPoints(points, numberOfCountingEvents)
+        totalPoints = pointsFunctions.calculateTotal(largestPoints, points)
 
         # Change to object rather than tuple
         if (result):
@@ -289,4 +216,5 @@ def getResultsForCourse(league, course):
         resultsList.append(courseResultToJSON(result, league))
 
     # Return results sorted with positions assigned
-    return assignPosition(sorted(resultsList, key=lambda result: result['totalPoints'], reverse=True))
+    sortedResults = sortFunctions.quickSortObjectsByProperty(resultsList, 'totalPoints')[::-1]
+    return pointsFunctions.assignPosition(sortedResults)

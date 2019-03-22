@@ -4,6 +4,7 @@ from flask_restful import Resource, reqparse
 import csvFunctions as csv
 import pointsFunctions as points
 import uploadFunctions as upload
+import sortFunctions
 from database import competitors, leagues, events, results
 from requireAuthentication import requireAuthentication
 
@@ -49,8 +50,8 @@ class Upload(Resource):
             parsedData = csv.parseToObjects(splitData, headerLocations)
             parsedDataNoExtraCourses = upload.removeExtraCourses(
                 parsedData, leagueOfEvent['courses'])
-            parsedDataSorted = sorted(
-                parsedDataNoExtraCourses, key=lambda result: result['time'], reverse=True)
+            parsedDataSorted = sortFunctions.quickSortObjectsByProperty(
+                parsedDataNoExtraCourses, 'time')[::-1]
             dataWithPoints = points.assignPoints(
                 parsedDataSorted, leagueOfEvent['scoringMethod'])
 

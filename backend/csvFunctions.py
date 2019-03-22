@@ -14,30 +14,34 @@ def findHeaders(data):
     # Find the location of each field in the CSV file by reading the header
     locations = {}
     headerRow = data[0]
-    headerRow[-1] = headerRow[-1].strip()
-    for cell in range(len(headerRow)):
-        if headerRow[cell].upper() == 'FIRST NAME':
-            locations['firstName'] = cell
-        elif headerRow[cell].upper() == 'SURNAME':
-            locations['surname'] = cell
-        elif headerRow[cell].upper() == 'NAME':
-            locations['name'] = cell
-        elif headerRow[cell].upper() == 'TEXT1' or headerRow[cell].upper() == 'CATEGORY' or headerRow[cell].upper() == 'AGECLASS':
-            locations['ageClass'] = cell
-        elif headerRow[cell].upper() == 'CITY' or headerRow[cell].upper() == 'CLUB':
-            locations['club'] = cell
-        elif headerRow[cell].upper() == 'COURSE' or headerRow[cell].upper() == 'COURSECLASS':
-            locations['course'] = cell
-        elif headerRow[cell].upper() == 'TIME' or headerRow[cell].upper() == 'RACETIME':
-            locations['time'] = cell
-        elif headerRow[cell].upper() == 'PL' or headerRow[cell].upper() == 'POSITION':
-            locations['position'] = cell
-        elif headerRow[cell].upper() == 'NC' or headerRow[cell].upper() == 'NONCOMPETITIVE':
-            locations['nonCompetitive'] = cell
-        elif headerRow[cell].upper() == 'STATUS' or headerRow[cell].upper() == 'CLASSIFIER':
-            locations['status'] = cell
-    if checkAllHeadersPresent(list(locations.keys())):
-        return locations
+    if headerRow:
+        headerRow[-1] = headerRow[-1].strip()
+        for cell in range(len(headerRow)):
+            if headerRow[cell].upper() == 'FIRST NAME' or headerRow[cell].upper() == 'FIRSTNAME':
+                locations['firstName'] = cell
+            elif headerRow[cell].upper() == 'SURNAME':
+                locations['surname'] = cell
+            elif headerRow[cell].upper() == 'NAME':
+                locations['name'] = cell
+            elif headerRow[cell].upper() == 'TEXT1' or headerRow[cell].upper() == 'CATEGORY' or headerRow[cell].upper() == 'AGECLASS':
+                locations['ageClass'] = cell
+            elif headerRow[cell].upper() == 'CITY' or headerRow[cell].upper() == 'CLUB':
+                locations['club'] = cell
+            elif headerRow[cell].upper() == 'COURSE' or headerRow[cell].upper() == 'COURSECLASS':
+                locations['course'] = cell
+            elif headerRow[cell].upper() == 'TIME' or headerRow[cell].upper() == 'RACETIME':
+                locations['time'] = cell
+            elif headerRow[cell].upper() == 'PL' or headerRow[cell].upper() == 'POSITION':
+                locations['position'] = cell
+            elif headerRow[cell].upper() == 'NC' or headerRow[cell].upper() == 'NONCOMPETITIVE':
+                locations['nonCompetitive'] = cell
+            elif headerRow[cell].upper() == 'STATUS' or headerRow[cell].upper() == 'CLASSIFIER':
+                locations['status'] = cell
+        print(list(locations.keys()))
+        if checkAllHeadersPresent(list(locations.keys())):
+            return locations
+        else:
+            return False
     else:
         return False
 
@@ -94,7 +98,8 @@ def parseToObjects(data, headerLocations):
             parsedRow['position'] = int(row[headerLocations['position']])
         except:
             parsedRow['position'] = ''
-        parsedRow['incomplete'] = row[headerLocations['nonCompetitive']] == 'Y' or row[headerLocations['nonCompetitive']] == '1' or (row[headerLocations['status']] != '' and row[headerLocations['status']] != '0')
+        parsedRow['incomplete'] = row[headerLocations['nonCompetitive']] == 'Y' or row[headerLocations['nonCompetitive']] == '1' or (
+            row[headerLocations['status']] != '' and row[headerLocations['status']] != '0')
 
         parsedData.append(parsedRow)
 
