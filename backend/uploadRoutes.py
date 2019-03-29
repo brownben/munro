@@ -64,7 +64,7 @@ class Upload(Resource):
                 for result in dataWithPoints:
                     competitor = upload.matchCompetitor(allCompetitors, result)
                     if competitor:
-                        result['competitor'] = competitor['rowId']
+                        result['competitor'] = competitor['rowid']
                     else:
                         # If no match create competitor and save id as that in the result
                         result['competitor'] = competitors.createCompetitor(

@@ -6,17 +6,7 @@
 
 <template>
   <div>
-    <div class="header">
-      <img src="@/assets/images/MunroLogo.png" alt="Munro Logo">
-      <div id="text">
-        <h1>Munro</h1>
-        <h3>Fast and Easy Results for Orienteering Leagues</h3>
-      </div>
-    </div>
-    <div v-if="auth.user" class="actions">
-      <button @click="$router.push('/create-league')">Create New League</button>
-      <button @click="$router.push('/upload')">Upload Results</button>
-    </div>
+    <h1>Leagues</h1>
     <div id="leagues">
       <div v-for="league of leagues" :key="league.name" class="league">
         <img
@@ -44,7 +34,6 @@ export default {
   data () {
     return {
       leagues: [],
-      auth: this.$auth,
     }
   },
 
@@ -65,64 +54,13 @@ export default {
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
-.header
-  display: inline-flex
-  flex: 1 0 10px
-  justify-content: center
-  align-items: center
-  box-sizing: border-box
-  margin-bottom: 1rem
-  padding: 3rem 1.5rem
-  width: 100%
-  background: url('../assets/images/largeBackground.png')
-  background: url('../assets/images/largeBackground.svg')
-  background-color: purple-300
-  background-size: cover
-  background-repeat: no-repeat
-  color: white
-  text-align: center
-  box-shadow(1)
+#router-view
+  margin-left: 5%
+  padding-top: 1rem
+  width: 90%
 
-  #text
-    padding-left: 7.5%
-
-  img
-    height: 12rem
-
-  h1
-    margin: 0.8rem 0
-    color: white
-    font-weight: 400
-    font-size: 3rem
-
-  h3
-    margin: 0.5rem 0
-    color: white
-    font-weight: 300
-    font-size: 1.5rem
-
-@media (max-width: 700px)
-  .header
-    display: block
-    padding: 1rem 1.5rem
-    background: url('../assets/images/smallBackground.png')
-    background: url('../assets/images/smallBackground.svg')
-    background-color: purple-300
-    background-size: cover
-    background-repeat: no-repeat
-    text-align: center
-
-    img
-      height: 10rem
-
-    #text
-      box-sizing: border-box
-      padding: 0
-      width: 100%
-
-      h3
-        margin: 14px
-        margin-bottom: 0
+h1
+  margin-bottom: 0.5rem
 
 .league
   text-align: center
@@ -161,8 +99,6 @@ export default {
 #leagues
   display: grid
   margin-top: 1rem
-  margin-left: 5%
-  width: 90%
   grid-gap: 1.5rem
   grid-template-columns: 1fr 1fr
 

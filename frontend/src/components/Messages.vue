@@ -38,6 +38,7 @@ export default {
   position: fixed
   right: 0.75rem
   bottom: 0.75rem
+  user-select:none
 
   @media (max-width: 700px)
     width: calc(100% - 1.5rem)

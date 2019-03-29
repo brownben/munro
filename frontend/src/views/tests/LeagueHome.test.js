@@ -23,7 +23,7 @@ test('Is a Vue Instance', () => {
   const mockGetLeagueEvents = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
     },
     methods: {
@@ -39,7 +39,7 @@ test('Renders Correctly', () => {
   const mockGetLeagueEvents = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
     },
     methods: {
@@ -56,7 +56,7 @@ test('Calls Correct Functions on Load', async () => {
   const mockGetLeagueEvents = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
     },
     methods: {
@@ -82,7 +82,7 @@ test('Reload League on Route Change', async () => {
     localVue,
     router,
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
     methods: {
       getLeague: mockGetLeague,
@@ -105,7 +105,7 @@ test('Get League - Correct API Call', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: 'Test' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -124,7 +124,7 @@ test('Get League - Success', async () => {
   axios.get.mockResolvedValue({ data: sampleSingleLeague[0] })
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -139,7 +139,7 @@ test('Get League - Error', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -157,7 +157,7 @@ test('Get League Events - No League Data', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -176,7 +176,7 @@ test('Get League Events - Correct API', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -195,7 +195,7 @@ test('Get League Events - Correct API - Logged In', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: true },
+      $auth: { user: true },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -214,7 +214,7 @@ test('Get League Events - Success', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -232,7 +232,7 @@ test('Get League Events - Success - Logged In', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: true },
+      $auth: { user: true },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -250,7 +250,7 @@ test('Get League Events - Error', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -269,7 +269,7 @@ test('Get League Events - Error - Logged In', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: true },
+      $auth: { user: true },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -288,7 +288,7 @@ test('Delete Event - Correct Confirm', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -304,7 +304,7 @@ test('Delete Event - Denied Confirmation', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -320,7 +320,7 @@ test('Delete Event - Correct API Call', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -339,7 +339,7 @@ test('Delete Event - Success', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -364,7 +364,7 @@ test('Delete Event - Error', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -383,7 +383,7 @@ test('Delete League - Correct Confirm', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -400,7 +400,7 @@ test('Delete League - Denied Confirmation', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -417,7 +417,7 @@ test('Delete League - Correct API Call', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
@@ -438,7 +438,7 @@ test('Delete League - Success', async () => {
   const mockRouterPush = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $router: { push: mockRouterPush },
       $messages: { addMessage: mockAddMessage },
@@ -463,7 +463,7 @@ test('Delete League - Error', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(League, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },

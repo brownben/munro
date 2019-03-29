@@ -1,3 +1,4 @@
+import routes
 import os
 
 import requests
@@ -5,8 +6,6 @@ from flask import Flask, render_template, session
 from flask_compress import Compress
 from flask_cors import CORS
 from flask_restful import Api
-
-import routes
 
 # Set up Flask with plugins
 app = Flask(__name__,
@@ -18,11 +17,6 @@ compress = Compress(app)
 app.secret_key = os.urandom(25)
 
 # Bind all logic with the routes
-api.add_resource(routes.UserRegistration, '/api/auth/registration')
-api.add_resource(routes.UserLogin, '/api/auth/login')
-api.add_resource(routes.UserLogout, '/api/auth/logout')
-api.add_resource(routes.LoginStatus, '/api/auth/isLoggedIn')
-
 api.add_resource(routes.Leagues, '/api/leagues')
 api.add_resource(routes.League, '/api/leagues/<name>')
 api.add_resource(routes.LeagueEvents, '/api/leagues/<name>/events')
@@ -49,6 +43,10 @@ api.add_resource(routes.Upload, '/api/upload')
 @app.route('/<path:path>')
 def catch_all(path):
     # If in debug access files from VueJS Development Server
-    if app.debug:
-        return requests.get('http://localhost:8080/{}'.format(path)).text
+    #if app.debug:
+    #   return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
+
+
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=5000, debug=True)

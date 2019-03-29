@@ -19,11 +19,11 @@
     <h1>
       <router-link to="/">Munro</router-link>
     </h1>
-    <transition name="fade">
+    <transition name="shrink">
       <div v-show="showMenu || !smallWindow" class="actions">
-        <router-link to="/">Leagues</router-link>
+        <router-link to="/leagues">Leagues</router-link>
         <router-link to="/upload">Upload Results</router-link>
-        <router-link v-if="!auth.isLoggedIn" to="/login">Admin Login</router-link>
+        <router-link v-if="!auth.user" to="/login">Admin Login</router-link>
         <router-link v-else to="/logout">Log Out</router-link>
       </div>
     </transition>
@@ -55,14 +55,8 @@ export default {
 
   methods: {
     handleResize () {
-      if (window.innerWidth > 700) {
-        this.showMenu = true
-        this.smallWindow = false
-      }
-      else {
-        this.showMenu = false
-        this.smallWindow = true
-      }
+      this.showMenu = false
+      this.smallWindow = window.innerWidth <= 700
     },
   },
 }
@@ -73,12 +67,10 @@ export default {
 
 #menu
   position: relative
-  z-index: 5
   box-sizing: border-box
   width: 100%
   background-color: purple-500
   color: white
-  box-shadow(1.5)
   no-user-select()
 
   svg
@@ -101,6 +93,7 @@ export default {
   .actions
     position: absolute
     right: 0
+    z-index: 3
     display: inline-block
     margin-right: 1.5rem
     height: 100%
@@ -139,22 +132,34 @@ export default {
         fill: purple-100
 
     .actions
+      top: 3rem
       display: block
+      box-sizing: border-box
       margin: 0
-      width: 100%
-      height: auto
+      padding: 50% 0
+      width: 100vw
+      height: calc(100vh - 3rem)
       background-color: purple-500
+      transition: transform 0.4s ease-in-out
+      transform-origin: top
 
       a
         display: block
-        padding: 0.5rem 0
+        padding: 0.75rem 0
         height: auto
         background-color: purple-500
         line-height: normal
 
+        &:first-child
+          margin-top: 3rem
+
 .fade-enter-active, .fade-leave-active
   transition: 0.3s
+  transform-origin: top
 
 .fade-enter, .fade-leave-to
   opacity: 0
+
+.shrink-enter, .shrink-leave-to
+  transform: scaleY(0)
 </style>

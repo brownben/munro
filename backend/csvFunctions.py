@@ -23,7 +23,7 @@ def findHeaders(data):
                 locations['surname'] = cell
             elif headerRow[cell].upper() == 'NAME':
                 locations['name'] = cell
-            elif headerRow[cell].upper() == 'TEXT1' or headerRow[cell].upper() == 'CATEGORY' or headerRow[cell].upper() == 'AGECLASS':
+            elif headerRow[cell].upper() == 'TEXT1' or headerRow[cell].upper() == 'CATEGORY' or headerRow[cell].upper() == 'AGECLASS' or headerRow[cell].upper() == 'AGE CLASS':
                 locations['ageClass'] = cell
             elif headerRow[cell].upper() == 'CITY' or headerRow[cell].upper() == 'CLUB':
                 locations['club'] = cell
@@ -37,7 +37,6 @@ def findHeaders(data):
                 locations['nonCompetitive'] = cell
             elif headerRow[cell].upper() == 'STATUS' or headerRow[cell].upper() == 'CLASSIFIER':
                 locations['status'] = cell
-        print(list(locations.keys()))
         if checkAllHeadersPresent(list(locations.keys())):
             return locations
         else:

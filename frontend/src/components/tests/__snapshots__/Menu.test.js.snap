@@ -16,10 +16,10 @@ exports[`Renders Correctly - Desktop 1`] = `
    
   <div
     class="actions"
-    name="fade"
+    name="shrink"
   >
     <router-link-stub
-      to="/"
+      to="/leagues"
     >
       Leagues
     </router-link-stub>
@@ -67,11 +67,11 @@ exports[`Renders Correctly - Mobile 1`] = `
    
   <div
     class="actions"
-    name="fade"
+    name="shrink"
     style="display: none;"
   >
     <router-link-stub
-      to="/"
+      to="/leagues"
     >
       Leagues
     </router-link-stub>

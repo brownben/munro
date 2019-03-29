@@ -332,7 +332,7 @@ test('Get League Details - Success', async () => {
   expect(wrapper.vm.logo).toBe(sampleSingleLeague[0].logo)
   expect(wrapper.vm.info).toBe(sampleSingleLeague[0].moreInformation)
   expect(wrapper.vm.website).toBe(sampleSingleLeague[0].website)
-  expect(wrapper.vm.courses).toBe(sampleSingleLeague[0].courses.join(', '))
+  expect(wrapper.vm.courses).toBe(sampleSingleLeague[0].courses.join(','))
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(0)
 })
 

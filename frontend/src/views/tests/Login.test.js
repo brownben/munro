@@ -14,6 +14,7 @@ test('Is a Vue Instance', () => {
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -24,6 +25,7 @@ test('Renders Correctly', () => {
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -36,6 +38,7 @@ test('Show Message on When Redirected', () => {
     mocks: {
       $route: { query: { redirect: '/leagues' } },
       $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -47,6 +50,7 @@ test('Blank Fields Works', () => {
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -63,6 +67,7 @@ test('Check Validation Works', () => {
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -85,12 +90,13 @@ test('Check Validation Works', () => {
 
 test('Send Login Function - Successful', async () => {
   const mockAddMessageFunction = jest.fn()
-  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello User' } })
+  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello' } })
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
       $router: { replace: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -98,7 +104,7 @@ test('Send Login Function - Successful', async () => {
   wrapper.setMethods({ blankFields: mockBlankFields })
   // Calls Auth Login Functions
   wrapper.setData({ username: 'username', password: 'password' })
-  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello User' } })
+  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello' } })
 
   await wrapper.vm.sendLoginRequest()
   expect(auth.login).toHaveBeenCalledTimes(1)
@@ -107,7 +113,7 @@ test('Send Login Function - Successful', async () => {
   // Correct Actions On Completion
   expect(mockBlankFields).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Hello User')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Hello')
 })
 
 test('Send Login Function - Validation Fails', () => {
@@ -116,6 +122,7 @@ test('Send Login Function - Validation Fails', () => {
     mocks: {
       $route: { query: { redirect: false } },
       $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -135,6 +142,7 @@ test('Send Login Function - Error', () => {
     mocks: {
       $route: { query: { redirect: false } },
       $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -161,6 +169,7 @@ test('Redirect on Successful Login', async () => {
       $route: { query: { redirect: '/other' } },
       $router: { replace: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -181,6 +190,7 @@ test('Redirect on Successful Login - If No Path Specified', async () => {
       $route: { query: { redirect: false } },
       $router: { replace: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -194,12 +204,13 @@ test('Redirect on Successful Login - If No Path Specified', async () => {
 
 test('Don\'t Redirect on Failed Login', async () => {
   const mockAddMessageFunction = jest.fn()
-  auth.login.mockResolvedValue({ data: { 'loggedIn': false, 'message': 'Hello User' } })
+  auth.login.mockResolvedValue(false)
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: '/other' } },
       $router: { replace: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -208,4 +219,20 @@ test('Don\'t Redirect on Failed Login', async () => {
   wrapper.setData({ username: 'username', password: 'password' })
   await wrapper.vm.sendLoginRequest()
   expect(wrapper.vm.$router.replace).toHaveBeenCalledTimes(0)
+})
+
+test('Redirect if Already Logged In', async () => {
+  const wrapper = mount(Login, {
+    mocks: {
+      $route: { query: { redirect: false } },
+      $router: { push: jest.fn() },
+      $messages: { addMessage: jest.fn() },
+      $auth: { user: true },
+    },
+    stubs: ['router-link'],
+  })
+
+  // Calls Auth Login Functions
+  expect(wrapper.vm.$router.push).toHaveBeenCalledTimes(1)
+  expect(wrapper.vm.$router.push).toHaveBeenLastCalledWith('/')
 })

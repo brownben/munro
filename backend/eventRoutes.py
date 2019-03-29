@@ -1,7 +1,7 @@
 from flask import Flask, session
 from flask_restful import Resource, reqparse
 
-from database import events, leagues, sessionStore
+from database import events, leagues
 from requireAuthentication import requireAuthentication
 
 # Check POST request has all the relevent fields
@@ -37,7 +37,7 @@ class Events(Resource):
                                data['website'], data['results'], data['winsplits'], data['routegadget'], data['league'])
             return {'message': 'Event - {} was Created'.format(data['name'])}
         except:
-            return {'message': 'Something went Wrong'}, 500
+            return {'message': 'Error: Problem Updating Event - Please Try Again'}, 500
 
     @requireAuthentication
     def delete(self):
@@ -69,7 +69,7 @@ class Event(Resource):
                                data['website'], data['results'], data['winsplits'], data['routegadget'], data['league'])
             return {'message': 'Event - {} was Updated'.format(name)}
         except:
-            return {'message': 'Something went Wrong'}, 500
+            return {'message': 'Error: Problem Updating Event - Please Try Again'}, 500
 
     @requireAuthentication
     def delete(self, id):

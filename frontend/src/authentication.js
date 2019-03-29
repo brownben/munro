@@ -5,32 +5,28 @@
   Stores login state in isLoggedIn for the views to access, this is updated using checkLogin
 */
 
-import axios from 'axios'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 export default {
   login: function (username, password) {
-    return axios.post('/api/auth/login', {
-      username: username,
-      password: password,
-    })
-      .then(response => {
-        this.isLoggedIn = true
-        return response
+    return firebase.auth().signInWithEmailAndPassword(username, password)
+      .then(user => {
+        this.user = user
+        return user
       })
   },
 
   logout: function () {
-    return axios.post('/api/auth/logout')
-      .then(() => { this.isLoggedIn = false })
+    return firebase.auth().signOut()
+      .then(() => { this.user = false })
   },
 
   checkLogin: function () {
-    return axios.get('/api/auth/isLoggedIn')
-      .then(response => {
-        this.isLoggedIn = response.data.logged_in
-        return response.data.logged_in
-      })
+    this.user = firebase.auth().currentUser
+    if (this.user) return true
+    else return false
   },
 
-  isLoggedIn: false,
+  user: false,
 }

@@ -29,31 +29,36 @@
           <a :href="league.website">{{ league.website }}</a>
         </p>
       </div>
-      <div v-if="auth.isLoggedIn" class="actions">
+      <div v-if="auth.user" class="actions">
         <button @click="$router.push($route.path+'/create-event')">Add Event</button>
         <button @click="$router.push($route.path+'/edit')">Edit League</button>
         <button @click="deleteLeague()">Delete League</button>
       </div>
-      <div class="actions">
-        <button
-          v-for="course of league.courses"
-          :key="course"
-          @click="$router.push($route.path + '/' + course)"
-        >{{ course }}</button>
-      </div>
+
       <div class="events">
+        <div class="results">
+          <h2>League Results</h2>
+          <div class="results-actions">
+            <button
+              v-for="course of league.courses"
+              :key="course"
+              class="button"
+              @click="$router.push($route.path + '/' + course)"
+            >{{ course }}</button>
+          </div>
+        </div>
         <div v-for="event of events" :key="event.name" class="event">
           <h2>{{ event.name }}</h2>
-          <div v-if="auth.isLoggedIn" class="event-actions">
-            <button @click="$router.push('/events/'+event.id+'/edit')">Edit Event</button>
-            <button @click="$router.push('/upload/'+event.id)">Upload Results</button>
-            <button @click="deleteEvent(event)">Delete Event</button>
+          <div v-if="auth.user" class="event-actions">
+            <button class="button" @click="$router.push('/events/'+event.id+'/edit')">Edit Event</button>
+            <button class="button" @click="$router.push('/upload/'+event.id)">Upload Results</button>
+            <button class="button" @click="deleteEvent(event)">Delete Event</button>
           </div>
-          <p v-if="auth.isLoggedIn">
+          <p v-if="auth.user">
             <b>Event ID:</b>
             {{ event.id }}
           </p>
-          <p v-if="auth.isLoggedIn && event.uploadKey">
+          <p v-if="auth.user && event.uploadKey">
             <b>Event Upload Key:</b>
             {{ event.uploadKey }}
           </p>
@@ -65,7 +70,7 @@
             More Information can be found at
             <a :href="event.website">{{ event.website }}</a>
           </p>
-          <div v-if="event.resultUploaded" class="event-actions">
+          <div v-if="event.resultUploaded" class="event-actions event-result-actions">
             <a v-if="event.results" :href="event.results" class="button">Results</a>
             <a v-if="event.winsplits" :href="event.winsplits" class="button">WinSplits</a>
             <a v-if="event.routegadget" :href="event.routegadget" class="button">Routegadget</a>
@@ -116,7 +121,7 @@ export default {
 
     getLeagueEvents: function () {
       if (this.league) {
-        if (this.auth.isLoggedIn) {
+        if (this.auth.user) {
           return axios.get('/api/leagues/' + this.league.name + '/events/uploadKey')
             .then(response => { this.events = response.data })
             .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
@@ -185,7 +190,7 @@ export default {
     border: 0
     box-shadow(1)
     margin-right: 1rem
-    margin-bottom: 0.75rem
+    margin-bottom: 0.5rem
     padding: 0.5rem 1.5rem
     border: 0
 
@@ -196,13 +201,13 @@ export default {
 
   @media (max-width: 700px)
     button
-      margin-top: 0.5rem
+      margin-top: 0.1rem
       margin-left: 0
       width: 100%
 
-.event
+.event, .results
   box-sizing: border-box
-  margin-top: 1.5rem
+  margin-top: 1rem
   margin-left: 5%
   padding: 0.75rem
   width: 90%
@@ -217,16 +222,20 @@ export default {
   p
     padding: 0.15rem 0
 
-  .event-actions
-    padding: 0.25rem 0 0
+  .event-actions, .results-actions
+    margin: 0.25rem 0 0
+    font-size: 0
 
-    button, .button
-      margin-bottom: 0.25rem
-
-    .button
+    button
       display: inline-block
-      box-sizing: border-box
+      margin: 0.25rem
+
+      &:first-child
+        margin: 0
 
     a
       text-decoration: none
+
+  .event-result-actions
+    margin: 0.5rem 0 0
 </style>

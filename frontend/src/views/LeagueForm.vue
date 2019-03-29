@@ -109,7 +109,7 @@ export default {
             this.scoringMethod = this.scoringMethodShorthandToFull(response.data.scoringMethod)
             this.numberOfCountingEvents = response.data.numberOfCountingEvents
             this.logo = response.data.logo
-            if (response.data.courses) this.courses = response.data.courses.join(', ')
+            if (response.data.courses) this.courses = response.data.courses.join(',')
             this.info = response.data.moreInformation
           }
         })

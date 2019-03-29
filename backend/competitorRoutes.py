@@ -1,7 +1,7 @@
 from flask import Flask, session
 from flask_restful import Resource, reqparse
 
-from database import competitors, sessionStore
+from database import competitors
 from requireAuthentication import requireAuthentication
 
 

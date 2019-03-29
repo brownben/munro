@@ -9,7 +9,7 @@ import Menu from '@/components/Menu'
 test('Is a Vue Instance', () => {
   const wrapper = mount(Menu, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -19,7 +19,7 @@ test('Is a Vue Instance', () => {
 test('Renders Correctly - Desktop', () => {
   const wrapper = mount(Menu, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -32,7 +32,7 @@ test('Renders Correctly - Mobile', () => {
 
   const wrapper = mount(Menu, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
@@ -42,14 +42,14 @@ test('Renders Correctly - Mobile', () => {
 test('Displays Correct View off Authentication State', () => {
   const loggedInWrapper = mount(Menu, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })
   expect(loggedInWrapper.find('.actions').html()).toContain('Admin Login')
   const loggedOutWrapper = mount(Menu, {
     mocks: {
-      $auth: { isLoggedIn: true },
+      $auth: { user: true },
     },
     stubs: ['router-link'],
   })
@@ -67,7 +67,7 @@ test('Close Mobile Menu on Route Change', () => {
     localVue,
     router,
     mocks: {
-      $auth: { isLoggedIn: true },
+      $auth: { user: true },
     },
   })
 
@@ -88,7 +88,7 @@ test('Desktop Menu Remains Static on Route Change', () => {
     localVue,
     router,
     mocks: {
-      $auth: { isLoggedIn: true },
+      $auth: { user: true },
     },
   })
 
@@ -107,7 +107,7 @@ test('Check Resize Event is Added/ Removed', () => {
 
   const wrapper = mount(Menu, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
     stubs: ['router-link'],
   })

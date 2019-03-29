@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "firebase": "^5.9.1",
     "vue": "^2.6.7",
     "vue-router": "^3.0.1"
   },
@@ -56,6 +57,7 @@
     "eslint-plugin-vue": "^4.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
+    "firebase-mock": "^2.2.10",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^24.1.0",

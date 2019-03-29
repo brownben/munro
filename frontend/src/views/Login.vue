@@ -8,7 +8,7 @@
   <div>
     <h1>Admin Login</h1>
     <form @submit.prevent="sendLoginRequest()">
-      <label>Username:</label>
+      <label>Email Address:</label>
       <input v-model="username" type="text">
       <label>Password:</label>
       <input v-model="password" type="password">
@@ -16,7 +16,8 @@
     </form>
     <div id="link-to-upload">
       <h3>Looking for Results Upload?</h3>
-      <p>Results are uploaded
+      <p>
+        Results are uploaded
         <router-link to="/upload">Here</router-link>
       </p>
     </div>
@@ -35,6 +36,7 @@ export default {
   },
 
   mounted: function () {
+    if (this.$auth.user) this.$router.push('/')
     this.blankFields()
     if (this.$route.query.redirect) this.$messages.addMessage('Please Login to Access that Page')
   },
@@ -53,8 +55,8 @@ export default {
       if (this.validateLogin()) {
         return auth.login(this.username, this.password)
           .then(response => {
-            if (response.data.loggedIn) this.$router.replace(this.$route.query.redirect || '/')
-            this.$messages.addMessage(response.data.message)
+            if (response) this.$router.replace(this.$route.query.redirect || '/')
+            this.$messages.addMessage('Hello')
             this.blankFields()
           })
           .catch(() => this.$messages.addMessage('Error: Problem Logging In - Please Try Again'))

@@ -158,7 +158,7 @@ export default {
           league: this.league,
         })
           .then(response => this.returnToLeaguePage(response))
-          .catch(() => this.$messages.addMessage('Error: Problem Updating Event - Please Try Again'))
+          .catch(error => this.$messages.addMessage(error.message))
       }
       else this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
     },

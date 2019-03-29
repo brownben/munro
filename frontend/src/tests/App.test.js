@@ -8,7 +8,7 @@ import App from '@/App'
 test('Is a Vue Instance', () => {
   const wrapper = shallowMount(App, {
     mocks: {
-      $auth: { checkLogin: jest.fn(), isLoggedIn: false },
+      $auth: { checkLogin: jest.fn(), user: false },
     },
     stubs: ['router-view'],
   })
@@ -18,7 +18,7 @@ test('Is a Vue Instance', () => {
 test('Renders Correctly', () => {
   const wrapper = shallowMount(App, {
     mocks: {
-      $auth: { checkLogin: jest.fn(), isLoggedIn: false },
+      $auth: { checkLogin: jest.fn(), user: false },
     },
     stubs: ['router-view'],
   })

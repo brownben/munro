@@ -1,7 +1,7 @@
 from flask import Flask, session
 from flask_restful import Resource, reqparse
 
-from database import events, leagues, sessionStore
+from database import events, leagues
 from requireAuthentication import requireAuthentication
 
 # Check POST request has all the relevent fields

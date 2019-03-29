@@ -17,7 +17,7 @@ beforeEach(() => {
 test('Is a Vue Instance', () => {
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
@@ -26,7 +26,7 @@ test('Is a Vue Instance', () => {
 test('Renders Correctly - No Leagues', () => {
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
   })
   expect(wrapper.element).toMatchSnapshot()
@@ -36,7 +36,7 @@ test('Renders Correctly - One League', async () => {
   axios.get.mockResolvedValue({ data: sampleSingleLeague })
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
   })
   await wrapper.vm.getLeagues()
@@ -50,7 +50,7 @@ test('Renders Correctly - Multiple Leagues', async () => {
   axios.get.mockResolvedValue({ data: sampleDataThreeLeagues })
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
     },
   })
   await wrapper.vm.getLeagues()
@@ -61,7 +61,7 @@ test('Renders Correctly - Multiple Leagues', async () => {
 test('Shows Admin Buttons When Logged In', () => {
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: true },
+      $auth: { user: true },
     },
   })
   expect(wrapper.find('.actions').isVisible()).toBeTruthy()
@@ -74,7 +74,7 @@ test('Get Leagues - Request Called Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
   })
@@ -89,7 +89,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
   })
@@ -110,7 +110,7 @@ test('Get Leagues - Shows Message on Error', async () => {
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(Home, {
     mocks: {
-      $auth: { isLoggedIn: false },
+      $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
   })

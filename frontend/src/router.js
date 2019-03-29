@@ -10,6 +10,7 @@ import messageStore from '@/messageStore'
 
 import Home from '@/views/Home'
 import League from '@/views/LeagueHome'
+import Leagues from '@/views/Leagues'
 import LeagueForm from '@/views/LeagueForm'
 import EventForm from '@/views/EventForm'
 import Upload from '@/views/Upload'
@@ -26,6 +27,11 @@ const router = new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/leagues',
+      name: 'Leagues',
+      component: Leagues,
     },
     {
       path: '/create-league',
@@ -110,14 +116,12 @@ export default router
 
 function requireAuthentication (to, from, next) {
   // Check they are logged in before going to restricted route, if they are not redirect
-  router.app.$auth.checkLogin()
-    .then(loggedIn => {
-      if (!loggedIn) {
-        next({
-          path: '/login',
-          query: { redirect: to.fullPath },
-        })
-      }
-      else next()
+  const currentUser = router.app.$auth.user
+  if (!currentUser) {
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath },
     })
+  }
+  else next()
 }

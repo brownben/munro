@@ -338,7 +338,7 @@ test('Update Event - Successful Creation', async () => {
 
 test('Update Event - Error in Creation', async () => {
   const mockAddMessageFunction = jest.fn()
-  axios.put.mockRejectedValue({ 'message': 'Something went Wrong' })
+  axios.put.mockRejectedValue({ 'message': 'Error: Problem Updating Event - Please Try Again' })
   const wrapper = mount(EventForm, {
     mocks: {
       $route: { path: '/events/1/edit', params: { league: '' } },

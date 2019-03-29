@@ -29,7 +29,6 @@ export default {
     'Messages': Messages,
     'CookieDialog': CookieDialog,
   },
-  created: function () { this.$auth.checkLogin() },
 }
 </script>
 

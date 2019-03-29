@@ -2,84 +2,72 @@
   Unit Tests for /frontend/src/authentication.js
 */
 
-import axios from 'axios'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 import authentication from '@/authentication'
 
-jest.mock('axios')
+jest.mock('firebase')
+jest.mock('firebase/app')
+jest.mock('firebase/auth')
 
 beforeEach(() => {
   jest.clearAllMocks()
-  authentication.isLoggedIn = false
 })
 
-test('Successful Login', () => {
-  axios.post.mockResolvedValue({
-    'message': 'Hello Username',
-    'loggedIn': true,
+test('Successful Login', async () => {
+  authentication.user = false
+  const mockSignIn = jest.fn().mockResolvedValue(true)
+  firebase.auth = () => ({
+    signInWithEmailAndPassword: mockSignIn,
   })
-  return authentication.login().then(response => {
-    expect(response).toEqual({
-      'message': 'Hello Username',
-      'loggedIn': true,
-    })
-    expect(authentication.isLoggedIn).toBeTruthy()
-    expect(axios.post).toHaveBeenCalledTimes(1)
-    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/login', expect.any(Object))
-  })
+  await authentication.login('username', 'password')
+  expect(authentication.user).toBeTruthy()
+  expect(mockSignIn).toHaveBeenCalledTimes(1)
+  expect(mockSignIn).toHaveBeenLastCalledWith('username', 'password')
 })
 
 test('Rejected Login', () => {
-  axios.post.mockRejectedValue({
-    'message': 'Wrong Username or Password',
-    'loggedIn': false,
+  authentication.user = false
+  const mockSignIn = jest.fn().mockRejectedValue()
+  firebase.auth = () => ({
+    signInWithEmailAndPassword: mockSignIn,
   })
-  return authentication.login().catch(response => {
-    expect(response).toEqual({
-      'message': 'Wrong Username or Password',
-      'loggedIn': false,
-    })
-    expect(authentication.isLoggedIn).toBeFalsy()
-    expect(axios.post).toHaveBeenCalledTimes(1)
-    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/login', expect.any(Object))
+  return authentication.login('username', 'password').catch(() => {
+    expect(authentication.user).toBeFalsy()
+    expect(mockSignIn).toHaveBeenCalledTimes(1)
+    expect(mockSignIn).toHaveBeenLastCalledWith('username', 'password')
   })
 })
 
-test('Successful Logout', () => {
-  authentication.isLoggedIn = true
-  axios.post.mockResolvedValue({ 'message': 'Logged Out Successfully' })
-  return authentication.logout().then(() => {
-    expect(authentication.isLoggedIn).toBeFalsy()
-    expect(axios.post).toHaveBeenCalledTimes(1)
-    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/logout')
+test('Successful Logout', async () => {
+  const mockSignOut = jest.fn().mockResolvedValue()
+  authentication.user = true
+  firebase.auth = jest.fn().mockReturnValue({
+    signOut: mockSignOut,
   })
+  await authentication.logout()
+  expect(authentication.user).toBeFalsy()
+  expect(mockSignOut).toHaveBeenCalledTimes(1)
 })
 
 test('Logout Error', () => {
-  authentication.isLoggedIn = true
-  axios.post.mockRejectedValue({ 'message': 'Something went Wrong' })
+  const mockSignOut = jest.fn().mockRejectedValue()
+  authentication.user = true
+  firebase.auth = jest.fn().mockReturnValue({
+    signOut: mockSignOut,
+  })
   return authentication.logout().catch(() => {
-    expect(authentication.isLoggedIn).toBeTruthy()
-    expect(axios.post).toHaveBeenCalledTimes(1)
-    expect(axios.post).toHaveBeenLastCalledWith('/api/auth/logout')
+    expect(authentication.user).toBeTruthy()
+    expect(mockSignOut).toHaveBeenCalledTimes(1)
   })
 })
 
 test('Check Login - Logged In', () => {
-  axios.get.mockResolvedValue({ 'data': { 'logged_in': true } })
-  return authentication.checkLogin().then(response => {
-    expect(response).toEqual(true)
-    expect(authentication.isLoggedIn).toBeTruthy()
-    expect(axios.get).toHaveBeenCalledTimes(1)
-    expect(axios.get).toHaveBeenLastCalledWith('/api/auth/isLoggedIn')
-  })
+  firebase.auth = jest.fn().mockReturnValue({ currentUser: true })
+  expect(authentication.checkLogin()).toBeTruthy()
 })
 
 test('Check Login - Logged Out', () => {
-  axios.get.mockResolvedValue({ 'data': { 'logged_in': false } })
-  return authentication.checkLogin().then(response => {
-    expect(response).toEqual(false)
-    expect(authentication.isLoggedIn).toBeFalsy()
-    expect(axios.get).toHaveBeenCalledTimes(1)
-    expect(axios.get).toHaveBeenLastCalledWith('/api/auth/isLoggedIn')
-  })
+  firebase.auth = jest.fn().mockReturnValue({ currentUser: false })
+  expect(authentication.checkLogin()).toBeFalsy()
 })

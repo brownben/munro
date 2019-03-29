@@ -1,13 +1,24 @@
 from functools import wraps
 
-from flask import Flask, session
-from database import sessionStore
+from flask import Flask, request
+from google.auth.transport import requests
+import google.oauth2.id_token
+
+firebase_request_adapter = requests.Request()
+
 
 def requireAuthentication(func):
     # Check login before allowing user to access API
     @wraps(func)
     def decorator(*args, **kwargs):
-        if not session.get('username') or not session['username'] or not sessionStore.checkLogin(session['username']):
+        id_token = request.cookies.get("token")
+        if id_token:
+            try:
+                claims = google.oauth2.id_token.verify_firebase_token(
+                    id_token, firebase_request_adapter)
+            except ValueError as exc:
+                return {'message': 'Permission Denied - You are not Logged In'}, 401
+        else:
             return {'message': 'Permission Denied - You are not Logged In'}, 401
         return func(*args, **kwargs)
     return decorator
