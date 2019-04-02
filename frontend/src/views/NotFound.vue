@@ -17,14 +17,6 @@
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
-#router-view
-  margin-left: 5%
-  padding-top: 1rem
-  width: 90%
-
-div
-  margin: 1rem
-
 p
   padding: 0.5rem 0
 

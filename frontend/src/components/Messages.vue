@@ -38,7 +38,7 @@ export default {
   position: fixed
   right: 0.75rem
   bottom: 0.75rem
-  user-select:none
+  no-user-select()
 
   @media (max-width: 700px)
     width: calc(100% - 1.5rem)
@@ -47,11 +47,10 @@ p
   margin: 0
   margin-top: 0.4rem
   padding: 0.5rem 1.5rem
-  background-color: purple-500
+  background-color: main-color
   color: white
   text-align: center
   default-font()
-  box-shadow(1)
 
 .list-enter-active, .list-leave-active
   transition: all 0.5s ease-out

@@ -3,12 +3,48 @@
 exports[`Renders Correctly 1`] = `
 <div>
   <div>
+    <h1>
+      
+    </h1>
+     
+    <!---->
+     
+    <!---->
+     
+    <!---->
+     
+    <p>
+      <!---->
+       
+      <!---->
+    </p>
+     
+    <!---->
+     
+    <!---->
+     
     <div
-      id="league-header"
+      class="results"
     >
-      <h1>
-        
-      </h1>
+      <h2>
+        League Results
+      </h2>
+       
+      <div
+        class=".results-actions"
+      />
+    </div>
+     
+    <div
+      class="event"
+    >
+      <h2>
+        200m
+      </h2>
+       
+      <!---->
+       
+      <!---->
        
       <!---->
        
@@ -17,107 +53,63 @@ exports[`Renders Correctly 1`] = `
       <!---->
        
       <p>
-        <!---->
-         
-        <!---->
+        
+        More Information can be found at
+        
+        <a
+          href="wwwwwww"
+        >
+          wwwwwww
+        </a>
       </p>
        
       <!---->
     </div>
-     
-    <!---->
-     
     <div
-      class="events"
+      class="event"
     >
-      <div
-        class="results"
-      >
-        <h2>
-          League Results
-        </h2>
-         
-        <div
-          class="results-actions"
-        />
-      </div>
+      <h2>
+        Longniddry
+      </h2>
        
-      <div
-        class="event"
-      >
-        <h2>
-          200m
-        </h2>
-         
-        <!---->
-         
-        <!---->
-         
-        <!---->
-         
-        <!---->
-         
-        <!---->
-         
-        <p>
-          
-          More Information can be found at
-          
-          <a
-            href="wwwwwww"
-          >
-            wwwwwww
-          </a>
-        </p>
-         
-        <!---->
-      </div>
-      <div
-        class="event"
-      >
-        <h2>
-          Longniddry
-        </h2>
-         
-        <!---->
-         
-        <!---->
-         
-        <!---->
-         
-        <p>
-          On 18/04/2018 organised by ELO
-        </p>
-         
-        <!---->
-         
-        <!---->
-         
-        <!---->
-      </div>
-      <div
-        class="event"
-      >
-        <h2>
-          South Edinburgh
-        </h2>
-         
-        <!---->
-         
-        <!---->
-         
-        <!---->
-         
-        <p>
-          On 25/04/2018 organised by INT
-        </p>
-         
-        <!---->
-         
-        <!---->
-         
-        <!---->
-      </div>
+      <!---->
+       
+      <!---->
+       
+      <!---->
+       
+      <p>
+        On 18/04/2018 organised by ELO
+      </p>
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+    </div>
+    <div
+      class="event"
+    >
+      <h2>
+        South Edinburgh
+      </h2>
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+       
+      <p>
+        On 25/04/2018 organised by INT
+      </p>
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
     </div>
   </div>
    

@@ -15,10 +15,10 @@
       <button>Login</button>
     </form>
     <div id="link-to-upload">
-      <h3>Looking for Results Upload?</h3>
+      <b>Looking for Results Upload?</b>
       <p>
         Results are uploaded
-        <router-link to="/upload">Here</router-link>
+        <router-link to="/upload">here</router-link>
       </p>
     </div>
   </div>
@@ -36,7 +36,10 @@ export default {
   },
 
   mounted: function () {
-    if (this.$auth.user) this.$router.push('/')
+    if (this.$auth.user) {
+      this.$messages.addMessage('You Are Already Logged In')
+      this.$router.push('/')
+    }
     this.blankFields()
     if (this.$route.query.redirect) this.$messages.addMessage('Please Login to Access that Page')
   },
@@ -71,30 +74,15 @@ export default {
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
-#router-view
-  margin-left: 5%
-  padding-top: 1rem
-  width: 90%
-
-#container
-  margin-left: 5%
-  width: 90%
-
 h1
   margin-bottom: 0.5rem
-
-button
-  margin-top: 0.5rem
-
-input
-  width: 100% !important
 
 #link-to-upload
   margin: 0
   padding: 1rem 0
   width: 100%
 
-  p, h3
+  p, b
     display: inline-block
 
 .fade-enter-active, .fade-leave-active

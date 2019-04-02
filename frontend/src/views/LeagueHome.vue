@@ -9,72 +9,70 @@
 <template>
   <div>
     <div v-if="league">
-      <div id="league-header">
-        <h1>{{ league.name }}</h1>
-        <p v-if="league.moreInformation">{{ league.moreInformation }}</p>
-        <p
-          v-if="league.courses"
-        >There are normally {{ league.courses.length }} courses - {{ league.courses.join(', ') }}</p>
-        <p v-if="league.coordinator">{{ league.coordinator }} coordinates the league.</p>
-        <p>
-          <span
-            v-if="league.scoringMethod"
-          >The scoring for the league is calculated using a {{ league.scoringMethod }} based method.</span>
-          <span
-            v-if="league.numberOfCountingEvents && league.numberOfEvents"
-          >With your best {{ league.numberOfCountingEvents }} events from all {{ league.numberOfEvents }} events counting.</span>
-        </p>
-        <p v-if="league.website">
-          More information can be found at
-          <a :href="league.website">{{ league.website }}</a>
-        </p>
-      </div>
-      <div v-if="auth.user" class="actions">
-        <button @click="$router.push($route.path+'/create-event')">Add Event</button>
-        <button @click="$router.push($route.path+'/edit')">Edit League</button>
-        <button @click="deleteLeague()">Delete League</button>
-      </div>
+      <h1>{{ league.name }}</h1>
+      <p v-if="league.moreInformation">{{ league.moreInformation }}</p>
+      <p
+        v-if="league.courses"
+      >There are normally {{ league.courses.length }} courses - {{ league.courses.join(', ') }}</p>
+      <p v-if="league.coordinator">{{ league.coordinator }} coordinates the league.</p>
+      <p>
+        <span
+          v-if="league.scoringMethod"
+        >The scoring for the league is calculated using a {{ league.scoringMethod }} based method.</span>
+        <span
+          v-if="league.numberOfCountingEvents && league.numberOfEvents"
+        >With your best {{ league.numberOfCountingEvents }} events from all {{ league.numberOfEvents }} events counting.</span>
+      </p>
+      <p v-if="league.website">
+        More information can be found at
+        <a :href="league.website">{{ league.website }}</a>
+      </p>
 
-      <div class="events">
-        <div class="results">
-          <h2>League Results</h2>
-          <div class="results-actions">
-            <button
-              v-for="course of league.courses"
-              :key="course"
-              class="button"
-              @click="$router.push($route.path + '/' + course)"
-            >{{ course }}</button>
-          </div>
+      <div v-if="auth.user" class="results">
+        <h2>Admin Actions</h2>
+        <div class=".results-actions">
+          <button @click="$router.push($route.path+'/create-event')">Add Event</button>
+          <button @click="$router.push($route.path+'/edit')">Edit League</button>
+          <button @click="deleteLeague()">Delete League</button>
         </div>
-        <div v-for="event of events" :key="event.name" class="event">
-          <h2>{{ event.name }}</h2>
-          <div v-if="auth.user" class="event-actions">
-            <button class="button" @click="$router.push('/events/'+event.id+'/edit')">Edit Event</button>
-            <button class="button" @click="$router.push('/upload/'+event.id)">Upload Results</button>
-            <button class="button" @click="deleteEvent(event)">Delete Event</button>
-          </div>
-          <p v-if="auth.user">
-            <b>Event ID:</b>
-            {{ event.id }}
-          </p>
-          <p v-if="auth.user && event.uploadKey">
-            <b>Event Upload Key:</b>
-            {{ event.uploadKey }}
-          </p>
-          <p
-            v-if="event.date"
-          >On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}</p>
-          <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
-          <p v-if="event.website">
-            More Information can be found at
-            <a :href="event.website">{{ event.website }}</a>
-          </p>
-          <div v-if="event.resultUploaded" class="event-actions event-result-actions">
-            <a v-if="event.results" :href="event.results" class="button">Results</a>
-            <a v-if="event.winsplits" :href="event.winsplits" class="button">WinSplits</a>
-            <a v-if="event.routegadget" :href="event.routegadget" class="button">Routegadget</a>
-          </div>
+      </div>
+      <div class="results">
+        <h2>League Results</h2>
+        <div class=".results-actions">
+          <button
+            v-for="course of league.courses"
+            :key="course"
+            @click="$router.push($route.path + '/' + course)"
+          >{{ course }}</button>
+        </div>
+      </div>
+      <div v-for="event of events" :key="event.name" class="event">
+        <h2>{{ event.name }}</h2>
+        <div v-if="auth.user" class="event-actions">
+          <button @click="$router.push('/events/'+event.id+'/edit')">Edit Event</button>
+          <button @click="$router.push('/upload/'+event.id)">Upload Results</button>
+          <button @click="deleteEvent(event)">Delete Event</button>
+        </div>
+        <p v-if="auth.user">
+          <b>Event ID:</b>
+          {{ event.id }}
+        </p>
+        <p v-if="auth.user && event.uploadKey">
+          <b>Event Upload Key:</b>
+          {{ event.uploadKey }}
+        </p>
+        <p
+          v-if="event.date"
+        >On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}</p>
+        <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
+        <p v-if="event.website">
+          More Information can be found at
+          <a :href="event.website">{{ event.website }}</a>
+        </p>
+        <div v-if="event.resultUploaded" class="event-actions event-result-actions">
+          <a v-if="event.results" :href="event.results">Results</a>
+          <a v-if="event.winsplits" :href="event.winsplits">WinSplits</a>
+          <a v-if="event.routegadget" :href="event.routegadget">Routegadget</a>
         </div>
       </div>
     </div>
@@ -164,74 +162,28 @@ export default {
 
 #league-header
   margin-bottom: 1rem
-  padding: 0.5rem 5% 1rem
-  background-color: purple-400
-  color: white
-  box-shadow(1.5)
 
-  h1
-    padding: 0.5rem 0
-    color: white
-    font-size: 2.5rem
-
-  p, a
-    color: white
-
-  @media (max-width: 700px)
-    margin-bottom: 1.5rem
-    padding: 1rem
-    padding-top: 0.5rem
-
-.actions
-  margin-left: 5%
-  width: 90%
-
-  button
-    border: 0
-    box-shadow(1)
-    margin-right: 1rem
-    margin-bottom: 0.5rem
-    padding: 0.5rem 1.5rem
-    border: 0
-
-    &:hover
-      background-color: white
-      color: purple-500
-      box-shadow(2)
-
-  @media (max-width: 700px)
-    button
-      margin-top: 0.1rem
-      margin-left: 0
-      width: 100%
+button
+  margin: 0.25rem
 
 .event, .results
   box-sizing: border-box
   margin-top: 1rem
-  margin-left: 5%
   padding: 0.75rem
-  width: 90%
   box-shadow(1)
 
   &:first-child
     margin-top: 0.75rem
 
-  h2
-    padding: 0.25rem 0
-
-  p
-    padding: 0.15rem 0
+  h2, p
+    padding: 0.2rem 0
 
   .event-actions, .results-actions
     margin: 0.25rem 0 0
     font-size: 0
 
-    button
-      display: inline-block
-      margin: 0.25rem
-
-      &:first-child
-        margin: 0
+    button:first-child
+      margin-left: 0
 
     a
       text-decoration: none

@@ -1,3 +1,4 @@
+// Colors
 purple-50 = #F3E5F5
 purple-100 = #E1BEE7
 purple-200 = #CE93D8
@@ -8,9 +9,14 @@ purple-600 = #8E24AA
 purple-700 = #7B1FA2
 purple-800 = #6A1B9A
 purple-900 = #4A148C
-shadow = 0 3px 6px purple-200
+main-color = hsl(290, 90%, 45%)
+main-color-very-light = hsl(290, 45%, 93%)
+main-color-light = hsl(290, 50%, 80%)
+// Fonts
+heading-font = 'Josefin Sans'
 default-font = system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
 
+// Shadows
 box-shadow(level)
   if (level == 1)
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
@@ -30,6 +36,9 @@ box-shadow(level)
   if (level == 5)
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3)
 
+shadow = 0 3px 6px purple-200
+
+// Other Functions
 no-user-select()
   user-select: none
   -moz-user-select: none

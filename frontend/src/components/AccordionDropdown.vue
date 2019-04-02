@@ -52,6 +52,8 @@ export default {
     h2
       display: inline
       color: white
+      font-weight: 300
+      font-family: default-font
 
     svg
       float: right
@@ -66,7 +68,7 @@ export default {
     overflow: hidden
     overflow-y: hidden
     box-sizing: border-box
-    padding: 0.75rem
+    padding: 0 0.75rem 0.75rem
     width: 100%
     border: 1px solid purple-300
     transition: transform 0.4s ease-in-out

@@ -247,51 +247,6 @@ test('Refresh Data on Route Change', async () => {
   expect(mockGetEventList).toHaveBeenLastCalledWith()
 })
 
-test('Find Min/Max of Property', () => {
-  const wrapper = shallowMount(ResultsTable, {
-    mocks: {
-      $route: { params: { name: '', course: '' } },
-      $messages: { addMessage: jest.fn() },
-    },
-    stubs: ['router-link'],
-  })
-
-  // Max
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'position', true)).toBe(2)
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'club', true)).toBe(1)
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'name', true)).toBe(0)
-
-  // Min
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'position', false)).toBe(0)
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'club', false)).toBe(0)
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'name', false)).toBe(2)
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'position')).toBe(0)
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'club')).toBe(0)
-  expect(wrapper.vm.findMinMaxOfProperty(sampleThreeResults, 'name')).toBe(2)
-})
-
-test('Find Min/Max of Points', () => {
-  const wrapper = shallowMount(ResultsTable, {
-    mocks: {
-      $route: { params: { name: '', course: '' } },
-      $messages: { addMessage: jest.fn() },
-    },
-    stubs: ['router-link'],
-  })
-  // Max
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 0, true)).toBe(0)
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 1, true)).toBe(1)
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 2, true)).toBe(2)
-
-  // Min
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 0, false)).toBe(1)
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 1, false)).toBe(0)
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 2, false)).toBe(1)
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 0)).toBe(1)
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 1)).toBe(0)
-  expect(wrapper.vm.findMinMaxOfPoints(sampleThreeResults, 2)).toBe(1)
-})
-
 test('Get Results - Correct API Call', async () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {

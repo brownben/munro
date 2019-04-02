@@ -113,22 +113,17 @@ export default {
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
-#router-view
-  margin-left: 5%
-  padding-top: 1rem
-  width: 90%
-
 h1
   margin-bottom: 0.5rem
 
-button
-  margin: 0.5rem 0
-
 #eventName
-  margin: 0 0 0.5rem
+  margin: 0.5rem 0
 
 input[type='file']
   display: none
+
+.checkbox-input
+  margin: 0.5rem 0
 
 .file-input
   p, label

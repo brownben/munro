@@ -2,27 +2,6 @@
 
 exports[`Renders Correctly - Multiple Leagues 1`] = `
 <div>
-  <div
-    class="header"
-  >
-    <img
-      alt="Munro Logo"
-      src="@/assets/images/MunroLogo.png"
-    />
-     
-    <div
-      id="text"
-    >
-      <h1>
-        Munro
-      </h1>
-       
-      <h3>
-        Fast and Easy Results for Orienteering Leagues
-      </h3>
-    </div>
-  </div>
-   
   <!---->
    
   <div
@@ -128,27 +107,6 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
 
 exports[`Renders Correctly - No Leagues 1`] = `
 <div>
-  <div
-    class="header"
-  >
-    <img
-      alt="Munro Logo"
-      src="@/assets/images/MunroLogo.png"
-    />
-     
-    <div
-      id="text"
-    >
-      <h1>
-        Munro
-      </h1>
-       
-      <h3>
-        Fast and Easy Results for Orienteering Leagues
-      </h3>
-    </div>
-  </div>
-   
   <!---->
    
   <div

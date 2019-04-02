@@ -43,10 +43,11 @@ export default {
   margin-bottom: -20px
 
   select
-    padding: 0.1rem
+    box-sizing: border-box
+    padding: 0.2rem
     width: 100%
     outline: 0
-    border: 1px solid purple-300
+    border: 1px solid main-color
     background-color: white
     color: black
     font-weight: 300
@@ -54,21 +55,14 @@ export default {
     font-family: default-font
     -webkit-appearance: none
 
-    &:focus
-      outline: none
-      border: 1px solid purple-500
-
-    &::-moz-focus-inner
-      border: 0
-
   select:focus+label
     svg
-      fill: purple-500
+      fill: main-color
 
   svg
     position: relative
-    top: -25px
-    right: calc(-100% + 25px)
+    top: -26px
+    right: calc(-100% + 27px)
     transition: 0.3s ease-out
-    fill: purple-300
+    fill: main-color
 </style>

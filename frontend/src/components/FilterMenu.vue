@@ -67,24 +67,24 @@ export default {
 .half
   width: 50%
 
+  input[type='text'], input[type='number']
+    width: calc(100% - 1rem)
+
   @media (max-width: 700px)
     width: 100%
-
-    input[type='text'], input[type='number']
-      width: 100%
 
 .quarter
   width: 25%
   text-align: center
+
+  input[type='text'], input[type='number']
+    width: calc(100% - 1rem)
 
   label
     text-align: left
 
   @media (max-width: 700px)
     width: 50%
-
-    input[type='text'], input[type='number']
-      width: calc(100% - 0.5rem)
 
 .checkbox-input
   padding-top: 0.5rem !important

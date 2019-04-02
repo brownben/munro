@@ -7,6 +7,9 @@
 
 <template>
   <div id="menu">
+    <h1>
+      <router-link to="/">Munro</router-link>
+    </h1>
     <svg
       v-if="smallWindow"
       :class="{active: showMenu}"
@@ -16,16 +19,13 @@
       <path d="M0 0h24v24H0z" fill="none" />
       <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
     </svg>
-    <h1>
-      <router-link to="/">Munro</router-link>
-    </h1>
     <transition name="shrink">
-      <div v-show="showMenu || !smallWindow" class="actions">
+      <nav v-show="showMenu || !smallWindow">
         <router-link to="/leagues">Leagues</router-link>
         <router-link to="/upload">Upload Results</router-link>
         <router-link v-if="!auth.user" to="/login">Admin Login</router-link>
         <router-link v-else to="/logout">Log Out</router-link>
-      </div>
+      </nav>
     </transition>
   </div>
 </template>
@@ -66,92 +66,115 @@ export default {
 @import '../assets/styles/helpers.styl'
 
 #menu
-  position: relative
   box-sizing: border-box
+  padding: 0 5%
   width: 100%
-  background-color: purple-500
-  color: white
   no-user-select()
+
+  h1
+    display: inline-block
+    margin: 0
+    padding: 0.65rem 0
+    height: 2.2rem
+    color: main-color
+    font-weight: 400
+    font-size: 2.2rem
+    font-family: heading-font
+
+    a
+      color: main-color
+      text-decoration: none
 
   svg
     display: none
 
-  h1
-    display: inline-block
-    padding: 0.25rem
-    padding-left: 1.5rem
-    height: 3rem
-    color: white
-    vertical-align: middle
-    font-size: 2.2rem
-    line-height: 3rem
-
-    a
-      color: white
-      text-decoration: none
-
-  .actions
+  nav
     position: absolute
-    right: 0
-    z-index: 3
+    top: 1rem
+    right: 5%
     display: inline-block
-    margin-right: 1.5rem
-    height: 100%
+    box-sizing: border-box
+    font-weight: 300
+    font-size: 1.2rem
+    font-family: main-color
 
     a
-      display: inline-block
-      padding: 0 0.65rem
-      height: 3.5rem
-      color: white
-      vertical-align: middle
-      text-align: center
+      position: relative
+      box-sizing: border-box
+      margin: 0 0.25rem
+      padding: 0.4rem 0.5rem
+      color: hsl(290, 90%, 45%)
       text-decoration: none
-      font-size: 1.15rem
-      line-height: 3.5rem
-      transition: 0.3s
+      font-weight: 300
+      font-family: heading-font
 
-      &:hover
-        background-color: purple-400
+      &:before
+        position: absolute
+        bottom: 0
+        left: 0
+        visibility: hidden
+        width: 100%
+        height: 1px
+        background-color: hsl(290, 90%, 45%)
+        content: ''
+        transition: all 0.3s ease-in-out 0s
+        transform: scaleX(0)
+        -webkit-transform: scaleX(0)
+        -webkit-transition: all 0.3s ease-in-out 0s
+
+      &:hover:before
+        visibility: visible
+        transform: scaleX(1)
+        -webkit-transform: scaleX(1)
 
   @media (max-width: 700px)
-    h1
-      padding: 0
-      width: 100%
-      text-align: center
+    text-align: center
 
     svg
       position: absolute
-      top: 0.25rem
-      left: 0.5rem
+      top: 0.5rem
+      right: 0.5rem
       display: inline-block
       height: 2.5rem
       transition: 0.3s
-      fill: white
+      fill: main-color
 
       &:hover, .active
-        fill: purple-100
+        fill: alpha(main-color, 0.8)
 
-    .actions
-      top: 3rem
-      display: block
+    nav
+      top: 3.5rem
+      left: 0
+      display: flex
+      flex-direction: column
+      justify-content: center
       box-sizing: border-box
       margin: 0
-      padding: 50% 0
       width: 100vw
-      height: calc(100vh - 3rem)
-      background-color: purple-500
-      transition: transform 0.4s ease-in-out
+      height: calc(100vh - 3.5rem)
+      background-color: white
+      transition: 0.5s
+      transform: 0.5s
       transform-origin: top
 
       a
         display: block
-        padding: 0.75rem 0
+        margin: 0
+        padding: 0.7rem 0
         height: auto
-        background-color: purple-500
+        background-color: white
         line-height: normal
+        transition: 0.3s
 
         &:first-child
-          margin-top: 3rem
+          margin-top: -7rem
+
+        &:before
+          display: none
+
+        &:hover
+          background-color: main-color
+          color: white
 
 .fade-enter-active, .fade-leave-active
   transition: 0.3s

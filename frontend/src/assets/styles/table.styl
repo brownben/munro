@@ -8,24 +8,28 @@ table
 
     th
       font-weight: 400
+      font-weight: 400
+      font-family: default-font
       user-select: none
 
     th, td
       padding: 0.25rem
       text-align: center
+      font-weight: 300
+      font-family: default-font
 
       @media (max-width: 700px)
         padding: 0.4rem
 
     &.striped
-      background-color: purple-50
+      background-color: main-color-very-light
 
     &:hover:not(.mobile-table-expansion)
-      background-color: purple-100 !important
+      background-color: main-color-light !important
 
   tbody
     tr:only-child
-      background-color: purple-50
+      background-color: main-color-very-light
 
 .mobile-table-expansion td
   text-align: right

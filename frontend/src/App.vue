@@ -40,40 +40,31 @@ html, body
   margin: 0
   padding: 0
 
-h1, h2, h3, h4, h5, h6, label, a, b
+#router-view
+  padding: 1rem 15%
+
+  @media (max-width: 1000px)
+    padding: 1rem 10%
+
+  @media (max-width: 700px)
+    padding: 1rem 5%
+
+h1, h2, h3, h4, h5, h6
   margin: 0
-  color: purple-500
+  color: main-color
+  font-weight: 400
+  font-family: heading-font
+
+p
+  margin: 0
   font-weight: 300
   font-family: default-font
 
 b
-  font-weight: 400
-
-a
-  &:focus
-    outline: none
-
-  &::-moz-focus-inner
-    border: 0
-
-p, th, td, img
   margin: 0
-  color: black
-  font-weight: 300
+  color: main-color
+  font-weight: 400
   font-family: default-font
-
-#content
-  overflow-x: hidden
-  overflow-y: auto
-  box-sizing: border-box
-  width: 100%
-  height: calc(100% - 3.5rem)
-
-  @media (max-width: 700px)
-    height: calc(100% - 3rem)
-
-  #router-view
-    padding-bottom: 1.5rem
 
 ::selection
   background: purple-100

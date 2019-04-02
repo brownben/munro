@@ -6,14 +6,8 @@
 
 <template>
   <div>
-    <div class="header">
-      <img src="@/assets/images/MunroLogo.png" alt="Munro Logo">
-      <div id="text">
-        <h1>Munro</h1>
-        <h3>Fast and Easy Results for Orienteering Leagues</h3>
-      </div>
-    </div>
-    <div v-if="auth.user" class="actions">
+    <div v-if="auth.user" class="card actions">
+      <h2>Admin Actions</h2>
       <button @click="$router.push('/create-league')">Create New League</button>
       <button @click="$router.push('/upload')">Upload Results</button>
     </div>
@@ -61,11 +55,15 @@ export default {
   },
 }
 </script>
-<style lang="stylus" scoped>
+
+<style lang="stylus">
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
 .header
+  position: absolute
+  top: 3.5rem
+  left: 0
   display: inline-flex
   flex: 1 0 10px
   justify-content: center
@@ -73,7 +71,7 @@ export default {
   box-sizing: border-box
   margin-bottom: 1rem
   padding: 3rem 1.5rem
-  width: 100%
+  width: 100vw
   background: url('../assets/images/largeBackground.png')
   background: url('../assets/images/largeBackground.svg')
   background-color: purple-300
@@ -124,6 +122,17 @@ export default {
         margin: 14px
         margin-bottom: 0
 
+.card
+  box-shadow(1)
+  box-sizing: border-box
+  padding: 0.75rem
+
+  h1
+    padding: 0.25rem 0
+
+  button
+    margin-top: 0.5rem
+
 .league
   text-align: center
   box-shadow(1)
@@ -136,36 +145,17 @@ export default {
   button
     margin-top: 0.5rem
 
-.actions
-  margin-left: 5%
-  width: 90%
-
-  button
-    border: 0
-    box-shadow(1)
-    margin-right: 1rem
-    padding: 0.5rem 1.5rem
-    border: 0
-
-    &:hover
-      background-color: white
-      color: purple-500
-      box-shadow(2)
-
-  @media (max-width: 700px)
-    button
-      margin-top: 0.5rem
-      margin-left: 0
-      width: 100%
-
 #leagues
   display: grid
   margin-top: 1rem
-  margin-left: 5%
-  width: 90%
+  width: 100%
   grid-gap: 1.5rem
   grid-template-columns: 1fr 1fr
 
   @media (max-width: 700px)
     grid-template-columns: 1fr
+
+#header
+  img
+    height: 250px
 </style>

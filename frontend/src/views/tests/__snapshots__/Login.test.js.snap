@@ -31,9 +31,9 @@ exports[`Renders Correctly 1`] = `
   <div
     id="link-to-upload"
   >
-    <h3>
+    <b>
       Looking for Results Upload?
-    </h3>
+    </b>
      
     <p>
       
@@ -42,7 +42,7 @@ exports[`Renders Correctly 1`] = `
       <router-link-stub
         to="/upload"
       >
-        Here
+        here
       </router-link-stub>
     </p>
   </div>

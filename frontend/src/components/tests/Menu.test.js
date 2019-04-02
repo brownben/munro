@@ -46,14 +46,14 @@ test('Displays Correct View off Authentication State', () => {
     },
     stubs: ['router-link'],
   })
-  expect(loggedInWrapper.find('.actions').html()).toContain('Admin Login')
+  expect(loggedInWrapper.find('nav').html()).toContain('Admin Login')
   const loggedOutWrapper = mount(Menu, {
     mocks: {
       $auth: { user: true },
     },
     stubs: ['router-link'],
   })
-  expect(loggedOutWrapper.find('.actions').html()).toContain('Log Out')
+  expect(loggedOutWrapper.find('nav').html()).toContain('Log Out')
 })
 
 test('Close Mobile Menu on Route Change', () => {
@@ -71,11 +71,11 @@ test('Close Mobile Menu on Route Change', () => {
     },
   })
 
-  expect(wrapper.find('.actions').isVisible()).toBeFalsy()
+  expect(wrapper.find('nav').isVisible()).toBeFalsy()
   wrapper.find('svg').trigger('click')
-  expect(wrapper.find('.actions').isVisible()).toBeTruthy()
+  expect(wrapper.find('nav').isVisible()).toBeTruthy()
   router.push('/other')
-  expect(wrapper.find('.actions').isVisible()).toBeFalsy()
+  expect(wrapper.find('nav').isVisible()).toBeFalsy()
 })
 
 test('Desktop Menu Remains Static on Route Change', () => {
@@ -92,9 +92,9 @@ test('Desktop Menu Remains Static on Route Change', () => {
     },
   })
 
-  expect(wrapper.find('.actions').isVisible()).toBeTruthy()
+  expect(wrapper.find('nav').isVisible()).toBeTruthy()
   router.push('/other')
-  expect(wrapper.find('.actions').isVisible()).toBeTruthy()
+  expect(wrapper.find('nav').isVisible()).toBeTruthy()
 })
 
 test('Check Resize Event is Added/ Removed', () => {

@@ -4,8 +4,6 @@ exports[`Renders Correctly - Desktop 1`] = `
 <div
   id="menu"
 >
-  <!---->
-   
   <h1>
     <router-link-stub
       to="/"
@@ -14,8 +12,9 @@ exports[`Renders Correctly - Desktop 1`] = `
     </router-link-stub>
   </h1>
    
-  <div
-    class="actions"
+  <!---->
+   
+  <nav
     name="shrink"
   >
     <router-link-stub
@@ -35,7 +34,7 @@ exports[`Renders Correctly - Desktop 1`] = `
     >
       Admin Login
     </router-link-stub>
-  </div>
+  </nav>
 </div>
 `;
 
@@ -43,6 +42,14 @@ exports[`Renders Correctly - Mobile 1`] = `
 <div
   id="menu"
 >
+  <h1>
+    <router-link-stub
+      to="/"
+    >
+      Munro
+    </router-link-stub>
+  </h1>
+   
   <svg
     class=""
     viewBox="0 0 24 24"
@@ -57,16 +64,7 @@ exports[`Renders Correctly - Mobile 1`] = `
     />
   </svg>
    
-  <h1>
-    <router-link-stub
-      to="/"
-    >
-      Munro
-    </router-link-stub>
-  </h1>
-   
-  <div
-    class="actions"
+  <nav
     name="shrink"
     style="display: none;"
   >
@@ -87,6 +85,6 @@ exports[`Renders Correctly - Mobile 1`] = `
     >
       Admin Login
     </router-link-stub>
-  </div>
+  </nav>
 </div>
 `;

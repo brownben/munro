@@ -165,19 +165,8 @@ export default {
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
-#router-view
-  margin-left: 5%
-  padding-top: 1rem
-  width: 90%
-
 h1
   margin-bottom: 0.5rem
-
-button
-  margin-top: 0.5rem
-
-input, select
-  width: 100% !important
 
 #error
   margin: 0.5rem 0

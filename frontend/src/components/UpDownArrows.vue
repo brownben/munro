@@ -52,5 +52,5 @@ export default {
       top: -5px
 
 .active
-  fill: purple-500
+  fill: main-color
 </style>

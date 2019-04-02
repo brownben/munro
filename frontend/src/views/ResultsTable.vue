@@ -239,38 +239,28 @@ export default {
 
     sort: function (array, property, ascending = true, byPoints = false) {
       // Selection Sort using Single List for Sorting Results
-      for (let counter = 0; counter < array.length; counter += 1) {
-        let itemLocation = counter
-        // If points look in points array not the main object
-        if (!byPoints) itemLocation = this.findMinMaxOfProperty(array.slice(counter), property, ascending) + counter
-        else itemLocation = this.findMinMaxOfPoints(array.slice(counter), property, ascending) + counter
-        if (itemLocation !== counter) {
-          const lastItem = array[counter]
-          array[counter] = array[itemLocation]
-          array[itemLocation] = lastItem
+      let sortFunction = () => {}
+      if (byPoints) {
+        sortFunction = (a, b) => {
+          if (a.points[property] === b.points[property]) return 0
+          else if (a.points[property] === null) return 1
+          else if (b.points[property] === null) return -1
+          else if (a.points[property] < b.points[property]) return 1
+          else return -1
         }
       }
-      return array
-    },
-
-    findMinMaxOfProperty: function (array, property, max = false) {
-      // Find Min/ Max Algorithm for the result record with property specified, returns the location of the min/ max object
-      let locationOfValue = 0
-      for (let item = 0; item < array.length; item += 1) {
-        if (max && array[item][property] > array[locationOfValue][property]) locationOfValue = item
-        else if (!max && array[item][property] < array[locationOfValue][property]) locationOfValue = item
+      else {
+        sortFunction = (a, b) => {
+          if (a[property] === b[property]) return 0
+          else if (a[property] === null) return 1
+          else if (b[property] === null) return -1
+          else if (a[property] < b[property]) return 1
+          else return -1
+        }
       }
-      return locationOfValue
-    },
 
-    findMinMaxOfPoints: function (array, property, max = false) {
-      // Find Min/ Max Algorithm for the result with points array value with points at index of array specified by 'property', returns the location of the min/ max object
-      let locationOfValue = 0
-      for (let item = 0; item < array.length; item += 1) {
-        if (max && array[item].points[property] > array[locationOfValue].points[property]) locationOfValue = item
-        else if (!max && array[item].points[property] < array[locationOfValue].points[property]) locationOfValue = item
-      }
-      return locationOfValue
+      if (ascending) return array.sort(sortFunction)
+      else return array.sort(sortFunction).reverse()
     },
 
     sortBy: function (sortBy) {
@@ -309,15 +299,17 @@ export default {
 @import '../assets/styles/table.styl'
 
 #router-view
-  margin-left: 5%
-  padding-top: 1rem
-  width: 90%
+  padding: 1rem 10%
+
+  @media (max-width: 700px)
+    padding: 1rem 5%
 
 #league-title
   padding: 0 0 0.75rem
 
   a
     text-decoration: underline
+    color:main-color
 
 table tr th p
   display: inline-flex

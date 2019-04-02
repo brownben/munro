@@ -54,11 +54,6 @@ export default {
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
-#router-view
-  margin-left: 5%
-  padding-top: 1rem
-  width: 90%
-
 h1
   margin-bottom: 0.5rem
 
@@ -66,10 +61,7 @@ h1
   text-align: center
   box-shadow(1)
   box-sizing: border-box
-  padding: 0.75rem
-
-  h1
-    padding: 0.25rem 0
+  padding: 1rem
 
   button
     margin-top: 0.5rem

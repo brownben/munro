@@ -55,6 +55,7 @@ export default {
     margin: 0
     width: 50px
     color: black
+    font-weight: 300
     font-size: 16px
     font-family: default-font
     transition: 0.45s ease-out
@@ -69,7 +70,7 @@ export default {
     margin-left: 10px
     width: 10px
     height: 10px
-    border: 1px solid alpha(purple-500, 0.5)
+    border: 1px solid alpha(main-color, 0.5)
     transition: 0.3s ease-out
 
   [type='checkbox']:checked+span
@@ -78,7 +79,7 @@ export default {
     margin-left: 13px
     width: 6px
     height: 12px
-    border: 1.5px solid purple-500
+    border: 1.5px solid main-color
     border-top: 0
     border-left: 0
     transition: 0.3s ease-in-out
