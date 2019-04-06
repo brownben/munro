@@ -57,4 +57,7 @@ flask run --host=0.0.0.0
 
 # run unit tests
 pytest --cov-report term-missing --cov=. -vv
+
+# push to heroku
+git subtree push --prefix backend heroku master
 ```

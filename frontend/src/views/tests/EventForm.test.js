@@ -285,9 +285,7 @@ test('Create Event - Calls Correct API Location', async () => {
 })
 
 test('Update Event - Calls Correct API Location', async () => {
-  axios.put.mockResolvedValue({
-    'message': 'Event - X was Updated',
-  })
+  axios.put.mockRejectedValue({ response: { data: { 'message': 'Event - X was Updated' } } })
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(EventForm, {
     mocks: {
@@ -338,7 +336,7 @@ test('Update Event - Successful Creation', async () => {
 
 test('Update Event - Error in Creation', async () => {
   const mockAddMessageFunction = jest.fn()
-  axios.put.mockRejectedValue({ 'message': 'Error: Problem Updating Event - Please Try Again' })
+  axios.put.mockRejectedValue({ response: { data: { 'message': 'Error: Problem Updating Event - Please Try Again' } } })
   const wrapper = mount(EventForm, {
     mocks: {
       $route: { path: '/events/1/edit', params: { league: '' } },

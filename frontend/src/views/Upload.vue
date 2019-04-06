@@ -93,6 +93,7 @@ export default {
 
     uploadFile: function () {
       // Send data to the server
+      this.$messages.addMessage('Upload Data Sent')
       return axios.post('/api/upload', {
         eventId: this.eventId,
         uploadKey: this.uploadKey,
@@ -136,5 +137,5 @@ input, select
   width: 100% !important
 
 #uploadButton
-  margin-top: 0.5rem
+  margin-top: 1.5rem
 </style>

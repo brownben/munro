@@ -53,7 +53,6 @@ export default {
   label
     position: relative
     margin: 0
-    width: 50px
     color: black
     font-weight: 300
     font-size: 16px

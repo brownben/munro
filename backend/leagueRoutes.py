@@ -40,7 +40,7 @@ class Leagues(Resource):
                                  data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['moreInformation'])
             return {'message': 'League - {} was Created'.format(name)}
         except:
-            return {'message': 'Something went Wrong'}, 500
+            return {'message': 'Error: Problem Creating League - Please Try Again'}, 500
 
 
 class League(Resource):
@@ -60,7 +60,7 @@ class League(Resource):
                                  data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['moreInformation'])
             return {'message': 'League - {} was Updated'.format(name)}
         except:
-            return {'message': 'Something went Wrong'}, 500
+            return {'message': 'Error: Problem Updating League - Please Try Again'}, 500
 
     @requireAuthentication
     def delete(self, name):

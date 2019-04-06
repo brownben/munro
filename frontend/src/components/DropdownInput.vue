@@ -8,6 +8,7 @@
 <template>
   <div class="dropdown-input">
     <select :value="value" @input="$emit('input', $event.target.value)">
+      <option v-if="includeBlank" />
       <option v-for="item in list" :key="item">{{ item }}</option>
     </select>
     <label>
@@ -32,6 +33,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    'includeBlank': {
+      type: Boolean,
+      default: false,
+    },
   },
 }
 </script>
@@ -40,11 +45,11 @@ export default {
 @import '../assets/styles/helpers.styl'
 
 .dropdown-input
-  margin-bottom: -20px
+  margin-bottom: -35px
 
   select
     box-sizing: border-box
-    padding: 0.2rem
+    padding: 0.2rem 0
     width: 100%
     outline: 0
     border: 1px solid main-color
@@ -61,7 +66,7 @@ export default {
 
   svg
     position: relative
-    top: -26px
+    top: -35px
     right: calc(-100% + 27px)
     transition: 0.3s ease-out
     fill: main-color

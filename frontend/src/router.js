@@ -3,20 +3,25 @@
 
   Sets up the VueJS router, defining all routes and which view to display for each one
 */
+
 import Vue from 'vue'
 import Router from 'vue-router'
 
 import messageStore from '@/messageStore'
 
+import CompetitorForm from '@/views/CompetitorForm'
+import CompetitorMerge from '@/views/CompetitorMerge'
+import Competitors from '@/views/Competitors'
+import EventForm from '@/views/EventForm'
 import Home from '@/views/Home'
+import LeagueForm from '@/views/LeagueForm'
 import League from '@/views/LeagueHome'
 import Leagues from '@/views/Leagues'
-import LeagueForm from '@/views/LeagueForm'
-import EventForm from '@/views/EventForm'
-import Upload from '@/views/Upload'
-import Table from '@/views/ResultsTable'
 import Login from '@/views/Login'
 import NotFound from '@/views/NotFound'
+import ResultsTable from '@/views/ResultsTable'
+import ResultTransfer from '@/views/ResultTransfer'
+import Upload from '@/views/Upload'
 
 // Bind to Vue Instance
 Vue.use(Router)
@@ -29,15 +34,39 @@ const router = new Router({
       component: Home,
     },
     {
-      path: '/leagues',
-      name: 'Leagues',
-      component: Leagues,
+      path: '/create-competitor',
+      name: 'Create Competitor',
+      component: CompetitorForm,
+      beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/competitors',
+      name: 'Competitors',
+      component: Competitors,
+      beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/competitors/:id/edit',
+      name: 'Edit Competitors',
+      component: CompetitorForm,
+      beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/competitors/merge',
+      name: 'Merge Competitors',
+      component: CompetitorMerge,
+      beforeEnter: requireAuthentication,
     },
     {
       path: '/create-league',
       name: 'Create League',
       component: LeagueForm,
       beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/leagues',
+      name: 'Leagues',
+      component: Leagues,
     },
     {
       path: '/leagues/:name',
@@ -59,12 +88,17 @@ const router = new Router({
     {
       path: '/leagues/:name/:course',
       name: 'League Course Results',
-      component: Table,
+      component: ResultsTable,
     },
-
     {
       path: '/create-event',
       name: 'Create Event',
+      component: EventForm,
+      beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/events/:id/edit',
+      name: 'Edit Events',
       component: EventForm,
       beforeEnter: requireAuthentication,
     },
@@ -79,9 +113,9 @@ const router = new Router({
       component: Upload,
     },
     {
-      path: '/events/:id/edit',
-      name: 'Edit Events',
-      component: EventForm,
+      path: '/results/transfer',
+      name: 'Transfer Result',
+      component: ResultTransfer,
       beforeEnter: requireAuthentication,
     },
     {

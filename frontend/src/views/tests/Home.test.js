@@ -65,7 +65,7 @@ test('Shows Admin Buttons When Logged In', () => {
     },
   })
   expect(wrapper.find('.actions').isVisible()).toBeTruthy()
-  expect(wrapper.find('.actions').findAll('button').length).toBe(2)
+  expect(wrapper.find('.actions').findAll('button').length).toBe(3)
   expect(wrapper.find('.actions').findAll('button').at(0).text()).toBe('Create New League')
   expect(wrapper.find('.actions').findAll('button').at(1).text()).toBe('Upload Results')
 })

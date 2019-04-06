@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <h1>
+    Competitors
+  </h1>
+   
+  <div
+    class="actions"
+  >
+    <h2>
+      Actions
+    </h2>
+     
+    <div>
+      <button>
+        Add Competitor
+      </button>
+       
+      <button>
+        Merge Competitors
+      </button>
+       
+      <button>
+        Transfer Result
+      </button>
+    </div>
+  </div>
+   
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <p>
+            Name
+          </p>
+           
+          <div
+            id="up-down-arrows"
+          >
+            <svg
+              class="active"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 14l5-5 5 5z"
+              />
+            </svg>
+             
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </th>
+         
+        <th>
+          <p>
+            Club
+          </p>
+           
+          <div
+            id="up-down-arrows"
+          >
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 14l5-5 5 5z"
+              />
+            </svg>
+             
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </th>
+         
+        <th>
+          <p>
+            Class
+          </p>
+           
+          <div
+            id="up-down-arrows"
+          >
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 14l5-5 5 5z"
+              />
+            </svg>
+             
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </th>
+         
+        <th
+          class="club"
+        >
+          <p>
+            League
+          </p>
+           
+          <div
+            id="up-down-arrows"
+          >
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 14l5-5 5 5z"
+              />
+            </svg>
+             
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </th>
+         
+        <th>
+          <p>
+            Course
+          </p>
+           
+          <div
+            id="up-down-arrows"
+          >
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 14l5-5 5 5z"
+              />
+            </svg>
+             
+            <svg
+              class=""
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+          </div>
+        </th>
+      </tr>
+    </thead>
+     
+    <tbody
+      name="fade"
+    />
+  </table>
+</div>
+`;

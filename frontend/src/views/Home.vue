@@ -1,15 +1,18 @@
 <!--
   Home
 
-  Home page of app, diaplying summary of all the leagues
+  Home page of app, displaying summary of all the leagues
 -->
 
 <template>
   <div>
     <div v-if="auth.user" class="card actions">
       <h2>Admin Actions</h2>
-      <button @click="$router.push('/create-league')">Create New League</button>
-      <button @click="$router.push('/upload')">Upload Results</button>
+      <div>
+        <button @click="$router.push('/create-league')">Create New League</button>
+        <button @click="$router.push('/upload')">Upload Results</button>
+        <button @click="$router.push('/competitors')">Manage Competitors</button>
+      </div>
     </div>
     <div id="leagues">
       <div v-for="league of leagues" :key="league.name" class="league">
@@ -23,7 +26,11 @@
         <p v-if="league.moreInformation">{{ league.moreInformation }}</p>
         <p v-if="league.website">
           More information can be found at
-          <a :href="league.website">{{ league.website }}</a>
+          <a
+            :href="league.website"
+            target="_blank"
+            rel="noopener noreferrer"
+          >{{ league.website }}</a>
         </p>
         <button @click="$router.push('/leagues/'+league.name)">View League</button>
       </div>
@@ -35,7 +42,7 @@
 import axios from 'axios'
 
 export default {
-  data () {
+  data: function () {
     return {
       leagues: [],
       auth: this.$auth,
@@ -158,4 +165,11 @@ export default {
 #header
   img
     height: 250px
+
+.actions
+  button
+    margin-left: 0.4rem
+
+    &:first-child
+      margin-left: 0
 </style>

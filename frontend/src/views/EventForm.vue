@@ -158,7 +158,7 @@ export default {
           league: this.league,
         })
           .then(response => this.returnToLeaguePage(response))
-          .catch(error => this.$messages.addMessage(error.message))
+          .catch(error => this.$messages.addMessage(error.response.data.message))
       }
       else this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
     },

@@ -58,6 +58,8 @@ exports[`Renders Correctly 1`] = `
         
         <a
           href="wwwwwww"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           wwwwwww
         </a>

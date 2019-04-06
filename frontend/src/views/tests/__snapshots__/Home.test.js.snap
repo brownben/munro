@@ -30,6 +30,8 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
         
         <a
           href="https://en-gb.facebook.com/sprintelope/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           https://en-gb.facebook.com/sprintelope/
         </a>
@@ -62,6 +64,8 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
         
         <a
           href="https://www.scottish-orienteering.org/"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           https://www.scottish-orienteering.org/
         </a>
@@ -92,6 +96,8 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
         
         <a
           href="https://esoc.org.uk"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           https://esoc.org.uk
         </a>

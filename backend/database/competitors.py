@@ -1,4 +1,7 @@
-import sqlite3
+import os
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
 
 # Convert SQL Tuple to JSON
 
@@ -7,7 +10,7 @@ def competitorToJSON(competitor):
     # Convert data from SQL to Object
     if (competitor):
         return {
-            'rowId': competitor[0],
+            'id': competitor[0],
             'name': competitor[1],
             'ageClass': competitor[2],
             'club': competitor[3],
@@ -18,89 +21,93 @@ def competitorToJSON(competitor):
         return False
 
 
-# Set Up Database
-connection = sqlite3.connect('./databaseFiles/2.db')
-cursor = connection.cursor()
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS competitors (
-        name TEXT NOT NULL,
-        ageClass TEXT,
-        club TEXT,
-        course TEXT,
-        league TEXT NOT NULL,
-        FOREIGN KEY(league) REFERENCES leagues(name)
-    )''')
-connection.commit()
-connection.close()
-
 # Competitor Database Functions
 
 
 def createCompetitor(name, ageClass, club, course, league):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO competitors (name, ageClass, club, course, league) VALUES (?,?,?,?,?)',
+    cursor.execute('INSERT INTO competitors (name, ageClass, club, course, league) VALUES (%s,%s,%s,%s,%s) RETURNING rowid;',
                    (name, ageClass, club, course, league))
-    rowId = cursor.lastrowid
+    rowId = cursor.fetchone()[0]
     connection.commit()
     connection.close()
     return rowId
 
 
-def updateCompetitor(oldName, name, ageClass, club, course, league):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+def updateCompetitor(id, name, ageClass, club, course, league):
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
         UPDATE competitors
-        SET name=?,ageClass=?,club=?,course=?, league=?
-        WHERE name=?''', (name, ageClass, club, course, league, oldName))
+        SET name=%s,ageClass=%s,club=%s,course=%s, league=%s
+        WHERE rowid=%s''', (name, ageClass, club, course, league, id))
     connection.commit()
     connection.close()
 
 
 def deleteCompetitor(rowid):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    cursor.execute('DELETE FROM competitors WHERE rowid=?', (rowid,))
+    cursor.execute('DELETE FROM competitors WHERE rowid=%s', (rowid,))
     connection.commit()
     connection.close()
 
 
-def findCompetitor(name):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+def findCompetitor(id):
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    result = cursor.execute('''
+    cursor.execute('''
         SELECT rowid, name, ageClass, club, course, league
         FROM competitors
-        WHERE name=?''', (name,)).fetchone()
+        WHERE rowid=%s''', (id,))
+    result = cursor.fetchone()
     connection.close()
     return competitorToJSON(result)
 
 
 def getAllCompetitors():
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    result = cursor.execute('''
+    cursor.execute('''
         SELECT rowid, name, ageClass, club, course, league
-        FROM competitors''').fetchall()
+        FROM competitors''')
+    result = cursor.fetchall()
     connection.close()
     return list(map(competitorToJSON, result))
 
 
 def getCompetitorsByLeague(league):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    result = cursor.execute('''
+    cursor.execute('''
         SELECT rowid, name, ageClass, club, course, league
         FROM competitors
-        WHERE league=?''', (league,)).fetchall()
+        WHERE league=%s''', (league,))
+    result = cursor.fetchall()
     connection.close()
     return list(map(competitorToJSON, result))
 
 
 def deleteAllCompetitors():
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('DELETE FROM competitors')
+    connection.commit()
+    connection.close()
+
+
+def mergeCompetitors(competitorKeep, competitorMerge):
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = connection.cursor()
+    cursor.execute('''
+    UPDATE results
+    SET competitor=%s
+    WHERE competitor=%s
+    ''', (competitorKeep, competitorMerge))
+    cursor.execute('''
+    DELETE FROM competitors
+    WHERE rowid=%s
+    ''', (competitorMerge,))
     connection.commit()
     connection.close()

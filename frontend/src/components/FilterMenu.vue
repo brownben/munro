@@ -80,11 +80,17 @@ export default {
   input[type='text'], input[type='number']
     width: calc(100% - 1rem)
 
+  &.checkbox-input
+    width: calc(25% - 1rem)
+
   label
     text-align: left
 
   @media (max-width: 700px)
     width: 50%
+
+    &.checkbox-input
+      width: calc(50% - 1rem)
 
 .checkbox-input
   padding-top: 0.5rem !important

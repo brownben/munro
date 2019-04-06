@@ -76,7 +76,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
         name="fade"
       >
         <tr
-          class="normal-table-row"
+          class="normal-table-row striped"
         >
           <td>
             1
@@ -120,7 +120,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
          
         <!---->
         <tr
-          class="normal-table-row striped"
+          class="normal-table-row"
         >
           <td>
             2
@@ -164,7 +164,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
          
         <!---->
         <tr
-          class="normal-table-row"
+          class="normal-table-row striped"
         >
           <td>
             3
@@ -291,7 +291,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
         name="fade"
       >
         <tr
-          class="normal-table-row"
+          class="normal-table-row striped"
         >
           <td>
             1
@@ -335,7 +335,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
          
         <!---->
         <tr
-          class="normal-table-row striped"
+          class="normal-table-row"
         >
           <td>
             2
@@ -378,7 +378,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
         </tr>
          
         <tr
-          class="mobile-table-expansion striped"
+          class="mobile-table-expansion"
         >
           <td
             colspan="100%"
@@ -416,7 +416,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
           </td>
         </tr>
         <tr
-          class="normal-table-row"
+          class="normal-table-row striped"
         >
           <td>
             3
@@ -575,7 +575,7 @@ exports[`Renders Correctly + Fetches Data 1`] = `
         name="fade"
       >
         <tr
-          class="normal-table-row"
+          class="normal-table-row striped"
         >
           <td>
             1
@@ -618,7 +618,7 @@ exports[`Renders Correctly + Fetches Data 1`] = `
          
         <!---->
         <tr
-          class="normal-table-row striped"
+          class="normal-table-row"
         >
           <td>
             2
@@ -661,7 +661,7 @@ exports[`Renders Correctly + Fetches Data 1`] = `
          
         <!---->
         <tr
-          class="normal-table-row"
+          class="normal-table-row striped"
         >
           <td>
             3

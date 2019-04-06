@@ -19,6 +19,14 @@ exports[`Creation Form - Renders Correctly 1`] = `
       />
        
       <label>
+        Description:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
         Website:
       </label>
        
@@ -47,7 +55,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
       </label>
        
       <dropdown-input-stub
-        list="Position Based"
+        list="Position Based (100 Max),Position Based (50 Max)"
         value=""
       />
        
@@ -56,20 +64,14 @@ exports[`Creation Form - Renders Correctly 1`] = `
       </label>
        
       <input
+        inputmode="numeric"
         min="1"
-        type="number"
-      />
-       
-      <label>
-        Courses: (Comma Separated)
-      </label>
-       
-      <input
+        pattern="[0-9]*"
         type="text"
       />
        
       <label>
-        More Information:
+        Courses: (Comma Separated)
       </label>
        
       <input
@@ -107,6 +109,14 @@ exports[`Update Form - Renders Correctly 1`] = `
       />
        
       <label>
+        Description:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
         Website:
       </label>
        
@@ -135,7 +145,7 @@ exports[`Update Form - Renders Correctly 1`] = `
       </label>
        
       <dropdown-input-stub
-        list="Position Based"
+        list="Position Based (100 Max),Position Based (50 Max)"
         value=""
       />
        
@@ -144,20 +154,14 @@ exports[`Update Form - Renders Correctly 1`] = `
       </label>
        
       <input
+        inputmode="numeric"
         min="1"
-        type="number"
-      />
-       
-      <label>
-        Courses: (Comma Separated)
-      </label>
-       
-      <input
+        pattern="[0-9]*"
         type="text"
       />
        
       <label>
-        More Information:
+        Courses: (Comma Separated)
       </label>
        
       <input

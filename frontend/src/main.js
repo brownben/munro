@@ -19,9 +19,9 @@ Vue.prototype.$messages = messageStore
 Vue.prototype.$auth = auth
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyCVgYvAzUakBroge-gVtTLF5MxjFpBEOYs',
-  authDomain: 'munro-c6d2e.firebaseapp.com',
-  projectId: 'munro-c6d2e',
+  apiKey: 'AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ ',
+  authDomain: 'munro-leagues.firebaseapp.com',
+  projectId: 'munro-leagues',
 })
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
@@ -40,12 +40,12 @@ function initialize () {
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     Vue.prototype.$auth.user = user
-    user.getIdToken().then(function (token) {
-      document.cookie = 'token=' + token
+    user.getIdToken().then(token => {
+      document.cookie = 'token=' + token + ';secure;samesite=strict;path=/'
     })
   }
   else {
-    document.cookie = 'token='
+    document.cookie = 'token=;secure;samesite=strict;path=/'
   }
   initialize()
 })

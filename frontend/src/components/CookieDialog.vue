@@ -42,11 +42,11 @@ export default {
 
 div
   position: fixed
-  top: 0
+  bottom: 0
   left: 0
   z-index: 10
-  width: 100%
-  background-color: purple-400
+  width: 100vw
+  background-color: main-color
   color: white
   no-user-select()
 
@@ -69,5 +69,5 @@ div
   transition: 1s
 
 .slide-enter, .slide-leave-to
-  top: -10rem
+  right: -100vw
 </style>

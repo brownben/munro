@@ -1,0 +1,170 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <h1>
+    Transfer Result
+  </h1>
+   
+  <form>
+    <label>
+      League:
+    </label>
+     
+    <div
+      class="dropdown-input"
+    >
+      <select>
+        <option />
+         
+      </select>
+       
+      <label>
+        <svg
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </label>
+    </div>
+     
+    <label>
+      Event:
+    </label>
+     
+    <div
+      class="dropdown-input"
+    >
+      <select>
+        <option />
+         
+      </select>
+       
+      <label>
+        <svg
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </label>
+    </div>
+     
+    <label>
+      Course:
+    </label>
+     
+    <div
+      class="dropdown-input"
+    >
+      <select>
+        <option />
+         
+      </select>
+       
+      <label>
+        <svg
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </label>
+    </div>
+     
+    <label>
+      Results:
+    </label>
+     
+    <div
+      class="dropdown-input"
+    >
+      <select>
+        <option />
+         
+      </select>
+       
+      <label>
+        <svg
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </label>
+    </div>
+     
+    <label>
+      Competitor:
+    </label>
+     
+    <div
+      class="dropdown-input"
+    >
+      <select>
+        <option />
+         
+      </select>
+       
+      <label>
+        <svg
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </label>
+    </div>
+     
+    <button>
+      Transfer Result
+    </button>
+  </form>
+</div>
+`;

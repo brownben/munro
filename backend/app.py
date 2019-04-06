@@ -6,14 +6,24 @@ from flask import Flask, render_template, session
 from flask_compress import Compress
 from flask_cors import CORS
 from flask_restful import Api
+from flask_talisman import Talisman
 
 # Set up Flask with plugins
 app = Flask(__name__,
-            static_folder="../dist/static",
-            template_folder="../dist")
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+            static_folder="./dist/static",
+            template_folder="./dist")
 api = Api(app)
-compress = Compress(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
+Compress(app)
+csp = {
+    'default-src': '\'self\''
+}
+talisman = Talisman(app, content_security_policy={
+    'default-src': "'self' www.googleapis.com",
+    'img-src': '*',
+    'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
+    'font-src': 'fonts.googleapis.com fonts.gstatic.com'
+})
 app.secret_key = os.urandom(25)
 
 # Bind all logic with the routes
@@ -29,10 +39,15 @@ api.add_resource(routes.Events, '/api/events')
 api.add_resource(routes.EventsWithUploadKey, '/api/events/uploadKey')
 api.add_resource(routes.Event, '/api/events/<id>')
 api.add_resource(routes.EventWithUploadKey, '/api/events/<id>/uploadKey')
+api.add_resource(routes.ResultsForEvent, '/api/events/<id>/results')
 
 api.add_resource(routes.Competitors, '/api/competitors')
+api.add_resource(routes.CompetitorMerge, '/api/competitors/merge')
+api.add_resource(routes.Competitor, '/api/competitors/<id>')
+api.add_resource(routes.ResultsForCompetitor, '/api/competitors/<id>/results')
 
 api.add_resource(routes.Results, '/api/results')
+api.add_resource(routes.TransferResult, '/api/results/transfer')
 
 api.add_resource(routes.Upload, '/api/upload')
 
@@ -43,10 +58,9 @@ api.add_resource(routes.Upload, '/api/upload')
 @app.route('/<path:path>')
 def catch_all(path):
     # If in debug access files from VueJS Development Server
-    #if app.debug:
-    #   return requests.get('http://localhost:8080/{}'.format(path)).text
+    # if app.debug:
+      # return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
 
-
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True)
+if __name__ == "__main__":
+    app.run()

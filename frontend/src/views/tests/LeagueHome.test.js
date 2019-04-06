@@ -478,3 +478,18 @@ test('Delete League - Error', async () => {
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
   expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Deleting League - Please Try Again')
 })
+
+test('Scoring Method Shorthand to Full', () => {
+  const wrapper = shallowMount(League, {
+    mocks: {
+      $auth: { user: false },
+      $route: { params: { name: '' } },
+      $messages: { addMessage: jest.fn() },
+      mounted: () => { },
+    },
+  })
+  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('position based method (100 max).')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('position based method (50 max).')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position5')).toBe('')
+  expect(wrapper.vm.scoringMethodShorthandToFull('ello')).toBe('')
+})

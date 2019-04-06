@@ -139,7 +139,8 @@ test('Upload File - Success', async () => {
 
   expect(mockRouterPush).toHaveBeenCalledTimes(1)
   expect(mockRouterPush).toHaveBeenLastCalledWith('/leagues/test')
-  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenCalledTimes(2)
+  expect(mockAddMessage).toHaveBeenNthCalledWith(1, 'Upload Data Sent')
   expect(mockAddMessage).toHaveBeenLastCalledWith('Results Uploaded Successfully')
 })
 
@@ -159,7 +160,8 @@ test('Upload File - Failure', async () => {
   })
   axios.post.mockRejectedValue({ response: { data: { message: 'Error' } } })
   await wrapper.vm.uploadFile()
-  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenCalledTimes(2)
+  expect(mockAddMessage).toHaveBeenNthCalledWith(1, 'Upload Data Sent')
   expect(mockAddMessage).toHaveBeenLastCalledWith('Error')
 })
 

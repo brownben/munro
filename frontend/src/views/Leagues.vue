@@ -1,7 +1,7 @@
 <!--
-  Home
+  Leagues
 
-  Home page of app, diaplying summary of all the leagues
+  List of leagues
 -->
 
 <template>

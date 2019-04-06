@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div>
+  <h1>
+    Leagues
+  </h1>
+   
+  <div
+    id="leagues"
+  />
+</div>
+`;

@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly - Create 1`] = `
+<div>
+  <div>
+    <h1>
+      Create Competitor
+    </h1>
+     
+    <!---->
+     
+    <form>
+      <label>
+        Name:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Club:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Age Class:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        League:
+      </label>
+       
+      <div
+        class="dropdown-input"
+      >
+        <select>
+          <!---->
+           
+        </select>
+         
+        <label>
+          <svg
+            fill="#9E9E9E"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+            />
+             
+            <path
+              d="M0-.75h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </label>
+      </div>
+       
+      <label>
+        Course:
+      </label>
+       
+      <div
+        class="dropdown-input"
+      >
+        <select>
+          <!---->
+           
+        </select>
+         
+        <label>
+          <svg
+            fill="#9E9E9E"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+            />
+             
+            <path
+              d="M0-.75h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </label>
+      </div>
+       
+      <button>
+        Create Competitor
+      </button>
+       
+      <!---->
+    </form>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Renders Correctly - Upload 1`] = `
+<div>
+  <div>
+    <!---->
+     
+    <h1>
+      Edit Competitor
+    </h1>
+     
+    <form>
+      <label>
+        Name:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Club:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        Age Class:
+      </label>
+       
+      <input
+        type="text"
+      />
+       
+      <label>
+        League:
+      </label>
+       
+      <div
+        class="dropdown-input"
+      >
+        <select>
+          <!---->
+           
+        </select>
+         
+        <label>
+          <svg
+            fill="#9E9E9E"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+            />
+             
+            <path
+              d="M0-.75h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </label>
+      </div>
+       
+      <label>
+        Course:
+      </label>
+       
+      <div
+        class="dropdown-input"
+      >
+        <select>
+          <!---->
+           
+        </select>
+         
+        <label>
+          <svg
+            fill="#9E9E9E"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+          >
+            <path
+              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+            />
+             
+            <path
+              d="M0-.75h24v24H0z"
+              fill="none"
+            />
+          </svg>
+        </label>
+      </div>
+       
+      <!---->
+       
+      <button>
+        Update Competitor
+      </button>
+    </form>
+  </div>
+   
+  <!---->
+</div>
+`;

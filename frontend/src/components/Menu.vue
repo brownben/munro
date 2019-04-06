@@ -92,6 +92,7 @@ export default {
     position: absolute
     top: 1rem
     right: 5%
+    z-index: 10
     display: inline-block
     box-sizing: border-box
     font-weight: 300
@@ -107,6 +108,9 @@ export default {
       text-decoration: none
       font-weight: 300
       font-family: heading-font
+
+      &:focus
+        outline: none
 
       &:before
         position: absolute

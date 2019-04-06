@@ -60,7 +60,7 @@
             <template v-for="result of filteredResults">
               <tr
                 :key="result.name"
-                :class="{ striped: filteredResults.indexOf(result) % 2 === 1 }"
+                :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
                 class="normal-table-row"
                 @click="toggleRow(filteredResults.indexOf(result))"
               >
@@ -96,7 +96,7 @@
               <tr
                 v-if="smallWindow && openedRows.includes(filteredResults.indexOf(result))"
                 :key="result.name + '-mobile'"
-                :class="{ striped: filteredResults.indexOf(result) % 2 === 1 }"
+                :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
                 class="mobile-table-expansion"
               >
                 <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
@@ -179,7 +179,12 @@ export default {
       return this.sortedResults
         .filter(result => result.name.match(new RegExp(this.filterPreferences.name, 'i'))) // Filter by Name Case Insensitive
         .filter(result => result.club.match(new RegExp(this.filterPreferences.club, 'i'))) // Filter by Club Case Insensitive
-        .filter(result => this.filterPreferences.minAge <= result.age && result.age <= this.filterPreferences.maxAge) // If age in range
+        .filter(result => {
+          if (this.filterPreferences.maxAge === 100 && this.filterPreferences.minAge === 0) return true
+          else {
+            return this.filterPreferences.minAge <= result.age && result.age <= this.filterPreferences.maxAge
+          }
+        }) // If age in range
         .filter(result => (this.filterPreferences.male && this.filterPreferences.female) ||
           (this.filterPreferences.male && result.gender === 'M') ||
           (this.filterPreferences.female && result.gender === 'W')) // Filter by Gender
@@ -216,7 +221,7 @@ export default {
 
   methods: {
     handleResize: function () {
-      if (window.innerWidth > 700) this.smallWindow = false
+      if (window.innerWidth > 900) this.smallWindow = false
       else this.smallWindow = true
     },
 
@@ -239,7 +244,7 @@ export default {
 
     sort: function (array, property, ascending = true, byPoints = false) {
       // Selection Sort using Single List for Sorting Results
-      let sortFunction = () => {}
+      let sortFunction = () => { }
       if (byPoints) {
         sortFunction = (a, b) => {
           if (a.points[property] === b.points[property]) return 0
@@ -252,13 +257,12 @@ export default {
       else {
         sortFunction = (a, b) => {
           if (a[property] === b[property]) return 0
-          else if (a[property] === null) return 1
-          else if (b[property] === null) return -1
+          else if (a[property] === null || a[property] === undefined) return 1
+          else if (b[property] === null || b[property] === undefined) return -1
           else if (a[property] < b[property]) return 1
           else return -1
         }
       }
-
       if (ascending) return array.sort(sortFunction)
       else return array.sort(sortFunction).reverse()
     },
@@ -299,17 +303,17 @@ export default {
 @import '../assets/styles/table.styl'
 
 #router-view
-  padding: 1rem 10%
+  padding: 1rem 7.5%
 
-  @media (max-width: 700px)
+  @media (max-width: 900px)
     padding: 1rem 5%
 
 #league-title
   padding: 0 0 0.75rem
 
   a
+    color: main-color
     text-decoration: underline
-    color:main-color
 
 table tr th p
   display: inline-flex
@@ -338,7 +342,7 @@ th
 th:hover > span
   opacity: 1
 
-@media (max-width: 700px)
+@media (max-width: 900px)
   .club
     display: none
 

@@ -5,6 +5,8 @@ exports[`Renders Correctly 1`] = `
   class="dropdown-input"
 >
   <select>
+    <!---->
+     
     <option>
       Item 1
     </option>

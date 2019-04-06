@@ -76,6 +76,10 @@ def test_biggestPoints():
     assert biggestPoints([3,2,3],2) == [0,2]
     assert biggestPoints([5,3,2,5,1],3) == [0,3,1]
     assert biggestPoints([5,5,2,5,1],3) == [0,1,3]
+    assert biggestPoints([5,5,'',5,1],3) == [0,1,3]
+    assert biggestPoints(['','',1,''],3) == [2,0,1]
+    assert biggestPoints([44, 48, 50, 47, 48, 50, 49, 44],7) == [2, 5, 6, 1, 4, 3, 0]
+    assert biggestPoints([42,46,48,"",46,"",46,38],7) ==[2,1,4,6,0,7,3]
 
 def test_countOccurancesFromArrayOfIndexes():
     assert countOccurancesFromArrayOfIndexes(0, [],[]) == 0

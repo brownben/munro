@@ -37,7 +37,7 @@ class Events(Resource):
                                data['website'], data['results'], data['winsplits'], data['routegadget'], data['league'])
             return {'message': 'Event - {} was Created'.format(data['name'])}
         except:
-            return {'message': 'Error: Problem Updating Event - Please Try Again'}, 500
+            return {'message': 'Error: Problem Creating Event - Please Try Again'}, 500
 
     @requireAuthentication
     def delete(self):
@@ -61,7 +61,7 @@ class Event(Resource):
         name = data['name']
         newId = (data['league']+data['name']+data['date']).replace(' ', '')
 
-        if newId != id and events.findEvent(id):
+        if newId != id and events.findEvent(newId):
             return {'message': 'Event with Name {} already Exists in this League'.format(name)}, 500
 
         try:

@@ -4,7 +4,6 @@ from flask_restful import Resource, reqparse
 import csvFunctions as csv
 import pointsFunctions as points
 import uploadFunctions as upload
-import sortFunctions
 from database import competitors, leagues, events, results
 from requireAuthentication import requireAuthentication
 
@@ -50,8 +49,7 @@ class Upload(Resource):
             parsedData = csv.parseToObjects(splitData, headerLocations)
             parsedDataNoExtraCourses = upload.removeExtraCourses(
                 parsedData, leagueOfEvent['courses'])
-            parsedDataSorted = sortFunctions.quickSortObjectsByProperty(
-                parsedDataNoExtraCourses, 'time')[::-1]
+            parsedDataSorted = sorted(parsedDataNoExtraCourses, key=lambda x: x['time'], reverse=True)
             dataWithPoints = points.assignPoints(
                 parsedDataSorted, leagueOfEvent['scoringMethod'])
 
@@ -59,23 +57,20 @@ class Upload(Resource):
                 # Get all competitors and match the competitor to assign the result to competitor by saving competitor id in the result
                 allCompetitors = competitors.getCompetitorsByLeague(
                     eventData['league'])
-
                 dataWithCompetitors = []
                 for result in dataWithPoints:
                     competitor = upload.matchCompetitor(allCompetitors, result)
                     if competitor:
-                        result['competitor'] = competitor['rowid']
+                        result['competitor'] = competitor['id']
                     else:
                         # If no match create competitor and save id as that in the result
                         result['competitor'] = competitors.createCompetitor(
                             result['name'], result['ageClass'], result['club'], result['course'], eventData['league'])
                     dataWithCompetitors.append(result)
-
                 # Write all results to the database
                 for result in dataWithCompetitors:
                     results.createResult(result['time'], result['position'], result['points'],
-                                         result['incomplete'], eventData['id'], result['competitor'])
-
+                                            result['incomplete'], eventData['id'], result['competitor'])
                 events.setResultsUploaded(True, eventData['id'])
                 return {'message': str(len(dataWithCompetitors)) + ' Results Saved'}
 

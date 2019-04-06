@@ -1,4 +1,7 @@
-import sqlite3
+import os
+import psycopg2
+
+DATABASE_URL = os.environ['DATABASE_URL']
 
 
 def leagueToJSON(league):
@@ -12,27 +15,67 @@ def leagueToJSON(league):
             'scoringMethod': league[4],
             'numberOfCountingEvents': league[5],
             'courses': league[6].split(','),
-            'moreInformation': league[7]
+            'description': league[7]
         }
     else:
         return False
 
 
 # Set Up Database
-connection = sqlite3.connect('./databaseFiles/2.db')
+connection = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = connection.cursor()
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS leagues (
-        name TEXT NOT NULL,
+        name TEXT NOT NULL PRIMARY KEY,
         website TEXT,
         logo TEXT,
         coordinator TEXT,
         scoringMethod TEXT NOT NULL,
-        numberOfCountingEvents NUMBER,
+        numberOfCountingEvents INT,
         courses TEXT,
         moreInformation TEXT,
-        PRIMARY KEY (name),
         UNIQUE (name))''')
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS events (
+        id TEXT NOT NULL PRIMARY KEY,
+        name TEXT NOT NULL,
+        date TEXT,
+        resultUploaded BOOLEAN,
+        organiser TEXT,
+        moreInformation TEXT,
+        website TEXT,
+        results TEXT,
+        winsplits TEXT,
+        routegadget TEXT,
+        league TEXT NOT NULL,
+        uploadKey TEXT,
+        UNIQUE (id),
+        FOREIGN KEY(league) REFERENCES leagues(name)
+        ON UPDATE CASCADE ON DELETE CASCADE
+        )''')
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS competitors (
+        rowid SERIAL PRIMARY KEY,
+        name TEXT NOT NULL,
+        ageClass TEXT,
+        club TEXT,
+        course TEXT,
+        league TEXT NOT NULL,
+        FOREIGN KEY(league) REFERENCES leagues(name)
+        ON UPDATE CASCADE ON DELETE CASCADE
+    )''')
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS results (
+        rowid SERIAL PRIMARY KEY,
+        time INT NOT NULL,
+        position INT,
+        points INT NOT NULL,
+        incomplete TEXT,
+        event TEXT NOT NULL,
+        competitor INT  NOT NULL,
+        FOREIGN KEY(event) REFERENCES events(id)
+        ON UPDATE CASCADE ON DELETE CASCADE
+    )''')
 connection.commit()
 connection.close()
 
@@ -41,9 +84,9 @@ connection.close()
 
 def createLeague(name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo):
     courses = courses.replace(' ', '')
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO leagues (name,website,logo,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation) VALUES (?,?,?,?,?,?,?,?)',
+    cursor.execute('INSERT INTO leagues (name,website,logo,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',
                    (name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo))
     connection.commit()
     connection.close()
@@ -51,31 +94,32 @@ def createLeague(name, website, logo, coordinator, scoringMethod, noOfEvents, co
 
 def updateLeague(oldName, name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo):
     courses = courses.replace(' ', '')
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
         UPDATE leagues
-        SET name=?,website=?,logo=?,coordinator=?,scoringMethod=?,numberOfCountingEvents=?, courses=?,moreInformation=?
-        WHERE name=?''', (name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo, oldName))
+        SET name=%s,website=%s,logo=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s
+        WHERE name=%s''', (name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo, oldName))
     connection.commit()
     connection.close()
 
 
 def deleteLeague(name):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    cursor.execute('DELETE FROM leagues WHERE name=?', (name,))
+    cursor.execute('DELETE FROM leagues WHERE name=%s', (name,))
     connection.commit()
     connection.close()
 
 
 def findLeague(name):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    result = cursor.execute('''
+    cursor.execute('''
         SELECT name,website,logo,coordinator,scoringMethod,numberOfCountingEvents,courses, moreInformation
         FROM leagues
-        WHERE name=?''', (name,)).fetchone()
+        WHERE name=%s''', (name,))
+    result = cursor.fetchone()
     connection.close()
     json = leagueToJSON(result)
     if(json):
@@ -84,12 +128,13 @@ def findLeague(name):
 
 
 def getAllLeagues():
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    result = cursor.execute('''
+    cursor.execute('''
         SELECT name,website,logo,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation
         FROM leagues
-        ORDER BY name ASC''').fetchall()
+        ORDER BY name ASC''')
+    result = cursor.fetchall()
     connection.close()
     leagues = list(map(leagueToJSON, result))
     for league in leagues:
@@ -98,7 +143,7 @@ def getAllLeagues():
 
 
 def deleteAllLeagues():
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('DELETE FROM leagues')
     connection.commit()
@@ -106,11 +151,12 @@ def deleteAllLeagues():
 
 
 def getNumberOfEventsInLeague(name):
-    connection = sqlite3.connect('./databaseFiles/2.db')
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    result = cursor.execute('''
+    cursor.execute('''
         SELECT COUNT(events.name)
         FROM events
-        WHERE events.league=?''', (name,)).fetchall()
+        WHERE events.league=%s''', (name,))
+    result = cursor.fetchall()
     connection.close()
     return result[0][0]

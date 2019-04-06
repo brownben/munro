@@ -19,6 +19,8 @@
       <form @submit.prevent="submit()">
         <label>Name:</label>
         <input v-model.trim="name" type="text">
+        <label>Description:</label>
+        <input v-model.trim="info" type="text">
         <label>Website:</label>
         <input v-model.trim="website" type="text">
         <label>Logo (URL):</label>
@@ -26,13 +28,20 @@
         <label>Coordinator:</label>
         <input v-model.trim="coordinator" type="text">
         <label>Scoring Method:</label>
-        <dropdown-input v-model="scoringMethod" :list="['Position Based']" />
+        <dropdown-input
+          v-model="scoringMethod"
+          :list="['Position Based (100 Max)', 'Position Based (50 Max)']"
+        />
         <label>Number of Events to Count:</label>
-        <input v-model.number="numberOfCountingEvents" type="number" min="1">
+        <input
+          v-model.number="numberOfCountingEvents"
+          type="text"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          min="1"
+        >
         <label>Courses: (Comma Separated)</label>
         <input v-model.trim="courses" type="text">
-        <label>More Information:</label>
-        <input v-model.trim="info" type="text">
         <button v-if="create">Create League</button>
         <button v-if="!create">Update League</button>
       </form>
@@ -88,12 +97,14 @@ export default {
 
     // Scoring Method is stored in a shorthand form in database, transfer between these two forms so it is displayed in a clear manner
     scoringMethodShorthandToFull: value => {
-      if (value === 'position') return 'Position Based'
+      if (value === 'position') return 'Position Based (100 Max)'
+      else if (value === 'position50') return 'Position Based (50 Max)'
       else return ''
     },
 
     scoringMethodFullToShorthand: value => {
-      if (value === 'Position Based') return 'position'
+      if (value === 'Position Based (100 Max)') return 'position'
+      else if (value === 'Position Based (50 Max)') return 'position50'
       return ''
     },
 

@@ -131,7 +131,8 @@ test('Scoring Method Shorthand to Full', () => {
     },
     stubs: ['dropdown-input'],
   })
-  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based (100 Max)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('Position Based (50 Max)')
   expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
   expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
 })
@@ -144,7 +145,8 @@ test('Scoring Method Full to Shorthand', () => {
     },
     stubs: ['dropdown-input'],
   })
-  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based')).toBe('position')
+  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (100 Max)')).toBe('position')
+  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (50 Max)')).toBe('position50')
   expect(wrapper.vm.scoringMethodFullToShorthand('')).toBe('')
   expect(wrapper.vm.scoringMethodFullToShorthand('pos')).toBe('')
 })
@@ -215,7 +217,7 @@ test('Create League - Calls Correct API Location', async () => {
   delete sampleOutput.oldName
   const sampleInput = Object.assign({}, sampleSingleLeague[0])
   delete sampleInput.oldName
-  sampleInput.scoringMethod = 'Position Based'
+  sampleInput.scoringMethod = 'Position Based (100 Max)'
   wrapper.setData(sampleInput)
   await wrapper.vm.createLeague()
   expect(axios.post).toHaveBeenCalledTimes(1)
@@ -239,7 +241,7 @@ test('Update League - Calls Correct API Location', async () => {
   delete sampleOutput.numberOfEvents
   const sampleInput = Object.assign({}, sampleSingleLeague[0])
   sampleInput.oldName = 'name'
-  sampleInput.scoringMethod = 'Position Based'
+  sampleInput.scoringMethod = 'Position Based (100 Max)'
   wrapper.setData(sampleInput)
   await wrapper.vm.updateLeague()
   expect(axios.put).toHaveBeenCalledTimes(1)
