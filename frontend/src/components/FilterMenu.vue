@@ -81,7 +81,7 @@ export default {
     width: calc(100% - 1rem)
 
   &.checkbox-input
-    width: calc(25% - 1rem)
+    width: 25%
 
   label
     text-align: left

@@ -342,7 +342,7 @@ th
 th:hover > span
   opacity: 1
 
-@media (max-width: 900px)
+@media (max-width: 500px)
   .club
     display: none
 

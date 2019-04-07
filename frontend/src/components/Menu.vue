@@ -6,7 +6,7 @@
 -->
 
 <template>
-  <div id="menu">
+  <div id="menu" :class="{ dark: $route.path === '/'}">
     <h1>
       <router-link to="/">Munro</router-link>
     </h1>
@@ -126,7 +126,7 @@ export default {
         -webkit-transform: scaleX(0)
         -webkit-transition: all 0.3s ease-in-out 0s
 
-      &:hover:before
+      &:hover:before, &.active:before
         visibility: visible
         transform: scaleX(1)
         -webkit-transform: scaleX(1)
@@ -134,10 +134,15 @@ export default {
   @media (max-width: 700px)
     text-align: center
 
+    h1
+      position: relative
+      z-index: 2
+
     svg
       position: absolute
       top: 0.5rem
       right: 0.5rem
+      z-index: 2
       display: inline-block
       height: 2.5rem
       transition: 0.3s
@@ -147,15 +152,17 @@ export default {
         fill: alpha(main-color, 0.8)
 
     nav
-      top: 3.5rem
+      top: 0
       left: 0
+      z-index: 1
       display: flex
       flex-direction: column
       justify-content: center
       box-sizing: border-box
       margin: 0
+      padding-top: 3.5rem
       width: 100vw
-      height: calc(100vh - 3.5rem)
+      height: 100vh
       background-color: white
       transition: 0.5s
       transform: 0.5s
@@ -179,6 +186,29 @@ export default {
         &:hover
           background-color: main-color
           color: white
+
+#menu.dark
+  h1, p, a
+    color: white !important
+
+  a:before
+    background-color: white !important
+
+  svg
+    fill: white !important
+
+    &:hover
+      fill: alpha(white, 0.8) !important
+
+  nav
+    @media (max-width: 700px)
+      background-color: main-color !important
+
+      a
+        background-color: main-color !important
+
+        &:hover
+          background-color: alpha(white, 0.25) !important
 
 .fade-enter-active, .fade-leave-active
   transition: 0.3s

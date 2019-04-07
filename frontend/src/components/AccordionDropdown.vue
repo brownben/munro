@@ -47,7 +47,7 @@ export default {
   .accordion-head
     box-sizing: border-box
     padding: 0.4rem
-    background-color: purple-300
+    background-color: main-color
 
     h2
       display: inline
@@ -70,7 +70,7 @@ export default {
     box-sizing: border-box
     padding: 0 0.75rem 0.75rem
     width: 100%
-    border: 1px solid purple-300
+    border: 1px solid main-color
     transition: transform 0.4s ease-in-out
     transform-origin: top
 

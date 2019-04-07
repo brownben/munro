@@ -6,6 +6,10 @@
 
 <template>
   <div>
+    <div id="header">
+      <img src="/static/UnDrawRunningWhite.svg">
+      <h2>Fast and Easy Results for Orienteering Leagues</h2>
+    </div>
     <div v-if="auth.user" class="card actions">
       <h2>Admin Actions</h2>
       <div>
@@ -33,6 +37,15 @@
           >{{ league.website }}</a>
         </p>
         <button @click="$router.push('/leagues/'+league.name)">View League</button>
+      </div>
+      <div id="about" class="card">
+        <img src="/static/MunroLogo.png" alt="Munro Logo">
+        <h1>About</h1>
+        <div class="text">
+          <p>Munro was created by Ben Brown for his Advanced Higher Computing Project. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.</p>
+          <p>Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues(a)gmail.com</p>
+          <p>For any help or enquires please email munro.leagues(a)gmail.com</p>
+        </div>
       </div>
     </div>
   </div>
@@ -63,71 +76,76 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
 
-.header
-  position: absolute
-  top: 3.5rem
-  left: 0
-  display: inline-flex
-  flex: 1 0 10px
-  justify-content: center
-  align-items: center
-  box-sizing: border-box
-  margin-bottom: 1rem
-  padding: 3rem 1.5rem
-  width: 100vw
-  background: url('../assets/images/largeBackground.png')
-  background: url('../assets/images/largeBackground.svg')
-  background-color: purple-300
-  background-size: cover
-  background-repeat: no-repeat
-  color: white
-  text-align: center
-  box-shadow(1)
+#router-view
+  padding: 0
 
-  #text
-    padding-left: 7.5%
+#header
+  box-sizing: border-box
+  margin-top: -3.5rem
+  padding: 4rem 10% 0.5rem
+  background: main-color
+  background: linear-gradient(203deg, rgba(184, 11, 218, 1) 15%, rgba(230, 109, 255, 1) 100%)
+  box-shadow(1)
+  display: flex
+  flex-direction: row-reverse
+  justify-content: space-evenly
+  align-items: center
+
+  h1, h2
+    padding: 2rem 2rem 1.5rem
+    color: white
+    font-size: 2.5rem
+
+    @media (max-width: 1000px)
+      font-size: 2rem
 
   img
-    height: 12rem
+    padding: 1.5rem 3rem 2rem
+    height: 250px
 
-  h1
-    margin: 0.8rem 0
-    color: white
-    font-weight: 400
-    font-size: 3rem
-
-  h3
-    margin: 0.5rem 0
-    color: white
-    font-weight: 300
-    font-size: 1.5rem
-
-@media (max-width: 700px)
-  .header
+  @media (max-width: 700px)
     display: block
-    padding: 1rem 1.5rem
-    background: url('../assets/images/smallBackground.png')
-    background: url('../assets/images/smallBackground.svg')
-    background-color: purple-300
-    background-size: cover
-    background-repeat: no-repeat
+    padding: 4rem 0 0.5rem
     text-align: center
 
+    h2
+      padding: 3rem 1rem 0.5rem
+      font-size: 1.5rem
+
     img
-      height: 10rem
-
-    #text
-      box-sizing: border-box
       padding: 0
-      width: 100%
 
-      h3
-        margin: 14px
-        margin-bottom: 0
+#leagues
+  display: grid
+  box-sizing: border-box
+  margin-top: 2rem
+  margin-bottom: 2rem
+  padding: 0 15%
+  grid-gap: 1.5rem
+  grid-template-columns: 1fr 1fr
+
+  @media (max-width: 1000px)
+    box-sizing: border-box
+    padding: 0 10%
+
+  @media (max-width: 700px)
+    box-sizing: border-box
+    padding: 0 5%
+    grid-template-columns: 1fr
+
+#about
+  text-align: center
+  grid-column: span 2
+
+  img
+    height: 8rem
+
+  @media (max-width: 700px)
+    grid-column: span 1
 
 .card
   box-shadow(1)
@@ -151,20 +169,6 @@ export default {
 
   button
     margin-top: 0.5rem
-
-#leagues
-  display: grid
-  margin-top: 1rem
-  width: 100%
-  grid-gap: 1.5rem
-  grid-template-columns: 1fr 1fr
-
-  @media (max-width: 700px)
-    grid-template-columns: 1fr
-
-#header
-  img
-    height: 250px
 
 .actions
   button
