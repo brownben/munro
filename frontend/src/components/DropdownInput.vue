@@ -45,11 +45,11 @@ export default {
 @import '../assets/styles/helpers.styl'
 
 .dropdown-input
-  margin-bottom: -35px
+  margin-bottom: -27px
 
   select
     box-sizing: border-box
-    padding: 0.2rem 0
+    padding: 0.2rem
     width: 100%
     outline: 0
     border: 1px solid main-color
@@ -66,7 +66,7 @@ export default {
 
   svg
     position: relative
-    top: -35px
+    top: -27px
     right: calc(-100% + 27px)
     transition: 0.3s ease-out
     fill: main-color
