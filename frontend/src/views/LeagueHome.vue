@@ -10,7 +10,7 @@
   <div>
     <div v-if="league">
       <h1>{{ league.name }}</h1>
-      <p v-if="league.moreInformation">{{ league.moreInformation }}</p>
+      <p v-if="league.description">{{ league.description }}</p>
       <p
         v-if="league.courses"
       >There are normally {{ league.courses.length }} courses - {{ league.courses.join(', ') }}</p>
@@ -46,7 +46,7 @@
           <button
             v-for="course of league.courses"
             :key="course"
-            @click="$router.push($route.path + '/' + course)"
+            @click="$router.push($route.path + '/results/' + course)"
           >{{ course }}</button>
         </div>
       </div>

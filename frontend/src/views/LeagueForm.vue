@@ -121,7 +121,7 @@ export default {
             this.numberOfCountingEvents = response.data.numberOfCountingEvents
             this.logo = response.data.logo
             if (response.data.courses) this.courses = response.data.courses.join(',')
-            this.info = response.data.moreInformation
+            this.info = response.data.description
           }
         })
         .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
@@ -142,7 +142,7 @@ export default {
           scoringMethod: this.scoringMethodFullToShorthand(this.scoringMethod),
           numberOfCountingEvents: this.numberOfCountingEvents,
           courses: this.courses,
-          moreInformation: this.info,
+          description: this.info,
         })
           .then(response => this.returnToLeaguePage(response))
           .catch(() => this.$messages.addMessage('Error: Problem Creating League - Please Try Again'))
@@ -161,7 +161,7 @@ export default {
           scoringMethod: this.scoringMethodFullToShorthand(this.scoringMethod),
           numberOfCountingEvents: this.numberOfCountingEvents,
           courses: this.courses,
-          moreInformation: this.info,
+          description: this.info,
         })
           .then(response => this.returnToLeaguePage(response))
           .catch(() => this.$messages.addMessage('Error: Problem Updating League - Please Try Again'))

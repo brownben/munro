@@ -25,7 +25,7 @@
         <input v-model.trim="name" type="text">
         <label>Date: (DD/MM/YYYY)</label>
         <input v-model="date" type="date">
-        <label>Club:</label>
+        <label>Club/ Organiser:</label>
         <input v-model.trim="organiser" type="text">
         <label>Website:</label>
         <input v-model.trim="website" type="text">

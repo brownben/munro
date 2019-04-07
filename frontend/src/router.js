@@ -86,7 +86,7 @@ const router = new Router({
       beforeEnter: requireAuthentication,
     },
     {
-      path: '/leagues/:name/:course',
+      path: '/leagues/:name/results/:course',
       name: 'League Course Results',
       component: ResultsTable,
     },

@@ -16,7 +16,7 @@
           height="150px"
         >
         <h1>{{ league.name }}</h1>
-        <p v-if="league.moreInformation">{{ league.moreInformation }}</p>
+        <p v-if="league.description">{{ league.description }}</p>
         <p v-if="league.website">
           More information can be found at
           <a :href="league.website">{{ league.website }}</a>
