@@ -179,6 +179,11 @@ th:hover > span
       margin-top: 0
       margin-left: 0.4rem
 
+      @media (max-width: 700px)
+        margin: 0
+        margin-top: 0.5rem
+        width: 100%
+
     button:first-child
       margin-left: 0
 

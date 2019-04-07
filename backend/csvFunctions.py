@@ -66,10 +66,12 @@ def timeToSeconds(time):
             hours = 0
             minutes = int(splitTime[0])
             seconds = int(splitTime[1])
-        else:
+        elif len(splitTime) == 3:
             hours = int(splitTime[0])
             minutes = int(splitTime[1])
             seconds = int(splitTime[2])
+        else:
+            return 0
 
         return (hours * 3600) + (minutes * 60) + seconds
     else:

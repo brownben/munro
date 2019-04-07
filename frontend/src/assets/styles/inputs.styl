@@ -1,4 +1,4 @@
-input[type='text'], input[type='number'], input[type='password'], input[type='date'], select
+input[type='text'], input[type='email'], input[type='number'], input[type='password'], input[type='date'], select
   display: block
   box-sizing: border-box
   padding: 0.2rem
@@ -46,7 +46,7 @@ input[type='number']::-webkit-outer-spin-button, input[type='number']::-webkit-i
 input[type='number']
   -moz-appearance: textfield
 
-input:invalid
+input[type='number']:invalid, input[type='text']:invalid
   outline: 0
   border: red 1px solid
   box-shadow: none

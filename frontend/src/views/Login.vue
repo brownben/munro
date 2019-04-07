@@ -9,7 +9,7 @@
     <h1>Admin Login</h1>
     <form @submit.prevent="sendLoginRequest()">
       <label>Email Address:</label>
-      <input v-model="username" type="text">
+      <input v-model="username" type="email">
       <label>Password:</label>
       <input v-model="password" type="password">
       <button>Login</button>

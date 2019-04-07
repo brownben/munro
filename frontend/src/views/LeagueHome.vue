@@ -199,8 +199,9 @@ button
     margin: 0.4rem 0 0
     font-size: 0
 
-    button:first-child
-      margin-left: 0
+    button
+      &:first-child
+        margin-left: 0
 
     a
       text-decoration: none
@@ -208,4 +209,17 @@ button
 
   .event-result-actions
     margin: 0.5rem 0 0
+
+button, .button
+  @media (max-width: 700px)
+    display: inline-block
+    box-sizing: border-box
+    margin: 0
+    margin-top: 0.5rem
+    width: 100%
+    text-align: center
+
+.event .event-actions
+  @media (max-width: 700px)
+    margin: 0
 </style>

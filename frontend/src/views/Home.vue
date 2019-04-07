@@ -122,18 +122,16 @@ export default {
 #leagues
   display: grid
   box-sizing: border-box
-  margin-top: 2rem
+  margin-top: 1.5rem
   margin-bottom: 2rem
   padding: 0 15%
   grid-gap: 1.5rem
   grid-template-columns: 1fr 1fr
 
   @media (max-width: 1000px)
-    box-sizing: border-box
     padding: 0 10%
 
   @media (max-width: 700px)
-    box-sizing: border-box
     padding: 0 5%
     grid-template-columns: 1fr
 
@@ -171,9 +169,25 @@ export default {
     margin-top: 0.5rem
 
 .actions
+  margin: 0 15%
+  margin-top: 1.5rem
+
+  @media (max-width: 1000px)
+    margin: 0 10%
+    margin-top: 1.5rem
+
+  @media (max-width: 700px)
+    margin: 0 5%
+    margin-top: 1.5rem
+
   button
     margin-left: 0.4rem
 
     &:first-child
       margin-left: 0
+
+    @media (max-width: 700px)
+      margin: 0
+      margin-top: 0.5rem
+      width: 100%
 </style>
