@@ -5,15 +5,16 @@
 -->
 <template>
   <div id="app">
-    <app-menu />
+    <app-menu v-show="!$route.path.includes('embed')" />
 
     <div id="content">
       <messages />
       <transition name="fade" mode="out-in">
-        <router-view id="router-view" />
+        <router-view id="router-view" :class="{embed: $route.path.includes('embed')}" />
       </transition>
     </div>
-    <cookie-dialog />
+    <cookie-dialog v-show="!$route.path.includes('embed')" />
+    <p v-show="$route.path.includes('embed')" class="credits">League Results by Munro</p>
   </div>
 </template>
 
@@ -44,6 +45,9 @@ html, body
 
 #router-view
   padding: 1rem 15%
+
+  &.embed
+    padding: 1rem !important
 
   @media (max-width: 1000px)
     padding: 1rem 10%
@@ -79,5 +83,9 @@ b
 
 .fade-enter, .fade-leave-to
   opacity: 0
+
+.credits
+  color: main-color
+  text-align: center
 </style>
 

@@ -17,6 +17,7 @@ import Home from '@/views/Home'
 import LeagueForm from '@/views/LeagueForm'
 import League from '@/views/LeagueHome'
 import Leagues from '@/views/Leagues'
+import LeagueEventsEmbed from '@/views/LeagueEventsEmbed'
 import Login from '@/views/Login'
 import NotFound from '@/views/NotFound'
 import ResultsTable from '@/views/ResultsTable'
@@ -74,6 +75,11 @@ const router = new Router({
       component: League,
     },
     {
+      path: '/embed/leagues/:name/events',
+      name: 'Embed League Events',
+      component: LeagueEventsEmbed,
+    },
+    {
       path: '/leagues/:name/edit',
       name: 'Edit League',
       component: LeagueForm,
@@ -88,6 +94,11 @@ const router = new Router({
     {
       path: '/leagues/:name/results/:course',
       name: 'League Course Results',
+      component: ResultsTable,
+    },
+    {
+      path: '/embed/leagues/:name/results/:course',
+      name: 'Embed League Course Results',
       component: ResultsTable,
     },
     {
