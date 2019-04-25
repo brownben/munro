@@ -8,11 +8,11 @@ def splitData(rawData):
     for row in rows:
         colon = row.strip().split(';')
         comma = row.strip().split(',')
-        if len(comma) > (colon):
+        if len(comma) > len(colon):
             splitData.append(comma)
-            comma = row.strip().split(',')
         else:
             splitData.append(colon)
+
     return splitData
 
 
@@ -24,34 +24,34 @@ def findHeaders(data):
         headerRow[-1] = headerRow[-1].strip()
         for cell in range(len(headerRow)):
             if headerRow[cell].upper() == 'FIRST NAME' or headerRow[cell].upper() == 'FIRSTNAME':
-                if not locations['firstName']:
+                if 'firstName' not in locations:
                     locations['firstName'] = cell
             elif headerRow[cell].upper() == 'SURNAME':
-                if not locations['surname']:
+                if 'surname' not in locations:
                     locations['surname'] = cell
             elif headerRow[cell].upper() == 'NAME':
-                if not locations['name']:
+                if 'name' not in locations:
                     locations['name'] = cell
             elif headerRow[cell].upper() == 'TEXT1' or headerRow[cell].upper() == 'CATEGORY' or headerRow[cell].upper() == 'AGECLASS' or headerRow[cell].upper() == 'AGE CLASS':
-                if not locations['ageClass']:
+                if 'ageClass' not in locations:
                     locations['ageClass'] = cell
             elif headerRow[cell].upper() == 'CITY' or headerRow[cell].upper() == 'CLUB':
-                if not locations['club']:
+                if 'club' not in locations:
                     locations['club'] = cell
             elif headerRow[cell].upper() == 'COURSE' or headerRow[cell].upper() == 'COURSECLASS':
-                if not locations['course']:
+                if 'course' not in locations:
                     locations['course'] = cell
             elif headerRow[cell].upper() == 'TIME' or headerRow[cell].upper() == 'RACETIME':
-                if not locations['time']:
+                if 'time' not in locations:
                     locations['time'] = cell
             elif headerRow[cell].upper() == 'PL' or headerRow[cell].upper() == 'POSITION':
-                if not locations['position']:
+                if 'position' not in locations:
                     locations['position'] = cell
             elif headerRow[cell].upper() == 'NC' or headerRow[cell].upper() == 'NONCOMPETITIVE':
-                if not locations['nonCompetitive']:
+                if 'nonCompetitive' not in locations:
                     locations['nonCompetitive'] = cell
             elif headerRow[cell].upper() == 'STATUS' or headerRow[cell].upper() == 'CLASSIFIER':
-                if not locations['status']:
+                if 'status' not in locations:
                     locations['status'] = cell
         if checkAllHeadersPresent(list(locations.keys())):
             return locations

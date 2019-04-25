@@ -18,12 +18,17 @@ Compress(app)
 csp = {
     'default-src': '\'self\''
 }
-talisman = Talisman(app, content_security_policy={
-    'default-src': "'self' www.googleapis.com",
-    'img-src': '*',
-    'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-    'font-src': 'fonts.googleapis.com fonts.gstatic.com'
-})
+talisman = Talisman(
+    app,
+    frame_options=ALLOW_FROM,
+    frame_options_allow_from='*',
+    content_security_policy={
+        'default-src': "'self' www.googleapis.com",
+        'img-src': '*',
+        'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
+        'font-src': 'fonts.googleapis.com fonts.gstatic.com'
+    }
+)
 app.secret_key = os.urandom(25)
 
 # Bind all logic with the routes
