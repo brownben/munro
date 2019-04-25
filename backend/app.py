@@ -20,7 +20,7 @@ csp = {
 }
 talisman = Talisman(
     app,
-    frame_options=ALLOW_FROM,
+    frame_options='ALLOW_FROM',
     frame_options_allow_from='*',
     content_security_policy={
         'default-src': "'self' www.googleapis.com",
