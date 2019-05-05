@@ -89,6 +89,16 @@ def setResultsUploaded(to, id):
     connection.commit()
     connection.close()
 
+def setResultsUploadedAndURLs(to, id, results, winsplits, routegadget):
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = connection.cursor()
+    cursor.execute('''
+        UPDATE events
+        SET resultUploaded=%s, results=%s, winsplits=%s, routegadget=%s
+        WHERE id=%s''', (to, id, results, winsplits, routegadget))
+    connection.commit()
+    connection.close()
+
 
 def deleteEvent(id):
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')

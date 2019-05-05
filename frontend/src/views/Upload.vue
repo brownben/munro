@@ -24,6 +24,12 @@
     <!-- If Event already have results, confirm they want to overwrite -->
     <Checkbox v-if="event.resultUploaded" v-model="overwrite" label="Overwrite Existing Results:" />
     <!-- Only show upload once all fields have been filled -->
+    <label>Results (URL):</label>
+    <input v-model.trim="results" type="text">
+    <label>Routegadget (URL):</label>
+    <input v-model.trim="routegadget" type="text">
+    <label>Winsplits (URL):</label>
+    <input v-model.trim="winsplits" type="text">
     <button v-if="eventId && uploadKey && file" id="uploadButton" @click="uploadFile">Upload File</button>
   </div>
 </template>
@@ -45,6 +51,9 @@ export default {
       fileName: 'Select a File',
       file: '',
       overwrite: false,
+      results: '',
+      routegadget: '',
+      winsplits: '',
     }
   },
 
@@ -99,6 +108,9 @@ export default {
         uploadKey: this.uploadKey,
         file: this.file,
         overwrite: this.overwrite,
+        results: this.results,
+        winsplits: this.winsplits,
+        routegadget: this.routegadget,
       })
         .then(() => {
           this.$messages.addMessage('Results Uploaded Successfully')
@@ -125,6 +137,7 @@ input[type='file']
 
 .checkbox-input
   margin: 0.5rem 0
+  margin-bottom: 2rem!important
 
 .file-input
   p, label
