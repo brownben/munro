@@ -19,24 +19,41 @@
       </div>
     </div>
     <div id="leagues">
-      <div v-for="league of leagues" :key="league.name" class="league">
+      <div class="league">
         <img
-          v-if="league.logo"
-          :src="league.logo"
-          :alt="'The Logo of ' + league.name"
+          src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+          alt="The Logo of Sprintelope"
           height="150px"
         >
-        <h1>{{ league.name }}</h1>
-        <p v-if="league.description">{{ league.description }}</p>
-        <p v-if="league.website">
+        <h1>Sprintelope 2019</h1>
+        <p>Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians</p>
+        <p>
           More information can be found at
           <a
-            :href="league.website"
+            href="https://en-gb.facebook.com/sprintelope/"
             target="_blank"
             rel="noopener noreferrer"
-          >{{ league.website }}</a>
+          >https://en-gb.facebook.com/sprintelope/</a>
         </p>
-        <button @click="$router.push('/leagues/'+league.name)">View League</button>
+        <router-link class="button" to="/leagues/Sprintelope 2019">View League</router-link>
+      </div>
+      <div class="league">
+        <img
+          src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+          alt="The Logo of Sprintelope"
+          height="150px"
+        >
+        <h1>Sprintelope 2018</h1>
+        <p>Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians</p>
+        <p>
+          More information can be found at
+          <a
+            href="https://en-gb.facebook.com/sprintelope/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >https://en-gb.facebook.com/sprintelope/</a>
+        </p>
+        <router-link class="button" to="/leagues/Sprintelope 2018">View League</router-link>
       </div>
       <div id="about" class="card">
         <img src="/static/MunroLogo.png" alt="Munro Logo">

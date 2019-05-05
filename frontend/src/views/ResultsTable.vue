@@ -112,6 +112,19 @@
             </template>
           </tbody>
         </table>
+        <div v-if="otherCourses" class="card">
+          <h2>Results for Other Courses</h2>
+          <div>
+            <router-link
+              v-for="course in otherCourses"
+              :key="course"
+              :to="'/leagues/'+$route.params.name+'/results/'+course"
+              class="button"
+            >
+              {{ course }}
+            </router-link>
+          </div>
+        </div>
       </div>
     </transition>
     <!-- If no results show, message -->
@@ -137,8 +150,8 @@ export default {
     found: true,
     openedRows: [],
     rawResults: [],
-    results: [],
     events: [],
+    otherCourses: [],
     sortedBy: 'position',
     ascendingSort: false,
     filterPreferences: {
@@ -199,8 +212,10 @@ export default {
   // If route changes without reload (if only course parameter changes)
   watch: {
     $route: async function () {
+      this.rawResults = []
       await this.getResults()
-      this.getEventList()
+      await this.getEventList()
+      this.getOtherCourses()
     },
   },
 
@@ -212,7 +227,8 @@ export default {
 
     // Fetch Data
     await this.getResults()
-    this.getEventList()
+    await this.getEventList()
+    this.getOtherCourses()
   },
 
   destroyed () {
@@ -233,6 +249,16 @@ export default {
           else this.found = false
         })
         .catch(() => { this.found = false })
+    },
+
+    getOtherCourses: function () {
+      return axios
+        .get('/api/leagues/' + this.$route.params.name)
+        .then(response => {
+          if (response.data.courses) this.otherCourses = response.data.courses.filter(course => course !== this.$route.params.course)
+          else this.otherCourses = false
+        })
+        .catch(() => { this.otherCourses = false })
     },
 
     getEventList: function () {
@@ -300,6 +326,7 @@ export default {
 
 <style lang="stylus" scoped>
 @import '../assets/styles/helpers.styl'
+@import '../assets/styles/inputs.styl'
 @import '../assets/styles/table.styl'
 
 #router-view
@@ -345,6 +372,18 @@ th:hover > span
 @media (max-width: 500px)
   .club
     display: none
+
+.card
+  box-shadow(1)
+  padding:1rem
+  margin-top:1.5rem
+
+  a
+    margin-left:0.4rem
+    margin-top: 0.5rem
+
+    &:first-child
+      margin-left: 0
 
 .strikethrough
   text-decoration: line-through

@@ -222,4 +222,11 @@ button, .button
 .event .event-actions
   @media (max-width: 700px)
     margin: 0
+
+.event-actions.event-result-actions .button
+  margin-left:0.4rem
+  margin-top:0
+
+  &:first-child
+    margin-left:0
 </style>
