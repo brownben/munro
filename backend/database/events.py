@@ -95,7 +95,7 @@ def setResultsUploadedAndURLs(to, id, results, winsplits, routegadget):
     cursor.execute('''
         UPDATE events
         SET resultUploaded=%s, results=%s, winsplits=%s, routegadget=%s
-        WHERE id=%s''', (to, id, results, winsplits, routegadget))
+        WHERE id=%s''', (to, results, winsplits, routegadget, id))
     connection.commit()
     connection.close()
 

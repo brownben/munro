@@ -20,9 +20,27 @@
           >{{ event.website }}</a>
         </p>
         <div v-if="event.resultUploaded" class="event-actions event-result-actions">
-          <a v-if="event.results" :href="event.results" class="button">Results</a>
-          <a v-if="event.winsplits" :href="event.winsplits" class="button">WinSplits</a>
-          <a v-if="event.routegadget" :href="event.routegadget" class="button">Routegadget</a>
+          <a
+            v-if="event.results"
+            :href="event.results"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >Results</a>
+          <a
+            v-if="event.winsplits"
+            :href="event.winsplits"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >WinSplits</a>
+          <a
+            v-if="event.routegadget"
+            :href="event.routegadget"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >Routegadget</a>
           <p
             v-if="!event.results && !event.winsplits && !event.routegadget"
           >No Result Links Uploaded - Please Check The Event's Website To See If Results Have Been Uploaded</p>
