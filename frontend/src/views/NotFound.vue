@@ -9,7 +9,7 @@
     <h1>Sorry We Can't Find What You Are Looking For</h1>
     <p>Please check the URL and Try Again</p>
     <button @click="$router.go(-1)">Go Back</button>
-    <button @click="$router.push('/')">Return Home</button>
+    <router-link to="/" class="button">Return Home</router-link>
   </div>
 </template>
 

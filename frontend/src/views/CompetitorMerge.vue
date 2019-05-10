@@ -64,7 +64,7 @@ export default {
     },
   },
 
-  created: async function () {
+  mounted: async function () {
     await this.getCompetitors()
     await this.getLeagues()
   },

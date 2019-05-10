@@ -20,7 +20,7 @@
         <label>League:</label>
         <dropdown-input v-model="league" :list="leagues.map(league => league.name)" />
         <label>Course:</label>
-        <dropdown-input v-model="league" :list="coursesInLeague" />
+        <dropdown-input v-model="course" :list="coursesInLeague" />
         <button v-if="create">Create Competitor</button>
         <button v-if="!create">Update Competitor</button>
       </form>

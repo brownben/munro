@@ -38,6 +38,18 @@ export default {
       default: false,
     },
   },
+
+  data: function () {
+    return {
+      watchedList: [],
+    }
+  },
+
+  watch: {
+    list: function (value) {
+      this.watchedList = value
+    },
+  },
 }
 </script>
 

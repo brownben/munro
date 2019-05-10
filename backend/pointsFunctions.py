@@ -4,6 +4,10 @@ def assignPoints(data, leagueScoringMethod):
         return positionBasedPoints(data)
     elif leagueScoringMethod == 'position50':
         return positionBasedPointsFifty(data)
+    elif leagueScoringMethod == 'position99':
+        return positionBasedPoints99(data)
+    elif leagueScoringMethod == 'position99average':
+        return positionBasedPoints99WithDraw(data)
     else:
         return False
 
@@ -43,7 +47,54 @@ def positionBasedPointsFifty(data):
 
     return dataWithPoints
 
+def positionBasedPoints99(data):
+    # Assign points 50 for 1st, 49 for 2nd etc - 0 for incomplete course
+    dataWithPoints = []
 
+    for result in data:
+        resultWithPoints = result
+
+        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
+            resultWithPoints['points'] = 100 - result['position']
+
+        else:
+            resultWithPoints['points'] = 0
+
+        dataWithPoints.append(resultWithPoints)
+
+    return dataWithPoints
+
+def positionBasedPoints99WithDraw(data):
+    # Assign points 99 for 1st, 98 for 2nd etc - 0 for incomplete course - Average of Poitns for Draw
+    dataWithPoints = []
+
+    for result in data:
+        resultWithPoints = result
+
+        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
+            positionOccurances = countOccuracesOfPosition (data, result['position'])
+            if positionOccurances == 1:
+                resultWithPoints['points'] = 100 - result['position']
+            else:
+                points = 0
+                for points in range(positionOccurances):
+                    points += 100 - result['position'] - points
+                resultWithPoints['points'] = points / positionOccurances
+        else:
+            resultWithPoints['points'] = 0
+
+        dataWithPoints.append(resultWithPoints)
+
+    return dataWithPoints
+
+def countOccuracesOfPosition (data, position):
+    occurances = 0
+
+    for row in data:
+        if(row['position'] == position):
+            occurances += 1
+
+    return occurances
 def biggestPoints(points, number):
     # Finds the x greatest values in the list and returns their index
     # If less than number just return the array
@@ -104,13 +155,16 @@ def calculateTotal(pointsList, points):
 
 def assignPosition(results):
     # Assign 1st, 2nd, 3rd, etc based off total points
+    lastPosition = 0
     position = 0
     lastPoints = -1
     for result in results:
         if result['totalPoints'] == lastPoints:
-            result['position'] = position
+            result['position'] = lastPosition
+            position += 1
         else:
             position += 1
+            lastPosition = position
             result['position'] = position
 
         lastPoints = result['totalPoints']

@@ -99,12 +99,16 @@ export default {
     scoringMethodShorthandToFull: value => {
       if (value === 'position') return 'Position Based (100 Max)'
       else if (value === 'position50') return 'Position Based (50 Max)'
+      else if (value === 'position99') return 'Position Based (99 Max)'
+      else if (value === 'position99average') return 'Position Based (99 Max, Reduced in a Draw)'
       else return ''
     },
 
     scoringMethodFullToShorthand: value => {
       if (value === 'Position Based (100 Max)') return 'position'
       else if (value === 'Position Based (50 Max)') return 'position50'
+      else if (value === 'Position Based (99 Max)') return 'position99'
+      else if (value === 'Position Based (99 Max, Reduced in a Draw)') return 'position99average'
       return ''
     },
 

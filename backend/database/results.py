@@ -80,7 +80,7 @@ def courseResultToJSON(result, league, eventsList):
         for event in range(len(result[3].split(';'))):
             eventsByCompetitor.append({
                 'event': eventList[event],
-                'points': int(pointsList[event])
+                'points': float(pointsList[event])
             })
         # Get points for each event in order
         points = []

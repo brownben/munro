@@ -10,9 +10,9 @@
     <div class="actions">
       <h2>Actions</h2>
       <div>
-        <button @click="$router.push('/create-competitor')">Add Competitor</button>
-        <button @click="$router.push('/competitors/merge')">Merge Competitors</button>
-        <button @click="$router.push('/results/transfer')">Transfer Result</button>
+        <router-link to="/create-competitor" class="button">Add Competitor</router-link>
+        <router-link to="/competitors/merge" class="button">Merge Competitors</router-link>
+        <router-link to="/results/transfer" class="button">Transfer Result</router-link>
       </div>
     </div>
     <table v-if="competitors">
@@ -175,7 +175,7 @@ th:hover > span
     margin: 0.25rem 0 0
     font-size: 0
 
-    button
+    button, .button
       margin-top: 0
       margin-left: 0.4rem
 
@@ -184,8 +184,8 @@ th:hover > span
         margin-top: 0.5rem
         width: 100%
 
-    button:first-child
-      margin-left: 0
+      &:first-child
+        margin-left: 0
 
     a
       text-decoration: none

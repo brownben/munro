@@ -23,6 +23,7 @@ import NotFound from '@/views/NotFound'
 import ResultsTable from '@/views/ResultsTable'
 import ResultTransfer from '@/views/ResultTransfer'
 import Upload from '@/views/Upload'
+import Developers from '@/views/Developers'
 
 // Bind to Vue Instance
 Vue.use(Router)
@@ -128,6 +129,11 @@ const router = new Router({
       name: 'Transfer Result',
       component: ResultTransfer,
       beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/developers',
+      name: 'Developers',
+      component: Developers,
     },
     {
       path: '/login',

@@ -13,9 +13,9 @@
     <div v-if="auth.user" class="card actions">
       <h2>Admin Actions</h2>
       <div>
-        <button @click="$router.push('/create-league')">Create New League</button>
-        <button @click="$router.push('/upload')">Upload Results</button>
-        <button @click="$router.push('/competitors')">Manage Competitors</button>
+        <router-link to="/create-league" class="button">Create New League</router-link>
+        <router-link to="/upload" class="button">Upload Results</router-link>
+        <router-link to="/competitors" class="button">Manage Competitors</router-link>
       </div>
     </div>
     <div id="leagues">
@@ -64,6 +64,11 @@
           <p>For any help or enquires please email munro.leagues(a)gmail.com</p>
         </div>
       </div>
+      <div class="card middle">
+        <h1>Developers</h1>
+        <p>Information for developers about accessing the API and embedding the site in IFrames</p>
+        <router-link to="/developers" class="button">View Info</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -96,6 +101,9 @@ export default {
 <style lang="stylus" scoped>
 @import '../assets/styles/helpers.styl'
 @import '../assets/styles/inputs.styl'
+
+.middle
+  text-align: center
 
 #router-view
   padding: 0
@@ -197,7 +205,7 @@ export default {
     margin: 0 5%
     margin-top: 1.5rem
 
-  button
+  button, .button
     margin-left: 0.4rem
 
     &:first-child

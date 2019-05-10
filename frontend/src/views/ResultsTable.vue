@@ -120,9 +120,7 @@
               :key="course"
               :to="'/leagues/'+$route.params.name+'/results/'+course"
               class="button"
-            >
-              {{ course }}
-            </router-link>
+            >{{ course }}</router-link>
           </div>
         </div>
       </div>
@@ -375,12 +373,12 @@ th:hover > span
 
 .card
   box-shadow(1)
-  padding:1rem
-  margin-top:1.5rem
+  margin-top: 1.5rem
+  padding: 1rem
 
   a
-    margin-left:0.4rem
     margin-top: 0.5rem
+    margin-left: 0.4rem
 
     &:first-child
       margin-left: 0

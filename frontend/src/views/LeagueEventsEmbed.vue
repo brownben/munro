@@ -84,6 +84,8 @@ export default {
     scoringMethodShorthandToFull: function (method) {
       if (method === 'position') return 'position based method (100 max).'
       else if (method === 'position50') return 'position based method (50 max).'
+      else if (method === 'position99') return 'position based method (99 max).'
+      else if (method === 'position99average') return 'position based method (99 max, Reduced Points in a Draw).'
       else return ''
     },
 
@@ -153,4 +155,16 @@ button, .button
 .event .event-actions
   @media (max-width: 700px)
     margin: 0
+
+.event-actions.event-result-actions .button
+  margin-top: 0
+  margin-left: 0.4rem
+
+  &:first-child
+    margin-left: 0
+
+  @media (max-width: 700px)
+    margin-top: 0.5rem
+    margin-left: 0
 </style>
+

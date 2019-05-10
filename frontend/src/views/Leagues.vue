@@ -19,9 +19,13 @@
         <p v-if="league.description">{{ league.description }}</p>
         <p v-if="league.website">
           More information can be found at
-          <a :href="league.website">{{ league.website }}</a>
+          <a
+            :href="league.website"
+            target="_blank"
+            rel="noopener noreferrer"
+          >{{ league.website }}</a>
         </p>
-        <button @click="$router.push('/leagues/'+league.name)">View League</button>
+        <router-link :to="'/leagues/'+league.name" class="button">View League</router-link>
       </div>
     </div>
   </div>
@@ -44,7 +48,7 @@ export default {
   methods: {
     getLeagues: function () {
       return axios.get('/api/leagues')
-        .then(response => { this.leagues = response.data })
+        .then(response => { this.leagues = response.data.reverse() })
         .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
     },
   },

@@ -34,27 +34,28 @@
 
       <div v-if="auth.user" class="results">
         <h2>Admin Actions</h2>
-        <div class=".results-actions">
-          <button @click="$router.push($route.path+'/create-event')">Add Event</button>
-          <button @click="$router.push($route.path+'/edit')">Edit League</button>
+        <div class="results-actions">
+          <router-link :to="$route.path+'/create-event'" class="button">Add Event</router-link>
+          <router-link :to="$route.path+'/edit'" class="button">Edit League</router-link>
           <button @click="deleteLeague()">Delete League</button>
         </div>
       </div>
       <div v-if="events" class="results">
         <h2>League Results</h2>
-        <div class=".results-actions">
-          <button
+        <div class="results-actions">
+          <router-link
             v-for="course of league.courses"
             :key="course"
-            @click="$router.push($route.path + '/results/' + course)"
-          >{{ course }}</button>
+            :to="$route.path + '/results/' + course"
+            class="button"
+          >{{ course }}</router-link>
         </div>
       </div>
       <div v-for="event of events" :key="event.name" class="event">
         <h2>{{ event.name }}</h2>
         <div v-if="auth.user" class="event-actions">
-          <button @click="$router.push('/events/'+event.id+'/edit')">Edit Event</button>
-          <button @click="$router.push('/upload/'+event.id)">Upload Results</button>
+          <router-link :to="'/events/'+event.id+'/edit'" class="button">Edit Event</router-link>
+          <router-link :to="'/upload/'+event.id" class="button">Upload Results</router-link>
           <button @click="deleteEvent(event)">Delete Event</button>
         </div>
         <p v-if="auth.user">
@@ -65,9 +66,12 @@
           <b>Event Upload Key:</b>
           {{ event.uploadKey }}
         </p>
-        <p
-          v-if="event.date"
-        >On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}</p>
+        <p v-if="event.date">
+          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }}
+          <template
+            v-if="event.organiser"
+          >organised by {{ event.organiser }}</template>
+        </p>
         <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
         <p v-if="event.website">
           More Information can be found at
@@ -78,9 +82,27 @@
           >{{ event.website }}</a>
         </p>
         <div v-if="event.resultUploaded" class="event-actions event-result-actions">
-          <a v-if="event.results" :href="event.results" class="button">Results</a>
-          <a v-if="event.winsplits" :href="event.winsplits" class="button">WinSplits</a>
-          <a v-if="event.routegadget" :href="event.routegadget" class="button">Routegadget</a>
+          <a
+            v-if="event.results"
+            :href="event.results"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >Results</a>
+          <a
+            v-if="event.winsplits"
+            :href="event.winsplits"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >WinSplits</a>
+          <a
+            v-if="event.routegadget"
+            :href="event.routegadget"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+          >Routegadget</a>
           <p
             v-if="!event.results && !event.winsplits && !event.routegadget"
           >No Result Links Uploaded - Please Check The Event's Website To See If Results Have Been Uploaded</p>
@@ -122,9 +144,11 @@ export default {
   },
 
   methods: {
-    scoringMethodShorthandToFull: function (method) {
-      if (method === 'position') return 'position based method (100 max).'
-      else if (method === 'position50') return 'position based method (50 max).'
+    scoringMethodShorthandToFull: value => {
+      if (value === 'position') return 'Position Based (100 Max)'
+      else if (value === 'position50') return 'Position Based (50 Max)'
+      else if (value === 'position99') return 'Position Based (99 Max)'
+      else if (value === 'position99average') return 'Position Based (99 Max, Reduced in a Draw)'
       else return ''
     },
 
@@ -196,10 +220,11 @@ button
     padding: 0.2rem 0
 
   .event-actions, .results-actions
-    margin: 0.4rem 0 0
     font-size: 0
 
-    button
+    button, .button
+      margin-left: 0.4rem
+
       &:first-child
         margin-left: 0
 
@@ -209,6 +234,10 @@ button
 
   .event-result-actions
     margin: 0.5rem 0 0
+
+  .results-actions
+    a
+      margin-top: 0.4rem
 
 button, .button
   @media (max-width: 700px)
