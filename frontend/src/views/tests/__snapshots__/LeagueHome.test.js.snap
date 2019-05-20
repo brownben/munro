@@ -31,7 +31,7 @@ exports[`Renders Correctly 1`] = `
       </h2>
        
       <div
-        class=".results-actions"
+        class="results-actions"
       />
     </div>
      
@@ -81,7 +81,9 @@ exports[`Renders Correctly 1`] = `
       <!---->
        
       <p>
-        On 18/04/2018 organised by ELO
+        
+        On 18/04/2018
+        organised by ELO
       </p>
        
       <!---->
@@ -104,7 +106,9 @@ exports[`Renders Correctly 1`] = `
       <!---->
        
       <p>
-        On 25/04/2018 organised by INT
+        
+        On 25/04/2018
+        organised by INT
       </p>
        
       <!---->

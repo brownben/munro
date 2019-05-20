@@ -12,6 +12,7 @@ exports[`Renders Correctly 1`] = `
     <messages-stub />
      
     <router-view-stub
+      class=""
       id="router-view"
       mode="out-in"
       name="fade"
@@ -19,5 +20,7 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <cookie-dialog-stub />
+   
+  <!---->
 </div>
 `;

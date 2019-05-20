@@ -14,8 +14,11 @@ exports[`Renders Correctly 1`] = `
     Go Back
   </button>
    
-  <button>
+  <router-link-stub
+    class="button"
+    to="/"
+  >
     Return Home
-  </button>
+  </router-link-stub>
 </div>
 `;

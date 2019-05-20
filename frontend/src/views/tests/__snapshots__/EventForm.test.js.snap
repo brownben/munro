@@ -27,7 +27,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
       />
        
       <label>
-        Club:
+        Club/ Organiser:
       </label>
        
       <input
@@ -71,6 +71,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
       </label>
        
       <dropdown-input-stub
+        label=""
         list=""
         value=""
       />
@@ -122,7 +123,7 @@ exports[`Update Form - Renders Correctly 1`] = `
       />
        
       <label>
-        Club:
+        Club/ Organiser:
       </label>
        
       <input
@@ -166,6 +167,7 @@ exports[`Update Form - Renders Correctly 1`] = `
       </label>
        
       <dropdown-input-stub
+        label=""
         list=""
         value=""
       />

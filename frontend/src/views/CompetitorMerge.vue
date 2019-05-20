@@ -79,7 +79,7 @@ export default {
     getLeagues: function () {
       return axios.get('/api/leagues')
         .then(response => { this.leagues = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching Events'))
+        .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
     },
 
     validateForm: function () {

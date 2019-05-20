@@ -268,7 +268,7 @@ export default {
 
     sort: function (array, property, ascending = true, byPoints = false) {
       // Selection Sort using Single List for Sorting Results
-      let sortFunction = () => { }
+      let sortFunction
       if (byPoints) {
         sortFunction = (a, b) => {
           if (a.points[property] === b.points[property]) return 0

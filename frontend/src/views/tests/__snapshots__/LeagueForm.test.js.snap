@@ -55,6 +55,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
       </label>
        
       <dropdown-input-stub
+        label=""
         list="Position Based (100 Max),Position Based (50 Max)"
         value=""
       />
@@ -145,6 +146,7 @@ exports[`Update Form - Renders Correctly 1`] = `
       </label>
        
       <dropdown-input-stub
+        label=""
         list="Position Based (100 Max),Position Based (50 Max)"
         value=""
       />

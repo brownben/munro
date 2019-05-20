@@ -10,6 +10,7 @@ test('Is a Vue Instance', () => {
   const wrapper = mount(Menu, {
     mocks: {
       $auth: { user: false },
+      $route: { path: '/' },
     },
     stubs: ['router-link'],
   })
@@ -20,10 +21,20 @@ test('Renders Correctly - Desktop', () => {
   const wrapper = mount(Menu, {
     mocks: {
       $auth: { user: false },
+      $route: { path: '/' },
     },
     stubs: ['router-link'],
   })
   expect(wrapper.element).toMatchSnapshot()
+
+  const wrapperTwo = mount(Menu, {
+    mocks: {
+      $auth: { user: false },
+      $route: { path: '/login' },
+    },
+    stubs: ['router-link'],
+  })
+  expect(wrapperTwo.element).toMatchSnapshot()
 })
 
 test('Renders Correctly - Mobile', () => {
@@ -33,6 +44,7 @@ test('Renders Correctly - Mobile', () => {
   const wrapper = mount(Menu, {
     mocks: {
       $auth: { user: false },
+      $route: { path: '/login' },
     },
     stubs: ['router-link'],
   })
@@ -43,6 +55,7 @@ test('Displays Correct View off Authentication State', () => {
   const loggedInWrapper = mount(Menu, {
     mocks: {
       $auth: { user: false },
+      $route: { path: '/login' },
     },
     stubs: ['router-link'],
   })
@@ -50,6 +63,7 @@ test('Displays Correct View off Authentication State', () => {
   const loggedOutWrapper = mount(Menu, {
     mocks: {
       $auth: { user: true },
+      $route: { path: '/login' },
     },
     stubs: ['router-link'],
   })
@@ -108,6 +122,7 @@ test('Check Resize Event is Added/ Removed', () => {
   const wrapper = mount(Menu, {
     mocks: {
       $auth: { user: false },
+      $route: { path: '/login' },
     },
     stubs: ['router-link'],
   })

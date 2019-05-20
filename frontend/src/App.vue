@@ -14,7 +14,7 @@
       </transition>
     </div>
     <cookie-dialog v-show="!$route.path.includes('embed')" />
-    <p v-show="$route.path.includes('embed')" class="credits">League Results by Munro</p>
+    <p v-if="$route.path.includes('embed')" class="credits">League Results by Munro</p>
   </div>
 </template>
 
@@ -25,10 +25,17 @@ import CookieDialog from '@/components/CookieDialog'
 
 export default {
   name: 'App',
+
   components: {
     'AppMenu': Menu,
     'Messages': Messages,
     'CookieDialog': CookieDialog,
+  },
+
+  data: function () {
+    return {
+      auth: this.$auth,
+    }
   },
 }
 </script>
@@ -85,7 +92,15 @@ b
   opacity: 0
 
 .credits
+  padding: 0.5rem 0
   color: main-color
   text-align: center
+
+  a
+    padding: 0 0.4rem
+    color: main-color
+
+    &:after
+      color: main-color
 </style>
 

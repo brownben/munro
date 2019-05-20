@@ -12,7 +12,7 @@ exports[`Renders Correctly 1`] = `
     </label>
      
     <input
-      type="text"
+      type="email"
     />
      
     <label>

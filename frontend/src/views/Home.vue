@@ -7,7 +7,7 @@
 <template>
   <div>
     <div id="header">
-      <img src="/static/UnDrawRunningWhite.svg">
+      <img src="/static/UnDrawRunningWhite.svg" alt="Runner Crossing Finsh Line">
       <h2>Fast and Easy Results for Orienteering Leagues</h2>
     </div>
     <div v-if="auth.user" class="card actions">
@@ -70,6 +70,11 @@
         <router-link to="/developers" class="button">View Info</router-link>
       </div>
     </div>
+    <p class="credits">
+      © Ben Brown 2019
+      <router-link v-if="!auth.user" to="/login">Admin Login</router-link>
+      <router-link v-else to="/logout">Logout</router-link>
+    </p>
   </div>
 </template>
 
@@ -148,7 +153,7 @@ export default {
   display: grid
   box-sizing: border-box
   margin-top: 1.5rem
-  margin-bottom: 2rem
+  margin-bottom: 1rem
   padding: 0 15%
   grid-gap: 1.5rem
   grid-template-columns: 1fr 1fr
@@ -212,7 +217,9 @@ export default {
       margin-left: 0
 
     @media (max-width: 700px)
+      box-sizing: border-box
       margin: 0
       margin-top: 0.5rem
       width: 100%
+      text-align: center
 </style>

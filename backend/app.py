@@ -2,7 +2,7 @@ import routes
 import os
 
 import requests
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request, send_from_directory
 from flask_compress import Compress
 from flask_cors import CORS
 from flask_restful import Api
@@ -15,9 +15,7 @@ app = Flask(__name__,
 api = Api(app)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 Compress(app)
-csp = {
-    'default-src': '\'self\''
-}
+
 talisman = Talisman(
     app,
     frame_options='ALLOW_FROM',
@@ -64,8 +62,14 @@ api.add_resource(routes.Upload, '/api/upload')
 def catch_all(path):
     # If in debug access files from VueJS Development Server
     # if app.debug:
-      # return requests.get('http://localhost:8080/{}'.format(path)).text
+    #    return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
+
+
+@app.route('/robots.txt')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
+
 
 if __name__ == "__main__":
     app.run()

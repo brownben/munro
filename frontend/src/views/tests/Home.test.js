@@ -19,6 +19,7 @@ test('Is a Vue Instance', () => {
     mocks: {
       $auth: { user: false },
     },
+    stubs: ['router-link'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -28,6 +29,7 @@ test('Renders Correctly - No Leagues', () => {
     mocks: {
       $auth: { user: false },
     },
+    stubs: ['router-link'],
   })
   expect(wrapper.element).toMatchSnapshot()
 })
@@ -38,12 +40,10 @@ test('Renders Correctly - One League', async () => {
     mocks: {
       $auth: { user: false },
     },
+    stubs: ['router-link'],
   })
   await wrapper.vm.getLeagues()
-  expect(wrapper.findAll('.league').length).toBe(1)
-  expect(wrapper.find('.league').find('h1').text()).toBe('Sprintelope')
-  expect(wrapper.find('.league').find('img').attributes('alt')).toBe('The Logo of Sprintelope')
-  expect(wrapper.find('.league').findAll('p').length).toBe(1)
+  expect(wrapper.element).toMatchSnapshot()
 })
 
 test('Renders Correctly - Multiple Leagues', async () => {
@@ -52,9 +52,9 @@ test('Renders Correctly - Multiple Leagues', async () => {
     mocks: {
       $auth: { user: false },
     },
+    stubs: ['router-link'],
   })
   await wrapper.vm.getLeagues()
-  expect(wrapper.findAll('.league').length).toBe(3)
   expect(wrapper.element).toMatchSnapshot()
 })
 
@@ -63,11 +63,12 @@ test('Shows Admin Buttons When Logged In', () => {
     mocks: {
       $auth: { user: true },
     },
+    stubs: ['router-link'],
   })
   expect(wrapper.find('.actions').isVisible()).toBeTruthy()
-  expect(wrapper.find('.actions').findAll('button').length).toBe(3)
-  expect(wrapper.find('.actions').findAll('button').at(0).text()).toBe('Create New League')
-  expect(wrapper.find('.actions').findAll('button').at(1).text()).toBe('Upload Results')
+  expect(wrapper.find('.actions').findAll('router-link-stub').length).toBe(3)
+  expect(wrapper.find('.actions').findAll('router-link-stub').at(0).text()).toBe('Create New League')
+  expect(wrapper.find('.actions').findAll('router-link-stub').at(1).text()).toBe('Upload Results')
 })
 
 test('Get Leagues - Request Called Correctly', async () => {
@@ -77,6 +78,7 @@ test('Get Leagues - Request Called Correctly', async () => {
       $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
+    stubs: ['router-link'],
   })
   jest.resetAllMocks()
   axios.get.mockResolvedValue({ data: sampleSingleLeague })
@@ -92,6 +94,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
       $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
+    stubs: ['router-link'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
@@ -113,6 +116,7 @@ test('Get Leagues - Shows Message on Error', async () => {
       $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
+    stubs: ['router-link'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagues()

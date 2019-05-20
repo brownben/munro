@@ -112,7 +112,6 @@ export default {
 
     sortBy: function (sortBy) {
       // Change what property it is sorted by
-      this.openedRows = []
       // If it is a different property, make it sort ascending else change direction of sort
       if (sortBy !== this.sortedBy) this.ascendingSort = false
       else this.ascendingSort = !this.ascendingSort
@@ -180,9 +179,11 @@ th:hover > span
       margin-left: 0.4rem
 
       @media (max-width: 700px)
+        box-sizing: border-box
         margin: 0
         margin-top: 0.5rem
         width: 100%
+        text-align: center
 
       &:first-child
         margin-left: 0

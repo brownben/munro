@@ -41,13 +41,19 @@ exports[`Renders Correctly - Create 1`] = `
       <div
         class="dropdown-input"
       >
-        <select>
-          <!---->
+        <div
+          class="visible"
+        >
+          <label>
+            
+          </label>
            
-        </select>
-         
-        <label>
+          <p>
+            
+          </p>
+           
           <svg
+            class=""
             fill="#9E9E9E"
             height="24"
             viewBox="0 0 24 24"
@@ -62,7 +68,13 @@ exports[`Renders Correctly - Create 1`] = `
               fill="none"
             />
           </svg>
-        </label>
+        </div>
+         
+        <div
+          class="dropdown"
+          name="open"
+          style="display: none;"
+        />
       </div>
        
       <label>
@@ -72,13 +84,19 @@ exports[`Renders Correctly - Create 1`] = `
       <div
         class="dropdown-input"
       >
-        <select>
-          <!---->
+        <div
+          class="visible"
+        >
+          <label>
+            
+          </label>
            
-        </select>
-         
-        <label>
+          <p>
+            
+          </p>
+           
           <svg
+            class=""
             fill="#9E9E9E"
             height="24"
             viewBox="0 0 24 24"
@@ -93,7 +111,13 @@ exports[`Renders Correctly - Create 1`] = `
               fill="none"
             />
           </svg>
-        </label>
+        </div>
+         
+        <div
+          class="dropdown"
+          name="open"
+          style="display: none;"
+        />
       </div>
        
       <button>
@@ -149,13 +173,19 @@ exports[`Renders Correctly - Upload 1`] = `
       <div
         class="dropdown-input"
       >
-        <select>
-          <!---->
+        <div
+          class="visible"
+        >
+          <label>
+            
+          </label>
            
-        </select>
-         
-        <label>
+          <p>
+            
+          </p>
+           
           <svg
+            class=""
             fill="#9E9E9E"
             height="24"
             viewBox="0 0 24 24"
@@ -170,7 +200,13 @@ exports[`Renders Correctly - Upload 1`] = `
               fill="none"
             />
           </svg>
-        </label>
+        </div>
+         
+        <div
+          class="dropdown"
+          name="open"
+          style="display: none;"
+        />
       </div>
        
       <label>
@@ -180,13 +216,19 @@ exports[`Renders Correctly - Upload 1`] = `
       <div
         class="dropdown-input"
       >
-        <select>
-          <!---->
+        <div
+          class="visible"
+        >
+          <label>
+            
+          </label>
            
-        </select>
-         
-        <label>
+          <p>
+            
+          </p>
+           
           <svg
+            class=""
             fill="#9E9E9E"
             height="24"
             viewBox="0 0 24 24"
@@ -201,7 +243,13 @@ exports[`Renders Correctly - Upload 1`] = `
               fill="none"
             />
           </svg>
-        </label>
+        </div>
+         
+        <div
+          class="dropdown"
+          name="open"
+          style="display: none;"
+        />
       </div>
        
       <!---->

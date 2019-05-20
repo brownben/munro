@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /api/
+Disallow: /competitors/
+Disallow: /create-competitor/
+Disallow: /create-league/
+Disallow: /create-event/
+Disallow: /embed/
+Disallow: /leagues/*/edit/
+Disallow: /leagues/*/create-event/
+Disallow: /events/*/edit

@@ -2,6 +2,46 @@
 
 exports[`Renders Correctly - Desktop 1`] = `
 <div
+  class="dark"
+  id="menu"
+>
+  <h1>
+    <router-link-stub
+      to="/"
+    >
+      Munro
+    </router-link-stub>
+  </h1>
+   
+  <!---->
+   
+  <nav
+    name="shrink"
+  >
+    <router-link-stub
+      to="/leagues"
+    >
+      Leagues
+    </router-link-stub>
+     
+    <router-link-stub
+      to="/upload"
+    >
+      Upload Results
+    </router-link-stub>
+     
+    <router-link-stub
+      to="/login"
+    >
+      Admin Login
+    </router-link-stub>
+  </nav>
+</div>
+`;
+
+exports[`Renders Correctly - Desktop 2`] = `
+<div
+  class=""
   id="menu"
 >
   <h1>
@@ -40,6 +80,7 @@ exports[`Renders Correctly - Desktop 1`] = `
 
 exports[`Renders Correctly - Mobile 1`] = `
 <div
+  class=""
   id="menu"
 >
   <h1>

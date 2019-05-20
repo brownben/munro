@@ -12,7 +12,9 @@ beforeEach(() => {
 })
 
 test('Is a Vue Instance', () => {
-  const wrapper = mount(Leagues)
+  const wrapper = mount(Leagues, {
+    stubs: ['router-link'],
+  })
   wrapper.setData({ leagues: sampleDataThreeLeagues })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -28,6 +30,7 @@ test('Call Get Leagues On Load', () => {
     methods: {
       getLeagues: mockGetLeagues,
     },
+    stubs: ['router-link'],
   })
   flushPromises()
   expect(mockGetLeagues).toHaveBeenCalledTimes(1)
@@ -39,6 +42,7 @@ test('Get Leagues - Request Called Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
+    stubs: ['router-link'],
   })
   jest.resetAllMocks()
   axios.get.mockResolvedValue({ data: sampleSingleLeague })
@@ -53,10 +57,11 @@ test('Get Leagues - Processes Response Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
+    stubs: ['router-link'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: '1' }, { league: '2' }])
+  expect(wrapper.vm.leagues).toEqual([{ league: '2' }, { league: '1' }])
 
   axios.get.mockResolvedValue({ data: [] })
   await wrapper.vm.getLeagues()
@@ -64,7 +69,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
 
   axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
+  expect(wrapper.vm.leagues).toEqual([{ league: '2', another: 4 }, { league: 'a', property: 3 }])
 })
 
 test('Get Leagues - Shows Message on Error', async () => {
@@ -73,6 +78,7 @@ test('Get Leagues - Shows Message on Error', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
+    stubs: ['router-link'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagues()

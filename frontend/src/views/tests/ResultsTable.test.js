@@ -40,7 +40,8 @@ test('Is a Vue Instance', () => {
 
 test('Renders Correctly + Fetches Data', async () => {
   const mockGetResults = jest.fn().mockResolvedValue()
-  const mockGetEventList = jest.fn()
+  const mockGetEventList = jest.fn().mockResolvedValue()
+  const mockGetOtherCourses = jest.fn().mockResolvedValue()
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
@@ -49,6 +50,7 @@ test('Renders Correctly + Fetches Data', async () => {
     methods: {
       getResults: mockGetResults,
       getEventList: mockGetEventList,
+      getOtherCourses: mockGetOtherCourses,
     },
     computed: {
       eventsWithResults: () => sampleThreeEvents,
@@ -60,7 +62,14 @@ test('Renders Correctly + Fetches Data', async () => {
   expect(mockGetResults).toHaveBeenLastCalledWith()
   expect(mockGetEventList).toHaveBeenCalledTimes(1)
   expect(mockGetEventList).toHaveBeenLastCalledWith()
-  wrapper.setData({ rawResults: sampleThreeResults, events: sampleThreeEvents, smallWindow: false })
+  expect(mockGetOtherCourses).toHaveBeenCalledTimes(1)
+  expect(mockGetOtherCourses).toHaveBeenLastCalledWith()
+  wrapper.setData({
+    rawResults: sampleThreeResults,
+    events: sampleThreeEvents,
+    otherCourses: ['Long', 'Short'],
+    smallWindow: false,
+  })
   expect(wrapper.element).toMatchSnapshot()
 })
 
@@ -526,4 +535,21 @@ test('Sorted Results', () => {
   wrapper.setData({ rawResults: [] })
   wrapper.setData({ rawResults: sampleThreeResultsCopy, sortedBy: 'points-2', ascendingSort: true })
   expect(wrapper.vm.sortedResults).toEqual(sampleThreeResultsSortedByEventThreePointsWithSplitAgeClass.reverse())
+})
+
+test('Links to other Courses', async () => {
+  const wrapper = shallowMount(ResultsTable, {
+    mocks: {
+      $route: { params: { name: '', course: 'Long' } },
+      $messages: { addMessage: jest.fn() },
+    },
+    stubs: ['router-link'],
+  })
+  flushPromises()
+  axios.get.mockResolvedValue({ data: { courses: ['Long', 'Short'] } })
+  await wrapper.vm.getOtherCourses()
+  expect(wrapper.vm.otherCourses).toEqual(['Short'])
+  axios.get.mockResolvedValue({})
+  await wrapper.vm.getOtherCourses()
+  expect(wrapper.vm.otherCourses).toBeFalsy()
 })

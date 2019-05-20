@@ -161,7 +161,7 @@ export default {
       box-sizing: border-box
       margin: 0
       padding-top: 3.5rem
-      width: 100vw
+      width: 100%
       height: 100vh
       background-color: white
       transition: 0.5s

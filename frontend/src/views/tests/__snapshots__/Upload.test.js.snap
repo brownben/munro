@@ -61,6 +61,30 @@ exports[`Renders Correctly 1`] = `
    
   <!---->
    
+  <label>
+    Results (URL):
+  </label>
+   
+  <input
+    type="text"
+  />
+   
+  <label>
+    Routegadget (URL):
+  </label>
+   
+  <input
+    type="text"
+  />
+   
+  <label>
+    Winsplits (URL):
+  </label>
+   
+  <input
+    type="text"
+  />
+   
   <!---->
 </div>
 `;
@@ -125,6 +149,30 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </div>
    
   <!---->
+   
+  <label>
+    Results (URL):
+  </label>
+   
+  <input
+    type="text"
+  />
+   
+  <label>
+    Routegadget (URL):
+  </label>
+   
+  <input
+    type="text"
+  />
+   
+  <label>
+    Winsplits (URL):
+  </label>
+   
+  <input
+    type="text"
+  />
    
   <button
     id="uploadButton"

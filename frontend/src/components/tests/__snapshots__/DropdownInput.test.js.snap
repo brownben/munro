@@ -3,23 +3,21 @@
 exports[`Renders Correctly 1`] = `
 <div
   class="dropdown-input"
+  includeblank="true"
 >
-  <select>
-    <!---->
+  <div
+    class="visible"
+  >
+    <label>
+      
+    </label>
      
-    <option>
-      Item 1
-    </option>
-    <option>
-      Item 2
-    </option>
-    <option>
-      Item 3
-    </option>
-  </select>
-   
-  <label>
+    <p>
+      
+    </p>
+     
     <svg
+      class=""
       fill="#9E9E9E"
       height="24"
       viewBox="0 0 24 24"
@@ -34,6 +32,22 @@ exports[`Renders Correctly 1`] = `
         fill="none"
       />
     </svg>
-  </label>
+  </div>
+   
+  <div
+    class="dropdown"
+    name="open"
+    style="display: none;"
+  >
+    <p>
+      Item 1
+    </p>
+    <p>
+      Item 2
+    </p>
+    <p>
+      Item 3
+    </p>
+  </div>
 </div>
 `;

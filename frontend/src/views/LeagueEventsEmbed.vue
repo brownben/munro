@@ -81,11 +81,11 @@ export default {
   },
 
   methods: {
-    scoringMethodShorthandToFull: function (method) {
-      if (method === 'position') return 'position based method (100 max).'
-      else if (method === 'position50') return 'position based method (50 max).'
-      else if (method === 'position99') return 'position based method (99 max).'
-      else if (method === 'position99average') return 'position based method (99 max, Reduced Points in a Draw).'
+    scoringMethodShorthandToFull: value => {
+      if (value === 'position') return 'Position Based (100 Max)'
+      else if (value === 'position50') return 'Position Based (50 Max)'
+      else if (value === 'position99') return 'Position Based (99 Max)'
+      else if (value === 'position99average') return 'Position Based (99 Max, Reduced in a Draw)'
       else return ''
     },
 

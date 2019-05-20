@@ -111,9 +111,12 @@ test('Upload File - Correct API Call', async () => {
   expect(axios.post).toHaveBeenCalledTimes(1)
   expect(axios.post).toHaveBeenLastCalledWith('/api/upload', {
     eventId: 1,
-    uploadKey: 2,
     file: 3,
     overwrite: 4,
+    results: '',
+    routegadget: '',
+    uploadKey: 2,
+    winsplits: '',
   })
 })
 

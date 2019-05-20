@@ -13,14 +13,21 @@ exports[`Renders Correctly 1`] = `
      
     <div
       class="dropdown-input"
+      include-blank="true"
     >
-      <select>
-        <option />
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
          
-      </select>
-       
-      <label>
+        <p>
+          
+        </p>
+         
         <svg
+          class=""
           fill="#9E9E9E"
           height="24"
           viewBox="0 0 24 24"
@@ -35,7 +42,13 @@ exports[`Renders Correctly 1`] = `
             fill="none"
           />
         </svg>
-      </label>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
     </div>
      
     <label>
@@ -44,14 +57,21 @@ exports[`Renders Correctly 1`] = `
      
     <div
       class="dropdown-input"
+      include-blank="true"
     >
-      <select>
-        <option />
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
          
-      </select>
-       
-      <label>
+        <p>
+          
+        </p>
+         
         <svg
+          class=""
           fill="#9E9E9E"
           height="24"
           viewBox="0 0 24 24"
@@ -66,7 +86,13 @@ exports[`Renders Correctly 1`] = `
             fill="none"
           />
         </svg>
-      </label>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
     </div>
      
     <label>
@@ -75,14 +101,21 @@ exports[`Renders Correctly 1`] = `
      
     <div
       class="dropdown-input"
+      include-blank="true"
     >
-      <select>
-        <option />
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
          
-      </select>
-       
-      <label>
+        <p>
+          
+        </p>
+         
         <svg
+          class=""
           fill="#9E9E9E"
           height="24"
           viewBox="0 0 24 24"
@@ -97,7 +130,13 @@ exports[`Renders Correctly 1`] = `
             fill="none"
           />
         </svg>
-      </label>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
     </div>
      
     <label>
@@ -106,14 +145,21 @@ exports[`Renders Correctly 1`] = `
      
     <div
       class="dropdown-input"
+      include-blank="true"
     >
-      <select>
-        <option />
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
          
-      </select>
-       
-      <label>
+        <p>
+          
+        </p>
+         
         <svg
+          class=""
           fill="#9E9E9E"
           height="24"
           viewBox="0 0 24 24"
@@ -128,7 +174,13 @@ exports[`Renders Correctly 1`] = `
             fill="none"
           />
         </svg>
-      </label>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
     </div>
      
     <label>
@@ -137,14 +189,21 @@ exports[`Renders Correctly 1`] = `
      
     <div
       class="dropdown-input"
+      include-blank="true"
     >
-      <select>
-        <option />
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
          
-      </select>
-       
-      <label>
+        <p>
+          
+        </p>
+         
         <svg
+          class=""
           fill="#9E9E9E"
           height="24"
           viewBox="0 0 24 24"
@@ -159,7 +218,13 @@ exports[`Renders Correctly 1`] = `
             fill="none"
           />
         </svg>
-      </label>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
     </div>
      
     <button>

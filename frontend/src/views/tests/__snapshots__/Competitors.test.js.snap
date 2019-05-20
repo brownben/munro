@@ -14,17 +14,26 @@ exports[`Renders Correctly 1`] = `
     </h2>
      
     <div>
-      <button>
+      <router-link-stub
+        class="button"
+        to="/create-competitor"
+      >
         Add Competitor
-      </button>
+      </router-link-stub>
        
-      <button>
+      <router-link-stub
+        class="button"
+        to="/competitors/merge"
+      >
         Merge Competitors
-      </button>
+      </router-link-stub>
        
-      <button>
+      <router-link-stub
+        class="button"
+        to="/results/transfer"
+      >
         Transfer Result
-      </button>
+      </router-link-stub>
     </div>
   </div>
    
@@ -36,27 +45,9 @@ exports[`Renders Correctly 1`] = `
             Name
           </p>
            
-          <div
-            id="up-down-arrows"
-          >
-            <svg
-              class="active"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 14l5-5 5 5z"
-              />
-            </svg>
-             
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 10l5 5 5-5z"
-              />
-            </svg>
-          </div>
+          <up-down-arrow-stub
+            active="true"
+          />
         </th>
          
         <th>
@@ -64,27 +55,7 @@ exports[`Renders Correctly 1`] = `
             Club
           </p>
            
-          <div
-            id="up-down-arrows"
-          >
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 14l5-5 5 5z"
-              />
-            </svg>
-             
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 10l5 5 5-5z"
-              />
-            </svg>
-          </div>
+          <up-down-arrow-stub />
         </th>
          
         <th>
@@ -92,27 +63,7 @@ exports[`Renders Correctly 1`] = `
             Class
           </p>
            
-          <div
-            id="up-down-arrows"
-          >
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 14l5-5 5 5z"
-              />
-            </svg>
-             
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 10l5 5 5-5z"
-              />
-            </svg>
-          </div>
+          <up-down-arrow-stub />
         </th>
          
         <th
@@ -122,27 +73,7 @@ exports[`Renders Correctly 1`] = `
             League
           </p>
            
-          <div
-            id="up-down-arrows"
-          >
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 14l5-5 5 5z"
-              />
-            </svg>
-             
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 10l5 5 5-5z"
-              />
-            </svg>
-          </div>
+          <up-down-arrow-stub />
         </th>
          
         <th>
@@ -150,27 +81,7 @@ exports[`Renders Correctly 1`] = `
             Course
           </p>
            
-          <div
-            id="up-down-arrows"
-          >
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 14l5-5 5 5z"
-              />
-            </svg>
-             
-            <svg
-              class=""
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 10l5 5 5-5z"
-              />
-            </svg>
-          </div>
+          <up-down-arrow-stub />
         </th>
       </tr>
     </thead>

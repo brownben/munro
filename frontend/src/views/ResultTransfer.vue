@@ -107,15 +107,15 @@ export default {
     },
 
     getLeagues: function () {
-      return axios.get('/api/events')
-        .then(response => { this.events = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching Events'))
-    },
-
-    getEvents: function () {
       return axios.get('/api/leagues')
         .then(response => { this.leagues = response.data })
         .catch(() => this.$messages.addMessage('Problem Fetching Leagues'))
+    },
+
+    getEvents: function () {
+      return axios.get('/api/events')
+        .then(response => { this.events = response.data })
+        .catch(() => this.$messages.addMessage('Problem Fetching Events'))
     },
 
     getResults: function () {
