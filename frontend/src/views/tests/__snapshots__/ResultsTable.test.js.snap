@@ -2,6 +2,11 @@
 
 exports[`Mobile Results Dropdown Works 1`] = `
 <div>
+  <vue-headful-stub
+    description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro -  - "
+  />
+   
   <h1
     id="league-title"
   >
@@ -227,6 +232,11 @@ exports[`Mobile Results Dropdown Works 1`] = `
 
 exports[`Mobile Results Dropdown Works 2`] = `
 <div>
+  <vue-headful-stub
+    description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro -  - "
+  />
+   
   <h1
     id="league-title"
   >
@@ -489,6 +499,11 @@ exports[`Mobile Results Dropdown Works 2`] = `
 
 exports[`Renders Correctly + Fetches Data 1`] = `
 <div>
+  <vue-headful-stub
+    description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro -  - "
+  />
+   
   <h1
     id="league-title"
   >
@@ -622,17 +637,23 @@ exports[`Renders Correctly + Fetches Data 1`] = `
           <td
             class=""
           >
-            100
+            
+                  100
+                
           </td>
           <td
             class="strikethrough"
           >
-            95
+            
+                  95
+                
           </td>
           <td
             class="strikethrough"
           >
-            10
+            
+                  10
+                
           </td>
         </tr>
          
@@ -666,16 +687,22 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             class="strikethrough"
           >
             
+                  
+                
           </td>
           <td
             class=""
           >
-            100
+            
+                  100
+                
           </td>
           <td
             class="strikethrough"
           >
-            5
+            
+                  5
+                
           </td>
         </tr>
          
@@ -708,17 +735,23 @@ exports[`Renders Correctly + Fetches Data 1`] = `
           <td
             class="strikethrough"
           >
-            0
+            
+                  0
+                
           </td>
           <td
             class=""
           >
-            100
+            
+                  100
+                
           </td>
           <td
             class="strikethrough"
           >
-            98
+            
+                  98
+                
           </td>
         </tr>
          
@@ -738,13 +771,17 @@ exports[`Renders Correctly + Fetches Data 1`] = `
           class="button"
           to="/leagues//results/Long"
         >
-          Long
+          
+            Long
+          
         </router-link-stub>
         <router-link-stub
           class="button"
           to="/leagues//results/Short"
         >
-          Short
+          
+            Short
+          
         </router-link-stub>
       </div>
     </div>

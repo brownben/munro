@@ -6,7 +6,8 @@ import { mount } from '@vue/test-utils'
 import Login from '@/views/Login'
 import auth from '@/authentication'
 
-jest.mock('@/authentication')
+auth.login = jest.fn()
+auth.logout = jest.fn()
 
 beforeEach(() => jest.clearAllMocks())
 
@@ -16,7 +17,7 @@ test('Is a Vue Instance', () => {
       $route: { query: { redirect: false } },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -27,7 +28,7 @@ test('Renders Correctly', () => {
       $route: { query: { redirect: false } },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
 })
@@ -40,7 +41,7 @@ test('Show Message on When Redirected', () => {
       $messages: { addMessage: mockAddMessageFunction },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Login to Access that Page')
@@ -52,7 +53,7 @@ test('Blank Fields Works', () => {
       $route: { query: { redirect: false } },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.findAll('input').at(0).setValue('username')
   wrapper.findAll('input').at(1).setValue('password')
@@ -69,7 +70,7 @@ test('Check Validation Works', () => {
       $route: { query: { redirect: false } },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ username: '', password: '' })
   expect(wrapper.vm.validateLogin()).toBeFalsy()
@@ -98,7 +99,7 @@ test('Send Login Function - Successful', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   const mockBlankFields = jest.fn()
   wrapper.setMethods({ blankFields: mockBlankFields })
@@ -124,7 +125,7 @@ test('Send Login Function - Validation Fails', () => {
       $messages: { addMessage: mockAddMessageFunction },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   auth.login.mockRejectedValue()
   const blankFieldsSpy = jest.spyOn(wrapper.vm, 'blankFields')
@@ -144,7 +145,7 @@ test('Send Login Function - Error', () => {
       $messages: { addMessage: mockAddMessageFunction },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   const blankFieldsSpy = jest.spyOn(wrapper.vm, 'blankFields')
 
@@ -171,7 +172,7 @@ test('Redirect on Successful Login', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
 
   // Calls Auth Login Functions
@@ -192,7 +193,7 @@ test('Redirect on Successful Login - If No Path Specified', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
 
   // Calls Auth Login Functions
@@ -212,7 +213,7 @@ test('Don\'t Redirect on Failed Login', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
 
   // Calls Auth Login Functions
@@ -229,7 +230,7 @@ test('Redirect if Already Logged In', async () => {
       $messages: { addMessage: jest.fn() },
       $auth: { user: true },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
 
   // Calls Auth Login Functions

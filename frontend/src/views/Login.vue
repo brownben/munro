@@ -6,6 +6,7 @@
 
 <template>
   <div>
+    <vue-headful title="Munro - Login" />
     <h1>Admin Login</h1>
     <form @submit.prevent="sendLoginRequest()">
       <label>Email Address:</label>
@@ -84,6 +85,7 @@ h1
 
   p, b
     display: inline-block
+    padding: 0.25rem
 
 .fade-enter-active, .fade-leave-active
   transition: opacity 0.5s

@@ -33,7 +33,7 @@ test('Is a Vue Instance', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -55,7 +55,7 @@ test('Renders Correctly + Fetches Data', async () => {
     computed: {
       eventsWithResults: () => sampleThreeEvents,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   expect(mockGetResults).toHaveBeenCalledTimes(1)
@@ -86,7 +86,7 @@ test('Check Resize Event is Added/ Removed', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
 
   expect(adder).toHaveBeenCalled()
@@ -100,7 +100,7 @@ test('Get Event List - Correct API Call', async () => {
       $route: { params: { name: 'LEAGUE', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -118,7 +118,7 @@ test('Get Event List - Success', async () => {
       $route: { params: { name: 'LEAGUE', course: '' } },
       $messages: { addMessage: mockAddMessage },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await wrapper.vm.getEventList()
   expect(mockAddMessage).toHaveBeenCalledTimes(0)
@@ -132,7 +132,7 @@ test('Get Event List - Error', async () => {
       $route: { params: { name: 'LEAGUE', course: '' } },
       $messages: { addMessage: mockAddMessage },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getEventList()
@@ -147,7 +147,7 @@ test('Sort By - Same Property', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ openedRows: [1, 2, 3], sortedBy: '2', ascendingSort: false })
   wrapper.vm.sortBy('2')
@@ -162,7 +162,7 @@ test('Sort By - Different Property', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ openedRows: [1, 2, 3], sortedBy: '1', ascendingSort: false })
   wrapper.vm.sortBy('2')
@@ -177,7 +177,7 @@ test('Toggle Row', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.openedRows).toEqual([])
   wrapper.vm.toggleRow(1)
@@ -199,7 +199,7 @@ test('Filter Changed', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.vm.filterChanged({
     name: 'a',
@@ -243,6 +243,7 @@ test('Refresh Data on Route Change', async () => {
       getResults: mockGetResults,
       getEventList: mockGetEventList,
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -262,7 +263,7 @@ test('Get Results - Correct API Call', async () => {
       $route: { params: { name: 'LEAGUE', course: 'COURSE' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -279,7 +280,7 @@ test('Get Results - Success - Results', async () => {
       $route: { params: { name: 'LEAGUE', course: '' } },
       $messages: { addMessage: mockAddMessage },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -296,7 +297,7 @@ test('Get Results - Success - No Results', async () => {
       $route: { params: { name: 'LEAGUE', course: '' } },
       $messages: { addMessage: mockAddMessage },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -314,7 +315,7 @@ test('Get Results - Error', async () => {
       $route: { params: { name: 'LEAGUE', course: '' } },
       $messages: { addMessage: mockAddMessage },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -331,7 +332,7 @@ test('Sort - Ascending', async () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.sort([], 'name')).toEqual([])
   expect(wrapper.vm.sort([], 'club')).toEqual([])
@@ -347,7 +348,7 @@ test('Sort - Descending', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.sort([], 'name', false)).toEqual([])
   expect(wrapper.vm.sort([], 'club', false)).toEqual([])
@@ -363,7 +364,7 @@ test('Sort - Ascending - By Points', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.sort([], 0, true, true)).toEqual([])
   expect(wrapper.vm.sort([], 1, true, true)).toEqual([])
@@ -379,7 +380,7 @@ test('Sort - Descending - By Points', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.sort([], 0, false, true)).toEqual([])
   expect(wrapper.vm.sort([], 1, false, true)).toEqual([])
@@ -395,7 +396,7 @@ test('Events With Results', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ events: [] })
   expect(wrapper.vm.eventsWithResults).toEqual([])
@@ -416,7 +417,7 @@ test('Results With Age Class Split', () => {
     computed: {
       filteredResults: jest.fn(),
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ rawResults: [] })
   expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([])
@@ -455,7 +456,7 @@ test('Mobile Results Dropdown Works', () => {
     computed: {
       eventsWithResults: () => sampleThreeEvents,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ rawResults: sampleThreeResults, events: sampleThreeEvents })
   expect(wrapper.element).toMatchSnapshot()
@@ -475,7 +476,7 @@ test('Filtered Results', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ rawResults: sampleThreeResults, sortedBy: 'position' })
   wrapper.setData({ filterPreferences: { male: true, female: false } })
@@ -515,7 +516,7 @@ test('Sorted Results', () => {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ rawResults: [], sortedBy: 'position', ascendingSort: true })
   expect(wrapper.vm.sortedResults).toEqual([])
@@ -543,7 +544,7 @@ test('Links to other Courses', async () => {
       $route: { params: { name: '', course: 'Long' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   flushPromises()
   axios.get.mockResolvedValue({ data: { courses: ['Long', 'Short'] } })

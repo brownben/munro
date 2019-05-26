@@ -7,14 +7,14 @@ import NotFound from '@/views/NotFound'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(NotFound, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
 
 test('Renders Correctly', () => {
   const wrapper = mount(NotFound, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
   expect(wrapper.find('h1').text()).toBe('Sorry We Can\'t Find What You Are Looking For')

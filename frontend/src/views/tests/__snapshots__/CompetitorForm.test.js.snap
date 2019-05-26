@@ -2,6 +2,10 @@
 
 exports[`Renders Correctly - Create 1`] = `
 <div>
+  <vue-headful-stub
+    title="Munro - Create Competitor"
+  />
+   
   <div>
     <h1>
       Create Competitor
@@ -134,6 +138,10 @@ exports[`Renders Correctly - Create 1`] = `
 
 exports[`Renders Correctly - Upload 1`] = `
 <div>
+  <vue-headful-stub
+    title="Munro - Edit Competitor"
+  />
+   
   <div>
     <!---->
      

@@ -6,6 +6,7 @@
 
 <template>
   <div>
+    <vue-headful title="Munro - Not Found" />
     <h1>Sorry We Can't Find What You Are Looking For</h1>
     <p>Please check the URL and Try Again</p>
     <button @click="$router.go(-1)">Go Back</button>

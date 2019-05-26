@@ -82,3 +82,7 @@ class EventWithUploadKey(Resource):
     @requireAuthentication
     def get(self, id):
         return events.getEventWithUploadKey(id)
+
+class EventsLatestWithResults(Resource):
+    def get(self):
+        return events.getLatestEventsWithResults()

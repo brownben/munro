@@ -2,6 +2,11 @@
 
 exports[`Renders Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    description="Developer information about the API and embed pages of Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro - Developers"
+  />
+   
   <h1>
     Developers
   </h1>
@@ -68,6 +73,14 @@ exports[`Renders Correctly 1`] = `
    
   <p>
     Results from a specific event
+  </p>
+   
+  <h4>
+    /api/events/latest-results
+  </h4>
+   
+  <p>
+    The latest events with results
   </p>
    
   <h4>

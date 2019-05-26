@@ -45,7 +45,7 @@ div
   bottom: 0
   left: 0
   z-index: 10
-  width: 100vw
+  width: 100%
   background-color: main-color
   color: white
   no-user-select()

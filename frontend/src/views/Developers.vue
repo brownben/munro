@@ -6,6 +6,10 @@
 
 <template>
   <div>
+    <vue-headful
+      title="Munro - Developers"
+      description="Developer information about the API and embed pages of Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    />
     <h1>Developers</h1>
     <h2>API</h2>
     <p>All methods use a standard HTTP GET request. The event id is made by combining the league name, event name and date and removing all spaces, it is avaliable for the league admin to view. Dates are in the form YYYY-MM-DD</p>
@@ -23,6 +27,8 @@
     <p>Details of a specific event</p>
     <h4>/api/events/{ EVENT ID }/results</h4>
     <p>Results from a specific event</p>
+    <h4>/api/events/latest-results</h4>
+    <p>The latest events with results</p>
     <h4>/api/competitors</h4>
     <p>List of all the competitors</p>
     <h4>/api/competitors/{ COMPETITOR ID }</h4>

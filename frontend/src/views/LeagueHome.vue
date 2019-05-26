@@ -8,17 +8,24 @@
 
 <template>
   <div>
+    <vue-headful
+      :title="'Munro - '+$route.params.name"
+      :description="'Event Information and Results for the '+ $route.params.name + 'league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'"
+    />
     <div v-if="league">
       <h1>{{ league.name }}</h1>
       <p v-if="league.description">{{ league.description }}</p>
       <p
         v-if="league.courses"
-      >There are normally {{ league.courses.length }} courses - {{ league.courses.join(', ') }}</p>
+      >
+        There are normally {{ league.courses.length }} courses - {{ league.courses.join(', ') }}
+      </p>
       <p v-if="league.coordinator">{{ league.coordinator }} coordinates the league.</p>
       <p>
         <span
           v-if="league.scoringMethod"
         >The scoring for the league is calculated using a {{ scoringMethodShorthandToFull(league.scoringMethod) }}</span>
+        &nbsp;
         <span
           v-if="league.numberOfCountingEvents && league.numberOfEvents"
         >With your best {{ league.numberOfCountingEvents }} events from all {{ league.numberOfEvents }} events counting.</span>
@@ -48,7 +55,9 @@
             :key="course"
             :to="$route.path + '/results/' + course"
             class="button"
-          >{{ course }}</router-link>
+          >
+            {{ course }}
+          </router-link>
         </div>
       </div>
       <div v-for="event of events" :key="event.name" class="event">
@@ -70,7 +79,9 @@
           On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }}
           <template
             v-if="event.organiser"
-          >organised by {{ event.organiser }}</template>
+          >
+            organised by {{ event.organiser }}
+          </template>
         </p>
         <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
         <p v-if="event.website">
@@ -103,9 +114,6 @@
             rel="noopener noreferrer"
             class="button"
           >Routegadget</a>
-          <p
-            v-if="!event.results && !event.winsplits && !event.routegadget"
-          >No Result Links Uploaded - Please Check The Event's Website To See If Results Have Been Uploaded</p>
         </div>
       </div>
     </div>
@@ -114,7 +122,7 @@
 </template>
 <script>
 import axios from 'axios'
-import NotFound from '@/views/NotFound'
+const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {

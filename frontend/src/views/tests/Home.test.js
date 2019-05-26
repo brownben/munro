@@ -19,7 +19,7 @@ test('Is a Vue Instance', () => {
     mocks: {
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -29,7 +29,7 @@ test('Renders Correctly - No Leagues', () => {
     mocks: {
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
 })
@@ -40,7 +40,7 @@ test('Renders Correctly - One League', async () => {
     mocks: {
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await wrapper.vm.getLeagues()
   expect(wrapper.element).toMatchSnapshot()
@@ -52,7 +52,7 @@ test('Renders Correctly - Multiple Leagues', async () => {
     mocks: {
       $auth: { user: false },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await wrapper.vm.getLeagues()
   expect(wrapper.element).toMatchSnapshot()
@@ -63,7 +63,7 @@ test('Shows Admin Buttons When Logged In', () => {
     mocks: {
       $auth: { user: true },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.find('.actions').isVisible()).toBeTruthy()
   expect(wrapper.find('.actions').findAll('router-link-stub').length).toBe(3)
@@ -78,7 +78,7 @@ test('Get Leagues - Request Called Correctly', async () => {
       $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   jest.resetAllMocks()
   axios.get.mockResolvedValue({ data: sampleSingleLeague })
@@ -94,7 +94,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
       $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
@@ -116,7 +116,7 @@ test('Get Leagues - Shows Message on Error', async () => {
       $auth: { user: false },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagues()

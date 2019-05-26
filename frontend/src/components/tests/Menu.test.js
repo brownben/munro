@@ -59,7 +59,7 @@ test('Displays Correct View off Authentication State', () => {
     },
     stubs: ['router-link'],
   })
-  expect(loggedInWrapper.find('nav').html()).toContain('Admin Login')
+  expect(loggedInWrapper.find('nav').html()).not.toContain('Log Out')
   const loggedOutWrapper = mount(Menu, {
     mocks: {
       $auth: { user: true },

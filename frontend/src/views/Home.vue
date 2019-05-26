@@ -6,8 +6,12 @@
 
 <template>
   <div>
+    <vue-headful
+      title="Munro - League Results for Orienteering"
+      description="Fast and Easy Results for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    />
     <div id="header">
-      <img src="/static/UnDrawRunningWhite.svg" alt="Runner Crossing Finsh Line">
+      <img src="@/assets/images/UnDrawRunningWhite.svg" alt="Runner Crossing Finsh Line">
       <h2>Fast and Easy Results for Orienteering Leagues</h2>
     </div>
     <div v-if="auth.user" class="card actions">
@@ -20,11 +24,7 @@
     </div>
     <div id="leagues">
       <div class="league">
-        <img
-          src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
-          alt="The Logo of Sprintelope"
-          height="150px"
-        >
+        <img src="@/assets/images/SprintelopeLogo.png" alt="The Logo of Sprintelope" height="150px">
         <h1>Sprintelope 2019</h1>
         <p>Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians</p>
         <p>
@@ -38,11 +38,7 @@
         <router-link class="button" to="/leagues/Sprintelope 2019">View League</router-link>
       </div>
       <div class="league">
-        <img
-          src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
-          alt="The Logo of Sprintelope"
-          height="150px"
-        >
+        <img src="@/assets/images/SprintelopeLogo.png" alt="The Logo of Sprintelope" height="150px">
         <h1>Sprintelope 2018</h1>
         <p>Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians</p>
         <p>
@@ -56,10 +52,10 @@
         <router-link class="button" to="/leagues/Sprintelope 2018">View League</router-link>
       </div>
       <div id="about" class="card">
-        <img src="/static/MunroLogo.png" alt="Munro Logo">
+        <img src="@/assets/images/MunroLogo.png" alt="Munro Logo">
         <h1>About</h1>
         <div class="text">
-          <p>Munro was created by Ben Brown for his Advanced Higher Computing Project. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.</p>
+          <p>Munro was created by Ben Brown for his Advanced Higher Computing Project, as a calculator of the orienteering league standings. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.</p>
           <p>Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues(a)gmail.com</p>
           <p>For any help or enquires please email munro.leagues(a)gmail.com</p>
         </div>

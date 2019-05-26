@@ -2,6 +2,11 @@
 
 exports[`Renders Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    description="Event Information and Results for the league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro - "
+  />
+   
   <div>
     <h1>
       
@@ -15,7 +20,9 @@ exports[`Renders Correctly 1`] = `
      
     <p>
       <!---->
-       
+      
+       
+      
       <!---->
     </p>
      
@@ -83,7 +90,9 @@ exports[`Renders Correctly 1`] = `
       <p>
         
         On 18/04/2018
-        organised by ELO
+        
+          organised by ELO
+        
       </p>
        
       <!---->
@@ -108,7 +117,9 @@ exports[`Renders Correctly 1`] = `
       <p>
         
         On 25/04/2018
-        organised by INT
+        
+          organised by INT
+        
       </p>
        
       <!---->

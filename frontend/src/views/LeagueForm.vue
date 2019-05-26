@@ -13,6 +13,8 @@
 
 <template>
   <div>
+    <vue-headful v-if="create" title="Munro - Create League" />
+    <vue-headful v-else title="Munro - Edit League" />
     <div v-if="!notFound">
       <h1 v-if="create">Create League</h1>
       <h1 v-if="!create">Edit League</h1>
@@ -52,8 +54,8 @@
 
 <script>
 import axios from 'axios'
-import NotFound from '@/views/NotFound'
 import DropdownInput from '@/components/DropdownInput'
+const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
@@ -74,6 +76,7 @@ export default {
       numberOfCountingEvents: 1,
       courses: '',
       info: '',
+      numberOfEvents: 0,
     }
   },
 

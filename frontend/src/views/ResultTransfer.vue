@@ -6,6 +6,7 @@
 
 <template>
   <div>
+    <vue-headful title="Munro - Transfer Results" />
     <h1>Transfer Result</h1>
     <form @submit.prevent="transfer()">
       <label>League:</label>

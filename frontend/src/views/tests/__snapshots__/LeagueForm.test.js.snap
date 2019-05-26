@@ -2,6 +2,10 @@
 
 exports[`Creation Form - Renders Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    title="Munro - Create League"
+  />
+   
   <div>
     <h1>
       Create League
@@ -93,6 +97,10 @@ exports[`Creation Form - Renders Correctly 1`] = `
 
 exports[`Update Form - Renders Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    title="Munro - Edit League"
+  />
+   
   <div>
     <!---->
      

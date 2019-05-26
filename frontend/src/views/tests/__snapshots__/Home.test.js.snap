@@ -2,12 +2,17 @@
 
 exports[`Renders Correctly - Multiple Leagues 1`] = `
 <div>
+  <vue-headful-stub
+    description="Fast and Easy Results for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro - League Results for Orienteering"
+  />
+   
   <div
     id="header"
   >
     <img
       alt="Runner Crossing Finsh Line"
-      src="/static/UnDrawRunningWhite.svg"
+      src="@/assets/images/UnDrawRunningWhite.svg"
     />
      
     <h2>
@@ -26,7 +31,7 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
       <img
         alt="The Logo of Sprintelope"
         height="150px"
-        src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+        src="@/assets/images/SprintelopeLogo.png"
       />
        
       <h1>
@@ -64,7 +69,7 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
       <img
         alt="The Logo of Sprintelope"
         height="150px"
-        src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+        src="@/assets/images/SprintelopeLogo.png"
       />
        
       <h1>
@@ -102,7 +107,7 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
     >
       <img
         alt="Munro Logo"
-        src="/static/MunroLogo.png"
+        src="@/assets/images/MunroLogo.png"
       />
        
       <h1>
@@ -113,7 +118,7 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
         class="text"
       >
         <p>
-          Munro was created by Ben Brown for his Advanced Higher Computing Project. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.
+          Munro was created by Ben Brown for his Advanced Higher Computing Project, as a calculator of the orienteering league standings. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.
         </p>
          
         <p>
@@ -163,12 +168,17 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
 
 exports[`Renders Correctly - No Leagues 1`] = `
 <div>
+  <vue-headful-stub
+    description="Fast and Easy Results for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro - League Results for Orienteering"
+  />
+   
   <div
     id="header"
   >
     <img
       alt="Runner Crossing Finsh Line"
-      src="/static/UnDrawRunningWhite.svg"
+      src="@/assets/images/UnDrawRunningWhite.svg"
     />
      
     <h2>
@@ -187,7 +197,7 @@ exports[`Renders Correctly - No Leagues 1`] = `
       <img
         alt="The Logo of Sprintelope"
         height="150px"
-        src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+        src="@/assets/images/SprintelopeLogo.png"
       />
        
       <h1>
@@ -225,7 +235,7 @@ exports[`Renders Correctly - No Leagues 1`] = `
       <img
         alt="The Logo of Sprintelope"
         height="150px"
-        src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+        src="@/assets/images/SprintelopeLogo.png"
       />
        
       <h1>
@@ -263,7 +273,7 @@ exports[`Renders Correctly - No Leagues 1`] = `
     >
       <img
         alt="Munro Logo"
-        src="/static/MunroLogo.png"
+        src="@/assets/images/MunroLogo.png"
       />
        
       <h1>
@@ -274,7 +284,7 @@ exports[`Renders Correctly - No Leagues 1`] = `
         class="text"
       >
         <p>
-          Munro was created by Ben Brown for his Advanced Higher Computing Project. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.
+          Munro was created by Ben Brown for his Advanced Higher Computing Project, as a calculator of the orienteering league standings. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.
         </p>
          
         <p>
@@ -324,12 +334,17 @@ exports[`Renders Correctly - No Leagues 1`] = `
 
 exports[`Renders Correctly - One League 1`] = `
 <div>
+  <vue-headful-stub
+    description="Fast and Easy Results for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro - League Results for Orienteering"
+  />
+   
   <div
     id="header"
   >
     <img
       alt="Runner Crossing Finsh Line"
-      src="/static/UnDrawRunningWhite.svg"
+      src="@/assets/images/UnDrawRunningWhite.svg"
     />
      
     <h2>
@@ -348,7 +363,7 @@ exports[`Renders Correctly - One League 1`] = `
       <img
         alt="The Logo of Sprintelope"
         height="150px"
-        src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+        src="@/assets/images/SprintelopeLogo.png"
       />
        
       <h1>
@@ -386,7 +401,7 @@ exports[`Renders Correctly - One League 1`] = `
       <img
         alt="The Logo of Sprintelope"
         height="150px"
-        src="https://munro-leagues.herokuapp.com/static/SprintelopeLogo.png"
+        src="@/assets/images/SprintelopeLogo.png"
       />
        
       <h1>
@@ -424,7 +439,7 @@ exports[`Renders Correctly - One League 1`] = `
     >
       <img
         alt="Munro Logo"
-        src="/static/MunroLogo.png"
+        src="@/assets/images/MunroLogo.png"
       />
        
       <h1>
@@ -435,7 +450,7 @@ exports[`Renders Correctly - One League 1`] = `
         class="text"
       >
         <p>
-          Munro was created by Ben Brown for his Advanced Higher Computing Project. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.
+          Munro was created by Ben Brown for his Advanced Higher Computing Project, as a calculator of the orienteering league standings. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.
         </p>
          
         <p>

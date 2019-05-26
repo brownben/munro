@@ -6,6 +6,8 @@
 
 <template>
   <div>
+    <vue-headful v-if="create" title="Munro - Create Competitor" />
+    <vue-headful v-else title="Munro - Edit Competitor" />
     <div v-if="!notFound">
       <h1 v-if="create">Create Competitor</h1>
       <h1 v-if="!create">Edit Competitor</h1>
@@ -31,8 +33,8 @@
 
 <script>
 import axios from 'axios'
-import NotFound from '@/views/NotFound'
 import DropdownInput from '@/components/DropdownInput'
+const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {

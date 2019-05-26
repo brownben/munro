@@ -21,7 +21,7 @@ test('Is a Vue Instance', () => {
       $route: { path: '', params: { league: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -32,7 +32,7 @@ test('Creation Form - Renders Correctly', () => {
       $route: { path: '', params: { league: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.create).toBeTruthy()
   expect(wrapper.element).toMatchSnapshot()
@@ -44,7 +44,7 @@ test('Update Form - Renders Correctly', () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.create).toBeFalsy()
   expect(wrapper.element).toMatchSnapshot()
@@ -56,7 +56,7 @@ test('Submit Method', () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   const getCreateSpy = jest.spyOn(wrapper.vm, 'createEvent')
   const getUpdateSpy = jest.spyOn(wrapper.vm, 'updateEvent')
@@ -81,7 +81,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
       $route: { path: '/events/1/edit', params: { league: '', id: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
@@ -103,7 +103,7 @@ test('Get Leagues - Shows Message on Error', async () => {
       $route: { path: '/events/1/edit', params: { league: '', id: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagues()
@@ -119,7 +119,7 @@ test('Get Event Details - Makes Request with Correct ID', async () => {
       $route: { path: '/events/1/edit', params: { league: '', id: 'eventID' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.resetAllMocks()
   axios.get.mockResolvedValue({ data: [] })
@@ -135,7 +135,7 @@ test('Get Event Details - Processes Response Correctly', async () => {
       $route: { path: '/events/1/edit', params: { league: '', id: 'SprintelopeBushEstate2018-05-09' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: sampleSingleEvent })
   await wrapper.vm.getEventDetails()
@@ -152,7 +152,7 @@ test('Get Event Details - No Event Found', async () => {
       $route: { path: '/events/1/edit', params: { league: '', id: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.notFound).toBeFalsy()
   axios.get.mockResolvedValue({ data: null })
@@ -167,7 +167,7 @@ test('Get Event Details - Shows Message on Error', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getEventDetails()
@@ -180,7 +180,7 @@ test('Check Validation Works', () => {
     mocks: {
       $route: { path: '/events/1/edit', params: { league: '' } },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: '', league: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
@@ -204,7 +204,7 @@ test('Return to League Home Page', () => {
       $router: { push: mockRouterPushFunction },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ league: 'Test League' })
   wrapper.vm.returnToLeaguePage({ data: { message: 'This is the Message Returned' } })
@@ -221,7 +221,7 @@ test('Create Event - Fails Validation', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   await wrapper.vm.createEvent()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
@@ -236,7 +236,7 @@ test('Create Event - Successful Creation', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
@@ -253,7 +253,7 @@ test('Create Event - Error in Creation', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   axios.post.mockRejectedValue({ 'message': 'Something went Wrong' })
   const mockReturnToLeaguePage = jest.fn()
@@ -273,7 +273,7 @@ test('Create Event - Calls Correct API Location', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData(sampleSingleEvent)
   sampleSingleEvent.id = undefined
@@ -292,7 +292,7 @@ test('Update Event - Calls Correct API Location', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData(sampleSingleEvent)
   await wrapper.vm.updateEvent()
@@ -309,7 +309,7 @@ test('Update Event - Fails Validation', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   await wrapper.vm.updateEvent()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
@@ -324,7 +324,7 @@ test('Update Event - Successful Creation', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
@@ -342,7 +342,7 @@ test('Update Event - Error in Creation', async () => {
       $route: { path: '/events/1/edit', params: { league: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods('returnToLeaguePage', mockReturnToLeaguePage)

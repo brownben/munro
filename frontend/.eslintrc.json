@@ -2,7 +2,8 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jest": true
+    "jest": true,
+    "node": true
   },
   "extends": [
     "plugin:vue/recommended",
@@ -17,7 +18,8 @@
   ],
   "parserOptions": {
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "parser": "babel-eslint"
   },
   "globals": {
     "document": false,
@@ -140,7 +142,6 @@
       }
     ],
     "no-control-regex": "error",
-    "no-debugger": "error",
     "no-delete-var": "error",
     "no-dupe-args": "error",
     "no-dupe-class-members": "error",
@@ -465,5 +466,6 @@
       }
     ],
     "vue/singleline-html-element-content-newline": "off"
-  }
+  },
+  "root": true
 }

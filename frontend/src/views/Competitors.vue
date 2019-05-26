@@ -6,6 +6,7 @@
 
 <template>
   <div>
+    <vue-headful title="Munro - Competitors" />
     <h1>Competitors</h1>
     <div class="actions">
       <h2>Actions</h2>
@@ -60,12 +61,10 @@
 
 <script>
 import axios from 'axios'
-import FilterMenu from '@/components/FilterMenu'
 import UpDownArrow from '@/components/UpDownArrows'
 
 export default {
   components: {
-    FilterMenu: FilterMenu,
     UpDownArrow: UpDownArrow,
   },
 

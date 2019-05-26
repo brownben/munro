@@ -2,6 +2,10 @@
 
 exports[`Renders Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    title="Munro - Merge Competitors"
+  />
+   
   <h1>
     Merge Competitors
   </h1>

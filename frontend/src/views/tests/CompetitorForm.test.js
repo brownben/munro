@@ -15,6 +15,7 @@ test('Is a Vue Instance', () => {
     mocks: {
       $route: { path: '' },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -24,6 +25,7 @@ test('Renders Correctly - Create', () => {
     mocks: {
       $route: { path: '', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.create).toBeTruthy()
   expect(wrapper.element).toMatchSnapshot()
@@ -34,6 +36,7 @@ test('Renders Correctly - Upload', () => {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.create).toBeFalsy()
   expect(wrapper.element).toMatchSnapshot()
@@ -48,6 +51,7 @@ test('Return from Page', () => {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
       $router: { push: mockRouterPush },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.vm.returnToCompetitorsPage({ data: { message: 'Hello' } })
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
@@ -63,7 +67,7 @@ test('Get Leagues - Request Called Correctly', async () => {
       $route: { path: '', params: { id: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: sampleSingleLeague })
   await wrapper.vm.getLeagues()
@@ -77,7 +81,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
       $route: { path: '', params: { id: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
@@ -99,7 +103,7 @@ test('Get Leagues - Shows Message on Error', async () => {
       $route: { path: '', params: { id: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagues()
@@ -113,6 +117,7 @@ test('Courses in League', () => {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ league: 'a', leagues: [] })
   expect(wrapper.vm.coursesInLeague).toEqual([])
@@ -127,6 +132,7 @@ test('Validate', () => {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ name: '', league: '', course: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
@@ -154,6 +160,7 @@ test('Submit', async () => {
       $messages: { addMessage: jest.fn() },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setMethods({ createCompetitor: mockCreate, updateCompetitor: mockUpdate })
   wrapper.setData({ create: true })
@@ -173,7 +180,7 @@ test('Create Competitor - Invalid', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await wrapper.vm.createCompetitor()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
@@ -182,7 +189,7 @@ test('Create Competitor - Invalid', async () => {
 
 test('Create Competitor - Correct API', async () => {
   const wrapper = shallowMount(CompetitorForm, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
     mocks: {
       $messages: { addMessage: jest.fn() },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
@@ -198,7 +205,7 @@ test('Create Competitor - Correct API', async () => {
 test('Create Competitor - Success', async () => {
   const mockReturnToCompetitorsPage = jest.fn()
   const wrapper = shallowMount(CompetitorForm, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
@@ -217,7 +224,7 @@ test('Create Competitor - Error', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ name: 'a', league: 'b', course: 'c' })
   axios.post.mockRejectedValue({ response: { data: { message: 'Hello' } } })
@@ -233,7 +240,7 @@ test('Update Competitor - Invalid', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await wrapper.vm.updateCompetitor()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
@@ -242,7 +249,7 @@ test('Update Competitor - Invalid', async () => {
 
 test('Update Competitor - Correct API', async () => {
   const wrapper = shallowMount(CompetitorForm, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
     mocks: {
       $messages: { addMessage: jest.fn() },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
@@ -258,7 +265,7 @@ test('Update Competitor - Correct API', async () => {
 test('Update Competitor - Success', async () => {
   const mockReturnToCompetitorsPage = jest.fn()
   const wrapper = shallowMount(CompetitorForm, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
@@ -277,7 +284,7 @@ test('Update Competitor - Error', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ name: 'a', league: 'b', course: 'c' })
   axios.put.mockRejectedValue({ response: { data: { message: 'Hello' } } })
@@ -294,7 +301,7 @@ test('Get Competitor Details - Error', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       created: () => { },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.get.mockRejectedValue()
@@ -311,7 +318,7 @@ test('Get Competitor Details - Not Found', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       created: () => { },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.get.mockResolvedValue({ data: false })
@@ -327,7 +334,7 @@ test('Get Competitor Details - Correct API Call', async () => {
       $route: { path: '/competitors/1/edit', params: { id: 'a' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.get.mockRejectedValue()

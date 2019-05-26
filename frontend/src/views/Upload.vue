@@ -6,6 +6,10 @@
 
 <template>
   <div>
+    <vue-headful
+      title="Munro - Upload Results"
+      description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    />
     <h1>Upload Results</h1>
     <label>Event ID:</label>
     <input v-model.trim.lazy="eventId" type="text" @change="findEvent()">
@@ -137,7 +141,7 @@ input[type='file']
 
 .checkbox-input
   margin: 0.5rem 0
-  margin-bottom: 2rem!important
+  margin-bottom: 2rem !important
 
 .file-input
   p, label

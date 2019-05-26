@@ -43,6 +43,7 @@ api.add_resource(routes.EventsWithUploadKey, '/api/events/uploadKey')
 api.add_resource(routes.Event, '/api/events/<id>')
 api.add_resource(routes.EventWithUploadKey, '/api/events/<id>/uploadKey')
 api.add_resource(routes.ResultsForEvent, '/api/events/<id>/results')
+api.add_resource(routes.EventsLatestWithResults, '/api/events/latest-results')
 
 api.add_resource(routes.Competitors, '/api/competitors')
 api.add_resource(routes.CompetitorMerge, '/api/competitors/merge')

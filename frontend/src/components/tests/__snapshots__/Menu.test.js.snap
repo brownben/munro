@@ -25,16 +25,18 @@ exports[`Renders Correctly - Desktop 1`] = `
     </router-link-stub>
      
     <router-link-stub
+      to="/latest-results"
+    >
+      Latest Results
+    </router-link-stub>
+     
+    <router-link-stub
       to="/upload"
     >
       Upload Results
     </router-link-stub>
      
-    <router-link-stub
-      to="/login"
-    >
-      Admin Login
-    </router-link-stub>
+    <!---->
   </nav>
 </div>
 `;
@@ -64,16 +66,18 @@ exports[`Renders Correctly - Desktop 2`] = `
     </router-link-stub>
      
     <router-link-stub
+      to="/latest-results"
+    >
+      Latest Results
+    </router-link-stub>
+     
+    <router-link-stub
       to="/upload"
     >
       Upload Results
     </router-link-stub>
      
-    <router-link-stub
-      to="/login"
-    >
-      Admin Login
-    </router-link-stub>
+    <!---->
   </nav>
 </div>
 `;
@@ -116,16 +120,18 @@ exports[`Renders Correctly - Mobile 1`] = `
     </router-link-stub>
      
     <router-link-stub
+      to="/latest-results"
+    >
+      Latest Results
+    </router-link-stub>
+     
+    <router-link-stub
       to="/upload"
     >
       Upload Results
     </router-link-stub>
      
-    <router-link-stub
-      to="/login"
-    >
-      Admin Login
-    </router-link-stub>
+    <!---->
   </nav>
 </div>
 `;

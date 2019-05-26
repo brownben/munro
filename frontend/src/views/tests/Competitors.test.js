@@ -12,21 +12,21 @@ beforeEach(() => {
 
 test('Is a Vue Instance', () => {
   const wrapper = shallowMount(Competitors, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
 
 test('Renders Correctly', () => {
   const wrapper = shallowMount(Competitors, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
 })
 
 test('Get Competitors - Success', async () => {
   const wrapper = shallowMount(Competitors, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   flushPromises()
   axios.get.mockResolvedValue({ data: [1, 2, 3, 4, 5] })
@@ -40,7 +40,7 @@ test('Renders Error', async () => {
     mocks: {
       '$messages': { addMessage: mockAddMessage },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   flushPromises()
   axios.get.mockRejectedValue()
@@ -51,7 +51,7 @@ test('Renders Error', async () => {
 
 test('Change Sort Order', () => {
   const wrapper = shallowMount(Competitors, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ sortedBy: 'Age' })
   wrapper.vm.sortBy('Name')
@@ -64,7 +64,7 @@ test('Change Sort Order', () => {
 
 test('Sort', () => {
   const wrapper = shallowMount(Competitors, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.sort([{ 'a': 3 }, { 'a': 1 }, { 'a': 2 }], 'a', false)).toEqual([{ 'a': 1 }, { 'a': 2 }, { 'a': 3 }])
   expect(wrapper.vm.sort([{ 'a': 1 }, { 'a': 3 }, { 'a': 1 }, { 'a': 2 }], 'a', true)).toEqual([{ 'a': 3 }, { 'a': 2 }, { 'a': 1 }, { 'a': 1 }])

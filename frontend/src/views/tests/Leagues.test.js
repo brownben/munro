@@ -13,14 +13,16 @@ beforeEach(() => {
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(Leagues, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ leagues: sampleDataThreeLeagues })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
 
 test('Renders Correctly', () => {
-  const wrapper = mount(Leagues)
+  const wrapper = mount(Leagues, {
+    stubs: ['router-link', 'vue-headful'],
+  })
   expect(wrapper.element).toMatchSnapshot()
 })
 
@@ -30,7 +32,7 @@ test('Call Get Leagues On Load', () => {
     methods: {
       getLeagues: mockGetLeagues,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   flushPromises()
   expect(mockGetLeagues).toHaveBeenCalledTimes(1)
@@ -42,7 +44,7 @@ test('Get Leagues - Request Called Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   jest.resetAllMocks()
   axios.get.mockResolvedValue({ data: sampleSingleLeague })
@@ -57,7 +59,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
@@ -78,7 +80,7 @@ test('Get Leagues - Shows Message on Error', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagues()

@@ -2,6 +2,10 @@
 
 exports[`Renders Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    title="Munro - Not Found"
+  />
+   
   <h1>
     Sorry We Can't Find What You Are Looking For
   </h1>

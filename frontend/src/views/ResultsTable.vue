@@ -9,6 +9,10 @@
 
 <template>
   <div>
+    <vue-headful
+      :title="'Munro - ' + $route.params.name + ' - ' + $route.params.course + ' Results'"
+      :description="'Results from the ' + $route.params.course + ' course of the ' + $route.params.name + ' league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'"
+    />
     <h1 id="league-title">
       <router-link :to="'/leagues/'+$route.params.name">{{ $route.params.name }}</router-link>
       - {{ $route.params.course }}
@@ -75,7 +79,9 @@
                     v-for="event of eventsWithResults"
                     :key="eventsWithResults.indexOf(event)"
                     :class="{ strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event)) }"
-                  >{{ result.points[eventsWithResults.indexOf(event)] }}</td>
+                  >
+                    {{ result.points[eventsWithResults.indexOf(event)] }}
+                  </td>
                 </template>
                 <td v-else>
                   <svg
@@ -120,7 +126,9 @@
               :key="course"
               :to="'/leagues/'+$route.params.name+'/results/'+course"
               class="button"
-            >{{ course }}</router-link>
+            >
+              {{ course }}
+            </router-link>
           </div>
         </div>
       </div>
@@ -132,13 +140,11 @@
 
 <script>
 import axios from 'axios'
-import NotFound from '@/views/NotFound'
 import FilterMenu from '@/components/FilterMenu'
 import UpDownArrow from '@/components/UpDownArrows'
 
 export default {
   components: {
-    NotFound: NotFound,
     FilterMenu: FilterMenu,
     UpDownArrow: UpDownArrow,
   },

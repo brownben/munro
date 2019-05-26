@@ -22,9 +22,9 @@
     <transition name="shrink">
       <nav v-show="showMenu || !smallWindow">
         <router-link to="/leagues">Leagues</router-link>
+        <router-link to="/latest-results">Latest Results</router-link>
         <router-link to="/upload">Upload Results</router-link>
-        <router-link v-if="!auth.user" to="/login">Admin Login</router-link>
-        <router-link v-else to="/logout">Log Out</router-link>
+        <router-link v-if="auth.user" to="/logout">Log Out</router-link>
       </nav>
     </transition>
   </div>

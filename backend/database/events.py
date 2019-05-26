@@ -185,6 +185,18 @@ def getEventsOfLeagueWithUploadKey(name):
     connection.close()
     return list(map(eventToJSONWithUploadKey, result))
 
+def getLatestEventsWithResults():
+    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = connection.cursor()
+    cursor.execute('''
+    SELECT id, name,date,resultUploaded,organiser,moreInformation,website,results,winsplits,routegadget,league
+    FROM events
+    WHERE resultUploaded = true
+    ORDER BY date DESC
+    LIMIT 12''')
+    result = cursor.fetchall()
+    connection.close()
+    return list(map(eventToJSON, result))
 
 def deleteAllEvents():
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')

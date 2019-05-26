@@ -12,12 +12,16 @@ beforeEach(() => {
 })
 
 test('Is a Vue Instance', () => {
-  const wrapper = mount(ResultTransfer)
+  const wrapper = mount(ResultTransfer, {
+    stubs: ['router-link', 'vue-headful'],
+  })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
 
 test('Renders Correctly', () => {
-  const wrapper = mount(ResultTransfer)
+  const wrapper = mount(ResultTransfer, {
+    stubs: ['router-link', 'vue-headful'],
+  })
   expect(wrapper.element).toMatchSnapshot()
 })
 
@@ -30,6 +34,7 @@ test('Return from Page', () => {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
       $router: { push: mockRouterPush },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.vm.returnToCompetitorsPage({ data: { message: 'Hello' } })
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
@@ -43,6 +48,7 @@ test('Elapsed Time', () => {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.elapsedTime(0)).toBe('00:00')
   expect(wrapper.vm.elapsedTime(1)).toBe('00:01')
@@ -56,7 +62,7 @@ test('Elapsed Time', () => {
 
 test('Competitor Transform for Dropdown Input', () => {
   const wrapper = shallowMount(ResultTransfer, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.competitorTransformForSelect({ name: 'Bob Jones', id: 22 })).toEqual('Bob Jones [22]')
   expect(wrapper.vm.competitorTransformForSelect({ name: 'Bob Jones', id: 22, ageClass: 'M45' })).toEqual('Bob Jones (M45) [22]')
@@ -70,7 +76,7 @@ test('Get Leagues - Request Called Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.resetAllMocks()
@@ -85,7 +91,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
@@ -106,7 +112,7 @@ test('Get Leagues - Shows Message on Error', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagues()
@@ -121,7 +127,7 @@ test('Get Competitors - Request Called Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.resetAllMocks()
@@ -136,7 +142,7 @@ test('Get Competitors - Processes Response Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getCompetitors()
@@ -157,7 +163,7 @@ test('Get Competitors - Shows Message on Error', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getCompetitors()
@@ -171,6 +177,7 @@ test('Courses in League', () => {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ league: 'a', leagues: [] })
   expect(wrapper.vm.coursesInLeague).toEqual([])
@@ -185,6 +192,7 @@ test('Validate', () => {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ event: '', result: '', course: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
@@ -210,7 +218,7 @@ test('Get Events - Request Called Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.resetAllMocks()
@@ -225,7 +233,7 @@ test('Get Events - Processes Response Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getEvents()
@@ -246,7 +254,7 @@ test('Get Events - Shows Message on Error', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getEvents()
@@ -261,7 +269,7 @@ test('Get Results - Request Called Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.resetAllMocks()
@@ -276,7 +284,7 @@ test('Get Results - Processes Response Correctly', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getResults()
@@ -297,7 +305,7 @@ test('Get Results - Shows Message on Error', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.getResults()
@@ -308,7 +316,7 @@ test('Get Results - Shows Message on Error', async () => {
 
 test('Elapsed Time to Seconds', () => {
   const wrapper = shallowMount(ResultTransfer, {
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.elapsedTimeToSeconds('00:00')).toBe(0)
   expect(wrapper.vm.elapsedTimeToSeconds('00:17')).toBe(17)
@@ -325,6 +333,7 @@ test('Competitors for League', () => {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ course: '2', league: 'b', leagues: [] })
   expect(wrapper.vm.competitorsForLeague).toEqual([])
@@ -342,7 +351,7 @@ test('Transfer - Invalid', async () => {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.transfer()

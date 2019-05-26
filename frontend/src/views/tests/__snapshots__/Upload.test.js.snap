@@ -2,6 +2,11 @@
 
 exports[`Renders Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro - Upload Results"
+  />
+   
   <h1>
     Upload Results
   </h1>
@@ -91,6 +96,11 @@ exports[`Renders Correctly 1`] = `
 
 exports[`Upload Buttons Shows Correctly 1`] = `
 <div>
+  <vue-headful-stub
+    description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    title="Munro - Upload Results"
+  />
+   
   <h1>
     Upload Results
   </h1>

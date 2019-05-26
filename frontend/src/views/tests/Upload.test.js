@@ -15,6 +15,7 @@ test('Is a Vue Instance', () => {
       $route: { params: { id: '' } },
       $messages: { addMessage: jest.fn() },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -24,6 +25,7 @@ test('Renders Correctly', () => {
     mocks: {
       $route: { params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
 })
@@ -33,7 +35,7 @@ test('Overwrite Checkbox Shows When Expected', () => {
     mocks: {
       $route: { params: { id: '' } },
     },
-    stubs: ['Checkbox'],
+    stubs: ['Checkbox', 'router-link', 'vue-headful'],
   })
   wrapper.setData({
     event: { resultUploaded: true },
@@ -50,6 +52,7 @@ test('Upload Buttons Shows Correctly', () => {
     mocks: {
       $route: { params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({
     eventId: 1,
@@ -78,6 +81,7 @@ test('Upload Buttons Shows Correctly', () => {
 test('Check Event ID is Autofilled when Provided', () => {
   const mockFindEvent = jest.fn()
   const wrapper = mount(Upload, {
+    stubs: ['router-link', 'vue-headful'],
     mocks: {
       $route: { params: { id: 'id' } },
     },
@@ -97,6 +101,7 @@ test('Upload File - Correct API Call', async () => {
       $router: { push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
+    stubs: ['router-link', 'vue-headful'],
     methods: {
       findEvent: jest.fn(),
     },
@@ -129,6 +134,7 @@ test('Upload File - Success', async () => {
       $router: { push: mockRouterPush },
       $messages: { addMessage: mockAddMessage },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({
     eventId: 1,
@@ -154,6 +160,7 @@ test('Upload File - Failure', async () => {
       $route: { params: { id: '' } },
       $messages: { addMessage: mockAddMessage },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({
     eventId: 1,
@@ -175,6 +182,7 @@ test('Find Event - Correct API Call', async () => {
       $route: { params: { id: '' } },
       $messages: { addMessage: mockAddMessage },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ eventId: 'id' })
   axios.get.mockResolvedValue()
@@ -190,6 +198,7 @@ test('Find Event - Error', async () => {
       $route: { params: { id: '' } },
       $messages: { addMessage: mockAddMessage },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
   await wrapper.vm.findEvent()
@@ -204,6 +213,7 @@ test('Find Event - Success - Event Found', async () => {
       $route: { params: { id: '' } },
       $messages: { addMessage: mockAddMessage },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: { name: 'event', date: '22/33/44' } })
   await wrapper.vm.findEvent()
@@ -217,6 +227,7 @@ test('Find Event - Success - Event Not Found', async () => {
       $route: { params: { id: '' } },
       $messages: { addMessage: mockAddMessage },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: false })
   await wrapper.vm.findEvent()
@@ -228,6 +239,7 @@ test('File Change - No Files', () => {
     mocks: {
       $route: { params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.fileChange({ target: { files: [] } })).toBeFalsy()
   expect(wrapper.vm.fileChange({ dataTransfer: { files: [] } })).toBeFalsy()
@@ -242,6 +254,7 @@ test('File Change - Files', () => {
     methods: {
       readFile: mockReadFile,
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.vm.fileChange({ target: { files: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] } })
   expect(wrapper.vm.fileName).toBe('a')
@@ -267,6 +280,7 @@ test('Read File', () => {
     methods: {
       readFileResult: mockOnLoad,
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   const mockReadAsText = jest.fn(() => wrapper.vm.readFileResult())
   mockFileReader.prototype.readAsText = mockReadAsText
@@ -284,6 +298,7 @@ test('Read File Result', () => {
     mocks: {
       $route: { params: { id: '' } },
     },
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.vm.readFileResult({ target: { result: 'Some Text' } })
   expect(wrapper.vm.file).toBe('Some Text')

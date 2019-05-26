@@ -20,7 +20,7 @@ test('Is a Vue Instance', () => {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -35,7 +35,7 @@ test('Creation Form - Renders Correctly', () => {
     methods: {
       getLeagueDetails: mockGetLeagueDetails,
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.create).toBeTruthy()
   expect(mockGetLeagueDetails).toHaveBeenCalledTimes(0)
@@ -52,7 +52,7 @@ test('Update Form - Renders Correctly', () => {
     methods: {
       getLeagueDetails: mockGetLeagueDetails,
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.create).toBeFalsy()
   expect(mockGetLeagueDetails).toHaveBeenCalledTimes(1)
@@ -65,7 +65,7 @@ test('Submit Method', () => {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   const getCreateSpy = jest.spyOn(wrapper.vm, 'createLeague')
   const getUpdateSpy = jest.spyOn(wrapper.vm, 'updateLeague')
@@ -89,7 +89,7 @@ test('Check Validation Works', () => {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: '', scoringMethod: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
@@ -113,7 +113,7 @@ test('Return to League Home Page', () => {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: 'Test League' })
   wrapper.vm.returnToLeaguePage({ data: { message: 'This is the Message Returned' } })
@@ -129,7 +129,7 @@ test('Scoring Method Shorthand to Full', () => {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based (100 Max)')
   expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('Position Based (50 Max)')
@@ -143,7 +143,7 @@ test('Scoring Method Full to Shorthand', () => {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (100 Max)')).toBe('position')
   expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (50 Max)')).toBe('position50')
@@ -158,7 +158,7 @@ test('Create League - Fails Validation', async () => {
       $route: { path: '/create-league', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   await wrapper.vm.createLeague()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
@@ -174,7 +174,7 @@ test('Create League - Successful Creation', async () => {
       $route: { path: '/create-league', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: 'Test League', scoringMethod: 'position' })
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
@@ -191,7 +191,7 @@ test('Create League - Error in Creation', async () => {
       $route: { path: '/create-league', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: 'Test League', scoringMethod: 'position' })
   await wrapper.vm.createLeague()
@@ -206,17 +206,19 @@ test('Create League - Calls Correct API Location', async () => {
       $route: { path: '/create-league', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.post.mockResolvedValue()
   const sampleOutput = Object.assign({}, sampleSingleLeague[0])
-  sampleOutput.description = ''
+  delete sampleOutput.info
   sampleOutput.scoringMethod = 'position'
   delete sampleOutput.numberOfEvents
   delete sampleOutput.oldName
   const sampleInput = Object.assign({}, sampleSingleLeague[0])
   delete sampleInput.oldName
+  sampleInput.info = sampleInput.description
+  delete sampleInput.description
   sampleInput.scoringMethod = 'Position Based (100 Max)'
   wrapper.setData(sampleInput)
   await wrapper.vm.createLeague()
@@ -232,14 +234,16 @@ test('Update League - Calls Correct API Location', async () => {
       $route: { path: '/leagues/1/edit', params: { name: 'name' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   const sampleOutput = Object.assign({}, sampleSingleLeague[0])
-  sampleOutput.description = ''
+  delete sampleOutput.info
   sampleOutput.scoringMethod = 'position'
   sampleOutput.oldName = 'name'
   delete sampleOutput.numberOfEvents
   const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  sampleInput.info = sampleInput.description
+  delete sampleInput.description
   sampleInput.oldName = 'name'
   sampleInput.scoringMethod = 'Position Based (100 Max)'
   wrapper.setData(sampleInput)
@@ -255,7 +259,7 @@ test('Update League - Fails Validation', async () => {
       $route: { path: '/leagues/1/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   await wrapper.vm.updateLeague()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
@@ -272,11 +276,14 @@ test('Update League - Successful Creation', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       getLeagueDetails: mockGetLeagueDetails,
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
-  wrapper.setData(sampleSingleLeague[0])
+  const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  sampleInput.info = sampleInput.description
+  delete sampleInput.description
+  wrapper.setData(sampleInput)
   await wrapper.vm.updateLeague()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(1)
   expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({ data: { message: 'Hello' } })
@@ -291,7 +298,7 @@ test('Update League - Error in Creation', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       getLeagueDetails: mockGetLeagueDetails,
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: 'Test League', scoringMethod: 'position' })
   axios.put.mockRejectedValue()
@@ -308,7 +315,7 @@ test('Get League Details - Error', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       created: () => { },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.get.mockRejectedValue()
@@ -325,7 +332,7 @@ test('Get League Details - Success', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       created: () => { },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.get.mockResolvedValue({ data: { ...sampleSingleLeague[0], description: '' } })
@@ -346,7 +353,7 @@ test('Get League Details - Not Found', async () => {
       $messages: { addMessage: mockAddMessageFunction },
       created: () => { },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.get.mockResolvedValue({ data: false })
@@ -362,7 +369,7 @@ test('Get League Details - Correct API Call', async () => {
       $route: { path: '/leagues/1/edit', params: { name: 'a' } },
       $messages: { addMessage: mockAddMessageFunction },
     },
-    stubs: ['dropdown-input', 'router-link'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
   axios.get.mockRejectedValue()

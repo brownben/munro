@@ -5,11 +5,17 @@
 <template>
   <div>
     <div v-if="league">
+      <vue-headful
+        :title="'Munro - '+$route.params.name"
+        :description="'Event Information and Results for the '+ $route.params.name + 'league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'"
+      />
       <div v-for="event of events" :key="event.name" class="event">
         <h2>{{ event.name }}</h2>
         <p
           v-if="event.date"
-        >On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}</p>
+        >
+          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}
+        </p>
         <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
         <p v-if="event.website">
           More Information can be found at
@@ -41,9 +47,6 @@
             rel="noopener noreferrer"
             class="button"
           >Routegadget</a>
-          <p
-            v-if="!event.results && !event.winsplits && !event.routegadget"
-          >No Result Links Uploaded - Please Check The Event's Website To See If Results Have Been Uploaded</p>
         </div>
       </div>
     </div>
@@ -52,7 +55,7 @@
 </template>
 <script>
 import axios from 'axios'
-import NotFound from '@/views/NotFound'
+const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {

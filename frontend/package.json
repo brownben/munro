@@ -1,129 +1,58 @@
 {
   "name": "munro",
-  "version": "1.0.0--alpha",
+  "version": "1.0.0",
+  "private": true,
   "description": "Fast and Easy Results for Orienteering Leagues",
   "author": "brownben <9870007+brownben@users.noreply.github.com>",
-  "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "lint": "npm run lint-styles && npm run lint-js",
-    "lint-js": "eslint ./src/ --ext .vue,.js",
-    "lint-js-fix": "eslint ./src/ --ext .vue,.js --fix",
-    "lint-styles": "stylus-supremacy format ./src/assets/styles/*.styl --options stylusSupremacy.json --replace",
-    "test": "jest",
-    "build": "node build/build.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --modern",
+    "test": "vue-cli-service test:unit",
+    "lint": "npm run lint-js && npm run lint-styles",
+    "lint-js": "vue-cli-service lint",
+    "lint-styles": "stylus-supremacy format ./src/assets/styles/*.styl --options stylusSupremacy.json --replace"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "firebase": "^5.9.1",
-    "vue": "^2.6.7",
-    "vue-router": "^3.0.1"
+    "core-js": "^2.6.5",
+    "firebase": "^6.0.4",
+    "vue": "^2.6.10",
+    "vue-headful": "^2.0.1",
+    "vue-router": "^3.0.6"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-bridge.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-proposal-decorators": "^7.0.0",
-    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
-    "@babel/plugin-proposal-function-sent": "^7.0.0",
-    "@babel/plugin-proposal-json-strings": "^7.0.0",
-    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
-    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/plugin-syntax-import-meta": "^7.0.0",
-    "@babel/plugin-syntax-jsx": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/runtime": "^7.3.4",
-    "@vue/test-utils": "^1.0.0-beta.29",
-    "autoprefixer": "^7.1.2",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^9.0.0",
-    "babel-helper-vue-jsx-merge-props": "^2.0.3",
-    "babel-jest": "^23.4.2",
-    "babel-loader": "^8.0.0",
-    "babel-plugin-transform-vue-jsx": "^4.0.1",
-    "chalk": "^2.4.2",
-    "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.0",
-    "eslint": "^4.15.0",
-    "eslint-friendly-formatter": "^3.0.0",
-    "eslint-loader": "^1.7.1",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.3.0",
-    "eslint-plugin-node": "^5.2.0",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "eslint-plugin-vue": "^4.0.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^1.1.4",
-    "firebase-mock": "^2.2.10",
-    "friendly-errors-webpack-plugin": "^1.6.1",
-    "html-webpack-plugin": "^2.30.1",
-    "jest": "^24.1.0",
+    "@vue/cli": "^3.7.0",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-plugin-unit-jest": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.1",
     "jest-localstorage-mock": "^2.4.0",
-    "jest-serializer-vue": "^2.0.2",
-    "node-notifier": "^5.4.0",
-    "optimize-css-assets-webpack-plugin": "^3.2.0",
-    "ora": "^1.2.0",
-    "portfinder": "^1.0.13",
-    "postcss-import": "^11.0.0",
-    "postcss-loader": "^2.0.8",
-    "postcss-url": "^7.2.1",
-    "rimraf": "^2.6.3",
-    "semver": "^5.3.0",
-    "shelljs": "^0.7.6",
+    "postcss-import": "^12.0.1",
+    "postcss-url": "^8.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "stylus-supremacy": "^2.12.7",
-    "uglifyjs-webpack-plugin": "^1.1.1",
-    "url-loader": "^1.1.2",
-    "vue-jest": "^3.0.3",
-    "vue-loader": "^13.3.0",
-    "vue-style-loader": "^3.0.1",
-    "vue-template-compiler": "^2.6.7",
-    "webpack": "^3.6.0",
-    "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^2.9.7",
-    "webpack-merge": "^4.2.1"
-  },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
+    "vue-template-compiler": "^2.6.10"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
   ],
-  "jest": {
-    "verbose": true,
-    "testURL": "http://localhost/",
-    "browser": true,
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
-    "transform": {
-      ".*\\.(vue)$": "vue-jest",
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    },
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ],
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    },
-    "snapshotSerializers": [
-      "jest-serializer-vue"
-    ],
-    "collectCoverage": true,
-    "coverageReporters": [
-      "html",
-      "text"
-    ],
-    "coverageDirectory": "<rootDir>/src/tests/coverage"
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
   }
 }

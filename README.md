@@ -1,10 +1,16 @@
+<img height="150px" src="./frontend/src/assets/images/MunroLogo.png" />
+
 # Munro
 
-> Fast and Easy Results for Orienteering Leagues
+### Fast and Easy Results for Orienteering Leagues
 
-My Advanced Higher Computing Project, a dynamic SPA which calculates the results for a league of orienteering events and allows sorting and filtering of results. Interacts with a backend API made with Flask to manage authentication and the database
+Live at: munro-leagues.herokuapp.com
 
-## Frontend Build Setup
+Originally created as part of my Advanced Higher Computing project, Munro is a Single Page VueJS App with a RESTful style Python Flask API and authentication using Firebase. Munro calculates and displays the results for a league of Orienteering events, with options to search and sort the results. It also allows the league administrator to login and update all the details for the league and upload the results file for processing. Designed and created based off Orienteers feedback from what they wanted from the system.
+
+For any help or enquires please email munro.leagues(a)gmail.com or add an issue on Github
+
+## Frontend
 
 ``` bash
 cd frontend
@@ -37,7 +43,7 @@ npm run lint-styles
 npm test
 ```
 
-## Run Backend for Development
+## Backend
 
 ```bash
 cd backend
@@ -51,13 +57,11 @@ pip install -r requirements.txt
 # set enviroment variables (for development, ignore if running pre-built frontend)
 set FLASK_ENV=development
 set FLASK_DEBUG=1
+set DATABASE_URL=<database-url>
 
 # run on all interfaces, defaults to port 5000
 flask run --host=0.0.0.0
 
 # run unit tests
 pytest --cov-report term-missing --cov=. -vv
-
-# push to heroku
-git subtree push --prefix backend heroku master
 ```

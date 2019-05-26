@@ -8,6 +8,8 @@
 import Vue from 'vue'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import vueHeadful from 'vue-headful'
+
 import App from './App'
 import router from './router'
 import auth from './authentication'
@@ -17,6 +19,8 @@ Vue.config.productionTip = false
 
 Vue.prototype.$messages = messageStore
 Vue.prototype.$auth = auth
+
+Vue.component('vue-headful', vueHeadful)
 
 firebase.initializeApp({
   apiKey: 'AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ ',

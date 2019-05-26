@@ -9,21 +9,22 @@ import Router from 'vue-router'
 
 import messageStore from '@/messageStore'
 
-import CompetitorForm from '@/views/CompetitorForm'
-import CompetitorMerge from '@/views/CompetitorMerge'
-import Competitors from '@/views/Competitors'
-import EventForm from '@/views/EventForm'
-import Home from '@/views/Home'
-import LeagueForm from '@/views/LeagueForm'
-import League from '@/views/LeagueHome'
-import Leagues from '@/views/Leagues'
-import LeagueEventsEmbed from '@/views/LeagueEventsEmbed'
-import Login from '@/views/Login'
-import NotFound from '@/views/NotFound'
-import ResultsTable from '@/views/ResultsTable'
-import ResultTransfer from '@/views/ResultTransfer'
-import Upload from '@/views/Upload'
-import Developers from '@/views/Developers'
+const CompetitorForm = () => import('@/views/CompetitorForm')
+const CompetitorMerge = () => import('@/views/CompetitorMerge')
+const Competitors = () => import('@/views/Competitors')
+const EventForm = () => import('@/views/EventForm')
+const Home = () => import('@/views/Home')
+const LeagueForm = () => import('@/views/LeagueForm')
+const League = () => import('@/views/LeagueHome')
+const Leagues = () => import('@/views/Leagues')
+const LeagueEventsEmbed = () => import('@/views/LeagueEventsEmbed')
+const Login = () => import('@/views/Login')
+const NotFound = () => import('@/views/NotFound')
+const ResultsTable = () => import('@/views/ResultsTable')
+const ResultTransfer = () => import('@/views/ResultTransfer')
+const Upload = () => import('@/views/Upload')
+const Developers = () => import('@/views/Developers')
+const LatestResults = () => import('@/views/LatestResults')
 
 // Bind to Vue Instance
 Vue.use(Router)
@@ -129,6 +130,11 @@ const router = new Router({
       name: 'Transfer Result',
       component: ResultTransfer,
       beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/latest-results',
+      name: 'Latest Results',
+      component: LatestResults,
     },
     {
       path: '/developers',

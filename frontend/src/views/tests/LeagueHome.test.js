@@ -30,7 +30,7 @@ test('Is a Vue Instance', () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -47,7 +47,7 @@ test('Renders Correctly', () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ league: sampleSingleLeague, events: sampleThreeEvents })
   expect(wrapper.element).toMatchSnapshot()
@@ -65,7 +65,7 @@ test('Calls Correct Functions on Load', async () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   await wrapper.vm.$mount()
@@ -91,7 +91,7 @@ test('Reload League on Route Change', async () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -114,7 +114,7 @@ test('Get League - Correct API Call', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -134,7 +134,7 @@ test('Get League - Success', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await wrapper.vm.getLeague()
   expect(mockAddMessage).toHaveBeenCalledTimes(0)
@@ -150,7 +150,7 @@ test('Get League - Error', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -169,7 +169,7 @@ test('Get League Events - No League Data', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -189,7 +189,7 @@ test('Get League Events - Correct API', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -209,7 +209,7 @@ test('Get League Events - Correct API - Logged In', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -229,7 +229,7 @@ test('Get League Events - Success', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -248,7 +248,7 @@ test('Get League Events - Success - Logged In', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -267,7 +267,7 @@ test('Get League Events - Error', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -287,7 +287,7 @@ test('Get League Events - Error - Logged In', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -307,7 +307,7 @@ test('Delete Event - Correct Confirm', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   global.confirm = jest.fn()
   await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
@@ -324,7 +324,7 @@ test('Delete Event - Denied Confirmation', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   global.confirm = jest.fn().mockReturnValue(false)
   axios.delete.mockResolvedValue()
@@ -341,7 +341,7 @@ test('Delete Event - Correct API Call', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   global.confirm = jest.fn().mockReturnValue(true)
   axios.delete.mockResolvedValue()
@@ -361,7 +361,7 @@ test('Delete Event - Success', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
     methods: {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
@@ -387,7 +387,7 @@ test('Delete Event - Error', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -407,7 +407,7 @@ test('Delete League - Correct Confirm', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   global.confirm = jest.fn()
   wrapper.setData({ league: { name: 'LEAGUE' } })
@@ -425,7 +425,7 @@ test('Delete League - Denied Confirmation', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ league: { name: 'LEAGUE' } })
   global.confirm = jest.fn().mockReturnValue(false)
@@ -443,7 +443,7 @@ test('Delete League - Correct API Call', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ league: { name: 'LEAGUE' } })
   global.confirm = jest.fn().mockReturnValue(true)
@@ -470,7 +470,7 @@ test('Delete League - Success', async () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ league: { name: 'LEAGUE' } })
   global.confirm = jest.fn().mockReturnValue(true)
@@ -491,7 +491,7 @@ test('Delete League - Error', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -511,7 +511,7 @@ test('Scoring Method Shorthand to Full', () => {
       $messages: { addMessage: jest.fn() },
       mounted: () => { },
     },
-    stubs: ['router-link'],
+    stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based (100 Max)')
   expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('Position Based (50 Max)')

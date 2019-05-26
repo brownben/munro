@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly - No Props 1`] = `
 <div
-  id="up-down-arrows"
+  class="up-down-arrows"
 >
   <svg
     class=""
@@ -26,7 +26,7 @@ exports[`Renders Correctly - No Props 1`] = `
 
 exports[`Renders Correctly - Passed with Props 1`] = `
 <div
-  id="up-down-arrows"
+  class="up-down-arrows"
 >
   <svg
     class="active"
