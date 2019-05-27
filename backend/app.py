@@ -22,6 +22,7 @@ talisman = Talisman(
     frame_options='ALLOW_FROM',
     frame_options_allow_from='*',
     content_security_policy={
+        'script-src': "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI='",
         'default-src': "'self' www.googleapis.com",
         'img-src': '*',
         'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
