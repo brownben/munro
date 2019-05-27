@@ -5,6 +5,7 @@ exports[`Renders Correctly 1`] = `
   <vue-headful-stub
     description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     title="Munro - Upload Results"
+    url="https://munro-leagues.herokuapp.com/upload"
   />
    
   <h1>
@@ -99,6 +100,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   <vue-headful-stub
     description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     title="Munro - Upload Results"
+    url="https://munro-leagues.herokuapp.com/upload"
   />
    
   <h1>

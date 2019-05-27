@@ -1,5 +1,6 @@
 import routes
 import os
+import json
 
 import requests
 from flask import Flask, render_template, session, request, send_from_directory
@@ -28,6 +29,12 @@ talisman = Talisman(
     }
 )
 app.secret_key = os.urandom(25)
+
+@api.representation('application/json')
+def output_json(data, code, headers={'X-Robots-Tag': 'noindex'}):
+    resp = app.make_response((json.dumps(data), code))
+    resp.headers.extend({'X-Robots-Tag': 'noindex'})
+    return resp
 
 # Bind all logic with the routes
 api.add_resource(routes.Leagues, '/api/leagues')
@@ -63,7 +70,7 @@ api.add_resource(routes.Upload, '/api/upload')
 def catch_all(path):
     # If in debug access files from VueJS Development Server
     # if app.debug:
-    #    return requests.get('http://localhost:8080/{}'.format(path)).text
+    #   return requests.get('http://localhost:8080/{}'.format(path)).text
     return render_template("index.html")
 
 

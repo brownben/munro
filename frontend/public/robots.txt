@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /api/
 Disallow: /competitors/
 Disallow: /create-competitor/
 Disallow: /create-league/

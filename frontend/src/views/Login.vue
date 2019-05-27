@@ -6,7 +6,12 @@
 
 <template>
   <div>
-    <vue-headful title="Munro - Login" />
+    <vue-headful
+      title="Munro - Login"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
     <h1>Admin Login</h1>
     <form @submit.prevent="sendLoginRequest()">
       <label>Email Address:</label>

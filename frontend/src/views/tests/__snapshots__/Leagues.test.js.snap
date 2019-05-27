@@ -5,6 +5,7 @@ exports[`Renders Correctly 1`] = `
   <vue-headful-stub
     description="League Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     title="Munro - Leagues"
+    url="https://munro-leagues.herokuapp.com/leagues"
   />
    
   <h1>

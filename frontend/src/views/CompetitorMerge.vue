@@ -6,7 +6,12 @@
 
 <template>
   <div>
-    <vue-headful title="Munro - Merge Competitors" />
+    <vue-headful
+      title="Munro - Merge Competitors"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
     <h1>Merge Competitors</h1>
     <form @submit.prevent="merge()">
       <label>League:</label>

@@ -6,8 +6,20 @@
 
 <template>
   <div>
-    <vue-headful v-if="create" title="Munro - Create Competitor" />
-    <vue-headful v-else title="Munro - Edit Competitor" />
+    <vue-headful
+      v-if="create"
+      title="Munro - Create Competitor"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
+    <vue-headful
+      v-else
+      title="Munro - Edit Competitor"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
     <div v-if="!notFound">
       <h1 v-if="create">Create Competitor</h1>
       <h1 v-if="!create">Edit Competitor</h1>

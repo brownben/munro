@@ -9,6 +9,7 @@
     <vue-headful
       title="Munro - Upload Results"
       description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      url="https://munro-leagues.herokuapp.com/upload"
     />
     <h1>Upload Results</h1>
     <label>Event ID:</label>

@@ -7,8 +7,9 @@
 <template>
   <div>
     <vue-headful
-      title="Munro - League Results for Orienteering"
-      description="Fast and Easy Results for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      title="Munro"
+      description="Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features"
+      url="https://munro-leagues.herokuapp.com/"
     />
     <div id="header">
       <img src="@/assets/images/UnDrawRunningWhite.svg" alt="Runner Crossing Finsh Line">

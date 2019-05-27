@@ -13,8 +13,20 @@
 
 <template>
   <div>
-    <vue-headful v-if="create" title="Munro - Create League" />
-    <vue-headful v-else title="Munro - Edit League" />
+    <vue-headful
+      v-if="create"
+      title="Munro - Create League"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
+    <vue-headful
+      v-else
+      title="Munro - Edit League"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
     <div v-if="!notFound">
       <h1 v-if="create">Create League</h1>
       <h1 v-if="!create">Edit League</h1>

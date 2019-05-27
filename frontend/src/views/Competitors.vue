@@ -6,7 +6,12 @@
 
 <template>
   <div>
-    <vue-headful title="Munro - Competitors" />
+    <vue-headful
+      title="Munro - Competitors"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
     <h1>Competitors</h1>
     <div class="actions">
       <h2>Actions</h2>

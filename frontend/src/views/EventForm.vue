@@ -16,8 +16,20 @@
 
 <template>
   <div>
-    <vue-headful v-if="create" title="Munro - Create Event" />
-    <vue-headful v-else title="Munro - Edit Event" />
+    <vue-headful
+      v-if="create"
+      title="Munro - Create Event"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
+    <vue-headful
+      v-else
+      title="Munro - Edit Event"
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
+    />
     <div v-if="!notFound">
       <h1 v-if="create">Create Event</h1>
       <h1 v-if="!create">Edit Event</h1>
