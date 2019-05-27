@@ -10,6 +10,9 @@
       title="Munro - Developers"
       description="Developer information about the API and embed pages of Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/developers"
+      :head="{
+        'meta': {name: 'robots', content:'all'},
+      }"
     />
     <h1>Developers</h1>
     <h2>API</h2>

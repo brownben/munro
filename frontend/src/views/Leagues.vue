@@ -10,6 +10,9 @@
       title="Munro - Leagues"
       description="League Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/leagues"
+      :head="{
+        'meta': {name: 'robots', content:'all'},
+      }"
     />
     <h1>Leagues</h1>
     <div id="leagues">

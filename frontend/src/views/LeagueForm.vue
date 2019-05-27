@@ -16,6 +16,7 @@
     <vue-headful
       v-if="create"
       title="Munro - Create League"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"
@@ -23,6 +24,7 @@
     <vue-headful
       v-else
       title="Munro - Edit League"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"

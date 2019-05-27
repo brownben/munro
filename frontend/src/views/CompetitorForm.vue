@@ -9,6 +9,7 @@
     <vue-headful
       v-if="create"
       title="Munro - Create Competitor"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"
@@ -16,6 +17,7 @@
     <vue-headful
       v-else
       title="Munro - Edit Competitor"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"

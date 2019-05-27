@@ -10,6 +10,9 @@
       title="Munro - Latest Results"
       description="The latest results from events on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/latest-results"
+      :head="{
+        'meta': {name: 'robots', content:'all'},
+      }"
     />
     <h1>Latest Results</h1>
     <div v-for="event of events" :key="event.name" class="event">

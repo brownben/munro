@@ -10,6 +10,9 @@
       title="Munro"
       description="Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/"
+      :head="{
+        'meta': {name: 'robots', content:'all'},
+      }"
     />
     <div id="header">
       <img src="@/assets/images/UnDrawRunningWhite.svg" alt="Runner Crossing Finsh Line">

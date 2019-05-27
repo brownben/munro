@@ -8,6 +8,7 @@
   <div>
     <vue-headful
       title="Munro - Not Found"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"

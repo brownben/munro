@@ -6,10 +6,12 @@
 
 <template>
   <div>
-    <vue-headful title="Munro - Transfer Results"
-                 :head="{
-                   'meta': {name: 'robots', content:'noindex'},
-                 }"
+    <vue-headful
+      title="Munro - Transfer Results"
+      description=""
+      :head="{
+        'meta': {name: 'robots', content:'noindex'},
+      }"
     />
     <h1>Transfer Result</h1>
     <form @submit.prevent="transfer()">

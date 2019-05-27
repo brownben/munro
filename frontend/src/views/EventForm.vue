@@ -19,6 +19,7 @@
     <vue-headful
       v-if="create"
       title="Munro - Create Event"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"
@@ -26,6 +27,7 @@
     <vue-headful
       v-else
       title="Munro - Edit Event"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"

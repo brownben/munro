@@ -8,6 +8,7 @@
   <div>
     <vue-headful
       title="Munro - Merge Competitors"
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"
