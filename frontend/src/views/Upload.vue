@@ -15,6 +15,7 @@
       }"
     />
     <h1>Upload Results</h1>
+    <p>For instructions to upload results go to <router-link to="/upload-instructions">/upload-instructions</router-link></p>
     <label>Event ID:</label>
     <input v-model.trim.lazy="eventId" type="text" @change="findEvent()">
     <p v-show="event.name" id="eventName">
@@ -159,4 +160,7 @@ input, select
 
 #uploadButton
   margin-top: 1.5rem
+
+a
+  color:main-color
 </style>

@@ -23,6 +23,7 @@ const NotFound = () => import('@/views/NotFound')
 const ResultsTable = () => import('@/views/ResultsTable')
 const ResultTransfer = () => import('@/views/ResultTransfer')
 const Upload = () => import('@/views/Upload')
+const UploadInstructions = () => import('@/views/UploadInstructions')
 const Developers = () => import('@/views/Developers')
 const LatestResults = () => import('@/views/LatestResults')
 
@@ -124,6 +125,11 @@ const router = new Router({
       path: '/upload/:id',
       name: 'Upload Results (From Event Page)',
       component: Upload,
+    },
+    {
+      path: '/upload-instructions',
+      name: 'Upload Instructions',
+      component: UploadInstructions,
     },
     {
       path: '/results/transfer',

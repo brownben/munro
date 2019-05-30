@@ -4,6 +4,7 @@ exports[`Renders Correctly 1`] = `
 <div>
   <vue-headful-stub
     description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    head="[object Object]"
     title="Munro - Upload Results"
     url="https://munro-leagues.herokuapp.com/upload"
   />
@@ -11,6 +12,15 @@ exports[`Renders Correctly 1`] = `
   <h1>
     Upload Results
   </h1>
+   
+  <p>
+    For instructions to upload results go to 
+    <router-link-stub
+      to="/upload-instructions"
+    >
+      /upload-instructions
+    </router-link-stub>
+  </p>
    
   <label>
     Event ID:
@@ -99,6 +109,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
 <div>
   <vue-headful-stub
     description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    head="[object Object]"
     title="Munro - Upload Results"
     url="https://munro-leagues.herokuapp.com/upload"
   />
@@ -106,6 +117,15 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   <h1>
     Upload Results
   </h1>
+   
+  <p>
+    For instructions to upload results go to 
+    <router-link-stub
+      to="/upload-instructions"
+    >
+      /upload-instructions
+    </router-link-stub>
+  </p>
    
   <label>
     Event ID:

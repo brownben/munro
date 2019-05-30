@@ -60,14 +60,19 @@
         <h1>About</h1>
         <div class="text">
           <p>Munro was created by Ben Brown for his Advanced Higher Computing Project, as a calculator of the orienteering league standings. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.</p>
-          <p>Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues(a)gmail.com</p>
-          <p>For any help or enquires please email munro.leagues(a)gmail.com</p>
+          <p>Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues@gmail.com</p>
+          <p>For any help or enquires please email munro.leagues@gmail.com</p>
         </div>
       </div>
       <div class="card middle">
         <h1>Developers</h1>
         <p>Information for developers about accessing the API and embedding the site in IFrames</p>
         <router-link to="/developers" class="button">View Info</router-link>
+      </div>
+      <div class="card middle">
+        <h1>Upload Instructions</h1>
+        <p>Instructions for how to upload results to Munro</p>
+        <router-link to="/upload-instructions" class="button">View Info</router-link>
       </div>
     </div>
     <p class="credits">

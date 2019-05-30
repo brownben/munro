@@ -4,6 +4,7 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
 <div>
   <vue-headful-stub
     description="Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features"
+    head="[object Object]"
     title="Munro"
     url="https://munro-leagues.herokuapp.com/"
   />
@@ -123,11 +124,11 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
         </p>
          
         <p>
-          Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues(a)gmail.com
+          Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues@gmail.com
         </p>
          
         <p>
-          For any help or enquires please email munro.leagues(a)gmail.com
+          For any help or enquires please email munro.leagues@gmail.com
         </p>
       </div>
     </div>
@@ -146,6 +147,25 @@ exports[`Renders Correctly - Multiple Leagues 1`] = `
       <router-link-stub
         class="button"
         to="/developers"
+      >
+        View Info
+      </router-link-stub>
+    </div>
+     
+    <div
+      class="card middle"
+    >
+      <h1>
+        Upload Instructions
+      </h1>
+       
+      <p>
+        Instructions for how to upload results to Munro
+      </p>
+       
+      <router-link-stub
+        class="button"
+        to="/upload-instructions"
       >
         View Info
       </router-link-stub>
@@ -171,6 +191,7 @@ exports[`Renders Correctly - No Leagues 1`] = `
 <div>
   <vue-headful-stub
     description="Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features"
+    head="[object Object]"
     title="Munro"
     url="https://munro-leagues.herokuapp.com/"
   />
@@ -290,11 +311,11 @@ exports[`Renders Correctly - No Leagues 1`] = `
         </p>
          
         <p>
-          Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues(a)gmail.com
+          Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues@gmail.com
         </p>
          
         <p>
-          For any help or enquires please email munro.leagues(a)gmail.com
+          For any help or enquires please email munro.leagues@gmail.com
         </p>
       </div>
     </div>
@@ -313,6 +334,25 @@ exports[`Renders Correctly - No Leagues 1`] = `
       <router-link-stub
         class="button"
         to="/developers"
+      >
+        View Info
+      </router-link-stub>
+    </div>
+     
+    <div
+      class="card middle"
+    >
+      <h1>
+        Upload Instructions
+      </h1>
+       
+      <p>
+        Instructions for how to upload results to Munro
+      </p>
+       
+      <router-link-stub
+        class="button"
+        to="/upload-instructions"
       >
         View Info
       </router-link-stub>
@@ -338,6 +378,7 @@ exports[`Renders Correctly - One League 1`] = `
 <div>
   <vue-headful-stub
     description="Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features"
+    head="[object Object]"
     title="Munro"
     url="https://munro-leagues.herokuapp.com/"
   />
@@ -457,11 +498,11 @@ exports[`Renders Correctly - One League 1`] = `
         </p>
          
         <p>
-          Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues(a)gmail.com
+          Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues@gmail.com
         </p>
          
         <p>
-          For any help or enquires please email munro.leagues(a)gmail.com
+          For any help or enquires please email munro.leagues@gmail.com
         </p>
       </div>
     </div>
@@ -480,6 +521,25 @@ exports[`Renders Correctly - One League 1`] = `
       <router-link-stub
         class="button"
         to="/developers"
+      >
+        View Info
+      </router-link-stub>
+    </div>
+     
+    <div
+      class="card middle"
+    >
+      <h1>
+        Upload Instructions
+      </h1>
+       
+      <p>
+        Instructions for how to upload results to Munro
+      </p>
+       
+      <router-link-stub
+        class="button"
+        to="/upload-instructions"
       >
         View Info
       </router-link-stub>

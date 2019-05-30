@@ -3,6 +3,7 @@
 exports[`Creation Form - Renders Correctly 1`] = `
 <div>
   <vue-headful-stub
+    description=""
     head="[object Object]"
     title="Munro - Create League"
   />
@@ -99,6 +100,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
 exports[`Update Form - Renders Correctly 1`] = `
 <div>
   <vue-headful-stub
+    description=""
     head="[object Object]"
     title="Munro - Edit League"
   />
