@@ -16,7 +16,7 @@
         'meta': {name: 'robots', content:'all'},
       }"
     />
-    <div v-if="league">
+    <div v-if="league && league.name">
       <h1>{{ league.name }}</h1>
       <p v-if="league.description">{{ league.description }}</p>
       <p
@@ -171,7 +171,7 @@ export default {
     },
 
     getLeagueEvents: function () {
-      if (this.league) {
+      if (this.league && this.league.name) {
         if (this.auth.user) {
           return axios.get('/api/leagues/' + this.league.name + '/events/uploadKey')
             .then(response => { this.events = response.data })

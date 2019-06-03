@@ -95,6 +95,7 @@ export default {
 
   p
     display: inline-block
+    padding-left: 0.25rem
     color: black
     font-size: 1rem
 

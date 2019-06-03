@@ -122,7 +122,7 @@
             </template>
           </tbody>
         </table>
-        <div v-if="otherCourses" class="card">
+        <div v-if="otherCourses.length > 0" class="card">
           <h2>Results for Other Courses</h2>
           <div>
             <router-link

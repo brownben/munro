@@ -56,7 +56,7 @@
         <router-link class="button" to="/leagues/Sprintelope 2018">View League</router-link>
       </div>
       <div id="about" class="card">
-        <img src="@/assets/images/MunroLogo.png" alt="Munro Logo">
+        <img src="@/assets/images/MunroLogo.svg" alt="Munro Logo">
         <h1>About</h1>
         <div class="text">
           <p>Munro was created by Ben Brown for his Advanced Higher Computing Project, as a calculator of the orienteering league standings. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.</p>
@@ -84,26 +84,11 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data: function () {
     return {
-      leagues: [],
       auth: this.$auth,
     }
-  },
-
-  created: function () {
-    this.getLeagues()
-  },
-
-  methods: {
-    getLeagues: function () {
-      return axios.get('/api/leagues')
-        .then(response => { this.leagues = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
-    },
   },
 }
 </script>
@@ -141,6 +126,9 @@ export default {
   img
     padding: 1.5rem 3rem 2rem
     height: 250px
+
+    @media (max-width: 750px)
+      padding-right: 1rem
 
   @media (max-width: 700px)
     display: block

@@ -92,7 +92,7 @@ b
   opacity: 0
 
 .credits
-  padding: 0.5rem 0
+  padding: 0.5rem 0 1rem
   color: main-color
   text-align: center
 

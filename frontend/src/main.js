@@ -14,6 +14,7 @@ import App from './App'
 import router from './router'
 import auth from './authentication'
 import messageStore from './messageStore'
+import './registerServiceWorker'
 
 Vue.config.productionTip = false
 

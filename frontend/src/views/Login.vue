@@ -93,6 +93,9 @@ h1
     display: inline-block
     padding: 0.25rem
 
+a
+  color: main-color
+
 .fade-enter-active, .fade-leave-active
   transition: opacity 0.5s
 

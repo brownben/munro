@@ -22,7 +22,7 @@ talisman = Talisman(
     frame_options='ALLOW_FROM',
     frame_options_allow_from='*',
     content_security_policy={
-        'script-src': "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI='",
+        'script-src': "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=' storage.googleapis.com",
         'default-src': "'self' www.googleapis.com",
         'img-src': '*',
         'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
@@ -31,11 +31,13 @@ talisman = Talisman(
 )
 app.secret_key = os.urandom(25)
 
+
 @api.representation('application/json')
-def output_json(data, code, headers={'X-Robots-Tag': 'noindex'}):
+def output_json(data, code, headers={'X-Robots-Tag': 'noindex', 'max-age': 0}):
     resp = app.make_response((json.dumps(data), code))
-    resp.headers.extend({'X-Robots-Tag': 'noindex'})
+    resp.headers.extend({'X-Robots-Tag': 'noindex', 'max-age': 0})
     return resp
+
 
 # Bind all logic with the routes
 api.add_resource(routes.Leagues, '/api/leagues')
@@ -76,8 +78,10 @@ def catch_all(path):
 
 
 @app.route('/robots.txt')
+@app.route('/manifest.json')
+@app.route('/service-worker.js')
 def static_from_root():
-    return send_from_directory(app.static_folder, request.path[1:])
+    return send_from_directory(app.static_folder, request.path[1:], cache_timeout=0)
 
 
 if __name__ == "__main__":
