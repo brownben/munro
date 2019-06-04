@@ -30,7 +30,7 @@ module.exports = {
         },
       },
       {
-        urlPattern: new RegExp('https://munro-leagues.herokuapp.com/'),
+        urlPattern: new RegExp('^https://munro-leagues.herokuapp.com/$'),
         handler: 'networkFirst',
         options: {
           networkTimeoutSeconds: 10,

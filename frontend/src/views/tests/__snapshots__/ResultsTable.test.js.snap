@@ -217,15 +217,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
       </tbody>
     </table>
      
-    <div
-      class="card"
-    >
-      <h2>
-        Results for Other Courses
-      </h2>
-       
-      <div />
-    </div>
+    <!---->
   </div>
    
   <!---->
@@ -486,15 +478,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
       </tbody>
     </table>
      
-    <div
-      class="card"
-    >
-      <h2>
-        Results for Other Courses
-      </h2>
-       
-      <div />
-    </div>
+    <!---->
   </div>
    
   <!---->

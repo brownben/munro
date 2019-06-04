@@ -15,7 +15,7 @@
       }"
     />
     <div id="header">
-      <img src="@/assets/images/UnDrawRunningWhite.svg" alt="Runner Crossing Finsh Line">
+      <img src="@/assets/images/UnDrawOFlagWhite.svg" alt="Orienteering Flag Next to Trees and Hills">
       <h2>Fast and Easy Results for Orienteering Leagues</h2>
     </div>
     <div v-if="auth.user" class="card actions">

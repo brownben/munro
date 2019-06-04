@@ -13,8 +13,8 @@ exports[`Renders Correctly 1`] = `
     id="header"
   >
     <img
-      alt="Runner Crossing Finsh Line"
-      src="@/assets/images/UnDrawRunningWhite.svg"
+      alt="Orienteering Flag Next to Trees and Hills"
+      src="@/assets/images/UnDrawOFlagWhite.svg"
     />
      
     <h2>
