@@ -176,23 +176,48 @@ test('Get Event Details - Shows Message on Error', async () => {
 })
 
 test('Check Validation Works', () => {
+  const mockAddMessageFunction = jest.fn()
   const wrapper = mount(EventForm, {
     mocks: {
       $route: { path: '/events/1/edit', params: { league: '' } },
+      $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
+
   wrapper.setData({ name: '', league: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
 
   wrapper.setData({ name: 'Value', league: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(2)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
 
   wrapper.setData({ name: '', league: 'Value' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(3)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+
+  wrapper.setData({ name: '/', league: 'A' })
+  expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(4)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+
+  wrapper.setData({ name: '\\', league: 'A' })
+  expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(5)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+
+  wrapper.setData({ name: 'Hello/ bye', league: 'A' })
+  expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(6)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
 
   wrapper.setData({ name: 'A Value', league: 'Another Value' })
   expect(wrapper.vm.validateForm()).toBeTruthy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(6)
 })
 
 test('Return to League Home Page', () => {

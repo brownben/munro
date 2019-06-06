@@ -104,7 +104,15 @@ export default {
 
   methods: {
     validateForm: function () {
-      return (this.name !== '' && this.scoringMethod !== '')
+      if (this.name === '' || this.scoringMethod === '') {
+        this.$messages.addMessage('Please Ensure Name and Scoring Method Fields are not Blank')
+        return false
+      }
+      else if (this.name.includes('/') || this.name.includes('\\')) {
+        this.$messages.addMessage('Please Ensure Name doesn\'t Include any Slashes')
+        return false
+      }
+      else return true
     },
 
     returnToLeaguePage: function (response) {
@@ -168,7 +176,6 @@ export default {
           .then(response => this.returnToLeaguePage(response))
           .catch(() => this.$messages.addMessage('Error: Problem Creating League - Please Try Again'))
       }
-      else this.$messages.addMessage('Please Ensure Name and Scoring Method Fields are not Blank')
     },
 
     updateLeague: function () {
@@ -187,7 +194,6 @@ export default {
           .then(response => this.returnToLeaguePage(response))
           .catch(() => this.$messages.addMessage('Error: Problem Updating League - Please Try Again'))
       }
-      else this.$messages.addMessage('Please Ensure Name and Scoring Method Fields are not Blank')
     },
   },
 }

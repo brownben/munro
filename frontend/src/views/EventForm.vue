@@ -136,7 +136,15 @@ export default {
     },
 
     validateForm: function () {
-      return (this.name !== '' && this.league !== '')
+      if (this.name === '' || this.league === '') {
+        this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
+        return false
+      }
+      else if (this.name.includes('/') || this.name.includes('\\')) {
+        this.$messages.addMessage('Please Ensure Name doesn\'t Include any Slashes')
+        return false
+      }
+      else return true
     },
 
     createEvent: function () {
@@ -156,7 +164,6 @@ export default {
           .then(response => this.returnToLeaguePage(response))
           .catch(() => this.$messages.addMessage('Error: Problem Creating Event - Please Try Again'))
       }
-      else this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
     },
 
     updateEvent: function () {
@@ -176,7 +183,6 @@ export default {
           .then(response => this.returnToLeaguePage(response))
           .catch(error => this.$messages.addMessage(error.response.data.message))
       }
-      else this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
     },
 
     returnToLeaguePage: function (response) {

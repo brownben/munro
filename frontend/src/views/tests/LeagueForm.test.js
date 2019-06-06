@@ -84,24 +84,47 @@ test('Submit Method', () => {
 })
 
 test('Check Validation Works', () => {
+  const mockAddMessageFunction = jest.fn()
   const wrapper = mount(LeagueForm, {
     mocks: {
       $route: { path: '', params: { name: '' } },
-      $messages: { addMessage: jest.fn() },
+      $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: '', scoringMethod: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
 
   wrapper.setData({ name: 'Value', scoringMethod: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(2)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
 
   wrapper.setData({ name: '', scoringMethod: 'Value' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(3)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
+
+  wrapper.setData({ name: '/', scoringMethod: 'A' })
+  expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(4)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+
+  wrapper.setData({ name: '\\', scoringMethod: 'A' })
+  expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(5)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+
+  wrapper.setData({ name: 'Hello/ bye', scoringMethod: 'A' })
+  expect(wrapper.vm.validateForm()).toBeFalsy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(6)
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
 
   wrapper.setData({ name: 'A Value', scoringMethod: 'Another Value' })
   expect(wrapper.vm.validateForm()).toBeTruthy()
+  expect(mockAddMessageFunction).toHaveBeenCalledTimes(6)
 })
 
 test('Return to League Home Page', () => {

@@ -40,61 +40,23 @@ exports[`Renders Correctly 1`] = `
       >
         Transfer Result
       </router-link-stub>
+       
+      <div
+        id="filter"
+      >
+        <label>
+          League:
+        </label>
+         
+        <dropdown-input-stub
+          label=""
+          list=""
+          value=""
+        />
+      </div>
     </div>
   </div>
    
-  <table>
-    <thead>
-      <tr>
-        <th>
-          <p>
-            Name
-          </p>
-           
-          <up-down-arrow-stub
-            active="true"
-          />
-        </th>
-         
-        <th>
-          <p>
-            Club
-          </p>
-           
-          <up-down-arrow-stub />
-        </th>
-         
-        <th>
-          <p>
-            Class
-          </p>
-           
-          <up-down-arrow-stub />
-        </th>
-         
-        <th
-          class="club"
-        >
-          <p>
-            League
-          </p>
-           
-          <up-down-arrow-stub />
-        </th>
-         
-        <th>
-          <p>
-            Course
-          </p>
-           
-          <up-down-arrow-stub />
-        </th>
-      </tr>
-    </thead>
-     
-    <tbody
-      name="fade"
-    />
-  </table>
+  <!---->
 </div>
 `;

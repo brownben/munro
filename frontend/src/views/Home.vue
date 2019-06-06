@@ -15,7 +15,10 @@
       }"
     />
     <div id="header">
-      <img src="@/assets/images/UnDrawOFlagWhite.svg" alt="Orienteering Flag Next to Trees and Hills">
+      <img
+        src="@/assets/images/UnDrawOFlagWhite.svg"
+        alt="Orienteering Flag Next to Trees and Hills"
+      >
       <h2>Fast and Easy Results for Orienteering Leagues</h2>
     </div>
     <div v-if="auth.user" class="card actions">
@@ -126,6 +129,7 @@ export default {
   img
     padding: 1.5rem 3rem 2rem
     height: 250px
+    color: white
 
     @media (max-width: 750px)
       padding-right: 1rem
@@ -140,7 +144,9 @@ export default {
       font-size: 1.5rem
 
     img
+      box-sizing: border-box
       padding: 0
+      max-width: 100%
 
 #leagues
   display: grid

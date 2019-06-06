@@ -62,6 +62,12 @@ const router = new Router({
       beforeEnter: requireAuthentication,
     },
     {
+      path: '/competitors/:league',
+      name: 'Competitors for League',
+      component: Competitors,
+      beforeEnter: requireAuthentication,
+    },
+    {
       path: '/create-league',
       name: 'Create League',
       component: LeagueForm,

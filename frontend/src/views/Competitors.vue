@@ -20,9 +20,14 @@
         <router-link to="/create-competitor" class="button">Add Competitor</router-link>
         <router-link to="/competitors/merge" class="button">Merge Competitors</router-link>
         <router-link to="/results/transfer" class="button">Transfer Result</router-link>
+        <div id="filter">
+          <label>League:</label>
+          <dropdown-input v-model="league" :list="leagues.map(league => league.name)" />
+        </div>
       </div>
     </div>
-    <table v-if="competitors">
+
+    <table v-if="filteredCompetitors.length > 0">
       <thead>
         <tr>
           <th @click="sortBy('name')">
@@ -36,10 +41,6 @@
           <th @click="sortBy('ageClass')">
             <p>Class</p>
             <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'ageClass'" />
-          </th>
-          <th class="club" @click="sortBy('league')">
-            <p>League</p>
-            <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'league'" />
           </th>
           <th @click="sortBy('course')">
             <p>Course</p>
@@ -57,7 +58,6 @@
           <td>{{ competitor.name }}</td>
           <td>{{ competitor.club }}</td>
           <td>{{ competitor.ageClass }}</td>
-          <td>{{ competitor.league }}</td>
           <td>{{ competitor.course }}</td>
         </tr>
       </tbody>
@@ -68,28 +68,38 @@
 <script>
 import axios from 'axios'
 import UpDownArrow from '@/components/UpDownArrows'
+import DropdownInput from '../components/DropdownInput.vue'
 
 export default {
   components: {
     UpDownArrow: UpDownArrow,
+    DropdownInput: DropdownInput,
   },
 
   data: () => ({
+    league: '',
+    leagues: [],
     competitors: [],
     ascendingSort: false,
     sortedBy: 'name',
   }),
 
   computed: {
+    filteredCompetitors: function () {
+      return this.competitors.filter(competitor => competitor.league === this.league)
+    },
+
     sortedCompetitors: function () {
       return this.sort(
-        this.competitors,
+        this.filteredCompetitors,
         this.sortedBy,
         this.ascendingSort)
     },
   },
 
-  created: function () {
+  created: async function () {
+    if (this.$route.params.league && this.$route.params.league !== '') this.league = this.$route.params.league
+    this.getLeagues()
     this.getCompetitors()
   },
 
@@ -121,6 +131,12 @@ export default {
       if (sortBy !== this.sortedBy) this.ascendingSort = false
       else this.ascendingSort = !this.ascendingSort
       this.sortedBy = sortBy
+    },
+
+    getLeagues: function () {
+      return axios.get('/api/leagues')
+        .then(response => { this.leagues = response.data })
+        .catch(() => this.$messages.addMessage('Problem Fetching List of Leagues'))
     },
   },
 }

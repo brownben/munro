@@ -87,11 +87,9 @@ export default {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
   user-select: none
 
-  &:last-child
-    border-bottom: 0
-
 .visible
   position: relative
+  height: 100%
 
   p
     display: inline-block
