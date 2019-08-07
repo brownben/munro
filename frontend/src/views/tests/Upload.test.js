@@ -111,6 +111,11 @@ test('Upload File - Correct API Call', async () => {
     uploadKey: 2,
     file: 3,
     overwrite: 4,
+    event: {
+      routegadget: 5,
+      results: 6,
+      winsplits: 7,
+    }
   })
   await wrapper.vm.uploadFile()
   expect(axios.post).toHaveBeenCalledTimes(1)
@@ -118,10 +123,10 @@ test('Upload File - Correct API Call', async () => {
     eventId: 1,
     file: 3,
     overwrite: 4,
-    results: '',
-    routegadget: '',
+    results: 6,
+    routegadget: 5,
     uploadKey: 2,
-    winsplits: '',
+    winsplits: 7,
   })
 })
 

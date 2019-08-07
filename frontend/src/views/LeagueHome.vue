@@ -95,12 +95,12 @@
         </p>
         <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
         <p v-if="event.website">
-          More Information can be found at
+          More Information can be found
           <a
             :href="event.website"
             target="_blank"
             rel="noopener noreferrer"
-          >{{ event.website }}</a>
+          >here</a>
         </p>
         <div v-if="event.resultUploaded" class="event-actions event-result-actions">
           <a

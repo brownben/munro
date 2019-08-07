@@ -221,6 +221,7 @@ export default {
   watch: {
     $route: async function () {
       this.rawResults = []
+      this.openedRows = []
       await this.getResults()
       await this.getEventList()
       this.getOtherCourses()

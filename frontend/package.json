@@ -13,7 +13,7 @@
     "lint-styles": "stylus-supremacy format ./src/assets/styles/*.styl --options stylusSupremacy.json --replace"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "core-js": "^2.6.5",
     "firebase": "^6.0.4",
     "register-service-worker": "^1.6.2",
