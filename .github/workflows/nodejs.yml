@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   test:
-    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    name: Test on Node.js 10 and ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -13,17 +13,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node_version }}
+    - name: Use Node.js 10
       uses: actions/setup-node@v1
       with:
-        version: ${{ matrix.node_version }}
+        version: 10
 
-    - name: npm install, build and test
+    - name: npm install, lint, test and build
       run: |
         cd frontend
         npm install
         npm run lint
         npm test
         npm run build --if-present
-        
-        

@@ -115,7 +115,7 @@ test('Upload File - Correct API Call', async () => {
       routegadget: 5,
       results: 6,
       winsplits: 7,
-    }
+    },
   })
   await wrapper.vm.uploadFile()
   expect(axios.post).toHaveBeenCalledTimes(1)

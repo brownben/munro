@@ -24,14 +24,14 @@ exports[`Renders Correctly 1`] = `
      
     <p>
       
-      More Information can be found at
+      More Information can be found
       
       <a
         href="wwwwwww"
         rel="noopener noreferrer"
         target="_blank"
       >
-        wwwwwww
+        here
       </a>
     </p>
      

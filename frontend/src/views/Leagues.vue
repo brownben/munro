@@ -26,12 +26,12 @@
         <h1>{{ league.name }}</h1>
         <p v-if="league.description">{{ league.description }}</p>
         <p v-if="league.website">
-          More information can be found at
+          More information can be found
           <a
             :href="league.website"
             target="_blank"
             rel="noopener noreferrer"
-          >{{ league.website }}</a>
+          >here</a>
         </p>
         <router-link :to="'/leagues/'+league.name" class="button">View League</router-link>
       </div>
