@@ -1,7 +1,3 @@
-/*
-  Unit Tests for /frontend/src/messageStore.js
-*/
-
 import messages from '@/messageStore'
 
 beforeEach(() => {

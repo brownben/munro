@@ -7,7 +7,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
-    "test": "vue-cli-service test:unit",
+    "test": "vue-cli-service test:unit -i",
     "lint": "npm run lint-js && npm run lint-styles",
     "lint-js": "vue-cli-service lint",
     "lint-styles": "stylus-supremacy format ./src/assets/styles/*.styl --options stylusSupremacy.json --replace"
