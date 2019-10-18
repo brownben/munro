@@ -58,6 +58,32 @@
         </p>
         <router-link class="button" to="/leagues/Sprintelope 2018">View League</router-link>
       </div>
+      <div class="league">
+        <h1>Fight with the Night 19-20</h1>
+        <p>Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club</p>
+        <p>
+          More information can be found at
+          <a
+            href="https://euoc.wordpress.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >here</a>
+        </p>
+        <router-link class="button" to="/leagues/Fight with the Night 19-20">View League</router-link>
+      </div>
+      <div class="league">
+        <h1>Fight with the Night 18-19</h1>
+        <p>Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club</p>
+        <p>
+          More information can be found at
+          <a
+            href="https://euoc.wordpress.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >here</a>
+        </p>
+        <router-link class="button" to="/leagues/EUOC FwtN 18-19">View League</router-link>
+      </div>
       <div id="about" class="card">
         <img src="@/assets/images/MunroLogo.svg" alt="Munro Logo">
         <h1>About</h1>
