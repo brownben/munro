@@ -104,6 +104,70 @@ exports[`Renders Correctly 1`] = `
     </div>
      
     <div
+      class="league"
+    >
+      <h1>
+        Fight with the Night 19-20
+      </h1>
+       
+      <p>
+        Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club
+      </p>
+       
+      <p>
+        
+        More information can be found at
+        
+        <a
+          href="https://euoc.wordpress.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          here
+        </a>
+      </p>
+       
+      <router-link-stub
+        class="button"
+        to="/leagues/Fight with the Night 19-20"
+      >
+        View League
+      </router-link-stub>
+    </div>
+     
+    <div
+      class="league"
+    >
+      <h1>
+        Fight with the Night 18-19
+      </h1>
+       
+      <p>
+        Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club
+      </p>
+       
+      <p>
+        
+        More information can be found at
+        
+        <a
+          href="https://euoc.wordpress.com/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          here
+        </a>
+      </p>
+       
+      <router-link-stub
+        class="button"
+        to="/leagues/EUOC FwtN 18-19"
+      >
+        View League
+      </router-link-stub>
+    </div>
+     
+    <div
       class="card"
       id="about"
     >
