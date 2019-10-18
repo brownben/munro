@@ -46,7 +46,12 @@
         <label>Scoring Method:</label>
         <dropdown-input
           v-model="scoringMethod"
-          :list="['Position Based (100 Max)', 'Position Based (50 Max)']"
+          :list="[
+            'Position Based (100 Max)',
+            'Position Based (50 Max)',
+            'Position Based (99 Max)',
+            'Position Based (99 Max - Reduced in a Draw)'
+          ]"
         />
         <label>Number of Events to Count:</label>
         <input
@@ -125,7 +130,7 @@ export default {
       if (value === 'position') return 'Position Based (100 Max)'
       else if (value === 'position50') return 'Position Based (50 Max)'
       else if (value === 'position99') return 'Position Based (99 Max)'
-      else if (value === 'position99average') return 'Position Based (99 Max, Reduced in a Draw)'
+      else if (value === 'position99average') return 'Position Based (99 Max - Reduced in a Draw)'
       else return ''
     },
 
@@ -133,7 +138,7 @@ export default {
       if (value === 'Position Based (100 Max)') return 'position'
       else if (value === 'Position Based (50 Max)') return 'position50'
       else if (value === 'Position Based (99 Max)') return 'position99'
-      else if (value === 'Position Based (99 Max, Reduced in a Draw)') return 'position99average'
+      else if (value === 'Position Based (99 Max - Reduced in a Draw)') return 'position99average'
       return ''
     },
 
