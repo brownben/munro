@@ -50,7 +50,6 @@
             'Position Based (100 Max)',
             'Position Based (50 Max)',
             'Position Based (99 Max)',
-            'Position Based (99 Max - Reduced in a Draw)'
           ]"
         />
         <label>Number of Events to Count:</label>
