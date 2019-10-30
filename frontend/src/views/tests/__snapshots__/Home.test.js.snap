@@ -107,7 +107,7 @@ exports[`Renders Correctly 1`] = `
       class="league"
     >
       <h1>
-        Fight with the Night 19-20
+        Fight with the Night
       </h1>
        
       <p>
@@ -139,11 +139,11 @@ exports[`Renders Correctly 1`] = `
       class="league"
     >
       <h1>
-        Fight with the Night 18-19
+        Northern Night Cup
       </h1>
        
       <p>
-        Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club
+        A Series of Night Orienteering Events in the North of Scotland
       </p>
        
       <p>
@@ -151,7 +151,7 @@ exports[`Renders Correctly 1`] = `
         More information can be found at
         
         <a
-          href="https://euoc.wordpress.com/"
+          href="https://www.orienteering.scot/northern-night-cup/"
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -161,7 +161,7 @@ exports[`Renders Correctly 1`] = `
        
       <router-link-stub
         class="button"
-        to="/leagues/EUOC FwtN 18-19"
+        to="/leagues/Northern Night Cup 19-20"
       >
         View League
       </router-link-stub>

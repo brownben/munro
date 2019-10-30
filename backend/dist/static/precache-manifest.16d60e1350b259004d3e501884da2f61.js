@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/static/css/chunk-6b519a18.93a65d27.css"
   },
   {
-    "revision": "cad7c97f771ba4f0afb011557dfc9060",
+    "revision": "41116db3ab85c7f7be67cb35e5c58783",
     "url": "/static/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = [
     "url": "/static/js/chunk-0c21b8a2-legacy.3045954d.js"
   },
   {
-    "revision": "648cb8fb00c247fd842b",
-    "url": "/static/js/chunk-9e259db4-legacy.b0326ecc.js"
+    "revision": "8447cee34d230125da4f",
+    "url": "/static/js/chunk-ba113146-legacy.15c2fc38.js"
   },
   {
     "revision": "b8cb759e7cac38339a79",
@@ -84,8 +84,8 @@ self.__precacheManifest = [
     "url": "/static/js/chunk-63b15906-legacy.c1ecb722.js"
   },
   {
-    "revision": "4c0d591dc11cf24b48a0",
-    "url": "/static/js/app-legacy.4bd4e6f4.js"
+    "revision": "f3e93fcb11f4e024fc9e",
+    "url": "/static/js/app-legacy.6558f286.js"
   },
   {
     "revision": "db9b810ef8478574f6c6",
@@ -140,8 +140,8 @@ self.__precacheManifest = [
     "url": "/static/img/SprintelopeLogo.2d2fbc29.png"
   },
   {
-    "revision": "648cb8fb00c247fd842b",
-    "url": "/static/css/chunk-9e259db4.c6497a5b.css"
+    "revision": "8447cee34d230125da4f",
+    "url": "/static/css/chunk-ba113146.c7b9f4ee.css"
   },
   {
     "revision": "5ec48c842082755749db",
@@ -180,7 +180,7 @@ self.__precacheManifest = [
     "url": "/static/css/chunk-0c21b8a2.c5eb2fb9.css"
   },
   {
-    "revision": "4c0d591dc11cf24b48a0",
+    "revision": "f3e93fcb11f4e024fc9e",
     "url": "/static/css/app.fca00626.css"
   }
 ];
