@@ -14,7 +14,7 @@
       }"
     />
     <h1>Merge Competitors</h1>
-    <form @submit.prevent="merge()">
+    <form @submit.prevent="merge">
       <label>League:</label>
       <dropdown-input
         v-model="league"

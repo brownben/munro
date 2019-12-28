@@ -32,7 +32,7 @@
     <div v-if="!notFound">
       <h1 v-if="create">Create League</h1>
       <h1 v-if="!create">Edit League</h1>
-      <form @submit.prevent="submit()">
+      <form @submit.prevent="submit">
         <label>Name:</label>
         <input v-model.trim="name" type="text">
         <label>Description:</label>

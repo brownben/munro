@@ -26,7 +26,7 @@
       <h1 v-if="create">Create Competitor</h1>
       <h1 v-if="!create">Edit Competitor</h1>
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
-      <form @submit.prevent="submit()">
+      <form @submit.prevent="submit">
         <label>Name:</label>
         <input v-model.trim="name" type="text">
         <label>Club:</label>

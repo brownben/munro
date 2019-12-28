@@ -14,7 +14,7 @@
       }"
     />
     <h1>Transfer Result</h1>
-    <form @submit.prevent="transfer()">
+    <form @submit.prevent="transfer">
       <label>League:</label>
       <dropdown-input
         v-model="league"
@@ -166,7 +166,7 @@ export default {
         const result = this.results.find(result =>
           result.course === this.course &&
           result.event === event &&
-          result.time === this.elapsedTimeToSeconds(this.result.match(/-.*\(/)[0].slice(2, -2))
+          result.time === this.elapsedTimeToSeconds(this.result.match(/-.*\(/)[0].slice(2, -2)),
         )
         return axios.post('/api/results/transfer', {
           competitor: competitor,

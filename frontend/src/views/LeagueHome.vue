@@ -48,7 +48,7 @@
         <div class="results-actions">
           <router-link :to="$route.path+'/create-event'" class="button">Add Event</router-link>
           <router-link :to="$route.path+'/edit'" class="button">Edit League</router-link>
-          <button @click="deleteLeague()">Delete League</button>
+          <button @click="deleteLeague">Delete League</button>
           <router-link
             :to="'/competitors/'+this.$route.params.name"
             class="button"

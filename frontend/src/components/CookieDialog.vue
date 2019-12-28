@@ -7,7 +7,7 @@
 
 <template>
   <transition name="slide">
-    <div v-if="show" @click="allowCookies()">
+    <div v-if="show" @click="allowCookies">
       <p>This site uses Cookies and Local Storage in order to function correctly. By using this site you consent to the use of Cookies and Local Storage.</p>
       <svg viewBox="0 0 24 24">
         <path

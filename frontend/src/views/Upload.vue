@@ -15,30 +15,37 @@
       }"
     />
     <h1>Upload Results</h1>
-    <p>For instructions to upload results go to <router-link to="/upload-instructions">/upload-instructions</router-link></p>
+    <p>
+      For instructions to upload results go to
+      <router-link to="/upload-instructions">/upload-instructions</router-link>
+    </p>
     <label>Event ID:</label>
-    <input v-model.trim.lazy="eventId" type="text" @change="findEvent()">
+    <input v-model.trim.lazy="eventId" type="text" @change="findEvent" />
     <p v-show="event.name" id="eventName">
       <b>Event Name:</b>
       {{ event.name }}
     </p>
     <label>Upload Key:</label>
-    <input v-model.trim="uploadKey" type="text">
+    <input v-model.trim="uploadKey" type="text" />
     <label>Results File:</label>
     <div class="file-input">
       <label for="file" class="button">Browse for File</label>
-      <input id="file" type="file" accept=".csv" @change="fileChange">
+      <input id="file" type="file" accept=".csv" @change="fileChange" />
       <p>{{ fileName }}</p>
     </div>
     <!-- If Event already have results, confirm they want to overwrite -->
-    <Checkbox v-if="event.resultUploaded" v-model="overwrite" label="Overwrite Existing Results:" />
+    <checkbox-input
+      v-if="event.resultUploaded"
+      v-model="overwrite"
+      label="Overwrite Existing Results:"
+    />
     <!-- Only show upload once all fields have been filled -->
     <label>Results (URL):</label>
-    <input v-model.trim="event.results" type="text">
+    <input v-model.trim="event.results" type="text" />
     <label>Routegadget (URL):</label>
-    <input v-model.trim="event.routegadget" type="text">
+    <input v-model.trim="event.routegadget" type="text" />
     <label>Winsplits (URL):</label>
-    <input v-model.trim="event.winsplits" type="text">
+    <input v-model.trim="event.winsplits" type="text" />
     <button v-if="eventId && uploadKey && file" id="uploadButton" @click="uploadFile">Upload File</button>
   </div>
 </template>
@@ -49,7 +56,7 @@ import CheckboxInput from '@/components/CheckboxInput'
 
 export default {
   components: {
-    'Checkbox': CheckboxInput,
+    'checkbox-input': CheckboxInput,
   },
 
   data: function () {
@@ -162,5 +169,5 @@ input, select
   margin-top: 1.5rem
 
 a
-  color:main-color
+  color: main-color
 </style>

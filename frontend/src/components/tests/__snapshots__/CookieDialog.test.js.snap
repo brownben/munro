@@ -17,3 +17,5 @@ exports[`Renders Correctly 1`] = `
   </svg>
 </div>
 `;
+
+exports[`Renders Correctly 2`] = `<!---->`;

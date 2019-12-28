@@ -14,7 +14,9 @@ exports[`Renders Correctly 1`] = `
   </h1>
    
   <p>
-    For instructions to upload results go to 
+    
+    For instructions to upload results go to
+    
     <router-link-stub
       to="/upload-instructions"
     >
@@ -119,7 +121,9 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </h1>
    
   <p>
-    For instructions to upload results go to 
+    
+    For instructions to upload results go to
+    
     <router-link-stub
       to="/upload-instructions"
     >

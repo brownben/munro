@@ -105,7 +105,7 @@ test('Desktop Menu Remains Static on Route Change', () => {
       $auth: { user: true },
     },
   })
-
+  router.push('/')
   expect(wrapper.find('nav').isVisible()).toBeTruthy()
   router.push('/other')
   expect(wrapper.find('nav').isVisible()).toBeTruthy()

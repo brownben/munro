@@ -445,26 +445,20 @@
     "no-plusplus": "error",
     "no-ternary": "error",
     "vue/max-attributes-per-line": "off",
-    "vue/array-bracket-spacing": "never",
-    "vue/arrow-spacing": {
-      "before": true,
-      "after": true
-    },
-    "vue/block-spacing": "always",
-    "vue/camelcase": "always",
-    "vue/component-name-in-template-casing": "kebab-case",
-    "vue/eqeqeq": "always",
+    "vue/array-bracket-spacing": "error",
+    "vue/arrow-spacing": "error",
+    "vue/block-spacing": "error",
+    "vue/camelcase": "error",
+    "vue/component-name-in-template-casing": [
+      "error",
+      "kebab-case"
+    ],
+    "vue/eqeqeq": "error",
     "vue/no-boolean-default": "off",
     "vue/script-indent": "off",
-    "vue/v-on-function-call": "always",
-    "vue/html-closing-bracket-spacing": [
-      "error",
-      {
-        "startTag": "never",
-        "endTag": "never",
-        "selfClosingTag": "always"
-      }
-    ],
+    "vue/v-on-function-call": "error",
+    "vue/html-closing-bracket-spacing": "error",
+    "vue/html-self-closing": "off",
     "vue/singleline-html-element-content-newline": "off"
   },
   "root": true

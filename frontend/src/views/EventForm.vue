@@ -36,7 +36,7 @@
       <h1 v-if="create">Create Event</h1>
       <h1 v-if="!create">Edit Event</h1>
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
-      <form @submit.prevent="submit()">
+      <form @submit.prevent="submit">
         <label>Name:</label>
         <input v-model.trim="name" type="text">
         <label>Date: (DD/MM/YYYY)</label>

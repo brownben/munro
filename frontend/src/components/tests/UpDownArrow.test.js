@@ -31,18 +31,24 @@ test('Check Classes Update', () => {
   expect(wrapper.props().ascending).toBeTruthy()
   expect(wrapper.findAll('svg').at(0).classes()).toEqual([])
   expect(wrapper.findAll('svg').at(1).classes()).toContain('active')
-  wrapper.setProps({
-    active: true,
-    ascending: false,
+
+  const wrapper1 = mount(UpDownArrows, {
+    propsData: {
+      active: true,
+      ascending: false,
+    },
   })
-  expect(wrapper.findAll('svg').at(0).classes()).toContain('active')
-  expect(wrapper.findAll('svg').at(1).classes()).toEqual([])
-  wrapper.setProps({
-    active: false,
-    ascending: false,
+  expect(wrapper1.findAll('svg').at(0).classes()).toContain('active')
+  expect(wrapper1.findAll('svg').at(1).classes()).toEqual([])
+
+  const wrapper2 = mount(UpDownArrows, {
+    propsData: {
+      active: false,
+      ascending: false,
+    },
   })
-  expect(wrapper.findAll('svg').at(0).classes()).toEqual([])
-  expect(wrapper.findAll('svg').at(1).classes()).toEqual([])
+  expect(wrapper2.findAll('svg').at(0).classes()).toEqual([])
+  expect(wrapper2.findAll('svg').at(1).classes()).toEqual([])
 })
 
 test('Renders Correctly - No Props', () => {

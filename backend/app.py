@@ -14,6 +14,7 @@ app = Flask(__name__,
             static_folder="./dist/static",
             template_folder="./dist")
 api = Api(app)
+
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 Compress(app)
 
@@ -26,7 +27,7 @@ talisman = Talisman(
         'default-src': "'self' www.googleapis.com",
         'img-src': '*',
         'style-src': "'self' 'unsafe-inline' fonts.googleapis.com",
-        'font-src': 'fonts.googleapis.com fonts.gstatic.com'
+        'font-src': "'self' fonts.googleapis.com fonts.gstatic.com"
     }
 )
 app.secret_key = os.urandom(25)
@@ -72,10 +73,15 @@ api.add_resource(routes.Upload, '/api/upload')
 @app.route('/<path:path>')
 def catch_all(path):
     # If in debug access files from VueJS Development Server
-    # if app.debug:
-    #   return requests.get('http://localhost:8080/{}'.format(path)).text
+    '''
+    if app.debug:
+      return requests.get('http://localhost:8080/{}'.format(path)).text
+    '''
     return render_template("index.html")
 
+@app.route('/api/<path:path>')
+def api_catch_all():
+    return {}
 
 @app.route('/robots.txt')
 @app.route('/manifest.json')

@@ -15,6 +15,8 @@ test('Is a Vue Instance', () => {
 test('Renders Correctly', () => {
   const wrapper = mount(CookieDialog)
   expect(wrapper.element).toMatchSnapshot()
+  wrapper.find('div').trigger('click')
+  expect(wrapper.element).toMatchSnapshot()
 })
 
 test('Shows when LocalStorage is Empty', () => {
@@ -43,8 +45,8 @@ test('Shows Correct Message', () => {
 
 test('Closes When Clicked', () => {
   const wrapper = mount(CookieDialog)
-  expect(wrapper.isEmpty()).toBeFalsy()
+  expect(wrapper.findAll('p').length).not.toBe(0)
   wrapper.find('div').trigger('click')
-  expect(wrapper.isEmpty()).toBeTruthy()
+  expect(wrapper.findAll('p').length).toBe(0)
 })
 
