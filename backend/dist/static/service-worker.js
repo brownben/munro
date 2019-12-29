@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/static/precache-manifest.2fa8a11de342ef8ee28645bb6dab50f3.js"
+  "/static/precache-manifest.50d34b66a957d66cfe9dd2a071fb3099.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "munro"});

@@ -25,6 +25,15 @@ exports[`Creation Form - Renders Correctly 1`] = `
       />
        
       <label>
+        Year:
+      </label>
+       
+      <input
+        pattern="[0-9]{1,4}"
+        type="text"
+      />
+       
+      <label>
         Description:
       </label>
        
@@ -118,6 +127,15 @@ exports[`Update Form - Renders Correctly 1`] = `
       </label>
        
       <input
+        type="text"
+      />
+       
+      <label>
+        Year:
+      </label>
+       
+      <input
+        pattern="[0-9]{1,4}"
         type="text"
       />
        

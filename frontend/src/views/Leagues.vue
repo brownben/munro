@@ -22,7 +22,7 @@
           :src="league.logo"
           :alt="'The Logo of ' + league.name"
           height="150px"
-        >
+        />
         <h1>{{ league.name }}</h1>
         <p v-if="league.description">{{ league.description }}</p>
         <p v-if="league.website">
@@ -56,7 +56,7 @@ export default {
   methods: {
     getLeagues: function () {
       return axios.get('/api/leagues')
-        .then(response => { this.leagues = response.data.reverse() })
+        .then(response => { this.leagues = response.data })
         .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
     },
   },

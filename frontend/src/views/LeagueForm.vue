@@ -35,6 +35,8 @@
       <form @submit.prevent="submit">
         <label>Name:</label>
         <input v-model.trim="name" type="text">
+        <label>Year:</label>
+        <input v-model.trim="year" type="text" pattern="[0-9]{1,4}">
         <label>Description:</label>
         <input v-model.trim="info" type="text">
         <label>Website:</label>
@@ -87,6 +89,7 @@ export default {
       create: true,
       oldName: '',
       name: '',
+      year: '',
       website: '',
       logo: '',
       coordinator: '',
@@ -148,6 +151,7 @@ export default {
           else {
             this.oldName = response.data.name
             this.name = response.data.name
+            this.year = response.data.year
             this.website = response.data.website
             this.coordinator = response.data.coordinator
             this.scoringMethod = this.scoringMethodShorthandToFull(response.data.scoringMethod)
@@ -169,6 +173,7 @@ export default {
       if (this.validateForm()) {
         return axios.post('/api/leagues', {
           name: this.name,
+          year: this.year,
           website: this.website,
           logo: this.logo,
           coordinator: this.coordinator,
@@ -187,6 +192,7 @@ export default {
         return axios.put('/api/leagues/' + this.oldName, {
           oldName: this.oldName,
           name: this.name,
+          year: this.year,
           website: this.website,
           logo: this.logo,
           coordinator: this.coordinator,

@@ -63,7 +63,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
   })
   axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: '2' }, { league: '1' }])
+  expect(wrapper.vm.leagues).toEqual([{ league: '1' }, { league: '2' }])
 
   axios.get.mockResolvedValue({ data: [] })
   await wrapper.vm.getLeagues()
@@ -71,7 +71,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
 
   axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: '2', another: 4 }, { league: 'a', property: 3 }])
+  expect(wrapper.vm.leagues).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
 })
 
 test('Get Leagues - Shows Message on Error', async () => {

@@ -17,7 +17,7 @@ leagueParser.add_argument(
     'scoringMethod', help='This field cannot be blank', required=True)
 leagueParser.add_argument('courses')
 leagueParser.add_argument('description')
-
+leagueParser.add_argument('year')
 # Update request
 leagueUpdateParser = leagueParser
 leagueUpdateParser.add_argument('oldName')
@@ -37,7 +37,7 @@ class Leagues(Resource):
 
         try:
             leagues.createLeague(data['name'], data['website'], data['logo'], data['coordinator'],
-                                 data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'])
+                                 data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'])
             return {'message': 'League - {} was Created'.format(name)}
         except:
             return {'message': 'Error: Problem Creating League - Please Try Again'}, 500
@@ -57,7 +57,7 @@ class League(Resource):
 
         try:
             leagues.updateLeague(data['oldName'], data['name'], data['website'], data['logo'], data['coordinator'],
-                                 data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'])
+                                    data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'])
             return {'message': 'League - {} was Updated'.format(name)}
         except:
             return {'message': 'Error: Problem Updating League - Please Try Again'}, 500

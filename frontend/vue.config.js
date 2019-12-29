@@ -3,6 +3,7 @@ module.exports = {
   assetsDir: './',
   indexPath: '../index.html',
   publicPath: '/static',
+
   pwa: {
     name: 'Munro Leagues',
     themeColor: '#b80bda',
@@ -69,6 +70,7 @@ module.exports = {
         },
       ],
     },
+
     iconPaths: {
       favicon32: 'MunroLogo-32.png',
       favicon16: 'MunroLogo-16.png',
@@ -76,6 +78,7 @@ module.exports = {
       maskIcon: 'MunroLogo.svg',
       msTileImage: 'MunroLogo-144.png',
     },
+
     workboxOptions: {
       runtimeCaching: [{
         urlPattern: new RegExp('^https://munro-leagues.herokuapp.com/api/.*'),

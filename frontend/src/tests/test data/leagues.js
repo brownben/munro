@@ -9,6 +9,7 @@ export const sampleDataThreeLeagues = [
     'logo': 'https://scontent-lht6-1.xx.fbcdn.net/v/t1.0-9/22448448_1794613283886458_7629699480886436314_n.jpg?_nc_cat=108&_nc_ht=scontent-lht6-1.xx&oh=524ef77ed09f61d232be3496d09e224d&oe=5CCD2376',
     'name': 'Sprintelope',
     'numberOfCountingEvents': 2,
+    'year': '',
   },
   {
     'courses': ['Green', 'Orange', 'Yellow', 'White'],
@@ -20,6 +21,7 @@ export const sampleDataThreeLeagues = [
     'logo': 'https://www.britishorienteering.org.uk/images/uploaded/British%20Orienteering%20LOGO.jpg',
     'name': 'Test League 1',
     'numberOfCountingEvents': 1,
+    'year': '',
   },
   {
     'courses': ['White', 'Orange', 'Purple'],
@@ -31,6 +33,7 @@ export const sampleDataThreeLeagues = [
     'logo': 'https://www.esoc.org.uk/assets/images/ESOC_logo_200.png',
     'name': 'Test League 2',
     'numberOfCountingEvents': 6,
+    'year': '',
   },
 ]
 
@@ -45,5 +48,6 @@ export const sampleSingleLeague = [
     'name': 'Sprintelope',
     'numberOfCountingEvents': 2,
     'description': '',
+    'year': '',
   },
 ]
