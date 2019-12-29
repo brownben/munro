@@ -8,7 +8,7 @@
   <div>
     <vue-headful
       title="Munro - Transfer Results"
-      description=""
+      description
       :head="{
         'meta': {name: 'robots', content:'noindex'},
       }"

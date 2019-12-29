@@ -171,3 +171,39 @@ export const sampleSingleResult = [
     'ageClass': 'W35',
   },
 ]
+
+export const sampleThreeResultsDraw = [
+  {
+    'course': '1',
+    'event': '',
+    'points': [100, 95, 10],
+    'position': 1,
+    'largestPoints': [0],
+    'totalPoints': 100,
+    'club': 'ESOC',
+    'name': 'Linda Reid',
+    'ageClass': 'W35',
+  },
+  {
+    'course': '1',
+    'event': '',
+    'points': ['', 100, 5],
+    'position': 1,
+    'largestPoints': [1],
+    'totalPoints': 99,
+    'club': 'INT',
+    'name': 'Harvey Blue',
+    'ageClass': 'M21',
+  },
+  {
+    'course': '1',
+    'event': '',
+    'points': [0, 100, 98],
+    'position': 3,
+    'largestPoints': [1],
+    'totalPoints': 98,
+    'club': 'ESOC',
+    'name': 'Bob Blu Jones',
+    'ageClass': 'M65',
+  },
+]

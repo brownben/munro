@@ -239,3 +239,243 @@ exports[`Renders Correctly 1`] = `
   </form>
 </div>
 `;
+
+exports[`Results Sorted Correctly 1`] = `
+<div>
+  <vue-headful-stub
+    description=""
+    head="[object Object]"
+    title="Munro - Transfer Results"
+  />
+   
+  <h1>
+    Transfer Result
+  </h1>
+   
+  <form>
+    <label>
+      League:
+    </label>
+     
+    <div
+      class="dropdown-input"
+      include-blank="true"
+    >
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
+         
+        <p>
+          
+        </p>
+         
+        <svg
+          class=""
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
+    </div>
+     
+    <label>
+      Event:
+    </label>
+     
+    <div
+      class="dropdown-input"
+      include-blank="true"
+    >
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
+         
+        <p>
+          
+        </p>
+         
+        <svg
+          class=""
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
+    </div>
+     
+    <label>
+      Course:
+    </label>
+     
+    <div
+      class="dropdown-input"
+      include-blank="true"
+    >
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
+         
+        <p>
+          
+        </p>
+         
+        <svg
+          class=""
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
+    </div>
+     
+    <label>
+      Results:
+    </label>
+     
+    <div
+      class="dropdown-input"
+      include-blank="true"
+    >
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
+         
+        <p>
+          
+        </p>
+         
+        <svg
+          class=""
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
+    </div>
+     
+    <label>
+      Competitor:
+    </label>
+     
+    <div
+      class="dropdown-input"
+      include-blank="true"
+    >
+      <div
+        class="visible"
+      >
+        <label>
+          
+        </label>
+         
+        <p>
+          
+        </p>
+         
+        <svg
+          class=""
+          fill="#9E9E9E"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+        >
+          <path
+            d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
+          />
+           
+          <path
+            d="M0-.75h24v24H0z"
+            fill="none"
+          />
+        </svg>
+      </div>
+       
+      <div
+        class="dropdown"
+        name="open"
+        style="display: none;"
+      />
+    </div>
+     
+    <button>
+      Transfer Result
+    </button>
+  </form>
+</div>
+`;

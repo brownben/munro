@@ -2,6 +2,7 @@ import axios from 'axios'
 import { mount, shallowMount } from '@vue/test-utils'
 import ResultTransfer from '@/views/ResultTransfer'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
+import { sampleThreeResultsDraw } from '@/tests/test data/results'
 
 jest.mock('axios')
 const flushPromises = () => new Promise(resolve => global.setImmediate(resolve))
@@ -23,6 +24,14 @@ test('Renders Correctly', () => {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
+})
+
+test('Results Sorted Correctly', () => {
+  const wrapper = mount(ResultTransfer, {
+    stubs: ['router-link', 'vue-headful'],
+  })
+  expect(wrapper.element).toMatchSnapshot()
+  wrapper.setData({ course: '1', event: '', results: sampleThreeResultsDraw })
 })
 
 test('Return from Page', () => {
@@ -357,4 +366,56 @@ test('Transfer - Invalid', async () => {
   await wrapper.vm.transfer()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenLastCalledWith('The Competitors Selected are the Same')
+})
+
+test('Transfer', async () => {
+  const mockAddMessageFunction = jest.fn()
+  const mockReturnToCompetitorsPage = jest.fn()
+  const wrapper = shallowMount(ResultTransfer, {
+    mocks: {
+      $messages: { addMessage: mockAddMessageFunction },
+    },
+    stubs: ['router-link', 'vue-headful'],
+  })
+  wrapper.setMethods({ returnToCompetitorsPage: mockReturnToCompetitorsPage })
+  wrapper.setData({
+    event: '1 - 2',
+    course: '2',
+    result: '1 - 00:00 (Bob Jones)',
+    events: [{ id: '4', name: '1', date: '2' }],
+    results: [{ id: '7', course: '2', event: '4', time: 0 }],
+  })
+  axios.get.mockResolvedValue()
+  axios.post.mockResolvedValue()
+  await wrapper.vm.transfer()
+  expect(axios.post).toHaveBeenCalled()
+  expect(axios.post).toHaveBeenLastCalledWith('/api/results/transfer', { 'competitor': '', 'result': '7' })
+  expect(wrapper.vm.returnToCompetitorsPage).toHaveBeenCalled()
+  expect(mockAddMessageFunction).not.toHaveBeenCalled()
+})
+
+test('Transfer - No Event', async () => {
+  const mockAddMessageFunction = jest.fn()
+  const mockReturnToCompetitorsPage = jest.fn()
+  const wrapper = shallowMount(ResultTransfer, {
+    mocks: {
+      $messages: { addMessage: mockAddMessageFunction },
+    },
+    stubs: ['router-link', 'vue-headful'],
+  })
+  wrapper.setMethods({ returnToCompetitorsPage: mockReturnToCompetitorsPage })
+  wrapper.setData({
+    event: '1 - 2',
+    course: '2',
+    result: '1 - 00:00 (Bob Jones)',
+    events: [],
+    results: [{ id: '7', course: '2', event: '', time: 0 }],
+  })
+  axios.get.mockResolvedValue()
+  axios.post.mockResolvedValue()
+  await wrapper.vm.transfer()
+  expect(axios.post).toHaveBeenCalled()
+  expect(axios.post).toHaveBeenLastCalledWith('/api/results/transfer', { 'competitor': '', 'result': '7' })
+  expect(wrapper.vm.returnToCompetitorsPage).toHaveBeenCalled()
+  expect(mockAddMessageFunction).not.toHaveBeenCalled()
 })
