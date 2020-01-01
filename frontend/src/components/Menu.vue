@@ -24,7 +24,7 @@
     <transition name="shrink">
       <nav
         v-show="showMenu || !smallWindow"
-        class="md:h-12 text-main text-lg font-normal h-screen--12 md:mr-2 md:float-right relative z-50 top--12 md:top-0 md:bg-transparent bg-white flex flex-col justify-center align-center w-full md:w-auto md:inline-block"
+        class="md:h-12 text-main text-lg font-normal h-screen--12 md:mr-2 md:float-right relative z-50 top--12 md:top-0 md:bg-transparent bg-white flex flex-col justify-center align-center w-full md:w-auto md:inline-block mt-12 md:mt-0"
         :class="{'sr-only': !showMenu && smallWindow, 'smallWindow':smallWindow }"
       >
         <router-link to="/leagues" class="menu-item">Leagues</router-link>

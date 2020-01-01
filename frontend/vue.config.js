@@ -81,6 +81,14 @@ module.exports = {
       ],
     },
 
+    iconPaths: {
+      favicon32: 'MunroLogo-32.png',
+      favicon16: 'MunroLogo-16.png',
+      appleTouchIcon: 'MunroLogo-152.png',
+      maskIcon: 'MunroLogo.svg',
+      msTileImage: 'MunroLogo-144.png',
+    },
+
     workboxOptions: {
       runtimeCaching: [{
         urlPattern: new RegExp('^https://munro-leagues.herokuapp.com/api/.*'),
