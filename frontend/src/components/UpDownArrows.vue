@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="up-down-arrows">
+  <div class="up-down-arrow">
     <svg :class="{ active: (active && !ascending) }" viewBox="0 0 24 24">
       <path d="M7 14l5-5 5 5z" />
     </svg>
@@ -33,24 +33,25 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
+<style  scoped>
+.up-down-arrow {
+  height: 20px;
+  @apply inline-block;
+}
+svg {
+  @apply relative block;
+  height: 15px;
+}
 
-.up-down-arrows
-  display: inline-block
-  height: 20px
+svg:first-child {
+  bottom: -3px;
+}
 
-  svg
-    position: relative
-    display: block
-    height: 15px
+svg:last-child {
+  top: -5px;
+}
 
-    &:first-child
-      bottom: -3px
-
-    &:last-child
-      top: -5px
-
-.active
-  fill: main-color
+.active {
+  @apply fill-current text-main;
+}
 </style>

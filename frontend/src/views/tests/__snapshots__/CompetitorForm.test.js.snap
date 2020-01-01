@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly - Create 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
@@ -9,61 +11,81 @@ exports[`Renders Correctly - Create 1`] = `
   />
    
   <div>
-    <h1>
+    <h1
+      class="text-main text-3xl font-normal font-heading mb-2"
+    >
       Create Competitor
     </h1>
      
     <!---->
      
     <form>
-      <label>
-        Name:
-      </label>
-       
-      <input
-        type="text"
-      />
-       
-      <label>
-        Club:
-      </label>
-       
-      <input
-        type="text"
-      />
-       
-      <label>
-        Age Class:
-      </label>
-       
-      <input
-        type="text"
-      />
-       
-      <label>
-        League:
-      </label>
+      <div
+        class="text-input top--4 relative"
+      >
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+        >
+          Name:
+        </label>
+         
+        <input
+          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          type="text"
+        />
+      </div>
        
       <div
-        class="dropdown-input"
+        class="text-input top--4 relative"
       >
-        <div
-          class="visible"
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
         >
-          <label>
-            
-          </label>
-           
-          <p>
+          Club:
+        </label>
+         
+        <input
+          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="text-input top--4 relative"
+      >
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+        >
+          Age Class:
+        </label>
+         
+        <input
+          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="dropdown-input relative top--4"
+      >
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+        >
+          League:
+        </label>
+         
+        <div
+          class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        >
+          <p
+            class="leading-normal h-6 truncate"
+          >
             
           </p>
            
           <svg
-            class=""
-            fill="#9E9E9E"
-            height="24"
+            class="h-8 text-main float-right fill-current mr--3 mt--68/10"
             viewBox="0 0 24 24"
-            width="24"
           >
             <path
               d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -77,36 +99,33 @@ exports[`Renders Correctly - Create 1`] = `
         </div>
          
         <div
-          class="dropdown"
+          class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
           name="open"
           style="display: none;"
         />
       </div>
        
-      <label>
-        Course:
-      </label>
-       
       <div
-        class="dropdown-input"
+        class="dropdown-input relative top--4"
       >
-        <div
-          class="visible"
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
         >
-          <label>
-            
-          </label>
-           
-          <p>
+          Course:
+        </label>
+         
+        <div
+          class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        >
+          <p
+            class="leading-normal h-6 truncate"
+          >
             
           </p>
            
           <svg
-            class=""
-            fill="#9E9E9E"
-            height="24"
+            class="h-8 text-main float-right fill-current mr--3 mt--68/10"
             viewBox="0 0 24 24"
-            width="24"
           >
             <path
               d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -120,13 +139,15 @@ exports[`Renders Correctly - Create 1`] = `
         </div>
          
         <div
-          class="dropdown"
+          class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
           name="open"
           style="display: none;"
         />
       </div>
        
-      <button>
+      <button
+        class="button-lg"
+      >
         Create Competitor
       </button>
        
@@ -139,7 +160,9 @@ exports[`Renders Correctly - Create 1`] = `
 `;
 
 exports[`Renders Correctly - Upload 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
@@ -149,59 +172,79 @@ exports[`Renders Correctly - Upload 1`] = `
   <div>
     <!---->
      
-    <h1>
+    <h1
+      class="text-main text-3xl font-normal font-heading mb-2"
+    >
       Edit Competitor
     </h1>
      
     <form>
-      <label>
-        Name:
-      </label>
-       
-      <input
-        type="text"
-      />
-       
-      <label>
-        Club:
-      </label>
-       
-      <input
-        type="text"
-      />
-       
-      <label>
-        Age Class:
-      </label>
-       
-      <input
-        type="text"
-      />
-       
-      <label>
-        League:
-      </label>
+      <div
+        class="text-input top--4 relative"
+      >
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+        >
+          Name:
+        </label>
+         
+        <input
+          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          type="text"
+        />
+      </div>
        
       <div
-        class="dropdown-input"
+        class="text-input top--4 relative"
       >
-        <div
-          class="visible"
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
         >
-          <label>
-            
-          </label>
-           
-          <p>
+          Club:
+        </label>
+         
+        <input
+          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="text-input top--4 relative"
+      >
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+        >
+          Age Class:
+        </label>
+         
+        <input
+          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="dropdown-input relative top--4"
+      >
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+        >
+          League:
+        </label>
+         
+        <div
+          class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        >
+          <p
+            class="leading-normal h-6 truncate"
+          >
             
           </p>
            
           <svg
-            class=""
-            fill="#9E9E9E"
-            height="24"
+            class="h-8 text-main float-right fill-current mr--3 mt--68/10"
             viewBox="0 0 24 24"
-            width="24"
           >
             <path
               d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -215,36 +258,33 @@ exports[`Renders Correctly - Upload 1`] = `
         </div>
          
         <div
-          class="dropdown"
+          class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
           name="open"
           style="display: none;"
         />
       </div>
        
-      <label>
-        Course:
-      </label>
-       
       <div
-        class="dropdown-input"
+        class="dropdown-input relative top--4"
       >
-        <div
-          class="visible"
+        <label
+          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
         >
-          <label>
-            
-          </label>
-           
-          <p>
+          Course:
+        </label>
+         
+        <div
+          class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        >
+          <p
+            class="leading-normal h-6 truncate"
+          >
             
           </p>
            
           <svg
-            class=""
-            fill="#9E9E9E"
-            height="24"
+            class="h-8 text-main float-right fill-current mr--3 mt--68/10"
             viewBox="0 0 24 24"
-            width="24"
           >
             <path
               d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -258,7 +298,7 @@ exports[`Renders Correctly - Upload 1`] = `
         </div>
          
         <div
-          class="dropdown"
+          class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
           name="open"
           style="display: none;"
         />
@@ -266,7 +306,9 @@ exports[`Renders Correctly - Upload 1`] = `
        
       <!---->
        
-      <button>
+      <button
+        class="button-lg"
+      >
         Update Competitor
       </button>
     </form>

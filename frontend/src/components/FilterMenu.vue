@@ -6,35 +6,61 @@
 
 <template>
   <accordion-dropdown title="Filter">
-    <div class="half input">
-      <label>Name:</label>
-      <input v-model="preferences.name" type="text" @input="onChange">
-    </div>
-    <div class="half input">
-      <label>Club:</label>
-      <input v-model="preferences.club" type="text" @input="onChange">
-    </div>
-    <div class="quarter input">
-      <label>Min Age:</label>
-      <input v-model.number="preferences.minAge" type="number" min="0" max="120" @input="onChange">
-    </div>
-    <div class="quarter input">
-      <label>Max Age:</label>
-      <input v-model.number="preferences.maxAge" type="number" min="0" max="120" @input="onChange">
-    </div>
-    <checkbox v-model="preferences.male" class="quarter" label="Male:" @input="onChange" />
-    <checkbox v-model="preferences.female" class="quarter" label="Female:" @input="onChange" />
+    <text-input
+      v-model="preferences.name"
+      label="Name:"
+      class="w-full md:w-1/2 inline-block md:pr-2"
+      @input="onChange"
+    />
+    <text-input
+      v-model="preferences.club"
+      label="Club:"
+      class="w-full md:w-1/2 inline-block md:pl-2"
+      @input="onChange"
+    />
+    <number-input
+      v-model.number="preferences.minAge"
+      label="Min Age:"
+      class="w-1/2 md:w-1/4 inline-block pr-2 md:mb--4"
+      :min="0"
+      :max="120"
+      @input="onChange"
+    />
+    <number-input
+      v-model.number="preferences.maxAge"
+      label="Max Age:"
+      class="w-1/2 md:w-1/4 inline-block pl-2 md:mb--4"
+      :min="0"
+      :max="120"
+      @input="onChange"
+    />
+    <checkbox
+      v-model="preferences.male"
+      class="w-1/2 md:w-1/4 inline-block pr-2 text-center"
+      label="Male:"
+      @input="onChange"
+    />
+    <checkbox
+      v-model="preferences.female"
+      class="w-1/2 md:w-1/4 inline-block pl-2 text-center"
+      label="Female:"
+      @input="onChange"
+    />
   </accordion-dropdown>
 </template>
 
 <script>
 import Checkbox from './CheckboxInput'
 import AccordionDropdown from './AccordionDropdown'
+import TextInput from './TextInput'
+import NumberInput from './NumberInput'
 
 export default {
   components: {
     'Checkbox': Checkbox,
     'AccordionDropdown': AccordionDropdown,
+    'TextInput': TextInput,
+    'NumberInput': NumberInput,
   },
 
   data: () => ({
@@ -54,47 +80,5 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-.list
-  overflow: hidden
-  border: 1px solid black
-  transition: transform 0.4s ease-in-out
-  transform-origin: top
-
-.half
-  width: 50%
-
-  input[type='text'], input[type='number']
-    width: calc(100% - 1rem)
-
-  @media (max-width: 700px)
-    width: 100%
-
-.quarter
-  width: 25%
-  text-align: center
-
-  input[type='text'], input[type='number']
-    width: calc(100% - 1rem)
-
-  &.checkbox-input
-    width: 25%
-
-  label
-    text-align: left
-
-  @media (max-width: 700px)
-    width: 50%
-
-    &.checkbox-input
-      width: calc(50% - 1rem)
-
-.checkbox-input
-  padding-top: 0.5rem !important
-
-  @media (min-width: 700px)
-    padding: 1.4rem 0 0 !important
+<style  scoped>
 </style>

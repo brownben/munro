@@ -15,7 +15,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       v-if="create"
       title="Munro - Create Event"
@@ -33,30 +33,25 @@
       }"
     />
     <div v-if="!notFound">
-      <h1 v-if="create">Create Event</h1>
-      <h1 v-if="!create">Edit Event</h1>
+      <h1 v-if="create" class="text-main text-3xl font-normal font-heading mb-2">Create Event</h1>
+      <h1 v-if="!create" class="text-main text-3xl font-normal font-heading mb-2">Edit Event</h1>
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
       <form @submit.prevent="submit">
-        <label>Name:</label>
-        <input v-model.trim="name" type="text">
-        <label>Date: (DD/MM/YYYY)</label>
-        <input v-model="date" type="date">
-        <label>Club/ Organiser:</label>
-        <input v-model.trim="organiser" type="text">
-        <label>Website:</label>
-        <input v-model.trim="website" type="text">
-        <label>Results: (URL)</label>
-        <input v-model.trim="results" type="text">
-        <label>Winsplits: (URL)</label>
-        <input v-model.trim="winsplits" type="text">
-        <label>Routegadget: (URL)</label>
-        <input v-model.trim="routegadget" type="text">
-        <label>League:</label>
-        <dropdown-input v-model="league" :list="leagues.map(league => league.name)" />
-        <label>More Information:</label>
-        <input v-model.trim="moreInformation" type="text">
-        <button v-if="create">Create Event</button>
-        <button v-if="!create">Update Event</button>
+        <text-input v-model.trim="name" label="Name:" />
+        <text-input v-model.trim="date" label="Date: (DD/MM/YYYY)" />
+        <text-input v-model.trim="organiser" label="Club/ Organiser:" />
+        <text-input v-model.trim="website" label="Website: (URL)" type="url" />
+        <text-input v-model.trim="results" label="Results: (URL)" type="url" />
+        <text-input v-model.trim="winsplits" label="Winsplits: (URL)" type="url" />
+        <text-input v-model.trim="routegadget" label="Routegadget: (URL)" type="url" />
+        <dropdown-input
+          v-model="league"
+          :list="leagues.map(league => league.name)"
+          label="League:"
+        />
+        <text-input v-model.trim="moreInformation" label="More Information:" />
+        <button v-if="create" class="button-lg">Create Event</button>
+        <button v-if="!create" class="button-lg">Update Event</button>
       </form>
     </div>
     <not-found v-if="notFound" />
@@ -66,12 +61,14 @@
 <script>
 import axios from 'axios'
 import DropdownInput from '@/components/DropdownInput'
+import TextInput from '@/components/TextInput'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
     'NotFound': NotFound,
     'DropdownInput': DropdownInput,
+    'TextInput': TextInput,
   },
 
   data: function () {
@@ -194,16 +191,3 @@ export default {
 }
 
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-h1
-  margin-bottom: 0.5rem
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity 0.5s
-
-.fade-enter, .fade-leave-to
-  opacity: 0
-</style>

@@ -2,247 +2,312 @@
 
 exports[`Renders Correctly 1`] = `
 <div>
-  <vue-headful-stub
-    description="Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features"
-    head="[object Object]"
-    title="Munro"
-    url="https://munro-leagues.herokuapp.com/"
-  />
-   
   <div
-    id="header"
+    class="view"
   >
-    <img
-      alt="Orienteering Flag Next to Trees and Hills"
-      src="@/assets/images/UnDrawOFlagWhite.svg"
+    <vue-headful-stub
+      description="Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features"
+      head="[object Object]"
+      title="Munro"
+      url="https://munro-leagues.herokuapp.com/"
     />
      
-    <h2>
-      Fast and Easy Results for Orienteering Leagues
-    </h2>
-  </div>
-   
-  <!---->
-   
-  <div
-    id="leagues"
-  >
     <div
-      class="league"
+      class="md:flex items-center p-3 justify-center text-center flex-row-reverse block pb-4"
+      id="header"
     >
       <img
-        alt="The Logo of Sprintelope"
-        height="150px"
-        src="@/assets/images/SprintelopeLogo.png"
+        alt="Orienteering Flag Next to Trees and Hills"
+        class="h-80 inline-block pb-2 md:pl-6 xl:pl-20"
+        src="@/assets/images/UnDrawOFlagPurple.svg"
       />
        
-      <h1>
-        Sprintelope 2019
-      </h1>
-       
-      <p>
-        Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians
-      </p>
-       
-      <p>
-        
-        More information can be found at
-        
-        <a
-          href="https://en-gb.facebook.com/sprintelope/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          https://en-gb.facebook.com/sprintelope/
-        </a>
-      </p>
-       
-      <router-link-stub
-        class="button"
-        to="/leagues/Sprintelope 2019"
+      <h2
+        class="w-full text-center md:text-left font-heading text-3xl md:text-4xl xl:text-5xl text-main md:py-0 pt-3"
       >
-        View League
-      </router-link-stub>
+        
+        Fast and Easy Results for Orienteering Leagues
+      
+      </h2>
     </div>
      
     <div
-      class="league"
+      class="flex flex-wrap flex-row"
     >
-      <img
-        alt="The Logo of Sprintelope"
-        height="150px"
-        src="@/assets/images/SprintelopeLogo.png"
-      />
-       
-      <h1>
-        Sprintelope 2018
-      </h1>
-       
-      <p>
-        Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians
-      </p>
-       
-      <p>
-        
-        More information can be found at
-        
-        <a
-          href="https://en-gb.facebook.com/sprintelope/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          https://en-gb.facebook.com/sprintelope/
-        </a>
-      </p>
-       
-      <router-link-stub
-        class="button"
-        to="/leagues/Sprintelope 2018"
-      >
-        View League
-      </router-link-stub>
-    </div>
-     
-    <div
-      class="league"
-    >
-      <h1>
-        Fight with the Night
-      </h1>
-       
-      <p>
-        Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club
-      </p>
-       
-      <p>
-        
-        More information can be found at
-        
-        <a
-          href="https://euoc.wordpress.com/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          here
-        </a>
-      </p>
-       
-      <router-link-stub
-        class="button"
-        to="/leagues/Fight with the Night 19-20"
-      >
-        View League
-      </router-link-stub>
-    </div>
-     
-    <div
-      class="league"
-    >
-      <h1>
-        Northern Night Cup
-      </h1>
-       
-      <p>
-        A Series of Night Orienteering Events in the North of Scotland
-      </p>
-       
-      <p>
-        
-        More information can be found at
-        
-        <a
-          href="https://www.orienteering.scot/northern-night-cup/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          here
-        </a>
-      </p>
-       
-      <router-link-stub
-        class="button"
-        to="/leagues/Northern Night Cup 19-20"
-      >
-        View League
-      </router-link-stub>
-    </div>
-     
-    <div
-      class="card"
-      id="about"
-    >
-      <img
-        alt="Munro Logo"
-        src="@/assets/images/MunroLogo.svg"
-      />
-       
-      <h1>
-        About
-      </h1>
+      <!---->
        
       <div
-        class="text"
+        class="h-full w-full md:w-1/2 my-4 md:px-3"
       >
-        <p>
-          Munro was created by Ben Brown for his Advanced Higher Computing Project, as a calculator of the orienteering league standings. It is designed to be fast and easy to use, offering sorting and filtering on the results. It also has easy upload supporting various upload formats to make the upload as quick and easy as possible for event organisers.
-        </p>
-         
-        <p>
-          Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues@gmail.com
-        </p>
-         
-        <p>
-          For any help or enquires please email munro.leagues@gmail.com
-        </p>
+        <div
+          class="card"
+        >
+          <img
+            alt="The Logo of Sprintelope"
+            class="h-40"
+            src="@/assets/images/SprintelopeLogo.png"
+          />
+           
+          <h1
+            class="text-2xl font-heading my-2"
+          >
+            Sprintelope 2019
+          </h1>
+           
+          <p>
+            Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians
+          </p>
+           
+          <p>
+            
+            More information can be found on their
+            
+            <a
+              class="link"
+              href="https://en-gb.facebook.com/sprintelope/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              website
+            </a>
+          </p>
+           
+          <router-link-stub
+            class="button"
+            to="/leagues/Sprintelope 2019"
+          >
+            View League
+          </router-link-stub>
+        </div>
       </div>
-    </div>
-     
-    <div
-      class="card middle"
-    >
-      <h1>
-        Developers
-      </h1>
        
-      <p>
-        Information for developers about accessing the API and embedding the site in IFrames
-      </p>
-       
-      <router-link-stub
-        class="button"
-        to="/developers"
+      <div
+        class="w-full md:w-1/2 my-4 md:px-3"
       >
-        View Info
-      </router-link-stub>
-    </div>
-     
-    <div
-      class="card middle"
-    >
-      <h1>
-        Upload Instructions
-      </h1>
+        <div
+          class="h-full w-full card"
+        >
+          <img
+            alt="The Logo of Sprintelope"
+            class="h-40"
+            src="@/assets/images/SprintelopeLogo.png"
+          />
+           
+          <h1
+            class="text-2xl font-heading my-2"
+          >
+            Sprintelope 2018
+          </h1>
+           
+          <p>
+            Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians
+          </p>
+           
+          <p>
+            
+            More information can be found on their
+            
+            <a
+              class="link"
+              href="https://en-gb.facebook.com/sprintelope/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              website
+            </a>
+          </p>
+           
+          <router-link-stub
+            class="button"
+            to="/leagues/Sprintelope 2018"
+          >
+            View League
+          </router-link-stub>
+        </div>
+      </div>
        
-      <p>
-        Instructions for how to upload results to Munro
-      </p>
-       
-      <router-link-stub
-        class="button"
-        to="/upload-instructions"
+      <div
+        class="w-full md:w-1/2 my-4 md:px-3"
       >
-        View Info
-      </router-link-stub>
+        <div
+          class="h-full w-full card"
+        >
+          <h1
+            class="text-2xl font-heading my-2"
+          >
+            Fight with the Night
+          </h1>
+           
+          <p>
+            Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club
+          </p>
+           
+          <p>
+            
+            More information can be found on their
+            
+            <a
+              class="link"
+              href="https://euoc.wordpress.com/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              website
+            </a>
+          </p>
+           
+          <router-link-stub
+            class="button"
+            to="/leagues/Fight with the Night 19-20"
+          >
+            View League
+          </router-link-stub>
+        </div>
+      </div>
+       
+      <div
+        class="w-full md:w-1/2 my-4 md:px-3"
+      >
+        <div
+          class="h-full w-full card"
+        >
+          <h1
+            class="text-2xl font-heading my-2"
+          >
+            Northern Night Cup
+          </h1>
+           
+          <p>
+            A Series of Night Orienteering Events in the North of Scotland
+          </p>
+           
+          <p>
+            
+            More information can be found on their
+            
+            <a
+              class="link"
+              href="https://www.orienteering.scot/northern-night-cup/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              website
+            </a>
+          </p>
+           
+          <router-link-stub
+            class="button"
+            to="/leagues/Northern Night Cup 19-20"
+          >
+            View League
+          </router-link-stub>
+        </div>
+      </div>
+       
+      <div
+        class="p-4 w-full card-text md:mx-3 my-4"
+      >
+        <img
+          alt="Munro Logo"
+          class="h-24"
+          src="@/assets/images/MunroLogo.png"
+        />
+         
+        <h1
+          class="text-2xl font-heading my-2"
+        >
+          About
+        </h1>
+         
+        <div
+          class="text"
+        >
+          <p>
+            Munro is a sports league results calculator, created originally by Ben Brown for his local Orienteering League as part of his Advanced Higher Computing Project. Munro is designed to be as easy to use as possible providing all the features and information you need, whilst making it fast and simple to view the results; with multiple options to sort and filter them. It supports multiple file formats for upload and several different scoring systems, making the process as quick and stress free as possible for event organisers.
+          </p>
+           
+          <p>
+            
+            Munro is Open Source and the code is avaliable on
+            
+            <a
+              class="link"
+              href="https://github.com/brownben/munro"
+            >
+              Github
+            </a>
+          </p>
+           
+          <p>
+            Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues@gmail.com
+          </p>
+           
+          <p>
+            For any help or enquires please email munro.leagues@gmail.com
+          </p>
+        </div>
+      </div>
+       
+      <div
+        class="w-full md:w-1/2 my-4 md:px-3"
+      >
+        <div
+          class="h-full w-full card"
+        >
+          <h1
+            class="text-2xl font-heading my-2"
+          >
+            Developers
+          </h1>
+           
+          <p>
+            Information for developers about accessing the API and embedding the site in IFrames
+          </p>
+           
+          <router-link-stub
+            class="button"
+            to="/developers"
+          >
+            View Info
+          </router-link-stub>
+        </div>
+      </div>
+       
+      <div
+        class="w-full md:w-1/2 my-4 md:px-3"
+      >
+        <div
+          class="h-full w-full card"
+        >
+          <h1
+            class="text-2xl font-heading my-2"
+          >
+            Upload Instructions
+          </h1>
+           
+          <p>
+            Instructions for how to upload results to Munro
+          </p>
+           
+          <router-link-stub
+            class="button"
+            to="/upload-instructions"
+          >
+            View Info
+          </router-link-stub>
+        </div>
+      </div>
     </div>
   </div>
    
   <p
-    class="credits"
+    class="bg-main rounded-tl-xl text-white text-center font-heading p-2 mt-4"
   >
     
     © Ben Brown 2019
     
     <router-link-stub
+      class="px-2"
       to="/login"
     >
       Admin Login

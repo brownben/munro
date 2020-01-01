@@ -7,16 +7,20 @@
 -->
 
 <template>
-  <div id="accordion">
+  <div class="rounded-tl-lg rounded-br-lg shadow-md mt-3 mb-6 accordion bg-white">
     <div class="accordion-head" @click="accordionOpen = !accordionOpen">
-      <h2>{{ title }}</h2>
-      <svg :class="{rotate:accordionOpen}" viewBox="0 0 24 24">
+      <h2 class="font-heading text-main text-2xl p-2 px-3 inline-block">{{ title }}</h2>
+      <svg
+        class="fill-current text-main h-12 float-right p-2"
+        :class="{rotate:accordionOpen}"
+        viewBox="0 0 24 24"
+      >
         <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
         <path fill="none" d="M0 0h24v24H0V0z" />
       </svg>
     </div>
     <transition name="shrink">
-      <div v-if="accordionOpen" key="1" class="accordion-body">
+      <div v-if="accordionOpen" key="1" class="accordion-body p-3 pt-0 pb-1">
         <slot />
       </div>
     </transition>
@@ -37,46 +41,21 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-#accordion
-  margin-bottom: 1.5rem
-
-  .accordion-head
-    box-sizing: border-box
-    padding: 0.4rem
-    background-color: main-color
-
-    h2
-      display: inline
-      color: white
-      font-weight: 300
-      font-family: default-font
-
-    svg
-      float: right
-      height: 2rem
-      transition: 0.3s
-      fill: white
-
-  .accordion-body
-    display: flex
-    flex-flow: row wrap
-    justify-content: space-around
-    overflow: hidden
-    overflow-y: hidden
-    box-sizing: border-box
-    padding: 0 0.75rem 0.75rem
-    width: 100%
-    border: 1px solid main-color
-    transition: transform 0.4s ease-in-out
-    transform-origin: top
-
-.rotate
-  transform: rotate(180deg)
-
-.shrink-enter, .shrink-leave-to
-  transform: scaleY(0)
+<style  scoped>
+svg {
+  transition: 0.4s;
+}
+.accordion-body,
+.accordion {
+  transform-origin: top;
+  transition: 0.4s;
+  transform: 0.4s;
+}
+.rotate {
+  transform: rotate(180deg);
+}
+.shrink-enter,
+.shrink-leave-to {
+  transform: scaleY(0);
+}
 </style>

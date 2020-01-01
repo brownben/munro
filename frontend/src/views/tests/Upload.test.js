@@ -56,25 +56,25 @@ test('Upload Buttons Shows Correctly', () => {
     stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({
-    eventId: 1,
-    uploadKey: 2,
-    file: 3,
-    overwrite: 4,
+    eventId: '1',
+    uploadKey: '2',
+    file: '3',
+    overwrite: '4',
   })
   expect(wrapper.findAll('button').length).toBe(1)
   expect(wrapper.element).toMatchSnapshot()
   wrapper.setData({
-    eventId: 1,
-    uploadKey: 2,
+    eventId: '1',
+    uploadKey: '2',
     file: '',
-    overwrite: 4,
+    overwrite: '4',
   })
   expect(wrapper.findAll('button').length).toBe(0)
   wrapper.setData({
     eventId: '',
-    uploadKey: 2,
+    uploadKey: '2',
     file: '',
-    overwrite: 4,
+    overwrite: '4',
   })
   expect(wrapper.findAll('button').length).toBe(0)
 })
@@ -108,26 +108,26 @@ test('Upload File - Correct API Call', async () => {
     },
   })
   wrapper.setData({
-    eventId: 1,
-    uploadKey: 2,
-    file: 3,
-    overwrite: 4,
+    eventId: '1',
+    uploadKey: '2',
+    file: '3',
+    overwrite: '4',
     event: {
-      routegadget: 5,
-      results: 6,
-      winsplits: 7,
+      routegadget: '5',
+      results: '6',
+      winsplits: '7',
     },
   })
   await wrapper.vm.uploadFile()
   expect(axios.post).toHaveBeenCalledTimes(1)
   expect(axios.post).toHaveBeenLastCalledWith('/api/upload', {
-    eventId: 1,
-    file: 3,
-    overwrite: 4,
-    results: 6,
-    routegadget: 5,
-    uploadKey: 2,
-    winsplits: 7,
+    eventId: '1',
+    file: '3',
+    overwrite: '4',
+    results: '6',
+    routegadget: '5',
+    uploadKey: '2',
+    winsplits: '7',
   })
 })
 
@@ -143,10 +143,10 @@ test('Upload File - Success', async () => {
     stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({
-    eventId: 1,
-    uploadKey: 2,
-    file: 3,
-    overwrite: 4,
+    eventId: '1',
+    uploadKey: '2',
+    file: '3',
+    overwrite: '4',
     event: { league: 'test' },
   })
   axios.post.mockResolvedValue()
@@ -169,10 +169,10 @@ test('Upload File - Failure', async () => {
     stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({
-    eventId: 1,
-    uploadKey: 2,
-    file: 3,
-    overwrite: 4,
+    eventId: '1',
+    uploadKey: '2',
+    file: '3',
+    overwrite: '4',
   })
   axios.post.mockRejectedValue({ response: { data: { message: 'Error' } } })
   await wrapper.vm.uploadFile()
@@ -240,72 +240,15 @@ test('Find Event - Success - Event Not Found', async () => {
   expect(wrapper.vm.event).toEqual({ name: 'No Event Found' })
 })
 
-test('File Change - No Files', () => {
+test('File Read', () => {
   const wrapper = mount(Upload, {
     mocks: {
       $route: { params: { id: '' } },
     },
     stubs: ['router-link', 'vue-headful'],
   })
-  expect(wrapper.vm.fileChange({ target: { files: [] } })).toBeFalsy()
-  expect(wrapper.vm.fileChange({ dataTransfer: { files: [] } })).toBeFalsy()
-})
-
-test('File Change - Files', () => {
-  const mockReadFile = jest.fn()
-  const wrapper = mount(Upload, {
-    mocks: {
-      $route: { params: { id: '' } },
-    },
-    methods: {
-      readFile: mockReadFile,
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  wrapper.vm.fileChange({ target: { files: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] } })
-  expect(wrapper.vm.fileName).toBe('a')
-  expect(mockReadFile).toHaveBeenCalledTimes(1)
-  expect(mockReadFile).toHaveBeenLastCalledWith({ name: 'a' })
-  mockReadFile.mockClear()
-  wrapper.vm.fileChange({ dataTransfer: { files: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] } })
-  expect(wrapper.vm.fileName).toBe('a')
-  expect(mockReadFile).toHaveBeenCalledTimes(1)
-  expect(mockReadFile).toHaveBeenLastCalledWith({ name: 'a' })
-})
-
-class mockFileReader {
-  readAsText () { }
-}
-
-test('Read File', () => {
-  const mockOnLoad = jest.fn()
-  const wrapper = mount(Upload, {
-    mocks: {
-      $route: { params: { id: '' } },
-    },
-    methods: {
-      readFileResult: mockOnLoad,
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  const mockReadAsText = jest.fn(() => wrapper.vm.readFileResult())
-  mockFileReader.prototype.readAsText = mockReadAsText
-  global.FileReader = mockFileReader
-  global.FileReader.readAsText = mockReadAsText
-  wrapper.vm.readFile(new Blob())
-  expect(mockReadAsText).toHaveBeenCalledTimes(1)
-  expect(mockReadAsText).toHaveBeenLastCalledWith(expect.any(Blob))
-  expect(mockOnLoad).toHaveBeenCalledTimes(1)
-})
-
-test('Read File Result', () => {
-  const wrapper = mount(Upload, {
-    attachToDocument: true,
-    mocks: {
-      $route: { params: { id: '' } },
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  wrapper.vm.readFileResult({ target: { result: 'Some Text' } })
-  expect(wrapper.vm.file).toBe('Some Text')
+  wrapper.vm.fileRead('Hello')
+  expect(wrapper.vm.file).toBe('Hello')
+  wrapper.vm.fileRead('This is some text')
+  expect(wrapper.vm.file).toBe('This is some text')
 })

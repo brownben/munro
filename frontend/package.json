@@ -2,14 +2,12 @@
   "name": "munro",
   "version": "1.0.0",
   "private": true,
-  "description": "Fast and Easy Results for Orienteering Leagues",
+  "description": "Fast and Easy Results for Sporting Leagues",
   "author": "brownben <9870007+brownben@users.noreply.github.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
-    "lint": "npm run lint-js && npm run lint-styles",
-    "lint-js": "vue-cli-service lint",
-    "lint-styles": "stylus-supremacy format ./src/assets/styles/*.styl --options stylusSupremacy.json --replace",
+    "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit -i"
   },
   "dependencies": {
@@ -44,9 +42,7 @@
     "jest-localstorage-mock": "^2.4.0",
     "postcss-import": "^12.0.1",
     "postcss-url": "^8.0.0",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2",
-    "stylus-supremacy": "^2.14.0",
+    "vue-cli-plugin-tailwind": "^1.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

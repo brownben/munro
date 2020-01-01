@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description="Instrcutions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
@@ -9,7 +11,9 @@ exports[`Renders Correctly 1`] = `
     url="https://munro-leagues.herokuapp.com/upload-instructions"
   />
    
-  <h1>
+  <h1
+    class="text-main text-3xl font-normal font-heading mb-2"
+  >
     Upload Instructions
   </h1>
    
@@ -26,7 +30,7 @@ exports[`Renders Correctly 1`] = `
        
       <img
         alt="Empty Upload Form"
-        src="@/assets/images/UploadInstructions-EmptyForm.png"
+        src="@/assets/images/UploadInstructions-EmptyFormNew.png"
       />
     </li>
      
@@ -36,7 +40,7 @@ exports[`Renders Correctly 1`] = `
       
       <img
         alt="Upload Form with Keys Entered"
-        src="@/assets/images/UploadInstructions-KeysEntered.png"
+        src="@/assets/images/UploadInstructions-KeysEnteredNew.png"
       />
     </li>
      
@@ -55,7 +59,7 @@ exports[`Renders Correctly 1`] = `
       
       <img
         alt="Upload Form with Upload Button Visible"
-        src="@/assets/images/UploadInstructions-ButtonShowing.png"
+        src="@/assets/images/UploadInstructions-ButtonShowingNew.png"
       />
     </li>
      

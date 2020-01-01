@@ -55,8 +55,10 @@ test('Blank Fields Works', () => {
     },
     stubs: ['router-link', 'vue-headful'],
   })
-  wrapper.findAll('input').at(0).setValue('username')
-  wrapper.findAll('input').at(1).setValue('password')
+  wrapper.setData({
+    username: 'username',
+    password: 'password',
+  })
   expect(wrapper.vm.username).toBe('username')
   expect(wrapper.vm.password).toBe('password')
   wrapper.vm.blankFields()
@@ -84,8 +86,10 @@ test('Check Validation Works', () => {
   wrapper.setData({ username: 'A Value', password: 'Another Value' })
   expect(wrapper.vm.validateLogin()).toBeTruthy()
 
-  wrapper.findAll('input').at(0).setValue('username')
-  wrapper.findAll('input').at(1).setValue('password')
+  wrapper.setData({
+    username: 'username',
+    password: 'password',
+  })
   expect(wrapper.vm.validateLogin()).toBeTruthy()
 })
 

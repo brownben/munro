@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Merge Competitors"
       description
@@ -13,29 +13,33 @@
         'meta': {name: 'robots', content:'noindex'},
       }"
     />
-    <h1>Merge Competitors</h1>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">Merge Competitors</h1>
     <form @submit.prevent="merge">
-      <label>League:</label>
       <dropdown-input
         v-model="league"
+        label="League:"
         :list="leagues.map(league => league.name)"
         :include-blank="true"
       />
-      <label>Course:</label>
-      <dropdown-input v-model="course" :list="coursesInLeague" :include-blank="true" />
-      <label>Competitor to Keep:</label>
+      <dropdown-input
+        v-model="course"
+        :list="coursesInLeague"
+        :include-blank="true"
+        label="Course:"
+      />
       <dropdown-input
         v-model="competitorKeep"
         :list="competitorsForLeague.map(competitor => competitor.id+' - '+competitor.name+' - '+competitor.ageClass+' - '+competitor.club)"
         :include-blank="true"
+        label="Competitor to Keep:"
       />
-      <label>Competitor to be Merged:</label>
       <dropdown-input
         v-model="competitorMerge"
         :list="competitorsForLeague.map(competitor => competitor.id+' - '+competitor.name+' - '+competitor.ageClass+' - '+competitor.club)"
         :include-blank="true"
+        label="Competitor to be Merged:"
       />
-      <button>Merge Competitors</button>
+      <button class="button-lg">Merge Competitors</button>
     </form>
   </div>
 </template>
@@ -123,10 +127,4 @@ export default {
   },
 }
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
 
-h1
-  margin-bottom: 0.5rem
-</style>

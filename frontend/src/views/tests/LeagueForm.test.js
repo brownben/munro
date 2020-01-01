@@ -236,9 +236,11 @@ test('Create League - Calls Correct API Location', async () => {
   const sampleOutput = Object.assign({}, sampleSingleLeague[0])
   delete sampleOutput.info
   sampleOutput.scoringMethod = 'position'
+  sampleOutput.courses = 'Long,Short'
   delete sampleOutput.numberOfEvents
   delete sampleOutput.oldName
   const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  sampleInput.courses = sampleInput.courses.join(',')
   delete sampleInput.oldName
   sampleInput.info = sampleInput.description
   delete sampleInput.description
@@ -263,8 +265,10 @@ test('Update League - Calls Correct API Location', async () => {
   delete sampleOutput.info
   sampleOutput.scoringMethod = 'position'
   sampleOutput.oldName = 'name'
+  sampleOutput.courses = 'Long,Short'
   delete sampleOutput.numberOfEvents
   const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  sampleInput.courses = sampleInput.courses.join(',')
   sampleInput.info = sampleInput.description
   delete sampleInput.description
   sampleInput.oldName = 'name'
@@ -272,6 +276,7 @@ test('Update League - Calls Correct API Location', async () => {
   wrapper.setData(sampleInput)
   await wrapper.vm.updateLeague()
   expect(axios.put).toHaveBeenCalledTimes(1)
+
   expect(axios.put).toHaveBeenLastCalledWith('/api/leagues/name', sampleOutput)
 })
 
@@ -304,6 +309,7 @@ test('Update League - Successful Creation', async () => {
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
   const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  sampleInput.courses = sampleInput.courses.join(',')
   sampleInput.info = sampleInput.description
   delete sampleInput.description
   wrapper.setData(sampleInput)

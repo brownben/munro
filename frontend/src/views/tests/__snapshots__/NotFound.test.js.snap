@@ -1,30 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Not Found"
   />
    
-  <h1>
-    Sorry We Can't Find What You Are Looking For
-  </h1>
-   
-  <p>
-    Please check the URL and Try Again
-  </p>
-   
-  <button>
-    Go Back
-  </button>
-   
-  <router-link-stub
-    class="button"
-    to="/"
+  <div
+    class="card mt-5"
   >
-    Return Home
-  </router-link-stub>
+    <h1
+      class="text-main text-3xl font-heading my-2"
+    >
+      Sorry We Can't Find What You Are Looking For
+    </h1>
+     
+    <p>
+      Please check the URL and Try Again
+    </p>
+     
+    <div>
+      <button
+        class="button inline-block"
+      >
+        Go Back
+      </button>
+       
+      <router-link-stub
+        class="button inline-block"
+        to="/"
+      >
+        Return Home
+      </router-link-stub>
+    </div>
+  </div>
 </div>
 `;

@@ -14,7 +14,12 @@
       </transition>
     </div>
     <cookie-dialog v-show="!$route.path.includes('embed')" />
-    <p v-if="$route.path.includes('embed')" class="credits">League Results by Munro</p>
+    <p
+      v-if="$route.path.includes('embed')"
+      class="font-heading text-center w-full text-main"
+    >
+      League Results by Munro
+    </p>
   </div>
 </template>
 
@@ -40,67 +45,12 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-@import './assets/styles/helpers.styl'
-
-html, body
-  box-sizing: border-box
-  margin: 0
-  padding: 0
-  font-weight: 300
-  font-family: default-font
-
-#router-view
-  padding: 1rem 15%
-
-  &.embed
-    padding: 1rem !important
-
-  @media (max-width: 1000px)
-    padding: 1rem 10%
-
-  @media (max-width: 700px)
-    padding: 1rem 5%
-
-h1, h2, h3, h4, h5, h6
-  margin: 0
-  color: main-color
-  font-weight: 400
-  font-family: heading-font
-
-p, img
-  margin: 0
-  font-weight: 300
-  font-family: default-font
-
-b
-  margin: 0
-  color: main-color
-  font-weight: 400
-  font-family: default-font
-
-::selection
-  background: purple-100
-
-::-moz-selection
-  background: purple-100
-
-.fade-enter-active, .fade-leave-active
-  transition: 0.3s
-
-.fade-enter, .fade-leave-to
-  opacity: 0
-
-.credits
-  padding: 0.5rem 0 1rem
-  color: main-color
-  text-align: center
-
-  a
-    padding: 0 0.4rem
-    color: main-color
-
-    &:after
-      color: main-color
+<style>
+::selection {
+  background: #f3e5f5;
+}
+::-moz-selection {
+  background: #f3e5f5;
+}
 </style>
 

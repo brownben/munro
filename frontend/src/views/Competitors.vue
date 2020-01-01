@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Competitors"
       description
@@ -13,21 +13,26 @@
         'meta': {name: 'robots', content:'noindex'},
       }"
     />
-    <h1>Competitors</h1>
-    <div class="actions">
-      <h2>Actions</h2>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">Competitors</h1>
+    <div class="card">
+      <h2 class="text-2xl font-heading">Actions</h2>
+
       <div>
         <router-link to="/create-competitor" class="button">Add Competitor</router-link>
         <router-link to="/competitors/merge" class="button">Merge Competitors</router-link>
         <router-link to="/results/transfer" class="button">Transfer Result</router-link>
-        <div id="filter">
-          <label>League:</label>
-          <dropdown-input v-model="league" :list="leagues.map(league => league.name)" />
-        </div>
+      </div>
+
+      <div class="text-left w-full">
+        <dropdown-input
+          v-model="league"
+          :list="leagues.map(league => league.name)"
+          label="League:"
+        />
       </div>
     </div>
 
-    <table v-if="filteredCompetitors.length > 0">
+    <table v-if="filteredCompetitors.length > 0" class="table my-4 table-fixed">
       <thead>
         <tr>
           <th @click="sortBy('name')">
@@ -141,75 +146,4 @@ export default {
   },
 }
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-@import '../assets/styles/table.styl'
 
-#router-view
-  padding: 1rem 10%
-
-  @media (max-width: 700px)
-    padding: 1rem 5%
-
-h1
-  margin-bottom: 0.5rem
-
-table tr th p
-  display: inline-flex
-  font-weight: 400
-
-th
-  position: relative
-
-  span
-    position: absolute
-    bottom: 80%
-    left: 50%
-    margin-left: -45px
-    padding: 0.25rem 0.5rem
-    width: 80px
-    background-color: white
-    color: purple-500
-    opacity: 0
-    transition: 0.3s
-    box-shadow(1)
-
-th:hover > span
-  opacity: 1
-
-.actions
-  box-sizing: border-box
-  margin-top: 1rem
-  margin-bottom: 1rem
-  padding: 0.75rem
-  box-shadow(1)
-
-  &:first-child
-    margin-top: 0.75rem
-
-  h2, p
-    padding: 0.2rem 0
-
-  div
-    margin: 0.25rem 0 0
-    font-size: 0
-
-    button, .button
-      margin-top: 0
-      margin-left: 0.4rem
-
-      @media (max-width: 700px)
-        box-sizing: border-box
-        margin: 0
-        margin-top: 0.5rem
-        width: 100%
-        text-align: center
-
-      &:first-child
-        margin-left: 0
-
-    a
-      text-decoration: none
-      font-size: 1rem
-</style>

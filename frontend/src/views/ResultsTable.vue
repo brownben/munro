@@ -8,7 +8,7 @@
 -->
 
 <template>
-  <div>
+  <div class="w-full pt-2 px-4 md:px-8 lg:px-16 xl:px-20">
     <vue-headful
       :title="'Munro - ' + $route.params.name + ' - ' + $route.params.course + ' Results'"
       :description="'Results from the ' + $route.params.course + ' course of the ' + $route.params.name + ' league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'"
@@ -17,14 +17,19 @@
         'meta': {name: 'robots', content:'all'},
       }"
     />
-    <h1 id="league-title">
-      <router-link :to="'/leagues/'+$route.params.name">{{ $route.params.name }}</router-link>
+    <h1 class="text-3xl font-normal font-heading">
+      <router-link
+        class="link text-main"
+        :to="'/leagues/'+$route.params.name"
+      >
+        {{ $route.params.name }}
+      </router-link>
       - {{ $route.params.course }}
     </h1>
     <filter-menu @changed="filterChanged" />
     <transition name="shrink">
-      <div v-show="filteredResults && filteredResults.length > 0">
-        <table>
+      <div v-show="filteredResults && filteredResults.length > 0" class="table-container">
+        <table class="table">
           <thead>
             <tr>
               <th @click="sortBy('position')">
@@ -45,17 +50,21 @@
               </th>
               <th @click="sortBy('totalPoints')">
                 <p>Points</p>
+
                 <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'totalPoints'" />
               </th>
+
               <template v-if="!smallWindow">
                 <th
                   v-for="event of eventsWithResults"
                   :key="eventsWithResults.indexOf(event)"
+                  class="points relative"
                   @click="sortBy('points-' + eventsWithResults.indexOf(event))"
                 >
                   <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
                   <span>{{ event.name }}</span>
                   <up-down-arrow
+                    class="points-arrow"
                     :ascending="ascendingSort"
                     :active="sortedBy === ('points-' + eventsWithResults.indexOf(event))"
                   />
@@ -73,15 +82,18 @@
                 @click="toggleRow(filteredResults.indexOf(result))"
               >
                 <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
+
                 <td>{{ result.position }}</td>
                 <td>{{ result.name }}</td>
                 <td>{{ result.ageClass }}</td>
                 <td class="club">{{ result.club }}</td>
                 <td>{{ result.totalPoints }}</td>
+
                 <template v-if="!smallWindow">
                   <td
                     v-for="event of eventsWithResults"
                     :key="eventsWithResults.indexOf(event)"
+                    class="points"
                     :class="{ strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event)) }"
                   >
                     {{ result.points[eventsWithResults.indexOf(event)] }}
@@ -122,23 +134,24 @@
             </template>
           </tbody>
         </table>
-        <div v-if="otherCourses.length > 0" class="card">
-          <h2>Results for Other Courses</h2>
-          <div>
-            <router-link
-              v-for="course in otherCourses"
-              :key="course"
-              :to="'/leagues/'+$route.params.name+'/results/'+course"
-              class="button"
-            >
-              {{ course }}
-            </router-link>
-          </div>
-        </div>
       </div>
     </transition>
+
+    <div v-if="otherCourses.length > 0" class="card my-6 mx-1">
+      <h2 class="text-2xl font-heading">Results for Other Courses</h2>
+      <div>
+        <router-link
+          v-for="course in otherCourses"
+          :key="course"
+          :to="'/leagues/'+$route.params.name+'/results/'+course"
+          class="button"
+        >
+          {{ course }}
+        </router-link>
+      </div>
+    </div>
     <!-- If no results show, message -->
-    <h2 v-if="!found">Sorry, No Results Could Be Found</h2>
+    <h2 v-if="!found" class="text-3xl font-heading">Sorry, No Results Could Be Found</h2>
   </div>
 </template>
 
@@ -333,73 +346,74 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-@import '../assets/styles/table.styl'
+<style  scoped>
+.strikethrough {
+  text-decoration: line-through;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 
-#router-view
-  padding: 1rem 7.5%
+.mobile-table-expansion td {
+  @apply text-right;
+}
+.mobile-table-expansion td p {
+  @apply mr-3;
+}
+.mobile-table-expansion td span {
+  @apply pl-2 pr-4 w-4 inline-block;
+}
 
-  @media (max-width: 900px)
-    padding: 1rem 5%
+td.points {
+  @apply px-0 pl-0 pr-0;
+}
 
-#league-title
-  padding: 0 0 0.75rem
+th span {
+  margin-left: -110%;
+  opacity: 0;
+  transition: 0.3s;
+  @apply absolute shadow font-heading bg-white z-40 py-1 px-2 mt-6 text-center;
+}
 
-  a
-    color: main-color
-    text-decoration: underline
+th:hover > span {
+  opacity: 1;
+}
 
-table tr th p
-  display: inline-flex
-  font-weight: 400
+@media (max-width: 640px) {
+  .club {
+    @apply hidden;
+  }
+}
 
-h1
-  a
-    text-decoration: none
+@media (min-width: 640px) {
+  .club {
+    @apply block;
+  }
+}
 
-th
-  position: relative
+@media (min-width: 1200px) {
+  .points-arrow {
+    @apply inline-block;
+  }
+}
+@media (max-width: 1200px) {
+  .points-arrow {
+    @apply hidden;
+  }
+  td.points {
+    @apply px-1;
+  }
+}
 
-  span
-    position: absolute
-    bottom: 80%
-    left: 50%
-    margin-left: -45px
-    padding: 0.25rem 0.5rem
-    width: 80px
-    background-color: white
-    color: purple-500
-    opacity: 0
-    transition: 0.3s
-    box-shadow(1)
-
-th:hover > span
-  opacity: 1
-
-@media (max-width: 500px)
-  .club
-    display: none
-
-.card
-  box-shadow(1)
-  margin-top: 1.5rem
-  padding: 1rem
-
-  a
-    margin-top: 0.5rem
-    margin-left: 0.4rem
-
-    &:first-child
-      margin-left: 0
-
-.strikethrough
-  text-decoration: line-through
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity 0.5s
-
-.fade-enter, .fade-leave-to
-  opacity: 0
+@media (max-width: 1000px) {
+  td.points {
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+  }
+}
 </style>

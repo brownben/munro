@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description="League Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
@@ -9,12 +11,14 @@ exports[`Renders Correctly 1`] = `
     url="https://munro-leagues.herokuapp.com/leagues"
   />
    
-  <h1>
+  <h1
+    class="text-main text-3xl font-normal font-heading"
+  >
     Leagues
   </h1>
    
   <div
-    id="leagues"
+    class="flex flex-wrap flex-row"
   />
 </div>
 `;

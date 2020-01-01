@@ -14,7 +14,9 @@ import App from './App'
 import router from './router'
 import auth from './authentication'
 import messageStore from './messageStore'
+
 import './registerServiceWorker'
+import './assets/styles/tailwind.css'
 
 Vue.config.productionTip = false
 

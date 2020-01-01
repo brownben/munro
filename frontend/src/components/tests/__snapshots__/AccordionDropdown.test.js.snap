@@ -2,17 +2,19 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  id="accordion"
+  class="rounded-tl-lg rounded-br-lg shadow-md mt-3 mb-6 accordion bg-white"
 >
   <div
     class="accordion-head"
   >
-    <h2>
+    <h2
+      class="font-heading text-main text-2xl p-2 px-3 inline-block"
+    >
       
     </h2>
      
     <svg
-      class=""
+      class="fill-current text-main h-12 float-right p-2"
       viewBox="0 0 24 24"
     >
       <path

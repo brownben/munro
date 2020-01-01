@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Upload Results"
       description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
@@ -14,49 +14,57 @@
         'meta': {name: 'robots', content:'all'},
       }"
     />
-    <h1>Upload Results</h1>
-    <p>
-      For instructions to upload results go to
-      <router-link to="/upload-instructions">/upload-instructions</router-link>
-    </p>
-    <label>Event ID:</label>
-    <input v-model.trim.lazy="eventId" type="text" @change="findEvent" />
-    <p v-show="event.name" id="eventName">
-      <b>Event Name:</b>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">Upload Results</h1>
+    <div class="card-color mt-2 mb-4">
+      <p>
+        For instructions on how to upload results please visit
+        <router-link
+          to="/upload-instructions"
+          class="link inline text-white ml-1"
+        >
+          /upload-instructions
+        </router-link>
+      </p>
+    </div>
+    <text-input v-model.trim.lazy="eventId" label="Event ID:" @input="findEvent" />
+
+    <p v-show="event.name" class="mb-3">
+      <b class="text-normal font-heading">Event Name:</b>
       {{ event.name }}
     </p>
-    <label>Upload Key:</label>
-    <input v-model.trim="uploadKey" type="text" />
-    <label>Results File:</label>
-    <div class="file-input">
-      <label for="file" class="button">Browse for File</label>
-      <input id="file" type="file" accept=".csv" @change="fileChange" />
-      <p>{{ fileName }}</p>
-    </div>
+
+    <text-input v-model.trim="uploadKey" label="Upload Key:" />
+
     <!-- If Event already have results, confirm they want to overwrite -->
     <checkbox-input
       v-if="event.resultUploaded"
       v-model="overwrite"
       label="Overwrite Existing Results:"
+      class="text-left mb-5"
     />
+
+    <file-input label="Results File:" @file="fileRead" />
+
+    <text-input v-model.trim="event.results" label="Results (URL):" type="url" />
+    <text-input v-model.trim="event.routegadget" label="Routegadget (URL):" type="url" />
+    <text-input v-model.trim="event.winsplits" label="Winsplits: (URL):" type="url" />
+
     <!-- Only show upload once all fields have been filled -->
-    <label>Results (URL):</label>
-    <input v-model.trim="event.results" type="text" />
-    <label>Routegadget (URL):</label>
-    <input v-model.trim="event.routegadget" type="text" />
-    <label>Winsplits (URL):</label>
-    <input v-model.trim="event.winsplits" type="text" />
-    <button v-if="eventId && uploadKey && file" id="uploadButton" @click="uploadFile">Upload File</button>
+    <button v-if="eventId && uploadKey && file" class="button-lg" @click="uploadFile">Upload File</button>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import CheckboxInput from '@/components/CheckboxInput'
+import TextInput from '@/components/TextInput'
+import FileInput from '@/components/FileInput'
 
 export default {
   components: {
-    'checkbox-input': CheckboxInput,
+    'CheckboxInput': CheckboxInput,
+    'TextInput': TextInput,
+    'FileInput': FileInput,
   },
 
   data: function () {
@@ -64,7 +72,6 @@ export default {
       eventId: '',
       uploadKey: '',
       event: {},
-      fileName: 'Select a File',
       file: '',
       overwrite: false,
       results: '',
@@ -96,24 +103,8 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
     },
 
-    fileChange: function (event) {
-      // When the file selected has been changed
-      const storage = event.target || event.dataTransfer
-      const files = storage.files
-      if (!files || !files.length) return false
-      this.fileName = files[0].name
-      this.readFile(files[0])
-    },
-
-    readFile: function (file) {
-      // read file using FileReader and save in data
-      const reader = new FileReader()
-      reader.onload = this.readFileResult
-      reader.readAsText(file)
-    },
-
-    readFileResult: function (result) {
-      this.file = result.target.result
+    fileRead: function (file) {
+      this.file = file
     },
 
     uploadFile: function () {
@@ -137,37 +128,3 @@ export default {
   },
 }
 </script>
-
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-h1
-  margin-bottom: 0.5rem
-
-#eventName
-  margin: 0.5rem 0
-
-input[type='file']
-  display: none
-
-.checkbox-input
-  margin: 0.5rem 0
-  margin-bottom: 2rem !important
-
-.file-input
-  p, label
-    display: inline-block
-    margin-top: 0
-    margin-right: 0.5rem
-    font-size: 1rem
-
-input, select
-  width: 100% !important
-
-#uploadButton
-  margin-top: 1.5rem
-
-a
-  color: main-color
-</style>

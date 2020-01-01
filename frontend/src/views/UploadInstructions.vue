@@ -2,7 +2,7 @@
   Instructions for Uploading results
 -->
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Upload Instructions"
       description="Instrcutions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
@@ -11,19 +11,19 @@
         'meta': {name: 'robots', content:'all'},
       }"
     />
-    <h1>Upload Instructions</h1>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">Upload Instructions</h1>
     <ol>
       <li>
         Go to
         <router-link to="/upload">https://munro-leagues.herokuapp.com/upload</router-link>
-        <img src="@/assets/images/UploadInstructions-EmptyForm.png" alt="Empty Upload Form">
+        <img src="@/assets/images/UploadInstructions-EmptyFormNew.png" alt="Empty Upload Form" />
       </li>
       <li>
         Enter the Event ID and the 20 digit Upload Key Provided. The event name should now be displayed. You can get the Event ID and Upload Key from your league coordinator or by emailing munro.leagues@gmail.com The Event ID will be the the form LeagueNameEventNameYYYY-MM-DD with all spaces removed
         <img
-          src="@/assets/images/UploadInstructions-KeysEntered.png"
+          src="@/assets/images/UploadInstructions-KeysEnteredNew.png"
           alt="Upload Form with Keys Entered"
-        >
+        />
       </li>
       <li>
         Select your results file. This file can be an OE CSV File or SITiming Processable CSV file with semi-colon or comma delimiter. Or another semicolon/ comma delimited CSV file with the following headings, these headings can be in any order:
@@ -32,9 +32,9 @@
       <li>
         The upload button should now appear. If you are reuploading results tick the 'Overwrite Existing Results' checkbox
         <img
-          src="@/assets/images/UploadInstructions-ButtonShowing.png"
+          src="@/assets/images/UploadInstructions-ButtonShowingNew.png"
           alt="Upload Form with Upload Button Visible"
-        >
+        />
       </li>
       <li>Enter the URLs of the results uploaded on other websites eg. HTML Results/ Routegadget/ Winsplits. If you forget, need to change these URLs please contact your league admin or munro.leagues@gmail.com who can update them</li>
       <li>Click Upload - A message should appear saying that the data has been sent. Then a message saying that the results upload is successful should appear and you will be redirected to the league page</li>
@@ -42,18 +42,16 @@
     <p>If you need any help or wish to upload results in a different format please contact: munro.leagues@gmail.com</p>
   </div>
 </template>
-<style lang="stylus" scoped>
-a
-  color: main-color
-
-code
-  display: block
-  margin: 0.5rem 0
-  padding: 0.5rem
-  background: #eee
-
-img
-  display: block
-  margin: 1rem 5%
-  max-width: 90%
+<style  scoped>
+code {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #eee;
+}
+img {
+  display: block;
+  margin: 1rem 5%;
+  max-width: 90%;
+}
 </style>

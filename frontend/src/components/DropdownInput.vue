@@ -6,18 +6,33 @@
 -->
 
 <template>
-  <div class="dropdown-input">
-    <div class="visible" @click="toggle">
-      <label>{{ label }}</label>
-      <p>{{ currentValue }}</p>
-      <svg :class="{ active: open }" fill="#9E9E9E" height="24" viewBox="0 0 24 24" width="24">
+  <div class="dropdown-input relative top--4">
+    <label
+      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+    >{{ label }}</label>
+    <div
+      class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      @click="toggle"
+    >
+      <p class="leading-normal h-6 truncate">{{ currentValue }}</p>
+      <svg class="h-8 text-main float-right fill-current mr--3 mt--68/10" viewBox="0 0 24 24">
         <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
         <path d="M0-.75h24v24H0z" fill="none" />
       </svg>
     </div>
     <transition name="open">
-      <div v-show="open" class="dropdown">
-        <p v-for="item in list" :key="item" @click="changeSelection(item)">{{ item }}</p>
+      <div
+        v-show="open"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
+      >
+        <p
+          v-for="item in list"
+          :key="item"
+          class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+          @click="changeSelection(item)"
+        >
+          {{ item }}
+        </p>
       </div>
     </transition>
   </div>
@@ -70,72 +85,35 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import '../assets/styles/helpers'
+<style scoped >
+.open-enter-active,
+.open-leave-active {
+  transition: 0.3s transform;
+  transform: scaleY(1);
+  transform-origin: top;
+}
+.open-enter,
+.open-leave-to {
+  transform: scaleY(0);
+  transform-origin: top;
+}
 
-.dropdown-input
-  display: block
-  box-sizing: border-box
-  padding: 0.2rem 0
-  width: 100%
-  height: 1.84rem
-  outline: 0
-  border: main-color solid 1px
-  background-color: white
-  font-weight: 300
-  font-size: 1rem
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif
-  user-select: none
+.mt--34\/10 {
+  margin-top: -0.85rem;
+}
+.mt--68\/10 {
+  margin-top: -1.7rem;
+}
 
-.visible
-  position: relative
-  height: 100%
+.mt--5 {
+  margin-top: -1.25rem;
+}
 
-  p
-    display: inline-block
-    padding-left: 0.25rem
-    color: black
-    font-size: 1rem
+.mr--3 {
+  margin-right: -0.75rem;
+}
 
-  label
-    display: inline-block
-    width: auto
-    color: main-color
-    font-size: 1rem
-
-  svg
-    position: absolute
-    top: -0.1rem
-    right: 0
-
-    .active
-      fill: main-color
-
-.dropdown
-  position: relative
-  top: 0.2rem
-  left: -0.05rem
-  z-index: 2
-  box-sizing: border-box
-  width: calc(100% + 0.1rem)
-  border: 1px solid alpha(main-color, 0.4)
-  background-color: white
-  color: black
-  font-size: 1rem
-
-  p
-    display: block
-    padding: 0.25rem
-
-    &:hover
-      background-color: #E1BEE7
-
-.open-enter-active, .open-leave-active
-  transition: 0.3s transform
-  transform: scaleY(1)
-  transform-origin: top
-
-.open-enter, .open-leave-to
-  transform: scaleY(0)
-  transform-origin: top
+p {
+  transition: 0.3s;
+}
 </style>

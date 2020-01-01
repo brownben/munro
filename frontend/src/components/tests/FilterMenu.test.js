@@ -15,25 +15,7 @@ test('Renders Correctly', () => {
   expect(wrapper.element).toMatchSnapshot()
 })
 
-test('Change Function is Called When any Input Changes', () => {
-  const mockFunction = jest.fn()
-  const wrapper = mount(FilterMenu)
-  wrapper.setMethods({ onChange: mockFunction })
-
-  // Open the Body
-  wrapper.find('.accordion-head').trigger('click')
-
-  // Change all the Values
-  wrapper.findAll('input').at(0).setValue('Value')
-  wrapper.findAll('input').at(1).setValue('Another Value')
-  wrapper.findAll('input').at(2).setValue('3')
-  wrapper.findAll('input').at(3).setValue('4')
-  wrapper.findAll('input').at(4).setChecked(false)
-  wrapper.findAll('input').at(5).setChecked(false)
-  expect(mockFunction).toHaveBeenCalledTimes(6)
-})
-
-test('Emits Values on Changed', () => {
+test('Emits Correct Values', () => {
   const wrapper = mount(FilterMenu)
 
   // Open the Body
@@ -50,15 +32,14 @@ test('Emits Values on Changed', () => {
       female: true,
     },
   })
-  wrapper.findAll('input').at(0).setValue('Test Runner')
-  wrapper.findAll('input').at(4).setChecked(true)
-  expect(wrapper.emitted().changed.length).toBe(2)
-  expect(wrapper.emittedByOrder()[1].args[0]).toEqual({
-    name: 'Test Runner',
+  wrapper.vm.onChange()
+  expect(wrapper.emitted().changed.length).toBe(1)
+  expect(wrapper.emittedByOrder()[0].args[0]).toEqual({
+    name: 'Tester',
     club: 'IND',
     minAge: 15,
     maxAge: 50,
-    male: true,
+    male: false,
     female: true,
   })
 })

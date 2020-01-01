@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Latest Results"
       description="The latest results from events on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
@@ -14,9 +14,9 @@
         'meta': {name: 'robots', content:'all'},
       }"
     />
-    <h1>Latest Results</h1>
-    <div v-for="event of events" :key="event.name" class="event">
-      <h2>{{ event.league }} - {{ event.name }}</h2>
+    <h1 class="text-main text-3xl font-normal font-heading">Latest Results</h1>
+    <div v-for="event of events" :key="event.name" class="p-4 pb-1 card my-5">
+      <h2 class="text-2xl font-heading my-2">{{ event.league }} - {{ event.name }}</h2>
       <p v-if="event.date">
         On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }}
         <template
@@ -26,14 +26,14 @@
         </template>
       </p>
       <p v-if="event.website">
-        More Information can be found
+        More Information can be found on their
         <a
           :href="event.website"
           target="_blank"
           rel="noopener noreferrer"
-        >here</a>
+        >website</a>
       </p>
-      <div class="event-actions event-result-actions">
+      <span>
         <a
           v-if="event.results"
           :href="event.results"
@@ -55,7 +55,7 @@
           rel="noopener noreferrer"
           class="button"
         >Routegadget</a>
-      </div>
+      </span>
     </div>
   </div>
 </template>
@@ -98,69 +98,3 @@ export default {
   },
 }
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-#league-header
-  margin-bottom: 1rem
-
-button
-  margin: 0.25rem
-
-.event, .results
-  box-sizing: border-box
-  margin-top: 1rem
-  padding: 0.75rem
-  box-shadow(1)
-
-  &:first-child
-    margin-top: 0.75rem
-
-  h2, p
-    padding: 0.2rem 0
-
-  .event-actions, .results-actions
-    font-size: 0
-
-    button, .button
-      margin-left: 0.4rem
-
-      &:first-child
-        margin-left: 0
-
-    a
-      text-decoration: none
-      font-size: 1rem
-
-  .event-result-actions
-    margin: 0.5rem 0 0
-
-  .results-actions
-    a
-      margin-top: 0.4rem
-
-button, .button
-  @media (max-width: 700px)
-    display: inline-block
-    box-sizing: border-box
-    margin: 0
-    margin-top: 0.5rem
-    width: 100%
-    text-align: center
-
-.event .event-actions
-  @media (max-width: 700px)
-    margin: 0
-
-.event-actions.event-result-actions .button
-  margin-top: 0
-  margin-left: 0.4rem
-
-  &:first-child
-    margin-left: 0
-
-  @media (max-width: 700px)
-    margin-top: 0.5rem
-    margin-left: 0
-</style>

@@ -1,43 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Transfer Results"
   />
    
-  <h1>
+  <h1
+    class="text-main text-3xl font-normal font-heading mb-2"
+  >
     Transfer Result
   </h1>
    
   <form>
-    <label>
-      League:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        League:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -51,37 +52,34 @@ exports[`Renders Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Event:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Event:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -95,37 +93,34 @@ exports[`Renders Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Course:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Course
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -139,37 +134,34 @@ exports[`Renders Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Results:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Result:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -183,37 +175,34 @@ exports[`Renders Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Competitor:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Competitor:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -227,13 +216,15 @@ exports[`Renders Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <button>
+    <button
+      class="button-lg"
+    >
       Transfer Result
     </button>
   </form>
@@ -241,43 +232,44 @@ exports[`Renders Correctly 1`] = `
 `;
 
 exports[`Results Sorted Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Transfer Results"
   />
    
-  <h1>
+  <h1
+    class="text-main text-3xl font-normal font-heading mb-2"
+  >
     Transfer Result
   </h1>
    
   <form>
-    <label>
-      League:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        League:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -291,37 +283,34 @@ exports[`Results Sorted Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Event:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Event:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -335,37 +324,34 @@ exports[`Results Sorted Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Course:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Course
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -379,37 +365,34 @@ exports[`Results Sorted Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Results:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Result:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -423,37 +406,34 @@ exports[`Results Sorted Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <label>
-      Competitor:
-    </label>
-     
     <div
-      class="dropdown-input"
+      class="dropdown-input relative top--4"
       include-blank="true"
     >
-      <div
-        class="visible"
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >
-        <label>
-          
-        </label>
-         
-        <p>
+        Competitor:
+      </label>
+       
+      <div
+        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      >
+        <p
+          class="leading-normal h-6 truncate"
+        >
           
         </p>
          
         <svg
-          class=""
-          fill="#9E9E9E"
-          height="24"
+          class="h-8 text-main float-right fill-current mr--3 mt--68/10"
           viewBox="0 0 24 24"
-          width="24"
         >
           <path
             d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -467,13 +447,15 @@ exports[`Results Sorted Correctly 1`] = `
       </div>
        
       <div
-        class="dropdown"
+        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
         name="open"
         style="display: none;"
       />
     </div>
      
-    <button>
+    <button
+      class="button-lg"
+    >
       Transfer Result
     </button>
   </form>

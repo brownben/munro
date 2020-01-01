@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Mobile Results Dropdown Works 1`] = `
-<div>
+<div
+  class="w-full pt-2 px-4 md:px-8 lg:px-16 xl:px-20"
+>
   <vue-headful-stub
     description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
@@ -10,12 +12,15 @@ exports[`Mobile Results Dropdown Works 1`] = `
   />
    
   <h1
-    id="league-title"
+    class="text-3xl font-normal font-heading"
   >
     <router-link-stub
+      class="link text-main"
       to="/leagues/"
     >
       
+      
+    
     </router-link-stub>
     
     - 
@@ -25,10 +30,13 @@ exports[`Mobile Results Dropdown Works 1`] = `
   <filter-menu-stub />
    
   <div
+    class="table-container"
     name="shrink"
     style=""
   >
-    <table>
+    <table
+      class="table"
+    >
       <thead>
         <tr>
           <th>
@@ -216,16 +224,18 @@ exports[`Mobile Results Dropdown Works 1`] = `
         <!---->
       </tbody>
     </table>
-     
-    <!---->
   </div>
+   
+  <!---->
    
   <!---->
 </div>
 `;
 
 exports[`Mobile Results Dropdown Works 2`] = `
-<div>
+<div
+  class="w-full pt-2 px-4 md:px-8 lg:px-16 xl:px-20"
+>
   <vue-headful-stub
     description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
@@ -234,12 +244,15 @@ exports[`Mobile Results Dropdown Works 2`] = `
   />
    
   <h1
-    id="league-title"
+    class="text-3xl font-normal font-heading"
   >
     <router-link-stub
+      class="link text-main"
       to="/leagues/"
     >
       
+      
+    
     </router-link-stub>
     
     - 
@@ -249,10 +262,13 @@ exports[`Mobile Results Dropdown Works 2`] = `
   <filter-menu-stub />
    
   <div
+    class="table-container"
     name="shrink"
     style=""
   >
-    <table>
+    <table
+      class="table"
+    >
       <thead>
         <tr>
           <th>
@@ -477,16 +493,18 @@ exports[`Mobile Results Dropdown Works 2`] = `
         <!---->
       </tbody>
     </table>
-     
-    <!---->
   </div>
+   
+  <!---->
    
   <!---->
 </div>
 `;
 
 exports[`Renders Correctly + Fetches Data 1`] = `
-<div>
+<div
+  class="w-full pt-2 px-4 md:px-8 lg:px-16 xl:px-20"
+>
   <vue-headful-stub
     description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
@@ -495,12 +513,15 @@ exports[`Renders Correctly + Fetches Data 1`] = `
   />
    
   <h1
-    id="league-title"
+    class="text-3xl font-normal font-heading"
   >
     <router-link-stub
+      class="link text-main"
       to="/leagues/"
     >
       
+      
+    
     </router-link-stub>
     
     - 
@@ -510,10 +531,13 @@ exports[`Renders Correctly + Fetches Data 1`] = `
   <filter-menu-stub />
    
   <div
+    class="table-container"
     name="shrink"
     style=""
   >
-    <table>
+    <table
+      class="table"
+    >
       <thead>
         <tr>
           <th>
@@ -560,7 +584,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             <up-down-arrow-stub />
           </th>
            
-          <th>
+          <th
+            class="points relative"
+          >
             <p>
               1
             </p>
@@ -569,9 +595,13 @@ exports[`Renders Correctly + Fetches Data 1`] = `
               200m
             </span>
              
-            <up-down-arrow-stub />
+            <up-down-arrow-stub
+              class="points-arrow"
+            />
           </th>
-          <th>
+          <th
+            class="points relative"
+          >
             <p>
               2
             </p>
@@ -580,9 +610,13 @@ exports[`Renders Correctly + Fetches Data 1`] = `
               Longniddry
             </span>
              
-            <up-down-arrow-stub />
+            <up-down-arrow-stub
+              class="points-arrow"
+            />
           </th>
-          <th>
+          <th
+            class="points relative"
+          >
             <p>
               3
             </p>
@@ -591,7 +625,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
               South Edinburgh
             </span>
              
-            <up-down-arrow-stub />
+            <up-down-arrow-stub
+              class="points-arrow"
+            />
           </th>
         </tr>
       </thead>
@@ -625,21 +661,21 @@ exports[`Renders Correctly + Fetches Data 1`] = `
           </td>
            
           <td
-            class=""
+            class="points"
           >
             
                   100
                 
           </td>
           <td
-            class="strikethrough"
+            class="points strikethrough"
           >
             
                   95
                 
           </td>
           <td
-            class="strikethrough"
+            class="points strikethrough"
           >
             
                   10
@@ -674,21 +710,21 @@ exports[`Renders Correctly + Fetches Data 1`] = `
           </td>
            
           <td
-            class="strikethrough"
+            class="points strikethrough"
           >
             
                   
                 
           </td>
           <td
-            class=""
+            class="points"
           >
             
                   100
                 
           </td>
           <td
-            class="strikethrough"
+            class="points strikethrough"
           >
             
                   5
@@ -723,21 +759,21 @@ exports[`Renders Correctly + Fetches Data 1`] = `
           </td>
            
           <td
-            class="strikethrough"
+            class="points strikethrough"
           >
             
                   0
                 
           </td>
           <td
-            class=""
+            class="points"
           >
             
                   100
                 
           </td>
           <td
-            class="strikethrough"
+            class="points strikethrough"
           >
             
                   98
@@ -748,32 +784,34 @@ exports[`Renders Correctly + Fetches Data 1`] = `
         <!---->
       </tbody>
     </table>
-     
-    <div
-      class="card"
+  </div>
+   
+  <div
+    class="card my-6 mx-1"
+  >
+    <h2
+      class="text-2xl font-heading"
     >
-      <h2>
-        Results for Other Courses
-      </h2>
-       
-      <div>
-        <router-link-stub
-          class="button"
-          to="/leagues//results/Long"
-        >
-          
-            Long
-          
-        </router-link-stub>
-        <router-link-stub
-          class="button"
-          to="/leagues//results/Short"
-        >
-          
-            Short
-          
-        </router-link-stub>
-      </div>
+      Results for Other Courses
+    </h2>
+     
+    <div>
+      <router-link-stub
+        class="button"
+        to="/leagues//results/Long"
+      >
+        
+        Long
+      
+      </router-link-stub>
+      <router-link-stub
+        class="button"
+        to="/leagues//results/Short"
+      >
+        
+        Short
+      
+      </router-link-stub>
     </div>
   </div>
    

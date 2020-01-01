@@ -45,8 +45,8 @@ test('Shows Correct Message', () => {
 
 test('Closes When Clicked', () => {
   const wrapper = mount(CookieDialog)
-  expect(wrapper.findAll('p').length).not.toBe(0)
-  wrapper.find('div').trigger('click')
-  expect(wrapper.findAll('p').length).toBe(0)
+  expect(wrapper.findAll('.card-color').length).not.toBe(0)
+  wrapper.find('.card-color').trigger('click')
+  expect(wrapper.findAll('.card-color').length).toBe(0)
 })
 

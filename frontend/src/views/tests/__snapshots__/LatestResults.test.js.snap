@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description="The latest results from events on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
@@ -9,14 +11,18 @@ exports[`Renders Correctly 1`] = `
     url="https://munro-leagues.herokuapp.com/latest-results"
   />
    
-  <h1>
+  <h1
+    class="text-main text-3xl font-normal font-heading"
+  >
     Latest Results
   </h1>
    
   <div
-    class="event"
+    class="p-4 pb-1 card my-5"
   >
-    <h2>
+    <h2
+      class="text-2xl font-heading my-2"
+    >
       Justice - 200m
     </h2>
      
@@ -24,20 +30,18 @@ exports[`Renders Correctly 1`] = `
      
     <p>
       
-      More Information can be found
+      More Information can be found on their
       
       <a
         href="wwwwwww"
         rel="noopener noreferrer"
         target="_blank"
       >
-        here
+        website
       </a>
     </p>
      
-    <div
-      class="event-actions event-result-actions"
-    >
+    <span>
       <a
         class="button"
         href="w"
@@ -64,12 +68,14 @@ exports[`Renders Correctly 1`] = `
       >
         Routegadget
       </a>
-    </div>
+    </span>
   </div>
   <div
-    class="event"
+    class="p-4 pb-1 card my-5"
   >
-    <h2>
+    <h2
+      class="text-2xl font-heading my-2"
+    >
       Sprintelope - Longniddry
     </h2>
      
@@ -83,20 +89,20 @@ exports[`Renders Correctly 1`] = `
      
     <!---->
      
-    <div
-      class="event-actions event-result-actions"
-    >
+    <span>
       <!---->
        
       <!---->
        
       <!---->
-    </div>
+    </span>
   </div>
   <div
-    class="event"
+    class="p-4 pb-1 card my-5"
   >
-    <h2>
+    <h2
+      class="text-2xl font-heading my-2"
+    >
       Sprintelope - South Edinburgh
     </h2>
      
@@ -110,15 +116,13 @@ exports[`Renders Correctly 1`] = `
      
     <!---->
      
-    <div
-      class="event-actions event-result-actions"
-    >
+    <span>
       <!---->
        
       <!---->
        
       <!---->
-    </div>
+    </span>
   </div>
 </div>
 `;

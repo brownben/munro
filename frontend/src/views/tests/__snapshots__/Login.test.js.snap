@@ -1,54 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Login"
   />
    
-  <h1>
+  <h1
+    class="text-main text-2xl font-heading my-2"
+  >
     Admin Login
   </h1>
    
   <form>
-    <label>
-      Email Address:
-    </label>
+    <div
+      class="text-input top--4 relative"
+    >
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      >
+        Email Address:
+      </label>
+       
+      <input
+        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+        type="email"
+      />
+    </div>
      
-    <input
-      type="email"
-    />
+    <div
+      class="text-input top--4 relative"
+    >
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      >
+        Password:
+      </label>
+       
+      <input
+        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+        type="password"
+      />
+    </div>
      
-    <label>
-      Password:
-    </label>
-     
-    <input
-      type="password"
-    />
-     
-    <button>
+    <button
+      class="button-lg"
+    >
       Login
     </button>
   </form>
    
   <div
-    id="link-to-upload"
+    class="mt-4 card-color"
   >
-    <b>
-      Looking for Results Upload?
-    </b>
-     
     <p>
+      <b
+        class="font-heading p-2 text-lg"
+      >
+        Looking for Results Upload?
+      </b>
       
-      Results are uploaded
+      You don't have to login, just visit the
       
       <router-link-stub
+        class="link"
         to="/upload"
       >
-        here
+        upload page
       </router-link-stub>
     </p>
   </div>

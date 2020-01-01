@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Not Found"
       description
@@ -13,21 +13,14 @@
         'meta': {name: 'robots', content:'noindex'},
       }"
     />
-    <h1>Sorry We Can't Find What You Are Looking For</h1>
-    <p>Please check the URL and Try Again</p>
-    <button @click="$router.go(-1)">Go Back</button>
-    <router-link to="/" class="button">Return Home</router-link>
+    <div class="card mt-5">
+      <h1 class="text-main text-3xl font-heading my-2">Sorry We Can't Find What You Are Looking For</h1>
+      <p>Please check the URL and Try Again</p>
+      <div>
+        <button class="button inline-block" @click="$router.go(-1)">Go Back</button>
+        <router-link to="/" class="button inline-block">Return Home</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-p
-  padding: 0.5rem 0
-
-button
-  margin-top: 0.25rem
-  margin-right: 1rem
-</style>

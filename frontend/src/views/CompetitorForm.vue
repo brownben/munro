@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       v-if="create"
       title="Munro - Create Competitor"
@@ -23,22 +23,21 @@
       }"
     />
     <div v-if="!notFound">
-      <h1 v-if="create">Create Competitor</h1>
-      <h1 v-if="!create">Edit Competitor</h1>
+      <h1 v-if="create" class="text-main text-3xl font-normal font-heading mb-2">Create Competitor</h1>
+      <h1 v-if="!create" class="text-main text-3xl font-normal font-heading mb-2">Edit Competitor</h1>
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
       <form @submit.prevent="submit">
-        <label>Name:</label>
-        <input v-model.trim="name" type="text">
-        <label>Club:</label>
-        <input v-model.trim="club" type="text">
-        <label>Age Class:</label>
-        <input v-model.trim="ageClass" type="text">
-        <label>League:</label>
-        <dropdown-input v-model="league" :list="leagues.map(league => league.name)" />
-        <label>Course:</label>
-        <dropdown-input v-model="course" :list="coursesInLeague" />
-        <button v-if="create">Create Competitor</button>
-        <button v-if="!create">Update Competitor</button>
+        <text-input v-model.trim="name" label="Name:" />
+        <text-input v-model.trim="club" label="Club:" />
+        <text-input v-model.trim="ageClass" label="Age Class:" />
+        <dropdown-input
+          v-model="league"
+          :list="leagues.map(league => league.name)"
+          label="League:"
+        />
+        <dropdown-input v-model="course" :list="coursesInLeague" label="Course:" />
+        <button v-if="create" class="button-lg">Create Competitor</button>
+        <button v-if="!create" class="button-lg">Update Competitor</button>
       </form>
     </div>
     <not-found v-if="notFound" />
@@ -48,12 +47,14 @@
 <script>
 import axios from 'axios'
 import DropdownInput from '@/components/DropdownInput'
+import TextInput from '@/components/TextInput'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
     'NotFound': NotFound,
     'DropdownInput': DropdownInput,
+    'TextInput': TextInput,
   },
 
   data: function () {
@@ -159,16 +160,3 @@ export default {
 }
 
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-h1
-  margin-bottom: 0.5rem
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity 0.5s
-
-.fade-enter, .fade-leave-to
-  opacity: 0
-</style>

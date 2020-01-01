@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  class="text-input top--4 relative appearance-none"
+>
+  <label
+    class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+  >
+    Test
+  </label>
+   
+  <input
+    class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+    max="5"
+    min="10"
+    type="number"
+  />
+</div>
+`;

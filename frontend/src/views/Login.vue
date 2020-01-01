@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Login"
       description
@@ -13,19 +13,17 @@
         'meta': {name: 'robots', content:'noindex'},
       }"
     />
-    <h1>Admin Login</h1>
+    <h1 class="text-main text-2xl font-heading my-2">Admin Login</h1>
     <form @submit.prevent="sendLoginRequest">
-      <label>Email Address:</label>
-      <input v-model="username" type="email">
-      <label>Password:</label>
-      <input v-model="password" type="password">
-      <button>Login</button>
+      <text-input v-model="username" label="Email Address:" type="email" />
+      <text-input v-model="password" label="Password:" type="password" />
+      <button class="button-lg">Login</button>
     </form>
-    <div id="link-to-upload">
-      <b>Looking for Results Upload?</b>
+    <div class="mt-4 card-color">
       <p>
-        Results are uploaded
-        <router-link to="/upload">here</router-link>
+        <b class="font-heading p-2 text-lg">Looking for Results Upload?</b>
+        You don't have to login, just visit the
+        <router-link to="/upload" class="link">upload page</router-link>
       </p>
     </div>
   </div>
@@ -33,8 +31,13 @@
 
 <script>
 import auth from '@/authentication'
+import TextInput from '@/components/TextInput'
 
 export default {
+  components: {
+    TextInput,
+  },
+
   data () {
     return {
       username: '',
@@ -77,28 +80,3 @@ export default {
 }
 
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-h1
-  margin-bottom: 0.5rem
-
-#link-to-upload
-  margin: 0
-  padding: 1rem 0
-  width: 100%
-
-  p, b
-    display: inline-block
-    padding: 0.25rem
-
-a
-  color: main-color
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity 0.5s
-
-.fade-enter, .fade-leave-to
-  opacity: 0
-</style>

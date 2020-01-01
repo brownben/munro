@@ -2,26 +2,27 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="dropdown-input"
+  class="dropdown-input relative top--4"
   includeblank="true"
 >
-  <div
-    class="visible"
+  <label
+    class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
   >
-    <label>
-      
-    </label>
-     
-    <p>
+    
+  </label>
+   
+  <div
+    class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+  >
+    <p
+      class="leading-normal h-6 truncate"
+    >
       
     </p>
      
     <svg
-      class=""
-      fill="#9E9E9E"
-      height="24"
+      class="h-8 text-main float-right fill-current mr--3 mt--68/10"
       viewBox="0 0 24 24"
-      width="24"
     >
       <path
         d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
@@ -35,18 +36,30 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="dropdown"
+    class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
     name="open"
     style="display: none;"
   >
-    <p>
-      Item 1
+    <p
+      class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+    >
+      
+        Item 1
+      
     </p>
-    <p>
-      Item 2
+    <p
+      class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+    >
+      
+        Item 2
+      
     </p>
-    <p>
-      Item 3
+    <p
+      class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+    >
+      
+        Item 3
+      
     </p>
   </div>
 </div>

@@ -1,0 +1,140 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.button {
+  transition:0.3s;
+  @apply text-main font-heading border border-main rounded-tl-lg rounded-br-lg mt-3 mb-2 py-1 px-3 mx-2 text-base inline-block leading-normal select-none outline-none appearance-none;
+}
+
+.button-m-0{
+  @apply button m-0
+}
+
+.button-lg{
+  @apply button mt-1 py-1 px-4 mx-0;
+}
+
+.button:hover, .button-lg:hover{
+  @apply text-white bg-main;
+}
+
+.card{
+  @apply p-4 pb-1 text-center shadow-lg rounded-tl-lg rounded-br-lg bg-white flex flex-col justify-center items-center
+}
+
+.card-color{
+  @apply card bg-main text-white pb-4 shadow-md
+}
+
+.card-text{
+  @apply card pb-3
+}
+
+.view{
+  @apply w-full pt-2 px-8 pb-2;
+}
+
+@media (min-width: 640px) {
+  .view{
+    @apply px-16
+  }
+}
+
+@media (min-width: 1024px) {
+  .view{
+    @apply px-32
+  }
+}
+
+@media (min-width: 1280px) {
+  .view{
+    @apply px-40
+  }
+}
+
+a {
+  transition:0.3s;
+}
+
+.top--12{
+  top:-3rem;
+}
+.top--4{
+  top:-1rem;
+}
+
+.h-80{
+  height:18rem;
+}
+.mt--2{
+  margin-top:-0.5rem;
+}
+
+.bottom--3{
+  bottom:-0.75rem;
+}
+
+.h-screen--12{
+  height:calc(100vh - 3rem);
+}
+
+a.link{
+  text-decoration:underline;
+}
+
+.py-3\/2{
+  padding-top:0.325rem;
+  padding-bottom:0.325rem;
+}
+
+.py-3\/2{
+  padding-top:0.325rem;
+  padding-bottom:0.325rem;
+}
+
+.mb--4{
+  margin-bottom:-1rem;
+}
+
+
+.table {
+  @apply w-full;
+}
+
+.table tr {
+  transition: 0.3s;
+  @apply bg-white;
+}
+
+.table tr:hover:not(.mobile-table-expansion) {
+  @apply bg-main-light
+}
+
+.table tr.striped{
+  @apply bg-main-veryLight
+}
+
+thead tr{
+  @apply border-b border-main-light
+}
+
+.table td {
+  @apply text-center py-2 px-1 font-body
+}
+
+.table th {
+  white-space: nowrap;
+  @apply font-heading select-none text-center font-normal py-2
+}
+
+.table th p {
+  @apply inline-block
+}
+.table th div {
+  @apply inline-block ml-1;
+}
+
+

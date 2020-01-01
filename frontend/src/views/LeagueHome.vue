@@ -7,7 +7,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       :title="'Munro - '+$route.params.name"
       :description="'Event Information and Results for the '+ $route.params.name + ' league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'"
@@ -16,39 +16,42 @@
         'meta': {name: 'robots', content:'all'},
       }"
     />
-    <div v-if="league && league.name">
-      <h1>{{ league.name }}</h1>
-      <p v-if="league.description">{{ league.description }}</p>
-      <p
-        v-if="league.courses"
-      >
-        There are normally {{ league.courses.length }} courses - {{ league.courses.join(', ') }}
-      </p>
-      <p v-if="league.coordinator">{{ league.coordinator }} coordinates the league.</p>
-      <p>
-        <span
-          v-if="league.scoringMethod"
-        >The scoring for the league is calculated using a {{ scoringMethodShorthandToFull(league.scoringMethod) }}</span>
-        &nbsp;
-        <span
-          v-if="league.numberOfCountingEvents && league.numberOfEvents"
-        >With your best {{ league.numberOfCountingEvents }} events from all {{ league.numberOfEvents }} events counting.</span>
-      </p>
-      <p v-if="league.website">
-        More information can be found at
-        <a
-          :href="league.website"
-          target="_blank"
-          rel="noopener noreferrer"
-        >{{ league.website }}</a>
-      </p>
 
-      <div v-if="auth.user" class="results">
-        <h2>Admin Actions</h2>
-        <div class="results-actions">
+    <template v-if="league && league.name">
+      <div class="card-text mb-4 mt-2 w-full mx-0">
+        <h1 class="text-main text-3xl font-normal font-heading">{{ league.name }}</h1>
+        <p v-if="league.description">{{ league.description }}</p>
+        <p
+          v-if="league.courses"
+        >
+          There are normally {{ league.courses.length }} courses - {{ league.courses.join(', ') }}
+        </p>
+        <p v-if="league.coordinator">{{ league.coordinator }} coordinates the league.</p>
+        <p>
+          <span
+            v-if="league.scoringMethod"
+          >The scoring for the league is calculated using a {{ scoringMethodShorthandToFull(league.scoringMethod) }}</span>
+          &nbsp;
+          <span
+            v-if="league.numberOfCountingEvents && league.numberOfEvents"
+          >With your best {{ league.numberOfCountingEvents }} events from all {{ league.numberOfEvents }} events counting.</span>
+        </p>
+        <p v-if="league.website">
+          More information can be found at
+          <a
+            :href="league.website"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link"
+          >{{ league.website }}</a>
+        </p>
+      </div>
+      <div v-if="auth.user" class="card my-4">
+        <h2 class="text-2xl font-heading">Admin Actions</h2>
+        <div>
           <router-link :to="$route.path+'/create-event'" class="button">Add Event</router-link>
           <router-link :to="$route.path+'/edit'" class="button">Edit League</router-link>
-          <button @click="deleteLeague">Delete League</button>
+          <button class="button" @click="deleteLeague">Delete League</button>
           <router-link
             :to="'/competitors/'+this.$route.params.name"
             class="button"
@@ -57,26 +60,29 @@
           </router-link>
         </div>
       </div>
-      <div v-if="events" class="results">
-        <h2>League Results</h2>
-        <div class="results-actions">
-          <router-link
-            v-for="course of league.courses"
-            :key="course"
-            :to="$route.path + '/results/' + course"
-            class="button"
-          >
-            {{ course }}
-          </router-link>
-        </div>
+    </template>
+
+    <div v-if="events.length > 0" class="card my-4">
+      <h2 class="text-2xl font-heading">League Results</h2>
+      <div>
+        <router-link
+          v-for="course of league.courses"
+          :key="course"
+          :to="$route.path + '/results/' + course"
+          class="button"
+        >
+          {{ course }}
+        </router-link>
       </div>
-      <div v-for="event of events" :key="event.name" class="event">
-        <h2>{{ event.name }}</h2>
-        <div v-if="auth.user" class="event-actions">
-          <router-link :to="'/events/'+event.id+'/edit'" class="button">Edit Event</router-link>
-          <router-link :to="'/upload/'+event.id" class="button">Upload Results</router-link>
-          <button @click="deleteEvent(event)">Delete Event</button>
-        </div>
+    </div>
+    <div v-for="event of events" :key="event.name" class="card my-4">
+      <h2 class="font-heading text-xl my-1" :class="{'text-2xl': auth.user}">{{ event.name }}</h2>
+      <div v-if="auth.user" class="event-actions">
+        <router-link :to="'/events/'+event.id+'/edit'" class="button">Edit Event</router-link>
+        <router-link :to="'/upload/'+event.id" class="button">Upload Results</router-link>
+        <button class="button" @click="deleteEvent(event)">Delete Event</button>
+      </div>
+      <div class="my-1">
         <p v-if="auth.user">
           <b>Event ID:</b>
           {{ event.id }}
@@ -85,46 +91,47 @@
           <b>Event Upload Key:</b>
           {{ event.uploadKey }}
         </p>
-        <p v-if="event.date">
-          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }}
-          <template
-            v-if="event.organiser"
-          >
-            organised by {{ event.organiser }}
-          </template>
-        </p>
-        <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
-        <p v-if="event.website">
-          More Information can be found
-          <a
-            :href="event.website"
-            target="_blank"
-            rel="noopener noreferrer"
-          >here</a>
-        </p>
-        <div v-if="event.resultUploaded" class="event-actions event-result-actions">
-          <a
-            v-if="event.results"
-            :href="event.results"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-          >Results</a>
-          <a
-            v-if="event.winsplits"
-            :href="event.winsplits"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-          >WinSplits</a>
-          <a
-            v-if="event.routegadget"
-            :href="event.routegadget"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-          >Routegadget</a>
-        </div>
+      </div>
+      <p v-if="event.date">
+        On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }}
+        <template
+          v-if="event.organiser"
+        >
+          organised by {{ event.organiser }}
+        </template>
+      </p>
+      <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
+      <p v-if="event.website">
+        More Information can be found on their
+        <a
+          :href="event.website"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link"
+        >website</a>
+      </p>
+      <div v-if="event.resultUploaded" class="event-actions event-result-actions">
+        <a
+          v-if="event.results"
+          :href="event.results"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button"
+        >Results</a>
+        <a
+          v-if="event.winsplits"
+          :href="event.winsplits"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button"
+        >WinSplits</a>
+        <a
+          v-if="event.routegadget"
+          :href="event.routegadget"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="button"
+        >Routegadget</a>
       </div>
     </div>
     <not-found v-if="!league" />
@@ -215,69 +222,8 @@ export default {
   },
 }
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-#league-header
-  margin-bottom: 1rem
-
-button
-  margin: 0.25rem
-
-.event, .results
-  box-sizing: border-box
-  margin-top: 1rem
-  padding: 0.75rem
-  box-shadow(1)
-
-  &:first-child
-    margin-top: 0.75rem
-
-  h2, p
-    padding: 0.2rem 0
-
-  .event-actions, .results-actions
-    font-size: 0
-
-    button, .button
-      margin-left: 0.4rem
-
-      &:first-child
-        margin-left: 0
-
-    a
-      text-decoration: none
-      font-size: 1rem
-
-  .event-result-actions
-    margin: 0.5rem 0 0
-
-  .results-actions
-    a
-      margin-top: 0.4rem
-
-button, .button
-  @media (max-width: 700px)
-    display: inline-block
-    box-sizing: border-box
-    margin: 0
-    margin-top: 0.5rem
-    width: 100%
-    text-align: center
-
-.event .event-actions
-  @media (max-width: 700px)
-    margin: 0
-
-.event-actions.event-result-actions .button
-  margin-top: 0
-  margin-left: 0.4rem
-
-  &:first-child
-    margin-left: 0
-
-  @media (max-width: 700px)
-    margin-top: 0.5rem
-    margin-left: 0
+<style  scoped>
+b {
+  @apply font-heading font-normal;
+}
 </style>

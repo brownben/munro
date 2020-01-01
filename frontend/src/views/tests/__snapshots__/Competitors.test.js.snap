@@ -1,21 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Competitors"
   />
    
-  <h1>
+  <h1
+    class="text-main text-3xl font-normal font-heading mb-2"
+  >
     Competitors
   </h1>
    
   <div
-    class="actions"
+    class="card"
   >
-    <h2>
+    <h2
+      class="text-2xl font-heading"
+    >
       Actions
     </h2>
      
@@ -40,20 +46,16 @@ exports[`Renders Correctly 1`] = `
       >
         Transfer Result
       </router-link-stub>
-       
-      <div
-        id="filter"
-      >
-        <label>
-          League:
-        </label>
-         
-        <dropdown-input-stub
-          label=""
-          list=""
-          value=""
-        />
-      </div>
+    </div>
+     
+    <div
+      class="text-left w-full"
+    >
+      <dropdown-input-stub
+        label="League:"
+        list=""
+        value=""
+      />
     </div>
   </div>
    

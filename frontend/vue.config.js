@@ -19,6 +19,16 @@ module.exports = {
       'scope': '/',
       'icons': [
         {
+          'src': '/static/MunroLogo-16.png',
+          'sizes': '16x16',
+          'type': 'image/png',
+        },
+        {
+          'src': '/static/MunroLogo-32.png',
+          'sizes': '32x32',
+          'type': 'image/png',
+        },
+        {
           'src': '/static/MunroLogo-48.png',
           'sizes': '48x48',
           'type': 'image/png',
@@ -69,14 +79,6 @@ module.exports = {
           'type': 'image/png',
         },
       ],
-    },
-
-    iconPaths: {
-      favicon32: 'MunroLogo-32.png',
-      favicon16: 'MunroLogo-16.png',
-      appleTouchIcon: 'MunroLogo-152.png',
-      maskIcon: 'MunroLogo.svg',
-      msTileImage: 'MunroLogo-144.png',
     },
 
     workboxOptions: {

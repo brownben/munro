@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       title="Munro - Transfer Results"
       description
@@ -13,35 +13,39 @@
         'meta': {name: 'robots', content:'noindex'},
       }"
     />
-    <h1>Transfer Result</h1>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">Transfer Result</h1>
     <form @submit.prevent="transfer">
-      <label>League:</label>
       <dropdown-input
         v-model="league"
         :list="leagues.map(league => league.name)"
         :include-blank="true"
+        label="League:"
       />
-      <label>Event:</label>
       <dropdown-input
         v-model="event"
         :list="eventsInLeague.map(event => event.name + ' - ' + event.date)"
         :include-blank="true"
+        label="Event:"
       />
-      <label>Course:</label>
-      <dropdown-input v-model="course" :list="coursesInLeague" :include-blank="true" />
-      <label>Results:</label>
+      <dropdown-input
+        v-model="course"
+        :list="coursesInLeague"
+        :include-blank="true"
+        label="Course"
+      />
       <dropdown-input
         v-model="result"
         :list="resultsForEvent.map(result => result.position + ' - ' + elapsedTime(result.time) + ' (' + result.name + ')')"
         :include-blank="true"
+        label="Result:"
       />
-      <label>Competitor:</label>
       <dropdown-input
         v-model="competitor"
         :list="competitorsForLeague.map(competitorTransformForSelect)"
         :include-blank="true"
+        label="Competitor:"
       />
-      <button>Transfer Result</button>
+      <button class="button-lg">Transfer Result</button>
     </form>
   </div>
 </template>
@@ -186,10 +190,3 @@ export default {
   },
 }
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-h1
-  margin-bottom: 0.5rem
-</style>

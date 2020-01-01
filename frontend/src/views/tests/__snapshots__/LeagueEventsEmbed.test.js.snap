@@ -10,9 +10,11 @@ exports[`Renders Correctly 1`] = `
     />
      
     <div
-      class="event"
+      class="card my-4"
     >
-      <h2>
+      <h2
+        class="font-heading text-xl my-1"
+      >
         200m
       </h2>
        
@@ -22,30 +24,35 @@ exports[`Renders Correctly 1`] = `
        
       <p>
         
-        More Information can be found at
+        More Information can be found on their
         
         <a
+          class="link"
           href="wwwwwww"
           rel="noopener noreferrer"
           target="_blank"
         >
-          wwwwwww
+          website
         </a>
       </p>
        
       <!---->
     </div>
     <div
-      class="event"
+      class="card my-4"
     >
-      <h2>
+      <h2
+        class="font-heading text-xl my-1"
+      >
         Longniddry
       </h2>
        
       <p>
         
-        On 18/04/2018 organised by ELO
-      
+        On 18/04/2018
+        
+          organised by ELO
+        
       </p>
        
       <!---->
@@ -55,16 +62,20 @@ exports[`Renders Correctly 1`] = `
       <!---->
     </div>
     <div
-      class="event"
+      class="card my-4"
     >
-      <h2>
+      <h2
+        class="font-heading text-xl my-1"
+      >
         South Edinburgh
       </h2>
        
       <p>
         
-        On 25/04/2018 organised by INT
-      
+        On 25/04/2018
+        
+          organised by INT
+        
       </p>
        
       <!---->

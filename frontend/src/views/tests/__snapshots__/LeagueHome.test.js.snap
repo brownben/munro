@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description="Event Information and Results for the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
@@ -10,6 +12,124 @@ exports[`Renders Correctly 1`] = `
   />
    
   <!---->
+   
+  <div
+    class="card my-4"
+  >
+    <h2
+      class="text-2xl font-heading"
+    >
+      League Results
+    </h2>
+     
+    <div />
+  </div>
+   
+  <div
+    class="card my-4"
+  >
+    <h2
+      class="font-heading text-xl my-1"
+    >
+      200m
+    </h2>
+     
+    <!---->
+     
+    <div
+      class="my-1"
+    >
+      <!---->
+       
+      <!---->
+    </div>
+     
+    <!---->
+     
+    <!---->
+     
+    <p>
+      
+      More Information can be found on their
+      
+      <a
+        class="link"
+        href="wwwwwww"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        website
+      </a>
+    </p>
+     
+    <!---->
+  </div>
+  <div
+    class="card my-4"
+  >
+    <h2
+      class="font-heading text-xl my-1"
+    >
+      Longniddry
+    </h2>
+     
+    <!---->
+     
+    <div
+      class="my-1"
+    >
+      <!---->
+       
+      <!---->
+    </div>
+     
+    <p>
+      
+      On 18/04/2018
+      
+        organised by ELO
+      
+    </p>
+     
+    <!---->
+     
+    <!---->
+     
+    <!---->
+  </div>
+  <div
+    class="card my-4"
+  >
+    <h2
+      class="font-heading text-xl my-1"
+    >
+      South Edinburgh
+    </h2>
+     
+    <!---->
+     
+    <div
+      class="my-1"
+    >
+      <!---->
+       
+      <!---->
+    </div>
+     
+    <p>
+      
+      On 25/04/2018
+      
+        organised by INT
+      
+    </p>
+     
+    <!---->
+     
+    <!---->
+     
+    <!---->
+  </div>
    
   <!---->
 </div>

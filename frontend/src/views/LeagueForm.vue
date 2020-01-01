@@ -12,7 +12,7 @@
 -->
 
 <template>
-  <div>
+  <div class="view">
     <vue-headful
       v-if="create"
       title="Munro - Create League"
@@ -30,22 +30,15 @@
       }"
     />
     <div v-if="!notFound">
-      <h1 v-if="create">Create League</h1>
-      <h1 v-if="!create">Edit League</h1>
+      <h1 v-if="create" class="text-main text-3xl font-normal font-heading mb-2">Create League</h1>
+      <h1 v-if="!create" class="text-main text-3xl font-normal font-heading mb-2">Edit League</h1>
       <form @submit.prevent="submit">
-        <label>Name:</label>
-        <input v-model.trim="name" type="text">
-        <label>Year:</label>
-        <input v-model.trim="year" type="text" pattern="[0-9]{1,4}">
-        <label>Description:</label>
-        <input v-model.trim="info" type="text">
-        <label>Website:</label>
-        <input v-model.trim="website" type="text">
-        <label>Logo (URL):</label>
-        <input v-model.trim="logo" type="text">
-        <label>Coordinator:</label>
-        <input v-model.trim="coordinator" type="text">
-        <label>Scoring Method:</label>
+        <text-input v-model.trim="name" label="Name:" />
+        <text-input v-model.trim="year" label="Year:" />
+        <text-input v-model.trim="info" label="Description:" />
+        <text-input v-model.trim="website" label="Website: (URL)" type="url" />
+        <text-input v-model.trim="logo" label="Logo: (URL)" type="url" />
+        <text-input v-model.trim="coordinator" label="Coordinator:" />
         <dropdown-input
           v-model="scoringMethod"
           :list="[
@@ -53,19 +46,16 @@
             'Position Based (50 Max)',
             'Position Based (99 Max)',
           ]"
+          label="Scoring Method:"
         />
-        <label>Number of Events to Count:</label>
-        <input
+        <number-input
           v-model.number="numberOfCountingEvents"
-          type="text"
-          inputmode="numeric"
-          pattern="[0-9]*"
-          min="1"
-        >
-        <label>Courses: (Comma Separated)</label>
-        <input v-model.trim="courses" type="text">
-        <button v-if="create">Create League</button>
-        <button v-if="!create">Update League</button>
+          :min="1"
+          label="Number of Events to Count:"
+        />
+        <text-input v-model.trim="courses" label="Courses: (Comma Separated)" />
+        <button v-if="create" class="button-lg">Create League</button>
+        <button v-if="!create" class="button-lg">Update League</button>
       </form>
     </div>
     <not-found v-if="notFound" />
@@ -75,12 +65,16 @@
 <script>
 import axios from 'axios'
 import DropdownInput from '@/components/DropdownInput'
+import TextInput from '@/components/TextInput'
+import NumberInput from '@/components/NumberInput'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
     'NotFound': NotFound,
     'DropdownInput': DropdownInput,
+    'TextInput': TextInput,
+    'NumberInput': NumberInput,
   },
 
   data: function () {
@@ -209,23 +203,14 @@ export default {
 }
 
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
+<style  scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
 
-h1
-  margin-bottom: 0.5rem
-
-#error
-  margin: 0.5rem 0
-  padding: 0.2rem 0
-  border: 1px solid purple-400
-  color: purple-400
-  text-align: center
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity 0.5s
-
-.fade-enter, .fade-leave-to
-  opacity: 0
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

@@ -8,14 +8,14 @@
 -->
 
 <template>
-  <div class="checkbox-input">
-    <label>
+  <div class="checkbox-input mt-3">
+    <label class="text-md select-none font-heading text-main">
       {{ label }}
       <input
         :checked="value"
         type="checkbox"
         @change="$emit('input', $event.target.checked)"
-      >
+      />
       <span />
     </label>
   </div>
@@ -38,49 +38,40 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import '../assets/styles/helpers.styl'
+<style scoped>
+input {
+  @apply hidden;
+}
 
-.checkbox-input
-  margin-bottom: 20px
-  padding: 0
-  padding-top: 2px
-  height: 0
+label {
+  @apply relative m-0;
+  top: -1rem;
+  margin-bottom: -2rem;
+  transition: 0.45s ease-out;
+}
 
-  input
-    display: none
+.checkbox-input {
+  @apply p-0 h-0;
+  padding-top: 2px;
+}
 
-  label
-    position: relative
-    margin: 0
-    color: black
-    font-weight: 300
-    font-size: 16px
-    font-family: default-font
-    transition: 0.45s ease-out
-    no-user-select()
+span {
+  @apply relative inline-block;
+  margin-left: 10px;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid #b80bda7f;
+  transition: 0.3s ease-out;
+}
 
-    &:not(:first-child)
-      margin-left: 20px
-
-  span
-    position: relative
-    display: inline-block
-    margin-left: 10px
-    width: 10px
-    height: 10px
-    border: 1px solid alpha(main-color, 0.5)
-    transition: 0.3s ease-out
-
-  [type='checkbox']:checked+span
-    position: relative
-    display: inline-block
-    margin-left: 13px
-    width: 6px
-    height: 12px
-    border: 1.5px solid main-color
-    border-top: 0
-    border-left: 0
-    transition: 0.3s ease-in-out
-    transform: rotate(405deg)
+[type="checkbox"]:checked + span {
+  @apply relative inline-block w-2 h-4;
+  position: relative;
+  margin-left: 13px;
+  border: 1.5px solid #b80bda;
+  border-top: 0;
+  border-left: 0;
+  transition: 0.3s ease-in-out;
+  transform: rotate(405deg);
+}
 </style>

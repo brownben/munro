@@ -12,21 +12,25 @@
           'meta': {name: 'robots', content:'noindex'},
         }"
       />
-      <div v-for="event of events" :key="event.name" class="event">
-        <h2>{{ event.name }}</h2>
-        <p
-          v-if="event.date"
-        >
-          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }} organised by {{ event.organiser }}
+      <div v-for="event of events" :key="event.name" class="card my-4">
+        <h2 class="font-heading text-xl my-1">{{ event.name }}</h2>
+        <p v-if="event.date">
+          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{ event.date.split('-')[0] }}
+          <template
+            v-if="event.organiser"
+          >
+            organised by {{ event.organiser }}
+          </template>
         </p>
         <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
         <p v-if="event.website">
-          More Information can be found at
+          More Information can be found on their
           <a
             :href="event.website"
             target="_blank"
             rel="noopener noreferrer"
-          >{{ event.website }}</a>
+            class="link"
+          >website</a>
         </p>
         <div v-if="event.resultUploaded" class="event-actions event-result-actions">
           <a
@@ -112,65 +116,3 @@ export default {
   },
 }
 </script>
-<style lang="stylus" scoped>
-@import '../assets/styles/helpers.styl'
-@import '../assets/styles/inputs.styl'
-
-#league-header
-  margin-bottom: 1rem
-
-button
-  margin: 0.25rem
-
-.event, .results
-  box-sizing: border-box
-  margin-top: 1rem
-  padding: 0.75rem
-  box-shadow(1)
-
-  &:first-child
-    margin-top: 0.75rem
-
-  h2, p
-    padding: 0.2rem 0
-
-  .event-actions, .results-actions
-    margin: 0.4rem 0 0
-    font-size: 0
-
-    button
-      &:first-child
-        margin-left: 0
-
-    a
-      text-decoration: none
-      font-size: 1rem
-
-  .event-result-actions
-    margin: 0.5rem 0 0
-
-button, .button
-  @media (max-width: 700px)
-    display: inline-block
-    box-sizing: border-box
-    margin: 0
-    margin-top: 0.5rem
-    width: 100%
-    text-align: center
-
-.event .event-actions
-  @media (max-width: 700px)
-    margin: 0
-
-.event-actions.event-result-actions .button
-  margin-top: 0
-  margin-left: 0.4rem
-
-  &:first-child
-    margin-left: 0
-
-  @media (max-width: 700px)
-    margin-top: 0.5rem
-    margin-left: 0
-</style>
-

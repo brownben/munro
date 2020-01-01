@@ -1,63 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<div
+  class="view"
+>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Merge Competitors"
   />
    
-  <h1>
+  <h1
+    class="text-main text-3xl font-normal font-heading mb-2"
+  >
     Merge Competitors
   </h1>
    
   <form>
-    <label>
-      League:
-    </label>
-     
     <dropdown-input-stub
       include-blank="true"
-      label=""
+      label="League:"
       list=""
       value=""
     />
      
-    <label>
-      Course:
-    </label>
-     
     <dropdown-input-stub
       include-blank="true"
-      label=""
+      label="Course:"
       list=""
       value=""
     />
      
-    <label>
-      Competitor to Keep:
-    </label>
-     
     <dropdown-input-stub
       include-blank="true"
-      label=""
+      label="Competitor to Keep:"
       list=""
       value=""
     />
      
-    <label>
-      Competitor to be Merged:
-    </label>
-     
     <dropdown-input-stub
       include-blank="true"
-      label=""
+      label="Competitor to be Merged:"
       list=""
       value=""
     />
      
-    <button>
+    <button
+      class="button-lg"
+    >
       Merge Competitors
     </button>
   </form>

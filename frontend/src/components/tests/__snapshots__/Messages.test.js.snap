@@ -2,18 +2,31 @@
 
 exports[`Renders Correctly 1`] = `
 <div
+  class="absolute bottom-0 right-0"
   id="messages"
   mode="out-in"
   name="fade"
 >
-  <p>
-    Message 0
+  <p
+    class="card-color m-3 font-heading"
+  >
+    
+      Message 0
+    
   </p>
-  <p>
-    Message 1
+  <p
+    class="card-color m-3 font-heading"
+  >
+    
+      Message 1
+    
   </p>
-  <p>
-    Message 2
+  <p
+    class="card-color m-3 font-heading"
+  >
+    
+      Message 2
+    
   </p>
 </div>
 `;

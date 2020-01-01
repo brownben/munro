@@ -7,8 +7,22 @@
 
 <template>
   <transition name="fade">
-    <div is="transition-group" v-show="messages.length > 0" id="messages" name="list" mode="out-in">
-      <p v-for="message of messages" :key="message.id" @click="clear(message.id)">{{ message.text }}</p>
+    <div
+      is="transition-group"
+      v-show="messages.length > 0"
+      id="messages"
+      name="list"
+      mode="out-in"
+      class="absolute bottom-0 right-0"
+    >
+      <p
+        v-for="message of messages"
+        :key="message.id"
+        class="card-color m-3 font-heading"
+        @click="clear(message.id)"
+      >
+        {{ message.text }}
+      </p>
     </div>
   </transition>
 </template>
@@ -31,37 +45,23 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
-@import '../assets/styles/helpers.styl'
+<style scoped >
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease-out;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
 
-#messages
-  position: fixed
-  right: 0.75rem
-  bottom: 0.75rem
-  no-user-select()
-
-  @media (max-width: 700px)
-    width: calc(100% - 1.5rem)
-
-p
-  margin: 0
-  margin-top: 0.4rem
-  padding: 0.5rem 1.5rem
-  background-color: main-color
-  color: white
-  text-align: center
-  default-font()
-
-.list-enter-active, .list-leave-active
-  transition: all 0.5s ease-out
-
-.list-enter, .list-leave-to
-  opacity: 0
-  transform: translateX(10px)
-
-.fade-enter-active, .fade-leave-active
-  transition: opacity 0.5s
-
-.fade-enter, .fade-leave-to
-  opacity: 0
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>
