@@ -10,13 +10,12 @@ def leagueToJSON(league):
         return {
             'name': league[0],
             'website': league[1],
-            'logo': league[2],
-            'coordinator': league[3],
-            'scoringMethod': league[4],
-            'numberOfCountingEvents': league[5],
-            'courses': league[6].split(','),
-            'description': league[7],
-            'year': league[8],
+            'coordinator': league[2],
+            'scoringMethod': league[3],
+            'numberOfCountingEvents': league[4],
+            'courses': league[5].split(','),
+            'description': league[6],
+            'year': league[7],
         }
     else:
         return False
@@ -29,7 +28,6 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS leagues (
         name TEXT NOT NULL PRIMARY KEY,
         website TEXT,
-        logo TEXT,
         coordinator TEXT,
         scoringMethod TEXT NOT NULL,
         numberOfCountingEvents INT,
@@ -84,7 +82,7 @@ connection.close()
 # League Database Functions
 
 
-def createLeague(name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year):
+def createLeague(name, website, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year):
     try:
         year = int(year)
     except:
@@ -92,13 +90,13 @@ def createLeague(name, website, logo, coordinator, scoringMethod, noOfEvents, co
     courses = courses.replace(' ', '')
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO leagues (name,website,logo,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',
-                   (name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year))
+    cursor.execute('INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',
+                   (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year))
     connection.commit()
     connection.close()
 
 
-def updateLeague(oldName, name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year):
+def updateLeague(oldName, name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year):
     try:
         year = int(year)
     except:
@@ -108,8 +106,8 @@ def updateLeague(oldName, name, website, logo, coordinator, scoringMethod, noOfE
     cursor = connection.cursor()
     cursor.execute('''
         UPDATE leagues
-        SET name=%s,website=%s,logo=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s, year=%s
-        WHERE name=%s''', (name, website, logo, coordinator, scoringMethod, noOfEvents, courses, moreInfo,year, oldName))
+        SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s, year=%s
+        WHERE name=%s''', (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo,year, oldName))
     connection.commit()
     connection.close()
 
@@ -126,7 +124,7 @@ def findLeague(name):
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
-        SELECT name,website,logo,coordinator,scoringMethod,numberOfCountingEvents,courses, moreInformation, year
+        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents,courses, moreInformation, year
         FROM leagues
         WHERE name=%s
         ORDER BY year DESC, name ASC''', (name,))
@@ -142,7 +140,7 @@ def getAllLeagues():
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
-        SELECT name,website,logo,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year
+        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year
         FROM leagues
         ORDER BY year DESC, name ASC''')
     result = cursor.fetchall()

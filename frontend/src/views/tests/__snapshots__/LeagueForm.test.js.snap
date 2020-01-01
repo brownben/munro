@@ -86,21 +86,6 @@ exports[`Creation Form - Renders Correctly 1`] = `
         <label
           class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
         >
-          Logo: (URL)
-        </label>
-         
-        <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
-          type="url"
-        />
-      </div>
-       
-      <div
-        class="text-input top--4 relative"
-      >
-        <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
-        >
           Coordinator:
         </label>
          
@@ -234,21 +219,6 @@ exports[`Update Form - Renders Correctly 1`] = `
           class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
         >
           Website: (URL)
-        </label>
-         
-        <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
-          type="url"
-        />
-      </div>
-       
-      <div
-        class="text-input top--4 relative"
-      >
-        <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
-        >
-          Logo: (URL)
         </label>
          
         <input

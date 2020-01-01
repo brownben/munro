@@ -10,7 +10,6 @@ leagueParser = reqparse.RequestParser()
 leagueParser.add_argument(
     'name', help='This field cannot be blank', required=True)
 leagueParser.add_argument('website')
-leagueParser.add_argument('logo')
 leagueParser.add_argument('coordinator')
 leagueParser.add_argument('numberOfCountingEvents')
 leagueParser.add_argument(
@@ -36,7 +35,7 @@ class Leagues(Resource):
             return {'message': 'League - {} already Exists'.format(name)}, 500
 
         try:
-            leagues.createLeague(data['name'], data['website'], data['logo'], data['coordinator'],
+            leagues.createLeague(data['name'], data['website'],  data['coordinator'],
                                  data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'])
             return {'message': 'League - {} was Created'.format(name)}
         except:
@@ -56,7 +55,7 @@ class League(Resource):
             return {'message': 'League with Name - {} already Exists'.format(name)}, 500
 
         try:
-            leagues.updateLeague(data['oldName'], data['name'], data['website'], data['logo'], data['coordinator'],
+            leagues.updateLeague(data['oldName'], data['name'], data['website'],  data['coordinator'],
                                     data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'])
             return {'message': 'League - {} was Updated'.format(name)}
         except:

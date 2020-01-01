@@ -367,7 +367,6 @@ test('Get League Details - Success', async () => {
   axios.get.mockResolvedValue({ data: { ...sampleSingleLeague[0], description: '' } })
   await wrapper.vm.getLeagueDetails()
   expect(wrapper.vm.notFound).toBeFalsy()
-  expect(wrapper.vm.logo).toBe(sampleSingleLeague[0].logo)
   expect(wrapper.vm.info).toBe(sampleSingleLeague[0].description)
   expect(wrapper.vm.website).toBe(sampleSingleLeague[0].website)
   expect(wrapper.vm.courses).toBe(sampleSingleLeague[0].courses.join(','))

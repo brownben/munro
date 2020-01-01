@@ -37,7 +37,6 @@
         <text-input v-model.trim="year" label="Year:" />
         <text-input v-model.trim="info" label="Description:" />
         <text-input v-model.trim="website" label="Website: (URL)" type="url" />
-        <text-input v-model.trim="logo" label="Logo: (URL)" type="url" />
         <text-input v-model.trim="coordinator" label="Coordinator:" />
         <dropdown-input
           v-model="scoringMethod"
@@ -85,7 +84,6 @@ export default {
       name: '',
       year: '',
       website: '',
-      logo: '',
       coordinator: '',
       scoringMethod: '',
       numberOfCountingEvents: 1,
@@ -150,7 +148,6 @@ export default {
             this.coordinator = response.data.coordinator
             this.scoringMethod = this.scoringMethodShorthandToFull(response.data.scoringMethod)
             this.numberOfCountingEvents = response.data.numberOfCountingEvents
-            this.logo = response.data.logo
             if (response.data.courses) this.courses = response.data.courses.join(',')
             this.info = response.data.description
           }
@@ -169,7 +166,6 @@ export default {
           name: this.name,
           year: this.year,
           website: this.website,
-          logo: this.logo,
           coordinator: this.coordinator,
           scoringMethod: this.scoringMethodFullToShorthand(this.scoringMethod),
           numberOfCountingEvents: this.numberOfCountingEvents,
@@ -188,7 +184,6 @@ export default {
           name: this.name,
           year: this.year,
           website: this.website,
-          logo: this.logo,
           coordinator: this.coordinator,
           scoringMethod: this.scoringMethodFullToShorthand(this.scoringMethod),
           numberOfCountingEvents: this.numberOfCountingEvents,

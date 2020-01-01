@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="absolute bottom-0 right-0"
+  class="fixed bottom-0 right-0"
   id="messages"
   mode="out-in"
   name="fade"
