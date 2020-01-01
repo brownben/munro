@@ -72,8 +72,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/SprintelopeLogo.png"
   },
   {
-    "revision": "08035f75185eb013415d",
-    "url": "/static/css/app.c1ac4eeb.css"
+    "revision": "12c065f683bac3deaab2",
+    "url": "/static/css/app.43865dd7.css"
   },
   {
     "revision": "ad73eba65f854630d07a",
@@ -148,12 +148,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/img/UploadInstructions-KeysEnteredNew.b719f871.png"
   },
   {
-    "revision": "0959b7309cbe17e5915c08ae37e291d2",
+    "revision": "956e1691ad87c4bc0de1ee33c7c5a052",
     "url": "/static/index.html"
   },
   {
-    "revision": "08035f75185eb013415d",
-    "url": "/static/js/app.5db0cd89.js"
+    "revision": "12c065f683bac3deaab2",
+    "url": "/static/js/app.286eb1ed.js"
   },
   {
     "revision": "ad73eba65f854630d07a",
