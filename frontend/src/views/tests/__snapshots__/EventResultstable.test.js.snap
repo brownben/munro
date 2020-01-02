@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly + Fetches Data 1`] = `
+<div
+  class="view"
+>
+  <!---->
+   
+  <not-found-stub />
+</div>
+`;

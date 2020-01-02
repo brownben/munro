@@ -133,6 +133,23 @@ exports[`Creation Form - Renders Correctly 1`] = `
         />
       </div>
        
+      <div
+        class="checkbox-input mt-3 text-left mb-5"
+      >
+        <label
+          class="text-md select-none font-heading text-main"
+        >
+          
+    Dynamic Event Results:
+    
+          <input
+            type="checkbox"
+          />
+           
+          <span />
+        </label>
+      </div>
+       
       <button
         class="button-lg"
       >
@@ -278,6 +295,23 @@ exports[`Update Form - Renders Correctly 1`] = `
           class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
           type="text"
         />
+      </div>
+       
+      <div
+        class="checkbox-input mt-3 text-left mb-5"
+      >
+        <label
+          class="text-md select-none font-heading text-main"
+        >
+          
+    Dynamic Event Results:
+    
+          <input
+            type="checkbox"
+          />
+           
+          <span />
+        </label>
       </div>
        
       <!---->

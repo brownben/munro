@@ -9,7 +9,7 @@
 <template>
   <div class="rounded-tl-lg rounded-br-lg shadow-md mt-3 mb-6 accordion bg-white">
     <div class="accordion-head" @click="accordionOpen = !accordionOpen">
-      <h2 class="font-heading text-main text-2xl p-2 px-3 inline-block">{{ title }}</h2>
+      <h2 class="font-heading text-main text-2xl p-2 px-3 inline-block select-none">{{ title }}</h2>
       <svg
         class="fill-current text-main h-12 float-right p-2"
         :class="{rotate:accordionOpen}"
@@ -20,7 +20,7 @@
       </svg>
     </div>
     <transition name="shrink">
-      <div v-if="accordionOpen" key="1" class="accordion-body p-3 pt-0 pb-1">
+      <div v-show="accordionOpen" key="1" class="accordion-body p-3 pt-0 pb-1">
         <slot />
       </div>
     </transition>

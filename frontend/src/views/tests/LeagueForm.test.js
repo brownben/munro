@@ -248,6 +248,7 @@ test('Create League - Calls Correct API Location', async () => {
   wrapper.setData(sampleInput)
   await wrapper.vm.createLeague()
   expect(axios.post).toHaveBeenCalledTimes(1)
+  sampleOutput.dynamicEventResults = true
   expect(axios.post).toHaveBeenLastCalledWith('/api/leagues', sampleOutput)
 })
 
@@ -276,7 +277,7 @@ test('Update League - Calls Correct API Location', async () => {
   wrapper.setData(sampleInput)
   await wrapper.vm.updateLeague()
   expect(axios.put).toHaveBeenCalledTimes(1)
-
+  sampleOutput.dynamicEventResults = true
   expect(axios.put).toHaveBeenLastCalledWith('/api/leagues/name', sampleOutput)
 })
 

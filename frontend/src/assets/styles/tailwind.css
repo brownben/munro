@@ -122,7 +122,7 @@ thead tr{
 }
 
 .table td {
-  @apply text-center py-2 px-1 font-body
+  @apply text-center py-2 px-1 font-body font-light
 }
 
 .table th {
@@ -136,5 +136,8 @@ thead tr{
 .table th div {
   @apply inline-block ml-1;
 }
+
+button:focus, a:focus { outline: none; }
+
 
 

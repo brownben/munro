@@ -20,7 +20,8 @@ const Leagues = () => import('@/views/Leagues')
 const LeagueEventsEmbed = () => import('@/views/LeagueEventsEmbed')
 const Login = () => import('@/views/Login')
 const NotFound = () => import('@/views/NotFound')
-const ResultsTable = () => import('@/views/ResultsTable')
+const LeagueResultsTable = () => import('@/views/LeagueResultsTable')
+const EventResultsTable = () => import('@/views/EventResultsTable')
 const ResultTransfer = () => import('@/views/ResultTransfer')
 const Upload = () => import('@/views/Upload')
 const UploadInstructions = () => import('@/views/UploadInstructions')
@@ -103,12 +104,12 @@ const router = new Router({
     {
       path: '/leagues/:name/results/:course',
       name: 'League Course Results',
-      component: ResultsTable,
+      component: LeagueResultsTable,
     },
     {
       path: '/embed/leagues/:name/results/:course',
       name: 'Embed League Course Results',
-      component: ResultsTable,
+      component: LeagueResultsTable,
     },
     {
       path: '/create-event',
@@ -121,6 +122,11 @@ const router = new Router({
       name: 'Edit Events',
       component: EventForm,
       beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/events/:event/results',
+      name: 'Event Results',
+      component: EventResultsTable,
     },
     {
       path: '/upload',

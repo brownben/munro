@@ -26,7 +26,7 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="card my-4"
+    class="card my-4 card-text"
   >
     <h2
       class="font-heading text-xl my-1"
@@ -65,7 +65,7 @@ exports[`Renders Correctly 1`] = `
     <!---->
   </div>
   <div
-    class="card my-4"
+    class="card my-4 card-text"
   >
     <h2
       class="font-heading text-xl my-1"
@@ -98,7 +98,7 @@ exports[`Renders Correctly 1`] = `
     <!---->
   </div>
   <div
-    class="card my-4"
+    class="card my-4 card-text"
   >
     <h2
       class="font-heading text-xl my-1"

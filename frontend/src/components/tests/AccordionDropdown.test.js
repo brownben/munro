@@ -21,12 +21,12 @@ test('Renders Correctly', () => {
 
 test('Open and Closes on Click', () => {
   const wrapper = mount(AccordionDropdown)
-  expect(wrapper.findAll('.accordion-body').length).toBe(0)
+  expect(wrapper.findAll('.accordion-body').isVisible()).toBeFalsy()
   expect(wrapper.find('svg').classes()).not.toContain('rotate')
   wrapper.find('.accordion-head').trigger('click')
-  expect(wrapper.findAll('.accordion-body').length).toBe(1)
+  expect(wrapper.findAll('.accordion-body').isVisible()).toBeTruthy()
   expect(wrapper.find('svg').classes()).toContain('rotate')
   wrapper.find('.accordion-head').trigger('click')
-  expect(wrapper.findAll('.accordion-body').length).toBe(0)
+  expect(wrapper.findAll('.accordion-body').isVisible()).toBeFalsy()
   expect(wrapper.find('svg').classes()).not.toContain('rotate')
 })

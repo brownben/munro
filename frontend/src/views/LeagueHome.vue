@@ -75,7 +75,12 @@
         </router-link>
       </div>
     </div>
-    <div v-for="event of events" :key="event.name" class="card my-4">
+    <div
+      v-for="event of events"
+      :key="event.name"
+      class="card my-4"
+      :class="{'card-text': !event.resultUploaded}"
+    >
       <h2 class="font-heading text-xl my-1" :class="{'text-2xl': auth.user}">{{ event.name }}</h2>
       <div v-if="auth.user" class="event-actions">
         <router-link :to="'/events/'+event.id+'/edit'" class="button">Edit Event</router-link>
@@ -111,13 +116,20 @@
         >website</a>
       </p>
       <div v-if="event.resultUploaded" class="event-actions event-result-actions">
+        <router-link
+          v-if="league.dynamicEventResults"
+          :to="`/events/${event.id}/results`"
+          class="button"
+        >
+          Results
+        </router-link>
         <a
           v-if="event.results"
           :href="event.results"
           target="_blank"
           rel="noopener noreferrer"
           class="button"
-        >Results</a>
+        >HTML Results</a>
         <a
           v-if="event.winsplits"
           :href="event.winsplits"

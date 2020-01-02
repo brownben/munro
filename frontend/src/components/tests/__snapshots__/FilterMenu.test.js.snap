@@ -8,7 +8,7 @@ exports[`Renders Correctly 1`] = `
     class="accordion-head"
   >
     <h2
-      class="font-heading text-main text-2xl p-2 px-3 inline-block"
+      class="font-heading text-main text-2xl p-2 px-3 inline-block select-none"
     >
       Filter
     </h2>
@@ -28,6 +28,108 @@ exports[`Renders Correctly 1`] = `
     </svg>
   </div>
    
-  <!---->
+  <div
+    class="accordion-body p-3 pt-0 pb-1"
+    name="shrink"
+    style="display: none;"
+  >
+    <div
+      class="text-input top--4 relative w-full md:w-1/2 inline-block md:pr-2"
+    >
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      >
+        Name:
+      </label>
+       
+      <input
+        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+        type="text"
+      />
+    </div>
+     
+    <div
+      class="text-input top--4 relative w-full md:w-1/2 inline-block md:pl-2"
+    >
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      >
+        Club:
+      </label>
+       
+      <input
+        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+        type="text"
+      />
+    </div>
+     
+    <div
+      class="text-input top--4 relative appearance-none w-1/2 md:w-1/4 inline-block pr-2 md:mb--4"
+    >
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      >
+        Min Age:
+      </label>
+       
+      <input
+        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+        max="120"
+        min="0"
+        type="number"
+      />
+    </div>
+     
+    <div
+      class="text-input top--4 relative appearance-none w-1/2 md:w-1/4 inline-block pl-2 md:mb--4"
+    >
+      <label
+        class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      >
+        Max Age:
+      </label>
+       
+      <input
+        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+        max="120"
+        min="0"
+        type="number"
+      />
+    </div>
+     
+    <div
+      class="checkbox-input mt-3 w-1/2 md:w-1/4 inline-block pr-2 text-center"
+    >
+      <label
+        class="text-md select-none font-heading text-main"
+      >
+        
+    Male:
+    
+        <input
+          type="checkbox"
+        />
+         
+        <span />
+      </label>
+    </div>
+     
+    <div
+      class="checkbox-input mt-3 w-1/2 md:w-1/4 inline-block pl-2 text-center"
+    >
+      <label
+        class="text-md select-none font-heading text-main"
+      >
+        
+    Female:
+    
+        <input
+          type="checkbox"
+        />
+         
+        <span />
+      </label>
+    </div>
+  </div>
 </div>
 `;

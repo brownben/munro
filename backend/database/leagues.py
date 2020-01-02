@@ -16,6 +16,7 @@ def leagueToJSON(league):
             'courses': league[5].split(','),
             'description': league[6],
             'year': league[7],
+            'dynamicEventResults': league[8],
         }
     else:
         return False
@@ -34,6 +35,7 @@ cursor.execute('''
         courses TEXT,
         moreInformation TEXT,
         year INTEGER,
+        dynamicEventResults BOOLEAN,
         UNIQUE (name))''')
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS events (
@@ -82,7 +84,7 @@ connection.close()
 # League Database Functions
 
 
-def createLeague(name, website, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year):
+def createLeague(name, website, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults):
     try:
         year = int(year)
     except:
@@ -90,13 +92,13 @@ def createLeague(name, website, coordinator, scoringMethod, noOfEvents, courses,
     courses = courses.replace(' ', '')
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)',
-                   (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year))
+    cursor.execute('INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year, dynamicEventResults) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',
+                   (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults))
     connection.commit()
     connection.close()
 
 
-def updateLeague(oldName, name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year):
+def updateLeague(oldName, name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year,dynamicEventResults):
     try:
         year = int(year)
     except:
@@ -106,8 +108,8 @@ def updateLeague(oldName, name, website,  coordinator, scoringMethod, noOfEvents
     cursor = connection.cursor()
     cursor.execute('''
         UPDATE leagues
-        SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s, year=%s
-        WHERE name=%s''', (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo,year, oldName))
+        SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s, year=%s, dynamicEventResults=%s
+        WHERE name=%s''', (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo,year,  dynamicEventResults, oldName))
     connection.commit()
     connection.close()
 
@@ -124,7 +126,7 @@ def findLeague(name):
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
-        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents,courses, moreInformation, year
+        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents,courses, moreInformation, year, dynamicEventResults
         FROM leagues
         WHERE name=%s
         ORDER BY year DESC, name ASC''', (name,))
@@ -140,7 +142,7 @@ def getAllLeagues():
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
-        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year
+        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year, dynamicEventResults
         FROM leagues
         ORDER BY year DESC, name ASC''')
     result = cursor.fetchall()

@@ -53,6 +53,11 @@
           label="Number of Events to Count:"
         />
         <text-input v-model.trim="courses" label="Courses: (Comma Separated)" />
+        <checkbox-input
+          v-model="dynamicResults"
+          label="Dynamic Event Results:"
+          class="text-left mb-5"
+        />
         <button v-if="create" class="button-lg">Create League</button>
         <button v-if="!create" class="button-lg">Update League</button>
       </form>
@@ -66,6 +71,7 @@ import axios from 'axios'
 import DropdownInput from '@/components/DropdownInput'
 import TextInput from '@/components/TextInput'
 import NumberInput from '@/components/NumberInput'
+import CheckboxInput from '@/components/CheckboxInput'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
@@ -74,6 +80,7 @@ export default {
     'DropdownInput': DropdownInput,
     'TextInput': TextInput,
     'NumberInput': NumberInput,
+    'CheckboxInput': CheckboxInput,
   },
 
   data: function () {
@@ -90,6 +97,7 @@ export default {
       courses: '',
       info: '',
       numberOfEvents: 0,
+      dynamicResults: true,
     }
   },
 
@@ -150,6 +158,7 @@ export default {
             this.numberOfCountingEvents = response.data.numberOfCountingEvents
             if (response.data.courses) this.courses = response.data.courses.join(',')
             this.info = response.data.description
+            this.dynamicResults = response.data.dynamicEventResults
           }
         })
         .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
@@ -171,6 +180,7 @@ export default {
           numberOfCountingEvents: this.numberOfCountingEvents,
           courses: this.courses,
           description: this.info,
+          dynamicEventResults: this.dynamicResults,
         })
           .then(response => this.returnToLeaguePage(response))
           .catch(() => this.$messages.addMessage('Error: Problem Creating League - Please Try Again'))
@@ -189,6 +199,7 @@ export default {
           numberOfCountingEvents: this.numberOfCountingEvents,
           courses: this.courses,
           description: this.info,
+          dynamicEventResults: this.dynamicResults,
         })
           .then(response => this.returnToLeaguePage(response))
           .catch(() => this.$messages.addMessage('Error: Problem Updating League - Please Try Again'))
