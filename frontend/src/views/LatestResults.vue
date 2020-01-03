@@ -87,6 +87,10 @@ export default {
       else if (value === 'position50') return 'Position Based (50 Max)'
       else if (value === 'position99') return 'Position Based (99 Max)'
       else if (value === 'position99average') return 'Position Based (99 Max, Reduced in a Draw)'
+      else if (value === 'positionDouble') return 'Position Based (100 Max, Double Points)'
+      else if (value === 'position50Double') return 'Position Based (50 Max, Double Points)'
+      else if (value === 'timeAverage') return 'Relative to Average Time (1000 Average)'
+      else if (value === 'timeAverage100') return 'Relative to Average Time (100 Average)'
       else return ''
     },
 

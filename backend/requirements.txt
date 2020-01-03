@@ -32,8 +32,6 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.7
 pycodestyle==2.5.0
 pylint==2.4.4
-pytest==5.3.2
-pytest-cov==2.8.1
 pytz==2019.3
 requests==2.22.0
 rsa==4.0

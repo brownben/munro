@@ -17,7 +17,7 @@ api = Api(app)
 
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 Compress(app)
-'''
+
 talisman = Talisman(
     app,
     frame_options='ALLOW_FROM',
@@ -31,7 +31,6 @@ talisman = Talisman(
     }
 )
 app.secret_key = os.urandom(25)
-'''
 
 @api.representation('application/json')
 def output_json(data, code, headers={'X-Robots-Tag': 'noindex', 'max-age': 0}):
@@ -73,10 +72,10 @@ api.add_resource(routes.Upload, '/api/upload')
 @app.route('/<path:path>')
 def catch_all(path):
     # If in debug access files from VueJS Development Server
-
+    '''
     if app.debug:
       return requests.get('http://localhost:8080/{}'.format(path)).text
-
+    '''
     return render_template("index.html")
 
 @app.route('/api/<path:path>')

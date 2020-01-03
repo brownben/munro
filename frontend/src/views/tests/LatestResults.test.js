@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 import VueRouter from 'vue-router'
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
 
 import LatestResults from '@/views/LatestResults'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
@@ -151,19 +151,21 @@ test('Get League - Error', async () => {
 })
 
 test('Scoring Method Shorthand to Full', () => {
-  const wrapper = shallowMount(LatestResults, {
+  const wrapper = mount(LatestResults, {
     mocks: {
-      $auth: { user: false },
-      $route: { params: { name: '' } },
+      $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
-      mounted: () => { },
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based (100 Max)')
   expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('Position Based (50 Max)')
   expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe('Position Based (99 Max)')
   expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe('Position Based (99 Max, Reduced in a Draw)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position5')).toBe('')
-  expect(wrapper.vm.scoringMethodShorthandToFull('ello')).toBe('')
+  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe('Position Based (100 Max, Double Points)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe('Position Based (50 Max, Double Points)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe('Relative to Average Time (1000 Average)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe('Relative to Average Time (100 Average)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
+  expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
 })
