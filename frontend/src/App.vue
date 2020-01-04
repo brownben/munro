@@ -10,7 +10,10 @@
     <div id="content">
       <messages />
       <transition name="fade" mode="out-in">
-        <router-view id="router-view" :class="{embed: $route.path.includes('embed')}" />
+        <router-view
+          id="router-view"
+          :class="{ embed: $route.path.includes('embed') }"
+        />
       </transition>
     </div>
     <cookie-dialog v-show="!$route.path.includes('embed')" />
@@ -32,12 +35,12 @@ export default {
   name: 'App',
 
   components: {
-    'AppMenu': Menu,
-    'Messages': Messages,
-    'CookieDialog': CookieDialog,
+    AppMenu: Menu,
+    Messages,
+    CookieDialog,
   },
 
-  data: function () {
+  data: function() {
     return {
       auth: this.$auth,
     }
@@ -53,4 +56,3 @@ export default {
   background: #f3e5f5;
 }
 </style>
-

@@ -13,7 +13,9 @@ exports[`Renders Correctly 1`] = `
   <h1
     class="text-main text-3xl font-normal font-heading mb-2"
   >
+    
     Transfer Result
+  
   </h1>
    
   <form>
@@ -244,7 +246,9 @@ exports[`Results Sorted Correctly 1`] = `
   <h1
     class="text-main text-3xl font-normal font-heading mb-2"
   >
+    
     Transfer Result
+  
   </h1>
    
   <form>

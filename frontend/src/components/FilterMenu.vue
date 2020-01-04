@@ -20,27 +20,27 @@
     />
     <number-input
       v-model.number="preferences.minAge"
-      label="Min Age:"
-      class="w-1/2 md:w-1/4 inline-block pr-2 md:mb--4"
       :min="0"
       :max="120"
+      label="Min Age:"
+      class="w-1/2 md:w-1/4 inline-block pr-2 md:mb--4"
       @input="onChange"
     />
     <number-input
       v-model.number="preferences.maxAge"
-      label="Max Age:"
-      class="w-1/2 md:w-1/4 inline-block pl-2 md:mb--4"
       :min="0"
       :max="120"
+      label="Max Age:"
+      class="w-1/2 md:w-1/4 inline-block pl-2 md:mb--4"
       @input="onChange"
     />
-    <checkbox
+    <checkbox-input
       v-model="preferences.male"
       class="w-1/2 md:w-1/4 inline-block pr-2 text-center"
       label="Male:"
       @input="onChange"
     />
-    <checkbox
+    <checkbox-input
       v-model="preferences.female"
       class="w-1/2 md:w-1/4 inline-block pl-2 text-center"
       label="Female:"
@@ -50,17 +50,17 @@
 </template>
 
 <script>
-import Checkbox from './CheckboxInput'
+import CheckboxInput from './CheckboxInput'
 import AccordionDropdown from './AccordionDropdown'
 import TextInput from './TextInput'
 import NumberInput from './NumberInput'
 
 export default {
   components: {
-    'Checkbox': Checkbox,
-    'AccordionDropdown': AccordionDropdown,
-    'TextInput': TextInput,
-    'NumberInput': NumberInput,
+    CheckboxInput,
+    AccordionDropdown,
+    TextInput,
+    NumberInput,
   },
 
   data: () => ({
@@ -75,10 +75,11 @@ export default {
   }),
 
   methods: {
-    onChange: function () { this.$emit('changed', this.preferences) },
+    onChange: function() {
+      this.$emit('changed', this.preferences)
+    },
   },
 }
 </script>
 
-<style  scoped>
-</style>
+<style scoped></style>

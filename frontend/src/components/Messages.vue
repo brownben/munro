@@ -31,21 +31,21 @@
 export default {
   name: 'Messages',
 
-  data: function () {
+  data: function() {
     return {
       messages: this.$messages.messages,
     }
   },
 
   methods: {
-    clear: function (id) {
+    clear: function(id) {
       this.$messages.removeMessage(id)
     },
   },
 }
 </script>
 
-<style scoped >
+<style scoped>
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease-out;

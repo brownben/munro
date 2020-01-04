@@ -1,14 +1,14 @@
 import axios from 'axios'
 import VueRouter from 'vue-router'
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 
 import ResultsTable from '@/views/EventResultsTable'
 import { sampleThreeEvents } from '@/tests/test data/events'
 import {
   sampleSingleResult,
   sampleThreeResults,
-  sampleThreeResultsWithSplitAgeClass,
   sampleThreeResultsSortedByAgeClass,
+  sampleThreeResultsWithSplitAgeClass,
 } from '@/tests/test data/results'
 
 // A test is modifying sampleThreeResults so create backup copy
@@ -90,11 +90,17 @@ test('Results With Age Class Split', () => {
   wrapper.setData({ rawResults: [{ name: 'M45' }] })
   expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([{ name: 'M45' }])
   wrapper.setData({ rawResults: [{ ageClass: 'M45' }] })
-  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([{ ageClass: 'M45', age: 45, gender: 'M' }])
+  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([
+    { ageClass: 'M45', age: 45, gender: 'M' },
+  ])
   wrapper.setData({ rawResults: [{ ageClass: 'W100' }] })
-  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([{ ageClass: 'W100', age: 100, gender: 'W' }])
+  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([
+    { ageClass: 'W100', age: 100, gender: 'W' },
+  ])
   wrapper.setData({ rawResults: [{ ageClass: 'M5' }] })
-  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([{ ageClass: 'M5', age: 5, gender: 'M' }])
+  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([
+    { ageClass: 'M5', age: 5, gender: 'M' },
+  ])
   wrapper.setData({
     rawResults: [
       { ageClass: 'M5' },
@@ -203,7 +209,7 @@ test('Sort By - Different Property', () => {
   expect(wrapper.vm.sortedBy).toEqual('2')
 })
 
-test('Sort - Ascending', async () => {
+test('Sort - Ascending', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
@@ -213,10 +219,18 @@ test('Sort - Ascending', async () => {
   })
   expect(wrapper.vm.sort([], 'name')).toEqual([])
   expect(wrapper.vm.sort([], 'club')).toEqual([])
-  expect(wrapper.vm.sort(sampleSingleResult, 'name')).toEqual(sampleSingleResult)
-  expect(wrapper.vm.sort(sampleSingleResult, 'position')).toEqual(sampleSingleResult)
-  expect(wrapper.vm.sort(sampleThreeResults, 'position')).toEqual(sampleThreeResults)
-  expect(wrapper.vm.sort(sampleThreeResultsCopy, 'ageClass')).toEqual(sampleThreeResultsSortedByAgeClass.reverse())
+  expect(wrapper.vm.sort(sampleSingleResult, 'name')).toEqual(
+    sampleSingleResult
+  )
+  expect(wrapper.vm.sort(sampleSingleResult, 'position')).toEqual(
+    sampleSingleResult
+  )
+  expect(wrapper.vm.sort(sampleThreeResults, 'position')).toEqual(
+    sampleThreeResults
+  )
+  expect(wrapper.vm.sort(sampleThreeResultsCopy, 'ageClass')).toEqual(
+    sampleThreeResultsSortedByAgeClass.reverse()
+  )
 })
 
 test('Sort - Descending', () => {
@@ -229,10 +243,18 @@ test('Sort - Descending', () => {
   })
   expect(wrapper.vm.sort([], 'name', false)).toEqual([])
   expect(wrapper.vm.sort([], 'club', false)).toEqual([])
-  expect(wrapper.vm.sort(sampleSingleResult, 'name', false)).toEqual(sampleSingleResult)
-  expect(wrapper.vm.sort(sampleSingleResult, 'position', false)).toEqual(sampleSingleResult)
-  expect(wrapper.vm.sort(sampleThreeResults, 'position', false)).toEqual(sampleThreeResults)
-  expect(wrapper.vm.sort(sampleThreeResultsCopy, 'ageClass', false)).toEqual(sampleThreeResultsSortedByAgeClass.reverse())
+  expect(wrapper.vm.sort(sampleSingleResult, 'name', false)).toEqual(
+    sampleSingleResult
+  )
+  expect(wrapper.vm.sort(sampleSingleResult, 'position', false)).toEqual(
+    sampleSingleResult
+  )
+  expect(wrapper.vm.sort(sampleThreeResults, 'position', false)).toEqual(
+    sampleThreeResults
+  )
+  expect(wrapper.vm.sort(sampleThreeResultsCopy, 'ageClass', false)).toEqual(
+    sampleThreeResultsSortedByAgeClass.reverse()
+  )
 })
 
 test('Filtered Results', () => {
@@ -287,13 +309,27 @@ test('Sorted Results', () => {
   expect(wrapper.vm.sortedResults).toEqual([])
   wrapper.setData({ rawResults: [], sortedBy: 'points-1', ascendingSort: true })
   expect(wrapper.vm.sortedResults).toEqual([])
-  wrapper.setData({ rawResults: [], sortedBy: 'points-2', ascendingSort: false })
+  wrapper.setData({
+    rawResults: [],
+    sortedBy: 'points-2',
+    ascendingSort: false,
+  })
   expect(wrapper.vm.sortedResults).toEqual([])
   wrapper.setData({ rawResults: [] })
-  wrapper.setData({ rawResults: sampleThreeResultsCopy, sortedBy: 'position', ascendingSort: true })
-  expect(wrapper.vm.sortedResults).toEqual(sampleThreeResultsWithSplitAgeClass.slice().reverse())
+  wrapper.setData({
+    rawResults: sampleThreeResultsCopy,
+    sortedBy: 'position',
+    ascendingSort: true,
+  })
+  expect(wrapper.vm.sortedResults).toEqual(
+    sampleThreeResultsWithSplitAgeClass.slice().reverse()
+  )
   wrapper.setData({ rawResults: [] })
-  wrapper.setData({ rawResults: sampleThreeResultsCopy, sortedBy: 'position', ascendingSort: false })
+  wrapper.setData({
+    rawResults: sampleThreeResultsCopy,
+    sortedBy: 'position',
+    ascendingSort: false,
+  })
   expect(wrapper.vm.sortedResults).toEqual(sampleThreeResultsWithSplitAgeClass)
 })
 
@@ -396,4 +432,3 @@ test('Get Event Details - No Event Found', async () => {
   await wrapper.vm.getEvent()
   expect(wrapper.vm.eventFound).toBeFalsy()
 })
-

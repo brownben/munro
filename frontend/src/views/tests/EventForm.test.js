@@ -91,9 +91,17 @@ test('Get Leagues - Processes Response Correctly', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
 
-  axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
+  axios.get.mockResolvedValue({
+    data: [
+      { league: 'a', property: 3 },
+      { league: '2', another: 4 },
+    ],
+  })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
+  expect(wrapper.vm.leagues).toEqual([
+    { league: 'a', property: 3 },
+    { league: '2', another: 4 },
+  ])
 })
 
 test('Get Leagues - Shows Message on Error', async () => {
@@ -109,7 +117,9 @@ test('Get Leagues - Shows Message on Error', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Fetching List of Leagues')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Fetching List of Leagues'
+  )
 })
 
 test('Get Event Details - Makes Request with Correct ID', async () => {
@@ -132,17 +142,28 @@ test('Get Event Details - Processes Response Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(EventForm, {
     mocks: {
-      $route: { path: '/events/1/edit', params: { league: '', id: 'SprintelopeBushEstate2018-05-09' } },
+      $route: {
+        path: '/events/1/edit',
+        params: { league: '', id: 'SprintelopeBushEstate2018-05-09' },
+      },
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   axios.get.mockResolvedValue({ data: sampleSingleEvent })
   await wrapper.vm.getEventDetails()
-  expect(wrapper.findAll('input').at(0).element.value).toBe(sampleSingleEvent.name)
-  expect(wrapper.findAll('input').at(1).element.value).toBe(sampleSingleEvent.date)
-  expect(wrapper.findAll('input').at(2).element.value).toBe(sampleSingleEvent.organiser)
-  expect(wrapper.findAll('input').at(6).element.value).toBe(sampleSingleEvent.routegadget)
+  expect(wrapper.findAll('input').at(0).element.value).toBe(
+    sampleSingleEvent.name
+  )
+  expect(wrapper.findAll('input').at(1).element.value).toBe(
+    sampleSingleEvent.date
+  )
+  expect(wrapper.findAll('input').at(2).element.value).toBe(
+    sampleSingleEvent.organiser
+  )
+  expect(wrapper.findAll('input').at(6).element.value).toBe(
+    sampleSingleEvent.routegadget
+  )
 })
 
 test('Get Event Details - No Event Found', async () => {
@@ -172,7 +193,9 @@ test('Get Event Details - Shows Message on Error', async () => {
   axios.get.mockRejectedValue()
   await wrapper.vm.getEventDetails()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Getting Event Details')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Getting Event Details'
+  )
 })
 
 test('Check Validation Works', () => {
@@ -188,32 +211,44 @@ test('Check Validation Works', () => {
   wrapper.setData({ name: '', league: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and League Fields are not Blank'
+  )
 
   wrapper.setData({ name: 'Value', league: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(2)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and League Fields are not Blank'
+  )
 
   wrapper.setData({ name: '', league: 'Value' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(3)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and League Fields are not Blank'
+  )
 
   wrapper.setData({ name: '/', league: 'A' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(4)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    "Please Ensure Name doesn't Include any Slashes"
+  )
 
   wrapper.setData({ name: '\\', league: 'A' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(5)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    "Please Ensure Name doesn't Include any Slashes"
+  )
 
   wrapper.setData({ name: 'Hello/ bye', league: 'A' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(6)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    "Please Ensure Name doesn't Include any Slashes"
+  )
 
   wrapper.setData({ name: 'A Value', league: 'Another Value' })
   expect(wrapper.vm.validateForm()).toBeTruthy()
@@ -232,11 +267,17 @@ test('Return to League Home Page', () => {
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ league: 'Test League' })
-  wrapper.vm.returnToLeaguePage({ data: { message: 'This is the Message Returned' } })
+  wrapper.vm.returnToLeaguePage({
+    data: { message: 'This is the Message Returned' },
+  })
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('This is the Message Returned')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'This is the Message Returned'
+  )
   expect(mockRouterPushFunction).toHaveBeenCalledTimes(1)
-  expect(mockRouterPushFunction).toHaveBeenLastCalledWith('/leagues/Test League')
+  expect(mockRouterPushFunction).toHaveBeenLastCalledWith(
+    '/leagues/Test League'
+  )
 })
 
 test('Create Event - Fails Validation', async () => {
@@ -250,11 +291,13 @@ test('Create Event - Fails Validation', async () => {
   })
   await wrapper.vm.createEvent()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and League Fields are not Blank'
+  )
 })
 
 test('Create Event - Successful Creation', async () => {
-  axios.post.mockResolvedValue({ 'message': 'Event - X was Created' })
+  axios.post.mockResolvedValue({ message: 'Event - X was Created' })
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(EventForm, {
     mocks: {
@@ -268,7 +311,9 @@ test('Create Event - Successful Creation', async () => {
   wrapper.setData(sampleSingleEvent)
   await wrapper.vm.createEvent()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(1)
-  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({ 'message': 'Event - X was Created' })
+  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({
+    message: 'Event - X was Created',
+  })
 })
 
 test('Create Event - Error in Creation', async () => {
@@ -280,18 +325,20 @@ test('Create Event - Error in Creation', async () => {
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
-  axios.post.mockRejectedValue({ 'message': 'Something went Wrong' })
+  axios.post.mockRejectedValue({ message: 'Something went Wrong' })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods('returnToLeaguePage', mockReturnToLeaguePage)
   wrapper.setData(sampleSingleEvent)
   await wrapper.vm.createEvent()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(0)
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Error: Problem Creating Event - Please Try Again')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Error: Problem Creating Event - Please Try Again'
+  )
 })
 
 test('Create Event - Calls Correct API Location', async () => {
-  axios.post.mockResolvedValue({ 'message': 'Event - X was Created' })
+  axios.post.mockResolvedValue({ message: 'Event - X was Created' })
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(EventForm, {
     mocks: {
@@ -310,7 +357,9 @@ test('Create Event - Calls Correct API Location', async () => {
 })
 
 test('Update Event - Calls Correct API Location', async () => {
-  axios.put.mockRejectedValue({ response: { data: { 'message': 'Event - X was Updated' } } })
+  axios.put.mockRejectedValue({
+    response: { data: { message: 'Event - X was Updated' } },
+  })
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(EventForm, {
     mocks: {
@@ -324,7 +373,10 @@ test('Update Event - Calls Correct API Location', async () => {
   const sampleSingleEventNoID = sampleSingleEvent
   sampleSingleEventNoID.id = undefined
   expect(axios.put).toHaveBeenCalledTimes(1)
-  expect(axios.put).toHaveBeenLastCalledWith('/api/events/SprintelopeBushEstate2018-05-09', sampleSingleEventNoID)
+  expect(axios.put).toHaveBeenLastCalledWith(
+    '/api/events/SprintelopeBushEstate2018-05-09',
+    sampleSingleEventNoID
+  )
 })
 
 test('Update Event - Fails Validation', async () => {
@@ -338,11 +390,13 @@ test('Update Event - Fails Validation', async () => {
   })
   await wrapper.vm.updateEvent()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and League Fields are not Blank'
+  )
 })
 
 test('Update Event - Successful Creation', async () => {
-  axios.put.mockResolvedValue({ 'message': 'Event - X was Created' })
+  axios.put.mockResolvedValue({ message: 'Event - X was Created' })
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(EventForm, {
     mocks: {
@@ -356,12 +410,18 @@ test('Update Event - Successful Creation', async () => {
   wrapper.setData(sampleSingleEvent)
   await wrapper.vm.updateEvent()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(1)
-  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({ 'message': 'Event - X was Created' })
+  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({
+    message: 'Event - X was Created',
+  })
 })
 
 test('Update Event - Error in Creation', async () => {
   const mockAddMessageFunction = jest.fn()
-  axios.put.mockRejectedValue({ response: { data: { 'message': 'Error: Problem Updating Event - Please Try Again' } } })
+  axios.put.mockRejectedValue({
+    response: {
+      data: { message: 'Error: Problem Updating Event - Please Try Again' },
+    },
+  })
   const wrapper = mount(EventForm, {
     mocks: {
       $route: { path: '/events/1/edit', params: { league: '' } },
@@ -375,5 +435,7 @@ test('Update Event - Error in Creation', async () => {
   await wrapper.vm.updateEvent()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(0)
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Error: Problem Updating Event - Please Try Again')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Error: Problem Updating Event - Please Try Again'
+  )
 })

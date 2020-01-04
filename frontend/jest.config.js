@@ -1,53 +1,38 @@
 module.exports = {
-  'verbose': false,
-  'testURL': 'http://localhost/',
-  'browser': true,
+  verbose: false,
+  testURL: 'http://localhost/',
+  browser: true,
 
-  'moduleFileExtensions': [
-    'js',
-    'json',
-    'vue',
-    'jsx',
-  ],
+  moduleFileExtensions: ['js', 'json', 'vue', 'jsx'],
 
-  'transform': {
+  transform: {
     '.*\\.(vue)$': 'vue-jest',
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.vue$': 'vue-jest',
-    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$':
+      'jest-transform-stub',
     '^.+\\.jsx?$': 'babel-jest',
   },
 
-  'setupFiles': [
-    'jest-localstorage-mock',
-  ],
+  setupFiles: ['jest-localstorage-mock'],
 
-  'moduleNameMapper': {
+  moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
 
-  'snapshotSerializers': [
-    'jest-serializer-vue',
-  ],
+  snapshotSerializers: ['jest-serializer-vue'],
 
-  'collectCoverage': true,
+  collectCoverage: true,
 
-  'coverageReporters': [
-    'html',
-    'text',
-  ],
+  coverageReporters: ['html', 'text'],
 
-  'coverageDirectory': '<rootDir>/src/tests/coverage',
+  coverageDirectory: '<rootDir>/src/tests/coverage',
 
-  'transformIgnorePatterns': [
-    '/node_modules/',
-  ],
+  transformIgnorePatterns: ['/node_modules/'],
 
-  'testMatch': [
-    '**/*.test.js',
-  ],
+  testMatch: ['**/*.test.js'],
 
-  'watchPlugins': [
+  watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],

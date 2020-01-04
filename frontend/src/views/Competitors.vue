@@ -7,20 +7,28 @@
 <template>
   <div class="view">
     <vue-headful
+      :head="{
+        meta: { name: 'robots', content: 'noindex' },
+      }"
       title="Munro - Competitors"
       description
-      :head="{
-        'meta': {name: 'robots', content:'noindex'},
-      }"
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">Competitors</h1>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+      Competitors
+    </h1>
     <div class="card">
       <h2 class="text-2xl font-heading">Actions</h2>
 
       <div>
-        <router-link to="/create-competitor" class="button">Add Competitor</router-link>
-        <router-link to="/competitors/merge" class="button">Merge Competitors</router-link>
-        <router-link to="/results/transfer" class="button">Transfer Result</router-link>
+        <router-link to="/create-competitor" class="button"
+          >Add Competitor</router-link
+        >
+        <router-link to="/competitors/merge" class="button"
+          >Merge Competitors</router-link
+        >
+        <router-link to="/results/transfer" class="button"
+          >Transfer Result</router-link
+        >
       </div>
 
       <div class="text-left w-full">
@@ -37,26 +45,38 @@
         <tr>
           <th @click="sortBy('name')">
             <p>Name</p>
-            <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'name'" />
+            <up-down-arrow
+              :ascending="ascendingSort"
+              :active="sortedBy === 'name'"
+            />
           </th>
           <th @click="sortBy('club')">
             <p>Club</p>
-            <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'club'" />
+            <up-down-arrow
+              :ascending="ascendingSort"
+              :active="sortedBy === 'club'"
+            />
           </th>
           <th @click="sortBy('ageClass')">
             <p>Class</p>
-            <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'ageClass'" />
+            <up-down-arrow
+              :ascending="ascendingSort"
+              :active="sortedBy === 'ageClass'"
+            />
           </th>
           <th @click="sortBy('course')">
             <p>Course</p>
-            <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'course'" />
+            <up-down-arrow
+              :ascending="ascendingSort"
+              :active="sortedBy === 'course'"
+            />
           </th>
         </tr>
       </thead>
       <tbody is="transition-group" name="fade">
         <tr
           v-for="competitor of sortedCompetitors"
-          :key="competitor.name+competitor.league+competitor.course"
+          :key="competitor.name + competitor.league + competitor.course"
           :class="{ striped: sortedCompetitors.indexOf(competitor) % 2 === 0 }"
           @click="$router.push('/competitors/' + competitor.id + '/edit')"
         >
@@ -77,8 +97,8 @@ import DropdownInput from '../components/DropdownInput.vue'
 
 export default {
   components: {
-    UpDownArrow: UpDownArrow,
-    DropdownInput: DropdownInput,
+    UpDownArrow,
+    DropdownInput,
   },
 
   data: () => ({
@@ -90,32 +110,41 @@ export default {
   }),
 
   computed: {
-    filteredCompetitors: function () {
-      return this.competitors.filter(competitor => competitor.league === this.league)
+    filteredCompetitors: function() {
+      return this.competitors.filter(
+        competitor => competitor.league === this.league
+      )
     },
 
-    sortedCompetitors: function () {
+    sortedCompetitors: function() {
       return this.sort(
         this.filteredCompetitors,
         this.sortedBy,
-        this.ascendingSort)
+        this.ascendingSort
+      )
     },
   },
 
-  created: async function () {
-    if (this.$route.params.league && this.$route.params.league !== '') this.league = this.$route.params.league
+  created: function() {
+    if (this.$route.params.league && this.$route.params.league !== '')
+      this.league = this.$route.params.league
     this.getLeagues()
     this.getCompetitors()
   },
 
   methods: {
-    getCompetitors: function () {
-      return axios.get('/api/competitors')
-        .then(response => { this.competitors = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching Competitor Details'))
+    getCompetitors: function() {
+      return axios
+        .get('/api/competitors')
+        .then(response => {
+          this.competitors = response.data
+        })
+        .catch(() =>
+          this.$messages.addMessage('Problem Fetching Competitor Details')
+        )
     },
 
-    sort: function (array, property, ascending = true) {
+    sort: function(array, property, ascending = true) {
       // Selection Sort using Single List for Sorting Results
 
       const sortFunction = (a, b) => {
@@ -130,7 +159,7 @@ export default {
       else return array.sort(sortFunction).reverse()
     },
 
-    sortBy: function (sortBy) {
+    sortBy: function(sortBy) {
       // Change what property it is sorted by
       // If it is a different property, make it sort ascending else change direction of sort
       if (sortBy !== this.sortedBy) this.ascendingSort = false
@@ -138,12 +167,16 @@ export default {
       this.sortedBy = sortBy
     },
 
-    getLeagues: function () {
-      return axios.get('/api/leagues')
-        .then(response => { this.leagues = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching List of Leagues'))
+    getLeagues: function() {
+      return axios
+        .get('/api/leagues')
+        .then(response => {
+          this.leagues = response.data
+        })
+        .catch(() =>
+          this.$messages.addMessage('Problem Fetching List of Leagues')
+        )
     },
   },
 }
 </script>
-

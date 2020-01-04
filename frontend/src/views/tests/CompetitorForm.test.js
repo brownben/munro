@@ -91,9 +91,17 @@ test('Get Leagues - Processes Response Correctly', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
 
-  axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
+  axios.get.mockResolvedValue({
+    data: [
+      { league: 'a', property: 3 },
+      { league: '2', another: 4 },
+    ],
+  })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
+  expect(wrapper.vm.leagues).toEqual([
+    { league: 'a', property: 3 },
+    { league: '2', another: 4 },
+  ])
 })
 
 test('Get Leagues - Shows Message on Error', async () => {
@@ -109,7 +117,9 @@ test('Get Leagues - Shows Message on Error', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Fetching List of Leagues')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Fetching List of Leagues'
+  )
 })
 
 test('Courses in League', () => {
@@ -121,9 +131,22 @@ test('Courses in League', () => {
   })
   wrapper.setData({ league: 'a', leagues: [] })
   expect(wrapper.vm.coursesInLeague).toEqual([])
-  wrapper.setData({ leagues: [{ name: 'a', courses: [2] }, { name: 'b', courses: 3 }, { name: 'c', courses: [4] }] })
+  wrapper.setData({
+    leagues: [
+      { name: 'a', courses: [2] },
+      { name: 'b', courses: 3 },
+      { name: 'c', courses: [4] },
+    ],
+  })
   expect(wrapper.vm.coursesInLeague).toEqual([2])
-  wrapper.setData({ league: 'c', leagues: [{ name: 'a', courses: 2 }, { name: 'b', courses: 3 }, { name: 'c', courses: [4] }] })
+  wrapper.setData({
+    league: 'c',
+    leagues: [
+      { name: 'a', courses: 2 },
+      { name: 'b', courses: 3 },
+      { name: 'c', courses: [4] },
+    ],
+  })
   expect(wrapper.vm.coursesInLeague).toEqual([4])
 })
 
@@ -162,7 +185,10 @@ test('Submit', async () => {
     },
     stubs: ['router-link', 'vue-headful'],
   })
-  wrapper.setMethods({ createCompetitor: mockCreate, updateCompetitor: mockUpdate })
+  wrapper.setMethods({
+    createCompetitor: mockCreate,
+    updateCompetitor: mockUpdate,
+  })
   wrapper.setData({ create: true })
   await wrapper.vm.submit()
   expect(mockUpdate).toHaveBeenCalledTimes(0)
@@ -184,7 +210,9 @@ test('Create Competitor - Invalid', async () => {
   })
   await wrapper.vm.createCompetitor()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and League Fields are not Blank'
+  )
 })
 
 test('Create Competitor - Correct API', async () => {
@@ -199,7 +227,10 @@ test('Create Competitor - Correct API', async () => {
   axios.post.mockRejectedValue({ response: { data: { message: 'Hello' } } })
   await wrapper.vm.createCompetitor()
   expect(axios.post).toHaveBeenCalledTimes(1)
-  expect(axios.post).toHaveBeenLastCalledWith('/api/competitors', expect.any(Object))
+  expect(axios.post).toHaveBeenLastCalledWith(
+    '/api/competitors',
+    expect.any(Object)
+  )
 })
 
 test('Create Competitor - Success', async () => {
@@ -230,7 +261,9 @@ test('Create Competitor - Error', async () => {
   axios.post.mockRejectedValue({ response: { data: { message: 'Hello' } } })
   await wrapper.vm.createCompetitor()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Error: Problem Creating Competitor - Please Try Again')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Error: Problem Creating Competitor - Please Try Again'
+  )
 })
 
 test('Update Competitor - Invalid', async () => {
@@ -244,7 +277,9 @@ test('Update Competitor - Invalid', async () => {
   })
   await wrapper.vm.updateCompetitor()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and League Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and League Fields are not Blank'
+  )
 })
 
 test('Update Competitor - Correct API', async () => {
@@ -259,7 +294,10 @@ test('Update Competitor - Correct API', async () => {
   axios.put.mockRejectedValue({ response: { data: { message: 'Hello' } } })
   await wrapper.vm.updateCompetitor()
   expect(axios.put).toHaveBeenCalledTimes(1)
-  expect(axios.put).toHaveBeenLastCalledWith('/api/competitors/', expect.any(Object))
+  expect(axios.put).toHaveBeenLastCalledWith(
+    '/api/competitors/',
+    expect.any(Object)
+  )
 })
 
 test('Update Competitor - Success', async () => {
@@ -299,7 +337,7 @@ test('Get Competitor Details - Error', async () => {
     mocks: {
       $route: { path: '/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
-      created: () => { },
+      created: () => {},
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
@@ -307,7 +345,9 @@ test('Get Competitor Details - Error', async () => {
   axios.get.mockRejectedValue()
   await wrapper.vm.getCompetitorDetails()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Getting Competitor Details')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Getting Competitor Details'
+  )
 })
 
 test('Get Competitor Details - Not Found', async () => {
@@ -316,7 +356,7 @@ test('Get Competitor Details - Not Found', async () => {
     mocks: {
       $route: { path: '/leagues/1/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
-      created: () => { },
+      created: () => {},
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })

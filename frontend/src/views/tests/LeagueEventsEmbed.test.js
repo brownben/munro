@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 import VueRouter from 'vue-router'
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 
 import League from '@/views/LeagueEventsEmbed'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
@@ -112,7 +112,7 @@ test('Get League - Correct API Call', async () => {
       $auth: { user: false },
       $route: { params: { name: 'Test' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -132,7 +132,7 @@ test('Get League - Success', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -148,7 +148,7 @@ test('Get League - Error', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -157,7 +157,9 @@ test('Get League - Error', async () => {
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeague()
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Getting League Details')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Getting League Details'
+  )
 })
 
 test('Get League Events - No League Data', async () => {
@@ -167,7 +169,7 @@ test('Get League Events - No League Data', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -187,7 +189,7 @@ test('Get League Events - Correct API', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -207,7 +209,7 @@ test('Get League Events - Success', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -226,7 +228,7 @@ test('Get League Events - Error', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -236,7 +238,9 @@ test('Get League Events - Error', async () => {
   wrapper.setData({ league: { name: 'Test' } })
   await wrapper.vm.getLeagueEvents()
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Getting Event Details')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Getting Event Details'
+  )
 })
 
 test('Scoring Method Shorthand to Full', () => {
@@ -247,14 +251,30 @@ test('Scoring Method Shorthand to Full', () => {
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
-  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based (100 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('Position Based (50 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe('Position Based (99 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe('Position Based (99 Max, Reduced in a Draw)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe('Position Based (100 Max, Double Points)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe('Position Based (50 Max, Double Points)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe('Relative to Average Time (1000 Average)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe('Relative to Average Time (100 Average)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe(
+    'Position Based (100 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe(
+    'Position Based (50 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe(
+    'Position Based (99 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe(
+    'Position Based (99 Max, Reduced in a Draw)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe(
+    'Position Based (100 Max, Double Points)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe(
+    'Position Based (50 Max, Double Points)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe(
+    'Relative to Average Time (1000 Average)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe(
+    'Relative to Average Time (100 Average)'
+  )
   expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
   expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
 })

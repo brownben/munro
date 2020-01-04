@@ -95,32 +95,44 @@ test('Check Validation Works', () => {
   wrapper.setData({ name: '', scoringMethod: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and Scoring Method Fields are not Blank'
+  )
 
   wrapper.setData({ name: 'Value', scoringMethod: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(2)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and Scoring Method Fields are not Blank'
+  )
 
   wrapper.setData({ name: '', scoringMethod: 'Value' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(3)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and Scoring Method Fields are not Blank'
+  )
 
   wrapper.setData({ name: '/', scoringMethod: 'A' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(4)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    "Please Ensure Name doesn't Include any Slashes"
+  )
 
   wrapper.setData({ name: '\\', scoringMethod: 'A' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(5)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    "Please Ensure Name doesn't Include any Slashes"
+  )
 
   wrapper.setData({ name: 'Hello/ bye', scoringMethod: 'A' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(6)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name doesn\'t Include any Slashes')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    "Please Ensure Name doesn't Include any Slashes"
+  )
 
   wrapper.setData({ name: 'A Value', scoringMethod: 'Another Value' })
   expect(wrapper.vm.validateForm()).toBeTruthy()
@@ -139,11 +151,17 @@ test('Return to League Home Page', () => {
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   wrapper.setData({ name: 'Test League' })
-  wrapper.vm.returnToLeaguePage({ data: { message: 'This is the Message Returned' } })
+  wrapper.vm.returnToLeaguePage({
+    data: { message: 'This is the Message Returned' },
+  })
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('This is the Message Returned')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'This is the Message Returned'
+  )
   expect(mockRouterPushFunction).toHaveBeenCalledTimes(1)
-  expect(mockRouterPushFunction).toHaveBeenLastCalledWith('/leagues/Test League')
+  expect(mockRouterPushFunction).toHaveBeenLastCalledWith(
+    '/leagues/Test League'
+  )
 })
 
 test('Scoring Method Shorthand to Full', () => {
@@ -154,14 +172,30 @@ test('Scoring Method Shorthand to Full', () => {
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
-  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based (100 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('Position Based (50 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe('Position Based (99 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe('Position Based (99 Max, Reduced in a Draw)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe('Position Based (100 Max, Double Points)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe('Position Based (50 Max, Double Points)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe('Relative to Average Time (1000 Average)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe('Relative to Average Time (100 Average)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe(
+    'Position Based (100 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe(
+    'Position Based (50 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe(
+    'Position Based (99 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe(
+    'Position Based (99 Max, Reduced in a Draw)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe(
+    'Position Based (100 Max, Double Points)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe(
+    'Position Based (50 Max, Double Points)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe(
+    'Relative to Average Time (1000 Average)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe(
+    'Relative to Average Time (100 Average)'
+  )
   expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
   expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
 })
@@ -174,14 +208,40 @@ test('Scoring Method Full to Shorthand', () => {
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
-  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (100 Max)')).toBe('position')
-  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (50 Max)')).toBe('position50')
-  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (99 Max)')).toBe('position99')
-  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (99 Max - Reduced in a Draw)')).toBe('position99average')
-  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (100 Max, Double Points)')).toBe('positionDouble')
-  expect(wrapper.vm.scoringMethodFullToShorthand('Position Based (50 Max, Double Points)')).toBe('position50Double')
-  expect(wrapper.vm.scoringMethodFullToShorthand('Relative to Average Time (1000 Average)')).toBe('timeAverage')
-  expect(wrapper.vm.scoringMethodFullToShorthand('Relative to Average Time (100 Average)')).toBe('timeAverage100')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand('Position Based (100 Max)')
+  ).toBe('position')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand('Position Based (50 Max)')
+  ).toBe('position50')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand('Position Based (99 Max)')
+  ).toBe('position99')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand(
+      'Position Based (99 Max - Reduced in a Draw)'
+    )
+  ).toBe('position99average')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand(
+      'Position Based (100 Max, Double Points)'
+    )
+  ).toBe('positionDouble')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand(
+      'Position Based (50 Max, Double Points)'
+    )
+  ).toBe('position50Double')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand(
+      'Relative to Average Time (1000 Average)'
+    )
+  ).toBe('timeAverage')
+  expect(
+    wrapper.vm.scoringMethodFullToShorthand(
+      'Relative to Average Time (100 Average)'
+    )
+  ).toBe('timeAverage100')
   expect(wrapper.vm.scoringMethodFullToShorthand('')).toBe('')
   expect(wrapper.vm.scoringMethodFullToShorthand('pos')).toBe('')
 })
@@ -197,7 +257,9 @@ test('Create League - Fails Validation', async () => {
   })
   await wrapper.vm.createLeague()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and Scoring Method Fields are not Blank'
+  )
 })
 
 test('Create League - Successful Creation', async () => {
@@ -215,7 +277,9 @@ test('Create League - Successful Creation', async () => {
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
   await wrapper.vm.createLeague()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(1)
-  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({ data: { message: 'Hello' } })
+  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({
+    data: { message: 'Hello' },
+  })
 })
 
 test('Create League - Error in Creation', async () => {
@@ -231,7 +295,9 @@ test('Create League - Error in Creation', async () => {
   wrapper.setData({ name: 'Test League', scoringMethod: 'position' })
   await wrapper.vm.createLeague()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Error: Problem Creating League - Please Try Again')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Error: Problem Creating League - Please Try Again'
+  )
 })
 
 test('Create League - Calls Correct API Location', async () => {
@@ -245,13 +311,13 @@ test('Create League - Calls Correct API Location', async () => {
   })
   jest.clearAllMocks()
   axios.post.mockResolvedValue()
-  const sampleOutput = Object.assign({}, sampleSingleLeague[0])
+  const sampleOutput = { ...sampleSingleLeague[0] }
   delete sampleOutput.info
   sampleOutput.scoringMethod = 'position'
   sampleOutput.courses = 'Long,Short'
   delete sampleOutput.numberOfEvents
   delete sampleOutput.oldName
-  const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  const sampleInput = { ...sampleSingleLeague[0] }
   sampleInput.courses = sampleInput.courses.join(',')
   delete sampleInput.oldName
   sampleInput.info = sampleInput.description
@@ -274,13 +340,13 @@ test('Update League - Calls Correct API Location', async () => {
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
-  const sampleOutput = Object.assign({}, sampleSingleLeague[0])
+  const sampleOutput = { ...sampleSingleLeague[0] }
   delete sampleOutput.info
   sampleOutput.scoringMethod = 'position'
   sampleOutput.oldName = 'name'
   sampleOutput.courses = 'Long,Short'
   delete sampleOutput.numberOfEvents
-  const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  const sampleInput = { ...sampleSingleLeague[0] }
   sampleInput.courses = sampleInput.courses.join(',')
   sampleInput.info = sampleInput.description
   delete sampleInput.description
@@ -304,7 +370,9 @@ test('Update League - Fails Validation', async () => {
   })
   await wrapper.vm.updateLeague()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Ensure Name and Scoring Method Fields are not Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Ensure Name and Scoring Method Fields are not Blank'
+  )
 })
 
 test('Update League - Successful Creation', async () => {
@@ -321,14 +389,16 @@ test('Update League - Successful Creation', async () => {
   })
   const mockReturnToLeaguePage = jest.fn()
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
-  const sampleInput = Object.assign({}, sampleSingleLeague[0])
+  const sampleInput = { ...sampleSingleLeague[0] }
   sampleInput.courses = sampleInput.courses.join(',')
   sampleInput.info = sampleInput.description
   delete sampleInput.description
   wrapper.setData(sampleInput)
   await wrapper.vm.updateLeague()
   expect(mockReturnToLeaguePage).toHaveBeenCalledTimes(1)
-  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({ data: { message: 'Hello' } })
+  expect(mockReturnToLeaguePage).toHaveBeenLastCalledWith({
+    data: { message: 'Hello' },
+  })
 })
 
 test('Update League - Error in Creation', async () => {
@@ -346,7 +416,9 @@ test('Update League - Error in Creation', async () => {
   axios.put.mockRejectedValue()
   await wrapper.vm.updateLeague()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Error: Problem Updating League - Please Try Again')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Error: Problem Updating League - Please Try Again'
+  )
 })
 
 test('Get League Details - Error', async () => {
@@ -355,7 +427,7 @@ test('Get League Details - Error', async () => {
     mocks: {
       $route: { path: '/leagues/1/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
-      created: () => { },
+      created: () => {},
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
@@ -363,7 +435,9 @@ test('Get League Details - Error', async () => {
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagueDetails()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Fetching League Details')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Fetching League Details'
+  )
 })
 
 test('Get League Details - Success', async () => {
@@ -372,12 +446,14 @@ test('Get League Details - Success', async () => {
     mocks: {
       $route: { path: '/leagues/1/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
-      created: () => { },
+      created: () => {},
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   jest.clearAllMocks()
-  axios.get.mockResolvedValue({ data: { ...sampleSingleLeague[0], description: '' } })
+  axios.get.mockResolvedValue({
+    data: { ...sampleSingleLeague[0], description: '' },
+  })
   await wrapper.vm.getLeagueDetails()
   expect(wrapper.vm.notFound).toBeFalsy()
   expect(wrapper.vm.info).toBe(sampleSingleLeague[0].description)
@@ -392,7 +468,7 @@ test('Get League Details - Not Found', async () => {
     mocks: {
       $route: { path: '/leagues/1/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },
-      created: () => { },
+      created: () => {},
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })

@@ -1,8 +1,21 @@
 <template>
   <div class="view">
+    <vue-headful
+      :title="`Munro - ${event.name || ''} Event Results`"
+      :description="
+        `Results from the ${event.name || ''} event of the ${event.league ||
+          ''} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`
+      "
+      :url="`https://munro-leagues.herokuapp.com/events/${$route.params.event}`"
+      :head="{
+        meta: { name: 'robots', content: 'all' },
+      }"
+    />
     <div v-if="eventFound">
       <h1 v-show="event" class="text-3xl font-normal font-heading">
-        <router-link class="link text-main" :to="'/leagues/'+event.league">{{ event.league || '' }}</router-link>
+        <router-link :to="'/leagues/' + event.league" class="link text-main">
+          {{ event.league || '' }}
+        </router-link>
         - {{ event.name || '' }}
       </h1>
       <div v-show="event && coursesInResults" class="card my-4">
@@ -11,8 +24,8 @@
           <button
             v-for="course in coursesInResults"
             :key="course"
+            :class="{ active: chosenCourse === course }"
             class="button inline-block"
-            :class="{'active': chosenCourse === course}"
             @click="chosenCourse = course"
           >
             {{ course }}
@@ -20,30 +33,45 @@
         </div>
       </div>
       <filter-menu @changed="filterChanged" />
-      <div v-if="filteredResults && filteredResults.length >0">
+      <div v-if="filteredResults && filteredResults.length > 0">
         <transition name="shrink">
           <table class="table mb-2">
             <thead>
               <tr>
                 <th @click="sortBy('position')">
                   <p>Pos.</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'position'" />
+                  <up-down-arrow
+                    :ascending="ascendingSort"
+                    :active="sortedBy === 'position'"
+                  />
                 </th>
                 <th @click="sortBy('name')">
                   <p>Name</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'name'" />
+                  <up-down-arrow
+                    :ascending="ascendingSort"
+                    :active="sortedBy === 'name'"
+                  />
                 </th>
                 <th @click="sortBy('age')">
                   <p>Class</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'age'" />
+                  <up-down-arrow
+                    :ascending="ascendingSort"
+                    :active="sortedBy === 'age'"
+                  />
                 </th>
                 <th class="club" @click="sortBy('club')">
                   <p>Club</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'club'" />
+                  <up-down-arrow
+                    :ascending="ascendingSort"
+                    :active="sortedBy === 'club'"
+                  />
                 </th>
                 <th @click="sortBy('time')">
                   <p>Time</p>
-                  <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'time'" />
+                  <up-down-arrow
+                    :ascending="ascendingSort"
+                    :active="sortedBy === 'time'"
+                  />
                 </th>
               </tr>
             </thead>
@@ -63,7 +91,9 @@
           </table>
         </transition>
       </div>
-      <h2 v-if="eventFound && !found" class="text-3xl font-heading">Sorry, No Results Could Be Found</h2>
+      <h2 v-if="eventFound && !found" class="text-3xl font-heading">
+        Sorry, No Results Could Be Found
+      </h2>
     </div>
     <not-found v-if="!eventFound" />
   </div>
@@ -77,9 +107,9 @@ import NotFound from '@/views/NotFound'
 
 export default {
   components: {
-    FilterMenu: FilterMenu,
-    UpDownArrow: UpDownArrow,
-    NotFound: NotFound,
+    FilterMenu,
+    UpDownArrow,
+    NotFound,
   },
 
   data: () => ({
@@ -101,44 +131,59 @@ export default {
   }),
 
   computed: {
-    resultsWithAgeClassSplit: function () {
+    resultsWithAgeClassSplit: function() {
       // Split age class into age and gender to allow easy sorting
       return this.rawResults.map(result => {
         if (result.ageClass) {
           result.gender = result.ageClass[0]
-          result.age = parseInt(result.ageClass.slice(1))
+          result.age = parseInt(result.ageClass.slice(1), 10)
         }
 
         return result
       })
     },
 
-    sortedResults: function () {
+    sortedResults: function() {
       // Sort results by preference
       return this.sort(
         this.resultsWithAgeClassSplit,
         this.sortedBy,
-        this.ascendingSort)
+        this.ascendingSort
+      )
     },
 
-    filteredResults: function () {
+    filteredResults: function() {
       // Filter results by preferences
       return this.sortedResults
         .filter(result => result.course === this.chosenCourse)
-        .filter(result => result.name.match(new RegExp(this.filterPreferences.name, 'i'))) // Filter by Name Case Insensitive
-        .filter(result => result.club.match(new RegExp(this.filterPreferences.club, 'i'))) // Filter by Club Case Insensitive
+        .filter(result =>
+          result.name.match(new RegExp(this.filterPreferences.name, 'i'))
+        ) // Filter by Name Case Insensitive
+        .filter(result =>
+          result.club.match(new RegExp(this.filterPreferences.club, 'i'))
+        ) // Filter by Club Case Insensitive
         .filter(result => {
-          if (this.filterPreferences.maxAge === 100 && this.filterPreferences.minAge === 0) return true
+          if (
+            this.filterPreferences.maxAge === 100 &&
+            this.filterPreferences.minAge === 0
+          )
+            return true
           else {
-            return this.filterPreferences.minAge <= result.age && result.age <= this.filterPreferences.maxAge
+            return (
+              this.filterPreferences.minAge <= result.age &&
+              result.age <= this.filterPreferences.maxAge
+            )
           }
         }) // If age in range
-        .filter(result => (this.filterPreferences.male && this.filterPreferences.female) ||
-          (this.filterPreferences.male && result.gender === 'M') ||
-          (this.filterPreferences.female && result.gender === 'W')) // Filter by Gender
+        .filter(
+          result =>
+            (this.filterPreferences.male && this.filterPreferences.female) ||
+            (this.filterPreferences.male && result.gender === 'M') ||
+            (this.filterPreferences.female && result.gender === 'W')
+        ) // Filter by Gender
     },
 
-    coursesInResults: function () {
+    coursesInResults: function() {
       const courses = [...new Set(this.rawResults.map(result => result.course))]
       this.setChosenCourse(courses)
       return courses
@@ -147,7 +192,7 @@ export default {
 
   // If route changes without reload (if only course parameter changes)
   watch: {
-    $route: async function () {
+    $route: async function() {
       this.rawResults = []
       await this.getResults()
       await this.getEvent()
@@ -155,39 +200,53 @@ export default {
   },
 
   // On load
-  mounted: async function () {
+  mounted: function() {
     // Fetch Data
     this.getResults()
     this.getEvent()
   },
 
   methods: {
-    getResults: function () {
+    getResults: function() {
       return axios
-        .get('/api/events/' + this.$route.params.event + '/results')
+        .get(`/api/events/${this.$route.params.event}/results`)
         .then(response => {
           if (response.data.length > 0) this.rawResults = response.data
           else this.found = false
         })
-        .catch(() => { this.found = false })
+        .catch(() => {
+          this.found = false
+        })
     },
 
-    getEvent: function () {
+    getEvent: function() {
       return axios
-        .get('/api/events/' + this.$route.params.event)
+        .get(`/api/events/${this.$route.params.event}`)
         .then(response => {
           this.event = response.data
           this.eventFound = response.data
         })
-        .catch(() => { this.eventFound = false })
+        .catch(() => {
+          this.eventFound = false
+        })
     },
 
-    sort: function (array, property, ascending = true) {
+    sort: function(array, property, ascending = true) {
       let sortFunction
       sortFunction = (a, b) => {
         if (a[property] === b[property]) return 0
-        else if (a[property] === null || a[property] === undefined || a[property] === '') return -1
-        else if (b[property] === null || b[property] === undefined || b[property] === '') return 1
+        else if (
+          a[property] === null ||
+          a[property] === undefined ||
+          a[property] === ''
+        )
+          return -1
+        else if (
+          b[property] === null ||
+          b[property] === undefined ||
+          b[property] === ''
+        )
+          return 1
         else if (a[property] < b[property]) return 1
         else return -1
       }
@@ -196,14 +255,14 @@ export default {
       else return array.sort(sortFunction).reverse()
     },
 
-    sortBy: function (sortBy) {
+    sortBy: function(sortBy) {
       // If it is a different property, make it sort ascending else change direction of sort
       if (sortBy !== this.sortedBy) this.ascendingSort = false
       else this.ascendingSort = !this.ascendingSort
       this.sortedBy = sortBy
     },
 
-    filterChanged: function (data) {
+    filterChanged: function(data) {
       // Update data of view if Filter Menu emits a change
       this.filterPreferences.name = data.name
       this.filterPreferences.club = data.club
@@ -215,27 +274,27 @@ export default {
       this.filterPreferences.female = data.female
     },
 
-    setChosenCourse: function (courses) {
+    setChosenCourse: function(courses) {
       this.chosenCourse = courses[0]
     },
 
-    twoDigits: function (number) {
-      if (number.toString().length < 2) return '0' + number.toString()
+    twoDigits: function(number) {
+      if (number.toString().length < 2) return `0${number.toString()}`
       else return number
     },
 
-    elapsedTime: function (totalTimeInSeconds) {
+    elapsedTime: function(totalTimeInSeconds) {
       if (typeof totalTimeInSeconds !== 'number') return totalTimeInSeconds
       else if (totalTimeInSeconds === 0) return ''
       const timeInMinutes = Math.floor(totalTimeInSeconds / 60)
       const timeInSeconds = Math.abs(totalTimeInSeconds % 60)
-      return this.twoDigits(timeInMinutes) + ':' + this.twoDigits(timeInSeconds)
+      return `${this.twoDigits(timeInMinutes)}:${this.twoDigits(timeInSeconds)}`
     },
   },
 }
 </script>
 
-<style  scoped>
+<style scoped lang="postcss">
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;

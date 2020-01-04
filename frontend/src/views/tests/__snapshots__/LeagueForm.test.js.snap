@@ -14,7 +14,9 @@ exports[`Creation Form - Renders Correctly 1`] = `
     <h1
       class="text-main text-3xl font-normal font-heading mb-2"
     >
+      
       Create League
+    
     </h1>
      
     <!---->
@@ -180,7 +182,9 @@ exports[`Update Form - Renders Correctly 1`] = `
     <h1
       class="text-main text-3xl font-normal font-heading mb-2"
     >
+      
       Edit League
+    
     </h1>
      
     <form>

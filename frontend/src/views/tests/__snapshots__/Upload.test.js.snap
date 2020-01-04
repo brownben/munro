@@ -14,7 +14,9 @@ exports[`Renders Correctly 1`] = `
   <h1
     class="text-main text-3xl font-normal font-heading mb-2"
   >
+    
     Upload Results
+  
   </h1>
    
   <div
@@ -175,7 +177,9 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   <h1
     class="text-main text-3xl font-normal font-heading mb-2"
   >
+    
     Upload Results
+  
   </h1>
    
   <div
@@ -321,7 +325,9 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   <button
     class="button-lg"
   >
+    
     Upload File
+  
   </button>
 </div>
 `;

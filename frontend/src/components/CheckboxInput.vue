@@ -26,11 +26,11 @@ export default {
   name: 'CheckboxInput',
 
   props: {
-    'value': {
+    value: {
       type: Boolean,
       default: false,
     },
-    'label': {
+    label: {
       type: String,
       default: '',
     },
@@ -64,7 +64,7 @@ span {
   transition: 0.3s ease-out;
 }
 
-[type="checkbox"]:checked + span {
+[type='checkbox']:checked + span {
   @apply relative inline-block w-2 h-4;
   position: relative;
   margin-left: 13px;

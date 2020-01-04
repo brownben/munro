@@ -14,7 +14,9 @@ exports[`Renders Correctly 1`] = `
   <h1
     class="text-main text-3xl font-normal font-heading mb-2"
   >
+    
     Upload Instructions
+  
   </h1>
    
   <ol>
@@ -36,7 +38,11 @@ exports[`Renders Correctly 1`] = `
      
     <li>
       
-      Enter the Event ID and the 20 digit Upload Key Provided. The event name should now be displayed. You can get the Event ID and Upload Key from your league coordinator or by emailing munro.leagues@gmail.com The Event ID will be the the form LeagueNameEventNameYYYY-MM-DD with all spaces removed
+      Enter the Event ID and the 20 digit Upload Key Provided. The event name
+      should now be displayed. You can get the Event ID and Upload Key from
+      your league coordinator or by emailing munro.leagues@gmail.com The Event
+      ID will be the the form LeagueNameEventNameYYYY-MM-DD with all spaces
+      removed
       
       <img
         alt="Upload Form with Keys Entered"
@@ -46,16 +52,21 @@ exports[`Renders Correctly 1`] = `
      
     <li>
       
-      Select your results file. This file can be an OE CSV File or SITiming Processable CSV file with semi-colon or comma delimiter. Or another semicolon/ comma delimited CSV file with the following headings, these headings can be in any order:
+      Select your results file. This file can be an OE CSV File or SITiming
+      Processable CSV file with semi-colon or comma delimiter. Or another
+      semicolon/ comma delimited CSV file with the following headings, these
+      headings can be in any order:
       
       <code>
-        Name; Age Class; Club; Course; Time; Position; Noncompetitive; Status;
+        Name; Age Class; Club; Course; Time; Position; Noncompetitive;
+        Status;
       </code>
     </li>
      
     <li>
       
-      The upload button should now appear. If you are reuploading results tick the 'Overwrite Existing Results' checkbox
+      The upload button should now appear. If you are reuploading results tick
+      the 'Overwrite Existing Results' checkbox
       
       <img
         alt="Upload Form with Upload Button Visible"
@@ -64,16 +75,28 @@ exports[`Renders Correctly 1`] = `
     </li>
      
     <li>
-      Enter the URLs of the results uploaded on other websites eg. HTML Results/ Routegadget/ Winsplits. If you forget, need to change these URLs please contact your league admin or munro.leagues@gmail.com who can update them
+      
+      Enter the URLs of the results uploaded on other websites eg. HTML
+      Results/ Routegadget/ Winsplits. If you forget, need to change these
+      URLs please contact your league admin or munro.leagues@gmail.com who can
+      update them
+    
     </li>
      
     <li>
-      Click Upload - A message should appear saying that the data has been sent. Then a message saying that the results upload is successful should appear and you will be redirected to the league page
+      
+      Click Upload - A message should appear saying that the data has been
+      sent. Then a message saying that the results upload is successful should
+      appear and you will be redirected to the league page
+    
     </li>
   </ol>
    
   <p>
-    If you need any help or wish to upload results in a different format please contact: munro.leagues@gmail.com
+    
+    If you need any help or wish to upload results in a different format
+    please contact: munro.leagues@gmail.com
+  
   </p>
 </div>
 `;

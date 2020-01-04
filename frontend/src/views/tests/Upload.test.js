@@ -156,7 +156,9 @@ test('Upload File - Success', async () => {
   expect(mockRouterPush).toHaveBeenLastCalledWith('/leagues/test')
   expect(mockAddMessage).toHaveBeenCalledTimes(2)
   expect(mockAddMessage).toHaveBeenNthCalledWith(1, 'Upload Data Sent')
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Results Uploaded Successfully')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Results Uploaded Successfully'
+  )
 })
 
 test('Upload File - Failure', async () => {

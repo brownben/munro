@@ -16,7 +16,11 @@ test('Add Message and Check it is Remove after 15s', () => {
   jest.advanceTimersByTime(15000)
   expect(messages.messages).toEqual([])
   expect(setTimeout).toHaveBeenCalledTimes(1)
-  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 15000, expect.any(Number))
+  expect(setTimeout).toHaveBeenLastCalledWith(
+    expect.any(Function),
+    15000,
+    expect.any(Number)
+  )
 })
 
 test('Add Messages', () => {
@@ -40,7 +44,11 @@ test('Add Messages and Check all are Removed after 15s', () => {
   jest.advanceTimersByTime(15000)
   expect(messages.messages).toEqual([])
   expect(setTimeout).toHaveBeenCalledTimes(4)
-  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 15000, expect.any(Number))
+  expect(setTimeout).toHaveBeenLastCalledWith(
+    expect.any(Function),
+    15000,
+    expect.any(Number)
+  )
 })
 
 test('Remove First Message', () => {

@@ -23,19 +23,23 @@ test('File Change - Files', () => {
     },
     stubs: ['router-link', 'vue-headful'],
   })
-  wrapper.vm.fileChange({ target: { files: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] } })
+  wrapper.vm.fileChange({
+    target: { files: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
+  })
   expect(wrapper.vm.fileName).toBe('a')
   expect(mockReadFile).toHaveBeenCalledTimes(1)
   expect(mockReadFile).toHaveBeenLastCalledWith({ name: 'a' })
   mockReadFile.mockClear()
-  wrapper.vm.fileChange({ dataTransfer: { files: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] } })
+  wrapper.vm.fileChange({
+    dataTransfer: { files: [{ name: 'a' }, { name: 'b' }, { name: 'c' }] },
+  })
   expect(wrapper.vm.fileName).toBe('a')
   expect(mockReadFile).toHaveBeenCalledTimes(1)
   expect(mockReadFile).toHaveBeenLastCalledWith({ name: 'a' })
 })
 
 class mockFileReader {
-  readAsText () { }
+  readAsText() {}
 }
 
 test('Read File', () => {

@@ -24,7 +24,7 @@ test('Shows when LocalStorage is Empty', () => {
   expect(wrapper.find('p').isVisible()).toBeTruthy()
 })
 
-test('Doesn\'t show when LocalStorage is has Correct Value', () => {
+test("Doesn't show when LocalStorage is has Correct Value", () => {
   localStorage.setItem('cookies', 'accepted')
   expect(localStorage.getItem('cookies')).toBe('accepted')
   const wrapper = mount(CookieDialog)
@@ -40,7 +40,11 @@ test('Shows when LocalStorage is has Incorrect Value', () => {
 test('Shows Correct Message', () => {
   const wrapper = mount(CookieDialog)
   expect(wrapper.contains('p')).toBeTruthy()
-  expect(wrapper.find('p').text()).toBe('This site uses Cookies and Local Storage in order to function correctly. By using this site you consent to the use of Cookies and Local Storage.')
+  expect(wrapper.find('p').text()).toBe(
+    `This site uses Cookies and Local Storage in order to function
+        correctly. By using this site you consent to the use of Cookies and
+        Local Storage.`
+  )
 })
 
 test('Closes When Clicked', () => {
@@ -49,4 +53,3 @@ test('Closes When Clicked', () => {
   wrapper.find('.card-color').trigger('click')
   expect(wrapper.findAll('.card-color').length).toBe(0)
 })
-

@@ -9,10 +9,10 @@
   <transition name="slide">
     <div v-if="show" class="fixed w-full p-3 bottom-0">
       <div class="card-color z-50" @click="allowCookies">
-        <p
-          class="mr-12"
-        >
-          This site uses Cookies and Local Storage in order to function correctly. By using this site you consent to the use of Cookies and Local Storage.
+        <p class="mr-12">
+          This site uses Cookies and Local Storage in order to function
+          correctly. By using this site you consent to the use of Cookies and
+          Local Storage.
         </p>
         <svg class="fill-current h-6 absolute right-0 mr-8" viewBox="0 0 24 24">
           <path
@@ -30,12 +30,12 @@ export default {
 
   data: () => ({ show: Boolean }),
 
-  created: function () {
-    this.show = (localStorage.getItem('cookies') !== 'accepted')
+  created: function() {
+    this.show = localStorage.getItem('cookies') !== 'accepted'
   },
 
   methods: {
-    allowCookies: function () {
+    allowCookies: function() {
       this.show = false
       localStorage.setItem('cookies', 'accepted')
     },
@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style scoped>
 .slide-enter-active,
 .slide-leave-active {
   transition: 1s;

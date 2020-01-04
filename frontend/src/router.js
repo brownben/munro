@@ -166,14 +166,17 @@ const router = new Router({
     },
     {
       path: '/logout',
-      beforeEnter: function (to, from, next) {
+      beforeEnter: function(to, from, next) {
         // Logout then redirect to the home page
-        router.app.$auth.logout()
+        router.app.$auth
+          .logout()
           .then(() => {
             next('/')
             messageStore.addMessage('Goodbye - Logged Out Successfully')
           })
-          .catch(() => messageStore.addMessage('Problem Logging Out - Please Try Again'))
+          .catch(() =>
+            messageStore.addMessage('Problem Logging Out - Please Try Again')
+          )
       },
     },
     {
@@ -189,7 +192,7 @@ const router = new Router({
 
 export default router
 
-function requireAuthentication (to, from, next) {
+function requireAuthentication(to, from, next) {
   // Check they are logged in before going to restricted route, if they are not redirect
   const currentUser = router.app.$auth.user
   if (!currentUser) {
@@ -197,6 +200,5 @@ function requireAuthentication (to, from, next) {
       path: '/login',
       query: { redirect: to.fullPath },
     })
-  }
-  else next()
+  } else next()
 }

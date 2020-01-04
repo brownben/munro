@@ -5,7 +5,8 @@ exports[`Renders Correctly 1`] = `
   class="view"
 >
   <vue-headful-stub
-    description="Event Information and Results for the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    description="Event Information and Results for the
+         league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
     title="Munro - "
     url="https://munro-leagues.herokuapp.com/leagues/"
@@ -31,7 +32,9 @@ exports[`Renders Correctly 1`] = `
     <h2
       class="font-heading text-xl my-1"
     >
+      
       200m
+    
     </h2>
      
     <!---->
@@ -70,7 +73,9 @@ exports[`Renders Correctly 1`] = `
     <h2
       class="font-heading text-xl my-1"
     >
+      
       Longniddry
+    
     </h2>
      
     <!---->
@@ -86,9 +91,7 @@ exports[`Renders Correctly 1`] = `
     <p>
       
       On 18/04/2018
-      
-        organised by ELO
-      
+      organised by ELO
     </p>
      
     <!---->
@@ -103,7 +106,9 @@ exports[`Renders Correctly 1`] = `
     <h2
       class="font-heading text-xl my-1"
     >
+      
       South Edinburgh
+    
     </h2>
      
     <!---->
@@ -119,9 +124,7 @@ exports[`Renders Correctly 1`] = `
     <p>
       
       On 25/04/2018
-      
-        organised by INT
-      
+      organised by INT
     </p>
      
     <!---->

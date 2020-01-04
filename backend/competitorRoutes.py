@@ -20,6 +20,7 @@ competitorMergeParser.add_argument(
 competitorMergeParser.add_argument(
     'competitorMerge', help='This field cannot be blank', required=True)
 
+
 class Competitors(Resource):
     def get(self):
         return competitors.getAllCompetitors()
@@ -62,13 +63,15 @@ class Competitor(Resource):
         competitors.deleteCompetitor(id)
         return {'message': 'Competitor - {} was Deleted'.format(competitor['name'])}
 
+
 class CompetitorMerge(Resource):
     @requireAuthentication
     def post(self):
         data = competitorMergeParser.parse_args()
 
         try:
-            competitors.mergeCompetitors(data['competitorKeep'], data['competitorMerge'])
+            competitors.mergeCompetitors(
+                data['competitorKeep'], data['competitorMerge'])
             return {'message': 'Competitors Merged Successfully'}
         except:
             return {'message': 'Error: Merging Competitors - Please Try Again'}, 500

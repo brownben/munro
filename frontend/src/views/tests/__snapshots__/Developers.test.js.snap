@@ -27,7 +27,12 @@ exports[`Renders Correctly 1`] = `
     </h2>
      
     <p>
-      All methods use a standard HTTP GET request. The event id is made by combining the league name, event name and date and removing all spaces, it is avaliable for the league admin to view. Dates are in the form YYYY-MM-DD
+      
+      All methods use a standard HTTP GET request. The event id is made by
+      combining the league name, event name and date and removing all spaces,
+      it is avaliable for the league admin to view. Dates are in the form
+      YYYY-MM-DD
+    
     </p>
      
     <h4>
@@ -137,11 +142,16 @@ exports[`Renders Correctly 1`] = `
     </h2>
      
     <p>
-      Currently there are two pages designed for embedding in Iframes. Place in an IFrame like:
+      
+      Currently there are two pages designed for embedding in Iframes. Place
+      in an IFrame like:
+    
     </p>
      
     <code>
-      &lt;iframe src="https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope 2018/events"&gt;&lt;/iframe&gt;
+      &lt;iframe
+      src="https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope
+      2018/events"&gt;&lt;/iframe&gt;
     </code>
      
     <h4>
@@ -149,7 +159,9 @@ exports[`Renders Correctly 1`] = `
     </h4>
      
     <p>
+      
       Contains a list of all events in the league and links to the results
+    
     </p>
      
     <h4>

@@ -1,0 +1,12 @@
+./build/
+./config/
+./dist/
+**/coverage/**
+**/node-modules/**
+**/__snapshots__/**
+**/package-lock.json
+**/.editorconfig
+**/.*ignore
+**/*.txt
+**/*.png
+**/*.svg

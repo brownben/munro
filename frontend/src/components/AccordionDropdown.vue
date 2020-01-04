@@ -7,12 +7,18 @@
 -->
 
 <template>
-  <div class="rounded-tl-lg rounded-br-lg shadow-md mt-3 mb-6 accordion bg-white">
+  <div
+    class="rounded-tl-lg rounded-br-lg shadow-md mt-3 mb-6 accordion bg-white"
+  >
     <div class="accordion-head" @click="accordionOpen = !accordionOpen">
-      <h2 class="font-heading text-main text-2xl p-2 px-3 inline-block select-none">{{ title }}</h2>
+      <h2
+        class="font-heading text-main text-2xl p-2 px-3 inline-block select-none"
+      >
+        {{ title }}
+      </h2>
       <svg
+        :class="{ rotate: accordionOpen }"
         class="fill-current text-main h-12 float-right p-2"
-        :class="{rotate:accordionOpen}"
         viewBox="0 0 24 24"
       >
         <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
@@ -30,7 +36,7 @@
 <script>
 export default {
   props: {
-    'title': {
+    title: {
       type: String,
       default: 'Title',
     },
@@ -41,7 +47,7 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style scoped>
 svg {
   transition: 0.4s;
 }

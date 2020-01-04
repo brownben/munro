@@ -17,5 +17,7 @@ test('Renders Correctly', () => {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
-  expect(wrapper.find('h1').text()).toBe('Sorry We Can\'t Find What You Are Looking For')
+  expect(wrapper.find('h1').text()).toBe(
+    "Sorry We Can't Find What You Are Looking For"
+  )
 })

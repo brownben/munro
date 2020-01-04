@@ -7,19 +7,21 @@
 <template>
   <div class="view">
     <vue-headful
+      :head="{
+        meta: { name: 'robots', content: 'noindex' },
+      }"
       title="Munro - Merge Competitors"
       description
-      :head="{
-        'meta': {name: 'robots', content:'noindex'},
-      }"
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">Merge Competitors</h1>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+      Merge Competitors
+    </h1>
     <form @submit.prevent="merge">
       <dropdown-input
         v-model="league"
-        label="League:"
         :list="leagues.map(league => league.name)"
         :include-blank="true"
+        label="League:"
       />
       <dropdown-input
         v-model="course"
@@ -29,13 +31,35 @@
       />
       <dropdown-input
         v-model="competitorKeep"
-        :list="competitorsForLeague.map(competitor => competitor.id+' - '+competitor.name+' - '+competitor.ageClass+' - '+competitor.club)"
+        :list="
+          competitorsForLeague.map(
+            competitor =>
+              competitor.id +
+              ' - ' +
+              competitor.name +
+              ' - ' +
+              competitor.ageClass +
+              ' - ' +
+              competitor.club
+          )
+        "
         :include-blank="true"
         label="Competitor to Keep:"
       />
       <dropdown-input
         v-model="competitorMerge"
-        :list="competitorsForLeague.map(competitor => competitor.id+' - '+competitor.name+' - '+competitor.ageClass+' - '+competitor.club)"
+        :list="
+          competitorsForLeague.map(
+            competitor =>
+              competitor.id +
+              ' - ' +
+              competitor.name +
+              ' - ' +
+              competitor.ageClass +
+              ' - ' +
+              competitor.club
+          )
+        "
         :include-blank="true"
         label="Competitor to be Merged:"
       />
@@ -50,7 +74,7 @@ import DropdownInput from '@/components/DropdownInput'
 
 export default {
   components: {
-    DropdownInput: DropdownInput,
+    DropdownInput,
   },
 
   data: () => ({
@@ -63,68 +87,86 @@ export default {
   }),
 
   computed: {
-    competitorsForLeague: function () {
-      const filtered = this.competitors.filter(competitor => competitor.league === this.league && competitor.course === this.course)
+    competitorsForLeague: function() {
+      const filtered = this.competitors.filter(
+        competitor =>
+          competitor.league === this.league && competitor.course === this.course
+      )
       return filtered.sort((a, b) => a.name > b.name)
     },
 
-    coursesInLeague: function () {
-      const selectedLeague = this.leagues.filter(league => league.name === this.league)
+    coursesInLeague: function() {
+      const selectedLeague = this.leagues.filter(
+        league => league.name === this.league
+      )
       if (selectedLeague.length > 0) return selectedLeague[0].courses
       else return []
     },
   },
 
-  mounted: async function () {
-    await this.getCompetitors()
-    await this.getLeagues()
+  mounted: function() {
+    this.getCompetitors()
+    this.getLeagues()
   },
 
   methods: {
-    getCompetitors: function () {
-      return axios.get('/api/competitors')
-        .then(response => { this.competitors = response.data })
+    getCompetitors: function() {
+      return axios
+        .get('/api/competitors')
+        .then(response => {
+          this.competitors = response.data
+        })
         .catch(() => this.$messages.addMessage('Problem Fetching Competitors'))
     },
 
-    getLeagues: function () {
-      return axios.get('/api/leagues')
-        .then(response => { this.leagues = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching League Details'))
+    getLeagues: function() {
+      return axios
+        .get('/api/leagues')
+        .then(response => {
+          this.leagues = response.data
+        })
+        .catch(() =>
+          this.$messages.addMessage('Problem Fetching League Details')
+        )
     },
 
-    validateForm: function () {
+    validateForm: function() {
       return (
         this.competitorMerge !== this.competitorKeep &&
         this.competitorMerge !== '' &&
-        this.competitorKeep !== '')
+        this.competitorKeep !== ''
+      )
     },
 
-    merge: function () {
+    merge: function() {
       if (this.validateForm()) {
-        return axios.post('/api/competitors/merge', {
-          competitorKeep: this.competitorKeep.split(' -')[0],
-          competitorMerge: this.competitorMerge.split(' -')[0],
-        })
+        return axios
+          .post('/api/competitors/merge', {
+            competitorKeep: this.competitorKeep.split(' -')[0],
+            competitorMerge: this.competitorMerge.split(' -')[0],
+          })
           .then(response => this.returnToCompetitorsPage(response))
-          .catch(error => this.$messages.addMessage(error.response.data.message))
-      }
-      else this.$messages.addMessage('The Competitors Selected are the Same')
+          .catch(error =>
+            this.$messages.addMessage(error.response.data.message)
+          )
+      } else this.$messages.addMessage('The Competitors Selected are the Same')
     },
 
-    returnToCompetitorsPage: function (response) {
+    returnToCompetitorsPage: function(response) {
       // Go to league page after successful update/ creation
       this.$messages.addMessage(response.data.message)
       this.$router.push('/competitors')
     },
 
-    competitorTransformForSelect: function (competitor) {
-      if (competitor.club && competitor.ageClass) return competitor.name + ' (' + competitor.ageClass + ', ' + competitor.club + ') [' + competitor.id + ']'
-      else if (competitor.club) return competitor.name + ' (' + competitor.club + ') [' + competitor.id + ']'
-      else if (competitor.ageClass) return competitor.name + ' (' + competitor.ageClass + ') [' + competitor.id + ']'
-      else return competitor.name + ' [' + competitor.id + ']'
+    competitorTransformForSelect: function(competitor) {
+      if (competitor.club && competitor.ageClass)
+        return `${competitor.name} (${competitor.ageClass}, ${competitor.club}) [${competitor.id}]`
+      else if (competitor.club)
+        return `${competitor.name} (${competitor.club}) [${competitor.id}]`
+      else if (competitor.ageClass)
+        return `${competitor.name} (${competitor.ageClass}) [${competitor.id}]`
+      else return `${competitor.name} [${competitor.id}]`
     },
   },
 }
 </script>
-

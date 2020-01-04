@@ -44,7 +44,9 @@ test('Show Message on When Redirected', () => {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Please Login to Access that Page')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Please Login to Access that Page'
+  )
 })
 
 test('Blank Fields Works', () => {
@@ -95,7 +97,7 @@ test('Check Validation Works', () => {
 
 test('Send Login Function - Successful', async () => {
   const mockAddMessageFunction = jest.fn()
-  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello' } })
+  auth.login.mockResolvedValue({ data: { loggedIn: true, message: 'Hello' } })
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
@@ -109,7 +111,7 @@ test('Send Login Function - Successful', async () => {
   wrapper.setMethods({ blankFields: mockBlankFields })
   // Calls Auth Login Functions
   wrapper.setData({ username: 'username', password: 'password' })
-  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello' } })
+  auth.login.mockResolvedValue({ data: { loggedIn: true, message: 'Hello' } })
 
   await wrapper.vm.sendLoginRequest()
   expect(auth.login).toHaveBeenCalledTimes(1)
@@ -137,7 +139,9 @@ test('Send Login Function - Validation Fails', () => {
   wrapper.vm.sendLoginRequest()
   expect(blankFieldsSpy).toHaveBeenCalledTimes(0)
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem: Username or Password were left Blank')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem: Username or Password were left Blank'
+  )
 })
 
 test('Send Login Function - Error', () => {
@@ -162,13 +166,17 @@ test('Send Login Function - Error', () => {
     // Expect Correct Function on Response
     expect(blankFieldsSpy).toHaveBeenCalledTimes(0)
     expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-    expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Error: Problem Logging In - Please Try Again')
+    expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+      'Error: Problem Logging In - Please Try Again'
+    )
   })
 })
 
 test('Redirect on Successful Login', async () => {
   const mockAddMessageFunction = jest.fn()
-  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello User' } })
+  auth.login.mockResolvedValue({
+    data: { loggedIn: true, message: 'Hello User' },
+  })
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: '/other' } },
@@ -189,7 +197,9 @@ test('Redirect on Successful Login', async () => {
 
 test('Redirect on Successful Login - If No Path Specified', async () => {
   const mockAddMessageFunction = jest.fn()
-  auth.login.mockResolvedValue({ data: { 'loggedIn': true, 'message': 'Hello User' } })
+  auth.login.mockResolvedValue({
+    data: { loggedIn: true, message: 'Hello User' },
+  })
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },
@@ -207,7 +217,7 @@ test('Redirect on Successful Login - If No Path Specified', async () => {
   expect(wrapper.vm.$router.replace).toHaveBeenLastCalledWith('/')
 })
 
-test('Don\'t Redirect on Failed Login', async () => {
+test("Don't Redirect on Failed Login", async () => {
   const mockAddMessageFunction = jest.fn()
   auth.login.mockResolvedValue(false)
   const wrapper = mount(Login, {
@@ -226,7 +236,7 @@ test('Don\'t Redirect on Failed Login', async () => {
   expect(wrapper.vm.$router.replace).toHaveBeenCalledTimes(0)
 })
 
-test('Redirect if Already Logged In', async () => {
+test('Redirect if Already Logged In', () => {
   const wrapper = mount(Login, {
     mocks: {
       $route: { query: { redirect: false } },

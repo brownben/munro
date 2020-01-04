@@ -23,7 +23,9 @@ exports[`Renders Correctly 1`] = `
     <h2
       class="text-2xl font-heading my-2"
     >
+      
       Justice - 200m
+    
     </h2>
      
     <!---->
@@ -42,13 +44,22 @@ exports[`Renders Correctly 1`] = `
     </p>
      
     <span>
+      <router-link-stub
+        class="button"
+        to="/events/Justice200m/results"
+      >
+        
+        Results
+      
+      </router-link-stub>
+       
       <a
         class="button"
         href="w"
         rel="noopener noreferrer"
         target="_blank"
       >
-        Results
+        HTML Results
       </a>
        
       <a
@@ -76,7 +87,9 @@ exports[`Renders Correctly 1`] = `
     <h2
       class="text-2xl font-heading my-2"
     >
+      
       Sprintelope - Longniddry
+    
     </h2>
      
     <p>
@@ -90,6 +103,15 @@ exports[`Renders Correctly 1`] = `
     <!---->
      
     <span>
+      <router-link-stub
+        class="button"
+        to="/events/SprintelopeLongniddry2018-04-18/results"
+      >
+        
+        Results
+      
+      </router-link-stub>
+       
       <!---->
        
       <!---->
@@ -103,7 +125,9 @@ exports[`Renders Correctly 1`] = `
     <h2
       class="text-2xl font-heading my-2"
     >
+      
       Sprintelope - South Edinburgh
+    
     </h2>
      
     <p>
@@ -117,6 +141,15 @@ exports[`Renders Correctly 1`] = `
     <!---->
      
     <span>
+      <router-link-stub
+        class="button"
+        to="/events/SprintelopeSouthEdinburgh2018-04-25/results"
+      >
+        
+        Results
+      
+      </router-link-stub>
+       
       <!---->
        
       <!---->

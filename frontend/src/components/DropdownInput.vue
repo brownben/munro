@@ -9,13 +9,17 @@
   <div class="dropdown-input relative top--4">
     <label
       class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
-    >{{ label }}</label>
+      >{{ label }}</label
+    >
     <div
       class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
       @click="toggle"
     >
       <p class="leading-normal h-6 truncate">{{ currentValue }}</p>
-      <svg class="h-8 text-main float-right fill-current mr--3 mt--68/10" viewBox="0 0 24 24">
+      <svg
+        class="h-8 text-main float-right fill-current mr--3 mt--68/10"
+        viewBox="0 0 24 24"
+      >
         <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
         <path d="M0-.75h24v24H0z" fill="none" />
       </svg>
@@ -43,21 +47,21 @@ export default {
   name: 'DropdownInput',
 
   props: {
-    'label': {
+    label: {
       type: String,
       default: '',
     },
-    'value': {
+    value: {
       type: String,
       default: '',
     },
-    'list': {
+    list: {
       type: Array,
       default: () => [],
     },
   },
 
-  data: function () {
+  data: function() {
     return {
       open: false,
       currentValue: this.value,
@@ -65,19 +69,19 @@ export default {
   },
 
   watch: {
-    value: function (value) {
+    value: function(value) {
       this.currentValue = value
     },
   },
 
   methods: {
-    changeSelection: function (value) {
+    changeSelection: function(value) {
       this.open = false
       this.currentValue = value
       this.$emit('input', value)
     },
 
-    toggle: function () {
+    toggle: function() {
       this.open = !this.open
       if (this.open) this.$emit('opened')
     },
@@ -85,7 +89,7 @@ export default {
 }
 </script>
 
-<style scoped >
+<style scoped>
 .open-enter-active,
 .open-leave-active {
   transition: 0.3s transform;

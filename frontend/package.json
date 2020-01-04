@@ -1,14 +1,36 @@
 {
   "name": "munro",
   "version": "1.0.0",
-  "private": true,
   "description": "Fast and Easy Results for Sporting Leagues",
+  "keywords": [
+    "sports",
+    "sporting",
+    "result",
+    "results",
+    "leagues",
+    "league",
+    "orienteering",
+    "sports-league",
+    "orienteering-league",
+    "orienteering-results"
+  ],
   "author": "brownben <9870007+brownben@users.noreply.github.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brownben/munro.git"
+  },
+  "license": "MIT",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --modern",
-    "lint": "vue-cli-service lint",
-    "test": "vue-cli-service test:unit -i"
+    "test": "vue-cli-service test:unit -i",
+    "lint": "npm run prettier:fix && npm run eslint:fix",
+    "check": "npm run prettier:check && npm run eslint:check",
+    "eslint:check": "vue-cli-service lint --no-fix",
+    "eslint:fix": "vue-cli-service lint",
+    "prettier:check": "prettier **",
+    "prettier:fix": "prettier --write ** "
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -17,7 +39,7 @@
     "register-service-worker": "^1.6.2",
     "save-dev": "0.0.1-security",
     "vue": "^2.6.11",
-    "vue-headful": "^2.0.1",
+    "vue-headful": "^2.1.0",
     "vue-router": "^3.1.3"
   },
   "devDependencies": {
@@ -27,22 +49,19 @@
     "@vue/cli-plugin-pwa": "^4.1.2",
     "@vue/cli-plugin-unit-jest": "^4.1.2",
     "@vue/cli-service": "^4.1.2",
-    "@vue/eslint-config-standard": "^5.0.1",
-    "@vue/test-utils": "^1.0.0-beta.29",
+    "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.3",
     "babel-jest": "^23.6.0",
     "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-jest": "^23.1.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "eslint-plugin-vue": "^6.1.1",
+    "eslint-config-alloy": "^3.5.0",
+    "eslint-plugin-vue": "^6.1.2",
     "jest-localstorage-mock": "^2.4.0",
     "postcss-import": "^12.0.1",
     "postcss-url": "^8.0.0",
+    "prettier": "1.19.1",
     "vue-cli-plugin-tailwind": "^1.1.0",
+    "vue-eslint-parser": "^7.0.0",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

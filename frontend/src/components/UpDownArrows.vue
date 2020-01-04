@@ -6,10 +6,10 @@
 
 <template>
   <div class="up-down-arrow">
-    <svg :class="{ active: (active && !ascending) }" viewBox="0 0 24 24">
+    <svg :class="{ active: active && !ascending }" viewBox="0 0 24 24">
       <path d="M7 14l5-5 5 5z" />
     </svg>
-    <svg :class="{ active: (active && ascending) }" viewBox="0 0 24 24">
+    <svg :class="{ active: active && ascending }" viewBox="0 0 24 24">
       <path d="M7 10l5 5 5-5z" />
     </svg>
   </div>
@@ -20,12 +20,12 @@ export default {
   name: 'UpDownArrows',
 
   props: {
-    'active': {
+    active: {
       type: Boolean,
       default: false,
     },
 
-    'ascending': {
+    ascending: {
       type: Boolean,
       default: false,
     },
@@ -33,7 +33,7 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style scoped>
 .up-down-arrow {
   height: 20px;
   @apply inline-block;

@@ -11,6 +11,8 @@ exports[`Renders Correctly 1`] = `
       class="font-heading text-main text-2xl p-2 px-3 inline-block select-none"
     >
       
+      
+    
     </h2>
      
     <svg

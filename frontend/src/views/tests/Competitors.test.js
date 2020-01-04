@@ -38,11 +38,27 @@ test('Get Competitors - Success', async () => {
     stubs: ['router-link', 'vue-headful'],
   })
   flushPromises()
-  axios.get.mockResolvedValue({ data: [{ name: 1, league: 'a' }, { name: 2, league: 'a' }, { name: 3, league: 'a' }, { name: 4, league: 'b' }] })
+  axios.get.mockResolvedValue({
+    data: [
+      { name: 1, league: 'a' },
+      { name: 2, league: 'a' },
+      { name: 3, league: 'a' },
+      { name: 4, league: 'b' },
+    ],
+  })
   await wrapper.vm.getCompetitors()
-  expect(wrapper.vm.competitors).toEqual([{ name: 1, league: 'a' }, { name: 2, league: 'a' }, { name: 3, league: 'a' }, { name: 4, league: 'b' }])
+  expect(wrapper.vm.competitors).toEqual([
+    { name: 1, league: 'a' },
+    { name: 2, league: 'a' },
+    { name: 3, league: 'a' },
+    { name: 4, league: 'b' },
+  ])
   wrapper.setData({ league: 'a' })
-  expect(wrapper.vm.filteredCompetitors).toEqual([{ name: 1, league: 'a' }, { name: 2, league: 'a' }, { name: 3, league: 'a' }])
+  expect(wrapper.vm.filteredCompetitors).toEqual([
+    { name: 1, league: 'a' },
+    { name: 2, league: 'a' },
+    { name: 3, league: 'a' },
+  ])
 })
 
 test('Renders Error', async () => {
@@ -58,7 +74,9 @@ test('Renders Error', async () => {
   axios.get.mockRejectedValue()
   await wrapper.vm.getCompetitors()
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Fetching Competitor Details')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Fetching Competitor Details'
+  )
 })
 
 test('Change Sort Order', () => {
@@ -84,9 +102,17 @@ test('Sort', () => {
     },
     stubs: ['router-link', 'vue-headful'],
   })
-  expect(wrapper.vm.sort([{ 'a': 3 }, { 'a': 1 }, { 'a': 2 }], 'a', false)).toEqual([{ 'a': 1 }, { 'a': 2 }, { 'a': 3 }])
-  expect(wrapper.vm.sort([{ 'a': 1 }, { 'a': 3 }, { 'a': 1 }, { 'a': 2 }], 'a', true)).toEqual([{ 'a': 3 }, { 'a': 2 }, { 'a': 1 }, { 'a': 1 }])
-  expect(wrapper.vm.sort([{ 'a': 1 }, { 'a': 3 }, { 'a': 1 }, { 'a': 2 }], 'a')).toEqual([{ 'a': 3 }, { 'a': 2 }, { 'a': 1 }, { 'a': 1 }])
+  expect(wrapper.vm.sort([{ a: 3 }, { a: 1 }, { a: 2 }], 'a', false)).toEqual([
+    { a: 1 },
+    { a: 2 },
+    { a: 3 },
+  ])
+  expect(
+    wrapper.vm.sort([{ a: 1 }, { a: 3 }, { a: 1 }, { a: 2 }], 'a', true)
+  ).toEqual([{ a: 3 }, { a: 2 }, { a: 1 }, { a: 1 }])
+  expect(
+    wrapper.vm.sort([{ a: 1 }, { a: 3 }, { a: 1 }, { a: 2 }], 'a')
+  ).toEqual([{ a: 3 }, { a: 2 }, { a: 1 }, { a: 1 }])
 })
 
 test('Get Leagues - Processes Response Correctly', async () => {
@@ -106,9 +132,17 @@ test('Get Leagues - Processes Response Correctly', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
 
-  axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
+  axios.get.mockResolvedValue({
+    data: [
+      { league: 'a', property: 3 },
+      { league: '2', another: 4 },
+    ],
+  })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
+  expect(wrapper.vm.leagues).toEqual([
+    { league: 'a', property: 3 },
+    { league: '2', another: 4 },
+  ])
 })
 
 test('Get Leagues - Shows Message on Error', async () => {
@@ -124,5 +158,7 @@ test('Get Leagues - Shows Message on Error', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Fetching List of Leagues')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Fetching List of Leagues'
+  )
 })

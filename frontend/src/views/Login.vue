@@ -7,11 +7,11 @@
 <template>
   <div class="view">
     <vue-headful
+      :head="{
+        meta: { name: 'robots', content: 'noindex' },
+      }"
       title="Munro - Login"
       description
-      :head="{
-        'meta': {name: 'robots', content:'noindex'},
-      }"
     />
     <h1 class="text-main text-2xl font-heading my-2">Admin Login</h1>
     <form @submit.prevent="sendLoginRequest">
@@ -38,45 +38,53 @@ export default {
     TextInput,
   },
 
-  data () {
+  data() {
     return {
       username: '',
       password: '',
     }
   },
 
-  mounted: function () {
+  mounted: function() {
     if (this.$auth.user) {
       this.$messages.addMessage('You Are Already Logged In')
       this.$router.push('/')
     }
     this.blankFields()
-    if (this.$route.query.redirect) this.$messages.addMessage('Please Login to Access that Page')
+    if (this.$route.query.redirect)
+      this.$messages.addMessage('Please Login to Access that Page')
   },
 
   methods: {
-    blankFields: function () {
+    blankFields: function() {
       this.username = ''
       this.password = ''
     },
 
-    validateLogin: function () {
-      return (this.username !== '' && this.password !== '')
+    validateLogin: function() {
+      return this.username !== '' && this.password !== ''
     },
 
-    sendLoginRequest: function () {
+    sendLoginRequest: function() {
       if (this.validateLogin()) {
-        return auth.login(this.username, this.password)
+        return auth
+          .login(this.username, this.password)
           .then(response => {
-            if (response) this.$router.replace(this.$route.query.redirect || '/')
+            if (response)
+              this.$router.replace(this.$route.query.redirect || '/')
             this.$messages.addMessage('Hello')
             this.blankFields()
           })
-          .catch(() => this.$messages.addMessage('Error: Problem Logging In - Please Try Again'))
-      }
-      else this.$messages.addMessage('Problem: Username or Password were left Blank')
+          .catch(() =>
+            this.$messages.addMessage(
+              'Error: Problem Logging In - Please Try Again'
+            )
+          )
+      } else
+        this.$messages.addMessage(
+          'Problem: Username or Password were left Blank'
+        )
     },
   },
 }
-
 </script>

@@ -8,7 +8,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
     description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
     title="Munro -  -  Results"
-    url="https://munro-leagues.herokuapp.com/leagues/results/"
+    url="https://munro-leagues.herokuapp.com/leagues//results/"
   />
    
   <h1
@@ -19,8 +19,6 @@ exports[`Mobile Results Dropdown Works 1`] = `
       to="/leagues/"
     >
       
-      
-    
     </router-link-stub>
     
     - 
@@ -239,7 +237,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
     description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
     title="Munro -  -  Results"
-    url="https://munro-leagues.herokuapp.com/leagues/results/"
+    url="https://munro-leagues.herokuapp.com/leagues//results/"
   />
    
   <h1
@@ -250,8 +248,6 @@ exports[`Mobile Results Dropdown Works 2`] = `
       to="/leagues/"
     >
       
-      
-    
     </router-link-stub>
     
     - 
@@ -507,7 +503,7 @@ exports[`Renders Correctly + Fetches Data 1`] = `
     description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
     head="[object Object]"
     title="Munro -  -  Results"
-    url="https://munro-leagues.herokuapp.com/leagues/results/"
+    url="https://munro-leagues.herokuapp.com/leagues//results/"
   />
    
   <h1
@@ -518,8 +514,6 @@ exports[`Renders Correctly + Fetches Data 1`] = `
       to="/leagues/"
     >
       
-      
-    
     </router-link-stub>
     
     - 
@@ -797,17 +791,13 @@ exports[`Renders Correctly + Fetches Data 1`] = `
         class="button"
         to="/leagues//results/Long"
       >
-        
         Long
-      
       </router-link-stub>
       <router-link-stub
         class="button"
         to="/leagues//results/Short"
       >
-        
         Short
-      
       </router-link-stub>
     </div>
   </div>

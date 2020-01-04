@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/static/precache-manifest.cd24fc9fd26cac3da3d53d13eb9d02a7.js"
+  "/static/precache-manifest.49513c334c4f06000939c89adf4f84f1.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "munro"});
@@ -33,5 +33,5 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerRoute(/^https:\/\/munro-leagues.herokuapp.com\/api\/.*/, new workbox.strategies.NetworkFirst({ "cacheName":"munro-api-cache","networkTimeoutSeconds":10, plugins: [new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');
-workbox.routing.registerRoute(/^https:\/\/munro-leagues.herokuapp.com\/$/, new workbox.strategies.NetworkFirst({ "cacheName":"munro-index-cache","networkTimeoutSeconds":10, plugins: [new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');
+workbox.routing.registerRoute(/^https:\/\/munro-leagues\.herokuapp\.com\/api\/.*/, new workbox.strategies.NetworkFirst({ "cacheName":"munro-api-cache","networkTimeoutSeconds":10, plugins: [new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');
+workbox.routing.registerRoute(/^https:\/\/munro-leagues\.herokuapp\.com\/$/, new workbox.strategies.NetworkFirst({ "cacheName":"munro-index-cache","networkTimeoutSeconds":10, plugins: [new workbox.cacheableResponse.Plugin({ statuses: [ 0, 200 ] })] }), 'GET');

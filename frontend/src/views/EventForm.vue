@@ -18,23 +18,33 @@
   <div class="view">
     <vue-headful
       v-if="create"
+      :head="{
+        meta: { name: 'robots', content: 'noindex' },
+      }"
       title="Munro - Create Event"
       description
-      :head="{
-        'meta': {name: 'robots', content:'noindex'},
-      }"
     />
     <vue-headful
       v-else
+      :head="{
+        meta: { name: 'robots', content: 'noindex' },
+      }"
       title="Munro - Edit Event"
       description
-      :head="{
-        'meta': {name: 'robots', content:'noindex'},
-      }"
     />
     <div v-if="!notFound">
-      <h1 v-if="create" class="text-main text-3xl font-normal font-heading mb-2">Create Event</h1>
-      <h1 v-if="!create" class="text-main text-3xl font-normal font-heading mb-2">Edit Event</h1>
+      <h1
+        v-if="create"
+        class="text-main text-3xl font-normal font-heading mb-2"
+      >
+        Create Event
+      </h1>
+      <h1
+        v-if="!create"
+        class="text-main text-3xl font-normal font-heading mb-2"
+      >
+        Edit Event
+      </h1>
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
       <form @submit.prevent="submit">
         <text-input v-model.trim="name" label="Name:" />
@@ -42,8 +52,16 @@
         <text-input v-model.trim="organiser" label="Club/ Organiser:" />
         <text-input v-model.trim="website" label="Website: (URL)" type="url" />
         <text-input v-model.trim="results" label="Results: (URL)" type="url" />
-        <text-input v-model.trim="winsplits" label="Winsplits: (URL)" type="url" />
-        <text-input v-model.trim="routegadget" label="Routegadget: (URL)" type="url" />
+        <text-input
+          v-model.trim="winsplits"
+          label="Winsplits: (URL)"
+          type="url"
+        />
+        <text-input
+          v-model.trim="routegadget"
+          label="Routegadget: (URL)"
+          type="url"
+        />
         <dropdown-input
           v-model="league"
           :list="leagues.map(league => league.name)"
@@ -66,12 +84,12 @@ const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
-    'NotFound': NotFound,
-    'DropdownInput': DropdownInput,
-    'TextInput': TextInput,
+    NotFound,
+    DropdownInput,
+    TextInput,
   },
 
-  data: function () {
+  data: function() {
     return {
       id: '',
       notFound: false,
@@ -91,7 +109,7 @@ export default {
   },
 
   // On Load
-  mounted: function () {
+  mounted: function() {
     this.getLeagues()
     if (this.$route.path.includes('edit')) {
       this.create = false
@@ -100,13 +118,14 @@ export default {
   },
 
   methods: {
-    submit: function () {
+    submit: function() {
       if (this.create) this.createEvent()
       else this.updateEvent()
     },
 
-    getEventDetails: function () {
-      return axios.get('/api/events/' + this.$route.params.id)
+    getEventDetails: function() {
+      return axios
+        .get(`/api/events/${this.$route.params.id}`)
         .then(response => {
           if (!response.data) this.notFound = true
           else {
@@ -126,68 +145,82 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
     },
 
-    getLeagues: function () {
-      return axios.get('/api/leagues')
-        .then(response => { this.leagues = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching List of Leagues'))
+    getLeagues: function() {
+      return axios
+        .get('/api/leagues')
+        .then(response => {
+          this.leagues = response.data
+        })
+        .catch(() =>
+          this.$messages.addMessage('Problem Fetching List of Leagues')
+        )
     },
 
-    validateForm: function () {
+    validateForm: function() {
       if (this.name === '' || this.league === '') {
-        this.$messages.addMessage('Please Ensure Name and League Fields are not Blank')
+        this.$messages.addMessage(
+          'Please Ensure Name and League Fields are not Blank'
+        )
         return false
-      }
-      else if (this.name.includes('/') || this.name.includes('\\')) {
-        this.$messages.addMessage('Please Ensure Name doesn\'t Include any Slashes')
+      } else if (this.name.includes('/') || this.name.includes('\\')) {
+        this.$messages.addMessage(
+          "Please Ensure Name doesn't Include any Slashes"
+        )
         return false
-      }
-      else return true
+      } else return true
     },
 
-    createEvent: function () {
+    createEvent: function() {
       if (this.validateForm()) {
-        return axios.post('/api/events', {
-          name: this.name,
-          date: this.date,
-          resultUploaded: this.resultUploaded,
-          organiser: this.organiser,
-          moreInformation: this.moreInformation,
-          website: this.website,
-          results: this.results,
-          winsplits: this.winsplits,
-          routegadget: this.routegadget,
-          league: this.league,
-        })
+        return axios
+          .post('/api/events', {
+            name: this.name,
+            date: this.date,
+            resultUploaded: this.resultUploaded,
+            organiser: this.organiser,
+            moreInformation: this.moreInformation,
+            website: this.website,
+            results: this.results,
+            winsplits: this.winsplits,
+            routegadget: this.routegadget,
+            league: this.league,
+          })
           .then(response => this.returnToLeaguePage(response))
-          .catch(() => this.$messages.addMessage('Error: Problem Creating Event - Please Try Again'))
+          .catch(() =>
+            this.$messages.addMessage(
+              'Error: Problem Creating Event - Please Try Again'
+            )
+          )
       }
     },
 
-    updateEvent: function () {
+    updateEvent: function() {
       if (this.validateForm()) {
-        return axios.put('/api/events/' + this.id, {
-          name: this.name,
-          date: this.date,
-          resultUploaded: this.resultUploaded,
-          organiser: this.organiser,
-          moreInformation: this.moreInformation,
-          website: this.website,
-          results: this.results,
-          winsplits: this.winsplits,
-          routegadget: this.routegadget,
-          league: this.league,
-        })
+        return axios
+          .put(`/api/events/${this.id}`, {
+            name: this.name,
+            date: this.date,
+            resultUploaded: this.resultUploaded,
+            organiser: this.organiser,
+            moreInformation: this.moreInformation,
+            website: this.website,
+            results: this.results,
+            winsplits: this.winsplits,
+            routegadget: this.routegadget,
+            league: this.league,
+          })
           .then(response => this.returnToLeaguePage(response))
-          .catch(error => this.$messages.addMessage(error.response.data.message))
+          .catch(error =>
+            this.$messages.addMessage(error.response.data.message)
+          )
       }
     },
 
-    returnToLeaguePage: function (response) {
+    returnToLeaguePage: function(response) {
       // Go to league page after successful update/ creation
       this.$messages.addMessage(response.data.message)
-      this.$router.push('/leagues/' + this.league)
+      this.$router.push(`/leagues/${this.league}`)
     },
   },
 }
-
 </script>

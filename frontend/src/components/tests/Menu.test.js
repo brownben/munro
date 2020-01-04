@@ -3,7 +3,7 @@
 */
 
 import VueRouter from 'vue-router'
-import { mount, createLocalVue } from '@vue/test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import Menu from '@/components/Menu'
 
 test('Is a Vue Instance', () => {
@@ -114,10 +114,10 @@ test('Desktop Menu Remains Static on Route Change', () => {
 test('Check Resize Event is Added/ Removed', () => {
   const adder = jest
     .spyOn(global, 'addEventListener')
-    .mockImplementation(() => { })
+    .mockImplementation(() => {})
   const remover = jest
     .spyOn(global, 'removeEventListener')
-    .mockImplementation(() => { })
+    .mockImplementation(() => {})
 
   const wrapper = mount(Menu, {
     mocks: {

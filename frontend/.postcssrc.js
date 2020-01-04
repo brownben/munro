@@ -1,12 +1,12 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
 
 module.exports = {
-  "plugins": {
-    "postcss-import": {},
+  plugins: {
+    'postcss-import': {},
     tailwindcss: {},
     'vue-cli-plugin-tailwind/purgecss': {},
-    "postcss-url": {},
+    'postcss-url': {},
     // to edit target browsers: use "browserslist" field in package.json
-    "autoprefixer": {}
-  }
+    autoprefixer: {},
+  },
 }

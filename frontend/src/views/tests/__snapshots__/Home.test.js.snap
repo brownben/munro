@@ -55,7 +55,10 @@ exports[`Renders Correctly 1`] = `
           </h1>
            
           <p>
-            Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians
+            
+            Wednesday Evening Sprint Orienteering Events in Edinburgh and the
+            Lothians
+          
           </p>
            
           <p>
@@ -100,7 +103,10 @@ exports[`Renders Correctly 1`] = `
           </h1>
            
           <p>
-            Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians
+            
+            Wednesday Evening Sprint Orienteering Events in Edinburgh and the
+            Lothians
+          
           </p>
            
           <p>
@@ -139,7 +145,10 @@ exports[`Renders Correctly 1`] = `
           </h1>
            
           <p>
-            Thursday Night Orienteering Events Around Edinburgh Organised By Edinburgh Uni Orienteering Club
+            
+            Thursday Night Orienteering Events Around Edinburgh Organised By
+            Edinburgh Uni Orienteering Club
+          
           </p>
            
           <p>
@@ -178,7 +187,9 @@ exports[`Renders Correctly 1`] = `
           </h1>
            
           <p>
+            
             A Series of Night Orienteering Events in the North of Scotland
+          
           </p>
            
           <p>
@@ -223,7 +234,17 @@ exports[`Renders Correctly 1`] = `
           class="text"
         >
           <p>
-            Munro is a sports league results calculator, created originally by Ben Brown for his local Orienteering League as part of his Advanced Higher Computing Project. Munro is designed to be as easy to use as possible providing all the features and information you need, whilst making it fast and simple to view the results; with multiple options to sort and filter them. It supports multiple file formats for upload and several different scoring systems, making the process as quick and stress free as possible for event organisers.
+            
+            Munro is a sports league results calculator, created originally by
+            Ben Brown for his local Orienteering League as part of his
+            Advanced Higher Computing Project. Munro is designed to be as easy
+            to use as possible providing all the features and information you
+            need, whilst making it fast and simple to view the results; with
+            multiple options to sort and filter them. It supports multiple
+            file formats for upload and several different scoring systems,
+            making the process as quick and stress free as possible for event
+            organisers.
+          
           </p>
            
           <p>
@@ -239,7 +260,10 @@ exports[`Renders Correctly 1`] = `
           </p>
            
           <p>
-            Munro is still under development so any feedback or comments would be welcome, please send them to munro.leagues@gmail.com
+            
+            Munro is still under development so any feedback or comments would
+            be welcome, please send them to munro.leagues@gmail.com
+          
           </p>
            
           <p>
@@ -261,7 +285,10 @@ exports[`Renders Correctly 1`] = `
           </h1>
            
           <p>
-            Information for developers about accessing the API and embedding the site in IFrames
+            
+            Information for developers about accessing the API and embedding
+            the site in IFrames
+          
           </p>
            
           <router-link-stub

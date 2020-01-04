@@ -2,7 +2,8 @@
   <div class="text-input top--4 relative appearance-none">
     <label
       class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
-    >{{ label }}</label>
+      >{{ label }}</label
+    >
     <input
       v-model.number="value"
       :min="min"
@@ -19,19 +20,19 @@ export default {
   name: 'NumberInput',
 
   props: {
-    'value': {
+    value: {
       type: Number,
       default: 0,
     },
-    'label': {
+    label: {
       type: String,
       default: '',
     },
-    'min': {
+    min: {
       type: Number,
       default: 0,
     },
-    'max': {
+    max: {
       type: Number,
       default: 100,
     },

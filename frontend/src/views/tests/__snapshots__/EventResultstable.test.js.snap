@@ -4,6 +4,13 @@ exports[`Renders Correctly + Fetches Data 1`] = `
 <div
   class="view"
 >
+  <vue-headful-stub
+    description="Results from the 200m event of the Justice league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    head="[object Object]"
+    title="Munro - 200m Event Results"
+    url="https://munro-leagues.herokuapp.com/events/undefined"
+  />
+   
   <!---->
    
   <not-found-stub />

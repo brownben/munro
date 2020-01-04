@@ -23,7 +23,7 @@ Vue.config.productionTip = false
 Vue.prototype.$messages = messageStore
 Vue.prototype.$auth = auth
 
-Vue.component('vue-headful', vueHeadful)
+Vue.component('VueHeadful', vueHeadful)
 
 firebase.initializeApp({
   apiKey: 'AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ ',
@@ -33,7 +33,7 @@ firebase.initializeApp({
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
 let app
-function initialize () {
+function initialize() {
   if (!app) {
     /* eslint-disable no-new */
     app = new Vue({
@@ -44,14 +44,13 @@ function initialize () {
   }
 }
 
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged(user => {
   if (user) {
     Vue.prototype.$auth.user = user
     user.getIdToken().then(token => {
-      document.cookie = 'token=' + token + ';secure;samesite=strict;path=/'
+      document.cookie = `token=${token};secure;samesite=strict;path=/`
     })
-  }
-  else {
+  } else {
     document.cookie = 'token=;secure;samesite=strict;path=/'
   }
   initialize()

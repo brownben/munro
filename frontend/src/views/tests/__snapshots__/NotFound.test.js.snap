@@ -16,7 +16,9 @@ exports[`Renders Correctly 1`] = `
     <h1
       class="text-main text-3xl font-heading my-2"
     >
+      
       Sorry We Can't Find What You Are Looking For
+    
     </h1>
      
     <p>
@@ -27,7 +29,9 @@ exports[`Renders Correctly 1`] = `
       <button
         class="button inline-block"
       >
+        
         Go Back
+      
       </button>
        
       <router-link-stub

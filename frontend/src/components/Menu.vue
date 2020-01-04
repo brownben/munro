@@ -13,7 +13,7 @@
       <router-link to="/">Munro</router-link>
     </h1>
     <svg
-      :class="{active: showMenu}"
+      :class="{ active: showMenu }"
       viewBox="0 0 24 24"
       class="h-12 p-2 mr-2 fill-current text-main md:hidden inline-block float-right absolute right-0"
       @click="showMenu = !showMenu"
@@ -24,13 +24,20 @@
     <transition name="shrink">
       <nav
         v-show="showMenu || !smallWindow"
+        :class="{
+          'sr-only': !showMenu && smallWindow,
+          smallWindow: smallWindow,
+        }"
         class="md:h-12 text-main text-lg font-normal h-screen--12 md:mr-2 md:float-right relative z-50 top--12 md:top-0 md:bg-transparent bg-white flex flex-col justify-center align-center w-full md:w-auto md:inline-block mt-12 md:mt-0"
-        :class="{'sr-only': !showMenu && smallWindow, 'smallWindow':smallWindow }"
       >
         <router-link to="/leagues" class="menu-item">Leagues</router-link>
-        <router-link to="/latest-results" class="menu-item">Latest Results</router-link>
+        <router-link to="/latest-results" class="menu-item"
+          >Latest Results</router-link
+        >
         <router-link to="/upload" class="menu-item">Upload Results</router-link>
-        <router-link v-if="auth.user" to="/logout" class="menu-item">Log Out</router-link>
+        <router-link v-if="auth.user" to="/logout" class="menu-item"
+          >Log Out</router-link
+        >
       </nav>
     </transition>
   </div>
@@ -38,7 +45,7 @@
 
 <script>
 export default {
-  data: function () {
+  data: function() {
     return {
       showMenu: false,
       auth: this.$auth,
@@ -47,20 +54,22 @@ export default {
   },
 
   watch: {
-    '$route': function () { this.showMenu = false },
+    $route: function() {
+      this.showMenu = false
+    },
   },
 
-  mounted: function () {
+  mounted: function() {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   },
 
-  destroyed () {
+  destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
 
   methods: {
-    handleResize () {
+    handleResize() {
       this.showMenu = false
       this.smallWindow = window.innerWidth <= 768
     },
@@ -101,7 +110,7 @@ nav:not(.smallWindow) a:before {
   width: 100%;
   height: 2px;
   background-color: hsl(290, 90%, 45%);
-  content: "";
+  content: '';
   transition: all 0.3s ease-in-out 0s;
   transform: scaleX(0);
   -webkit-transform: scaleX(0);

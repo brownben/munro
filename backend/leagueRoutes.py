@@ -57,7 +57,7 @@ class League(Resource):
 
         try:
             leagues.updateLeague(data['oldName'], data['name'], data['website'],  data['coordinator'],
-                                    data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'], data['dynamicEventResults'])
+                                 data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'], data['dynamicEventResults'])
             return {'message': 'League - {} was Updated'.format(name)}
         except:
             return {'message': 'Error: Problem Updating League - Please Try Again'}, 500

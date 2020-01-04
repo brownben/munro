@@ -10,47 +10,68 @@
 <template>
   <div class="w-full pt-2 px-4 md:px-8 lg:px-16 xl:px-20">
     <vue-headful
-      :title="'Munro - ' + $route.params.name + ' - ' + $route.params.course + ' Results'"
-      :description="'Results from the ' + $route.params.course + ' course of the ' + $route.params.name + ' league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'"
-      :url="'https://munro-leagues.herokuapp.com/leagues'+$route.params.name+'/results/'+$route.params.course"
+      :title="`Munro - ${$route.params.name} - ${$route.params.course} Results`"
+      :description="
+        `Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`
+      "
+      :url="
+        `https://munro-leagues.herokuapp.com/leagues/${$route.params.name}/results/${$route.params.course}`
+      "
       :head="{
-        'meta': {name: 'robots', content:'all'},
+        meta: { name: 'robots', content: 'all' },
       }"
     />
     <h1 class="text-3xl font-normal font-heading">
       <router-link
+        :to="'/leagues/' + $route.params.name"
         class="link text-main"
-        :to="'/leagues/'+$route.params.name"
+        >{{ $route.params.name }}</router-link
       >
-        {{ $route.params.name }}
-      </router-link>
       - {{ $route.params.course }}
     </h1>
     <filter-menu @changed="filterChanged" />
-    <div v-show="filteredResults && filteredResults.length > 0" class="table-container">
+    <div
+      v-show="filteredResults && filteredResults.length > 0"
+      class="table-container"
+    >
       <table class="table">
         <thead>
           <tr>
             <th @click="sortBy('position')">
               <p>Pos.</p>
-              <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'position'" />
+              <up-down-arrow
+                :ascending="ascendingSort"
+                :active="sortedBy === 'position'"
+              />
             </th>
             <th @click="sortBy('name')">
               <p>Name</p>
-              <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'name'" />
+              <up-down-arrow
+                :ascending="ascendingSort"
+                :active="sortedBy === 'name'"
+              />
             </th>
             <th @click="sortBy('age')">
               <p>Class</p>
-              <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'age'" />
+              <up-down-arrow
+                :ascending="ascendingSort"
+                :active="sortedBy === 'age'"
+              />
             </th>
             <th class="club" @click="sortBy('club')">
               <p>Club</p>
-              <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'club'" />
+              <up-down-arrow
+                :ascending="ascendingSort"
+                :active="sortedBy === 'club'"
+              />
             </th>
             <th @click="sortBy('totalPoints')">
               <p>Points</p>
 
-              <up-down-arrow :ascending="ascendingSort" :active="sortedBy === 'totalPoints'" />
+              <up-down-arrow
+                :ascending="ascendingSort"
+                :active="sortedBy === 'totalPoints'"
+              />
             </th>
 
             <template v-if="!smallWindow">
@@ -63,9 +84,11 @@
                 <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
                 <span>{{ event.name }}</span>
                 <up-down-arrow
-                  class="points-arrow"
                   :ascending="ascendingSort"
-                  :active="sortedBy === ('points-' + eventsWithResults.indexOf(event))"
+                  :active="
+                    sortedBy === 'points-' + eventsWithResults.indexOf(event)
+                  "
+                  class="points-arrow"
                 />
               </th>
             </template>
@@ -92,8 +115,12 @@
                 <td
                   v-for="event of eventsWithResults"
                   :key="eventsWithResults.indexOf(event)"
+                  :class="{
+                    strikethrough: !result.largestPoints.includes(
+                      eventsWithResults.indexOf(event)
+                    ),
+                  }"
                   class="points"
-                  :class="{ strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event)) }"
                 >
                   {{ result.points[eventsWithResults.indexOf(event)] }}
                 </td>
@@ -115,18 +142,29 @@
               </td>
             </tr>
             <tr
-              v-if="smallWindow && openedRows.includes(filteredResults.indexOf(result))"
+              v-if="
+                smallWindow &&
+                  openedRows.includes(filteredResults.indexOf(result))
+              "
               :key="result.name + '-mobile'"
               :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
               class="mobile-table-expansion"
             >
               <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
               <td colspan="100%">
-                <p v-for="event of eventsWithResults" :key="eventsWithResults.indexOf(event)">
+                <p
+                  v-for="event of eventsWithResults"
+                  :key="eventsWithResults.indexOf(event)"
+                >
                   {{ event.name }}:
                   <span
-                    :class="{strikethrough: !result.largestPoints.includes(eventsWithResults.indexOf(event))}"
-                  >{{ result.points[eventsWithResults.indexOf(event)] }}</span>
+                    :class="{
+                      strikethrough: !result.largestPoints.includes(
+                        eventsWithResults.indexOf(event)
+                      ),
+                    }"
+                    >{{ result.points[eventsWithResults.indexOf(event)] }}</span
+                  >
                 </p>
               </td>
             </tr>
@@ -141,15 +179,16 @@
         <router-link
           v-for="course in otherCourses"
           :key="course"
-          :to="'/leagues/'+$route.params.name+'/results/'+course"
+          :to="'/leagues/' + $route.params.name + '/results/' + course"
           class="button"
+          >{{ course }}</router-link
         >
-          {{ course }}
-        </router-link>
       </div>
     </div>
     <!-- If no results show, message -->
-    <h2 v-if="!found" class="text-3xl font-heading">Sorry, No Results Could Be Found</h2>
+    <h2 v-if="!found" class="text-3xl font-heading">
+      Sorry, No Results Could Be Found
+    </h2>
   </div>
 </template>
 
@@ -160,8 +199,8 @@ import UpDownArrow from '@/components/UpDownArrows'
 
 export default {
   components: {
-    FilterMenu: FilterMenu,
-    UpDownArrow: UpDownArrow,
+    FilterMenu,
+    UpDownArrow,
   },
 
   data: () => ({
@@ -184,45 +223,61 @@ export default {
   }),
 
   computed: {
-    resultsWithAgeClassSplit: function () {
+    resultsWithAgeClassSplit: function() {
       // Split age class into age and gender to allow easy sorting
       return this.rawResults.map(result => {
         if (result.ageClass) {
           result.gender = result.ageClass[0]
-          result.age = parseInt(result.ageClass.slice(1))
+          result.age = parseInt(result.ageClass.slice(1), 10)
         }
         return result
       })
     },
 
-    sortedResults: function () {
+    sortedResults: function() {
       // Sort results by preference
       let property = this.sortedBy
-      if (this.sortedBy.includes('points-')) property = parseInt(property.split('-')[1])
+      if (this.sortedBy.includes('points-'))
+        property = parseInt(property.split('-')[1], 10)
       return this.sort(
         this.resultsWithAgeClassSplit,
         property,
         this.ascendingSort,
-        this.sortedBy.includes('points-'))
+        this.sortedBy.includes('points-')
+      )
     },
 
-    filteredResults: function () {
+    filteredResults: function() {
       // Filter results by preferences
       return this.sortedResults
-        .filter(result => result.name.match(new RegExp(this.filterPreferences.name, 'i'))) // Filter by Name Case Insensitive
-        .filter(result => result.club.match(new RegExp(this.filterPreferences.club, 'i'))) // Filter by Club Case Insensitive
+        .filter(result =>
+          result.name.match(new RegExp(this.filterPreferences.name, 'i'))
+        ) // Filter by Name Case Insensitive
+        .filter(result =>
+          result.club.match(new RegExp(this.filterPreferences.club, 'i'))
+        ) // Filter by Club Case Insensitive
         .filter(result => {
-          if (this.filterPreferences.maxAge === 100 && this.filterPreferences.minAge === 0) return true
+          if (
+            this.filterPreferences.maxAge === 100 &&
+            this.filterPreferences.minAge === 0
+          )
+            return true
           else {
-            return this.filterPreferences.minAge <= result.age && result.age <= this.filterPreferences.maxAge
+            return (
+              this.filterPreferences.minAge <= result.age &&
+              result.age <= this.filterPreferences.maxAge
+            )
           }
         }) // If age in range
-        .filter(result => (this.filterPreferences.male && this.filterPreferences.female) ||
-          (this.filterPreferences.male && result.gender === 'M') ||
-          (this.filterPreferences.female && result.gender === 'W')) // Filter by Gender
+        .filter(
+          result =>
+            (this.filterPreferences.male && this.filterPreferences.female) ||
+            (this.filterPreferences.male && result.gender === 'M') ||
+            (this.filterPreferences.female && result.gender === 'W')
+        ) // Filter by Gender
     },
 
-    eventsWithResults: function () {
+    eventsWithResults: function() {
       // Get events with results
       return this.events.filter(event => event.resultUploaded)
     },
@@ -230,7 +285,7 @@ export default {
 
   // If route changes without reload (if only course parameter changes)
   watch: {
-    $route: async function () {
+    $route: async function() {
       this.rawResults = []
       this.openedRows = []
       await this.getResults()
@@ -240,55 +295,69 @@ export default {
   },
 
   // On load
-  mounted: async function () {
+  mounted: function() {
     // Mobile resize watcher
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
 
     // Fetch Data
-    await this.getResults()
-    await this.getEventList()
+    this.getResults()
+    this.getEventList()
     this.getOtherCourses()
   },
 
-  destroyed () {
+  destroyed() {
     window.removeEventListener('resize', this.handleResize)
   },
 
   methods: {
-    handleResize: function () {
+    handleResize: function() {
       if (window.innerWidth > 900) this.smallWindow = false
       else this.smallWindow = true
     },
 
-    getResults: function () {
+    getResults: function() {
       return axios
-        .get('/api/leagues/' + this.$route.params.name + '/results/' + this.$route.params.course)
+        .get(
+          `/api/leagues/${this.$route.params.name}/results/${this.$route.params.course}`
+        )
         .then(response => {
           if (response.data.length > 0) this.rawResults = response.data
           else this.found = false
         })
-        .catch(() => { this.found = false })
-    },
-
-    getOtherCourses: function () {
-      return axios
-        .get('/api/leagues/' + this.$route.params.name)
-        .then(response => {
-          if (response.data.courses) this.otherCourses = response.data.courses.filter(course => course !== this.$route.params.course)
-          else this.otherCourses = false
+        .catch(() => {
+          this.found = false
         })
-        .catch(() => { this.otherCourses = false })
     },
 
-    getEventList: function () {
+    getOtherCourses: function() {
       return axios
-        .get('/api/leagues/' + this.$route.params.name + '/events')
-        .then(response => { this.events = response.data })
-        .catch(() => this.$messages.addMessage('Problem Fetching List of Events'))
+        .get(`/api/leagues/${this.$route.params.name}`)
+        .then(response => {
+          if (response.data.courses)
+            this.otherCourses = response.data.courses.filter(
+              course => course !== this.$route.params.course
+            )
+          else this.otherCourses = false
+          return this.otherCourses
+        })
+        .catch(() => {
+          this.otherCourses = false
+        })
     },
 
-    sort: function (array, property, ascending = true, byPoints = false) {
+    getEventList: function() {
+      return axios
+        .get(`/api/leagues/${this.$route.params.name}/events`)
+        .then(response => {
+          this.events = response.data
+        })
+        .catch(() =>
+          this.$messages.addMessage('Problem Fetching List of Events')
+        )
+    },
+
+    sort: function(array, property, ascending = true, byPoints = false) {
       let sortFunction
       if (byPoints) {
         sortFunction = (a, b) => {
@@ -298,8 +367,7 @@ export default {
           else if (a.points[property] < b.points[property]) return 1
           else return -1
         }
-      }
-      else {
+      } else {
         sortFunction = (a, b) => {
           if (a[property] === b[property]) return 0
           else if (a[property] === null || a[property] === undefined) return 1
@@ -312,7 +380,7 @@ export default {
       else return array.sort(sortFunction).reverse()
     },
 
-    sortBy: function (sortBy) {
+    sortBy: function(sortBy) {
       // Change what property it is sorted by
       this.openedRows = []
       // If it is a different property, make it sort ascending else change direction of sort
@@ -321,7 +389,7 @@ export default {
       this.sortedBy = sortBy
     },
 
-    filterChanged: function (data) {
+    filterChanged: function(data) {
       // Update data of view if Filter Menu emits a change
       this.filterPreferences.name = data.name
       this.filterPreferences.club = data.club
@@ -333,7 +401,7 @@ export default {
       this.filterPreferences.female = data.female
     },
 
-    toggleRow: function (id) {
+    toggleRow: function(id) {
       // Shows the detailed points view when the row for the results is clicked on a mobile
       const index = this.openedRows.indexOf(id)
       if (index > -1) this.openedRows.splice(index, 1)
@@ -343,7 +411,7 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style scoped lang="postcss">
 .strikethrough {
   text-decoration: line-through;
 }

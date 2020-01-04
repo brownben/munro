@@ -2,7 +2,8 @@
   <div class="text-input top--4 relative">
     <label
       class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
-    >{{ label }}</label>
+      >{{ label }}</label
+    >
     <input
       v-model="value"
       :type="type"
@@ -17,15 +18,15 @@ export default {
   name: 'TextInput',
 
   props: {
-    'value': {
+    value: {
       type: String,
       default: '',
     },
-    'label': {
+    label: {
       type: String,
       default: '',
     },
-    'type': {
+    type: {
       type: String,
       default: 'text',
     },

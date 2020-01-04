@@ -52,9 +52,22 @@ test('Courses in League', () => {
   })
   wrapper.setData({ league: 'a', leagues: [] })
   expect(wrapper.vm.coursesInLeague).toEqual([])
-  wrapper.setData({ leagues: [{ name: 'a', courses: [2] }, { name: 'b', courses: 3 }, { name: 'c', courses: [4] }] })
+  wrapper.setData({
+    leagues: [
+      { name: 'a', courses: [2] },
+      { name: 'b', courses: 3 },
+      { name: 'c', courses: [4] },
+    ],
+  })
   expect(wrapper.vm.coursesInLeague).toEqual([2])
-  wrapper.setData({ league: 'c', leagues: [{ name: 'a', courses: 2 }, { name: 'b', courses: 3 }, { name: 'c', courses: [4] }] })
+  wrapper.setData({
+    league: 'c',
+    leagues: [
+      { name: 'a', courses: 2 },
+      { name: 'b', courses: 3 },
+      { name: 'c', courses: [4] },
+    ],
+  })
   expect(wrapper.vm.coursesInLeague).toEqual([4])
 })
 
@@ -87,9 +100,17 @@ test('Get Leagues - Processes Response Correctly', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
 
-  axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
+  axios.get.mockResolvedValue({
+    data: [
+      { league: 'a', property: 3 },
+      { league: '2', another: 4 },
+    ],
+  })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
+  expect(wrapper.vm.leagues).toEqual([
+    { league: 'a', property: 3 },
+    { league: '2', another: 4 },
+  ])
 })
 
 test('Get Leagues - Shows Message on Error', async () => {
@@ -104,7 +125,9 @@ test('Get Leagues - Shows Message on Error', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Fetching League Details')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Fetching League Details'
+  )
 })
 
 test('Get Competitors - Request Called Correctly', async () => {
@@ -138,9 +161,17 @@ test('Get Competitors - Processes Response Correctly', async () => {
   await wrapper.vm.getCompetitors()
   expect(wrapper.vm.competitors).toEqual([])
 
-  axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
+  axios.get.mockResolvedValue({
+    data: [
+      { league: 'a', property: 3 },
+      { league: '2', another: 4 },
+    ],
+  })
   await wrapper.vm.getCompetitors()
-  expect(wrapper.vm.competitors).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
+  expect(wrapper.vm.competitors).toEqual([
+    { league: 'a', property: 3 },
+    { league: '2', another: 4 },
+  ])
 })
 
 test('Get Competitors - Shows Message on Error', async () => {
@@ -155,17 +186,40 @@ test('Get Competitors - Shows Message on Error', async () => {
   await wrapper.vm.getCompetitors()
   expect(wrapper.vm.competitors).toEqual([])
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Fetching Competitors')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Fetching Competitors'
+  )
 })
 
 test('Competitor Transform for Dropdown Input', () => {
   const wrapper = shallowMount(CompetitorMerge, {
     stubs: ['router-link', 'vue-headful'],
   })
-  expect(wrapper.vm.competitorTransformForSelect({ name: 'Bob Jones', id: 22 })).toEqual('Bob Jones [22]')
-  expect(wrapper.vm.competitorTransformForSelect({ name: 'Bob Jones', id: 22, ageClass: 'M45' })).toEqual('Bob Jones (M45) [22]')
-  expect(wrapper.vm.competitorTransformForSelect({ name: 'Bob Jones', id: 22, club: 'HAT' })).toEqual('Bob Jones (HAT) [22]')
-  expect(wrapper.vm.competitorTransformForSelect({ name: 'Bob Jones', id: 22, club: 'HAT', ageClass: 'M45' })).toEqual('Bob Jones (M45, HAT) [22]')
+  expect(
+    wrapper.vm.competitorTransformForSelect({ name: 'Bob Jones', id: 22 })
+  ).toEqual('Bob Jones [22]')
+  expect(
+    wrapper.vm.competitorTransformForSelect({
+      name: 'Bob Jones',
+      id: 22,
+      ageClass: 'M45',
+    })
+  ).toEqual('Bob Jones (M45) [22]')
+  expect(
+    wrapper.vm.competitorTransformForSelect({
+      name: 'Bob Jones',
+      id: 22,
+      club: 'HAT',
+    })
+  ).toEqual('Bob Jones (HAT) [22]')
+  expect(
+    wrapper.vm.competitorTransformForSelect({
+      name: 'Bob Jones',
+      id: 22,
+      club: 'HAT',
+      ageClass: 'M45',
+    })
+  ).toEqual('Bob Jones (M45, HAT) [22]')
 })
 
 test('Validate Form', () => {
@@ -194,7 +248,9 @@ test('Merge - Invalid', () => {
   })
   wrapper.vm.merge()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('The Competitors Selected are the Same')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'The Competitors Selected are the Same'
+  )
 })
 
 test('Merge - Correct API', async () => {
@@ -209,7 +265,10 @@ test('Merge - Correct API', async () => {
   axios.post.mockRejectedValue({ response: { data: { message: 'Hello' } } })
   await wrapper.vm.merge()
   expect(axios.post).toHaveBeenCalledTimes(1)
-  expect(axios.post).toHaveBeenLastCalledWith('/api/competitors/merge', expect.any(Object))
+  expect(axios.post).toHaveBeenLastCalledWith(
+    '/api/competitors/merge',
+    expect.any(Object)
+  )
 })
 
 test('Merge - Success', async () => {
@@ -255,7 +314,9 @@ test('Competitors For League', () => {
     league: 'a',
     course: 'b',
   })
-  expect(wrapper.vm.competitorsForLeague).toEqual([{ name: 'a', league: 'a', course: 'b' }])
+  expect(wrapper.vm.competitorsForLeague).toEqual([
+    { name: 'a', league: 'a', course: 'b' },
+  ])
   wrapper.setData({
     competitors: [
       { name: 'd', league: 'a', course: 'b' },

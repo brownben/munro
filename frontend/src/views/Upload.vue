@@ -7,14 +7,16 @@
 <template>
   <div class="view">
     <vue-headful
+      :head="{
+        meta: { name: 'robots', content: 'all' },
+      }"
       title="Munro - Upload Results"
       description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/upload"
-      :head="{
-        'meta': {name: 'robots', content:'all'},
-      }"
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">Upload Results</h1>
+    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+      Upload Results
+    </h1>
     <div class="card-color mt-2 mb-4">
       <p>
         For instructions on how to upload results please visit
@@ -26,7 +28,11 @@
         </router-link>
       </p>
     </div>
-    <text-input v-model.trim.lazy="eventId" label="Event ID:" @input="findEvent" />
+    <text-input
+      v-model.trim.lazy="eventId"
+      label="Event ID:"
+      @input="findEvent"
+    />
 
     <p v-show="event.name" class="mb-3">
       <b class="text-normal font-heading">Event Name:</b>
@@ -45,12 +51,30 @@
 
     <file-input label="Results File:" @file="fileRead" />
 
-    <text-input v-model.trim="event.results" label="Results (URL):" type="url" />
-    <text-input v-model.trim="event.routegadget" label="Routegadget (URL):" type="url" />
-    <text-input v-model.trim="event.winsplits" label="Winsplits: (URL):" type="url" />
+    <text-input
+      v-model.trim="event.results"
+      label="Results (URL):"
+      type="url"
+    />
+    <text-input
+      v-model.trim="event.routegadget"
+      label="Routegadget (URL):"
+      type="url"
+    />
+    <text-input
+      v-model.trim="event.winsplits"
+      label="Winsplits: (URL):"
+      type="url"
+    />
 
     <!-- Only show upload once all fields have been filled -->
-    <button v-if="eventId && uploadKey && file" class="button-lg" @click="uploadFile">Upload File</button>
+    <button
+      v-if="eventId && uploadKey && file"
+      class="button-lg"
+      @click="uploadFile"
+    >
+      Upload File
+    </button>
   </div>
 </template>
 
@@ -62,12 +86,12 @@ import FileInput from '@/components/FileInput'
 
 export default {
   components: {
-    'CheckboxInput': CheckboxInput,
-    'TextInput': TextInput,
-    'FileInput': FileInput,
+    CheckboxInput,
+    TextInput,
+    FileInput,
   },
 
-  data: function () {
+  data: function() {
     return {
       eventId: '',
       uploadKey: '',
@@ -81,7 +105,7 @@ export default {
   },
 
   // On load
-  mounted: function () {
+  mounted: function() {
     // If passed with Event ID, autofill Event ID
     if (this.$route.params.id) {
       this.eventId = this.$route.params.id
@@ -90,9 +114,10 @@ export default {
   },
 
   methods: {
-    findEvent: function () {
+    findEvent: function() {
       // Fetch event details so name of event can be checked and if results are uploaded
-      return axios.get('/api/events/' + this.eventId)
+      return axios
+        .get(`/api/events/${this.eventId}`)
         .then(response => {
           this.event = response.data
           if (!this.event.name) {
@@ -103,25 +128,26 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
     },
 
-    fileRead: function (file) {
+    fileRead: function(file) {
       this.file = file
     },
 
-    uploadFile: function () {
+    uploadFile: function() {
       // Send data to the server
       this.$messages.addMessage('Upload Data Sent')
-      return axios.post('/api/upload', {
-        eventId: this.eventId,
-        uploadKey: this.uploadKey,
-        file: this.file,
-        overwrite: this.overwrite,
-        results: this.event.results,
-        winsplits: this.event.winsplits,
-        routegadget: this.event.routegadget,
-      })
+      return axios
+        .post('/api/upload', {
+          eventId: this.eventId,
+          uploadKey: this.uploadKey,
+          file: this.file,
+          overwrite: this.overwrite,
+          results: this.event.results,
+          winsplits: this.event.winsplits,
+          routegadget: this.event.routegadget,
+        })
         .then(() => {
           this.$messages.addMessage('Results Uploaded Successfully')
-          this.$router.push('/leagues/' + this.event.league)
+          this.$router.push(`/leagues/${this.event.league}`)
         })
         .catch(error => this.$messages.addMessage(error.response.data.message))
     },

@@ -32,6 +32,7 @@ talisman = Talisman(
 )
 app.secret_key = os.urandom(25)
 
+
 @api.representation('application/json')
 def output_json(data, code, headers={'X-Robots-Tag': 'noindex', 'max-age': 0}):
     resp = app.make_response((json.dumps(data), code))
@@ -74,13 +75,15 @@ def catch_all(path):
     # If in debug access files from VueJS Development Server
     '''
     if app.debug:
-      return requests.get('http://localhost:8080/{}'.format(path)).text
+        return requests.get('http://localhost:8080/{}'.format(path)).text
     '''
     return render_template("index.html")
+
 
 @app.route('/api/<path:path>')
 def api_catch_all():
     return {}
+
 
 @app.route('/robots.txt')
 @app.route('/manifest.json')

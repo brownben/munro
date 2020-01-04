@@ -1,7 +1,10 @@
 import axios from 'axios'
 import { mount } from '@vue/test-utils'
 import Leagues from '@/views/Leagues'
-import { sampleSingleLeague, sampleDataThreeLeagues } from '@/tests/test data/leagues'
+import {
+  sampleDataThreeLeagues,
+  sampleSingleLeague,
+} from '@/tests/test data/leagues'
 
 jest.mock('axios')
 const flushPromises = () => new Promise(resolve => global.setImmediate(resolve))
@@ -69,9 +72,17 @@ test('Get Leagues - Processes Response Correctly', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
 
-  axios.get.mockResolvedValue({ data: [{ league: 'a', property: 3 }, { league: '2', another: 4 }] })
+  axios.get.mockResolvedValue({
+    data: [
+      { league: 'a', property: 3 },
+      { league: '2', another: 4 },
+    ],
+  })
   await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: 'a', property: 3 }, { league: '2', another: 4 }])
+  expect(wrapper.vm.leagues).toEqual([
+    { league: 'a', property: 3 },
+    { league: '2', another: 4 },
+  ])
 })
 
 test('Get Leagues - Shows Message on Error', async () => {
@@ -86,5 +97,7 @@ test('Get Leagues - Shows Message on Error', async () => {
   await wrapper.vm.getLeagues()
   expect(wrapper.vm.leagues).toEqual([])
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Problem Fetching League Details')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
+    'Problem Fetching League Details'
+  )
 })

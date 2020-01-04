@@ -12,7 +12,9 @@ exports[`Renders Correctly 1`] = `
       class="mr-12"
     >
       
-        This site uses Cookies and Local Storage in order to function correctly. By using this site you consent to the use of Cookies and Local Storage.
+        This site uses Cookies and Local Storage in order to function
+        correctly. By using this site you consent to the use of Cookies and
+        Local Storage.
       
     </p>
      
@@ -40,7 +42,9 @@ exports[`Renders Correctly 2`] = `
       class="mr-12"
     >
       
-        This site uses Cookies and Local Storage in order to function correctly. By using this site you consent to the use of Cookies and Local Storage.
+        This site uses Cookies and Local Storage in order to function
+        correctly. By using this site you consent to the use of Cookies and
+        Local Storage.
       
     </p>
      

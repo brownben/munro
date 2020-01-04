@@ -1,4 +1,4 @@
-<img height="150px" src="./frontend/src/assets/images/MunroLogo.png" />
+<img height="120px" src="./frontend/src/assets/images/MunroLogo.png" />
 
 # Munro
 
@@ -12,7 +12,7 @@ For any help or enquires please email munro.leagues(a)gmail.com or add an issue 
 
 ## Frontend
 
-``` bash
+```bash
 cd frontend
 
 # install dependencies
@@ -21,17 +21,17 @@ npm install
 # serve with hot reload at localhost:8080
 npm run serve
 
+# lint and fix styles and javascript
+npm run lint
+
+# check javascript and styles match rules
+npm run check
+
 # build for production with minification
 npm run build
 
 # build for production and view the bundle analyzer report
 npm run build -- --report
-
-# lint stylus and javascript
-npm run lint
-
-# lint and fix javascript
-npm run lint-js
 
 # run all jest unit tests
 npm test

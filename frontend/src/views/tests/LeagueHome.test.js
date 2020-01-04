@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 import VueRouter from 'vue-router'
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 
 import League from '@/views/LeagueHome'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
@@ -112,7 +112,7 @@ test('Get League - Correct API Call', async () => {
       $auth: { user: false },
       $route: { params: { name: 'Test' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -132,7 +132,7 @@ test('Get League - Success', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -148,7 +148,7 @@ test('Get League - Error', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -157,7 +157,9 @@ test('Get League - Error', async () => {
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeague()
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Getting League Details')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Getting League Details'
+  )
 })
 
 test('Get League Events - No League Data', async () => {
@@ -167,7 +169,7 @@ test('Get League Events - No League Data', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -187,7 +189,7 @@ test('Get League Events - Correct API', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -207,7 +209,7 @@ test('Get League Events - Correct API - Logged In', async () => {
       $auth: { user: true },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -217,7 +219,9 @@ test('Get League Events - Correct API - Logged In', async () => {
   wrapper.setData({ league: { name: 'Test' } })
   await wrapper.vm.getLeagueEvents()
   expect(axios.get).toHaveBeenCalledTimes(1)
-  expect(axios.get).toHaveBeenLastCalledWith('/api/leagues/Test/events/uploadKey')
+  expect(axios.get).toHaveBeenLastCalledWith(
+    '/api/leagues/Test/events/uploadKey'
+  )
 })
 
 test('Get League Events - Success', async () => {
@@ -227,7 +231,7 @@ test('Get League Events - Success', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -246,7 +250,7 @@ test('Get League Events - Success - Logged In', async () => {
       $auth: { user: true },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -265,7 +269,7 @@ test('Get League Events - Error', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -275,7 +279,9 @@ test('Get League Events - Error', async () => {
   wrapper.setData({ league: { name: 'Test' } })
   await wrapper.vm.getLeagueEvents()
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Getting Event Details')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Getting Event Details'
+  )
 })
 
 test('Get League Events - Error - Logged In', async () => {
@@ -285,7 +291,7 @@ test('Get League Events - Error - Logged In', async () => {
       $auth: { user: true },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -295,7 +301,9 @@ test('Get League Events - Error - Logged In', async () => {
   wrapper.setData({ league: { name: 'Test' } })
   await wrapper.vm.getLeagueEvents()
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Getting Event Details')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Getting Event Details'
+  )
 })
 
 test('Delete Event - Correct Confirm', async () => {
@@ -305,14 +313,16 @@ test('Delete Event - Correct Confirm', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
   global.confirm = jest.fn()
   await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
   expect(global.confirm).toHaveBeenCalledTimes(1)
-  expect(global.confirm).toHaveBeenLastCalledWith('Are you Sure you Want to Delete Event - EVENT? \nThis Action Can\'t Be Recovered')
+  expect(global.confirm).toHaveBeenLastCalledWith(
+    "Are you Sure you Want to Delete Event - EVENT? \nThis Action Can't Be Recovered"
+  )
 })
 
 test('Delete Event - Denied Confirmation', async () => {
@@ -322,7 +332,7 @@ test('Delete Event - Denied Confirmation', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -339,7 +349,7 @@ test('Delete Event - Correct API Call', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -359,7 +369,7 @@ test('Delete Event - Success', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
     methods: {
@@ -385,7 +395,7 @@ test('Delete Event - Error', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -395,7 +405,9 @@ test('Delete Event - Error', async () => {
   axios.delete.mockRejectedValue()
   await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Deleting Event - Please Try Again')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Deleting Event - Please Try Again'
+  )
 })
 
 test('Delete League - Correct Confirm', async () => {
@@ -405,7 +417,7 @@ test('Delete League - Correct Confirm', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -413,7 +425,9 @@ test('Delete League - Correct Confirm', async () => {
   wrapper.setData({ league: { name: 'LEAGUE' } })
   await wrapper.vm.deleteLeague()
   expect(global.confirm).toHaveBeenCalledTimes(1)
-  expect(global.confirm).toHaveBeenLastCalledWith('Are you Sure you Want to Delete League - LEAGUE? \nThis Action Can\'t Be Recovered')
+  expect(global.confirm).toHaveBeenLastCalledWith(
+    "Are you Sure you Want to Delete League - LEAGUE? \nThis Action Can't Be Recovered"
+  )
 })
 
 test('Delete League - Denied Confirmation', async () => {
@@ -423,7 +437,7 @@ test('Delete League - Denied Confirmation', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -441,7 +455,7 @@ test('Delete League - Correct API Call', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -464,7 +478,7 @@ test('Delete League - Success', async () => {
       $route: { params: { name: '' } },
       $router: { push: mockRouterPush },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     methods: {
       getLeague: mockGetLeague,
@@ -489,7 +503,7 @@ test('Delete League - Error', async () => {
       $auth: { user: false },
       $route: { params: { name: '' } },
       $messages: { addMessage: mockAddMessage },
-      mounted: () => { },
+      mounted: () => {},
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -500,7 +514,9 @@ test('Delete League - Error', async () => {
   axios.delete.mockRejectedValue()
   await wrapper.vm.deleteLeague()
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Problem Deleting League - Please Try Again')
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Deleting League - Please Try Again'
+  )
 })
 
 test('Scoring Method Shorthand to Full', () => {
@@ -511,14 +527,30 @@ test('Scoring Method Shorthand to Full', () => {
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
-  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe('Position Based (100 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe('Position Based (50 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe('Position Based (99 Max)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe('Position Based (99 Max, Reduced in a Draw)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe('Position Based (100 Max, Double Points)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe('Position Based (50 Max, Double Points)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe('Relative to Average Time (1000 Average)')
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe('Relative to Average Time (100 Average)')
+  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe(
+    'Position Based (100 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe(
+    'Position Based (50 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe(
+    'Position Based (99 Max)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe(
+    'Position Based (99 Max, Reduced in a Draw)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe(
+    'Position Based (100 Max, Double Points)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe(
+    'Position Based (50 Max, Double Points)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe(
+    'Relative to Average Time (1000 Average)'
+  )
+  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe(
+    'Relative to Average Time (100 Average)'
+  )
   expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
   expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
 })
