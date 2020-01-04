@@ -5,7 +5,7 @@
       >{{ label }}</label
     >
     <input
-      v-model.number="value"
+      :value="value"
       :min="min"
       :max="max"
       type="number"

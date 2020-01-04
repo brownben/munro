@@ -29,6 +29,9 @@
         <router-link to="/results/transfer" class="button"
           >Transfer Result</router-link
         >
+        <router-link to="/results/manual" class="button"
+          >Manual Points</router-link
+        >
       </div>
 
       <div class="text-left w-full">

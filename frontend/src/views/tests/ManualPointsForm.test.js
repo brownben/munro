@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { mount, shallowMount } from '@vue/test-utils'
-import ResultTransfer from '@/views/ResultTransfer'
+import ManualPointsForm from '@/views/ManualPointsForm'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 import { sampleThreeResultsDraw } from '@/tests/test data/results'
 
@@ -13,21 +13,21 @@ beforeEach(() => {
 })
 
 test('Is a Vue Instance', () => {
-  const wrapper = mount(ResultTransfer, {
+  const wrapper = mount(ManualPointsForm, {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
 
 test('Renders Correctly', () => {
-  const wrapper = mount(ResultTransfer, {
+  const wrapper = mount(ManualPointsForm, {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
 })
 
 test('Results Sorted Correctly', () => {
-  const wrapper = mount(ResultTransfer, {
+  const wrapper = mount(ManualPointsForm, {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
@@ -37,7 +37,7 @@ test('Results Sorted Correctly', () => {
 test('Return from Page', () => {
   const mockRouterPush = jest.fn()
   const mockAddMessage = jest.fn()
-  const wrapper = mount(ResultTransfer, {
+  const wrapper = mount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessage },
       $route: { path: '/competitors/1/edit', params: { id: '' } },
@@ -53,7 +53,7 @@ test('Return from Page', () => {
 })
 
 test('Elapsed Time', () => {
-  const wrapper = mount(ResultTransfer, {
+  const wrapper = mount(ManualPointsForm, {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
@@ -70,7 +70,7 @@ test('Elapsed Time', () => {
 })
 
 test('Competitor Transform for Dropdown Input', () => {
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(
@@ -102,7 +102,7 @@ test('Competitor Transform for Dropdown Input', () => {
 
 test('Get Leagues - Request Called Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -117,7 +117,7 @@ test('Get Leagues - Request Called Correctly', async () => {
 
 test('Get Leagues - Processes Response Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -146,7 +146,7 @@ test('Get Leagues - Processes Response Correctly', async () => {
 
 test('Get Leagues - Shows Message on Error', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -163,7 +163,7 @@ test('Get Leagues - Shows Message on Error', async () => {
 
 test('Get Competitors - Request Called Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -178,7 +178,7 @@ test('Get Competitors - Request Called Correctly', async () => {
 
 test('Get Competitors - Processes Response Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -207,7 +207,7 @@ test('Get Competitors - Processes Response Correctly', async () => {
 
 test('Get Competitors - Shows Message on Error', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -223,7 +223,7 @@ test('Get Competitors - Shows Message on Error', async () => {
 })
 
 test('Courses in League', () => {
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
@@ -251,33 +251,33 @@ test('Courses in League', () => {
 })
 
 test('Validate', () => {
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
     stubs: ['router-link', 'vue-headful'],
   })
-  wrapper.setData({ event: '', result: '', course: '', competitor: '' })
+  wrapper.setData({ event: '', competitor: '', course: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
-  wrapper.setData({ event: 'a', result: '', course: '', competitor: '' })
+  wrapper.setData({ event: 'a', competitor: '', course: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
-  wrapper.setData({ event: '', result: 'a', course: '', competitor: '' })
+  wrapper.setData({ event: '', competitor: 'a', course: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
-  wrapper.setData({ event: '', result: '', course: 'a', competitor: '' })
+  wrapper.setData({ event: '', competitor: '', course: 'a' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
-  wrapper.setData({ event: 'a', result: 'a', course: '', competitor: '' })
+  wrapper.setData({ event: 'a', competitor: 'a', course: '' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
-  wrapper.setData({ event: 'a', result: '', course: 'a', competitor: '' })
+  wrapper.setData({ event: 'a', competitor: '', course: 'a' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
-  wrapper.setData({ event: '', result: 'a', course: 'a', competitor: '' })
+  wrapper.setData({ event: '', competitor: 'a', course: 'a' })
   expect(wrapper.vm.validateForm()).toBeFalsy()
-  wrapper.setData({ event: 'a', result: 'a', course: 'a', competitor: 'a' })
+  wrapper.setData({ event: 'a', competitor: 'a', course: 'a' })
   expect(wrapper.vm.validateForm()).toBeTruthy()
 })
 
 test('Get Events - Request Called Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -292,7 +292,7 @@ test('Get Events - Request Called Correctly', async () => {
 
 test('Get Events - Processes Response Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -321,7 +321,7 @@ test('Get Events - Processes Response Correctly', async () => {
 
 test('Get Events - Shows Message on Error', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -336,69 +336,8 @@ test('Get Events - Shows Message on Error', async () => {
   )
 })
 
-test('Get Results - Request Called Correctly', async () => {
-  const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
-    mocks: {
-      $messages: { addMessage: mockAddMessageFunction },
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  await flushPromises()
-  jest.resetAllMocks()
-  axios.get.mockResolvedValue({ data: sampleSingleLeague })
-  await wrapper.vm.getResults()
-  expect(axios.get).toHaveBeenLastCalledWith('/api/results')
-})
-
-test('Get Results - Processes Response Correctly', async () => {
-  const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
-    mocks: {
-      $messages: { addMessage: mockAddMessageFunction },
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
-  await wrapper.vm.getResults()
-  expect(wrapper.vm.results).toEqual([{ league: '1' }, { league: '2' }])
-
-  axios.get.mockResolvedValue({ data: [] })
-  await wrapper.vm.getResults()
-  expect(wrapper.vm.results).toEqual([])
-
-  axios.get.mockResolvedValue({
-    data: [
-      { league: 'a', property: 3 },
-      { league: '2', another: 4 },
-    ],
-  })
-  await wrapper.vm.getResults()
-  expect(wrapper.vm.results).toEqual([
-    { league: 'a', property: 3 },
-    { league: '2', another: 4 },
-  ])
-})
-
-test('Get Results - Shows Message on Error', async () => {
-  const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
-    mocks: {
-      $messages: { addMessage: mockAddMessageFunction },
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  axios.get.mockRejectedValue()
-  await wrapper.vm.getResults()
-  expect(wrapper.vm.results).toEqual([])
-  expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
-    'Problem Fetching Results'
-  )
-})
-
 test('Elapsed Time to Seconds', () => {
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.vm.elapsedTimeToSeconds('00:00')).toBe(0)
@@ -412,7 +351,7 @@ test('Elapsed Time to Seconds', () => {
 })
 
 test('Competitors for League', () => {
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
     },
@@ -457,26 +396,26 @@ test('Competitors for League', () => {
   ])
 })
 
-test('Transfer - Invalid', async () => {
+test('Add Result - Invalid', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['router-link', 'vue-headful'],
   })
   axios.get.mockRejectedValue()
-  await wrapper.vm.transfer()
+  await wrapper.vm.addResult()
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
-    'Please Select a Result and a Competitor'
+    'Please Select a Competitor and an Event'
   )
 })
 
-test('Transfer', async () => {
+test('Add Result', async () => {
   const mockAddMessageFunction = jest.fn()
   const mockReturnToCompetitorsPage = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -486,27 +425,27 @@ test('Transfer', async () => {
   wrapper.setData({
     event: '1 - 2',
     course: '2',
-    result: '1 - 00:00 (Bob Jones)',
-    competitor: '2',
     events: [{ id: '4', name: '1', date: '2' }],
-    results: [{ id: '7', course: '2', event: '4', time: 0 }],
+    competitor: '1',
+    points: 7,
   })
   axios.get.mockResolvedValue()
   axios.post.mockResolvedValue()
-  await wrapper.vm.transfer()
+  await wrapper.vm.addResult()
   expect(axios.post).toHaveBeenCalled()
-  expect(axios.post).toHaveBeenLastCalledWith('/api/results/transfer', {
-    competitor: '2',
-    result: '7',
+  expect(axios.post).toHaveBeenLastCalledWith('/api/results/manual', {
+    competitor: '1',
+    points: 7,
+    event: '4',
   })
   expect(wrapper.vm.returnToCompetitorsPage).toHaveBeenCalled()
   expect(mockAddMessageFunction).not.toHaveBeenCalled()
 })
 
-test('Transfer - No Event', async () => {
+test('Add Result - No Event', async () => {
   const mockAddMessageFunction = jest.fn()
   const mockReturnToCompetitorsPage = jest.fn()
-  const wrapper = shallowMount(ResultTransfer, {
+  const wrapper = shallowMount(ManualPointsForm, {
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -516,19 +455,16 @@ test('Transfer - No Event', async () => {
   wrapper.setData({
     event: '1 - 2',
     course: '2',
-    result: '1 - 00:00 (Bob Jones)',
-    competitor: '6',
     events: [],
-    results: [{ id: '7', course: '2', event: '', time: 0 }],
+    competitor: '1',
+    points: 7,
   })
   axios.get.mockResolvedValue()
   axios.post.mockResolvedValue()
-  await wrapper.vm.transfer()
-  expect(axios.post).toHaveBeenCalled()
-  expect(axios.post).toHaveBeenLastCalledWith('/api/results/transfer', {
-    competitor: '6',
-    result: '7',
-  })
-  expect(wrapper.vm.returnToCompetitorsPage).toHaveBeenCalled()
-  expect(mockAddMessageFunction).not.toHaveBeenCalled()
+  await wrapper.vm.addResult()
+  expect(axios.post).not.toHaveBeenCalled()
+
+  expect(wrapper.vm.returnToCompetitorsPage).not.toHaveBeenCalled()
+  expect(mockAddMessageFunction).toHaveBeenCalled()
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('No Event Selected')
 })

@@ -10,6 +10,14 @@ transferResultParser.add_argument(
 transferResultParser.add_argument(
     'result', help='This field cannot be blank', required=True)
 
+manualResultParser = reqparse.RequestParser()
+manualResultParser.add_argument(
+    'competitor', help='This field cannot be blank', required=True)
+manualResultParser.add_argument(
+    'event', help='This field cannot be blank', required=True)
+manualResultParser.add_argument(
+    'points', help='This field cannot be blank', required=True)
+
 
 class Results(Resource):
     def get(self):
@@ -46,3 +54,15 @@ class TransferResult(Resource):
             return {'message': 'Result Transfered'}
         except:
             return {'message': 'Error: Problem Transferring Result - Please Try Again'}, 500
+
+
+class ManualResult(Resource):
+    @requireAuthentication
+    def post(self):
+        try:
+            data = manualResultParser.parse_args()
+            results.createResult(
+                0, '', data['points'], False, data['event'], data['competitor'])
+            return {'message': 'Points Assigned'}
+        except:
+            return {'message': 'Error: Problem Assigning Points - Please Try Again'}

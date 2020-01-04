@@ -63,7 +63,6 @@ def getPointsForEvent(results, eventId):
 
 
 def courseResultToJSON(result, league, eventsList):
-
     # If all that data is found return success
     if league and eventsList:
         # Get number of events to count in league

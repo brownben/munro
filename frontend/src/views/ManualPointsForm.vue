@@ -10,13 +10,13 @@
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
-      title="Munro - Transfer Results"
+      title="Munro - Manual Points"
       description
     />
     <h1 class="text-main text-3xl font-normal font-heading mb-2">
-      Transfer Result
+      Manual Points
     </h1>
-    <form @submit.prevent="transfer">
+    <form @submit.prevent="addResult">
       <dropdown-input
         v-model="league"
         :list="leagues.map(league => league.name)"
@@ -36,28 +36,14 @@
         label="Course"
       />
       <dropdown-input
-        v-model="result"
-        :list="
-          resultsForEvent.map(
-            result =>
-              result.position +
-              ' - ' +
-              elapsedTime(result.time) +
-              ' (' +
-              result.name +
-              ')'
-          )
-        "
-        :include-blank="true"
-        label="Result:"
-      />
-      <dropdown-input
         v-model="competitor"
         :list="competitorsForLeague.map(competitorTransformForSelect)"
         :include-blank="true"
         label="Competitor:"
       />
-      <button class="button-lg">Transfer Result</button>
+
+      <number-input v-model.number="points" label="Points:" :max="10000" />
+      <button class="button-lg">Add Result</button>
     </form>
   </div>
 </template>
@@ -65,10 +51,12 @@
 <script>
 import axios from 'axios'
 import DropdownInput from '@/components/DropdownInput'
+import NumberInput from '@/components/NumberInput'
 
 export default {
   components: {
     DropdownInput,
+    NumberInput,
   },
 
   data: () => ({
@@ -80,7 +68,7 @@ export default {
     event: '',
     course: '',
     competitor: '',
-    result: '',
+    points: 0,
   }),
 
   computed: {
@@ -103,34 +91,12 @@ export default {
     eventsInLeague: function() {
       return this.events.filter(event => event.league === this.league)
     },
-
-    resultsForEvent: function() {
-      let event = ''
-      const selectedEvent = this.events.filter(
-        event =>
-          event.name === this.event.split(' - ')[0] &&
-          event.date === this.event.split(' - ')[1]
-      )
-      if (selectedEvent.length > 0) event = selectedEvent[0].id
-      return this.results
-        .filter(
-          result => result.event === event && result.course === this.course
-        )
-        .sort((a, b) => {
-          if (parseInt(a.position, 10) === parseInt(b.position, 10)) return 0
-          else if (a.position === null || a.position === undefined) return 1
-          else if (b.position === null || b.position === undefined) return -1
-          else if (parseInt(a.position, 10) > parseInt(b.position, 10)) return 1
-          else return -1
-        })
-    },
   },
 
   created: function() {
-    this.getCompetitors()
     this.getLeagues()
+    this.getCompetitors()
     this.getEvents()
-    this.getResults()
   },
 
   methods: {
@@ -161,22 +127,8 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Fetching Events'))
     },
 
-    getResults: function() {
-      return axios
-        .get('/api/results')
-        .then(response => {
-          this.results = response.data
-        })
-        .catch(() => this.$messages.addMessage('Problem Fetching Results'))
-    },
-
     validateForm: function() {
-      return (
-        this.event !== '' &&
-        this.course !== '' &&
-        this.result !== '' &&
-        this.competitor !== ''
-      )
+      return this.event !== '' && this.course !== '' && this.competitor !== ''
     },
 
     twoDigits: function(number) {
@@ -206,36 +158,32 @@ export default {
       else return `${competitor.name} [${competitor.id}]`
     },
 
-    transfer: function() {
-      if (this.validateForm()) {
-        let event = ''
+    addResult: function() {
+      if (!this.validateForm())
+        this.$messages.addMessage('Please Select a Competitor and an Event')
+      else {
         const selectedEvent = this.events.find(
           event =>
             event.name === this.event.split(' - ')[0] &&
             event.date === this.event.split(' - ')[1]
         )
-        if (selectedEvent) event = selectedEvent.id
-        const competitor = this.competitor.replace(/.*\[|\]/g, '')
-        const result = this.results.find(
-          result =>
-            result.course === this.course &&
-            result.event === event &&
-            result.time ===
-              this.elapsedTimeToSeconds(
-                this.result.match(/-.*\(/)[0].slice(2, -2)
-              )
-        )
-        return axios
-          .post('/api/results/transfer', {
-            competitor: competitor,
-            result: result.id,
-          })
-          .then(response => this.returnToCompetitorsPage(response))
-          .catch(error =>
-            this.$messages.addMessage(error.response.data.message)
-          )
-      } else
-        this.$messages.addMessage('Please Select a Result and a Competitor')
+        if (!selectedEvent) this.$messages.addMessage('No Event Selected')
+        else {
+          let event = selectedEvent.id
+          const competitor = this.competitor.replace(/.*\[|\]/g, '')
+
+          return axios
+            .post('/api/results/manual', {
+              competitor: competitor,
+              points: this.points,
+              event: event,
+            })
+            .then(response => this.returnToCompetitorsPage(response))
+            .catch(error =>
+              this.$messages.addMessage(error.response.data.message)
+            )
+        }
+      }
     },
 
     returnToCompetitorsPage: function(response) {

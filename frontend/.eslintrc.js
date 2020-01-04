@@ -24,7 +24,7 @@ module.exports = {
     ],
     'default-param-last': 'error',
     'dot-notation': 'error',
-    'no-console': 'error',
+    'no-console': 'warn',
     'no-lonely-if': 'error',
     'no-plusplus': 'error',
     'no-unneeded-ternary': 'error',

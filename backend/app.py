@@ -62,13 +62,12 @@ api.add_resource(routes.Competitor, '/api/competitors/<id>')
 api.add_resource(routes.ResultsForCompetitor, '/api/competitors/<id>/results')
 
 api.add_resource(routes.Results, '/api/results')
+api.add_resource(routes.ManualResult, '/api/results/manual')
 api.add_resource(routes.TransferResult, '/api/results/transfer')
 
 api.add_resource(routes.Upload, '/api/upload')
 
 # Serve app files
-
-
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):

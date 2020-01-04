@@ -48,6 +48,13 @@ exports[`Renders Correctly 1`] = `
       >
         Transfer Result
       </router-link-stub>
+       
+      <router-link-stub
+        class="button"
+        to="/results/manual"
+      >
+        Manual Points
+      </router-link-stub>
     </div>
      
     <div

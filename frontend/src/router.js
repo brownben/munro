@@ -27,6 +27,7 @@ const Upload = () => import('@/views/Upload')
 const UploadInstructions = () => import('@/views/UploadInstructions')
 const Developers = () => import('@/views/Developers')
 const LatestResults = () => import('@/views/LatestResults')
+const ManualPointsForm = () => import('@/views/ManualPointsForm')
 
 // Bind to Vue Instance
 Vue.use(Router)
@@ -148,6 +149,11 @@ const router = new Router({
       name: 'Transfer Result',
       component: ResultTransfer,
       beforeEnter: requireAuthentication,
+    },
+    {
+      path: '/results/manual',
+      name: 'Manual Result',
+      component: ManualPointsForm,
     },
     {
       path: '/latest-results',
