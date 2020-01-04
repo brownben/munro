@@ -29,7 +29,7 @@
     "check": "npm run prettier:check && npm run eslint:check",
     "eslint:check": "vue-cli-service lint --no-fix",
     "eslint:fix": "vue-cli-service lint",
-    "prettier:check": "prettier **",
+    "prettier:check": "prettier --check **",
     "prettier:fix": "prettier --write ** "
   },
   "dependencies": {

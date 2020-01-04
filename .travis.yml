@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - 10
+
+before_install:
+  - cd frontend
+
+script:
+  - npm run eslint:check
+  - npm run test
+  - npm run build
