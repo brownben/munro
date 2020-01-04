@@ -87,13 +87,16 @@ connection.close()
 def createLeague(name, website, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults):
     try:
         year = int(year)
-    except:
+    except ValueError:
         year = 0
     courses = courses.replace(' ', '')
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
-    cursor.execute('INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year, dynamicEventResults) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',
-                   (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults))
+    cursor.execute('''
+        INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses,
+        moreInformation, year, dynamicEventResults)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    ''', (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults))
     connection.commit()
     connection.close()
 

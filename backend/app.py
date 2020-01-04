@@ -1,13 +1,13 @@
-import routes
-import os
-import json
-
-import requests
-from flask import Flask, render_template, session, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory
 from flask_compress import Compress
 from flask_cors import CORS
 from flask_restful import Api
 from flask_talisman import Talisman
+import os
+import json
+# import requests # Enable for Development Forwarding
+
+import routes
 
 # Set up Flask with plugins
 app = Flask(__name__,
@@ -34,7 +34,7 @@ app.secret_key = os.urandom(25)
 
 
 @api.representation('application/json')
-def output_json(data, code, headers={'X-Robots-Tag': 'noindex', 'max-age': 0}):
+def output_json(data, code):
     resp = app.make_response((json.dumps(data), code))
     resp.headers.extend({'X-Robots-Tag': 'noindex', 'max-age': 0})
     return resp

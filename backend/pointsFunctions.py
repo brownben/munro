@@ -1,6 +1,7 @@
 from collections import defaultdict
 import statistics
 
+
 def assignPoints(data, leagueScoringMethod):
     # Choses which points algorithm to use
     if leagueScoringMethod == 'position':
@@ -22,6 +23,7 @@ def assignPoints(data, leagueScoringMethod):
     else:
         return False
 
+
 def positionBasedPoints(data):
     # Assign points 100 for 1st, 99 for 2nd etc - 0 for incomplete course
     dataWithPoints = []
@@ -29,7 +31,7 @@ def positionBasedPoints(data):
     for result in data:
         resultWithPoints = result
 
-        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
+        if isinstance(result['position'],int) and result['position'] > 0 and not result['incomplete']:
             resultWithPoints['points'] = 101 - result['position']
 
         else:
@@ -39,6 +41,7 @@ def positionBasedPoints(data):
 
     return dataWithPoints
 
+
 def positionBasedPointsDouble(data):
     # Assign points 100 for 1st, 99 for 2nd etc - 0 for incomplete course
     dataWithPoints = []
@@ -46,7 +49,7 @@ def positionBasedPointsDouble(data):
     for result in data:
         resultWithPoints = result
 
-        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
+        if isinstance(result['position'], int) and result['position'] > 0 and not result['incomplete']:
             resultWithPoints['points'] = 202 - (result['position'] * 2)
 
         else:
@@ -56,6 +59,7 @@ def positionBasedPointsDouble(data):
 
     return dataWithPoints
 
+
 def positionBasedPointsFifty(data):
     # Assign points 50 for 1st, 49 for 2nd etc - 0 for incomplete course
     dataWithPoints = []
@@ -63,7 +67,7 @@ def positionBasedPointsFifty(data):
     for result in data:
         resultWithPoints = result
 
-        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
+        if isinstance(result['position'], int) and result['position'] > 0 and not result['incomplete']:
             resultWithPoints['points'] = 51 - result['position']
 
         else:
@@ -73,6 +77,7 @@ def positionBasedPointsFifty(data):
 
     return dataWithPoints
 
+
 def positionBasedPointsFiftyDouble(data):
     # Assign points 50 for 1st, 49 for 2nd etc - 0 for incomplete course
     dataWithPoints = []
@@ -80,7 +85,7 @@ def positionBasedPointsFiftyDouble(data):
     for result in data:
         resultWithPoints = result
 
-        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
+        if isinstance(result['position'], int) and result['position'] > 0 and not result['incomplete']:
             resultWithPoints['points'] = 102 - (result['position'] * 2)
 
         else:
@@ -90,6 +95,7 @@ def positionBasedPointsFiftyDouble(data):
 
     return dataWithPoints
 
+
 def positionBasedPoints99(data):
     # Assign points 50 for 1st, 49 for 2nd etc - 0 for incomplete course
     dataWithPoints = []
@@ -97,7 +103,7 @@ def positionBasedPoints99(data):
     for result in data:
         resultWithPoints = result
 
-        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
+        if isinstance(result['position'], int) and result['position'] > 0 and not result['incomplete']:
             resultWithPoints['points'] = 100 - result['position']
 
         else:
@@ -107,6 +113,7 @@ def positionBasedPoints99(data):
 
     return dataWithPoints
 
+
 def positionBasedPoints99WithDraw(data):
     # Assign points 99 for 1st, 98 for 2nd etc - 0 for incomplete course - Average of Poitns for Draw
     dataWithPoints = []
@@ -114,13 +121,15 @@ def positionBasedPoints99WithDraw(data):
     for result in data:
         resultWithPoints = result
 
-        if type(result['position']) == type(1) and result['position'] > 0 and not result['incomplete']:
-            positionOccurances = countOccuracesOfPosition(data, result['position'])
+        if isinstance((result['position'], int) and result['position'] > 0 and not result['incomplete']:
+            positionOccurances = countOccuracesOfPosition(
+                data, result['position'])
             points = (100 - result['position'])
             if positionOccurances == 1:
                 resultWithPoints['points'] = points
             else:
-                resultWithPoints['points'] = (points + (points - positionOccurances))/2
+                resultWithPoints['points'] = (
+                    points + (points - positionOccurances))/2
         else:
             resultWithPoints['points'] = 0
 
@@ -128,8 +137,10 @@ def positionBasedPoints99WithDraw(data):
 
     return dataWithPoints
 
+
 def timeFromAveragePoints(data):
-    times = [result['time'] for result in data if type(result['time']) == type(1) and not result['incomplete']]
+    times = [result['time'] for result in data if isinstance(
+        result['time'], int) and not result['incomplete']]
     print(times)
     standardDeviation = statistics.stdev(times)
     average = statistics.mean(times)
@@ -140,10 +151,11 @@ def timeFromAveragePoints(data):
     for result in data:
         resultWithPoints = result
 
-        if type(result['time']) != type(1) or result['incomplete']:
+        if isinstance((result['time'], int) or result['incomplete']:
             resultWithPoints['points'] = 0
         else:
-            points = 1000 + 200 * ((average - result['time'])/standardDeviation)
+            points = 1000 + 200 * \
+                ((average - result['time'])/standardDeviation)
             if (points < 0):
                 points = 0
             resultWithPoints['points'] = round(points)
@@ -151,6 +163,7 @@ def timeFromAveragePoints(data):
         dataWithPoints.append(resultWithPoints)
 
     return dataWithPoints
+
 
 def timeFromAveragePointsHundred(data):
     courseStats = calculateCourseAverage(data)
@@ -161,7 +174,7 @@ def timeFromAveragePointsHundred(data):
         standardDeviation = courseStats[result['course']]['standardDeviation']
         resultWithPoints = result
 
-        if type(result['time']) != type(1) or result['incomplete']:
+        if isinstance((result['time'], int) or result['incomplete']:
             resultWithPoints['points'] = 0
         else:
             points = 100 + 20 * ((average - result['time'])/standardDeviation)
@@ -175,24 +188,26 @@ def timeFromAveragePointsHundred(data):
 
     return dataWithPoints
 
+
 def calculateCourseAverage(data):
     courseTimes = defaultdict(list)
     for result in data:
-        if type(result['time']) == type(1) and not result['incomplete']:
+        if isinstance(result['time'], int) and not result['incomplete']:
             courseTimes[result['course']].append(result['time'])
 
     courseStats = {}
     for course, timesList in courseTimes:
         courseStats[course] = {
-            'average':statistics.mean(timesList),
-            'standardDeviation':statistics.stdev(timesList),
+            'average': statistics.mean(timesList),
+            'standardDeviation': statistics.stdev(timesList),
         }
 
     return courseStats
 
 
-def countOccuracesOfPosition (data, position):
+def countOccuracesOfPosition(data, position):
     return len([1 for row in data if row['position'] == position])
+
 
 def biggestPoints(points, number):
     # Finds the x greatest values in the list and returns their index
@@ -222,10 +237,13 @@ def biggestPoints(points, number):
 
             else:
                 # Else find the the last location of the value and look for the next occurance after that, append the index of that item to biggest
-                lastLocation = positionOfLastOccurance(sortedPoints[counter], pointsArray, biggest)
-                biggest.append(pointsArray.index(sortedPoints[counter], lastLocation + 1))
+                lastLocation = positionOfLastOccurance(
+                    sortedPoints[counter], pointsArray, biggest)
+                biggest.append(pointsArray.index(
+                    sortedPoints[counter], lastLocation + 1))
 
         return biggest
+
 
 def countOccurancesFromArrayOfIndexes(searchItem, array, arrayOfIndexes):
     occurances = 0
@@ -234,12 +252,14 @@ def countOccurancesFromArrayOfIndexes(searchItem, array, arrayOfIndexes):
             occurances += 1
     return occurances
 
+
 def positionOfLastOccurance(searchItem, array, arrayOfIndexes):
     location = 0
     for index in arrayOfIndexes:
         if array[index] == searchItem:
             location = index
-    return index
+    return location
+
 
 def calculateTotal(pointsList, points):
     # Sum all points in array
@@ -248,6 +268,7 @@ def calculateTotal(pointsList, points):
         if points[point] != '':
             totalPoints += int(points[point])
     return totalPoints
+
 
 def assignPosition(results):
     # Assign 1st, 2nd, 3rd, etc based off total points

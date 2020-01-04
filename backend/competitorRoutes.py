@@ -1,4 +1,3 @@
-from flask import Flask, session
 from flask_restful import Resource, reqparse
 
 from database import competitors
@@ -43,11 +42,11 @@ class Competitors(Resource):
 
 
 class Competitor(Resource):
-    def get(self, id):
-        return competitors.findCompetitor(id)
+    def get(self, competitorId):
+        return competitors.findCompetitor(competitorId)
 
     @requireAuthentication
-    def put(self, id):
+    def put(self, competitorId):
         data = competitorParser.parse_args()
 
         try:
@@ -58,9 +57,9 @@ class Competitor(Resource):
             return {'message': 'Error: Problem Updating Competitor - Please Try Again'}, 500
 
     @requireAuthentication
-    def delete(self, id):
-        competitor = competitors.findCompetitor(id)
-        competitors.deleteCompetitor(id)
+    def delete(self, competitorId):
+        competitor = competitors.findCompetitor(competitorId)
+        competitors.deleteCompetitor(competitorId)
         return {'message': 'Competitor - {} was Deleted'.format(competitor['name'])}
 
 

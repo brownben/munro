@@ -1,7 +1,7 @@
-from flask import Flask, session
+from flask import session
 from flask_restful import Resource, reqparse
 
-from database import events, leagues
+from database import events
 from requireAuthentication import requireAuthentication
 
 # Check POST request has all the relevent fields
@@ -52,36 +52,37 @@ class EventsWithUploadKey(Resource):
 
 
 class Event(Resource):
-    def get(self, id):
-        return events.findEvent(id)
+    def get(self, eventId):
+        return events.findEvent(eventId)
 
     @requireAuthentication
-    def put(self, id):
+    def put(self, eventId):
         data = eventParser.parse_args()
         name = data['name']
         newId = (data['league']+data['name']+data['date']).replace(' ', '')
 
-        if newId != id and events.findEvent(newId):
+        if newId != eventId and events.findEvent(newId):
             return {'message': 'Event with Name {} already Exists in this League'.format(name)}, 500
 
         try:
-            events.updateEvent(id, data['name'], data['date'], data['resultUploaded'], data['organiser'], data['moreInformation'],
+            events.updateEvent(eventId, data['name'], data['date'], data['resultUploaded'], data['organiser'], data['moreInformation'],
                                data['website'], data['results'], data['winsplits'], data['routegadget'], data['league'])
             return {'message': 'Event - {} was Updated'.format(name)}
         except:
             return {'message': 'Error: Problem Updating Event - Please Try Again'}, 500
 
     @requireAuthentication
-    def delete(self, id):
-        event = events.findEvent(id)
-        events.deleteEvent(id)
+    def delete(self, eventId):
+        event = events.findEvent(eventId)
+        events.deleteEvent(evventId)
         return {'message': 'Event - {} was Deleted'.format(event['name'])}
 
 
 class EventWithUploadKey(Resource):
     @requireAuthentication
-    def get(self, id):
-        return events.getEventWithUploadKey(id)
+    def get(self, eventId):
+        return events.getEventWithUploadKey(eventId)
+
 
 class EventsLatestWithResults(Resource):
     def get(self):

@@ -35,13 +35,13 @@ def createCompetitor(name, ageClass, club, course, league):
     return rowId
 
 
-def updateCompetitor(id, name, ageClass, club, course, league):
+def updateCompetitor(competitorId, name, ageClass, club, course, league):
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
         UPDATE competitors
         SET name=%s,ageClass=%s,club=%s,course=%s, league=%s
-        WHERE rowid=%s''', (name, ageClass, club, course, league, id))
+        WHERE rowid=%s''', (name, ageClass, club, course, league, competitorId))
     connection.commit()
     connection.close()
 
@@ -54,13 +54,13 @@ def deleteCompetitor(rowid):
     connection.close()
 
 
-def findCompetitor(id):
+def findCompetitor(competitorId):
     connection = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = connection.cursor()
     cursor.execute('''
         SELECT rowid, name, ageClass, club, course, league
         FROM competitors
-        WHERE rowid=%s''', (id,))
+        WHERE rowid=%s''', (competitorId,))
     result = cursor.fetchone()
     connection.close()
     return competitorToJSON(result)
