@@ -20,39 +20,26 @@ def findHeaders(data):
     # Find the location of each field in the CSV file by reading the header
     locations = {}
     headerRow = data[0]
+    expectedHeaders = [
+        [['FIRST NAME', 'FIRSTNAME'], 'firstName'],
+        [['SURNAME'], 'surname'],
+        [['NAME'], 'name'],
+        [['TEXT1', 'CATEGORY', 'AGE CLASS', 'AGECLASS'], 'ageClass'],
+        [['CITY', 'CLUB'], 'club'],
+        [['COURSE', 'COURSECLASS'], 'course'],
+        [['TIME', 'RACETIME'], 'time'],
+        [['PL', 'POS.', 'POS', 'POSITION'], 'position'],
+        [['NC', 'NONCOMPETITIVE'], 'nonCompetitive'],
+        [['STATUS', 'CLASSIFIER'], 'status'],
+    ]
     if headerRow:
         headerRow[-1] = headerRow[-1].strip()
-        for cell in range(len(headerRow)):
-            if headerRow[cell].upper() == 'FIRST NAME' or headerRow[cell].upper() == 'FIRSTNAME':
-                if 'firstName' not in locations:
-                    locations['firstName'] = cell
-            elif headerRow[cell].upper() == 'SURNAME':
-                if 'surname' not in locations:
-                    locations['surname'] = cell
-            elif headerRow[cell].upper() == 'NAME':
-                if 'name' not in locations:
-                    locations['name'] = cell
-            elif headerRow[cell].upper() == 'TEXT1' or headerRow[cell].upper() == 'CATEGORY' or headerRow[cell].upper() == 'AGECLASS' or headerRow[cell].upper() == 'AGE CLASS':
-                if 'ageClass' not in locations:
-                    locations['ageClass'] = cell
-            elif headerRow[cell].upper() == 'CITY' or headerRow[cell].upper() == 'CLUB':
-                if 'club' not in locations:
-                    locations['club'] = cell
-            elif headerRow[cell].upper() == 'COURSE' or headerRow[cell].upper() == 'COURSECLASS':
-                if 'course' not in locations:
-                    locations['course'] = cell
-            elif headerRow[cell].upper() == 'TIME' or headerRow[cell].upper() == 'RACETIME':
-                if 'time' not in locations:
-                    locations['time'] = cell
-            elif headerRow[cell].upper() == 'PL' or headerRow[cell].upper() == 'POSITION':
-                if 'position' not in locations:
-                    locations['position'] = cell
-            elif headerRow[cell].upper() == 'NC' or headerRow[cell].upper() == 'NONCOMPETITIVE':
-                if 'nonCompetitive' not in locations:
-                    locations['nonCompetitive'] = cell
-            elif headerRow[cell].upper() == 'STATUS' or headerRow[cell].upper() == 'CLASSIFIER':
-                if 'status' not in locations:
-                    locations['status'] = cell
+        for cell in enumerate(headerRow):
+            for header in expectedHeaders:
+                if headerRow[cell].upper() in header[0] and header[1] not in locations:
+                    locations[header[1]] = cell
+                    break
+
         if checkAllHeadersPresent(list(locations.keys())):
             return locations
         else:
@@ -61,13 +48,13 @@ def findHeaders(data):
         return False
 
 
-def checkAllHeadersPresent(list):
+def checkAllHeadersPresent(headersList):
     # Check all expected field are in the file
-    if ('firstName' in list and 'surname' in list) or 'name' in list:
+    if ('firstName' in headersList and 'surname' in headersList) or 'name' in headersList:
         otherHeaders = ['ageClass', 'club', 'course',
                         'time', 'position', 'nonCompetitive', 'status']
         for header in otherHeaders:
-            if header not in list:
+            if header not in headersList:
                 return False
         return True
     else:
@@ -113,7 +100,7 @@ def parseToObjects(data, headerLocations):
         parsedRow['time'] = timeToSeconds(row[headerLocations['time']])
         try:
             parsedRow['position'] = int(row[headerLocations['position']])
-        except:
+        except ValueError:
             parsedRow['position'] = ''
         parsedRow['incomplete'] = row[headerLocations['nonCompetitive']] == 'Y' or row[headerLocations['nonCompetitive']] == '1' or (
             row[headerLocations['status']] != '' and row[headerLocations['status']] != '0')

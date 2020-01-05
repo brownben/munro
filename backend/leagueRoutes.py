@@ -1,4 +1,3 @@
-from flask import Flask, session
 from flask_restful import Resource, reqparse
 
 from database import events, leagues
@@ -37,7 +36,9 @@ class Leagues(Resource):
 
         try:
             leagues.createLeague(data['name'], data['website'],  data['coordinator'],
-                                 data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'], data['dynamicEventResults'])
+                                 data['scoringMethod'], data['numberOfCountingEvents'],
+                                 data['courses'], data['description'], data['year'],
+                                 data['dynamicEventResults'])
             return {'message': 'League - {} was Created'.format(name)}
         except:
             return {'message': 'Error: Problem Creating League - Please Try Again'}, 500
@@ -57,7 +58,8 @@ class League(Resource):
 
         try:
             leagues.updateLeague(data['oldName'], data['name'], data['website'],  data['coordinator'],
-                                 data['scoringMethod'], data['numberOfCountingEvents'], data['courses'], data['description'], data['year'], data['dynamicEventResults'])
+                                 data['scoringMethod'], data['numberOfCountingEvents'], data['courses'],
+                                 data['description'], data['year'], data['dynamicEventResults'])
             return {'message': 'League - {} was Updated'.format(name)}
         except:
             return {'message': 'Error: Problem Updating League - Please Try Again'}, 500

@@ -1,6 +1,6 @@
 from functools import wraps
 
-from flask import Flask, request
+from flask import request
 from google.auth.transport import requests
 import google.oauth2.id_token
 
@@ -14,9 +14,9 @@ def requireAuthentication(func):
         id_token = request.cookies.get("token")
         if id_token:
             try:
-                claims = google.oauth2.id_token.verify_firebase_token(
+                google.oauth2.id_token.verify_firebase_token(
                     id_token, firebase_request_adapter)
-            except ValueError as exc:
+            except ValueError:
                 return {'message': 'Permission Denied - You are not Logged In'}, 401
         else:
             return {'message': 'Permission Denied - You are not Logged In'}, 401

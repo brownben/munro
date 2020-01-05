@@ -1,4 +1,3 @@
-from flask import Flask, session
 from flask_restful import Resource, reqparse
 
 from database import results
@@ -35,13 +34,13 @@ class ResultsForCourse(Resource):
 
 
 class ResultsForEvent(Resource):
-    def get(self, id):
-        return results.getResultsByEvent(id)
+    def get(self, eventID):
+        return results.getResultsByEvent(eventID)
 
 
 class ResultsForCompetitor(Resource):
-    def get(self, id):
-        return results.getResultsByCompetitor(id)
+    def get(self, competitorID):
+        return results.getResultsByCompetitor(competitorID)
 
 
 class TransferResult(Resource):

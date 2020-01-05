@@ -1,11 +1,9 @@
-from flask import Flask, session
 from flask_restful import Resource, reqparse
 
 import csvFunctions as csv
 import pointsFunctions as points
 import uploadFunctions as upload
 from database import competitors, leagues, events, results
-from requireAuthentication import requireAuthentication
 
 # Check POST request for upload has all the relevent fields
 uploadParser = reqparse.RequestParser()
@@ -24,6 +22,7 @@ uploadParser.add_argument(
 uploadParser.add_argument(
     'routegadget')
 
+
 class Upload(Resource):
     def post(self):
         data = uploadParser.parse_args()
@@ -40,7 +39,7 @@ class Upload(Resource):
                 return {'message': 'Upload Key is Incorrect'}, 500
 
             # Check the user wants to overwrite data if it already exists. If it does  and they want ot overwrite it deletes the existing data
-            if data['overwrite'] != 'True' and eventData['resultUploaded'] == True:
+            if data['overwrite'] != 'True' and eventData['resultUploaded']:
                 return {'message': 'Results Already Exist for this Event and Overwrite was not Enabled'}, 500
             elif data['overwrite'] == 'True':
                 results.deleteResultsByEvent(eventData['id'])
@@ -76,8 +75,9 @@ class Upload(Resource):
                 # Write all results to the database
                 for result in dataWithCompetitors:
                     results.createResult(result['time'], result['position'], result['points'],
-                                        result['incomplete'], eventData['id'], result['competitor'])
-                events.setResultsUploadedAndURLs(True, eventData['id'], data['results'], data['winsplits'], data['routegadget'])
+                                         result['incomplete'], eventData['id'], result['competitor'])
+                events.setResultsUploadedAndURLs(
+                    True, eventData['id'], data['results'], data['winsplits'], data['routegadget'])
                 return {'message': str(len(dataWithCompetitors)) + ' Results Saved'}
 
             except:

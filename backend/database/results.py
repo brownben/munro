@@ -1,13 +1,8 @@
 import pointsFunctions
 from . import events, leagues
-import os
-import psycopg2
+import * from sqlQuery
 
-DATABASE_URL = os.environ['DATABASE_URL']
-
-
-def resultToJSON(result):
-    # Generate Random Upload Key
+def partResultToJSON(result):
     if result[1] == -1:
         position = ''
     else:
@@ -20,6 +15,15 @@ def resultToJSON(result):
             'points': result[2],
             'incomplete': result[3] == 'true',
             'event': result[4],
+        }
+    else:
+        return False
+
+def resultToJSON(result):
+    resultJSON = partResultToJSON(result)
+    if resultJSON:
+        return {
+            **resultJSON
             'competitor': result[5],
             'id': result[6]
         }
@@ -28,19 +32,10 @@ def resultToJSON(result):
 
 
 def fullResultToJSON(result):
-        # Generate Random Upload Key
-    if result[1] == -1:
-        position = ''
-    else:
-        position = result[1]
-
-    if (result):
+    resultJSON = partResultToJSON(result)
+    if resultJSON:
         return {
-            'time': result[0],
-            'position': position,
-            'points': result[2],
-            'incomplete': result[3] == 'true',
-            'event': result[4],
+            **resultJSON,
             'name': result[5],
             'ageClass': result[6],
             'club': result[7],
@@ -113,120 +108,84 @@ def courseResultToJSON(result, league, eventsList):
 def createResult(time, position, points, incomplete, event, competitor):
     if position == '':
         position = -1
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('INSERT INTO results (time, position, points, incomplete, event, competitor) VALUES (%s,%s,%s,%s,%s,%s)',
-                   (time, position, points, incomplete, event, competitor))
-    connection.commit()
-    connection.close()
+    query('''
+        INSERT INTO results (time, position, points, incomplete, event, competitor)
+        VALUES (%s,%s,%s,%s,%s,%s)
+    ''', (time, position, points, incomplete, event, competitor))
 
 
 def updateResult(rowid, time, position, points, incomplete, event, competitor):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    query('''
         UPDATE results
         SET time=%s, position=%s, points=%s, incomplete=%s, event=%s, competitor=%s
-        WHERE rowid=%s''', (time, position, points, incomplete, event, competitor, rowid))
-    connection.commit()
-    connection.close()
-
+        WHERE rowid=%s
+    ''', (time, position, points, incomplete, event, competitor, rowid))
 
 def deleteResult(rowid):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('DELETE FROM results WHERE rowid=%s', (rowid,))
-    connection.commit()
-    connection.close()
+    query('DELETE FROM results WHERE rowid=%s', (rowid,))
 
 
 def deleteAllResults():
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('DELETE FROM results')
-    connection.commit()
-    connection.close()
+    query('DELETE FROM results')
 
 
 def deleteResultsByEvent(event):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('DELETE FROM results WHERE event=%s', (event,))
-    connection.commit()
-    connection.close()
+    query'DELETE FROM results WHERE event=%s', (event,))
 
 
 def deleteResultsByCompetitor(competitor):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('DELETE FROM results WHERE competitor=%s', (competitor,))
-    connection.commit()
-    connection.close()
+    query('DELETE FROM results WHERE competitor=%s', (competitor,))
 
 
 def findResults(rowid):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    result = queryWithOneResult('''
         SELECT time, position, points incomplete, event, competitor, id
         FROM results
-        WHERE rowid=%s''', (rowid,))
-    result = cursor.fetchone()
-    connection.close()
+        WHERE rowid=%s
+    ''', (rowid,))
     return resultToJSON(result)
 
 
 def getAllResults():
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
-        SELECT results.time, results.position, results.points, results.incomplete, results.event, competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
+    result = queryWithResults('''
+        SELECT results.time, results.position, results.points, results.incomplete, results.event,
+        competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
-        ''')
-    result = cursor.fetchall()
-    connection.close()
+    ''')
     return list(map(fullResultToJSON, result))
 
 
 def getResultsByCompetitor(competitor):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    result = queryWithResults('''
         SELECT time, position, points, incomplete, event, competitor, rowid
         FROM results
         WHERE competitor=%s
-        ORDER BY event ASC''', (competitor,))
-    result = cursor.fetchall()
-    connection.close()
+        ORDER BY event ASC
+    ''', (competitor,))
     return list(map(resultToJSON, result))
 
 
 def getResultsByEvent(event):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
-        SELECT results.time, results.position, results.points, results.incomplete, results.event, competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
+    result = queryWithResults('''
+        SELECT results.time, results.position, results.points, results.incomplete, results.event,
+        competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid AND event=%s
         ORDER BY competitors.course ASC, results.position ASC
-        ''', (event,))
-    result = cursor.fetchall()
-    connection.close()
+    ''', (event,))
     return list(map(fullResultToJSON, result))
 
 
 def getResultsForCourse(league, course):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
-        SELECT competitors.name, competitors.ageClass, competitors.club,  string_agg(results.event::text,';'), string_agg(results.points::text,';')
+    results = queryWithResults('''
+        SELECT competitors.name, competitors.ageClass, competitors.club,  string_agg(results.event::text,';'),
+         string_agg(results.points::text,';')
         FROM competitors, results
         WHERE results.competitor=competitors.rowid AND competitors.course=%s AND competitors.league=%s
         GROUP BY competitors.rowid
         ''', (course, league))
-    results = cursor.fetchall()
-    connection.close()
+
     resultsList = []
 
     leagueDetails = leagues.findLeague(league)
@@ -243,11 +202,8 @@ def getResultsForCourse(league, course):
 
 
 def transferResult(result, competitor):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    query('''
         UPDATE results
         SET competitor=%s
-        WHERE rowid=%s''', (competitor, result))
-    connection.commit()
-    connection.close()
+        WHERE rowid=%s
+    ''', (competitor, result))

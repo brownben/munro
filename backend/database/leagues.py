@@ -1,8 +1,4 @@
-import os
-import psycopg2
-
-DATABASE_URL = os.environ['DATABASE_URL']
-
+import * from sqlQuery
 
 def leagueToJSON(league):
     # Convert SQL output to JSON Object
@@ -23,9 +19,8 @@ def leagueToJSON(league):
 
 
 # Set Up Database
-connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-cursor = connection.cursor()
-cursor.execute('''
+
+queryMultiple(['''
     CREATE TABLE IF NOT EXISTS leagues (
         name TEXT NOT NULL PRIMARY KEY,
         website TEXT,
@@ -36,8 +31,8 @@ cursor.execute('''
         moreInformation TEXT,
         year INTEGER,
         dynamicEventResults BOOLEAN,
-        UNIQUE (name))''')
-cursor.execute('''
+        UNIQUE (name))''',
+    '''
     CREATE TABLE IF NOT EXISTS events (
         id TEXT NOT NULL PRIMARY KEY,
         name TEXT NOT NULL,
@@ -54,8 +49,8 @@ cursor.execute('''
         UNIQUE (id),
         FOREIGN KEY(league) REFERENCES leagues(name)
         ON UPDATE CASCADE ON DELETE CASCADE
-        )''')
-cursor.execute('''
+        )''',
+    '''
     CREATE TABLE IF NOT EXISTS competitors (
         rowid SERIAL PRIMARY KEY,
         name TEXT NOT NULL,
@@ -65,8 +60,8 @@ cursor.execute('''
         league TEXT NOT NULL,
         FOREIGN KEY(league) REFERENCES leagues(name)
         ON UPDATE CASCADE ON DELETE CASCADE
-    )''')
-cursor.execute('''
+    )''',
+    '''
     CREATE TABLE IF NOT EXISTS results (
         rowid SERIAL PRIMARY KEY,
         time INT NOT NULL,
@@ -78,60 +73,44 @@ cursor.execute('''
         FOREIGN KEY(event) REFERENCES events(id)
         ON UPDATE CASCADE ON DELETE CASCADE
     )''')
-connection.commit()
-connection.close()
 
-# League Database Functions
-
-
-def createLeague(name, website, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults):
+def fixInput(year, courses):
     try:
         year = int(year)
-    except:
+    except ValueError:
         year = 0
+
     courses = courses.replace(' ', '')
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year, dynamicEventResults) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)',
-                   (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults))
-    connection.commit()
-    connection.close()
+
+    return year, courses
+
+def createLeague(name, website, coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults):
+    year, courses = fixInput(year, courses)
+    query('''
+        INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses,
+        moreInformation, year, dynamicEventResults)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    ''', (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year, dynamicEventResults))
 
 
 def updateLeague(oldName, name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo, year,dynamicEventResults):
-    try:
-        year = int(year)
-    except:
-        year = 0
-    courses = courses.replace(' ', '')
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    year, courses = fixInput(year, courses)
+    query('''
         UPDATE leagues
         SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s, year=%s, dynamicEventResults=%s
         WHERE name=%s''', (name, website,  coordinator, scoringMethod, noOfEvents, courses, moreInfo,year,  dynamicEventResults, oldName))
-    connection.commit()
-    connection.close()
 
 
 def deleteLeague(name):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('DELETE FROM leagues WHERE name=%s', (name,))
-    connection.commit()
-    connection.close()
+    query('DELETE FROM leagues WHERE name=%s', (name,))
 
 
 def findLeague(name):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    result = queryWithOneResult('''
         SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents,courses, moreInformation, year, dynamicEventResults
         FROM leagues
         WHERE name=%s
         ORDER BY year DESC, name ASC''', (name,))
-    result = cursor.fetchone()
-    connection.close()
     json = leagueToJSON(result)
     if(json):
         json['numberOfEvents'] = getNumberOfEventsInLeague(json['name'])
@@ -139,14 +118,10 @@ def findLeague(name):
 
 
 def getAllLeagues():
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    result = queryWithResults('''
         SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year, dynamicEventResults
         FROM leagues
         ORDER BY year DESC, name ASC''')
-    result = cursor.fetchall()
-    connection.close()
     leagues = list(map(leagueToJSON, result))
     for league in leagues:
         league['numberOfEvents'] = getNumberOfEventsInLeague(league['name'])
@@ -154,20 +129,12 @@ def getAllLeagues():
 
 
 def deleteAllLeagues():
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('DELETE FROM leagues')
-    connection.commit()
-    connection.close()
+    query('DELETE FROM leagues')
 
 
 def getNumberOfEventsInLeague(name):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
-    cursor.execute('''
+    result = queryWithResults('''
         SELECT COUNT(events.name)
         FROM events
         WHERE events.league=%s''', (name,))
-    result = cursor.fetchall()
-    connection.close()
     return result[0][0]
