@@ -154,7 +154,7 @@ def timeFromAveragePoints(data):
         else:
             points = 1000 + 200 * \
                 ((average - result['time'])/standardDeviation)
-            if (points < 0):
+            if points < 0:
                 points = 0
             resultWithPoints['points'] = round(points)
 
@@ -177,7 +177,7 @@ def timeFromAveragePointsHundred(data):
         else:
             points = 100 + 20 * ((average - result['time'])/standardDeviation)
 
-            if (points < 0):
+            if points < 0:
                 points = 0
 
             resultWithPoints['points'] = round(points)

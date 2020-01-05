@@ -3,7 +3,7 @@ from .sqlQuery import query, queryWithOneResult, queryWithResults, queryMultiple
 
 def leagueToJSON(league):
     # Convert SQL output to JSON Object
-    if (league):
+    if league:
         return {
             'name': league[0],
             'website': league[1],

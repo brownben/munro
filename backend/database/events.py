@@ -4,7 +4,7 @@ from .sqlQuery import query, queryWithOneResult, queryWithResults
 
 def eventToJSON(event):
     # Convert SQL Tuple to JSON
-    if (event):
+    if event:
         return {
             'id': event[0],
             'name': event[1],

@@ -3,7 +3,7 @@ from .sqlQuery import query, queryWithOneResult, queryWithResults
 
 def competitorToJSON(competitor):
     # Convert data from SQL to Object
-    if (competitor):
+    if competitor:
         return {
             'id': competitor[0],
             'name': competitor[1],

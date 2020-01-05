@@ -9,7 +9,7 @@ def partResultToJSON(result):
     else:
         position = result[1]
 
-    if (result):
+    if result:
         return {
             'time': result[0],
             'position': position,
@@ -89,7 +89,7 @@ def courseResultToJSON(result, league, eventsList):
         totalPoints = pointsFunctions.calculateTotal(largestPoints, points)
 
         # Change to object rather than tuple
-        if (result):
+        if result:
             return {
                 'name': result[0],
                 'ageClass': result[1],

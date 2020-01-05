@@ -7,7 +7,7 @@ def nameToInitial(name):
     name = name.strip()
     splitName = name.split(' ', 1)
 
-    if (len(splitName) > 1):
+    if len(splitName) > 1:
         return splitName[0][0] + ' ' + splitName[1]
     else:
         return name
