@@ -34,13 +34,13 @@ class ResultsForCourse(Resource):
 
 
 class ResultsForEvent(Resource):
-    def get(self, eventID):
-        return results.getResultsByEvent(eventID)
+    def get(self, eventId):
+        return results.getResultsByEvent(eventId)
 
 
 class ResultsForCompetitor(Resource):
-    def get(self, competitorID):
-        return results.getResultsByCompetitor(competitorID)
+    def get(self, competitorId):
+        return results.getResultsByCompetitor(competitorId)
 
 
 class TransferResult(Resource):

@@ -1,4 +1,4 @@
-import * from sqlQuery
+from .sqlQuery import query, queryWithOneResult, queryWithResults
 
 
 def competitorToJSON(competitor):
@@ -25,7 +25,6 @@ def createCompetitor(name, ageClass, club, course, league):
         VALUES (%s,%s,%s,%s,%s)
         RETURNING rowid
         ''', (name, ageClass, club, course, league))
-    rowId = cursor.fetchone()[0]
     return result[0]
 
 

@@ -1,6 +1,7 @@
 import pointsFunctions
 from . import events, leagues
-import * from sqlQuery
+from .sqlQuery import query, queryWithOneResult, queryWithResults
+
 
 def partResultToJSON(result):
     if result[1] == -1:
@@ -19,11 +20,12 @@ def partResultToJSON(result):
     else:
         return False
 
+
 def resultToJSON(result):
     resultJSON = partResultToJSON(result)
     if resultJSON:
         return {
-            **resultJSON
+            **resultJSON,
             'competitor': result[5],
             'id': result[6]
         }
@@ -121,6 +123,7 @@ def updateResult(rowid, time, position, points, incomplete, event, competitor):
         WHERE rowid=%s
     ''', (time, position, points, incomplete, event, competitor, rowid))
 
+
 def deleteResult(rowid):
     query('DELETE FROM results WHERE rowid=%s', (rowid,))
 
@@ -130,7 +133,7 @@ def deleteAllResults():
 
 
 def deleteResultsByEvent(event):
-    query'DELETE FROM results WHERE event=%s', (event,))
+    query('DELETE FROM results WHERE event=%s', (event,))
 
 
 def deleteResultsByCompetitor(competitor):
@@ -138,7 +141,7 @@ def deleteResultsByCompetitor(competitor):
 
 
 def findResults(rowid):
-    result = queryWithOneResult('''
+    result=queryWithOneResult('''
         SELECT time, position, points incomplete, event, competitor, id
         FROM results
         WHERE rowid=%s
@@ -147,7 +150,7 @@ def findResults(rowid):
 
 
 def getAllResults():
-    result = queryWithResults('''
+    result=queryWithResults('''
         SELECT results.time, results.position, results.points, results.incomplete, results.event,
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
@@ -157,7 +160,7 @@ def getAllResults():
 
 
 def getResultsByCompetitor(competitor):
-    result = queryWithResults('''
+    result=queryWithResults('''
         SELECT time, position, points, incomplete, event, competitor, rowid
         FROM results
         WHERE competitor=%s
@@ -167,7 +170,7 @@ def getResultsByCompetitor(competitor):
 
 
 def getResultsByEvent(event):
-    result = queryWithResults('''
+    result=queryWithResults('''
         SELECT results.time, results.position, results.points, results.incomplete, results.event,
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
@@ -178,7 +181,7 @@ def getResultsByEvent(event):
 
 
 def getResultsForCourse(league, course):
-    results = queryWithResults('''
+    results=queryWithResults('''
         SELECT competitors.name, competitors.ageClass, competitors.club,  string_agg(results.event::text,';'),
          string_agg(results.points::text,';')
         FROM competitors, results
@@ -186,18 +189,18 @@ def getResultsForCourse(league, course):
         GROUP BY competitors.rowid
         ''', (course, league))
 
-    resultsList = []
+    resultsList=[]
 
-    leagueDetails = leagues.findLeague(league)
-    eventsList = events.getEventsOfLeague(league)
+    leagueDetails=leagues.findLeague(league)
+    eventsList=events.getEventsOfLeague(league)
 
     for result in list(results):
         resultsList.append(courseResultToJSON(
             result, leagueDetails, eventsList))
 
     # Return results sorted with positions assigned
-    sortedResults = sorted(
-        resultsList, key=lambda x: x['totalPoints'], reverse=True)
+    sortedResults=sorted(
+        resultsList, key = lambda x: x['totalPoints'], reverse=True)
     return pointsFunctions.assignPosition(sortedResults)
 
 

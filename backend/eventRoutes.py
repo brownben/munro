@@ -44,12 +44,6 @@ class Events(Resource):
         return {'message': 'All Events were Deleted'}
 
 
-class EventsWithUploadKey(Resource):
-    @requireAuthentication
-    def get(self):
-        return events.getAllEventsWithUploadKey()
-
-
 class Event(Resource):
     def get(self, eventId):
         return events.findEvent(eventId)
@@ -81,6 +75,12 @@ class EventWithUploadKey(Resource):
     @requireAuthentication
     def get(self, eventId):
         return events.getEventWithUploadKey(eventId)
+
+
+class EventsWithUploadKey(Resource):
+    @requireAuthentication
+    def get(self):
+        return events.getAllEventsWithUploadKey()
 
 
 class EventsLatestWithResults(Resource):

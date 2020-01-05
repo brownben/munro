@@ -141,11 +141,9 @@ def positionBasedPoints99WithDraw(data):
 def timeFromAveragePoints(data):
     times = [result['time'] for result in data if isinstance(
         result['time'], int) and not result['incomplete']]
-    print(times)
     standardDeviation = statistics.stdev(times)
     average = statistics.mean(times)
-    print('Standard Dev', standardDeviation)
-    print('Average', average)
+
     dataWithPoints = []
 
     for result in data:

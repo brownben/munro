@@ -1,5 +1,6 @@
 import base64
-import * from sqlQuery
+from .sqlQuery import query, queryWithOneResult, queryWithResults
+
 
 def eventToJSON(event):
     # Convert SQL Tuple to JSON
@@ -23,8 +24,12 @@ def eventToJSON(event):
 
 def eventToJSONWithUploadKey(event):
     # Convert SQL Tuple to JSON
-    eventJSON = eventToJSON(result)
+    eventJSON = eventToJSON(event)
     if eventToJSON:
+        print({
+            **eventJSON,
+            'uploadKey': event[11],
+        })
         return {
             **eventJSON,
             'uploadKey': event[11],
@@ -60,7 +65,6 @@ def updateEvent(eventId, name, date, resultUploaded, organiser, moreInformation,
         SET id=%s, name=%s, date=%s, resultUploaded=%s, organiser=%s, moreInformation=%s, website=%s, results=%s,winsplits=%s, routegadget=%s, league=%s
         WHERE id=%s
     ''', (newId, name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, league, eventId))
-
 
 
 def setResultsUploaded(to, eventId):
@@ -161,4 +165,3 @@ def getLatestEventsWithResults():
 
 def deleteAllEvents():
     query('DELETE FROM events')
-
