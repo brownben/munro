@@ -1,4 +1,5 @@
 import base64
+import os
 from .sqlQuery import query, queryWithOneResult, queryWithResults
 
 
@@ -45,7 +46,7 @@ def generateUploadKey():
 
 
 def createEvent(data):
-    eventId = (league + name + date).replace(" ", "")
+    eventId = (data['league'] + data['name'] + data['date']).replace(" ", "")
     uploadKey = generateUploadKey()
     query(
         """
@@ -61,17 +62,17 @@ def createEvent(data):
             data["organiser"],
             data["moreInformation"],
             data["website"],
-            data["results,"],
+            data["results"],
             data["winsplits"],
             data["routegadget"],
             data["league"],
-            data["uploadKey"],
+            uploadKey,
         ),
     )
 
 
 def updateEvent(data):
-    newId = (league + name + date).replace(" ", "")
+    newId = (data['league'] + data['name'] + data['date']).replace(" ", "")
     query(
         """
         UPDATE events
@@ -86,7 +87,7 @@ def updateEvent(data):
             data["organiser"],
             data["moreInformation"],
             data["website"],
-            data["results,"],
+            data["results"],
             data["winsplits"],
             data["routegadget"],
             data["league"],
@@ -107,7 +108,7 @@ def setResultsUploaded(to, eventId):
 
 
 def setResultsUploadedAndURLs(to, eventId, *urls):
-    results, winsplits, routegadget = urls[0]
+    results, winsplits, routegadget = urls
     query(
         """
         UPDATE events

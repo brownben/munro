@@ -75,12 +75,12 @@ def processUpload(data, eventData, leagueOfEvent):
     )
 
     try:
-        return saveUplaod(eventData, dataWithPoints)
+        return saveUpload(data, eventData, dataWithPoints)
     except:
         return returnError("Problem Saving Results to Database")
 
 
-def saveUplaod(eventData, dataWithPoints):
+def saveUpload(data, eventData, dataWithPoints):
     # Get all competitors and match the competitor to assign the result to competitor by saving competitor id in the result
     dataWithCompetitors = getCompetitorData(eventData, dataWithPoints)
     # Write all results to the database
@@ -118,13 +118,13 @@ def getCompetitorData(eventData, dataWithPoints):
             result["competitor"] = competitor["id"]
         else:
             # If no match create competitor and save id as that in the result
-            result["competitor"] = competitors.createCompetitor(
-                result["name"],
-                result["ageClass"],
-                result["club"],
-                result["course"],
-                eventData["league"],
-            )
+            result["competitor"] = competitors.createCompetitor({
+                "name":result["name"],
+                "ageClass":result["ageClass"],
+                "club":result["club"],
+                "course":result["course"],
+                "league":eventData["league"],
+            })
         dataWithCompetitors.append(result)
 
     return dataWithCompetitors

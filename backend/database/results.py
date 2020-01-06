@@ -103,8 +103,8 @@ def courseResultToJSON(result, league, eventsList):
 
 
 def createResult(data):
-    if position == "":
-        position = -1
+    if data["position"] == "":
+        data["position"] = -1
     query(
         """
         INSERT INTO results (time, position, points, incomplete, event, competitor)

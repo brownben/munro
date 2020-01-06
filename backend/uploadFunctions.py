@@ -13,7 +13,7 @@ def nameToInitial(name):
         return name
 
 
-def nameToInitialCheck(obj1, nobj2):
+def nameToInitialCheck(obj1, obj2):
     return nameToInitial(obj1["name"]) == nameToInitial(obj2["name"])
 
 

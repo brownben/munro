@@ -36,10 +36,14 @@ class Competitors(Resource):
 
         try:
             competitors.createCompetitor(data)
-            return returnMessage("Competitor - {} was Created".format(data["name"]))
+            return returnMessage(
+                "Competitor - {} was Created".format(data["name"])
+            )
 
         except:
-            return returnError("Error: Problem Creating Competitor - Please Try Again")
+            return returnError(
+                "Error: Problem Creating Competitor - Please Try Again"
+            )
 
     @requireAuthentication
     def delete(self):
@@ -57,15 +61,21 @@ class Competitor(Resource):
 
         try:
             competitors.updateCompetitor(data)
-            return returnMessage("Competitor - {} was Updated".format(data["name"]))
+            return returnMessage(
+                "Competitor - {} was Updated".format(data["name"])
+            )
         except:
-            return returnError("message": "Error: Problem Updating Competitor - Please Try Again")
+            return returnError(
+                "Error: Problem Updating Competitor - Please Try Again"
+            )
 
     @requireAuthentication
     def delete(self, competitorId):
         competitor = competitors.findCompetitor(competitorId)
         competitors.deleteCompetitor(competitorId)
-        return returnMessage("Competitor - {} was Deleted".format(competitor["name"]))
+        return returnMessage(
+            "Competitor - {} was Deleted".format(competitor["name"])
+        )
 
 
 class CompetitorMerge(Resource):

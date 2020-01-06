@@ -8,7 +8,6 @@
 ![license - MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![Travis (.org)](https://img.shields.io/travis/brownben/munro?style=flat-square)
-![Codacy grade](https://img.shields.io/codacy/grade/72e5d61b33d04a5cb6f440467f7b0897?style=flat-square)
 
 [munro-leagues.herokuapp.com](https://munro-leagues.herokuapp.com)
 

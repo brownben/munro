@@ -38,19 +38,20 @@ def findHeaders(data):
         return False
 
     headerRow[-1] = headerRow[-1].strip()
-    for cell in enumerate(headerRow):
-        locations = checkHeader(headerRow, expectedHeaders, locations)
+    for cell, value in enumerate(headerRow):
+        locations = checkHeader(cell, value, expectedHeaders, locations)
 
     return checkAllHeadersPresent(list(locations.keys()), locations)
 
-def checkHeader(headerRow, expectedHeaders, locations):
+def checkHeader(cell, value, expectedHeaders, locations):
     for header in expectedHeaders:
         if (
-            headerRow[cell].upper() in header[0]
+            value.upper() in header[0]
             and header[1] not in locations
         ):
             locations[header[1]] = cell
             return locations
+    return locations
 
 def checkAllHeadersPresent(headersList, locations):
     # Check all expected field are in the file
@@ -135,4 +136,4 @@ def getName(row, headerLocations):
             + row[headerLocations["surname"]]
         )
 
-    return parsedRow["name"] = row[headerLocations["name"]]
+    return row[headerLocations["name"]]

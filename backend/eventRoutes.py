@@ -3,8 +3,7 @@ from flask_restful import Resource, reqparse
 from database import events
 from requireAuthentication import requireAuthentication
 
-import eventFunctions
-from routeFunctions  import returnMessage, returnError
+from routeFunctions import returnMessage, returnError
 
 # Check POST request has all the relevent fields
 eventParser = reqparse.RequestParser()
@@ -24,6 +23,10 @@ eventParser.add_argument(
 )
 
 
+def calculateEventId(data):
+    return (data["league"] + data["name"] + data["date"]).replace(" ", "")
+
+
 class Events(Resource):
     def get(self):
         return events.getAllEvents()
@@ -31,17 +34,21 @@ class Events(Resource):
     @requireAuthentication
     def post(self):
         data = eventParser.parse_args()
-        eventId = eventFunctions.calculateId(data)
+        eventId = calculateEventId(data)
 
         if events.findEvent(eventId):
-            return returnError("Event - {} already Exists in this League".format(
-                        data["name"]))
+            return returnError(
+                "Event - {} already Exists in this League".format(data["name"])
+            )
 
         try:
             events.createEvent(data)
             return returnMessage("Event - {} was Created".format(data["name"]))
+
         except:
-            return returnError("Error: Problem Creating Event - Please Try Again")
+            return returnError(
+                "Error: Problem Creating Event - Please Try Again"
+            )
 
     @requireAuthentication
     def delete(self):
@@ -57,7 +64,7 @@ class Event(Resource):
     def put(self, eventId):
         data = eventParser.parse_args()
         name = data["name"]
-        newId = eventFunctions.calculateId(data)
+        newId = calculateEventId(data)
 
         if newId != eventId and events.findEvent(newId):
             return returnError(
@@ -65,13 +72,14 @@ class Event(Resource):
             )
 
         try:
-            events.updateEvent({
-                'eventId':eventId,
-                **data,
-            })
+            events.updateEvent(
+                {"eventId": eventId, **data,}
+            )
             return returnMessage("Event - {} was Updated".format(name))
         except:
-            return returnError"Error: Problem Updating Event - Please Try Again")
+            return returnError(
+                "Error: Problem Updating Event - Please Try Again"
+            )
 
     @requireAuthentication
     def delete(self, eventId):
