@@ -5,28 +5,44 @@ def nameToInitial(name):
     # Get initial from a name, for matching of surname + initial
     # Returns initial concatenated to surname
     name = name.strip()
-    splitName = name.split(' ', 1)
+    splitName = name.split(" ", 1)
 
-    if (len(splitName) > 1):
-        return splitName[0][0] + ' ' + splitName[1]
+    if len(splitName) > 1:
+        return splitName[0][0] + " " + splitName[1]
     else:
         return name
 
 
-def matchCompetitor(competitorList, result):
-    # Find correct competitor to match to, check name and course match
-    for competitor in competitorList:
-        if competitor['name'] == result['name'] and competitor['course'] == result['course']:
-            return competitor
+def nameToInitialCheck(obj1, obj2):
+    return nameToInitial(obj1["name"]) == nameToInitial(obj2["name"])
 
-    # Else check that initial, surname, course and either club or age class match
+
+def compareProperties(obj1, obj2, comparison):
+    return obj1[comparison] == obj2[comparison]
+
+
+def competitorNonMatchingNameCheck(competitor, result):
+    return (
+        nameToInitialCheck(competitor, result)
+        and compareProperties(competitor, result, "course")
+        and (
+            compareProperties(competitor, result, "ageClass")
+            or compareProperties(competitor, result, "club")
+        )
+    )
+
+
+def competitorMatchingNameCheck(competitor, result):
+    return compareProperties(competitor, result, "name") and compareProperties(
+        competitor, result, "course"
+    )
+
+
+def matchCompetitor(competitorList, result):
     for competitor in competitorList:
-        if (
-            (nameToInitial(competitor['name']) == nameToInitial(result['name'])) and
-            (competitor['course'] == result['course']) and
-            (competitor['ageClass'] == result['ageClass'] or
-             (competitor['club'] == result['club']))
-        ):
+        if competitorMatchingNameCheck(
+            competitor, result
+        ) or competitorNonMatchingNameCheck(competitor, result):
             return competitor
 
     return False
@@ -37,7 +53,7 @@ def removeExtraCourses(results, courses):
     upperCourses = [course.upper() for course in courses]
     resultsWithCoursesRemoved = []
     for result in results:
-        if result['course'].upper() in upperCourses:
+        if result["course"].upper() in upperCourses:
             resultsWithCoursesRemoved.append(result)
 
     return resultsWithCoursesRemoved

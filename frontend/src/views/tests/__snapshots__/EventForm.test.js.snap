@@ -43,7 +43,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         <label
           class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
         >
-          Date: (DD/MM/YYYY)
+          Date: (YYYY-MM-DD)
         </label>
          
         <input
@@ -205,7 +205,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         <label
           class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
         >
-          Date: (DD/MM/YYYY)
+          Date: (YYYY-MM-DD)
         </label>
          
         <input
