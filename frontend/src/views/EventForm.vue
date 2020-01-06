@@ -48,7 +48,7 @@
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
       <form @submit.prevent="submit">
         <text-input v-model.trim="name" label="Name:" />
-        <text-input v-model.trim="date" label="Date: (DD/MM/YYYY)" />
+        <text-input v-model.trim="date" label="Date: (YYYY-MM-DD)" />
         <text-input v-model.trim="organiser" label="Club/ Organiser:" />
         <text-input v-model.trim="website" label="Website: (URL)" type="url" />
         <text-input v-model.trim="results" label="Results: (URL)" type="url" />
