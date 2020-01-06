@@ -35,13 +35,7 @@ class Competitors(Resource):
         data = competitorParser.parse_args()
 
         try:
-            competitors.createCompetitor(
-                data["name"],
-                data["ageClass"],
-                data["club"],
-                data["course"],
-                data["league"],
-            )
+            competitors.createCompetitor(data)
             return returnMessage("Competitor - {} was Created".format(data["name"]))
 
         except:
@@ -62,14 +56,7 @@ class Competitor(Resource):
         data = competitorParser.parse_args()
 
         try:
-            competitors.updateCompetitor(
-                data["id"],
-                data["name"],
-                data["ageClass"],
-                data["club"],
-                data["course"],
-                data["league"],
-            )
+            competitors.updateCompetitor(data)
             return returnMessage("Competitor - {} was Updated".format(data["name"]))
         except:
             return returnError("message": "Error: Problem Updating Competitor - Please Try Again")

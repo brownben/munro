@@ -19,26 +19,39 @@ def competitorToJSON(competitor):
 # Competitor Database Functions
 
 
-def createCompetitor(name, ageClass, club, course, league):
+def createCompetitor(data):
     result = queryWithOneResult(
         """
         INSERT INTO competitors (name, ageClass, club, course, league)
         VALUES (%s,%s,%s,%s,%s)
         RETURNING rowid
         """,
-        (name, ageClass, club, course, league),
+        (
+            data["name"],
+            data["ageClass"],
+            data["club"],
+            data["course"],
+            data["league"],
+        ),
     )
     return result[0]
 
 
-def updateCompetitor(competitorId, name, ageClass, club, course, league):
+def updateCompetitor(data):
     query(
         """
         UPDATE competitors
         SET name=%s,ageClass=%s,club=%s,course=%s, league=%s
         WHERE rowid=%s
     """,
-        (name, ageClass, club, course, league, competitorId),
+        (
+            data["name"],
+            data["ageClass"],
+            data["club"],
+            data["course"],
+            data["league"],
+            data["competitorId"],
+        ),
     )
 
 

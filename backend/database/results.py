@@ -102,7 +102,7 @@ def courseResultToJSON(result, league, eventsList):
 # Competitor Database Functions
 
 
-def createResult(time, position, points, incomplete, event, competitor):
+def createResult(data):
     if position == "":
         position = -1
     query(
@@ -110,18 +110,33 @@ def createResult(time, position, points, incomplete, event, competitor):
         INSERT INTO results (time, position, points, incomplete, event, competitor)
         VALUES (%s,%s,%s,%s,%s,%s)
     """,
-        (time, position, points, incomplete, event, competitor),
+        (
+            data["time"],
+            data["position"],
+            data["points"],
+            data["incomplete"],
+            data["event"],
+            data["competitor"],
+        ),
     )
 
 
-def updateResult(rowid, time, position, points, incomplete, event, competitor):
+def updateResult(data):
     query(
         """
         UPDATE results
         SET time=%s, position=%s, points=%s, incomplete=%s, event=%s, competitor=%s
         WHERE rowid=%s
     """,
-        (time, position, points, incomplete, event, competitor, rowid),
+        (
+            data["time"],
+            data["position"],
+            data["points"],
+            data["incomplete"],
+            data["event"],
+            data["competitor"],
+            data["rowid"],
+        ),
     )
 
 

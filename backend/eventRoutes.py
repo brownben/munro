@@ -38,18 +38,7 @@ class Events(Resource):
                         data["name"]))
 
         try:
-            events.createEvent(
-                data["name"],
-                data["date"],
-                data["resultUploaded"],
-                data["organiser"],
-                data["moreInformation"],
-                data["website"],
-                data["results"],
-                data["winsplits"],
-                data["routegadget"],
-                data["league"]
-            )
+            events.createEvent(data)
             return returnMessage("Event - {} was Created".format(data["name"]))
         except:
             return returnError("Error: Problem Creating Event - Please Try Again")
@@ -76,19 +65,10 @@ class Event(Resource):
             )
 
         try:
-            events.updateEvent(
-                eventId,
-                data["name"],
-                data["date"],
-                data["resultUploaded"],
-                data["organiser"],
-                data["moreInformation"],
-                data["website"],
-                data["results"],
-                data["winsplits"],
-                data["routegadget"],
-                data["league"],
-            )
+            events.updateEvent({
+                'eventId':eventId,
+                **data,
+            })
             return returnMessage("Event - {} was Updated".format(name))
         except:
             return returnError"Error: Problem Updating Event - Please Try Again")

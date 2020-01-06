@@ -38,17 +38,7 @@ class Leagues(Resource):
             return returnError("League - {} already Exists".format(name))
 
         try:
-            leagues.createLeague(
-                data["name"],
-                data["website"],
-                data["coordinator"],
-                data["scoringMethod"],
-                data["numberOfCountingEvents"],
-                data["courses"],
-                data["description"],
-                data["year"],
-                data["dynamicEventResults"],
-            )
+            leagues.createLeague(data)
             return returnMessage("League - {} was Created".format(name))
         except:
             return returnError(
@@ -71,18 +61,7 @@ class League(Resource):
             )
 
         try:
-            leagues.updateLeague(
-                data["oldName"],
-                data["name"],
-                data["website"],
-                data["coordinator"],
-                data["scoringMethod"],
-                data["numberOfCountingEvents"],
-                data["courses"],
-                data["description"],
-                data["year"],
-                data["dynamicEventResults"],
-            )
+            leagues.updateLeague(data)
             return returnMessage("League - {} was Updated".format(name))
 
         except:

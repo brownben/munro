@@ -69,7 +69,14 @@ class ManualResult(Resource):
         try:
             data = manualResultParser.parse_args()
             results.createResult(
-                0, "", data["points"], False, data["event"], data["competitor"]
+                {
+                    "time": 0,
+                    "position": "",
+                    "points": data["points"],
+                    "incomplete": False,
+                    "event": data["event"],
+                    "competitor": data["competitor"],
+                }
             )
             return returnMessage("Points Assigned")
         except:

@@ -44,18 +44,7 @@ def generateUploadKey():
 # Event Database Functions
 
 
-def createEvent(
-    name,
-    date,
-    resultUploaded,
-    organiser,
-    moreInformation,
-    website,
-    results,
-    winsplits,
-    routegadget,
-    league,
-    ):
+def createEvent(data):
     eventId = (league + name + date).replace(" ", "")
     uploadKey = generateUploadKey()
     query(
@@ -66,34 +55,22 @@ def createEvent(
     """,
         (
             eventId,
-            name,
-            date,
-            resultUploaded,
-            organiser,
-            moreInformation,
-            website,
-            results,
-            winsplits,
-            routegadget,
-            league,
-            uploadKey,
+            data["name"],
+            data["date"],
+            data["resultUploaded"],
+            data["organiser"],
+            data["moreInformation"],
+            data["website"],
+            data["results,"],
+            data["winsplits"],
+            data["routegadget"],
+            data["league"],
+            data["uploadKey"],
         ),
     )
 
 
-def updateEvent(
-    eventId,
-    name,
-    date,
-    resultUploaded,
-    organiser,
-    moreInformation,
-    website,
-    results,
-    winsplits,
-    routegadget,
-    league,
-    ):
+def updateEvent(data):
     newId = (league + name + date).replace(" ", "")
     query(
         """
@@ -103,17 +80,17 @@ def updateEvent(
     """,
         (
             newId,
-            name,
-            date,
-            resultUploaded,
-            organiser,
-            moreInformation,
-            website,
-            results,
-            winsplits,
-            routegadget,
-            league,
-            eventId,
+            data["name"],
+            data["date"],
+            data["resultUploaded"],
+            data["organiser"],
+            data["moreInformation"],
+            data["website"],
+            data["results,"],
+            data["winsplits"],
+            data["routegadget"],
+            data["league"],
+            data["eventId"],
         ),
     )
 
@@ -129,7 +106,8 @@ def setResultsUploaded(to, eventId):
     )
 
 
-def setResultsUploadedAndURLs(to, eventId, results, winsplits, routegadget):
+def setResultsUploadedAndURLs(to, eventId, *urls):
+    results, winsplits, routegadget = urls[0]
     query(
         """
         UPDATE events

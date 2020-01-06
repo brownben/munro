@@ -95,14 +95,11 @@ def timeFromAveragePoints(
     dataWithPoints = []
 
     for result in data:
-        average = courseStats[result["course"]]["average"]
-        standardDeviation = courseStats[result["course"]]["standardDeviation"]
         resultWithPoints = result
 
         resultWithPoints["points"] = timeFromAverageCalculatePoints(
             result,
-            average,
-            standardDeviation,
+            courseStats[result["course"]],
             averagePoints,
             standardDeviationPoints,
         )
@@ -113,8 +110,11 @@ def timeFromAveragePoints(
 
 
 def timeFromAverageCalculatePoints(
-    result, average, standardDeviation, averagePoints, standardDeviationPoints
+    result, courseStats, averagePoints, standardDeviationPoints
 ):
+    average = courseStats["average"]
+    standardDeviation = courseStats["standardDeviation"]
+
     if isinstance(result["time"], int) or result["incomplete"]:
         return 0
     else:

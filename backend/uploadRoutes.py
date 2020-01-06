@@ -38,13 +38,11 @@ def checkUpload(data):
         eventData = events.getEventWithUploadKey(data["eventId"])
         leagueOfEvent = leagues.findLeague(eventData["league"])
     except:
-        return returnError(
-            "Problem Getting Information from the Database"
-        )
+        return returnError("Problem Getting Information from the Database")
 
     # Check upload credentials are correct
     if eventData["uploadKey"] != data["uploadKey"]:
-        return returnError()"Upload Key is Incorrect")
+        return returnError("Upload Key is Incorrect")
 
     # Check the user wants to overwrite data if it already exists. If it does  and they want ot overwrite it deletes the existing data
     if data["overwrite"] != "True" and eventData["resultUploaded"]:
@@ -56,6 +54,7 @@ def checkUpload(data):
         results.deleteResultsByEvent(eventData["id"])
 
     return processUpload(data, eventData, leagueOfEvent)
+
 
 def processUpload(data, eventData, leagueOfEvent):
     # Parse file into 2D array and then place into an object, assigning points to each results
@@ -87,12 +86,14 @@ def saveUplaod(eventData, dataWithPoints):
     # Write all results to the database
     for result in dataWithCompetitors:
         results.createResult(
-            result["time"],
-            result["position"],
-            result["points"],
-            result["incomplete"],
-            eventData["id"],
-            result["competitor"],
+            {
+                "time": result["time"],
+                "position": result["position"],
+                "points": result["points"],
+                "incomplete": result["incomplete"],
+                "event": eventData["id"],
+                "competitor": result["competitor"],
+            }
         )
 
     events.setResultsUploadedAndURLs(

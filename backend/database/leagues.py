@@ -96,18 +96,8 @@ def fixInput(year, courses):
     return year, courses
 
 
-def createLeague(
-    name,
-    website,
-    coordinator,
-    scoringMethod,
-    noOfEvents,
-    courses,
-    moreInfo,
-    year,
-    dynamicEventResults,
-):
-    year, courses = fixInput(year, courses)
+def createLeague(data):
+    year, courses = fixInput(data["year"], data["courses"])
     query(
         """
         INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses,
@@ -115,48 +105,37 @@ def createLeague(
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """,
         (
-            name,
-            website,
-            coordinator,
-            scoringMethod,
-            noOfEvents,
+            data["name"],
+            data["website"],
+            data["coordinator"],
+            data["scoringMethod"],
+            data["noOfEvents"],
             courses,
-            moreInfo,
+            data["moreInfo"],
             year,
-            dynamicEventResults,
+            data["dynamicEventResults"],
         ),
     )
 
 
-def updateLeague(
-    oldName,
-    name,
-    website,
-    coordinator,
-    scoringMethod,
-    noOfEvents,
-    courses,
-    moreInfo,
-    year,
-    dynamicEventResults,
-):
-    year, courses = fixInput(year, courses)
+def updateLeague(data):
+    year, courses = fixInput(data["year"], data["courses"])
     query(
         """
         UPDATE leagues
         SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s, year=%s, dynamicEventResults=%s
         WHERE name=%s""",
         (
-            name,
-            website,
-            coordinator,
-            scoringMethod,
-            noOfEvents,
+            data["name"],
+            data["website"],
+            data["coordinator"],
+            data["scoringMethod"],
+            data["noOfEvents"],
             courses,
-            moreInfo,
+            data["moreInfo"],
             year,
-            dynamicEventResults,
-            oldName,
+            data["dynamicEventResults"],
+            data["oldName"],
         ),
     )
 
