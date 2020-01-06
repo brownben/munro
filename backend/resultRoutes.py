@@ -2,6 +2,7 @@ from flask_restful import Resource, reqparse
 
 from database import results
 from requireAuthentication import requireAuthentication
+from routeFunctions import returnMessage, returnError
 
 transferResultParser = reqparse.RequestParser()
 transferResultParser.add_argument(
@@ -30,7 +31,7 @@ class Results(Resource):
     @requireAuthentication
     def delete(self):
         results.deleteAllResults()
-        return {"message": "All Results were Deleted"}
+        return returnMessage("All Results were Deleted")
 
 
 class ResultsForCourse(Resource):
@@ -55,13 +56,10 @@ class TransferResult(Resource):
 
         try:
             results.transferResult(data["result"], data["competitor"])
-            return {"message": "Result Transfered"}
+            return returnMessage("Result Transfered")
         except:
-            return (
-                {
-                    "message": "Error: Problem Transferring Result - Please Try Again"
-                },
-                500,
+            return returnError(
+                "Error: Problem Transferring Result - Please Try Again"
             )
 
 
@@ -73,8 +71,8 @@ class ManualResult(Resource):
             results.createResult(
                 0, "", data["points"], False, data["event"], data["competitor"]
             )
-            return {"message": "Points Assigned"}
+            return returnMessage("Points Assigned")
         except:
-            return {
-                "message": "Error: Problem Assigning Points - Please Try Again"
-            }
+            return returnError(
+                "Error: Problem Assigning Points - Please Try Again"
+            )

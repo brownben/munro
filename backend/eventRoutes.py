@@ -3,6 +3,9 @@ from flask_restful import Resource, reqparse
 from database import events
 from requireAuthentication import requireAuthentication
 
+import eventFunctions
+from routeFunctions  import returnMessage, returnError
+
 # Check POST request has all the relevent fields
 eventParser = reqparse.RequestParser()
 eventParser.add_argument(
@@ -28,19 +31,11 @@ class Events(Resource):
     @requireAuthentication
     def post(self):
         data = eventParser.parse_args()
-        eventId = (data["league"] + data["name"] + data["date"]).replace(
-            " ", ""
-        )
+        eventId = eventFunctions.calculateId(data)
 
         if events.findEvent(eventId):
-            return (
-                {
-                    "message": "Event - {} already Exists in this League".format(
-                        data["name"]
-                    )
-                },
-                500,
-            )
+            return returnError("Event - {} already Exists in this League".format(
+                        data["name"]))
 
         try:
             events.createEvent(
@@ -53,19 +48,16 @@ class Events(Resource):
                 data["results"],
                 data["winsplits"],
                 data["routegadget"],
-                data["league"],
+                data["league"]
             )
-            return {"message": "Event - {} was Created".format(data["name"])}
+            return returnMessage("Event - {} was Created".format(data["name"]))
         except:
-            return (
-                {"message": "Error: Problem Creating Event - Please Try Again"},
-                500,
-            )
+            return returnError("Error: Problem Creating Event - Please Try Again")
 
     @requireAuthentication
     def delete(self):
         events.deleteAllEvents()
-        return {"message": "All Events were Deleted"}
+        return returnMessage("All Events were Deleted")
 
 
 class Event(Resource):
@@ -76,16 +68,11 @@ class Event(Resource):
     def put(self, eventId):
         data = eventParser.parse_args()
         name = data["name"]
-        newId = (data["league"] + data["name"] + data["date"]).replace(" ", "")
+        newId = eventFunctions.calculateId(data)
 
         if newId != eventId and events.findEvent(newId):
-            return (
-                {
-                    "message": "Event with Name {} already Exists in this League".format(
-                        name
-                    )
-                },
-                500,
+            return returnError(
+                "Event with Name {} already Exists in this League".format(name)
             )
 
         try:
@@ -102,18 +89,15 @@ class Event(Resource):
                 data["routegadget"],
                 data["league"],
             )
-            return {"message": "Event - {} was Updated".format(name)}
+            return returnMessage("Event - {} was Updated".format(name))
         except:
-            return (
-                {"message": "Error: Problem Updating Event - Please Try Again"},
-                500,
-            )
+            return returnError"Error: Problem Updating Event - Please Try Again")
 
     @requireAuthentication
     def delete(self, eventId):
         event = events.findEvent(eventId)
         events.deleteEvent(eventId)
-        return {"message": "Event - {} was Deleted".format(event["name"])}
+        return returnMessage("Event - {} was Deleted".format(event["name"]))
 
 
 class EventWithUploadKey(Resource):

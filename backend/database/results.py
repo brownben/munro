@@ -46,8 +46,8 @@ def fullResultToJSON(result):
 
 def getPointsForEvent(results, eventId):
     # Find Event matching the ID
-    filteredPoints = filter(lambda event: event["event"] == eventId, results)
-    filteredPoints = list(filteredPoints)
+    filteredPoints = [event for event in results if event["event"] == eventId]
+
     # If found return event
     if len(filteredPoints) != 0:
         return filteredPoints[0]["points"]
@@ -57,48 +57,46 @@ def getPointsForEvent(results, eventId):
 
 def courseResultToJSON(result, league, eventsList):
     # If all that data is found return success
-    if league and eventsList:
-        # Get number of events to count in league
-        numberOfCountingEvents = league["numberOfCountingEvents"]
-        # Get events with results uploaded
-        eventsWithResults = filter(
-            lambda event: event["resultUploaded"], eventsList
-        )
-
-        # Split Points and events from database string
-        # Place in record for each event
-        eventList = result[3].split(";")
-        pointsList = result[4].split(";")
-        eventsByCompetitor = []
-        for event in range(len(result[3].split(";"))):
-            eventsByCompetitor.append(
-                {"event": eventList[event], "points": float(pointsList[event])}
-            )
-        # Get points for each event in order
-        points = []
-        for event in eventsWithResults:
-            points.append(getPointsForEvent(eventsByCompetitor, event["id"]))
-
-        # Calculate the total and which scores make this
-        largestPoints = pointsFunctions.biggestPoints(
-            points, numberOfCountingEvents
-        )
-        totalPoints = pointsFunctions.calculateTotal(largestPoints, points)
-
-        # Change to object rather than tuple
-        if result:
-            return {
-                "name": result[0],
-                "ageClass": result[1],
-                "club": result[2],
-                "points": points,
-                "totalPoints": totalPoints,
-                "largestPoints": largestPoints,
-            }
-        else:
-            return False
-    else:
+    if not (result and league and eventsList):
         return False
+        # Get number of events to count in league
+    numberOfCountingEvents = league["numberOfCountingEvents"]
+    # Get events with results uploaded
+    eventsWithResults = [
+        event for event in eventsList if event["resultUploaded"]
+    ]
+
+    # Split Points and events from database string
+    # Place in record for each event
+    eventList = result[3].split(";")
+    pointsList = result[4].split(";")
+    eventsByCompetitor = [
+        {"event": event, "points": float(pointsList[index])}
+        for index, event in enumerate(eventList)
+    ]
+
+    # Get points for each event in order
+    points = [
+        getPointsForEvent(eventsByCompetitor, event["id"])
+        for event in eventsWithResults
+    ]
+
+    # Calculate the total and which scores make this
+    largestPoints = pointsFunctions.biggestPoints(
+        points, numberOfCountingEvents
+    )
+    totalPoints = pointsFunctions.calculateTotal(largestPoints, points)
+
+    # Change to object rather than tuple
+
+    return {
+        "name": result[0],
+        "ageClass": result[1],
+        "club": result[2],
+        "points": points,
+        "totalPoints": totalPoints,
+        "largestPoints": largestPoints,
+    }
 
 
 # Competitor Database Functions

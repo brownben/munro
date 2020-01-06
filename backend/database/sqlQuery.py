@@ -22,17 +22,20 @@ def query(string, values=()):
 
 
 def queryWithOneResult(string, values=()):
-    connection, cursor = connectToDatabase()
-    cursor.execute(string, values)
-    result = cursor.fetchone()
-    closeDatabase(connection)
-    return result
+    return queryWithResult(string, values, multiple=False)
 
 
 def queryWithResults(string, values=()):
+    return queryWithResult(string, values, multiple=True)
+
+
+def queryWithResult(string, values=(), multiple=False):
     connection, cursor = connectToDatabase()
     cursor.execute(string, values)
-    result = cursor.fetchall()
+    if multiple:
+        result = cursor.fetchall()
+    else:
+        result = cursor.fetchone()
     closeDatabase(connection)
     return result
 

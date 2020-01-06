@@ -3,6 +3,8 @@ from flask_restful import Resource, reqparse
 from database import competitors
 from requireAuthentication import requireAuthentication
 
+from routeFunctions import returnMessage, returnError
+
 competitorParser = reqparse.RequestParser()
 competitorParser.add_argument(
     "name", help="This field cannot be blank", required=True
@@ -40,21 +42,15 @@ class Competitors(Resource):
                 data["course"],
                 data["league"],
             )
-            return {
-                "message": "Competitor - {} was Created".format(data["name"])
-            }
+            return returnMessage("Competitor - {} was Created".format(data["name"]))
+
         except:
-            return (
-                {
-                    "message": "Error: Problem Creating Competitor - Please Try Again"
-                },
-                500,
-            )
+            return returnError("Error: Problem Creating Competitor - Please Try Again")
 
     @requireAuthentication
     def delete(self):
         competitors.deleteAllCompetitors()
-        return {"message": "All Competitors were Deleted"}
+        return returnMessage("All Competitors were Deleted")
 
 
 class Competitor(Resource):
@@ -74,24 +70,15 @@ class Competitor(Resource):
                 data["course"],
                 data["league"],
             )
-            return {
-                "message": "Competitor - {} was Updated".format(data["name"])
-            }
+            return returnMessage("Competitor - {} was Updated".format(data["name"]))
         except:
-            return (
-                {
-                    "message": "Error: Problem Updating Competitor - Please Try Again"
-                },
-                500,
-            )
+            return returnError("message": "Error: Problem Updating Competitor - Please Try Again")
 
     @requireAuthentication
     def delete(self, competitorId):
         competitor = competitors.findCompetitor(competitorId)
         competitors.deleteCompetitor(competitorId)
-        return {
-            "message": "Competitor - {} was Deleted".format(competitor["name"])
-        }
+        return returnMessage("Competitor - {} was Deleted".format(competitor["name"]))
 
 
 class CompetitorMerge(Resource):
@@ -103,9 +90,6 @@ class CompetitorMerge(Resource):
             competitors.mergeCompetitors(
                 data["competitorKeep"], data["competitorMerge"]
             )
-            return {"message": "Competitors Merged Successfully"}
+            return returnMessage("Competitors Merged Successfully")
         except:
-            return (
-                {"message": "Error: Merging Competitors - Please Try Again"},
-                500,
-            )
+            return returnError("Error: Merging Competitors - Please Try Again")

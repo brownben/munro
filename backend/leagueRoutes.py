@@ -2,6 +2,7 @@ from flask_restful import Resource, reqparse
 
 from database import events, leagues
 from requireAuthentication import requireAuthentication
+from routeFunctions import returnMessage, returnError
 
 # Check POST request has all the relevent fields
 # Create request
@@ -34,7 +35,7 @@ class Leagues(Resource):
         name = data["name"]
 
         if leagues.findLeague(name):
-            return {"message": "League - {} already Exists".format(name)}, 500
+            return returnError("League - {} already Exists".format(name))
 
         try:
             leagues.createLeague(
@@ -48,13 +49,10 @@ class Leagues(Resource):
                 data["year"],
                 data["dynamicEventResults"],
             )
-            return {"message": "League - {} was Created".format(name)}
+            return returnMessage("League - {} was Created".format(name))
         except:
-            return (
-                {
-                    "message": "Error: Problem Creating League - Please Try Again"
-                },
-                500,
+            return returnError(
+                "Error: Problem Creating League - Please Try Again"
             )
 
 
@@ -68,13 +66,8 @@ class League(Resource):
         name = data["name"]
 
         if data["name"] != data["oldName"] and leagues.findLeague(name):
-            return (
-                {
-                    "message": "League with Name - {} already Exists".format(
-                        name
-                    )
-                },
-                500,
+            return returnError(
+                "League with Name - {} already Exists".format(name)
             )
 
         try:
@@ -90,22 +83,20 @@ class League(Resource):
                 data["year"],
                 data["dynamicEventResults"],
             )
-            return {"message": "League - {} was Updated".format(name)}
+            return returnMessage("League - {} was Updated".format(name))
+
         except:
-            return (
-                {
-                    "message": "Error: Problem Updating League - Please Try Again"
-                },
-                500,
+            return returnError(
+                "Error: Problem Updating League - Please Try Again"
             )
 
     @requireAuthentication
     def delete(self, name):
         try:
             leagues.deleteLeague(name)
-            return {"message": "League - {} was Deleted".format(name)}
+            return returnMessage("League - {} was Deleted".format(name))
         except:
-            return {"message": "Problem Deleting League"}, 500
+            return returnError("Problem Deleting League")
 
 
 class LeagueEvents(Resource):

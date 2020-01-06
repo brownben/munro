@@ -20,6 +20,7 @@ def findHeaders(data):
     # Find the location of each field in the CSV file by reading the header
     locations = {}
     headerRow = data[0]
+
     expectedHeaders = [
         [["FIRST NAME", "FIRSTNAME"], "firstName"],
         [["SURNAME"], "surname"],
@@ -32,27 +33,26 @@ def findHeaders(data):
         [["NC", "NONCOMPETITIVE"], "nonCompetitive"],
         [["STATUS", "CLASSIFIER"], "status"],
     ]
+
     if not headerRow:
-        retirn False
+        return False
 
     headerRow[-1] = headerRow[-1].strip()
     for cell in enumerate(headerRow):
-        for header in expectedHeaders:
-            if (
-                headerRow[cell].upper() in header[0]
-                and header[1] not in locations
-            ):
-                locations[header[1]] = cell
-                break
+        locations = checkHeader(headerRow, expectedHeaders, locations)
 
-    if checkAllHeadersPresent(list(locations.keys())):
-        return locations
-    else:
-        return False
+    return checkAllHeadersPresent(list(locations.keys()), locations)
 
+def checkHeader(headerRow, expectedHeaders, locations):
+    for header in expectedHeaders:
+        if (
+            headerRow[cell].upper() in header[0]
+            and header[1] not in locations
+        ):
+            locations[header[1]] = cell
+            return locations
 
-
-def checkAllHeadersPresent(headersList):
+def checkAllHeadersPresent(headersList, locations):
     # Check all expected field are in the file
     otherHeaders = [
         "ageClass",
@@ -68,7 +68,10 @@ def checkAllHeadersPresent(headersList):
     hasName = "name" in headersList
     hasOtherHeader = all([header in headersList for header in otherHeaders])
 
-    return (hasName or hasNameAndSurname) and hasOtherHeader
+    if not ((hasName or hasNameAndSurname) and hasOtherHeader):
+        return False
+
+    return locations
 
 
 def timeToSeconds(time):
@@ -96,32 +99,40 @@ def parseToObjects(data, headerLocations):
     for row in data[1:]:
         parsedRow = {}
 
-        if "firstName" in headerLocations:
-            parsedRow["name"] = (
-                row[headerLocations["firstName"]]
-                + " "
-                + row[headerLocations["surname"]]
-            )
-        else:
-            parsedRow["name"] = row[headerLocations["name"]]
-
+        parsedRow["name"] = getName(row, headerLocations)
         parsedRow["ageClass"] = row[headerLocations["ageClass"]]
         parsedRow["club"] = row[headerLocations["club"]]
         parsedRow["course"] = row[headerLocations["course"]]
         parsedRow["time"] = timeToSeconds(row[headerLocations["time"]])
+
         try:
             parsedRow["position"] = int(row[headerLocations["position"]])
         except ValueError:
             parsedRow["position"] = ""
-        parsedRow["incomplete"] = (
-            row[headerLocations["nonCompetitive"]] == "Y"
-            or row[headerLocations["nonCompetitive"]] == "1"
-            or (
-                row[headerLocations["status"]] != ""
-                and row[headerLocations["status"]] != "0"
-            )
-        )
+
+        parsedRow["incomplete"] = resultIncomplete(row, headerLocations)
 
         parsedData.append(parsedRow)
 
     return parsedData
+
+
+def resultIncomplete(row, headerLocations):
+    return (
+        row[headerLocations["nonCompetitive"]] == "Y"
+        or row[headerLocations["nonCompetitive"]] == "1"
+        or (
+            row[headerLocations["status"]] != ""
+            and row[headerLocations["status"]] != "0"
+        )
+    )
+
+def getName(row, headerLocations):
+    if "firstName" in headerLocations:
+        return(
+            row[headerLocations["firstName"]]
+            + " "
+            + row[headerLocations["surname"]]
+        )
+
+    return parsedRow["name"] = row[headerLocations["name"]]

@@ -4,19 +4,32 @@ import statistics
 
 def assignPoints(data, leagueScoringMethod):
     # Choses which points algorithm to use
-    if leagueScoringMethod == "position":
-        return positionBasedPoints(data)
-    elif leagueScoringMethod == "positionDouble":
-        return positionBasedPoints(data, multiplier=2)
-    elif leagueScoringMethod == "position50":
-        return positionBasedPoints(data, startValue=51)
-    elif leagueScoringMethod == "position50Double":
-        return positionBasedPoints(data, startValue=51, multiplier=2)
-    elif leagueScoringMethod == "position99":
-        return positionBasedPoints(data, startValue=100)
-    elif leagueScoringMethod == "position99average":
+    if leagueScoringMethod == "position99average":
         return positionBasedPoints99WithDraw(data)
-    elif leagueScoringMethod == "timeAverage":
+    elif "position" in leagueScoringMethod:
+        return assignPointsPosition(data, leagueScoringMethod)
+    elif "timeAverage" in leagueScoringMethod:
+        return assignPointsTimeAverage(data, leagueScoringMethod)
+    else:
+        return False
+
+
+def assignPointsPosition(data, leagueScoringMethod):
+    multiplier = 1
+    startValue = 101
+
+    if "Double" in leagueScoringMethod:
+        multiplier = 2
+    if "50" in leagueScoringMethod:
+        startValue = 51
+    if "99" in leagueScoringMethod:
+        startValue = 100
+
+    return positionBasedPoints(data, startValue, multiplier)
+
+
+def assignPointsTimeAverage(data, leagueScoringMethod):
+    if leagueScoringMethod == "timeAverage":
         return timeFromAveragePoints(data)
     elif leagueScoringMethod == "timeAverage100":
         return timeFromAveragePoints(data, 100, 20)
@@ -31,11 +44,7 @@ def positionBasedPoints(data, startValue=101, multiplier=1):
     for result in data:
         resultWithPoints = result
 
-        if (
-            isinstance(result["position"], int)
-            and result["position"] > 0
-            and not result["incomplete"]
-        ):
+        if validResult(result):
             resultWithPoints["points"] = (startValue * multiplier) - (
                 result["position"] * multiplier
             )
@@ -55,27 +64,28 @@ def positionBasedPoints99WithDraw(data):
     for result in data:
         resultWithPoints = result
 
-        if (
-            isinstance(result["position"], int)
-            and result["position"] > 0
-            and not result["incomplete"]
-        ):
+        if validResult(result):
             positionOccurances = countOccuracesOfPosition(
                 data, result["position"]
             )
             points = 100 - result["position"]
-            if positionOccurances == 1:
-                resultWithPoints["points"] = points
-            else:
-                resultWithPoints["points"] = (
-                    points + (points - positionOccurances)
-                ) / 2
+            resultWithPoints["points"] = (
+                points + (points - positionOccurances) + 1
+            ) / 2
         else:
             resultWithPoints["points"] = 0
 
         dataWithPoints.append(resultWithPoints)
 
     return dataWithPoints
+
+
+def validResult(result):
+    return (
+        isinstance(result["position"], int)
+        and result["position"] > 0
+        and not result["incomplete"]
+    )
 
 
 def timeFromAveragePoints(
@@ -85,22 +95,28 @@ def timeFromAveragePoints(
     dataWithPoints = []
 
     for result in data:
+        average = courseStats[result['course']]['average']
+        standardDeviation = courseStats[result['course']]['standardDeviation']
         resultWithPoints = result
 
-        if isinstance(result["time"], int) or result["incomplete"]:
-            resultWithPoints["points"] = 0
-        else:
-            points = averagePoints + standardDeviationPoints * (
-                (average - result["time"]) / standardDeviation
-            )
-            if points < 0:
-                points = 0
-            resultWithPoints["points"] = round(points)
+        resultWithPoints["points"] = timeFromAverageCalculatePoints(result)
 
         dataWithPoints.append(resultWithPoints)
 
     return dataWithPoints
 
+def timeFromAverageCalculatePoints(result):
+    if isinstance(result["time"], int) or result["incomplete"]:
+        return 0
+    else:
+        points = averagePoints + standardDeviationPoints * (
+            (average - result["time"]) / standardDeviation
+        )
+
+        if points < 0:
+            points = 0
+
+        return round(points)
 
 def calculateCourseAverage(data):
     courseTimes = defaultdict(list)
@@ -130,34 +146,32 @@ def biggestPoints(points, number):
     elif len(points) <= number:
         return list(range(len(points)))
     else:
-        biggest = []
-        pointsArray = []
-        for item in points:
-            if item != "":
-                pointsArray.append(int(item))
-            else:
-                pointsArray.append(0)
+        return findBiggestPoints(points, number)
 
-        # Sort list then reverse it to have it descending
-        sortedPoints = sorted(pointsArray, reverse=True)
-        for counter in range(number):
-            # Find index of the x largest item
-            firstIndexOfValue = pointsArray.index(sortedPoints[counter])
-            # If equal value is not in biggest array add it
+def findBiggestPoints(points, number):
+    biggest = []
+    pointsArray = [toInt(item) for item in points]
 
-            if firstIndexOfValue not in biggest:
-                biggest.append(firstIndexOfValue)
+    # Sort list then reverse it to have it descending
+    sortedPoints = sorted(pointsArray, reverse=True)
+    for counter in range(number):
+        # Find index of the x largest item
+        firstIndexOfValue = pointsArray.index(sortedPoints[counter])
+        # If equal value is not in biggest array add it
 
-            else:
-                # Else find the the last location of the value and look for the next occurance after that, append the index of that item to biggest
-                lastLocation = positionOfLastOccurance(
-                    sortedPoints[counter], pointsArray, biggest
-                )
-                biggest.append(
-                    pointsArray.index(sortedPoints[counter], lastLocation + 1)
-                )
+        if firstIndexOfValue not in biggest:
+            biggest.append(firstIndexOfValue)
 
-        return biggest
+        else:
+            # Else find the the last location of the value and look for the next occurance after that, append the index of that item to biggest
+            lastLocation = positionOfLastOccurance(
+                sortedPoints[counter], pointsArray, biggest
+            )
+            biggest.append(
+                pointsArray.index(sortedPoints[counter], lastLocation + 1)
+            )
+
+    return biggest
 
 
 def countOccurancesFromArrayOfIndexes(searchItem, array, arrayOfIndexes):
@@ -179,7 +193,7 @@ def positionOfLastOccurance(searchItem, array, arrayOfIndexes):
 def calculateTotal(pointsList, points):
     # Sum all points in array
     return sum(
-        [int(points[point]) for point in pointsList if points[point] != ""]
+        [toInt(points[point]) for point in pointsList]
     )
 
 
@@ -200,3 +214,9 @@ def assignPosition(results):
         lastPoints = result["totalPoints"]
 
     return results
+
+def toInt(integer):
+    if integer == '':
+        return 0
+
+    return int(integer)

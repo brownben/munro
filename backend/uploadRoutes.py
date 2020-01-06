@@ -4,6 +4,7 @@ import csvFunctions as csv
 import pointsFunctions as points
 import uploadFunctions as upload
 from database import competitors, leagues, events, results
+from routeFunctions import returnMessage, returnError
 
 # Check POST request for upload has all the relevent fields
 uploadParser = reqparse.RequestParser()
@@ -31,11 +32,8 @@ class Upload(Resource):
                 eventData = events.getEventWithUploadKey(data["eventId"])
                 leagueOfEvent = leagues.findLeague(eventData["league"])
             except:
-                return (
-                    {
-                        "message": "Problem Getting Information from the Database"
-                    },
-                    500,
+                return returnError(
+                    "Problem Getting Information from the Database"
                 )
 
             # Check upload credentials are correct
@@ -44,12 +42,10 @@ class Upload(Resource):
 
             # Check the user wants to overwrite data if it already exists. If it does  and they want ot overwrite it deletes the existing data
             if data["overwrite"] != "True" and eventData["resultUploaded"]:
-                return (
-                    {
-                        "message": "Results Already Exist for this Event and Overwrite was not Enabled"
-                    },
-                    500,
+                return returnError(
+                    "Results Already Exist for this Event and Overwrite was not Enabled"
                 )
+
             elif data["overwrite"] == "True":
                 results.deleteResultsByEvent(eventData["id"])
 
@@ -107,12 +103,12 @@ class Upload(Resource):
                     data["winsplits"],
                     data["routegadget"],
                 )
-                return {
-                    "message": str(len(dataWithCompetitors)) + " Results Saved"
-                }
+                return returnMessage(
+                    str(len(dataWithCompetitors)) + " Results Saved"
+                )
 
             except:
-                return {"message": "Problem Saving Results to Database"}, 500
+                return returnError("Problem Saving Results to Database")
 
         except:
-            return {"message": "Problem Processing Uploaded Data"}, 500
+            return returnError("Problem Processing Uploaded Data")
