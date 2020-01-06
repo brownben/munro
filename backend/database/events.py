@@ -55,7 +55,7 @@ def createEvent(
     winsplits,
     routegadget,
     league,
-    ) = data
+    ):
     eventId = (league + name + date).replace(" ", "")
     uploadKey = generateUploadKey()
     query(
@@ -93,7 +93,7 @@ def updateEvent(
     winsplits,
     routegadget,
     league,
-    ) = data
+    ):
     newId = (league + name + date).replace(" ", "")
     query(
         """

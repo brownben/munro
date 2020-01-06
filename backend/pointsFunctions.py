@@ -95,17 +95,26 @@ def timeFromAveragePoints(
     dataWithPoints = []
 
     for result in data:
-        average = courseStats[result['course']]['average']
-        standardDeviation = courseStats[result['course']]['standardDeviation']
+        average = courseStats[result["course"]]["average"]
+        standardDeviation = courseStats[result["course"]]["standardDeviation"]
         resultWithPoints = result
 
-        resultWithPoints["points"] = timeFromAverageCalculatePoints(result)
+        resultWithPoints["points"] = timeFromAverageCalculatePoints(
+            result,
+            average,
+            standardDeviation,
+            averagePoints,
+            standardDeviationPoints,
+        )
 
         dataWithPoints.append(resultWithPoints)
 
     return dataWithPoints
 
-def timeFromAverageCalculatePoints(result):
+
+def timeFromAverageCalculatePoints(
+    result, average, standardDeviation, averagePoints, standardDeviationPoints
+):
     if isinstance(result["time"], int) or result["incomplete"]:
         return 0
     else:
@@ -117,6 +126,7 @@ def timeFromAverageCalculatePoints(result):
             points = 0
 
         return round(points)
+
 
 def calculateCourseAverage(data):
     courseTimes = defaultdict(list)
@@ -147,6 +157,7 @@ def biggestPoints(points, number):
         return list(range(len(points)))
     else:
         return findBiggestPoints(points, number)
+
 
 def findBiggestPoints(points, number):
     biggest = []
@@ -192,9 +203,7 @@ def positionOfLastOccurance(searchItem, array, arrayOfIndexes):
 
 def calculateTotal(pointsList, points):
     # Sum all points in array
-    return sum(
-        [toInt(points[point]) for point in pointsList]
-    )
+    return sum([toInt(points[point]) for point in pointsList])
 
 
 def assignPosition(results):
@@ -215,8 +224,9 @@ def assignPosition(results):
 
     return results
 
+
 def toInt(integer):
-    if integer == '':
+    if integer == "":
         return 0
 
     return int(integer)

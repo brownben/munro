@@ -106,7 +106,7 @@ def createLeague(
     moreInfo,
     year,
     dynamicEventResults,
-    ) = data
+):
     year, courses = fixInput(year, courses)
     query(
         """
@@ -139,7 +139,7 @@ def updateLeague(
     moreInfo,
     year,
     dynamicEventResults,
-    ) = data
+):
     year, courses = fixInput(year, courses)
     query(
         """

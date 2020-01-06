@@ -1,4 +1,4 @@
-<center>
+<div style="text-align:center">
 <img height="120px" src="./frontend/src/assets/images/MunroLogo.png" />
 
 # Munro
@@ -12,7 +12,7 @@
 
 [munro-leagues.herokuapp.com](https://munro-leagues.herokuapp.com)
 
-</center>
+</div>
 
 Munro is a sports league results calculator, created originally by Ben Brown for his local Orienteering League as part of his Advanced Higher Computing Project. Munro is a Single Page VueJS App with a RESTful style Python Flask API and authentication using Firebase and is designed to be as easy to use as possible providing all the features and information you need, whilst making it fast and simple to view the results; with multiple options to sort and filter them. It supports multiple file formats for upload and several different scoring systems, making the process as quick and stress free as possible for event organisers. Once logged in administrators can update all the league and event details. Designed and created based off Orienteers feedback from what they wanted from the system.
 
