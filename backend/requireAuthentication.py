@@ -15,7 +15,14 @@ def requireAuthentication(func):
     def decorator(*args, **kwargs):
         id_token = request.cookies.get("token")
         if id_token:
-            return checkIdToken(id_token)
+            try:
+                google.oauth2.id_token.verify_firebase_token(
+                    id_token, firebase_request_adapter
+                )
+            except:
+                return returnUnauthorised(
+                    "Permission Denied - You are not Logged In"
+                )
         else:
             return returnUnauthorised(
                 "Permission Denied - You are not Logged In"
@@ -23,12 +30,3 @@ def requireAuthentication(func):
         return func(*args, **kwargs)
 
     return decorator
-
-
-def checkIdToken(id_token):
-    try:
-        google.oauth2.id_token.verify_firebase_token(
-            id_token, firebase_request_adapter
-        )
-    except ValueError:
-        return returnUnauthorised("Permission Denied - You are not Logged In")

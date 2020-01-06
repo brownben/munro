@@ -74,7 +74,7 @@
       </div>
     </template>
 
-    <div v-if="events.length > 0" class="card my-4">
+    <div v-if="events && events.length > 0" class="card my-4">
       <h2 class="text-2xl font-heading">League Results</h2>
       <div>
         <router-link
