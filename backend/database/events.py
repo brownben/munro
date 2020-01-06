@@ -6,17 +6,17 @@ def eventToJSON(event):
     # Convert SQL Tuple to JSON
     if event:
         return {
-            'id': event[0],
-            'name': event[1],
-            'date': event[2],
-            'resultUploaded': event[3],
-            'organiser': event[4],
-            'moreInformation': event[5],
-            'website': event[6],
-            'results': event[7],
-            'winsplits': event[8],
-            'routegadget': event[9],
-            'league': event[10]
+            "id": event[0],
+            "name": event[1],
+            "date": event[2],
+            "resultUploaded": event[3],
+            "organiser": event[4],
+            "moreInformation": event[5],
+            "website": event[6],
+            "results": event[7],
+            "winsplits": event[8],
+            "routegadget": event[9],
+            "league": event[10],
         }
     else:
         return False
@@ -26,13 +26,9 @@ def eventToJSONWithUploadKey(event):
     # Convert SQL Tuple to JSON
     eventJSON = eventToJSON(event)
     if eventToJSON:
-        print({
-            **eventJSON,
-            'uploadKey': event[11],
-        })
         return {
             **eventJSON,
-            'uploadKey': event[11],
+            "uploadKey": event[11],
         }
     else:
         return False
@@ -48,120 +44,203 @@ def generateUploadKey():
 # Event Database Functions
 
 
-def createEvent(name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, league):
-    eventId = (league+name+date).replace(" ", "")
+def createEvent(
+    name,
+    date,
+    resultUploaded,
+    organiser,
+    moreInformation,
+    website,
+    results,
+    winsplits,
+    routegadget,
+    league,
+):
+    eventId = (league + name + date).replace(" ", "")
     uploadKey = generateUploadKey()
-    query('''
+    query(
+        """
         INSERT INTO events (id,name,date,resultUploaded,organiser,moreInformation,
             website,results,winsplits,routegadget,league,uploadKey)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-    ''', (eventId, name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, league, uploadKey))
+    """,
+        (
+            eventId,
+            name,
+            date,
+            resultUploaded,
+            organiser,
+            moreInformation,
+            website,
+            results,
+            winsplits,
+            routegadget,
+            league,
+            uploadKey,
+        ),
+    )
 
 
-def updateEvent(eventId, name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, league):
-    newId = (league+name+date).replace(" ", "")
-    query('''
+def updateEvent(
+    eventId,
+    name,
+    date,
+    resultUploaded,
+    organiser,
+    moreInformation,
+    website,
+    results,
+    winsplits,
+    routegadget,
+    league,
+):
+    newId = (league + name + date).replace(" ", "")
+    query(
+        """
         UPDATE events
         SET id=%s, name=%s, date=%s, resultUploaded=%s, organiser=%s, moreInformation=%s, website=%s, results=%s,winsplits=%s, routegadget=%s, league=%s
         WHERE id=%s
-    ''', (newId, name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, league, eventId))
+    """,
+        (
+            newId,
+            name,
+            date,
+            resultUploaded,
+            organiser,
+            moreInformation,
+            website,
+            results,
+            winsplits,
+            routegadget,
+            league,
+            eventId,
+        ),
+    )
 
 
 def setResultsUploaded(to, eventId):
-    query('''
+    query(
+        """
         UPDATE events
         SET resultUploaded=%s
         WHERE id=%s
-    ''', (to, eventId))
+    """,
+        (to, eventId),
+    )
 
 
 def setResultsUploadedAndURLs(to, eventId, results, winsplits, routegadget):
-    query('''
+    query(
+        """
         UPDATE events
         SET resultUploaded=%s, results=%s, winsplits=%s, routegadget=%s
         WHERE id=%s
-    ''', (to, results, winsplits, routegadget, eventId))
+    """,
+        (to, results, winsplits, routegadget, eventId),
+    )
 
 
 def deleteEvent(eventId):
-    query('DELETE FROM events WHERE id=%s', (eventId,))
+    query("DELETE FROM events WHERE id=%s", (eventId,))
 
 
 def findEvent(eventId):
-    result = queryWithOneResult('''
+    result = queryWithOneResult(
+        """
         SELECT id, name,date,resultUploaded,organiser,moreInformation,website,results,winsplits,routegadget,league
         FROM events
         WHERE id = %s
-    ''', (eventId,))
+    """,
+        (eventId,),
+    )
     return eventToJSON(result)
 
 
 def getEventsOfLeague(name):
-    result = queryWithResults('''
+    result = queryWithResults(
+        """
         SELECT id, name,date,resultUploaded,organiser,moreInformation,website,results,winsplits,routegadget,league
         FROM events
         WHERE league = %s
         ORDER BY date ASC
-    ''', (name,))
+    """,
+        (name,),
+    )
     return list(map(eventToJSON, result))
 
 
 def getEventUploadKey(eventId):
-    result = queryWithOneResult('''
+    result = queryWithOneResult(
+        """
         SELECT uploadKey
         FROM events
         WHERE id = %s
-    ''', (eventId,))
+    """,
+        (eventId,),
+    )
     return result[0]
 
 
 def getEventWithUploadKey(eventId):
-    result = queryWithOneResult('''
+    result = queryWithOneResult(
+        """
         SELECT id,name,date,resultUploaded,organiser,moreInformation,website,results,
            winsplits,routegadget,league,uploadKey
         FROM events
         WHERE id = %s
-    ''', (eventId,))
+    """,
+        (eventId,),
+    )
     return eventToJSONWithUploadKey(result)
 
 
 def getAllEvents():
-    result = queryWithResults('''
+    result = queryWithResults(
+        """
         SELECT id,name,date,resultUploaded,organiser,moreInformation,website,results,winsplits,routegadget,league
         FROM events
-        ORDER BY date ASC''')
+        ORDER BY date ASC"""
+    )
     return list(map(eventToJSON, result))
 
 
 def getAllEventsWithUploadKey():
-    result = queryWithResults('''
+    result = queryWithResults(
+        """
         SELECT id,name,date,resultUploaded,organiser,moreInformation,website,results,winsplits,routegadget,league, uploadKey
         FROM events
         ORDER BY date ASC'
-    ''')
+    """
+    )
     return list(map(eventToJSONWithUploadKey, result))
 
 
 def getEventsOfLeagueWithUploadKey(name):
-    result = queryWithResults('''
+    result = queryWithResults(
+        """
         SELECT id, name,date,resultUploaded,organiser,moreInformation,website,results,winsplits,routegadget,league, uploadKey
         FROM events
         WHERE league = %s
         ORDER BY date ASC
-    ''', (name,))
+    """,
+        (name,),
+    )
     return list(map(eventToJSONWithUploadKey, result))
 
 
 def getLatestEventsWithResults():
-    result = queryWithResults('''
+    result = queryWithResults(
+        """
         SELECT id, name,date,resultUploaded,organiser,moreInformation,website,results,winsplits,routegadget,league
         FROM events
         WHERE resultUploaded = true
         ORDER BY date DESC
         LIMIT 12
-    ''')
+    """
+    )
     return list(map(eventToJSON, result))
 
 
 def deleteAllEvents():
-    query('DELETE FROM events')
+    query("DELETE FROM events")
+

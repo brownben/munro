@@ -15,10 +15,18 @@ def requireAuthentication(func):
         if id_token:
             try:
                 google.oauth2.id_token.verify_firebase_token(
-                    id_token, firebase_request_adapter)
+                    id_token, firebase_request_adapter
+                )
             except ValueError:
-                return {'message': 'Permission Denied - You are not Logged In'}, 401
+                return (
+                    {"message": "Permission Denied - You are not Logged In"},
+                    401,
+                )
         else:
-            return {'message': 'Permission Denied - You are not Logged In'}, 401
+            return (
+                {"message": "Permission Denied - You are not Logged In"},
+                401,
+            )
         return func(*args, **kwargs)
+
     return decorator

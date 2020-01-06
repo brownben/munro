@@ -5,10 +5,10 @@ def nameToInitial(name):
     # Get initial from a name, for matching of surname + initial
     # Returns initial concatenated to surname
     name = name.strip()
-    splitName = name.split(' ', 1)
+    splitName = name.split(" ", 1)
 
     if len(splitName) > 1:
-        return splitName[0][0] + ' ' + splitName[1]
+        return splitName[0][0] + " " + splitName[1]
     else:
         return name
 
@@ -16,16 +16,21 @@ def nameToInitial(name):
 def matchCompetitor(competitorList, result):
     # Find correct competitor to match to, check name and course match
     for competitor in competitorList:
-        if competitor['name'] == result['name'] and competitor['course'] == result['course']:
+        if (
+            competitor["name"] == result["name"]
+            and competitor["course"] == result["course"]
+        ):
             return competitor
 
     # Else check that initial, surname, course and either club or age class match
     for competitor in competitorList:
         if (
-            (nameToInitial(competitor['name']) == nameToInitial(result['name'])) and
-            (competitor['course'] == result['course']) and
-            (competitor['ageClass'] == result['ageClass'] or
-             (competitor['club'] == result['club']))
+            (nameToInitial(competitor["name"]) == nameToInitial(result["name"]))
+            and (competitor["course"] == result["course"])
+            and (
+                competitor["ageClass"] == result["ageClass"]
+                or (competitor["club"] == result["club"])
+            )
         ):
             return competitor
 
@@ -37,7 +42,7 @@ def removeExtraCourses(results, courses):
     upperCourses = [course.upper() for course in courses]
     resultsWithCoursesRemoved = []
     for result in results:
-        if result['course'].upper() in upperCourses:
+        if result["course"].upper() in upperCourses:
             resultsWithCoursesRemoved.append(result)
 
     return resultsWithCoursesRemoved

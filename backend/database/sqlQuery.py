@@ -1,41 +1,44 @@
 import os
 import psycopg2
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ["DATABASE_URL"]
+
+
+def connectToDatabase():
+    connection = psycopg2.connect(DATABASE_URL, sslmode="require")
+    cursor = connection.cursor()
+    return connection, cursor
+
+
+def closeDatabase(connection):
+    connection.commit()
+    connection.close()
 
 
 def query(string, values=()):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
+    connection, cursor = connectToDatabase()
     cursor.execute(string, values)
-    connection.commit()
-    connection.close()
+    closeDatabase(connection)
 
 
 def queryWithOneResult(string, values=()):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
+    connection, cursor = connectToDatabase()
     cursor.execute(string, values)
     result = cursor.fetchone()
-    connection.commit()
-    connection.close()
+    closeDatabase(connection)
     return result
 
 
 def queryWithResults(string, values=()):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
+    connection, cursor = connectToDatabase()
     cursor.execute(string, values)
     result = cursor.fetchall()
-    connection.commit()
-    connection.close()
+    closeDatabase(connection)
     return result
 
 
 def queryMultiple(args):
-    connection = psycopg2.connect(DATABASE_URL, sslmode='require')
-    cursor = connection.cursor()
+    connection, cursor = connectToDatabase()
     for arg in args:
         cursor.execute(arg)
-    connection.commit()
-    connection.close()
+    closeDatabase(connection)

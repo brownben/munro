@@ -1,0 +1,12 @@
+eslint:
+  enabled: true
+  config:
+    extensions:
+      - .vue
+      - .js
+
+exclude_patterns:
+  - "**/config/**"
+  - "**/dist/**"
+  - "**/tests/**"
+  - "**/node_modules/**"

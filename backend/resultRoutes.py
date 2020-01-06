@@ -5,17 +5,22 @@ from requireAuthentication import requireAuthentication
 
 transferResultParser = reqparse.RequestParser()
 transferResultParser.add_argument(
-    'competitor', help='This field cannot be blank', required=True)
+    "competitor", help="This field cannot be blank", required=True
+)
 transferResultParser.add_argument(
-    'result', help='This field cannot be blank', required=True)
+    "result", help="This field cannot be blank", required=True
+)
 
 manualResultParser = reqparse.RequestParser()
 manualResultParser.add_argument(
-    'competitor', help='This field cannot be blank', required=True)
+    "competitor", help="This field cannot be blank", required=True
+)
 manualResultParser.add_argument(
-    'event', help='This field cannot be blank', required=True)
+    "event", help="This field cannot be blank", required=True
+)
 manualResultParser.add_argument(
-    'points', help='This field cannot be blank', required=True)
+    "points", help="This field cannot be blank", required=True
+)
 
 
 class Results(Resource):
@@ -25,7 +30,7 @@ class Results(Resource):
     @requireAuthentication
     def delete(self):
         results.deleteAllResults()
-        return {'message': 'All Results were Deleted'}
+        return {"message": "All Results were Deleted"}
 
 
 class ResultsForCourse(Resource):
@@ -49,10 +54,15 @@ class TransferResult(Resource):
         data = transferResultParser.parse_args()
 
         try:
-            results.transferResult(data['result'], data['competitor'])
-            return {'message': 'Result Transfered'}
+            results.transferResult(data["result"], data["competitor"])
+            return {"message": "Result Transfered"}
         except:
-            return {'message': 'Error: Problem Transferring Result - Please Try Again'}, 500
+            return (
+                {
+                    "message": "Error: Problem Transferring Result - Please Try Again"
+                },
+                500,
+            )
 
 
 class ManualResult(Resource):
@@ -61,7 +71,10 @@ class ManualResult(Resource):
         try:
             data = manualResultParser.parse_args()
             results.createResult(
-                0, '', data['points'], False, data['event'], data['competitor'])
-            return {'message': 'Points Assigned'}
+                0, "", data["points"], False, data["event"], data["competitor"]
+            )
+            return {"message": "Points Assigned"}
         except:
-            return {'message': 'Error: Problem Assigning Points - Please Try Again'}
+            return {
+                "message": "Error: Problem Assigning Points - Please Try Again"
+            }
