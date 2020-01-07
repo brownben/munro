@@ -32,6 +32,7 @@ def findHeaders(data):
         [["PL", "POS.", "POS", "POSITION"], "position"],
         [["NC", "NONCOMPETITIVE"], "nonCompetitive"],
         [["STATUS", "CLASSIFIER"], "status"],
+        [["POINTS"], "file_points"],
     ]
 
     if not headerRow:
@@ -105,6 +106,9 @@ def parseToObjects(data, headerLocations):
         parsedRow["club"] = row[headerLocations["club"]]
         parsedRow["course"] = row[headerLocations["course"]]
         parsedRow["time"] = timeToSeconds(row[headerLocations["time"]])
+
+        if headerLocations.get('file_points', False) and row[headerLocations["file_points"]]:
+            parsedRow['file_points'] = int(row[headerLocations["file_points"]])
 
         try:
             parsedRow["position"] = int(row[headerLocations["position"]])

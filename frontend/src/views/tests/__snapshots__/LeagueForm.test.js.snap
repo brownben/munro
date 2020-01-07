@@ -99,7 +99,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
        
       <dropdown-input-stub
         label="Scoring Method:"
-        list="Position Based (100 Max),Position Based (50 Max),Position Based (99 Max),Position Based (99 Max, Reduced in a Draw),Position Based (100 Max, Double Points),Position Based (50 Max, Double Points),Relative to Average Time (1000 Average),Relative to Average Time (100 Average)"
+        list="Position Based (100 Max),Position Based (99 Max),Position Based (50 Max),Position Based (100 Max, Double Points),Position Based (50 Max, Double Points),Position Based (99 Max, Reduced in a Draw),Relative to Average Time (1000 Average),Relative to Average Time (100 Average),From Upload File"
         value=""
       />
        
@@ -265,7 +265,7 @@ exports[`Update Form - Renders Correctly 1`] = `
        
       <dropdown-input-stub
         label="Scoring Method:"
-        list="Position Based (100 Max),Position Based (50 Max),Position Based (99 Max),Position Based (99 Max, Reduced in a Draw),Position Based (100 Max, Double Points),Position Based (50 Max, Double Points),Relative to Average Time (1000 Average),Relative to Average Time (100 Average)"
+        list="Position Based (100 Max),Position Based (99 Max),Position Based (50 Max),Position Based (100 Max, Double Points),Position Based (50 Max, Double Points),Position Based (99 Max, Reduced in a Draw),Relative to Average Time (1000 Average),Relative to Average Time (100 Average),From Upload File"
         value=""
       />
        

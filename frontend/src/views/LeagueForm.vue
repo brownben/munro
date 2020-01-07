@@ -52,13 +52,14 @@
           v-model="scoringMethod"
           :list="[
             'Position Based (100 Max)',
-            'Position Based (50 Max)',
             'Position Based (99 Max)',
-            'Position Based (99 Max, Reduced in a Draw)',
+            'Position Based (50 Max)',
             'Position Based (100 Max, Double Points)',
             'Position Based (50 Max, Double Points)',
+            'Position Based (99 Max, Reduced in a Draw)',
             'Relative to Average Time (1000 Average)',
             'Relative to Average Time (100 Average)',
+            'From Upload File',
           ]"
           label="Scoring Method:"
         />
@@ -159,6 +160,7 @@ export default {
         return 'Relative to Average Time (1000 Average)'
       else if (value === 'timeAverage100')
         return 'Relative to Average Time (100 Average)'
+      else if (value === 'file') return 'From Upload File'
       else return ''
     },
 
@@ -176,6 +178,7 @@ export default {
         return 'timeAverage'
       else if (value === 'Relative to Average Time (100 Average)')
         return 'timeAverage100'
+      else if (value === 'From Upload File') return 'file'
       return ''
     },
 

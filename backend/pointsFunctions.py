@@ -4,12 +4,14 @@ import statistics
 
 def assignPoints(data, leagueScoringMethod):
     # Choses which points algorithm to use
-    if leagueScoringMethod == "position99average":
+    if "position99average" in leagueScoringMethod:
         return positionBasedPoints99WithDraw(data)
     elif "position" in leagueScoringMethod:
         return assignPointsPosition(data, leagueScoringMethod)
     elif "timeAverage" in leagueScoringMethod:
         return assignPointsTimeAverage(data, leagueScoringMethod)
+    elif "file" in leagueScoringMethod:
+        return pointsFromFile(data)
     else:
         return False
 
@@ -72,6 +74,22 @@ def positionBasedPoints99WithDraw(data):
             resultWithPoints["points"] = (
                 points + (points - positionOccurances) + 1
             ) / 2
+        else:
+            resultWithPoints["points"] = 0
+
+        dataWithPoints.append(resultWithPoints)
+
+    return dataWithPoints
+
+
+def pointsFromFile(data):
+    dataWithPoints = []
+
+    for result in data:
+        resultWithPoints = result
+        points = result.get("file_points", None)
+        if isinstance(points, int):
+            resultWithPoints["points"] = points
         else:
             resultWithPoints["points"] = 0
 

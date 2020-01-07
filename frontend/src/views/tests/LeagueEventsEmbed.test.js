@@ -275,6 +275,9 @@ test('Scoring Method Shorthand to Full', () => {
   expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe(
     'Relative to Average Time (100 Average)'
   )
+  expect(wrapper.vm.scoringMethodShorthandToFull('file')).toBe(
+    'From Upload File'
+  )
   expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
   expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
 })

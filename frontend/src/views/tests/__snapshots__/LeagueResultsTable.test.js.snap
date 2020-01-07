@@ -777,6 +777,8 @@ exports[`Renders Correctly + Fetches Data 1`] = `
     </table>
   </div>
    
+  <!---->
+   
   <div
     class="card my-6 mx-1"
   >
@@ -801,7 +803,5 @@ exports[`Renders Correctly + Fetches Data 1`] = `
       </router-link-stub>
     </div>
   </div>
-   
-  <!---->
 </div>
 `;

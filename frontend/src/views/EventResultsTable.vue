@@ -135,10 +135,15 @@ export default {
       // Split age class into age and gender to allow easy sorting
       return this.rawResults.map(result => {
         if (result.ageClass) {
-          result.gender = result.ageClass[0]
-          result.age = parseInt(result.ageClass.slice(1), 10)
+          const regexMatch = result.ageClass.match(
+            /([MWmwfFDH])[^0-9]*([0-9]*)/
+          )
+          if (['M', 'H'].includes(regexMatch[1].toUpperCase()))
+            result.gender = 'M'
+          else if (['W', 'F', 'D'].includes(regexMatch[1].toUpperCase()))
+            result.gender = 'W'
+          result.age = parseInt(regexMatch[2], 10)
         }
-
         return result
       })
     },
@@ -154,33 +159,18 @@ export default {
 
     filteredResults: function() {
       // Filter results by preferences
-      return this.sortedResults
-        .filter(result => result.course === this.chosenCourse)
-        .filter(result =>
-          result.name.match(new RegExp(this.filterPreferences.name, 'i'))
-        ) // Filter by Name Case Insensitive
-        .filter(result =>
-          result.club.match(new RegExp(this.filterPreferences.club, 'i'))
-        ) // Filter by Club Case Insensitive
-        .filter(result => {
-          if (
-            this.filterPreferences.maxAge === 100 &&
-            this.filterPreferences.minAge === 0
-          )
-            return true
-          else {
-            return (
-              this.filterPreferences.minAge <= result.age &&
-              result.age <= this.filterPreferences.maxAge
-            )
-          }
-        }) // If age in range
-        .filter(
-          result =>
-            (this.filterPreferences.male && this.filterPreferences.female) ||
+      return this.sortedResults.filter(
+        result =>
+          result.name.match(new RegExp(this.filterPreferences.name, 'i')) &&
+          result.club.match(new RegExp(this.filterPreferences.club, 'i')) &&
+          ((this.filterPreferences.male && this.filterPreferences.female) ||
             (this.filterPreferences.male && result.gender === 'M') ||
-            (this.filterPreferences.female && result.gender === 'W')
-        ) // Filter by Gender
+            (this.filterPreferences.female && result.gender === 'W')) &&
+          ((this.filterPreferences.maxAge >= 100 &&
+            this.filterPreferences.minAge === 0) ||
+            (this.filterPreferences.minAge <= result.age &&
+              result.age <= this.filterPreferences.maxAge))
+      )
     },
 
     coursesInResults: function() {

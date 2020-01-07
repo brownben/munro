@@ -73,7 +73,6 @@
         </div>
       </div>
     </template>
-
     <div v-if="events && events.length > 0" class="card my-4">
       <h2 class="text-2xl font-heading">League Results</h2>
       <div>
@@ -219,6 +218,7 @@ export default {
         return 'Relative to Average Time (1000 Average)'
       else if (value === 'timeAverage100')
         return 'Relative to Average Time (100 Average)'
+      else if (value === 'file') return 'From Upload File'
       else return ''
     },
 
