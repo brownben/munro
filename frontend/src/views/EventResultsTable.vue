@@ -163,6 +163,7 @@ export default {
         result =>
           result.name.match(new RegExp(this.filterPreferences.name, 'i')) &&
           result.club.match(new RegExp(this.filterPreferences.club, 'i')) &&
+          result.course === this.chosenCourse &&
           ((this.filterPreferences.male && this.filterPreferences.female) ||
             (this.filterPreferences.male && result.gender === 'M') ||
             (this.filterPreferences.female && result.gender === 'W')) &&
