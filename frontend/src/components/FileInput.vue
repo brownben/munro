@@ -1,7 +1,7 @@
 <template>
   <div class="file-input relative top--4">
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3  pb-0"
       >{{ label }}</label
     >
     <p
@@ -66,8 +66,20 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style>
 label {
   transition: 0.3s;
+}
+
+.mt--2 {
+  margin-top: -0.5rem;
+}
+
+.top--4 {
+  top: -1rem;
+}
+
+.bottom--3 {
+  bottom: -0.75rem;
 }
 </style>

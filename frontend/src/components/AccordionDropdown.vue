@@ -12,7 +12,7 @@
   >
     <div class="accordion-head" @click="accordionOpen = !accordionOpen">
       <h2
-        class="font-heading text-main text-2xl p-2 px-3 inline-block select-none"
+        class="font-heading text-main text-2xl p-2 px-3 h-12 inline-block select-none"
       >
         {{ title }}
       </h2>
@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 svg {
   transition: 0.4s;
 }

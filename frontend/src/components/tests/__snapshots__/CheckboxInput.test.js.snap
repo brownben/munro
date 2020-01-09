@@ -11,6 +11,7 @@ exports[`Renders Correctly - Checked 1`] = `
     Test Checkbox
     
     <input
+      class="hidden"
       type="checkbox"
     />
      
@@ -30,6 +31,7 @@ exports[`Renders Correctly - Unchecked 1`] = `
     Another Input
     
     <input
+      class="hidden"
       type="checkbox"
     />
      

@@ -43,7 +43,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .slide-enter-active,
 .slide-leave-active {
   transition: 1s;

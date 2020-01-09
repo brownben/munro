@@ -35,7 +35,7 @@
     />
 
     <p v-show="event.name" class="mb-3">
-      <b class="text-normal font-heading">Event Name:</b>
+      <b>Event Name:</b>
       {{ event.name }}
     </p>
 

@@ -403,17 +403,46 @@ export default {
 }
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss">
 .strikethrough {
   text-decoration: line-through;
 }
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
+
+.table {
+  @apply w-full;
 }
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+
+.table tr {
+  transition: 0.3s;
+  @apply bg-white;
+}
+
+.table tr:hover:not(.mobile-table-expansion) {
+  @apply bg-main-light;
+}
+
+.table tr.striped {
+  @apply bg-main-veryLight;
+}
+
+thead tr {
+  @apply border-b border-main-light;
+}
+
+.table td {
+  @apply text-center py-2 px-1 font-body font-light;
+}
+
+.table th {
+  white-space: nowrap;
+  @apply font-heading select-none text-center font-normal py-2;
+}
+
+.table th p {
+  @apply inline-block;
+}
+.table th div {
+  @apply inline-block ml-1;
 }
 
 .mobile-table-expansion td {

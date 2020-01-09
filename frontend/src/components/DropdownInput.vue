@@ -89,7 +89,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .open-enter-active,
 .open-leave-active {
   transition: 0.3s transform;
@@ -117,7 +117,11 @@ export default {
   margin-right: -0.75rem;
 }
 
-p {
-  transition: 0.3s;
+.top--4 {
+  top: -1rem;
+}
+
+.bottom--3 {
+  bottom: -0.75rem;
 }
 </style>

@@ -220,7 +220,11 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style scoped lang="postcss">
+.h-80 {
+  height: 18rem;
+}
+
 .text p {
   @apply my-1;
 }
@@ -229,7 +233,7 @@ export default {
   max-width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   #header img {
     height: auto;
     max-height: 20rem;

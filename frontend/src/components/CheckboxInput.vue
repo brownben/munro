@@ -14,6 +14,7 @@
       <input
         :checked="value"
         type="checkbox"
+        class="hidden"
         @change="$emit('input', $event.target.checked)"
       />
       <span />
@@ -38,11 +39,7 @@ export default {
 }
 </script>
 
-<style scoped>
-input {
-  @apply hidden;
-}
-
+<style scoped lang="postcss">
 label {
   @apply relative m-0;
   top: -1rem;
@@ -66,7 +63,6 @@ span {
 
 [type='checkbox']:checked + span {
   @apply relative inline-block w-2 h-4;
-  position: relative;
   margin-left: 13px;
   border: 1.5px solid #b80bda;
   border-top: 0;

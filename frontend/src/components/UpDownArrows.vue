@@ -6,10 +6,10 @@
 
 <template>
   <div class="up-down-arrow">
-    <svg :class="{ active: active && !ascending }" viewBox="0 0 24 24">
+    <svg :class="{ 'active-arrow': active && !ascending }" viewBox="0 0 24 24">
       <path d="M7 14l5-5 5 5z" />
     </svg>
-    <svg :class="{ active: active && ascending }" viewBox="0 0 24 24">
+    <svg :class="{ 'active-arrow': active && ascending }" viewBox="0 0 24 24">
       <path d="M7 10l5 5 5-5z" />
     </svg>
   </div>
@@ -33,25 +33,26 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="postcss">
 .up-down-arrow {
   height: 20px;
   @apply inline-block;
 }
-svg {
+
+.up-down-arrow svg {
   @apply relative block;
   height: 15px;
 }
 
-svg:first-child {
+.up-down-arrow svg:first-child {
   bottom: -3px;
 }
 
-svg:last-child {
+.up-down-arrow svg:last-child {
   top: -5px;
 }
 
-.active {
+.active-arrow {
   @apply fill-current text-main;
 }
 </style>

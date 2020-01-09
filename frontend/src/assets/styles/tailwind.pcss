@@ -1,0 +1,83 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.button {
+  transition: 0.3s;
+  @apply text-main font-heading border border-main rounded-tl-lg rounded-br-lg mt-3 mb-2 py-1 px-3 mx-2 text-base inline-block leading-normal select-none outline-none appearance-none;
+}
+
+.button-m-0 {
+  @apply button m-0;
+}
+
+.button-lg {
+  @apply button mt-1 py-1 px-4 mx-0;
+}
+
+.button:hover,
+.button-lg:hover {
+  @apply text-white bg-main;
+}
+
+.card {
+  @apply p-4 pb-1 text-center shadow-lg rounded-tl-xl rounded-br-xl bg-white flex flex-col justify-center items-center;
+}
+
+.card-color {
+  @apply card bg-main text-white pb-4 shadow-md;
+}
+
+.card-text {
+  @apply card pb-3;
+}
+
+.view {
+  @apply w-full pt-2 px-8 pb-2;
+}
+
+@media (min-width: 640px) {
+  .view {
+    @apply px-16;
+  }
+}
+
+@media (min-width: 1024px) {
+  .view {
+    @apply px-32;
+  }
+}
+
+@media (min-width: 1280px) {
+  .view {
+    @apply px-40;
+  }
+}
+
+a {
+  transition: 0.3s;
+}
+
+a.link {
+  text-decoration: underline;
+}
+
+button:focus,
+a:focus {
+  outline: none;
+}
+
+b {
+  @apply font-heading font-normal;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

@@ -145,6 +145,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
     Dynamic Event Results:
     
           <input
+            class="hidden"
             type="checkbox"
           />
            
@@ -311,6 +312,7 @@ exports[`Update Form - Renders Correctly 1`] = `
     Dynamic Event Results:
     
           <input
+            class="hidden"
             type="checkbox"
           />
            

@@ -29,7 +29,7 @@ exports[`Renders Correctly - Passed with Props 1`] = `
   class="up-down-arrow"
 >
   <svg
-    class="active"
+    class="active-arrow"
     viewBox="0 0 24 24"
   >
     <path

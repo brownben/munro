@@ -56,9 +56,7 @@ exports[`Renders Correctly 1`] = `
     class="mb-3"
     style="display: none;"
   >
-    <b
-      class="text-normal font-heading"
-    >
+    <b>
       Event Name:
     </b>
     
@@ -87,7 +85,7 @@ exports[`Renders Correctly 1`] = `
     class="file-input relative top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3  pb-0"
     >
       Results File:
     </label>
@@ -219,9 +217,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
     class="mb-3"
     style="display: none;"
   >
-    <b
-      class="text-normal font-heading"
-    >
+    <b>
       Event Name:
     </b>
     
@@ -250,7 +246,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
     class="file-input relative top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3  pb-0"
     >
       Results File:
     </label>

@@ -16,7 +16,7 @@ import auth from './authentication'
 import messageStore from './messageStore'
 
 import './registerServiceWorker'
-import './assets/styles/tailwind.css'
+import './assets/styles/tailwind.pcss'
 
 Vue.config.productionTip = false
 

@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease-out;
@@ -54,14 +54,5 @@ export default {
 .list-leave-to {
   opacity: 0;
   transform: translateX(10px);
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

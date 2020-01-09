@@ -40,7 +40,7 @@ test('Check Classes Update', () => {
       .findAll('svg')
       .at(1)
       .classes()
-  ).toContain('active')
+  ).toContain('active-arrow')
 
   const wrapper1 = mount(UpDownArrows, {
     propsData: {
@@ -53,7 +53,7 @@ test('Check Classes Update', () => {
       .findAll('svg')
       .at(0)
       .classes()
-  ).toContain('active')
+  ).toContain('active-arrow')
   expect(
     wrapper1
       .findAll('svg')

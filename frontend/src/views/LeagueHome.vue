@@ -301,8 +301,3 @@ export default {
   },
 }
 </script>
-<style scoped lang="postcss">
-b {
-  @apply font-heading font-normal;
-}
-</style>

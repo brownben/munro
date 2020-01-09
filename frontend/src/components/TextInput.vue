@@ -33,3 +33,12 @@ export default {
   },
 }
 </script>
+<style>
+.top--4 {
+  top: -1rem;
+}
+
+.bottom--3 {
+  bottom: -0.75rem;
+}
+</style>
