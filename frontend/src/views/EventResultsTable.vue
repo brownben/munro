@@ -299,13 +299,6 @@ td.points {
   @apply px-0 pl-0 pr-0;
 }
 
-th span {
-  margin-left: -110%;
-  opacity: 0;
-  transition: 0.3s;
-  @apply absolute shadow font-heading bg-white z-40 py-1 px-2 mt-6 text-center;
-}
-
 th:hover > span {
   opacity: 1;
 }

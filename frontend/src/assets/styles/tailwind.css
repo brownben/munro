@@ -23,7 +23,7 @@
 }
 
 .card {
-  @apply p-4 pb-1 text-center shadow-lg rounded-tl-lg rounded-br-lg bg-white flex flex-col justify-center items-center;
+  @apply p-4 pb-1 text-center shadow-lg rounded-tl-xl rounded-br-xl bg-white flex flex-col justify-center items-center;
 }
 
 .card-color {

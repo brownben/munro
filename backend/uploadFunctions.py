@@ -54,6 +54,8 @@ def removeExtraCourses(results, courses):
     resultsWithCoursesRemoved = []
     for result in results:
         if result["course"].upper() in upperCourses:
+            indexOfCourse = upperCourses.index(result["course"].upper())
+            result["course"] = courses[indexOfCourse]
             resultsWithCoursesRemoved.append(result)
 
     return resultsWithCoursesRemoved
