@@ -16,6 +16,7 @@ def partResultToJSON(result):
             "points": result[2],
             "incomplete": result[3] == "true",
             "event": result[4],
+            "type": result[5],
         }
     else:
         return False
@@ -24,7 +25,7 @@ def partResultToJSON(result):
 def resultToJSON(result):
     resultJSON = partResultToJSON(result)
     if resultJSON:
-        return {**resultJSON, "competitor": result[5], "id": result[6]}
+        return {**resultJSON, "competitor": result[6], "id": result[7]}
     else:
         return False
 
@@ -34,11 +35,11 @@ def fullResultToJSON(result):
     if resultJSON:
         return {
             **resultJSON,
-            "name": result[5],
-            "ageClass": result[6],
-            "club": result[7],
-            "course": result[8],
-            "id": result[9],
+            "name": result[6],
+            "ageClass": result[7],
+            "club": result[8],
+            "course": result[9],
+            "id": result[10],
         }
     else:
         return False
@@ -51,6 +52,17 @@ def getPointsForEvent(results, eventId):
     # If found return event
     if len(filteredPoints) != 0:
         return filteredPoints[0]["points"]
+    else:
+        return ""
+
+
+def getTypesForEvent(results, eventId):
+    # Find Event matching the ID
+    filteredTypes = [event for event in results if event["event"] == eventId]
+
+    # If found return event
+    if len(filteredTypes) != 0 and filteredTypes[0]["type"] is not None:
+        return filteredTypes[0]["type"]
     else:
         return ""
 
@@ -68,16 +80,27 @@ def courseResultToJSON(result, league, eventsList):
 
     # Split Points and events from database string
     # Place in record for each event
-    eventList = result[3].split(";")
-    pointsList = result[4].split(";")
+    eventList = result[3]
+    pointsList = result[4]
+    resultTypeList = result[5]
+
     eventsByCompetitor = [
-        {"event": event, "points": float(pointsList[index])}
+        {
+            "event": event,
+            "points": float(pointsList[index]),
+            "type": resultTypeList[index],
+        }
         for index, event in enumerate(eventList)
     ]
 
     # Get points for each event in order
     points = [
         getPointsForEvent(eventsByCompetitor, event["id"])
+        for event in eventsWithResults
+    ]
+
+    types = [
+        getTypesForEvent(eventsByCompetitor, event["id"])
         for event in eventsWithResults
     ]
 
@@ -96,6 +119,7 @@ def courseResultToJSON(result, league, eventsList):
         "points": points,
         "totalPoints": totalPoints,
         "largestPoints": largestPoints,
+        "types": types,
     }
 
 
@@ -105,10 +129,11 @@ def courseResultToJSON(result, league, eventsList):
 def createResult(data):
     if data["position"] == "":
         data["position"] = -1
+
     query(
         """
-        INSERT INTO results (time, position, points, incomplete, event, competitor)
-        VALUES (%s,%s,%s,%s,%s,%s)
+        INSERT INTO results (time, position, points, incomplete, event, competitor, type)
+        VALUES (%s,%s,%s,%s,%s,%s,%s)
     """,
         (
             data["time"],
@@ -117,6 +142,7 @@ def createResult(data):
             data["incomplete"],
             data["event"],
             data["competitor"],
+            data.get("type", None),
         ),
     )
 
@@ -140,6 +166,17 @@ def updateResult(data):
     )
 
 
+def updatePoints(result, points):
+    query(
+        """
+        UPDATE results
+        SET points=%s
+        WHERE rowid=%s
+    """,
+        (points, result),
+    )
+
+
 def deleteResult(rowid):
     query("DELETE FROM results WHERE rowid=%s", (rowid,))
 
@@ -149,7 +186,7 @@ def deleteAllResults():
 
 
 def deleteResultsByEvent(event):
-    query("DELETE FROM results WHERE event=%s", (event,))
+    query("DELETE FROM results WHERE event=%s AND type IS NULL", (event,))
 
 
 def deleteResultsByCompetitor(competitor):
@@ -159,7 +196,7 @@ def deleteResultsByCompetitor(competitor):
 def findResults(rowid):
     result = queryWithOneResult(
         """
-        SELECT time, position, points incomplete, event, competitor, id
+        SELECT time, position, points, incomplete, event, type, competitor, id
         FROM results
         WHERE rowid=%s
     """,
@@ -171,7 +208,7 @@ def findResults(rowid):
 def getAllResults():
     result = queryWithResults(
         """
-        SELECT results.time, results.position, results.points, results.incomplete, results.event,
+        SELECT results.time, results.position, results.points, results.incomplete, results.event, results.type,
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
@@ -183,7 +220,7 @@ def getAllResults():
 def getResultsByCompetitor(competitor):
     result = queryWithResults(
         """
-        SELECT time, position, points, incomplete, event, competitor, rowid
+        SELECT time, position, points, incomplete, event, type, competitor, rowid
         FROM results
         WHERE competitor=%s
         ORDER BY event ASC
@@ -193,10 +230,23 @@ def getResultsByCompetitor(competitor):
     return list(map(resultToJSON, result))
 
 
+def getResultsForCompetitorNonDynamic(competitor):
+    result = queryWithOneResult(
+        """
+        SELECT string_agg(results.points::text,';')
+        FROM results, competitors
+        WHERE results.competitor=competitors.rowid AND type IS NULL AND competitors.rowid=%s
+        GROUP BY competitors.rowid
+    """,
+        (competitor,),
+    )
+    return list(map(int, result[0].split(";")))
+
+
 def getResultsByEvent(event):
     result = queryWithResults(
         """
-        SELECT results.time, results.position, results.points, results.incomplete, results.event,
+        SELECT results.time, results.position, results.points, results.incomplete, results.event, results.type,
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid AND event=%s
@@ -210,8 +260,8 @@ def getResultsByEvent(event):
 def getResultsForCourse(league, course):
     results = queryWithResults(
         """
-        SELECT competitors.name, competitors.ageClass, competitors.club,  string_agg(results.event::text,';'),
-         string_agg(results.points::text,';')
+        SELECT competitors.name, competitors.ageClass, competitors.club, array_agg(results.event),
+         array_agg(results.points), array_agg(results.type)
         FROM competitors, results
         WHERE results.competitor=competitors.rowid AND competitors.course=%s AND competitors.league=%s
         GROUP BY competitors.rowid
@@ -246,3 +296,14 @@ def transferResult(result, competitor):
         (competitor, result),
     )
 
+
+def getDynamicResults(league):
+    result = queryWithResults(
+        """
+        SELECT time, position, points, incomplete, event, type, competitor, rowid
+        FROM results, events
+        WHERE results.type IS NOT NULL AND results.event=events.id AND events.league=%s
+    """,
+        (league,),
+    )
+    return list(map(resultToJSON, result))

@@ -3,6 +3,7 @@ from flask_restful import Resource, reqparse
 import csvFunctions as csv
 import pointsFunctions as points
 import uploadFunctions as upload
+import dynamicPointsFunctions as dynamicResults
 from database import competitors, leagues, events, results
 from routeFunctions import returnMessage, returnError
 
@@ -104,6 +105,8 @@ def saveUpload(data, eventData, dataWithPoints):
         data["routegadget"],
     )
 
+    dynamicResults.calculate(eventData["league"])
+
     return returnMessage(str(len(dataWithCompetitors)) + " Results Saved")
 
 
@@ -118,13 +121,15 @@ def getCompetitorData(eventData, dataWithPoints):
             result["competitor"] = competitor["id"]
         else:
             # If no match create competitor and save id as that in the result
-            result["competitor"] = competitors.createCompetitor({
-                "name":result["name"],
-                "ageClass":result["ageClass"],
-                "club":result["club"],
-                "course":result["course"],
-                "league":eventData["league"],
-            })
+            result["competitor"] = competitors.createCompetitor(
+                {
+                    "name": result["name"],
+                    "ageClass": result["ageClass"],
+                    "club": result["club"],
+                    "course": result["course"],
+                    "league": eventData["league"],
+                }
+            )
         dataWithCompetitors.append(result)
 
     return dataWithCompetitors

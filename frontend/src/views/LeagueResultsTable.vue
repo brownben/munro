@@ -119,6 +119,9 @@
                     strikethrough: !result.largestPoints.includes(
                       eventsWithResults.indexOf(event)
                     ),
+                    bold:
+                      result.types &&
+                      result.types[eventsWithResults.indexOf(event)] !== '',
                   }"
                   class="points"
                 >
@@ -406,6 +409,10 @@ export default {
 <style lang="postcss">
 .strikethrough {
   text-decoration: line-through;
+}
+
+.bold {
+  font-weight: 500 !important;
 }
 
 .table {

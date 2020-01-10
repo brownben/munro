@@ -76,6 +76,7 @@ class ManualResult(Resource):
                     "incomplete": False,
                     "event": data["event"],
                     "competitor": data["competitor"],
+                    "type": "manual",
                 }
             )
             return returnMessage("Points Assigned")

@@ -81,7 +81,15 @@
                 :key="result.id"
                 :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
               >
-                <td>{{ result.position || '' }}</td>
+                <td
+                  v-if="
+                    result.types &&
+                      result.types[eventsWithResults.indexOf(event)] !== ''
+                  "
+                >
+                  *
+                </td>
+                <td v-else>{{ result.position || '' }}</td>
                 <td>{{ result.name }}</td>
                 <td>{{ result.ageClass }}</td>
                 <td class="club">{{ result.club }}</td>
