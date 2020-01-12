@@ -12,7 +12,7 @@ exports[`Renders Correctly 1`] = `
   </label>
    
   <div
-    class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+    class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
   >
     <p
       class="leading-normal h-6 truncate"

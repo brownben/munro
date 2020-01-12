@@ -490,12 +490,12 @@ th:hover > span {
 }
 
 @media (min-width: 1200px) {
-  .points-arrow {
+  table th .points-arrow.up-down-arrow {
     @apply inline-block;
   }
 }
 @media (max-width: 1200px) {
-  .points-arrow {
+  table th .points-arrow.up-down-arrow {
     @apply hidden;
   }
   td.points {

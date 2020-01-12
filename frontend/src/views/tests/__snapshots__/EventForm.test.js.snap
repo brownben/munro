@@ -32,7 +32,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -47,7 +47,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -62,7 +62,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -77,7 +77,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -92,7 +92,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -107,7 +107,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -122,7 +122,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -130,6 +130,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
       <dropdown-input-stub
         label="League:"
         list=""
+        shift="true"
         value=""
       />
        
@@ -143,7 +144,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -194,7 +195,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -209,7 +210,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -224,7 +225,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -239,7 +240,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -254,7 +255,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -269,7 +270,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -284,7 +285,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -292,6 +293,7 @@ exports[`Update Form - Renders Correctly 1`] = `
       <dropdown-input-stub
         label="League:"
         list=""
+        shift="true"
         value=""
       />
        
@@ -305,7 +307,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>

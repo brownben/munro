@@ -524,35 +524,36 @@ test('Scoring Method Shorthand to Full', () => {
     mocks: {
       $route: { path: '', params: { name: '' } },
       $messages: { addMessage: jest.fn() },
+      $auth: { user: {} },
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
   expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe(
-    'Position Based (100 Max)'
+    'Position Based System (100 Max)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe(
-    'Position Based (50 Max)'
+    'Position Based System (50 Max)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe(
-    'Position Based (99 Max)'
+    'Position Based System (99 Max)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe(
-    'Position Based (99 Max, Reduced in a Draw)'
+    'Position Based System (99 Max, Reduced in a Draw)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe(
-    'Position Based (100 Max, Double Points)'
+    'Position Based System (100 Max, Double Points)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe(
-    'Position Based (50 Max, Double Points)'
+    'Position Based System (50 Max, Double Points)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe(
-    'Relative to Average Time (1000 Average)'
+    'Time Relative to Average System (1000 Average)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe(
-    'Relative to Average Time (100 Average)'
+    'Time Relative to Average System (100 Average)'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('file')).toBe(
-    'From Upload File'
+    'from the points uploaded'
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
   expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')

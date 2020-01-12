@@ -4,9 +4,20 @@
 
 @tailwind utilities;
 
+.rounded-shape {
+  @apply rounded-tl-lg rounded-br-lg;
+}
+
+.rounded-shape-xl {
+  @apply rounded-tl-xl rounded-br-xl;
+}
+
 .button {
+  @apply font-heading text-main text-base inline-block leading-normal;
+  @apply border border-main rounded-shape;
+  @apply mt-3 ml-2 py-1 px-3;
+  @apply select-none outline-none appearance-none;
   transition: 0.3s;
-  @apply text-main font-heading border border-main rounded-tl-lg rounded-br-lg mt-3 mb-2 py-1 px-3 mx-2 text-base inline-block leading-normal select-none outline-none appearance-none;
 }
 
 .button-m-0 {
@@ -19,19 +30,29 @@
 
 .button:hover,
 .button-lg:hover {
-  @apply text-white bg-main;
+  @apply text-white bg-main-lighter;
+}
+
+.button-white {
+  @apply font-heading text-white border border-white rounded-shape inline-block text-base leading-normal;
+  @apply p-2 px-3 mx-2 mt-2;
+  @apply select-none outline-none appearance-none;
+  transition: 0.3s;
+}
+
+.button-white:hover {
+  background-color: #ffffff66;
 }
 
 .card {
-  @apply p-4 pb-1 text-center shadow-lg rounded-tl-xl rounded-br-xl bg-white flex flex-col justify-center items-center;
+  @apply bg-white text-center shadow-md rounded-shape-xl;
+  @apply flex flex-col justify-center items-center;
+  @apply p-4 px-6;
+  @apply border border-grey;
 }
 
 .card-color {
-  @apply card bg-main text-white pb-4 shadow-md;
-}
-
-.card-text {
-  @apply card pb-3;
+  @apply card bg-main text-white border-0;
 }
 
 .view {
@@ -70,7 +91,7 @@ a:focus {
 }
 
 b {
-  @apply font-heading font-normal;
+  @apply font-heading font-semibold;
 }
 
 .fade-enter-active,

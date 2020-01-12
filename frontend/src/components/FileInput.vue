@@ -5,12 +5,12 @@
       >{{ label }}</label
     >
     <p
-      class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none truncate"
+      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none truncate"
     >
       {{ fileName }}
       <label
         for="file"
-        class="absolute right-0 px-4 border-l border-r border-main rounded-tl-lg rounded-br-lg text-white bg-main hover:text-main hover:bg-white py-2 mt--2 font-heading inline-block"
+        class="absolute right-0 px-4 border-l border-r border-main rounded-shape text-white bg-main hover:text-main hover:bg-white py-2 mt--2 font-heading inline-block"
         >Browse for File</label
       >
       <input

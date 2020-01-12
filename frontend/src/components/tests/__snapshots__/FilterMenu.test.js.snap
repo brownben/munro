@@ -2,13 +2,13 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="rounded-tl-lg rounded-br-lg shadow-md mt-3 mb-6 accordion bg-white"
+  class="rounded-shape-xl shadow-md mt-3 mb-6 accordion bg-white border border-grey;"
 >
   <div
     class="accordion-head"
   >
     <h2
-      class="font-heading text-main text-2xl p-2 px-3 h-12 inline-block select-none"
+      class="font-heading text-main text-2xl p-2 px-4 h-12 inline-block select-none"
     >
       
       Filter
@@ -45,7 +45,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <input
-        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+        class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
         type="text"
       />
     </div>
@@ -60,7 +60,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <input
-        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+        class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
         type="text"
       />
     </div>
@@ -75,7 +75,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <input
-        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+        class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
         max="120"
         min="0"
         type="number"
@@ -92,7 +92,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <input
-        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+        class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
         max="120"
         min="0"
         type="number"

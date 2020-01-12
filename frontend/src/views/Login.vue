@@ -72,7 +72,9 @@ export default {
           .then(response => {
             if (response)
               this.$router.replace(this.$route.query.redirect || '/')
-            this.$messages.addMessage('Hello')
+            this.$messages.addMessage(
+              `Hello ${this.$auth.user.displayName || 'Admin'}`
+            )
             this.blankFields()
           })
           .catch(() =>

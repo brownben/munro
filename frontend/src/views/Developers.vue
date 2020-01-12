@@ -15,7 +15,7 @@
       url="https://munro-leagues.herokuapp.com/developers"
     />
     <h1 class="text-main text-3xl font-normal font-heading">Developers</h1>
-    <div class="card-text mt-2 mb-4">
+    <div class="card mt-2 mb-4">
       <h2 class="text-2xl font-normal font-heading mb-2">API</h2>
       <p>
         All methods use a standard HTTP GET request. The event id is made by
@@ -48,7 +48,7 @@
       <h4>/api/results</h4>
       <p>All results</p>
     </div>
-    <div class="card-text my-4">
+    <div class="card my-4">
       <h2 class="text-2xl font-normal font-heading mb-2">Embed</h2>
       <p>
         Currently there are two pages designed for embedding in Iframes. Place
@@ -74,7 +74,7 @@ h4 {
   @apply font-heading text-xl my-2;
 }
 
-.card-text {
+.card {
   @apply text-left items-start;
 }
 

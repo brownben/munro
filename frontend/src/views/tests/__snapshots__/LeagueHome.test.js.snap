@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div
-  class="view"
->
+<div>
   <vue-headful-stub
     description="Event Information and Results for the
          league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
@@ -15,7 +13,7 @@ exports[`Renders Correctly 1`] = `
   <!---->
    
   <div
-    class="card my-4"
+    class="w-full bg-main text-white p-3 text-center"
   >
     <h2
       class="text-2xl font-heading"
@@ -23,115 +21,123 @@ exports[`Renders Correctly 1`] = `
       League Results
     </h2>
      
-    <div />
+    <div
+      class="pb-1"
+    />
   </div>
    
   <div
-    class="card my-4 card-text"
+    class="view"
   >
-    <h2
-      class="font-heading text-xl my-1"
-    >
-      
-      200m
-    
-    </h2>
-     
     <!---->
      
     <div
-      class="my-1"
+      class="card my-4"
     >
-      <!---->
-       
-      <!---->
-    </div>
-     
-    <!---->
-     
-    <!---->
-     
-    <p>
-      
-      More Information can be found on their
-      
-      <a
-        class="link"
-        href="wwwwwww"
-        rel="noopener noreferrer"
-        target="_blank"
+      <h2
+        class="font-heading text-xl my-1"
       >
-        website
-      </a>
-    </p>
-     
-    <!---->
-  </div>
-  <div
-    class="card my-4 card-text"
-  >
-    <h2
-      class="font-heading text-xl my-1"
-    >
+        
+        200m
       
-      Longniddry
-    
-    </h2>
-     
-    <!---->
-     
+      </h2>
+       
+      <!---->
+       
+      <div
+        class="my-1"
+      >
+        <!---->
+         
+        <!---->
+      </div>
+       
+      <!---->
+       
+      <!---->
+       
+      <p>
+        
+        More Information can be found on their
+        
+        <a
+          class="link"
+          href="wwwwwww"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          website
+        </a>
+      </p>
+       
+      <!---->
+    </div>
     <div
-      class="my-1"
+      class="card my-4"
     >
+      <h2
+        class="font-heading text-xl my-1"
+      >
+        
+        Longniddry
+      
+      </h2>
+       
+      <!---->
+       
+      <div
+        class="my-1"
+      >
+        <!---->
+         
+        <!---->
+      </div>
+       
+      <p>
+        
+        On 18/04/2018
+        organised by ELO
+      </p>
+       
+      <!---->
+       
       <!---->
        
       <!---->
     </div>
-     
-    <p>
-      
-      On 18/04/2018
-      organised by ELO
-    </p>
-     
-    <!---->
-     
-    <!---->
-     
-    <!---->
-  </div>
-  <div
-    class="card my-4 card-text"
-  >
-    <h2
-      class="font-heading text-xl my-1"
-    >
-      
-      South Edinburgh
-    
-    </h2>
-     
-    <!---->
-     
     <div
-      class="my-1"
+      class="card my-4"
     >
+      <h2
+        class="font-heading text-xl my-1"
+      >
+        
+        South Edinburgh
+      
+      </h2>
+       
+      <!---->
+       
+      <div
+        class="my-1"
+      >
+        <!---->
+         
+        <!---->
+      </div>
+       
+      <p>
+        
+        On 25/04/2018
+        organised by INT
+      </p>
+       
+      <!---->
+       
       <!---->
        
       <!---->
     </div>
-     
-    <p>
-      
-      On 25/04/2018
-      organised by INT
-    </p>
-     
-    <!---->
-     
-    <!---->
-     
-    <!---->
   </div>
    
   <!---->

@@ -18,7 +18,7 @@ exports[`Renders Correctly 1`] = `
   </h1>
    
   <div
-    class="card-text mt-2 mb-4"
+    class="card mt-2 mb-4"
   >
     <h2
       class="text-2xl font-normal font-heading mb-2"
@@ -133,7 +133,7 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="card-text my-4"
+    class="card my-4"
   >
     <h2
       class="text-2xl font-normal font-heading mb-2"

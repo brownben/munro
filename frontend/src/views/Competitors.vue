@@ -34,10 +34,11 @@
         >
       </div>
 
-      <div class="text-left w-full">
+      <div class="text-left w-full top-0">
         <dropdown-input
           v-model="league"
           :list="leagues.map(league => league.name)"
+          :shift="false"
           label="League:"
         />
       </div>

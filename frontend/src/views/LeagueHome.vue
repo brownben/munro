@@ -7,7 +7,7 @@
 -->
 
 <template>
-  <div class="view">
+  <div class="">
     <vue-headful
       :title="`Munro - ${$route.params.name}`"
       :description="
@@ -20,42 +20,60 @@
       }"
     />
 
-    <template v-if="league && league.name">
-      <div class="card-text mb-4 mt-2 w-full mx-0">
-        <h1 class="text-main text-3xl font-normal font-heading">
-          {{ league.name }}
-        </h1>
-        <p v-if="league.description">{{ league.description }}</p>
-        <p v-if="league.courses">
-          There are normally {{ league.courses.length }} courses -
-          {{ league.courses.join(', ') }}
-        </p>
-        <p v-if="league.coordinator">
-          {{ league.coordinator }} coordinates the league.
-        </p>
-        <p>
-          <span v-if="league.scoringMethod">
-            The scoring for the league is calculated using a
-            {{ scoringMethodShorthandToFull(league.scoringMethod) }}
-          </span>
-          &nbsp;
-          <span v-if="league.numberOfCountingEvents && league.numberOfEvents">
-            With your best {{ league.numberOfCountingEvents }} events from all
-            {{ league.numberOfEvents }} events counting.
-          </span>
-        </p>
-        <p v-if="league.website">
-          More information can be found at
-          <a
-            :href="league.website"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link"
-            >{{ league.website }}</a
-          >
-        </p>
+    <div
+      v-if="league && league.name"
+      class="view mb-2 text-center md:text-left"
+    >
+      <h1 class="text-main text-3xl font-normal font-heading">
+        {{ league.name }}
+      </h1>
+      <p v-if="league.description" class="my-1">{{ league.description }}</p>
+      <p v-if="league.courses" class="my-1">
+        There are normally {{ league.courses.length }} courses -
+        {{ league.courses.join(', ') }}
+      </p>
+      <p v-if="league.coordinator" class="my-1">
+        {{ league.coordinator }} coordinates the league.
+      </p>
+      <p class="my-1">
+        <span v-if="league.scoringMethod">
+          The scoring for the league is calculated using a
+          {{ scoringMethodShorthandToFull(league.scoringMethod) }}
+        </span>
+        &nbsp;
+        <span v-if="league.numberOfCountingEvents && league.numberOfEvents">
+          - with your best {{ league.numberOfCountingEvents }} events from all
+          {{ league.numberOfEvents }} events counting.
+        </span>
+      </p>
+      <p v-if="league.website" class="my-1">
+        More information can be found at
+        <a
+          :href="league.website"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="link"
+          >{{ league.website }}</a
+        >
+      </p>
+    </div>
+    <div
+      v-if="events && events.length > 0"
+      class="w-full bg-main text-white p-3 text-center"
+    >
+      <h2 class="text-2xl font-heading">League Results</h2>
+      <div class="pb-1">
+        <router-link
+          v-for="course of league.courses"
+          :key="course"
+          :to="$route.path + '/results/' + course"
+          class="button-white"
+          >{{ course }}</router-link
+        >
       </div>
-      <div v-if="auth.user" class="card my-4">
+    </div>
+    <div class="view">
+      <div v-if="auth.user && league && league.name" class="card my-4">
         <h2 class="text-2xl font-heading">Admin Actions</h2>
         <div>
           <router-link :to="$route.path + '/create-event'" class="button"
@@ -72,100 +90,88 @@
           >
         </div>
       </div>
-    </template>
-    <div v-if="events && events.length > 0" class="card my-4">
-      <h2 class="text-2xl font-heading">League Results</h2>
-      <div>
-        <router-link
-          v-for="course of league.courses"
-          :key="course"
-          :to="$route.path + '/results/' + course"
-          class="button"
-          >{{ course }}</router-link
+      <div v-for="event of events" :key="event.name" class="card my-4">
+        <h2
+          :class="{ 'text-2xl': auth.user }"
+          class="font-heading text-xl my-1"
         >
-      </div>
-    </div>
-    <div
-      v-for="event of events"
-      :key="event.name"
-      :class="{ 'card-text': !event.resultUploaded }"
-      class="card my-4"
-    >
-      <h2 :class="{ 'text-2xl': auth.user }" class="font-heading text-xl my-1">
-        {{ event.name }}
-      </h2>
-      <div v-if="auth.user" class="event-actions">
-        <router-link :to="'/events/' + event.id + '/edit'" class="button"
-          >Edit Event</router-link
-        >
-        <router-link :to="'/upload/' + event.id" class="button"
-          >Upload Results</router-link
-        >
-        <button class="button" @click="deleteEvent(event)">Delete Event</button>
-      </div>
-      <div class="my-1">
-        <p v-if="auth.user">
-          <b>Event ID:</b>
-          {{ event.id }}
+          {{ event.name }}
+        </h2>
+        <div v-if="auth.user" class="event-actions mb-2">
+          <router-link :to="'/events/' + event.id + '/edit'" class="button"
+            >Edit Event</router-link
+          >
+          <router-link :to="'/upload/' + event.id" class="button"
+            >Upload Results</router-link
+          >
+          <button class="button" @click="deleteEvent(event)">
+            Delete Event
+          </button>
+        </div>
+        <div class="my-1">
+          <p v-if="auth.user">
+            <b class="block sm:inline mt-1">Event ID:</b>
+            {{ event.id }}
+          </p>
+          <p v-if="auth.user && event.uploadKey">
+            <b class="block sm:inline mt-1">Event Upload Key:</b>
+            {{ event.uploadKey }}
+          </p>
+        </div>
+        <p v-if="event.date">
+          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
+            event.date.split('-')[0]
+          }}
+          <template v-if="event.organiser"
+            >organised by {{ event.organiser }}</template
+          >
         </p>
-        <p v-if="auth.user && event.uploadKey">
-          <b>Event Upload Key:</b>
-          {{ event.uploadKey }}
+        <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
+        <p v-if="event.website">
+          More Information can be found on their
+          <a
+            :href="event.website"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link"
+            >website</a
+          >
         </p>
-      </div>
-      <p v-if="event.date">
-        On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
-          event.date.split('-')[0]
-        }}
-        <template v-if="event.organiser"
-          >organised by {{ event.organiser }}</template
+        <div
+          v-if="event.resultUploaded"
+          class="event-actions event-result-actions"
         >
-      </p>
-      <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
-      <p v-if="event.website">
-        More Information can be found on their
-        <a
-          :href="event.website"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="link"
-          >website</a
-        >
-      </p>
-      <div
-        v-if="event.resultUploaded"
-        class="event-actions event-result-actions"
-      >
-        <router-link
-          v-if="league.dynamicEventResults"
-          :to="`/events/${event.id}/results`"
-          class="button"
-          >Results</router-link
-        >
-        <a
-          v-if="event.results"
-          :href="event.results"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button"
-          >HTML Results</a
-        >
-        <a
-          v-if="event.winsplits"
-          :href="event.winsplits"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button"
-          >WinSplits</a
-        >
-        <a
-          v-if="event.routegadget"
-          :href="event.routegadget"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button"
-          >Routegadget</a
-        >
+          <router-link
+            v-if="league.dynamicEventResults"
+            :to="`/events/${event.id}/results`"
+            class="button"
+            >Results</router-link
+          >
+          <a
+            v-if="event.results"
+            :href="event.results"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+            >HTML Results</a
+          >
+          <a
+            v-if="event.winsplits"
+            :href="event.winsplits"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+            >WinSplits</a
+          >
+          <a
+            v-if="event.routegadget"
+            :href="event.routegadget"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="button"
+            >Routegadget</a
+          >
+        </div>
       </div>
     </div>
     <not-found v-if="!league" />
@@ -205,20 +211,20 @@ export default {
 
   methods: {
     scoringMethodShorthandToFull: value => {
-      if (value === 'position') return 'Position Based (100 Max)'
-      else if (value === 'position50') return 'Position Based (50 Max)'
-      else if (value === 'position99') return 'Position Based (99 Max)'
+      if (value === 'position') return 'Position Based System (100 Max)'
+      else if (value === 'position50') return 'Position Based System (50 Max)'
+      else if (value === 'position99') return 'Position Based System (99 Max)'
       else if (value === 'position99average')
-        return 'Position Based (99 Max, Reduced in a Draw)'
+        return 'Position Based System (99 Max, Reduced in a Draw)'
       else if (value === 'positionDouble')
-        return 'Position Based (100 Max, Double Points)'
+        return 'Position Based System (100 Max, Double Points)'
       else if (value === 'position50Double')
-        return 'Position Based (50 Max, Double Points)'
+        return 'Position Based System (50 Max, Double Points)'
       else if (value === 'timeAverage')
-        return 'Relative to Average Time (1000 Average)'
+        return 'Time Relative to Average System (1000 Average)'
       else if (value === 'timeAverage100')
-        return 'Relative to Average Time (100 Average)'
-      else if (value === 'file') return 'From Upload File'
+        return 'Time Relative to Average System (100 Average)'
+      else if (value === 'file') return 'from the points uploaded'
       else return ''
     },
 

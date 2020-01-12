@@ -35,7 +35,7 @@ module.exports = {
 
     extend: {
       colors: {
-        background: '#fcfcfc',
+        grey: '#e5e8ed',
         purple: {
           50: '#F3E5F5',
           100: '#E1BEE7',
@@ -49,9 +49,13 @@ module.exports = {
           900: ' #4A148C',
         },
         main: {
-          default: 'hsl(290, 90%, 45%)',
           veryLight: 'hsl(290, 45%, 93%)',
           light: 'hsl(290, 50%, 80%)',
+          'light-hover': '#CD5EE4',
+          lighter: '#C134DE',
+          default: 'hsl(290, 90%, 45%)',
+          darker: '#A202C4',
+          dark: '#75028D',
         },
       },
     },

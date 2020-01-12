@@ -6,13 +6,13 @@
 -->
 
 <template>
-  <div class="dropdown-input relative top--4">
+  <div class="dropdown-input relative" :class="{ 'top--4': shift }">
     <label
       class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
       >{{ label }}</label
     >
     <div
-      class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+      class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       @click="toggle"
     >
       <p class="leading-normal h-6 truncate">{{ currentValue }}</p>
@@ -58,6 +58,10 @@ export default {
     list: {
       type: Array,
       default: () => [],
+    },
+    shift: {
+      type: Boolean,
+      default: true,
     },
   },
 

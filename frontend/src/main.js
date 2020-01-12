@@ -32,26 +32,20 @@ firebase.initializeApp({
 })
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 
-let app
-function initialize() {
-  if (!app) {
-    /* eslint-disable no-new */
-    app = new Vue({
-      el: '#app',
-      router,
-      render: h => h(App),
-    })
-  }
-}
+/* eslint-disable no-new */
+const app = new Vue({
+  el: '#app',
+  router,
+  render: h => h(App),
+})
 
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
-    Vue.prototype.$auth.user = user
+    app.$auth.user = user
     user.getIdToken().then(token => {
       document.cookie = `token=${token};secure;samesite=strict;path=/`
     })
   } else {
     document.cookie = 'token=;secure;samesite=strict;path=/'
   }
-  initialize()
 })

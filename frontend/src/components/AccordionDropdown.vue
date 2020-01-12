@@ -8,11 +8,11 @@
 
 <template>
   <div
-    class="rounded-tl-lg rounded-br-lg shadow-md mt-3 mb-6 accordion bg-white"
+    class="rounded-shape-xl shadow-md mt-3 mb-6 accordion bg-white border border-grey;"
   >
     <div class="accordion-head" @click="accordionOpen = !accordionOpen">
       <h2
-        class="font-heading text-main text-2xl p-2 px-3 h-12 inline-block select-none"
+        class="font-heading text-main text-2xl p-2 px-4 h-12 inline-block select-none"
       >
         {{ title }}
       </h2>

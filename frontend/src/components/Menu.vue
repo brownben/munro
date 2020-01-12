@@ -6,7 +6,10 @@
 -->
 
 <template>
-  <div id="menu" class="w-full h-12 border-b border-main-veryLight select-none">
+  <div
+    id="menu"
+    class="w-full h-12 border-b border-main-veryLight select-none bg-white"
+  >
     <h1
       class="w-full md:w-auto h-12 text-4xl font-heading text-main md:mx-8 inline-block text-center"
     >
@@ -91,7 +94,7 @@ export default {
 }
 
 .menu-item:hover {
-  @apply bg-main text-white;
+  @apply bg-main-lighter text-white;
 }
 
 @media (min-width: 768px) {

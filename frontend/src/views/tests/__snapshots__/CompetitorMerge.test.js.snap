@@ -23,6 +23,7 @@ exports[`Renders Correctly 1`] = `
       include-blank="true"
       label="League:"
       list=""
+      shift="true"
       value=""
     />
      
@@ -30,6 +31,7 @@ exports[`Renders Correctly 1`] = `
       include-blank="true"
       label="Course:"
       list=""
+      shift="true"
       value=""
     />
      
@@ -37,6 +39,7 @@ exports[`Renders Correctly 1`] = `
       include-blank="true"
       label="Competitor to Keep:"
       list=""
+      shift="true"
       value=""
     />
      
@@ -44,6 +47,7 @@ exports[`Renders Correctly 1`] = `
       include-blank="true"
       label="Competitor to be Merged:"
       list=""
+      shift="true"
       value=""
     />
      

@@ -120,7 +120,7 @@ test('Send Login Function - Successful', async () => {
   // Correct Actions On Completion
   expect(mockBlankFields).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Hello')
+  expect(mockAddMessageFunction).toHaveBeenLastCalledWith('Hello Admin')
 })
 
 test('Send Login Function - Validation Fails', () => {

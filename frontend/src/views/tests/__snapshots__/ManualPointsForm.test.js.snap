@@ -30,7 +30,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -71,7 +71,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -112,7 +112,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -153,7 +153,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -193,7 +193,7 @@ exports[`Renders Correctly 1`] = `
       </label>
        
       <input
-        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+        class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
         max="10000"
         min="0"
         type="number"
@@ -239,7 +239,7 @@ exports[`Results Sorted Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -280,7 +280,7 @@ exports[`Results Sorted Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -321,7 +321,7 @@ exports[`Results Sorted Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -362,7 +362,7 @@ exports[`Results Sorted Correctly 1`] = `
       </label>
        
       <div
-        class="visible w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 outline-none"
+        class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
       >
         <p
           class="leading-normal h-6 truncate"
@@ -402,7 +402,7 @@ exports[`Results Sorted Correctly 1`] = `
       </label>
        
       <input
-        class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+        class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
         max="10000"
         min="0"
         type="number"

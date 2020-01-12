@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly - Desktop 1`] = `
 <div
-  class="w-full h-12 border-b border-main-veryLight select-none"
+  class="w-full h-12 border-b border-main-veryLight select-none bg-white"
   id="menu"
 >
   <h1
@@ -61,7 +61,7 @@ exports[`Renders Correctly - Desktop 1`] = `
 
 exports[`Renders Correctly - Desktop 2`] = `
 <div
-  class="w-full h-12 border-b border-main-veryLight select-none"
+  class="w-full h-12 border-b border-main-veryLight select-none bg-white"
   id="menu"
 >
   <h1
@@ -120,7 +120,7 @@ exports[`Renders Correctly - Desktop 2`] = `
 
 exports[`Renders Correctly - Mobile 1`] = `
 <div
-  class="w-full h-12 border-b border-main-veryLight select-none"
+  class="w-full h-12 border-b border-main-veryLight select-none bg-white"
   id="menu"
 >
   <h1

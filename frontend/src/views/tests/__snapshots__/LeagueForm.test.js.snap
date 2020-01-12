@@ -32,7 +32,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -47,7 +47,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -62,7 +62,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -77,7 +77,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -92,7 +92,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -100,6 +100,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
       <dropdown-input-stub
         label="Scoring Method:"
         list="Position Based (100 Max),Position Based (99 Max),Position Based (50 Max),Position Based (100 Max, Double Points),Position Based (50 Max, Double Points),Position Based (99 Max, Reduced in a Draw),Relative to Average Time (1000 Average),Relative to Average Time (100 Average),From Upload File"
+        shift="true"
         value=""
       />
        
@@ -113,7 +114,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
           max="100"
           min="1"
           type="number"
@@ -130,7 +131,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -199,7 +200,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -214,7 +215,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -229,7 +230,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -244,7 +245,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="url"
         />
       </div>
@@ -259,7 +260,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>
@@ -267,6 +268,7 @@ exports[`Update Form - Renders Correctly 1`] = `
       <dropdown-input-stub
         label="Scoring Method:"
         list="Position Based (100 Max),Position Based (99 Max),Position Based (50 Max),Position Based (100 Max, Double Points),Position Based (50 Max, Double Points),Position Based (99 Max, Reduced in a Draw),Relative to Average Time (1000 Average),Relative to Average Time (100 Average),From Upload File"
+        shift="true"
         value=""
       />
        
@@ -280,7 +282,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
           max="100"
           min="1"
           type="number"
@@ -297,7 +299,7 @@ exports[`Update Form - Renders Correctly 1`] = `
         </label>
          
         <input
-          class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none"
+          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
           type="text"
         />
       </div>

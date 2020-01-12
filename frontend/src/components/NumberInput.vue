@@ -9,7 +9,7 @@
       :min="min"
       :max="max"
       type="number"
-      class="w-full border border-main rounded-tl-lg rounded-br-lg px-4 py-2 text-body outline-none appearance-none"
+      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
       @input="$emit('input', $event.target.value)"
     />
   </div>
