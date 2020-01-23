@@ -7,10 +7,10 @@ def nameToInitial(name):
     name = name.strip()
     splitName = name.split(" ", 1)
 
-    if len(splitName) > 1:
-        return splitName[0][0] + " " + splitName[1]
+    if len(splitName) > 1 and type(splitName[0]) == type("string"):
+        return splitName[0][0].upper() + " " + splitName[1].upper()
     else:
-        return name
+        return name.upper()
 
 
 def nameToInitialCheck(obj1, obj2):
@@ -18,6 +18,9 @@ def nameToInitialCheck(obj1, obj2):
 
 
 def compareProperties(obj1, obj2, comparison):
+    if comparison == "name":
+        return obj1["name"].upper() == obj2["name"].upper()
+
     return obj1[comparison] == obj2[comparison]
 
 
