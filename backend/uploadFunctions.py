@@ -40,9 +40,11 @@ def competitorMatchingNameCheck(competitor, result):
 
 def matchCompetitor(competitorList, result):
     for competitor in competitorList:
-        if competitorMatchingNameCheck(
-            competitor, result
-        ) or competitorNonMatchingNameCheck(competitor, result):
+        if competitorMatchingNameCheck(competitor, result):
+            return competitor
+
+    for competitor in competitorList:
+        if competitorNonMatchingNameCheck(competitor, result):
             return competitor
 
     return False
