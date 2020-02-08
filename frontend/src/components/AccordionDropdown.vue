@@ -7,9 +7,7 @@
 -->
 
 <template>
-  <div
-    class="rounded-shape-xl shadow-md mt-3 mb-6 accordion bg-white border border-grey;"
-  >
+  <div class="rounded-shape-xl my-shadow mt-3 mb-6 accordion bg-white">
     <div class="accordion-head" @click="accordionOpen = !accordionOpen">
       <h2
         class="font-heading text-main text-2xl p-2 px-4 h-12 inline-block select-none"
@@ -48,6 +46,10 @@ export default {
 </script>
 
 <style>
+.my-shadow {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 svg {
   transition: 0.4s;
 }

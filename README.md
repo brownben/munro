@@ -49,8 +49,11 @@ npm test
 ```bash
 cd backend
 
+# set up virtual enviroment
+py -m venv ./.venv
+
 # run virtual enviroment
-.\venv\Scripts\activate.bat
+.\.venv\Scripts\activate.bat
 
 # install dependancies
 pip install -r requirements.txt

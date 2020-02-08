@@ -34,8 +34,9 @@
 }
 
 .button-white {
-  @apply font-heading text-white border border-white rounded-shape inline-block text-base leading-normal;
-  @apply p-2 px-3 mx-2 mt-2;
+  @apply font-heading text-white text-base inline-block leading-normal;
+  @apply border border-white rounded-shape;
+  @apply p-2 px-4 mx-2 mt-2;
   @apply select-none outline-none appearance-none;
   transition: 0.3s;
 }
@@ -45,10 +46,10 @@
 }
 
 .card {
-  @apply bg-white text-center shadow-md rounded-shape-xl;
+  @apply bg-white text-center rounded-shape-xl;
   @apply flex flex-col justify-center items-center;
   @apply p-4 px-6;
-  @apply border border-grey;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .card-color {
@@ -73,7 +74,7 @@
 
 @media (min-width: 1280px) {
   .view {
-    @apply px-40;
+    @apply px-64;
   }
 }
 

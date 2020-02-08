@@ -6,10 +6,7 @@
 -->
 
 <template>
-  <div
-    id="menu"
-    class="w-full h-12 border-b border-main-veryLight select-none bg-white"
-  >
+  <div id="menu" class="w-full h-13 border-top select-none bg-white">
     <h1
       class="w-full md:w-auto h-12 text-4xl font-heading text-main md:mx-8 inline-block text-center"
     >
@@ -27,10 +24,9 @@
       <nav
         v-show="showMenu || !smallWindow"
         :class="{
-          'sr-only': !showMenu && smallWindow,
           smallWindow: smallWindow,
         }"
-        class="text-main text-lg font-normal h-screen--12 md:mr-2 md:h-12 md:float-right relative z-50 top--12 md:top-0 md:bg-transparent bg-white flex flex-col justify-center align-center w-full md:w-auto md:inline-block mt-12 md:mt-0"
+        class="text-main text-lg font-normal h-screen--13 md:mr-2 md:h-12 md:float-right relative z-50 top--13 md:top-0 md:bg-transparent bg-white flex flex-col justify-center align-center w-full md:w-auto md:inline-block mt-13 md:mt-0"
       >
         <router-link to="/leagues" class="menu-item">Leagues</router-link>
         <router-link to="/latest-results" class="menu-item"
@@ -79,12 +75,24 @@ export default {
 }
 </script>
 <style lang="postcss">
-.top--12 {
-  top: -3rem;
+.h-13 {
+  height: 3.25rem;
 }
 
-.h-screen--12 {
-  height: calc(100vh - 3rem);
+.mt-13 {
+  margin-top: 3.25rem;
+}
+
+.border-top {
+  border-top: 0.25rem solid hsl(290, 90%, 45%);
+}
+
+.top--13 {
+  top: -3.25rem;
+}
+
+.h-screen--13 {
+  height: calc(100vh - 3.25rem);
 }
 
 .menu-item {

@@ -13,7 +13,7 @@ exports[`Renders Correctly 1`] = `
   <!---->
    
   <div
-    class="w-full bg-main text-white p-3 text-center"
+    class="w-full bg-main text-white p-3 text-center mt-2"
   >
     <h2
       class="text-2xl font-heading"

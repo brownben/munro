@@ -207,7 +207,7 @@
     <p
       class="bg-main-dark rounded-tl-xl text-white text-center font-heading p-2 mt-2"
     >
-      © Ben Brown 2019
+      © Ben Brown 2020
       <router-link v-if="!auth.user" to="/login" class="px-2 link"
         >Admin Login</router-link
       >

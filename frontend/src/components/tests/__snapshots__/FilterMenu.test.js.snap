@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="rounded-shape-xl shadow-md mt-3 mb-6 accordion bg-white border border-grey;"
+  class="rounded-shape-xl my-shadow mt-3 mb-6 accordion bg-white"
 >
   <div
     class="accordion-head"

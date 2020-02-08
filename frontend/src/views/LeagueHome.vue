@@ -20,10 +20,7 @@
       }"
     />
 
-    <div
-      v-if="league && league.name"
-      class="view mb-2 text-center md:text-left"
-    >
+    <div v-if="league && league.name" class="view text-center md:text-left">
       <h1 class="text-main text-3xl font-normal font-heading">
         {{ league.name }}
       </h1>
@@ -59,7 +56,7 @@
     </div>
     <div
       v-if="events && events.length > 0"
-      class="w-full bg-main text-white p-3 text-center"
+      class="w-full bg-main text-white p-3 text-center mt-2"
     >
       <h2 class="text-2xl font-heading">League Results</h2>
       <div class="pb-1">

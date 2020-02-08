@@ -4,13 +4,13 @@
 def nameToInitial(name):
     # Get initial from a name, for matching of surname + initial
     # Returns initial concatenated to surname
-    name = name.strip()
+    name = name.strip().upper()
     splitName = name.split(" ", 1)
 
-    if len(splitName) > 1 and type(splitName[0]) == type("string"):
-        return splitName[0][0].upper() + " " + splitName[1].upper()
+    if len(splitName) > 1:
+        return splitName[0][0] + " " + splitName[1]
     else:
-        return name.upper()
+        return name
 
 
 def nameToInitialCheck(obj1, obj2):

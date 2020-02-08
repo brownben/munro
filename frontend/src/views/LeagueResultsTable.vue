@@ -165,6 +165,9 @@
                       strikethrough: !result.largestPoints.includes(
                         eventsWithResults.indexOf(event)
                       ),
+                      bold:
+                        result.types &&
+                        result.types[eventsWithResults.indexOf(event)] !== '',
                     }"
                     >{{ result.points[eventsWithResults.indexOf(event)] }}</span
                   >
@@ -412,7 +415,8 @@ export default {
 }
 
 .bold {
-  font-weight: 500 !important;
+  font-weight: 400 !important;
+  font-style: italic;
 }
 
 .table {
