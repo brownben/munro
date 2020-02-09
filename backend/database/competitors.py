@@ -50,7 +50,7 @@ def updateCompetitor(data):
             data["club"],
             data["course"],
             data["league"],
-            data["competitorId"],
+            data["id"],
         ),
     )
 
