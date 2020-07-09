@@ -10,17 +10,17 @@ exports[`Renders Correctly 1`] = `
   />
    
   <div
-    class="view md:flex items-center p-3 mt-6 justify-center text-center flex-row-reverse block pb-4"
+    class="flex-row-reverse items-center justify-center block p-3 pb-4 mt-6 text-center view md:flex"
     id="header"
   >
     <img
       alt="Orienteering Flag Next to Trees and Hills"
-      class="h-80 inline-block pb-2 md:pl-6 xl:pl-20"
+      class="inline-block pb-2 h-80 md:pl-6 xl:pl-20"
       src="@/assets/images/UnDrawOFlagPurple.svg"
     />
      
     <h2
-      class="w-full text-center md:text-left font-heading text-3xl md:text-4xl xl:text-5xl text-main md:py-0 pt-3"
+      class="w-full pt-3 text-3xl text-center md:text-left font-heading md:text-4xl xl:text-5xl text-main md:py-0"
     >
       
       Fast and Easy Results for Orienteering Leagues
@@ -31,10 +31,58 @@ exports[`Renders Correctly 1`] = `
   <!---->
    
   <div
-    class="view flex flex-wrap flex-row"
+    class="flex flex-row flex-wrap view"
   >
     <div
-      class="h-full w-full md:w-1/2 my-4 md:px-3"
+      class="w-full my-4 md:w-1/2 md:px-3"
+    >
+      <div
+        class="w-full h-full card"
+      >
+        <img
+          alt="The Logo of Sprintelope"
+          class="h-40"
+          src="@/assets/images/SprintelopeLogo.png"
+        />
+         
+        <h1
+          class="my-2 text-2xl font-heading"
+        >
+          (Not) Sprintelope 2020
+        </h1>
+         
+        <p>
+          
+          Socially Distant Sprint/ Urban Orienteering Events in Edinburgh and
+          the Lothians
+        
+        </p>
+         
+        <p>
+          
+          More information can be found on their
+          
+          <a
+            class="link"
+            href="https://en-gb.facebook.com/sprintelope/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            website
+          </a>
+        </p>
+         
+        <router-link-stub
+          class="button"
+          to="/leagues/(Not) Sprintelope 2020"
+        >
+          View League
+        </router-link-stub>
+      </div>
+    </div>
+     
+    <div
+      class="w-full h-full my-4 md:w-1/2 md:px-3"
     >
       <div
         class="card"
@@ -46,7 +94,7 @@ exports[`Renders Correctly 1`] = `
         />
          
         <h1
-          class="text-2xl font-heading my-2"
+          class="my-2 text-2xl font-heading"
         >
           Sprintelope 2019
         </h1>
@@ -82,61 +130,13 @@ exports[`Renders Correctly 1`] = `
     </div>
      
     <div
-      class="w-full md:w-1/2 my-4 md:px-3"
+      class="w-full my-4 md:w-1/2 md:px-3"
     >
       <div
-        class="h-full w-full card"
-      >
-        <img
-          alt="The Logo of Sprintelope"
-          class="h-40"
-          src="@/assets/images/SprintelopeLogo.png"
-        />
-         
-        <h1
-          class="text-2xl font-heading my-2"
-        >
-          Sprintelope 2018
-        </h1>
-         
-        <p>
-          
-          Wednesday Evening Sprint Orienteering Events in Edinburgh and the
-          Lothians
-        
-        </p>
-         
-        <p>
-          
-          More information can be found on their
-          
-          <a
-            class="link"
-            href="https://en-gb.facebook.com/sprintelope/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            website
-          </a>
-        </p>
-         
-        <router-link-stub
-          class="button"
-          to="/leagues/Sprintelope 2018"
-        >
-          View League
-        </router-link-stub>
-      </div>
-    </div>
-     
-    <div
-      class="w-full md:w-1/2 my-4 md:px-3"
-    >
-      <div
-        class="h-full w-full card"
+        class="w-full h-full card"
       >
         <h1
-          class="text-2xl font-heading my-2"
+          class="my-2 text-2xl font-heading"
         >
           Fight with the Night
         </h1>
@@ -172,13 +172,13 @@ exports[`Renders Correctly 1`] = `
     </div>
      
     <div
-      class="w-full md:w-1/2 my-4 md:px-3"
+      class="w-full my-4 md:w-1/2 md:px-3"
     >
       <div
-        class="h-full w-full card"
+        class="w-full h-full card"
       >
         <h1
-          class="text-2xl font-heading my-2"
+          class="my-2 text-2xl font-heading"
         >
           Northern Night Cup
         </h1>
@@ -214,22 +214,22 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="w-full bg-main text-white p-3 text-center view contours"
+    class="w-full p-3 text-center text-white bg-main view contours"
   >
     <img
       alt="Munro Logo"
-      class="h-24 inline-block mt-4 mb-2"
+      class="inline-block h-24 mt-4 mb-2"
       src="@/assets/images/MunroLogoWhite.png"
     />
      
     <h1
-      class="text-2xl font-heading my-2"
+      class="my-2 text-2xl font-heading"
     >
       About
     </h1>
      
     <div
-      class="text mb-3"
+      class="mb-3 text"
     >
       <p>
         
@@ -272,16 +272,16 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="view flex flex-wrap flex-row"
+    class="flex flex-row flex-wrap view"
   >
     <div
-      class="w-full md:w-1/2 my-4 md:px-3"
+      class="w-full my-4 md:w-1/2 md:px-3"
     >
       <div
-        class="h-full w-full card"
+        class="w-full h-full card"
       >
         <h1
-          class="text-2xl font-heading my-2"
+          class="my-2 text-2xl font-heading"
         >
           Upload Instructions
         </h1>
@@ -302,13 +302,13 @@ exports[`Renders Correctly 1`] = `
     </div>
      
     <div
-      class="w-full md:w-1/2 my-4 md:px-3"
+      class="w-full my-4 md:w-1/2 md:px-3"
     >
       <div
-        class="h-full w-full card"
+        class="w-full h-full card"
       >
         <h1
-          class="text-2xl font-heading my-2"
+          class="my-2 text-2xl font-heading"
         >
           Developers
         </h1>
@@ -329,19 +329,5 @@ exports[`Renders Correctly 1`] = `
       </div>
     </div>
   </div>
-   
-  <p
-    class="bg-main-dark rounded-tl-xl text-white text-center font-heading p-2 mt-2"
-  >
-    
-    © Ben Brown 2020
-    
-    <router-link-stub
-      class="px-2 link"
-      to="/login"
-    >
-      Admin Login
-    </router-link-stub>
-  </p>
 </div>
 `;

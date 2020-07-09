@@ -68,12 +68,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/MunroLogoNoBG-512.png"
   },
   {
+    "revision": "183b1ea759b4d5f03f1fd41f6dda3809",
+    "url": "/static/MunroText.png"
+  },
+  {
     "revision": "2d2fbc298962481fcb354d20f235aa00",
     "url": "/static/SprintelopeLogo.png"
   },
   {
-    "revision": "a8e17b39b5ca35825c41",
-    "url": "/static/css/app.1ea022e0.css"
+    "revision": "87523001eced175d5a74",
+    "url": "/static/css/app.aeca2c18.css"
   },
   {
     "revision": "071ee5604b9802fc64d3",
@@ -104,7 +108,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/css/chunk-439aa803.60b83173.css"
   },
   {
-    "revision": "93885ad06bd4e036b67c",
+    "revision": "d671757f7a951f1bf5e4",
     "url": "/static/css/chunk-60e4d852.6a108ef2.css"
   },
   {
@@ -160,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/img/topography.22ae355e.svg"
   },
   {
-    "revision": "dbb431725a185c79e85e5bd0b2079c4c",
+    "revision": "f98361913f91abcefeb0d70673e703c6",
     "url": "/static/index.html"
   },
   {
-    "revision": "a8e17b39b5ca35825c41",
-    "url": "/static/js/app.0e585dcb.js"
+    "revision": "87523001eced175d5a74",
+    "url": "/static/js/app.731952c8.js"
   },
   {
     "revision": "071ee5604b9802fc64d3",
@@ -216,8 +220,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/js/chunk-439aa803.93e99969.js"
   },
   {
-    "revision": "93885ad06bd4e036b67c",
-    "url": "/static/js/chunk-60e4d852.64603b73.js"
+    "revision": "d671757f7a951f1bf5e4",
+    "url": "/static/js/chunk-60e4d852.da3455bd.js"
   },
   {
     "revision": "1d9d3dab711d598e9145",

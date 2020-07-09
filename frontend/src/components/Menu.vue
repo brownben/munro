@@ -6,15 +6,15 @@
 -->
 
 <template>
-  <div id="menu" class="w-full h-13 border-top select-none bg-white">
+  <header id="menu" class="w-full bg-white select-none h-13 border-top">
     <h1
-      class="w-full md:w-auto h-12 text-4xl font-heading text-main md:mx-8 inline-block text-center"
+      class="inline-block w-full h-12 text-4xl text-center md:w-auto font-heading text-main md:mx-8"
     >
       <router-link to="/">Munro</router-link>
     </h1>
     <svg
       viewBox="0 0 24 24"
-      class="h-12 p-2 mr-2 fill-current text-main md:hidden inline-block float-right absolute right-0"
+      class="absolute right-0 inline-block float-right h-12 p-2 mr-2 fill-current text-main md:hidden"
       @click="showMenu = !showMenu"
     >
       <path d="M0 0h24v24H0z" fill="none" />
@@ -26,7 +26,7 @@
         :class="{
           smallWindow: smallWindow,
         }"
-        class="text-main text-lg font-normal h-screen--13 md:mr-2 md:h-12 md:float-right relative z-50 top--13 md:top-0 md:bg-transparent bg-white flex flex-col justify-center align-center w-full md:w-auto md:inline-block mt-13 md:mt-0"
+        class="relative z-50 flex flex-col justify-center w-full text-lg font-normal bg-white text-main h-screen--13 md:mr-2 md:h-12 md:float-right top--13 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block mt-13 md:mt-0"
       >
         <router-link to="/leagues" class="menu-item">Leagues</router-link>
         <router-link to="/latest-results" class="menu-item"
@@ -38,7 +38,7 @@
         >
       </nav>
     </transition>
-  </div>
+  </header>
 </template>
 
 <script>

@@ -89,7 +89,7 @@ def catch_all(path):
     # If in debug access files from VueJS Development Server
     """
     if app.debug:
-        return requests.get('http://localhost:8080/{}'.format(path)).text
+        return requests.get("http://localhost:8080/{}".format(path)).text
     """
     return render_template("index.html")
 

@@ -2,11 +2,13 @@
 
 exports[`Renders Correctly 1`] = `
 <div
+  class="flex flex-col w-full h-full"
   id="app"
 >
-  <app-menu-stub />
+  <appmenu-stub />
    
   <div
+    class="flex-grow"
     id="content"
   >
     <messages-stub />
@@ -19,8 +21,6 @@ exports[`Renders Correctly 1`] = `
     />
   </div>
    
-  <cookie-dialog-stub />
-   
-  <!---->
+  <appfooter-stub />
 </div>
 `;

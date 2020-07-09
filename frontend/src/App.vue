@@ -4,11 +4,11 @@
   The main app file containing the base structure of the app, and base styling
 -->
 <template>
-  <div id="app">
-    <app-menu v-show="!$route.path.includes('embed')" />
+  <div id="app" class="flex flex-col w-full h-full">
+    <AppMenu v-show="!$route.path.includes('embed')" />
 
-    <div id="content">
-      <messages />
+    <div id="content" class="flex-grow">
+      <Messages />
       <transition name="fade" mode="out-in">
         <router-view
           id="router-view"
@@ -16,28 +16,21 @@
         />
       </transition>
     </div>
-    <cookie-dialog v-show="!$route.path.includes('embed')" />
-    <p
-      v-if="$route.path.includes('embed')"
-      class="font-heading text-center w-full text-main"
-    >
-      League Results by Munro
-    </p>
+
+    <AppFooter />
   </div>
 </template>
 
 <script>
-import Menu from '@/components/Menu'
+import AppMenu from '@/components/Menu'
 import Messages from '@/components/Messages'
-import CookieDialog from '@/components/CookieDialog'
+import AppFooter from '@/components/Footer'
 
 export default {
-  name: 'App',
-
   components: {
-    AppMenu: Menu,
+    AppMenu,
     Messages,
-    CookieDialog,
+    AppFooter,
   },
 
   data: function() {
