@@ -13,13 +13,13 @@
       title="Munro - Merge Competitors"
       description
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
       Merge Competitors
     </h1>
     <form @submit.prevent="merge">
       <dropdown-input
         v-model="league"
-        :list="leagues.map(league => league.name)"
+        :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
       />
@@ -33,7 +33,7 @@
         v-model="competitorKeep"
         :list="
           competitorsForLeague.map(
-            competitor =>
+            (competitor) =>
               competitor.id +
               ' - ' +
               competitor.name +
@@ -50,7 +50,7 @@
         v-model="competitorMerge"
         :list="
           competitorsForLeague.map(
-            competitor =>
+            (competitor) =>
               competitor.id +
               ' - ' +
               competitor.name +
@@ -87,42 +87,42 @@ export default {
   }),
 
   computed: {
-    competitorsForLeague: function() {
+    competitorsForLeague: function () {
       const filtered = this.competitors.filter(
-        competitor =>
+        (competitor) =>
           competitor.league === this.league && competitor.course === this.course
       )
       return filtered.sort((a, b) => a.name > b.name)
     },
 
-    coursesInLeague: function() {
+    coursesInLeague: function () {
       const selectedLeague = this.leagues.filter(
-        league => league.name === this.league
+        (league) => league.name === this.league
       )
       if (selectedLeague.length > 0) return selectedLeague[0].courses
       else return []
     },
   },
 
-  mounted: function() {
+  mounted: function () {
     this.getCompetitors()
     this.getLeagues()
   },
 
   methods: {
-    getCompetitors: function() {
+    getCompetitors: function () {
       return axios
         .get('/api/competitors')
-        .then(response => {
+        .then((response) => {
           this.competitors = response.data
         })
         .catch(() => this.$messages.addMessage('Problem Fetching Competitors'))
     },
 
-    getLeagues: function() {
+    getLeagues: function () {
       return axios
         .get('/api/leagues')
-        .then(response => {
+        .then((response) => {
           this.leagues = response.data
         })
         .catch(() =>
@@ -130,7 +130,7 @@ export default {
         )
     },
 
-    validateForm: function() {
+    validateForm: function () {
       return (
         this.competitorMerge !== this.competitorKeep &&
         this.competitorMerge !== '' &&
@@ -138,27 +138,27 @@ export default {
       )
     },
 
-    merge: function() {
+    merge: function () {
       if (this.validateForm()) {
         return axios
           .post('/api/competitors/merge', {
             competitorKeep: this.competitorKeep.split(' -')[0],
             competitorMerge: this.competitorMerge.split(' -')[0],
           })
-          .then(response => this.returnToCompetitorsPage(response))
-          .catch(error =>
+          .then((response) => this.returnToCompetitorsPage(response))
+          .catch((error) =>
             this.$messages.addMessage(error.response.data.message)
           )
       } else this.$messages.addMessage('The Competitors Selected are the Same')
     },
 
-    returnToCompetitorsPage: function(response) {
+    returnToCompetitorsPage: function (response) {
       // Go to league page after successful update/ creation
       this.$messages.addMessage(response.data.message)
       this.$router.push('/competitors')
     },
 
-    competitorTransformForSelect: function(competitor) {
+    competitorTransformForSelect: function (competitor) {
       if (competitor.club && competitor.ageClass)
         return `${competitor.name} (${competitor.ageClass}, ${competitor.club}) [${competitor.id}]`
       else if (competitor.club)

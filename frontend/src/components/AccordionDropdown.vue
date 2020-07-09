@@ -7,16 +7,16 @@
 -->
 
 <template>
-  <div class="rounded-shape-xl my-shadow mt-3 mb-6 accordion bg-white">
+  <div class="mt-3 mb-6 bg-white rounded-shape-xl my-shadow accordion">
     <div class="accordion-head" @click="accordionOpen = !accordionOpen">
       <h2
-        class="font-heading text-main text-2xl p-2 px-4 h-12 inline-block select-none"
+        class="inline-block h-12 p-2 px-4 text-2xl select-none font-heading text-main"
       >
         {{ title }}
       </h2>
       <svg
         :class="{ rotate: accordionOpen }"
-        class="fill-current text-main h-12 float-right p-2"
+        class="float-right h-12 p-2 fill-current text-main"
         viewBox="0 0 24 24"
       >
         <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
@@ -24,7 +24,7 @@
       </svg>
     </div>
     <transition name="shrink">
-      <div v-show="accordionOpen" key="1" class="accordion-body p-3 pt-0 pb-1">
+      <div v-show="accordionOpen" key="1" class="p-3 pt-0 pb-1 accordion-body">
         <slot />
       </div>
     </transition>

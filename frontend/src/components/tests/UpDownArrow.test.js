@@ -29,18 +29,8 @@ test('Check Classes Update', () => {
   })
   expect(wrapper.props().active).toBeTruthy()
   expect(wrapper.props().ascending).toBeTruthy()
-  expect(
-    wrapper
-      .findAll('svg')
-      .at(0)
-      .classes()
-  ).toEqual([])
-  expect(
-    wrapper
-      .findAll('svg')
-      .at(1)
-      .classes()
-  ).toContain('active-arrow')
+  expect(wrapper.findAll('svg').at(0).classes()).toEqual([])
+  expect(wrapper.findAll('svg').at(1).classes()).toContain('active-arrow')
 
   const wrapper1 = mount(UpDownArrows, {
     propsData: {
@@ -48,18 +38,8 @@ test('Check Classes Update', () => {
       ascending: false,
     },
   })
-  expect(
-    wrapper1
-      .findAll('svg')
-      .at(0)
-      .classes()
-  ).toContain('active-arrow')
-  expect(
-    wrapper1
-      .findAll('svg')
-      .at(1)
-      .classes()
-  ).toEqual([])
+  expect(wrapper1.findAll('svg').at(0).classes()).toContain('active-arrow')
+  expect(wrapper1.findAll('svg').at(1).classes()).toEqual([])
 
   const wrapper2 = mount(UpDownArrows, {
     propsData: {
@@ -67,18 +47,8 @@ test('Check Classes Update', () => {
       ascending: false,
     },
   })
-  expect(
-    wrapper2
-      .findAll('svg')
-      .at(0)
-      .classes()
-  ).toEqual([])
-  expect(
-    wrapper2
-      .findAll('svg')
-      .at(1)
-      .classes()
-  ).toEqual([])
+  expect(wrapper2.findAll('svg').at(0).classes()).toEqual([])
+  expect(wrapper2.findAll('svg').at(1).classes()).toEqual([])
 })
 
 test('Renders Correctly - No Props', () => {

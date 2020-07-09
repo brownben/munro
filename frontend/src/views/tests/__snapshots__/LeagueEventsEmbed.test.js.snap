@@ -10,10 +10,10 @@ exports[`Renders Correctly 1`] = `
     />
      
     <div
-      class="card my-4"
+      class="my-4 card"
     >
       <h2
-        class="font-heading text-xl my-1"
+        class="my-1 text-xl font-heading"
       >
         200m
       </h2>
@@ -39,10 +39,10 @@ exports[`Renders Correctly 1`] = `
       <!---->
     </div>
     <div
-      class="card my-4"
+      class="my-4 card"
     >
       <h2
-        class="font-heading text-xl my-1"
+        class="my-1 text-xl font-heading"
       >
         Longniddry
       </h2>
@@ -62,10 +62,10 @@ exports[`Renders Correctly 1`] = `
       <!---->
     </div>
     <div
-      class="card my-4"
+      class="my-4 card"
     >
       <h2
-        class="font-heading text-xl my-1"
+        class="my-1 text-xl font-heading"
       >
         South Edinburgh
       </h2>

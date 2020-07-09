@@ -2,10 +2,9 @@
   <div class="view">
     <vue-headful
       :title="`Munro - ${event.name || ''} Event Results`"
-      :description="
-        `Results from the ${event.name || ''} event of the ${event.league ||
-          ''} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`
-      "
+      :description="`Results from the ${event.name || ''} event of the ${
+        event.league || ''
+      } league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`"
       :url="`https://munro-leagues.herokuapp.com/events/${$route.params.event}`"
       :head="{
         meta: { name: 'robots', content: 'all' },
@@ -18,14 +17,14 @@
         </router-link>
         - {{ event.name || '' }}
       </h1>
-      <div v-show="event && coursesInResults" class="card my-4">
-        <h3 class="font-heading text-2xl">Courses</h3>
+      <div v-show="event && coursesInResults" class="my-4 card">
+        <h3 class="text-2xl font-heading">Courses</h3>
         <div>
           <button
             v-for="course in coursesInResults"
             :key="course"
             :class="{ active: chosenCourse === course }"
-            class="button inline-block"
+            class="inline-block button"
             @click="chosenCourse = course"
           >
             {{ course }}
@@ -132,9 +131,9 @@ export default {
   }),
 
   computed: {
-    resultsWithAgeClassSplit: function() {
+    resultsWithAgeClassSplit: function () {
       // Split age class into age and gender to allow easy sorting
-      return this.rawResults.map(result => {
+      return this.rawResults.map((result) => {
         if (result.ageClass) {
           const regexMatch = result.ageClass.match(
             /([MWmwfFDH])[^0-9]*([0-9]*)/
@@ -149,7 +148,7 @@ export default {
       })
     },
 
-    sortedResults: function() {
+    sortedResults: function () {
       // Sort results by preference
       return this.sort(
         this.resultsWithAgeClassSplit,
@@ -158,10 +157,10 @@ export default {
       )
     },
 
-    filteredResults: function() {
+    filteredResults: function () {
       // Filter results by preferences
       return this.sortedResults.filter(
-        result =>
+        (result) =>
           result.name.match(new RegExp(this.filterPreferences.name, 'i')) &&
           result.club.match(new RegExp(this.filterPreferences.club, 'i')) &&
           result.course === this.chosenCourse &&
@@ -175,8 +174,10 @@ export default {
       )
     },
 
-    coursesInResults: function() {
-      const courses = [...new Set(this.rawResults.map(result => result.course))]
+    coursesInResults: function () {
+      const courses = [
+        ...new Set(this.rawResults.map((result) => result.course)),
+      ]
       this.setChosenCourse(courses)
       return courses
     },
@@ -184,7 +185,7 @@ export default {
 
   // If route changes without reload (if only course parameter changes)
   watch: {
-    $route: async function() {
+    $route: async function () {
       this.rawResults = []
       await this.getResults()
       await this.getEvent()
@@ -192,17 +193,17 @@ export default {
   },
 
   // On load
-  mounted: function() {
+  mounted: function () {
     // Fetch Data
     this.getResults()
     this.getEvent()
   },
 
   methods: {
-    getResults: function() {
+    getResults: function () {
       return axios
         .get(`/api/events/${this.$route.params.event}/results`)
-        .then(response => {
+        .then((response) => {
           if (response.data.length > 0) this.rawResults = response.data
           else this.found = false
         })
@@ -211,10 +212,10 @@ export default {
         })
     },
 
-    getEvent: function() {
+    getEvent: function () {
       return axios
         .get(`/api/events/${this.$route.params.event}`)
-        .then(response => {
+        .then((response) => {
           this.event = response.data
           this.eventFound = response.data
         })
@@ -223,7 +224,7 @@ export default {
         })
     },
 
-    sort: function(array, property, ascending = true) {
+    sort: function (array, property, ascending = true) {
       let sortFunction
       sortFunction = (a, b) => {
         if (a[property] === b[property]) return 0
@@ -247,14 +248,14 @@ export default {
       else return array.sort(sortFunction).reverse()
     },
 
-    sortBy: function(sortBy) {
+    sortBy: function (sortBy) {
       // If it is a different property, make it sort ascending else change direction of sort
       if (sortBy !== this.sortedBy) this.ascendingSort = false
       else this.ascendingSort = !this.ascendingSort
       this.sortedBy = sortBy
     },
 
-    filterChanged: function(data) {
+    filterChanged: function (data) {
       // Update data of view if Filter Menu emits a change
       this.filterPreferences.name = data.name
       this.filterPreferences.club = data.club
@@ -266,16 +267,16 @@ export default {
       this.filterPreferences.female = data.female
     },
 
-    setChosenCourse: function(courses) {
+    setChosenCourse: function (courses) {
       this.chosenCourse = courses[0]
     },
 
-    twoDigits: function(number) {
+    twoDigits: function (number) {
       if (number.toString().length < 2) return `0${number.toString()}`
       else return number
     },
 
-    elapsedTime: function(totalTimeInSeconds) {
+    elapsedTime: function (totalTimeInSeconds) {
       if (typeof totalTimeInSeconds !== 'number') return totalTimeInSeconds
       else if (totalTimeInSeconds === 0) return ''
       const timeInMinutes = Math.floor(totalTimeInSeconds / 60)

@@ -1,16 +1,16 @@
 <template>
-  <div class="file-input relative top--4">
+  <div class="relative file-input top--4">
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3  pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
       >{{ label }}</label
     >
     <p
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none truncate"
+      class="w-full px-4 py-2 truncate border outline-none border-main rounded-shape text-body"
     >
       {{ fileName }}
       <label
         for="file"
-        class="absolute right-0 px-4 border-l border-r border-main rounded-shape text-white bg-main hover:text-main hover:bg-white py-2 mt--2 font-heading inline-block"
+        class="absolute right-0 inline-block px-4 py-2 text-white border-l border-r border-main rounded-shape bg-main hover:text-main hover:bg-white mt--2 font-heading"
         >Browse for File</label
       >
       <input
@@ -44,7 +44,7 @@ export default {
   }),
 
   methods: {
-    fileChange: function(event) {
+    fileChange: function (event) {
       // When the file selected has been changed
       const storage = event.target || event.dataTransfer
       const files = storage.files
@@ -53,14 +53,14 @@ export default {
       this.readFile(files[0])
     },
 
-    readFile: function(file) {
+    readFile: function (file) {
       // read file using FileReader and save in data
       const reader = new FileReader()
       reader.onload = this.readFileResult
       reader.readAsText(file)
     },
 
-    readFileResult: function(result) {
+    readFileResult: function (result) {
       this.$emit('file', result.target.result)
     },
   },

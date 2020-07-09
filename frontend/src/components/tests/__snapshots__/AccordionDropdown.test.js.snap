@@ -2,13 +2,13 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="rounded-shape-xl my-shadow mt-3 mb-6 accordion bg-white"
+  class="mt-3 mb-6 bg-white rounded-shape-xl my-shadow accordion"
 >
   <div
     class="accordion-head"
   >
     <h2
-      class="font-heading text-main text-2xl p-2 px-4 h-12 inline-block select-none"
+      class="inline-block h-12 p-2 px-4 text-2xl select-none font-heading text-main"
     >
       
       
@@ -16,7 +16,7 @@ exports[`Renders Correctly 1`] = `
     </h2>
      
     <svg
-      class="fill-current text-main h-12 float-right p-2"
+      class="float-right h-12 p-2 fill-current text-main"
       viewBox="0 0 24 24"
     >
       <path
@@ -31,7 +31,7 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="accordion-body p-3 pt-0 pb-1"
+    class="p-3 pt-0 pb-1 accordion-body"
     name="shrink"
     style="display: none;"
   />

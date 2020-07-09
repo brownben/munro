@@ -43,7 +43,7 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       showMenu: false,
       auth: this.$auth,
@@ -52,12 +52,12 @@ export default {
   },
 
   watch: {
-    $route: function() {
+    $route: function () {
       this.showMenu = false
     },
   },
 
-  mounted: function() {
+  mounted: function () {
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
   },

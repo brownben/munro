@@ -14,15 +14,15 @@
       description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/upload"
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
       Upload Results
     </h1>
-    <div class="card-color mt-2 mb-4">
+    <div class="mt-2 mb-4 card-color">
       <p>
         For instructions on how to upload results please visit
         <router-link
           to="/upload-instructions"
-          class="link inline text-white ml-1"
+          class="inline ml-1 text-white link"
         >
           /upload-instructions
         </router-link>
@@ -46,7 +46,7 @@
       v-if="event.resultUploaded"
       v-model="overwrite"
       label="Overwrite Existing Results:"
-      class="text-left mb-5"
+      class="mb-5 text-left"
     />
 
     <file-input label="Results File:" @file="fileRead" />
@@ -91,7 +91,7 @@ export default {
     FileInput,
   },
 
-  data: function() {
+  data: function () {
     return {
       eventId: '',
       uploadKey: '',
@@ -105,7 +105,7 @@ export default {
   },
 
   // On load
-  mounted: function() {
+  mounted: function () {
     // If passed with Event ID, autofill Event ID
     if (this.$route.params.id) {
       this.eventId = this.$route.params.id
@@ -114,11 +114,11 @@ export default {
   },
 
   methods: {
-    findEvent: function() {
+    findEvent: function () {
       // Fetch event details so name of event can be checked and if results are uploaded
       return axios
         .get(`/api/events/${this.eventId}`)
-        .then(response => {
+        .then((response) => {
           this.event = response.data
           if (!this.event.name) {
             this.event = {}
@@ -128,11 +128,11 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
     },
 
-    fileRead: function(file) {
+    fileRead: function (file) {
       this.file = file
     },
 
-    uploadFile: function() {
+    uploadFile: function () {
       // Send data to the server
       this.$messages.addMessage('Upload Data Sent')
       return axios
@@ -149,7 +149,9 @@ export default {
           this.$messages.addMessage('Results Uploaded Successfully')
           this.$router.push(`/leagues/${this.event.league}`)
         })
-        .catch(error => this.$messages.addMessage(error.response.data.message))
+        .catch((error) =>
+          this.$messages.addMessage(error.response.data.message)
+        )
     },
   },
 }

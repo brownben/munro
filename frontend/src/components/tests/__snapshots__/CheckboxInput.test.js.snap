@@ -2,10 +2,10 @@
 
 exports[`Renders Correctly - Checked 1`] = `
 <div
-  class="checkbox-input mt-3"
+  class="mt-3 checkbox-input"
 >
   <label
-    class="text-md select-none font-heading text-main"
+    class="select-none text-md font-heading text-main"
   >
     
     Test Checkbox
@@ -22,10 +22,10 @@ exports[`Renders Correctly - Checked 1`] = `
 
 exports[`Renders Correctly - Unchecked 1`] = `
 <div
-  class="checkbox-input mt-3"
+  class="mt-3 checkbox-input"
 >
   <label
-    class="text-md select-none font-heading text-main"
+    class="select-none text-md font-heading text-main"
   >
     
     Another Input

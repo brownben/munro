@@ -35,13 +35,13 @@
     <div v-if="!notFound">
       <h1
         v-if="create"
-        class="text-main text-3xl font-normal font-heading mb-2"
+        class="mb-2 text-3xl font-normal text-main font-heading"
       >
         Create Event
       </h1>
       <h1
         v-if="!create"
-        class="text-main text-3xl font-normal font-heading mb-2"
+        class="mb-2 text-3xl font-normal text-main font-heading"
       >
         Edit Event
       </h1>
@@ -64,7 +64,7 @@
         />
         <dropdown-input
           v-model="league"
-          :list="leagues.map(league => league.name)"
+          :list="leagues.map((league) => league.name)"
           label="League:"
         />
         <text-input v-model.trim="moreInformation" label="More Information:" />
@@ -89,7 +89,7 @@ export default {
     TextInput,
   },
 
-  data: function() {
+  data: function () {
     return {
       id: '',
       notFound: false,
@@ -109,7 +109,7 @@ export default {
   },
 
   // On Load
-  mounted: function() {
+  mounted: function () {
     this.getLeagues()
     if (this.$route.path.includes('edit')) {
       this.create = false
@@ -118,15 +118,15 @@ export default {
   },
 
   methods: {
-    submit: function() {
+    submit: function () {
       if (this.create) this.createEvent()
       else this.updateEvent()
     },
 
-    getEventDetails: function() {
+    getEventDetails: function () {
       return axios
         .get(`/api/events/${this.$route.params.id}`)
-        .then(response => {
+        .then((response) => {
           if (!response.data) this.notFound = true
           else {
             this.id = this.$route.params.id
@@ -145,10 +145,10 @@ export default {
         .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
     },
 
-    getLeagues: function() {
+    getLeagues: function () {
       return axios
         .get('/api/leagues')
-        .then(response => {
+        .then((response) => {
           this.leagues = response.data
         })
         .catch(() =>
@@ -156,7 +156,7 @@ export default {
         )
     },
 
-    validateForm: function() {
+    validateForm: function () {
       if (this.name === '' || this.league === '') {
         this.$messages.addMessage(
           'Please Ensure Name and League Fields are not Blank'
@@ -170,7 +170,7 @@ export default {
       } else return true
     },
 
-    createEvent: function() {
+    createEvent: function () {
       if (this.validateForm()) {
         return axios
           .post('/api/events', {
@@ -185,7 +185,7 @@ export default {
             routegadget: this.routegadget,
             league: this.league,
           })
-          .then(response => this.returnToLeaguePage(response))
+          .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
             this.$messages.addMessage(
               'Error: Problem Creating Event - Please Try Again'
@@ -194,7 +194,7 @@ export default {
       }
     },
 
-    updateEvent: function() {
+    updateEvent: function () {
       if (this.validateForm()) {
         return axios
           .put(`/api/events/${this.id}`, {
@@ -209,14 +209,14 @@ export default {
             routegadget: this.routegadget,
             league: this.league,
           })
-          .then(response => this.returnToLeaguePage(response))
-          .catch(error =>
+          .then((response) => this.returnToLeaguePage(response))
+          .catch((error) =>
             this.$messages.addMessage(error.response.data.message)
           )
       }
     },
 
-    returnToLeaguePage: function(response) {
+    returnToLeaguePage: function (response) {
       // Go to league page after successful update/ creation
       this.$messages.addMessage(response.data.message)
       this.$router.push(`/leagues/${this.league}`)

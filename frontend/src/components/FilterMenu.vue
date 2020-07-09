@@ -9,13 +9,13 @@
     <text-input
       v-model="preferences.name"
       label="Name:"
-      class="w-full md:w-1/2 inline-block md:pr-2"
+      class="inline-block w-full md:w-1/2 md:pr-2"
       @input="onChange"
     />
     <text-input
       v-model="preferences.club"
       label="Club:"
-      class="w-full md:w-1/2 inline-block md:pl-2"
+      class="inline-block w-full md:w-1/2 md:pl-2"
       @input="onChange"
     />
     <number-input
@@ -23,7 +23,7 @@
       :min="0"
       :max="120"
       label="Min Age:"
-      class="w-1/2 md:w-1/4 inline-block pr-2 md:mb--4"
+      class="inline-block w-1/2 pr-2 md:w-1/4 md:-mb-4"
       @input="onChange"
     />
     <number-input
@@ -31,18 +31,18 @@
       :min="0"
       :max="120"
       label="Max Age:"
-      class="w-1/2 md:w-1/4 inline-block pl-2 md:mb--4"
+      class="inline-block w-1/2 pl-2 md:w-1/4 md:-mb-4"
       @input="onChange"
     />
     <checkbox-input
       v-model="preferences.male"
-      class="w-1/2 md:w-1/4 inline-block pr-2 text-center"
+      class="inline-block w-1/2 pr-2 text-center md:w-1/4"
       label="Male:"
       @input="onChange"
     />
     <checkbox-input
       v-model="preferences.female"
-      class="w-1/2 md:w-1/4 inline-block pl-2 text-center"
+      class="inline-block w-1/2 pl-2 text-center md:w-1/4"
       label="Female:"
       @input="onChange"
     />
@@ -75,15 +75,9 @@ export default {
   }),
 
   methods: {
-    onChange: function() {
+    onChange: function () {
       this.$emit('changed', this.preferences)
     },
   },
 }
 </script>
-
-<style lang="postcss">
-.mb--4 {
-  margin-bottom: -1rem;
-}
-</style>

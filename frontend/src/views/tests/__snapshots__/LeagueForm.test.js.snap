@@ -12,7 +12,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
    
   <div>
     <h1
-      class="text-main text-3xl font-normal font-heading mb-2"
+      class="mb-2 text-3xl font-normal text-main font-heading"
     >
       
       Create League
@@ -23,76 +23,76 @@ exports[`Creation Form - Renders Correctly 1`] = `
      
     <form>
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Name:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Year:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Description:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Website: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Coordinator:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
@@ -105,16 +105,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
       />
        
       <div
-        class="text-input top--4 relative appearance-none"
+        class="relative appearance-none text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Number of Events to Count:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
+          class="w-full px-4 py-2 border outline-none appearance-none border-main rounded-shape text-body"
           max="100"
           min="1"
           type="number"
@@ -122,25 +122,25 @@ exports[`Creation Form - Renders Correctly 1`] = `
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Courses: (Comma Separated)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="checkbox-input mt-3 text-left mb-5"
+        class="mt-3 checkbox-input mb-5 text-left"
       >
         <label
-          class="text-md select-none font-heading text-main"
+          class="select-none text-md font-heading text-main"
         >
           
     Dynamic Event Results:
@@ -182,7 +182,7 @@ exports[`Update Form - Renders Correctly 1`] = `
     <!---->
      
     <h1
-      class="text-main text-3xl font-normal font-heading mb-2"
+      class="mb-2 text-3xl font-normal text-main font-heading"
     >
       
       Edit League
@@ -191,76 +191,76 @@ exports[`Update Form - Renders Correctly 1`] = `
      
     <form>
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Name:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Year:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Description:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Website: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Coordinator:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
@@ -273,16 +273,16 @@ exports[`Update Form - Renders Correctly 1`] = `
       />
        
       <div
-        class="text-input top--4 relative appearance-none"
+        class="relative appearance-none text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Number of Events to Count:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
+          class="w-full px-4 py-2 border outline-none appearance-none border-main rounded-shape text-body"
           max="100"
           min="1"
           type="number"
@@ -290,25 +290,25 @@ exports[`Update Form - Renders Correctly 1`] = `
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Courses: (Comma Separated)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="checkbox-input mt-3 text-left mb-5"
+        class="mt-3 checkbox-input mb-5 text-left"
       >
         <label
-          class="text-md select-none font-heading text-main"
+          class="select-none text-md font-heading text-main"
         >
           
     Dynamic Event Results:

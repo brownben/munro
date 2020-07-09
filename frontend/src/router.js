@@ -172,7 +172,7 @@ const router = new Router({
     },
     {
       path: '/logout',
-      beforeEnter: function(to, from, next) {
+      beforeEnter: function (to, from, next) {
         // Logout then redirect to the home page
         router.app.$auth
           .logout()

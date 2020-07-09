@@ -14,9 +14,9 @@
       description="Developer information about the API and embed pages of Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/developers"
     />
-    <h1 class="text-main text-3xl font-normal font-heading">Developers</h1>
-    <div class="card mt-2 mb-4">
-      <h2 class="text-2xl font-normal font-heading mb-2">API</h2>
+    <h1 class="text-3xl font-normal text-main font-heading">Developers</h1>
+    <div class="mt-2 mb-4 card">
+      <h2 class="mb-2 text-2xl font-normal font-heading">API</h2>
       <p>
         All methods use a standard HTTP GET request. The event id is made by
         combining the league name, event name and date and removing all spaces,
@@ -48,8 +48,8 @@
       <h4>/api/results</h4>
       <p>All results</p>
     </div>
-    <div class="card my-4">
-      <h2 class="text-2xl font-normal font-heading mb-2">Embed</h2>
+    <div class="my-4 card">
+      <h2 class="mb-2 text-2xl font-normal font-heading">Embed</h2>
       <p>
         Currently there are two pages designed for embedding in Iframes. Place
         in an IFrame like:

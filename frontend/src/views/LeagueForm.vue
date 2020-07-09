@@ -32,13 +32,13 @@
     <div v-if="!notFound">
       <h1
         v-if="create"
-        class="text-main text-3xl font-normal font-heading mb-2"
+        class="mb-2 text-3xl font-normal text-main font-heading"
       >
         Create League
       </h1>
       <h1
         v-if="!create"
-        class="text-main text-3xl font-normal font-heading mb-2"
+        class="mb-2 text-3xl font-normal text-main font-heading"
       >
         Edit League
       </h1>
@@ -72,7 +72,7 @@
         <checkbox-input
           v-model="dynamicResults"
           label="Dynamic Event Results:"
-          class="text-left mb-5"
+          class="mb-5 text-left"
         />
         <button v-if="create" class="button-lg">Create League</button>
         <button v-if="!create" class="button-lg">Update League</button>
@@ -99,7 +99,7 @@ export default {
     CheckboxInput,
   },
 
-  data: function() {
+  data: function () {
     return {
       notFound: false,
       create: true,
@@ -118,7 +118,7 @@ export default {
   },
 
   // On Load
-  mounted: function() {
+  mounted: function () {
     if (this.$route.path.includes('edit')) {
       this.create = false
       this.getLeagueDetails()
@@ -126,7 +126,7 @@ export default {
   },
 
   methods: {
-    validateForm: function() {
+    validateForm: function () {
       if (this.name === '' || this.scoringMethod === '') {
         this.$messages.addMessage(
           'Please Ensure Name and Scoring Method Fields are not Blank'
@@ -140,13 +140,13 @@ export default {
       } else return true
     },
 
-    returnToLeaguePage: function(response) {
+    returnToLeaguePage: function (response) {
       this.$messages.addMessage(response.data.message)
       this.$router.push(`/leagues/${this.name}`)
     },
 
     // Scoring Method is stored in a shorthand form in database, transfer between these two forms so it is displayed in a clear manner
-    scoringMethodShorthandToFull: value => {
+    scoringMethodShorthandToFull: (value) => {
       if (value === 'position') return 'Position Based (100 Max)'
       else if (value === 'position50') return 'Position Based (50 Max)'
       else if (value === 'position99') return 'Position Based (99 Max)'
@@ -164,7 +164,7 @@ export default {
       else return ''
     },
 
-    scoringMethodFullToShorthand: value => {
+    scoringMethodFullToShorthand: (value) => {
       if (value === 'Position Based (100 Max)') return 'position'
       else if (value === 'Position Based (50 Max)') return 'position50'
       else if (value === 'Position Based (99 Max)') return 'position99'
@@ -182,10 +182,10 @@ export default {
       return ''
     },
 
-    getLeagueDetails: function() {
+    getLeagueDetails: function () {
       return axios
         .get(`/api/leagues/${this.$route.params.name}`)
-        .then(response => {
+        .then((response) => {
           if (!response.data) this.notFound = true
           else {
             this.oldName = response.data.name
@@ -208,12 +208,12 @@ export default {
         )
     },
 
-    submit: function() {
+    submit: function () {
       if (this.create) this.createLeague()
       else this.updateLeague()
     },
 
-    createLeague: function() {
+    createLeague: function () {
       if (this.validateForm()) {
         return axios
           .post('/api/leagues', {
@@ -229,7 +229,7 @@ export default {
             description: this.info,
             dynamicEventResults: this.dynamicResults,
           })
-          .then(response => this.returnToLeaguePage(response))
+          .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
             this.$messages.addMessage(
               'Error: Problem Creating League - Please Try Again'
@@ -238,7 +238,7 @@ export default {
       }
     },
 
-    updateLeague: function() {
+    updateLeague: function () {
       if (this.validateForm()) {
         return axios
           .put(`/api/leagues/${this.oldName}`, {
@@ -255,7 +255,7 @@ export default {
             description: this.info,
             dynamicEventResults: this.dynamicResults,
           })
-          .then(response => this.returnToLeaguePage(response))
+          .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
             this.$messages.addMessage(
               'Error: Problem Updating League - Please Try Again'

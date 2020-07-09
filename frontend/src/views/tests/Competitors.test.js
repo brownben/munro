@@ -3,7 +3,8 @@ import { shallowMount } from '@vue/test-utils'
 import Competitors from '@/views/Competitors'
 
 jest.mock('axios')
-const flushPromises = () => new Promise(resolve => global.setImmediate(resolve))
+const flushPromises = () =>
+  new Promise((resolve) => global.setImmediate(resolve))
 
 beforeEach(() => {
   jest.clearAllMocks()

@@ -12,16 +12,16 @@ exports[`Renders Correctly 1`] = `
   />
    
   <h1
-    class="text-main text-3xl font-normal font-heading"
+    class="text-3xl font-normal text-main font-heading"
   >
     Latest Results
   </h1>
    
   <div
-    class="p-4 pb-1 card my-5"
+    class="p-4 pb-1 my-5 card"
   >
     <h2
-      class="text-2xl font-heading my-2"
+      class="my-2 text-2xl font-heading"
     >
       
       Justice - 200m
@@ -82,10 +82,10 @@ exports[`Renders Correctly 1`] = `
     </span>
   </div>
   <div
-    class="p-4 pb-1 card my-5"
+    class="p-4 pb-1 my-5 card"
   >
     <h2
-      class="text-2xl font-heading my-2"
+      class="my-2 text-2xl font-heading"
     >
       
       Sprintelope - Longniddry
@@ -120,10 +120,10 @@ exports[`Renders Correctly 1`] = `
     </span>
   </div>
   <div
-    class="p-4 pb-1 card my-5"
+    class="p-4 pb-1 my-5 card"
   >
     <h2
-      class="text-2xl font-heading my-2"
+      class="my-2 text-2xl font-heading"
     >
       
       Sprintelope - South Edinburgh

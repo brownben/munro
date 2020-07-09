@@ -25,13 +25,13 @@
     <div v-if="!notFound">
       <h1
         v-if="create"
-        class="text-main text-3xl font-normal font-heading mb-2"
+        class="mb-2 text-3xl font-normal text-main font-heading"
       >
         Create Competitor
       </h1>
       <h1
         v-if="!create"
-        class="text-main text-3xl font-normal font-heading mb-2"
+        class="mb-2 text-3xl font-normal text-main font-heading"
       >
         Edit Competitor
       </h1>
@@ -42,7 +42,7 @@
         <text-input v-model.trim="ageClass" label="Age Class:" />
         <dropdown-input
           v-model="league"
-          :list="leagues.map(league => league.name)"
+          :list="leagues.map((league) => league.name)"
           label="League:"
         />
         <dropdown-input
@@ -71,7 +71,7 @@ export default {
     TextInput,
   },
 
-  data: function() {
+  data: function () {
     return {
       id: '',
       notFound: false,
@@ -86,9 +86,9 @@ export default {
   },
 
   computed: {
-    coursesInLeague: function() {
+    coursesInLeague: function () {
       const selectedLeague = this.leagues.filter(
-        league => league.name === this.league
+        (league) => league.name === this.league
       )
       if (selectedLeague.length > 0) return selectedLeague[0].courses
       else return []
@@ -96,7 +96,7 @@ export default {
   },
 
   // On Load
-  mounted: function() {
+  mounted: function () {
     this.getLeagues()
     if (this.$route.path.includes('edit')) {
       this.create = false
@@ -105,15 +105,15 @@ export default {
   },
 
   methods: {
-    submit: function() {
+    submit: function () {
       if (this.create) this.createCompetitor()
       else this.updateCompetitor()
     },
 
-    getCompetitorDetails: function() {
+    getCompetitorDetails: function () {
       return axios
         .get(`/api/competitors/${this.$route.params.id}`)
-        .then(response => {
+        .then((response) => {
           if (!response.data) this.notFound = true
           else {
             this.id = this.$route.params.id
@@ -129,10 +129,10 @@ export default {
         )
     },
 
-    getLeagues: function() {
+    getLeagues: function () {
       return axios
         .get('/api/leagues')
-        .then(response => {
+        .then((response) => {
           this.leagues = response.data
         })
         .catch(() =>
@@ -140,11 +140,11 @@ export default {
         )
     },
 
-    validateForm: function() {
+    validateForm: function () {
       return this.name !== '' && this.league !== '' && this.course !== ''
     },
 
-    createCompetitor: function() {
+    createCompetitor: function () {
       if (this.validateForm()) {
         return axios
           .post('/api/competitors', {
@@ -154,7 +154,7 @@ export default {
             league: this.league,
             course: this.course,
           })
-          .then(response => this.returnToCompetitorsPage(response))
+          .then((response) => this.returnToCompetitorsPage(response))
           .catch(() =>
             this.$messages.addMessage(
               'Error: Problem Creating Competitor - Please Try Again'
@@ -166,7 +166,7 @@ export default {
         )
     },
 
-    updateCompetitor: function() {
+    updateCompetitor: function () {
       if (this.validateForm()) {
         return axios
           .put(`/api/competitors/${this.id}`, {
@@ -177,8 +177,8 @@ export default {
             league: this.league,
             course: this.course,
           })
-          .then(response => this.returnToCompetitorsPage(response))
-          .catch(error =>
+          .then((response) => this.returnToCompetitorsPage(response))
+          .catch((error) =>
             this.$messages.addMessage(error.response.data.message)
           )
       } else
@@ -187,7 +187,7 @@ export default {
         )
     },
 
-    returnToCompetitorsPage: function(response) {
+    returnToCompetitorsPage: function (response) {
       // Go to league page after successful update/ creation
       this.$messages.addMessage(response.data.message)
       this.$router.push('/competitors')

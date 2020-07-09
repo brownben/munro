@@ -2,26 +2,26 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="dropdown-input relative top--4"
+  class="relative dropdown-input top--4"
   includeblank="true"
 >
   <label
-    class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+    class="relative p-1 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
   >
     
   </label>
    
   <div
-    class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
+    class="visible w-full px-4 py-2 border outline-none border-main rounded-shape"
   >
     <p
-      class="leading-normal h-6 truncate"
+      class="h-6 leading-normal truncate"
     >
       
     </p>
      
     <svg
-      class="h-8 text-main float-right fill-current mr--3 mt--68/10"
+      class="float-right h-8 fill-current text-main mr--3 mt--68/10"
       viewBox="0 0 24 24"
     >
       <path
@@ -36,26 +36,26 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
+    class="absolute z-40 w-full mb-2 text-center bg-white border border-t-0 select-none dropdown text-body border-main"
     name="open"
     style="display: none;"
   >
     <p
-      class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+      class="px-3 py-2 leading-normal text-center truncate select-none hover:bg-main-veryLight"
     >
       
         Item 1
       
     </p>
     <p
-      class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+      class="px-3 py-2 leading-normal text-center truncate select-none hover:bg-main-veryLight"
     >
       
         Item 2
       
     </p>
     <p
-      class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+      class="px-3 py-2 leading-normal text-center truncate select-none hover:bg-main-veryLight"
     >
       
         Item 3

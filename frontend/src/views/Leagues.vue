@@ -14,15 +14,15 @@
       description="League Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/leagues"
     />
-    <h1 class="text-main text-3xl font-normal font-heading">Leagues</h1>
-    <div class="flex flex-wrap flex-row">
+    <h1 class="text-3xl font-normal text-main font-heading">Leagues</h1>
+    <div class="flex flex-row flex-wrap">
       <div
         v-for="league of leagues"
         :key="league.name"
-        class="w-full md:w-1/2 my-4 md:px-4"
+        class="w-full my-4 md:w-1/2 md:px-4"
       >
-        <div class="h-full w-full card">
-          <h1 class="text-2xl font-heading my-2">{{ league.name }}</h1>
+        <div class="w-full h-full card">
+          <h1 class="my-2 text-2xl font-heading">{{ league.name }}</h1>
           <p v-if="league.description">{{ league.description }}</p>
           <p v-if="league.website">
             More information can be found on their
@@ -53,15 +53,15 @@ export default {
     }
   },
 
-  created: function() {
+  created: function () {
     this.getLeagues()
   },
 
   methods: {
-    getLeagues: function() {
+    getLeagues: function () {
       return axios
         .get('/api/leagues')
-        .then(response => {
+        .then((response) => {
           this.leagues = response.data
         })
         .catch(() =>

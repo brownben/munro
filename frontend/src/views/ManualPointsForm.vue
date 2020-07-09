@@ -13,19 +13,19 @@
       title="Munro - Manual Points"
       description
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
       Manual Points
     </h1>
     <form @submit.prevent="addResult">
       <dropdown-input
         v-model="league"
-        :list="leagues.map(league => league.name)"
+        :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
       />
       <dropdown-input
         v-model="event"
-        :list="eventsInLeague.map(event => event.name + ' - ' + event.date)"
+        :list="eventsInLeague.map((event) => event.name + ' - ' + event.date)"
         :include-blank="true"
         label="Event:"
       />
@@ -72,83 +72,83 @@ export default {
   }),
 
   computed: {
-    competitorsForLeague: function() {
+    competitorsForLeague: function () {
       const filtered = this.competitors.filter(
-        competitor =>
+        (competitor) =>
           competitor.league === this.league && competitor.course === this.course
       )
       return filtered.sort((a, b) => a.name > b.name)
     },
 
-    coursesInLeague: function() {
+    coursesInLeague: function () {
       const selectedLeague = this.leagues.filter(
-        league => league.name === this.league
+        (league) => league.name === this.league
       )
       if (selectedLeague.length > 0) return selectedLeague[0].courses
       else return []
     },
 
-    eventsInLeague: function() {
-      return this.events.filter(event => event.league === this.league)
+    eventsInLeague: function () {
+      return this.events.filter((event) => event.league === this.league)
     },
   },
 
-  created: function() {
+  created: function () {
     this.getLeagues()
     this.getCompetitors()
     this.getEvents()
   },
 
   methods: {
-    getCompetitors: function() {
+    getCompetitors: function () {
       return axios
         .get('/api/competitors')
-        .then(response => {
+        .then((response) => {
           this.competitors = response.data
         })
         .catch(() => this.$messages.addMessage('Problem Fetching Competitors'))
     },
 
-    getLeagues: function() {
+    getLeagues: function () {
       return axios
         .get('/api/leagues')
-        .then(response => {
+        .then((response) => {
           this.leagues = response.data
         })
         .catch(() => this.$messages.addMessage('Problem Fetching Leagues'))
     },
 
-    getEvents: function() {
+    getEvents: function () {
       return axios
         .get('/api/events')
-        .then(response => {
+        .then((response) => {
           this.events = response.data
         })
         .catch(() => this.$messages.addMessage('Problem Fetching Events'))
     },
 
-    validateForm: function() {
+    validateForm: function () {
       return this.event !== '' && this.course !== '' && this.competitor !== ''
     },
 
-    twoDigits: function(number) {
+    twoDigits: function (number) {
       if (number.toString().length < 2) return `0${number.toString()}`
       else return number
     },
 
-    elapsedTime: function(totalTimeInSeconds) {
+    elapsedTime: function (totalTimeInSeconds) {
       const timeInMinutes = Math.floor(totalTimeInSeconds / 60)
       const timeInSeconds = Math.abs(totalTimeInSeconds % 60)
       return `${this.twoDigits(timeInMinutes)}:${this.twoDigits(timeInSeconds)}`
     },
 
-    elapsedTimeToSeconds: function(time) {
+    elapsedTimeToSeconds: function (time) {
       return (
         parseInt(time.split(':')[0], 10) * 60 + parseInt(time.split(':')[1], 10)
       )
     },
 
-    competitorTransformForSelect: function(competitor) {
+    competitorTransformForSelect: function (competitor) {
       if (competitor.club && competitor.ageClass)
         return `${competitor.name} (${competitor.ageClass}, ${competitor.club}) [${competitor.id}]`
       else if (competitor.club)
@@ -158,12 +158,12 @@ export default {
       else return `${competitor.name} [${competitor.id}]`
     },
 
-    addResult: function() {
+    addResult: function () {
       if (!this.validateForm())
         this.$messages.addMessage('Please Select a Competitor and an Event')
       else {
         const selectedEvent = this.events.find(
-          event =>
+          (event) =>
             event.name === this.event.split(' - ')[0] &&
             event.date === this.event.split(' - ')[1]
         )
@@ -178,15 +178,15 @@ export default {
               points: this.points,
               event: event,
             })
-            .then(response => this.returnToCompetitorsPage(response))
-            .catch(error =>
+            .then((response) => this.returnToCompetitorsPage(response))
+            .catch((error) =>
               this.$messages.addMessage(error.response.data.message)
             )
         }
       }
     },
 
-    returnToCompetitorsPage: function(response) {
+    returnToCompetitorsPage: function (response) {
       // Go to league page after successful update/ creation
       this.$messages.addMessage(response.data.message)
       this.$router.push('/competitors')

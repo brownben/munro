@@ -12,7 +12,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
    
   <div>
     <h1
-      class="text-main text-3xl font-normal font-heading mb-2"
+      class="mb-2 text-3xl font-normal text-main font-heading"
     >
       
       Create Event
@@ -23,106 +23,106 @@ exports[`Creation Form - Renders Correctly 1`] = `
      
     <form>
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Name:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Date: (YYYY-MM-DD)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Club/ Organiser:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Website: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Results: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Winsplits: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Routegadget: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
@@ -135,16 +135,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
       />
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           More Information:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
@@ -177,7 +177,7 @@ exports[`Update Form - Renders Correctly 1`] = `
     <!---->
      
     <h1
-      class="text-main text-3xl font-normal font-heading mb-2"
+      class="mb-2 text-3xl font-normal text-main font-heading"
     >
       
       Edit Event
@@ -186,106 +186,106 @@ exports[`Update Form - Renders Correctly 1`] = `
      
     <form>
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Name:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Date: (YYYY-MM-DD)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Club/ Organiser:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Website: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Results: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Winsplits: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           Routegadget: (URL)
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="url"
         />
       </div>
@@ -298,16 +298,16 @@ exports[`Update Form - Renders Correctly 1`] = `
       />
        
       <div
-        class="text-input top--4 relative"
+        class="relative text-input top--4"
       >
         <label
-          class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
         >
           More Information:
         </label>
          
         <input
-          class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
           type="text"
         />
       </div>

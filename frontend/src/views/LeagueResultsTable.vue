@@ -8,15 +8,11 @@
 -->
 
 <template>
-  <div class="w-full pt-2 px-4 md:px-8 lg:px-16 xl:px-20">
+  <div class="w-full px-4 pt-2 md:px-8 lg:px-16 xl:px-20">
     <vue-headful
       :title="`Munro - ${$route.params.name} - ${$route.params.course} Results`"
-      :description="
-        `Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`
-      "
-      :url="
-        `https://munro-leagues.herokuapp.com/leagues/${$route.params.name}/results/${$route.params.course}`
-      "
+      :description="`Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`"
+      :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}/results/${$route.params.course}`"
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -78,7 +74,7 @@
               <th
                 v-for="event of eventsWithResults"
                 :key="eventsWithResults.indexOf(event)"
-                class="points relative"
+                class="relative points"
                 @click="sortBy('points-' + eventsWithResults.indexOf(event))"
               >
                 <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
@@ -147,7 +143,7 @@
             <tr
               v-if="
                 smallWindow &&
-                  openedRows.includes(filteredResults.indexOf(result))
+                openedRows.includes(filteredResults.indexOf(result))
               "
               :key="result.name + '-mobile'"
               :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
@@ -179,11 +175,11 @@
       </table>
     </div>
     <!-- If no results show, message -->
-    <h2 v-if="!found" class="text-3xl font-heading my-10 mx-2">
+    <h2 v-if="!found" class="mx-2 my-10 text-3xl font-heading">
       Sorry, No Results Could Be Found
     </h2>
 
-    <div v-if="otherCourses.length > 0" class="card my-6 mx-1">
+    <div v-if="otherCourses.length > 0" class="mx-1 my-6 card">
       <h2 class="text-2xl font-heading">Results for Other Courses</h2>
       <div>
         <router-link
@@ -229,9 +225,9 @@ export default {
   }),
 
   computed: {
-    resultsWithAgeClassSplit: function() {
+    resultsWithAgeClassSplit: function () {
       // Split age class into age and gender to allow easy sorting
-      return this.rawResults.map(result => {
+      return this.rawResults.map((result) => {
         if (result.ageClass) {
           const regexMatch = result.ageClass.match(
             /([MWmwfFDH])[^0-9]*([0-9]*)/
@@ -246,7 +242,7 @@ export default {
       })
     },
 
-    sortedResults: function() {
+    sortedResults: function () {
       // Sort results by preference
       let property = this.sortedBy
       if (this.sortedBy.includes('points-'))
@@ -259,10 +255,10 @@ export default {
       )
     },
 
-    filteredResults: function() {
+    filteredResults: function () {
       // Filter results by preferences
       return this.sortedResults.filter(
-        result =>
+        (result) =>
           result.name.match(new RegExp(this.filterPreferences.name, 'i')) &&
           result.club.match(new RegExp(this.filterPreferences.club, 'i')) &&
           ((this.filterPreferences.male && this.filterPreferences.female) ||
@@ -275,15 +271,15 @@ export default {
       )
     },
 
-    eventsWithResults: function() {
+    eventsWithResults: function () {
       // Get events with results
-      return this.events.filter(event => event.resultUploaded)
+      return this.events.filter((event) => event.resultUploaded)
     },
   },
 
   // If route changes without reload (if only course parameter changes)
   watch: {
-    $route: async function() {
+    $route: async function () {
       this.rawResults = []
       this.openedRows = []
       await this.getResults()
@@ -293,7 +289,7 @@ export default {
   },
 
   // On load
-  mounted: function() {
+  mounted: function () {
     // Mobile resize watcher
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
@@ -309,17 +305,17 @@ export default {
   },
 
   methods: {
-    handleResize: function() {
+    handleResize: function () {
       if (window.innerWidth > 900) this.smallWindow = false
       else this.smallWindow = true
     },
 
-    getResults: function() {
+    getResults: function () {
       return axios
         .get(
           `/api/leagues/${this.$route.params.name}/results/${this.$route.params.course}`
         )
-        .then(response => {
+        .then((response) => {
           if (response.data.length > 0) this.rawResults = response.data
           else this.found = false
         })
@@ -328,13 +324,13 @@ export default {
         })
     },
 
-    getOtherCourses: function() {
+    getOtherCourses: function () {
       return axios
         .get(`/api/leagues/${this.$route.params.name}`)
-        .then(response => {
+        .then((response) => {
           if (response.data.courses)
             this.otherCourses = response.data.courses.filter(
-              course => course !== this.$route.params.course
+              (course) => course !== this.$route.params.course
             )
           else this.otherCourses = false
           return this.otherCourses
@@ -344,10 +340,10 @@ export default {
         })
     },
 
-    getEventList: function() {
+    getEventList: function () {
       return axios
         .get(`/api/leagues/${this.$route.params.name}/events`)
-        .then(response => {
+        .then((response) => {
           this.events = response.data
         })
         .catch(() =>
@@ -355,7 +351,7 @@ export default {
         )
     },
 
-    sort: function(array, property, ascending = true, byPoints = false) {
+    sort: function (array, property, ascending = true, byPoints = false) {
       let sortFunction
       if (byPoints) {
         sortFunction = (a, b) => {
@@ -378,7 +374,7 @@ export default {
       else return array.sort(sortFunction).reverse()
     },
 
-    sortBy: function(sortBy) {
+    sortBy: function (sortBy) {
       // Change what property it is sorted by
       this.openedRows = []
       // If it is a different property, make it sort ascending else change direction of sort
@@ -387,7 +383,7 @@ export default {
       this.sortedBy = sortBy
     },
 
-    filterChanged: function(data) {
+    filterChanged: function (data) {
       // Update data of view if Filter Menu emits a change
       this.filterPreferences.name = data.name
       this.filterPreferences.club = data.club
@@ -399,7 +395,7 @@ export default {
       this.filterPreferences.female = data.female
     },
 
-    toggleRow: function(id) {
+    toggleRow: function (id) {
       // Shows the detailed points view when the row for the results is clicked on a mobile
       const index = this.openedRows.indexOf(id)
       if (index > -1) this.openedRows.splice(index, 1)

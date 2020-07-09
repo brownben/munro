@@ -13,7 +13,7 @@ exports[`Renders Correctly 1`] = `
   <!---->
    
   <div
-    class="w-full bg-main text-white p-3 text-center mt-2"
+    class="w-full p-3 mt-2 text-center text-white bg-main"
   >
     <h2
       class="text-2xl font-heading"
@@ -32,10 +32,10 @@ exports[`Renders Correctly 1`] = `
     <!---->
      
     <div
-      class="card my-4"
+      class="my-4 card"
     >
       <h2
-        class="font-heading text-xl my-1"
+        class="my-1 text-xl font-heading"
       >
         
         200m
@@ -73,10 +73,10 @@ exports[`Renders Correctly 1`] = `
       <!---->
     </div>
     <div
-      class="card my-4"
+      class="my-4 card"
     >
       <h2
-        class="font-heading text-xl my-1"
+        class="my-1 text-xl font-heading"
       >
         
         Longniddry
@@ -106,10 +106,10 @@ exports[`Renders Correctly 1`] = `
       <!---->
     </div>
     <div
-      class="card my-4"
+      class="my-4 card"
     >
       <h2
-        class="font-heading text-xl my-1"
+        class="my-1 text-xl font-heading"
       >
         
         South Edinburgh

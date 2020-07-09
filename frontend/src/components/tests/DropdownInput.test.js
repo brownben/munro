@@ -32,10 +32,7 @@ test("Open's and Closes Correctly", () => {
   wrapper.find('.visible').trigger('click')
   expect(wrapper.find('.dropdown').isVisible()).toBeFalsy()
   wrapper.find('.visible').trigger('click')
-  wrapper
-    .findAll('p')
-    .at(3)
-    .trigger('click')
+  wrapper.findAll('p').at(3).trigger('click')
   expect(wrapper.vm.currentValue).toBe('Item 3')
   expect(wrapper.find('.dropdown').isVisible()).toBeFalsy()
 })

@@ -11,7 +11,7 @@ exports[`Renders Correctly 1`] = `
   />
    
   <h1
-    class="text-main text-3xl font-normal font-heading mb-2"
+    class="mb-2 text-3xl font-normal text-main font-heading"
   >
     
     Competitors
@@ -58,7 +58,7 @@ exports[`Renders Correctly 1`] = `
     </div>
      
     <div
-      class="text-left w-full top-0"
+      class="top-0 w-full text-left"
     >
       <dropdown-input-stub
         label="League:"

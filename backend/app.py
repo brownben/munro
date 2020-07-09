@@ -6,7 +6,6 @@ from flask_talisman import Talisman
 import os
 import json
 
-# import requests # Enable for Development Forwarding
 
 import competitorRoutes
 import eventRoutes
@@ -23,18 +22,22 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 Compress(app)
 
 
-talisman = Talisman(
-    app,
-    frame_options="ALLOW_FROM",
-    frame_options_allow_from="*",
-    content_security_policy={
-        "script-src": "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=' storage.googleapis.com",
-        "default-src": "'self' www.googleapis.com",
-        "img-src": "*",
-        "style-src": "'self' 'unsafe-inline' fonts.googleapis.com",
-        "font-src": "'self' fonts.googleapis.com fonts.gstatic.com",
-    },
-)
+if not app.debug:
+    talisman = Talisman(
+        app,
+        frame_options="ALLOW_FROM",
+        frame_options_allow_from="*",
+        content_security_policy={
+            "script-src": "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=' storage.googleapis.com",
+            "default-src": "'self' www.googleapis.com",
+            "img-src": "*",
+            "style-src": "'self' 'unsafe-inline' fonts.googleapis.com",
+            "font-src": "'self' fonts.googleapis.com fonts.gstatic.com",
+        },
+    )
+else:
+    import requests  # Enable for Development Forwarding
+
 app.secret_key = os.urandom(25)
 
 
@@ -87,10 +90,9 @@ api.add_resource(uploadRoutes.Upload, "/api/upload")
 @app.route("/<path:path>")
 def catch_all(path):
     # If in debug access files from VueJS Development Server
-    """
     if app.debug:
         return requests.get("http://localhost:8080/{}".format(path)).text
-    """
+
     return render_template("index.html")
 
 

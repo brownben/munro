@@ -11,7 +11,7 @@
       description="Instrcutions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/upload-instructions"
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
       Upload Instructions
     </h1>
     <ol>

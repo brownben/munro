@@ -9,7 +9,7 @@ export default {
   messages: [],
   id: 0,
 
-  addMessage: function(value) {
+  addMessage: function (value) {
     const id = this.id
     this.id += 1
 
@@ -19,17 +19,17 @@ export default {
     })
 
     // Remove message after 15s
-    setTimeout(id => this.removeMessage(id), 15000, id)
+    setTimeout((id) => this.removeMessage(id), 15000, id)
   },
 
-  clearMessages: function() {
+  clearMessages: function () {
     // Clear messages in a way whch can be tracked by VueJS object tracker, so view can be refreshed
     this.messages.splice(0, this.messages.length)
   },
 
-  removeMessage: function(id) {
+  removeMessage: function (id) {
     this.messages.splice(
-      this.messages.map(message => message.id).indexOf(id),
+      this.messages.map((message) => message.id).indexOf(id),
       1
     )
   },

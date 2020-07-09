@@ -8,21 +8,21 @@ exports[`Renders Correctly 1`] = `
   name="fade"
 >
   <p
-    class="card-color m-3 font-heading z-40"
+    class="z-40 m-3 card-color font-heading"
   >
     
       Message 0
     
   </p>
   <p
-    class="card-color m-3 font-heading z-40"
+    class="z-40 m-3 card-color font-heading"
   >
     
       Message 1
     
   </p>
   <p
-    class="card-color m-3 font-heading z-40"
+    class="z-40 m-3 card-color font-heading"
   >
     
       Message 2

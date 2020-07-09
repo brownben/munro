@@ -9,15 +9,15 @@
         :title="'Munro - ' + $route.params.name"
         :description="
           'Event Information and Results for the ' +
-            $route.params.name +
-            'league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'
+          $route.params.name +
+          'league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'
         "
         :head="{
           meta: { name: 'robots', content: 'noindex' },
         }"
       />
-      <div v-for="event of events" :key="event.name" class="card my-4">
-        <h2 class="font-heading text-xl my-1">{{ event.name }}</h2>
+      <div v-for="event of events" :key="event.name" class="my-4 card">
+        <h2 class="my-1 text-xl font-heading">{{ event.name }}</h2>
         <p v-if="event.date">
           On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
             event.date.split('-')[0]
@@ -80,7 +80,7 @@ export default {
     NotFound,
   },
 
-  data: function() {
+  data: function () {
     return {
       league: {},
       events: [],
@@ -89,20 +89,20 @@ export default {
 
   watch: {
     // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    $route: async function() {
+    $route: async function () {
       await this.getLeague()
       this.getLeagueEvents()
     },
   },
 
-  mounted: async function() {
+  mounted: async function () {
     // Get details on load
     await this.getLeague()
     this.getLeagueEvents()
   },
 
   methods: {
-    scoringMethodShorthandToFull: value => {
+    scoringMethodShorthandToFull: (value) => {
       if (value === 'position') return 'Position Based (100 Max)'
       else if (value === 'position50') return 'Position Based (50 Max)'
       else if (value === 'position99') return 'Position Based (99 Max)'
@@ -120,10 +120,10 @@ export default {
       else return ''
     },
 
-    getLeague: function() {
+    getLeague: function () {
       return axios
         .get(`/api/leagues/${this.$route.params.name}`)
-        .then(response => {
+        .then((response) => {
           this.league = response.data
         })
         .catch(() =>
@@ -131,11 +131,11 @@ export default {
         )
     },
 
-    getLeagueEvents: function() {
+    getLeagueEvents: function () {
       if (this.league) {
         return axios
           .get(`/api/leagues/${this.league.name}/events`)
-          .then(response => {
+          .then((response) => {
             this.events = response.data
           })
           .catch(() =>

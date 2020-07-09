@@ -18,7 +18,7 @@
       <p
         v-for="message of messages"
         :key="message.id"
-        class="card-color m-3 font-heading z-40"
+        class="z-40 m-3 card-color font-heading"
         @click="clear(message.id)"
       >
         {{ message.text }}
@@ -31,14 +31,14 @@
 export default {
   name: 'Messages',
 
-  data: function() {
+  data: function () {
     return {
       messages: this.$messages.messages,
     }
   },
 
   methods: {
-    clear: function(id) {
+    clear: function (id) {
       this.$messages.removeMessage(id)
     },
   },

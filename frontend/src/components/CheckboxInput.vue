@@ -8,8 +8,8 @@
 -->
 
 <template>
-  <div class="checkbox-input mt-3">
-    <label class="text-md select-none font-heading text-main">
+  <div class="mt-3 checkbox-input">
+    <label class="select-none text-md font-heading text-main">
       {{ label }}
       <input
         :checked="value"

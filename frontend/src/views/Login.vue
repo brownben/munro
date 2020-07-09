@@ -13,7 +13,7 @@
       title="Munro - Login"
       description
     />
-    <h1 class="text-main text-2xl font-heading my-2">Admin Login</h1>
+    <h1 class="my-2 text-2xl text-main font-heading">Admin Login</h1>
     <form @submit.prevent="sendLoginRequest">
       <text-input v-model="username" label="Email Address:" type="email" />
       <text-input v-model="password" label="Password:" type="password" />
@@ -21,7 +21,7 @@
     </form>
     <div class="mt-4 card-color">
       <p>
-        <b class="font-heading p-2 text-lg">Looking for Results Upload?</b>
+        <b class="p-2 text-lg font-heading">Looking for Results Upload?</b>
         You don't have to login, just visit the
         <router-link to="/upload" class="link">upload page</router-link>
       </p>
@@ -45,7 +45,7 @@ export default {
     }
   },
 
-  mounted: function() {
+  mounted: function () {
     if (this.$auth.user) {
       this.$messages.addMessage('You Are Already Logged In')
       this.$router.push('/')
@@ -56,20 +56,20 @@ export default {
   },
 
   methods: {
-    blankFields: function() {
+    blankFields: function () {
       this.username = ''
       this.password = ''
     },
 
-    validateLogin: function() {
+    validateLogin: function () {
       return this.username !== '' && this.password !== ''
     },
 
-    sendLoginRequest: function() {
+    sendLoginRequest: function () {
       if (this.validateLogin()) {
         return auth
           .login(this.username, this.password)
-          .then(response => {
+          .then((response) => {
             if (response)
               this.$router.replace(this.$route.query.redirect || '/')
             this.$messages.addMessage(

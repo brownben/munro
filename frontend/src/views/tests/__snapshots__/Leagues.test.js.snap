@@ -12,13 +12,13 @@ exports[`Renders Correctly 1`] = `
   />
    
   <h1
-    class="text-main text-3xl font-normal font-heading"
+    class="text-3xl font-normal text-main font-heading"
   >
     Leagues
   </h1>
    
   <div
-    class="flex flex-wrap flex-row"
+    class="flex flex-row flex-wrap"
   />
 </div>
 `;

@@ -11,7 +11,8 @@ import { sampleSingleLeague } from '@/tests/test data/leagues'
 import { sampleThreeEvents } from '@/tests/test data/events'
 
 jest.mock('axios')
-const flushPromises = () => new Promise(resolve => global.setImmediate(resolve))
+const flushPromises = () =>
+  new Promise((resolve) => global.setImmediate(resolve))
 
 beforeEach(() => {
   jest.resetAllMocks()

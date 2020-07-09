@@ -13,7 +13,7 @@
       title="Munro - Competitors"
       description
     />
-    <h1 class="text-main text-3xl font-normal font-heading mb-2">
+    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
       Competitors
     </h1>
     <div class="card">
@@ -34,10 +34,10 @@
         >
       </div>
 
-      <div class="text-left w-full top-0">
+      <div class="top-0 w-full text-left">
         <dropdown-input
           v-model="league"
-          :list="leagues.map(league => league.name)"
+          :list="leagues.map((league) => league.name)"
           :shift="false"
           label="League:"
         />
@@ -114,13 +114,13 @@ export default {
   }),
 
   computed: {
-    filteredCompetitors: function() {
+    filteredCompetitors: function () {
       return this.competitors.filter(
-        competitor => competitor.league === this.league
+        (competitor) => competitor.league === this.league
       )
     },
 
-    sortedCompetitors: function() {
+    sortedCompetitors: function () {
       return this.sort(
         this.filteredCompetitors,
         this.sortedBy,
@@ -129,7 +129,7 @@ export default {
     },
   },
 
-  created: function() {
+  created: function () {
     if (this.$route.params.league && this.$route.params.league !== '')
       this.league = this.$route.params.league
     this.getLeagues()
@@ -137,10 +137,10 @@ export default {
   },
 
   methods: {
-    getCompetitors: function() {
+    getCompetitors: function () {
       return axios
         .get('/api/competitors')
-        .then(response => {
+        .then((response) => {
           this.competitors = response.data
         })
         .catch(() =>
@@ -148,7 +148,7 @@ export default {
         )
     },
 
-    sort: function(array, property, ascending = true) {
+    sort: function (array, property, ascending = true) {
       // Selection Sort using Single List for Sorting Results
 
       const sortFunction = (a, b) => {
@@ -163,7 +163,7 @@ export default {
       else return array.sort(sortFunction).reverse()
     },
 
-    sortBy: function(sortBy) {
+    sortBy: function (sortBy) {
       // Change what property it is sorted by
       // If it is a different property, make it sort ascending else change direction of sort
       if (sortBy !== this.sortedBy) this.ascendingSort = false
@@ -171,10 +171,10 @@ export default {
       this.sortedBy = sortBy
     },
 
-    getLeagues: function() {
+    getLeagues: function () {
       return axios
         .get('/api/leagues')
-        .then(response => {
+        .then((response) => {
           this.leagues = response.data
         })
         .catch(() =>

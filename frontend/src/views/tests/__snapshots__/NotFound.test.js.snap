@@ -11,10 +11,10 @@ exports[`Renders Correctly 1`] = `
   />
    
   <div
-    class="card mt-5"
+    class="mt-5 card"
   >
     <h1
-      class="text-main text-3xl font-heading my-2"
+      class="my-2 text-3xl text-main font-heading"
     >
       
       Sorry We Can't Find What You Are Looking For
@@ -27,7 +27,7 @@ exports[`Renders Correctly 1`] = `
      
     <div>
       <button
-        class="button inline-block"
+        class="inline-block button"
       >
         
         Go Back
@@ -35,7 +35,7 @@ exports[`Renders Correctly 1`] = `
       </button>
        
       <router-link-stub
-        class="button inline-block"
+        class="inline-block button"
         to="/"
       >
         Return Home

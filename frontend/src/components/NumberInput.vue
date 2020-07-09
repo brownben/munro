@@ -1,7 +1,7 @@
 <template>
-  <div class="text-input top--4 relative appearance-none">
+  <div class="relative appearance-none text-input top--4">
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
       >{{ label }}</label
     >
     <input
@@ -9,7 +9,7 @@
       :min="min"
       :max="max"
       type="number"
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none appearance-none"
+      class="w-full px-4 py-2 border outline-none appearance-none border-main rounded-shape text-body"
       @input="$emit('input', $event.target.value)"
     />
   </div>

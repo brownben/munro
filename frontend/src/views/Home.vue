@@ -210,7 +210,7 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
       auth: this.$auth,
     }

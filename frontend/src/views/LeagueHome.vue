@@ -10,18 +10,16 @@
   <div class="">
     <vue-headful
       :title="`Munro - ${$route.params.name}`"
-      :description="
-        `Event Information and Results for the
-          ${$route.params.name} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`
-      "
+      :description="`Event Information and Results for the
+          ${$route.params.name} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`"
       :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}`"
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
     />
 
-    <div v-if="league && league.name" class="view text-center md:text-left">
-      <h1 class="text-main text-3xl font-normal font-heading">
+    <div v-if="league && league.name" class="text-center view md:text-left">
+      <h1 class="text-3xl font-normal text-main font-heading">
         {{ league.name }}
       </h1>
       <p v-if="league.description" class="my-1">{{ league.description }}</p>
@@ -56,7 +54,7 @@
     </div>
     <div
       v-if="events && events.length > 0"
-      class="w-full bg-main text-white p-3 text-center mt-2"
+      class="w-full p-3 mt-2 text-center text-white bg-main"
     >
       <h2 class="text-2xl font-heading">League Results</h2>
       <div class="pb-1">
@@ -70,7 +68,7 @@
       </div>
     </div>
     <div class="view">
-      <div v-if="auth.user && league && league.name" class="card my-4">
+      <div v-if="auth.user && league && league.name" class="my-4 card">
         <h2 class="text-2xl font-heading">Admin Actions</h2>
         <div>
           <router-link :to="$route.path + '/create-event'" class="button"
@@ -87,14 +85,14 @@
           >
         </div>
       </div>
-      <div v-for="event of events" :key="event.name" class="card my-4">
+      <div v-for="event of events" :key="event.name" class="my-4 card">
         <h2
           :class="{ 'text-2xl': auth.user }"
-          class="font-heading text-xl my-1"
+          class="my-1 text-xl font-heading"
         >
           {{ event.name }}
         </h2>
-        <div v-if="auth.user" class="event-actions mb-2">
+        <div v-if="auth.user" class="mb-2 event-actions">
           <router-link :to="'/events/' + event.id + '/edit'" class="button"
             >Edit Event</router-link
           >
@@ -107,11 +105,11 @@
         </div>
         <div class="my-1">
           <p v-if="auth.user">
-            <b class="block sm:inline mt-1">Event ID:</b>
+            <b class="block mt-1 sm:inline">Event ID:</b>
             {{ event.id }}
           </p>
           <p v-if="auth.user && event.uploadKey">
-            <b class="block sm:inline mt-1">Event Upload Key:</b>
+            <b class="block mt-1 sm:inline">Event Upload Key:</b>
             {{ event.uploadKey }}
           </p>
         </div>
@@ -184,7 +182,7 @@ export default {
     NotFound,
   },
 
-  data: function() {
+  data: function () {
     return {
       league: {},
       events: [],
@@ -194,20 +192,20 @@ export default {
 
   watch: {
     // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    $route: async function() {
+    $route: async function () {
       await this.getLeague()
       this.getLeagueEvents()
     },
   },
 
-  mounted: async function() {
+  mounted: async function () {
     // Get details on load
     await this.getLeague()
     this.getLeagueEvents()
   },
 
   methods: {
-    scoringMethodShorthandToFull: value => {
+    scoringMethodShorthandToFull: (value) => {
       if (value === 'position') return 'Position Based System (100 Max)'
       else if (value === 'position50') return 'Position Based System (50 Max)'
       else if (value === 'position99') return 'Position Based System (99 Max)'
@@ -225,10 +223,10 @@ export default {
       else return ''
     },
 
-    getLeague: function() {
+    getLeague: function () {
       return axios
         .get(`/api/leagues/${this.$route.params.name}`)
-        .then(response => {
+        .then((response) => {
           this.league = response.data
         })
         .catch(() =>
@@ -236,12 +234,12 @@ export default {
         )
     },
 
-    getLeagueEvents: function() {
+    getLeagueEvents: function () {
       if (this.league && this.league.name) {
         if (this.auth.user) {
           return axios
             .get(`/api/leagues/${this.league.name}/events/uploadKey`)
-            .then(response => {
+            .then((response) => {
               this.events = response.data
             })
             .catch(() =>
@@ -250,7 +248,7 @@ export default {
         } else {
           return axios
             .get(`/api/leagues/${this.league.name}/events`)
-            .then(response => {
+            .then((response) => {
               this.events = response.data
             })
             .catch(() =>
@@ -261,7 +259,7 @@ export default {
       return false
     },
 
-    deleteLeague: function() {
+    deleteLeague: function () {
       if (
         confirm(
           `Are you Sure you Want to Delete League - ${this.league.name}? \nThis Action Can't Be Recovered`
@@ -281,7 +279,7 @@ export default {
       }
     },
 
-    deleteEvent: function(event) {
+    deleteEvent: function (event) {
       if (
         confirm(
           `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`

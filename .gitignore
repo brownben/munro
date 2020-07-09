@@ -202,3 +202,7 @@ databaseFiles
 # Test Coverage Files
 coverage/
 test coverage/
+
+# Vue Build
+frontend/dist/**
+backend/dist/**

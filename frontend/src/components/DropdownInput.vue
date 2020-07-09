@@ -6,18 +6,18 @@
 -->
 
 <template>
-  <div class="dropdown-input relative" :class="{ 'top--4': shift }">
+  <div class="relative dropdown-input" :class="{ 'top--4': shift }">
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3"
+      class="relative p-1 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
       >{{ label }}</label
     >
     <div
-      class="visible w-full border border-main rounded-shape px-4 py-2 outline-none"
+      class="visible w-full px-4 py-2 border outline-none border-main rounded-shape"
       @click="toggle"
     >
-      <p class="leading-normal h-6 truncate">{{ currentValue }}</p>
+      <p class="h-6 leading-normal truncate">{{ currentValue }}</p>
       <svg
-        class="h-8 text-main float-right fill-current mr--3 mt--68/10"
+        class="float-right h-8 fill-current text-main mr--3 mt--68/10"
         viewBox="0 0 24 24"
       >
         <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
@@ -27,12 +27,12 @@
     <transition name="open">
       <div
         v-show="open"
-        class="dropdown absolute text-body z-40 bg-white text-center w-full border border-main select-none border-t-0 mb-2"
+        class="absolute z-40 w-full mb-2 text-center bg-white border border-t-0 select-none dropdown text-body border-main"
       >
         <p
           v-for="item in list"
           :key="item"
-          class="select-none leading-normal text-center px-3 py-2 truncate hover:bg-main-veryLight"
+          class="px-3 py-2 leading-normal text-center truncate select-none hover:bg-main-veryLight"
           @click="changeSelection(item)"
         >
           {{ item }}
@@ -65,7 +65,7 @@ export default {
     },
   },
 
-  data: function() {
+  data: function () {
     return {
       open: false,
       currentValue: this.value,
@@ -73,19 +73,19 @@ export default {
   },
 
   watch: {
-    value: function(value) {
+    value: function (value) {
       this.currentValue = value
     },
   },
 
   methods: {
-    changeSelection: function(value) {
+    changeSelection: function (value) {
       this.open = false
       this.currentValue = value
       this.$emit('input', value)
     },
 
-    toggle: function() {
+    toggle: function () {
       this.open = !this.open
       if (this.open) this.$emit('opened')
     },

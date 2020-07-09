@@ -21,7 +21,8 @@ import {
 const sampleThreeResultsCopy = JSON.parse(JSON.stringify(sampleThreeResults))
 
 jest.mock('axios')
-const flushPromises = () => new Promise(resolve => global.setImmediate(resolve))
+const flushPromises = () =>
+  new Promise((resolve) => global.setImmediate(resolve))
 beforeEach(() => {
   jest.resetAllMocks()
   axios.get.mockResolvedValue()

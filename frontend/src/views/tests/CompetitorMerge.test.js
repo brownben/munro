@@ -4,7 +4,8 @@ import CompetitorMerge from '@/views/CompetitorMerge'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 
 jest.mock('axios')
-const flushPromises = () => new Promise(resolve => global.setImmediate(resolve))
+const flushPromises = () =>
+  new Promise((resolve) => global.setImmediate(resolve))
 
 beforeEach(() => {
   jest.clearAllMocks()

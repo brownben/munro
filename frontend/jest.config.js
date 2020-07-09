@@ -3,6 +3,8 @@ module.exports = {
   testURL: 'http://localhost/',
   browser: true,
 
+  modulePaths: ['<rootDir>'],
+
   moduleFileExtensions: ['js', 'json', 'vue', 'jsx'],
 
   transform: {

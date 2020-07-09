@@ -36,13 +36,13 @@ firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
 const app = new Vue({
   el: '#app',
   router,
-  render: h => h(App),
+  render: (h) => h(App),
 })
 
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     app.$auth.user = user
-    user.getIdToken().then(token => {
+    user.getIdToken().then((token) => {
       document.cookie = `token=${token};secure;samesite=strict;path=/`
     })
   } else {

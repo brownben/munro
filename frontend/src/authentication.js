@@ -9,17 +9,17 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 
 export default {
-  login: function(username, password) {
+  login: function (username, password) {
     return firebase
       .auth()
       .signInWithEmailAndPassword(username, password)
-      .then(user => {
+      .then((user) => {
         this.user = user
         return user
       })
   },
 
-  logout: function() {
+  logout: function () {
     return firebase
       .auth()
       .signOut()
@@ -28,7 +28,7 @@ export default {
       })
   },
 
-  checkLogin: function() {
+  checkLogin: function () {
     this.user = firebase.auth().currentUser
     if (this.user) return true
     else return false

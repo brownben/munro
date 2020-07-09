@@ -33,7 +33,7 @@ export default {
     AppFooter,
   },
 
-  data: function() {
+  data: function () {
     return {
       auth: this.$auth,
     }

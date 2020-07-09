@@ -12,7 +12,7 @@ exports[`Renders Correctly 1`] = `
   />
    
   <h1
-    class="text-main text-3xl font-normal font-heading mb-2"
+    class="mb-2 text-3xl font-normal text-main font-heading"
   >
     
     Upload Results
@@ -20,14 +20,14 @@ exports[`Renders Correctly 1`] = `
   </h1>
    
   <div
-    class="card-color mt-2 mb-4"
+    class="mt-2 mb-4 card-color"
   >
     <p>
       
       For instructions on how to upload results please visit
       
       <router-link-stub
-        class="link inline text-white ml-1"
+        class="inline ml-1 text-white link"
         to="/upload-instructions"
       >
         
@@ -38,16 +38,16 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Event ID:
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="text"
     />
   </div>
@@ -65,16 +65,16 @@ exports[`Renders Correctly 1`] = `
   </p>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Upload Key:
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="text"
     />
   </div>
@@ -82,22 +82,22 @@ exports[`Renders Correctly 1`] = `
   <!---->
    
   <div
-    class="file-input relative top--4"
+    class="relative file-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3  pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Results File:
     </label>
      
     <p
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none truncate"
+      class="w-full px-4 py-2 truncate border outline-none border-main rounded-shape text-body"
     >
       
     Select a File
     
       <label
-        class="absolute right-0 px-4 border-l border-r border-main rounded-shape text-white bg-main hover:text-main hover:bg-white py-2 mt--2 font-heading inline-block"
+        class="absolute right-0 inline-block px-4 py-2 text-white border-l border-r border-main rounded-shape bg-main hover:text-main hover:bg-white mt--2 font-heading"
         for="file"
       >
         Browse for File
@@ -113,46 +113,46 @@ exports[`Renders Correctly 1`] = `
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Results (URL):
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="url"
     />
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Routegadget (URL):
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="url"
     />
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Winsplits: (URL):
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="url"
     />
   </div>
@@ -173,7 +173,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   />
    
   <h1
-    class="text-main text-3xl font-normal font-heading mb-2"
+    class="mb-2 text-3xl font-normal text-main font-heading"
   >
     
     Upload Results
@@ -181,14 +181,14 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </h1>
    
   <div
-    class="card-color mt-2 mb-4"
+    class="mt-2 mb-4 card-color"
   >
     <p>
       
       For instructions on how to upload results please visit
       
       <router-link-stub
-        class="link inline text-white ml-1"
+        class="inline ml-1 text-white link"
         to="/upload-instructions"
       >
         
@@ -199,16 +199,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Event ID:
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="text"
     />
   </div>
@@ -226,16 +226,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </p>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Upload Key:
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="text"
     />
   </div>
@@ -243,22 +243,22 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   <!---->
    
   <div
-    class="file-input relative top--4"
+    class="relative file-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3  pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Results File:
     </label>
      
     <p
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none truncate"
+      class="w-full px-4 py-2 truncate border outline-none border-main rounded-shape text-body"
     >
       
     Select a File
     
       <label
-        class="absolute right-0 px-4 border-l border-r border-main rounded-shape text-white bg-main hover:text-main hover:bg-white py-2 mt--2 font-heading inline-block"
+        class="absolute right-0 inline-block px-4 py-2 text-white border-l border-r border-main rounded-shape bg-main hover:text-main hover:bg-white mt--2 font-heading"
         for="file"
       >
         Browse for File
@@ -274,46 +274,46 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Results (URL):
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="url"
     />
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Routegadget (URL):
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="url"
     />
   </div>
    
   <div
-    class="text-input top--4 relative"
+    class="relative text-input top--4"
   >
     <label
-      class="font-heading text-sm text-main p-1 mx-3 bg-white relative select-none bottom--3 pb-0"
+      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
     >
       Winsplits: (URL):
     </label>
      
     <input
-      class="w-full border border-main rounded-shape px-4 py-2 text-body outline-none"
+      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
       type="url"
     />
   </div>
