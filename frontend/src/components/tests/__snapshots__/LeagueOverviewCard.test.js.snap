@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
+  event="[object Object]"
+  league="[object Object]"
+>
+   
+  <h1
+    class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
+  >
+    
+    
+  
+  </h1>
+   
+  <p>
+    
+    
+  
+  </p>
+   
+  <!---->
+   
+  <router-link-stub
+    class="mt-4 button"
+    to="/leagues/"
+  >
+    View League
+  </router-link-stub>
+</div>
+`;

@@ -16,67 +16,27 @@
           meta: { name: 'robots', content: 'noindex' },
         }"
       />
-      <div v-for="event of events" :key="event.name" class="my-4 card">
-        <h2 class="my-1 text-xl font-heading">{{ event.name }}</h2>
-        <p v-if="event.date">
-          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
-            event.date.split('-')[0]
-          }}
-          <template v-if="event.organiser">
-            organised by {{ event.organiser }}
-          </template>
-        </p>
-        <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
-        <p v-if="event.website">
-          More Information can be found on their
-          <a
-            :href="event.website"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link"
-            >website</a
-          >
-        </p>
-        <div
-          v-if="event.resultUploaded"
-          class="event-actions event-result-actions"
-        >
-          <a
-            v-if="event.results"
-            :href="event.results"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-            >Results</a
-          >
-          <a
-            v-if="event.winsplits"
-            :href="event.winsplits"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-            >WinSplits</a
-          >
-          <a
-            v-if="event.routegadget"
-            :href="event.routegadget"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-            >Routegadget</a
-          >
-        </div>
-      </div>
+
+      <EventOverviewCard
+        v-for="event of events"
+        :key="event.name"
+        :event="event"
+        :league="league"
+        :auth="auth"
+      />
     </div>
     <not-found v-if="!league" />
   </div>
 </template>
 <script>
 import axios from 'axios'
+
+import EventOverviewCard from '@/components/EventOverviewCard'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
+    EventOverviewCard,
     NotFound,
   },
 
@@ -102,24 +62,6 @@ export default {
   },
 
   methods: {
-    scoringMethodShorthandToFull: (value) => {
-      if (value === 'position') return 'Position Based (100 Max)'
-      else if (value === 'position50') return 'Position Based (50 Max)'
-      else if (value === 'position99') return 'Position Based (99 Max)'
-      else if (value === 'position99average')
-        return 'Position Based (99 Max, Reduced in a Draw)'
-      else if (value === 'positionDouble')
-        return 'Position Based (100 Max, Double Points)'
-      else if (value === 'position50Double')
-        return 'Position Based (50 Max, Double Points)'
-      else if (value === 'timeAverage')
-        return 'Relative to Average Time (1000 Average)'
-      else if (value === 'timeAverage100')
-        return 'Relative to Average Time (100 Average)'
-      else if (value === 'file') return 'From Upload File'
-      else return ''
-    },
-
     getLeague: function () {
       return axios
         .get(`/api/leagues/${this.$route.params.name}`)

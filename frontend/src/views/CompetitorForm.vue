@@ -5,70 +5,56 @@
 -->
 
 <template>
-  <div class="view">
+  <div>
     <vue-headful
-      v-if="create"
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
-      title="Munro - Create Competitor"
+      :title="`Munro - ${title}`"
       description
     />
-    <vue-headful
-      v-else
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      title="Munro - Edit Competitor"
-      description
-    />
-    <div v-if="!notFound">
-      <h1
-        v-if="create"
-        class="mb-2 text-3xl font-normal text-main font-heading"
-      >
-        Create Competitor
-      </h1>
-      <h1
-        v-if="!create"
-        class="mb-2 text-3xl font-normal text-main font-heading"
-      >
-        Edit Competitor
-      </h1>
+
+    <Layout v-if="!notFound" :title="title">
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
-      <form @submit.prevent="submit">
+      <form class="col-span-2" @submit.prevent="submit">
         <text-input v-model.trim="name" label="Name:" />
-        <text-input v-model.trim="club" label="Club:" />
-        <text-input v-model.trim="ageClass" label="Age Class:" />
+        <text-input v-model.trim="club" label="Club:" class="mt-4" />
+        <text-input v-model.trim="ageClass" label="Age Class:" class="mt-4" />
         <dropdown-input
           v-model="league"
           :list="leagues.map((league) => league.name)"
           label="League:"
+          class="mt-4"
         />
         <dropdown-input
           v-model="course"
           :list="coursesInLeague"
           label="Course:"
+          class="mt-4"
         />
-        <button v-if="create" class="button-lg">Create Competitor</button>
-        <button v-if="!create" class="button-lg">Update Competitor</button>
+
+        <button v-if="create" class="mt-8 button-lg">Create Competitor</button>
+        <button v-else class="mt-8 button-lg">Update Competitor</button>
       </form>
-    </div>
-    <not-found v-if="notFound" />
+    </Layout>
+    <not-found v-else />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import DropdownInput from '@/components/DropdownInput'
 import TextInput from '@/components/TextInput'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
-    NotFound,
+    Layout,
     DropdownInput,
     TextInput,
+    NotFound,
   },
 
   data: function () {
@@ -86,6 +72,11 @@ export default {
   },
 
   computed: {
+    title: function () {
+      if (this.create) return 'Create Competitor'
+      else return 'Edit Competitor'
+    },
+
     coursesInLeague: function () {
       const selectedLeague = this.leagues.filter(
         (league) => league.name === this.league

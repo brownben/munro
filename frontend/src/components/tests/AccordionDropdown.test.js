@@ -18,15 +18,3 @@ test('Renders Correctly', () => {
   })
   expect(wrapper.element).toMatchSnapshot()
 })
-
-test('Open and Closes on Click', () => {
-  const wrapper = mount(AccordionDropdown)
-  expect(wrapper.findAll('.accordion-body').isVisible()).toBeFalsy()
-  expect(wrapper.find('svg').classes()).not.toContain('rotate')
-  wrapper.find('.accordion-head').trigger('click')
-  expect(wrapper.findAll('.accordion-body').isVisible()).toBeTruthy()
-  expect(wrapper.find('svg').classes()).toContain('rotate')
-  wrapper.find('.accordion-head').trigger('click')
-  expect(wrapper.findAll('.accordion-body').isVisible()).toBeFalsy()
-  expect(wrapper.find('svg').classes()).not.toContain('rotate')
-})

@@ -1,5 +1,5 @@
 <template>
-  <div class="view">
+  <div>
     <vue-headful
       :title="`Munro - ${event.name || ''} Event Results`"
       :description="`Results from the ${event.name || ''} event of the ${
@@ -10,15 +10,24 @@
         meta: { name: 'robots', content: 'all' },
       }"
     />
-    <div v-if="eventFound">
-      <h1 v-show="event" class="text-3xl font-normal font-heading">
-        <router-link :to="'/leagues/' + event.league" class="link text-main">
-          {{ event.league || '' }}
+    <Layout v-if="eventFound" gapSmall>
+      <h1
+        v-show="event"
+        class="col-span-2 mt-1 text-2xl font-bold md:text-3xl font-heading text-main-900"
+      >
+        <router-link
+          :to="'/leagues/' + event.league"
+          class="link text-main-700"
+        >
+          {{ (event.league && event.league.trim()) || '' }}
         </router-link>
-        - {{ event.name || '' }}
+        <span class="hidden ml-2 mr-3 md:inline-block">-</span>
+        <span class="block text-3xl md:inline-block">{{
+          event.name || ''
+        }}</span>
       </h1>
-      <div v-show="event && coursesInResults" class="my-4 card">
-        <h3 class="text-2xl font-heading">Courses</h3>
+      <div v-show="event && coursesInResults" class="col-span-2 card">
+        <h3 class="text-3xl font-bold font-heading">Courses</h3>
         <div>
           <button
             v-for="course in coursesInResults"
@@ -31,8 +40,13 @@
           </button>
         </div>
       </div>
-      <filter-menu @changed="filterChanged" />
-      <div v-if="filteredResults && filteredResults.length > 0">
+
+      <filter-menu class="col-span-2 my-0" @changed="filterChanged" />
+
+      <div
+        v-if="filteredResults && filteredResults.length > 0"
+        class="col-span-2"
+      >
         <transition name="shrink">
           <table class="table mb-2">
             <thead>
@@ -91,25 +105,34 @@
           </table>
         </transition>
       </div>
-      <h2 v-if="eventFound && !found" class="text-3xl font-heading">
-        Sorry, No Results Could Be Found
-      </h2>
-    </div>
+
+      <transition name="fade">
+        <NoResultsCard
+          v-if="(eventFound && !found) || filteredResults.length === 0"
+          class="col-span-2"
+        />
+      </transition>
+    </Layout>
     <not-found v-if="!eventFound" />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import FilterMenu from '@/components/FilterMenu'
 import UpDownArrow from '@/components/UpDownArrows'
-import NotFound from '@/views/NotFound'
+const NoResultsCard = () => import('@/components/NoResultsCard')
+const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
+    Layout,
     FilterMenu,
     UpDownArrow,
     NotFound,
+    NoResultsCard,
   },
 
   data: () => ({
@@ -298,15 +321,15 @@ export default {
 }
 
 .table tr:hover:not(.mobile-table-expansion) {
-  @apply bg-main-light;
+  @apply bg-main-200;
 }
 
 .table tr.striped {
-  @apply bg-main-veryLight;
+  @apply bg-main-50;
 }
 
 thead tr {
-  @apply border-b border-main-light;
+  @apply border-b border-main-200;
 }
 
 .table td {
@@ -334,16 +357,14 @@ th:hover > span {
 }
 
 .active {
-  @apply bg-main text-white;
+  @apply bg-main-200 text-main-800;
 }
 
-@media (max-width: 640px) {
-  .club {
-    @apply hidden;
-  }
+.club {
+  @apply hidden;
 }
 
-@media (min-width: 640px) {
+@screen md {
   .club {
     @apply block;
   }

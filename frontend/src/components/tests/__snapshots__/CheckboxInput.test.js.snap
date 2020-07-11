@@ -1,41 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly - Checked 1`] = `
-<div
-  class="mt-3 checkbox-input"
->
+<div>
   <label
-    class="select-none text-md font-heading text-main"
+    class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
   >
-    
-    Test Checkbox
-    
+    <span
+      class="mr-3 align-top"
+    >
+      Test Checkbox
+    </span>
+     
     <input
-      class="hidden"
+      class="sr-only"
       type="checkbox"
     />
      
-    <span />
+    <span
+      class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
+    />
   </label>
 </div>
 `;
 
 exports[`Renders Correctly - Unchecked 1`] = `
-<div
-  class="mt-3 checkbox-input"
->
+<div>
   <label
-    class="select-none text-md font-heading text-main"
+    class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
   >
-    
-    Another Input
-    
+    <span
+      class="mr-3 align-top"
+    >
+      Another Input
+    </span>
+     
     <input
-      class="hidden"
+      class="sr-only"
       type="checkbox"
     />
      
-    <span />
+    <span
+      class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
+    />
   </label>
 </div>
 `;

@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="view">
+  <Layout title="Upload Results">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },
@@ -14,10 +14,8 @@
       description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/upload"
     />
-    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
-      Upload Results
-    </h1>
-    <div class="mt-2 mb-4 card-color">
+
+    <div class="col-span-2 mt-4 card-color">
       <p>
         For instructions on how to upload results please visit
         <router-link
@@ -28,64 +26,72 @@
         </router-link>
       </p>
     </div>
-    <text-input
-      v-model.trim.lazy="eventId"
-      label="Event ID:"
-      @input="findEvent"
-    />
+    <div class="col-span-2">
+      <text-input
+        v-model.trim.lazy="eventId"
+        label="Event ID:"
+        @input="findEvent"
+      />
 
-    <p v-show="event.name" class="mb-3">
-      <b>Event Name:</b>
-      {{ event.name }}
-    </p>
+      <p v-show="event.name" class="mt-4 mb-4">
+        <b class="mr-2 text-main-800">Event Name:</b>
+        {{ event.name }}
+      </p>
 
-    <text-input v-model.trim="uploadKey" label="Upload Key:" />
+      <text-input v-model.trim="uploadKey" label="Upload Key:" class="mt-4" />
 
-    <!-- If Event already have results, confirm they want to overwrite -->
-    <checkbox-input
-      v-if="event.resultUploaded"
-      v-model="overwrite"
-      label="Overwrite Existing Results:"
-      class="mb-5 text-left"
-    />
+      <!-- If Event already have results, confirm they want to overwrite -->
+      <checkbox-input
+        v-if="event.resultUploaded"
+        v-model="overwrite"
+        label="Overwrite Existing Results:"
+        class="mt-6 text-left"
+      />
 
-    <file-input label="Results File:" @file="fileRead" />
+      <file-input label="Results File:" class="mt-4" @file="fileRead" />
 
-    <text-input
-      v-model.trim="event.results"
-      label="Results (URL):"
-      type="url"
-    />
-    <text-input
-      v-model.trim="event.routegadget"
-      label="Routegadget (URL):"
-      type="url"
-    />
-    <text-input
-      v-model.trim="event.winsplits"
-      label="Winsplits: (URL):"
-      type="url"
-    />
+      <text-input
+        v-model.trim="event.results"
+        label="Results (URL):"
+        type="url"
+        class="mt-4"
+      />
+      <text-input
+        v-model.trim="event.routegadget"
+        label="Routegadget (URL):"
+        type="url"
+        class="mt-4"
+      />
+      <text-input
+        v-model.trim="event.winsplits"
+        label="Winsplits: (URL):"
+        type="url"
+        class="mt-4"
+      />
 
-    <!-- Only show upload once all fields have been filled -->
-    <button
-      v-if="eventId && uploadKey && file"
-      class="button-lg"
-      @click="uploadFile"
-    >
-      Upload File
-    </button>
-  </div>
+      <!-- Only show upload once all fields have been filled -->
+      <button
+        v-if="eventId && uploadKey && file"
+        class="mt-6 button-lg"
+        @click="uploadFile"
+      >
+        Upload File
+      </button>
+    </div>
+  </Layout>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import CheckboxInput from '@/components/CheckboxInput'
 import TextInput from '@/components/TextInput'
 import FileInput from '@/components/FileInput'
 
 export default {
   components: {
+    Layout,
     CheckboxInput,
     TextInput,
     FileInput,

@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  class="w-full col-span-2 p-3 text-center text-white shadow-md bg-main contours rounded-shape-xl"
+>
+  <img
+    alt="Munro Logo"
+    class="inline-block h-24 mt-4 mb-2"
+    src="@/assets/images/MunroLogoWhite.png"
+  />
+   
+  <h1
+    class="my-2 text-3xl font-bold md:text-4xl font-heading"
+  >
+    About
+  </h1>
+   
+  <div
+    class="w-full px-4 mb-3 md:px-8 text"
+  >
+    <p>
+      
+      Munro is a league results calculator, originally created as part of my
+      Advanced Higher Computing Project. It calculates the overall results for
+      a series of events, it is designed to be easy to use and require very
+      little effort for league coordinators and event organisers to use.
+    
+    </p>
+     
+    <p>
+      
+      Munro allows you to see all the information for a league on one place,
+      and provides multiple options to sort and filter results so you can view
+      the results in whatever form you want. It also supports multiple file
+      formats for upload and several different scoring systems, making the
+      process as quick and stress free as possible for event organisers.
+    
+    </p>
+     
+    <p>
+      
+      Munro is still under development so any feedback or comments would be
+      welcome, please send them to munro.leagues@gmail.com For any help or
+      enquires please email munro.leagues@gmail.com
+    
+    </p>
+  </div>
+</div>
+`;

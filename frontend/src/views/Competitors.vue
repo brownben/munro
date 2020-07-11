@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="view">
+  <Layout title="Competitors">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -13,11 +13,9 @@
       title="Munro - Competitors"
       description
     />
-    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
-      Competitors
-    </h1>
-    <div class="card">
-      <h2 class="text-2xl font-heading">Actions</h2>
+
+    <div class="col-span-2 card">
+      <h2 class="text-3xl font-bold text-main-800 font-heading">Actions</h2>
 
       <div>
         <router-link to="/create-competitor" class="button"
@@ -34,7 +32,7 @@
         >
       </div>
 
-      <div class="top-0 w-full text-left">
+      <div class="w-full mt-6 text-left">
         <dropdown-input
           v-model="league"
           :list="leagues.map((league) => league.name)"
@@ -44,7 +42,10 @@
       </div>
     </div>
 
-    <table v-if="filteredCompetitors.length > 0" class="table my-4 table-fixed">
+    <table
+      v-if="filteredCompetitors.length > 0"
+      class="table col-span-2 my-4 table-fixed"
+    >
       <thead>
         <tr>
           <th @click="sortBy('name')">
@@ -91,16 +92,19 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import UpDownArrow from '@/components/UpDownArrows'
-import DropdownInput from '../components/DropdownInput.vue'
+import DropdownInput from '@/components/DropdownInput.vue'
 
 export default {
   components: {
+    Layout,
     UpDownArrow,
     DropdownInput,
   },
@@ -195,15 +199,15 @@ export default {
 }
 
 .table tr:hover:not(.mobile-table-expansion) {
-  @apply bg-main-light;
+  @apply bg-main-200;
 }
 
 .table tr.striped {
-  @apply bg-main-veryLight;
+  @apply bg-main-50;
 }
 
 thead tr {
-  @apply border-b border-main-light;
+  @apply border-b border-main-200;
 }
 
 .table td {

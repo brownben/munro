@@ -2,23 +2,26 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="view"
+  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
 >
-  <vue-headful-stub
-    description="League Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
-    head="[object Object]"
-    title="Munro - Leagues"
-    url="https://munro-leagues.herokuapp.com/leagues"
-  />
-   
   <h1
-    class="text-3xl font-normal text-main font-heading"
+    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
   >
+    
     Leagues
+  
   </h1>
    
   <div
-    class="flex flex-row flex-wrap"
-  />
+    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+  >
+    <vue-headful-stub
+      description="League Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      head="[object Object]"
+      title="Munro - Leagues"
+      url="https://munro-leagues.herokuapp.com/leagues"
+    />
+     
+  </div>
 </div>
 `;

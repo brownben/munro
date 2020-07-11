@@ -479,7 +479,7 @@ test('Results With Age Class Split', () => {
       $messages: { addMessage: jest.fn() },
     },
     computed: {
-      filteredResults: jest.fn(),
+      filteredResults: jest.fn(() => []),
     },
     stubs: ['router-link', 'vue-headful'],
   })

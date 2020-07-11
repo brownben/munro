@@ -18,9 +18,6 @@ test('Renders Correctly', () => {
 test('Emits Correct Values', () => {
   const wrapper = mount(FilterMenu)
 
-  // Open the Body
-  wrapper.find('.accordion-head').trigger('click')
-
   // Change all the Values
   wrapper.setData({
     preferences: {

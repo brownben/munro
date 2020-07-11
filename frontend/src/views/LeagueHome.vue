@@ -2,12 +2,12 @@
   League Home Page
 
   Shows all league details as well as all details for each event in the league, including
-  the upload key and event id needed for eveent upload if logged in. If logged in it also diaplays
+  the upload key and event id needed for event upload if logged in. If logged in it also diaplays
   options to edit/ update/ delete the events/ league. Also has links to results for each course
 -->
 
 <template>
-  <div class="">
+  <div>
     <vue-headful
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the
@@ -18,167 +18,123 @@
       }"
     />
 
-    <div v-if="league && league.name" class="text-center view md:text-left">
-      <h1 class="text-3xl font-normal text-main font-heading">
-        {{ league.name }}
-      </h1>
-      <p v-if="league.description" class="my-1">{{ league.description }}</p>
-      <p v-if="league.courses" class="my-1">
-        There are normally {{ league.courses.length }} courses -
-        {{ league.courses.join(', ') }}
-      </p>
-      <p v-if="league.coordinator" class="my-1">
-        {{ league.coordinator }} coordinates the league.
-      </p>
-      <p class="my-1">
-        <span v-if="league.scoringMethod">
+    <Layout v-if="league && league.name">
+      <div class="col-span-2 text-left">
+        <h1
+          class="mt-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+        >
+          {{ league.name }}
+        </h1>
+        <h2
+          v-if="league.description"
+          class="mb-4 text-lg text-opacity-75 md:text-xl font-heading text-main-900"
+        >
+          {{ league.description }}
+        </h2>
+
+        <p v-if="league.courses">
+          There are normally
+          {{ league.courses.length }} courses -
+          <span class="md:text-lg font-heading">{{
+            naturalJoin(league.courses)
+          }}</span>
+        </p>
+        <p v-if="league.coordinator">
+          <span class="md:text-lg font-heading">{{ league.coordinator }}</span>
+          coordinates the league.
+        </p>
+        <p v-if="league.scoringMethod">
           The scoring for the league is calculated using a
-          {{ scoringMethodShorthandToFull(league.scoringMethod) }}
-        </span>
-        &nbsp;
-        <span v-if="league.numberOfCountingEvents && league.numberOfEvents">
-          - with your best {{ league.numberOfCountingEvents }} events from all
-          {{ league.numberOfEvents }} events counting.
-        </span>
-      </p>
-      <p v-if="league.website" class="my-1">
-        More information can be found at
-        <a
-          :href="league.website"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="link"
-          >{{ league.website }}</a
-        >
-      </p>
-    </div>
-    <div
-      v-if="events && events.length > 0"
-      class="w-full p-3 mt-2 text-center text-white bg-main"
-    >
-      <h2 class="text-2xl font-heading">League Results</h2>
-      <div class="pb-1">
-        <router-link
-          v-for="course of league.courses"
-          :key="course"
-          :to="$route.path + '/results/' + course"
-          class="button-white"
-          >{{ course }}</router-link
-        >
+          <span class="md:text-lg font-heading">{{
+            scoringMethodShorthandToFull(league.scoringMethod)
+          }}</span>
+
+          <span
+            v-if="league.numberOfCountingEvents && league.numberOfEvents"
+            class="block"
+          >
+            Your
+            <span class="md:text-lg font-heading"
+              >best {{ league.numberOfCountingEvents }} scores</span
+            >
+            from all
+            {{ league.numberOfEvents }}
+            events, count towards your score.
+          </span>
+        </p>
+
+        <p v-if="league.website" class="mt-2">
+          More information can be found at:
+          <a
+            :href="league.website"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="ml-1 link font-heading text-main-800"
+            >{{ league.website }}</a
+          >
+        </p>
       </div>
-    </div>
-    <div class="view">
-      <div v-if="auth.user && league && league.name" class="my-4 card">
-        <h2 class="text-2xl font-heading">Admin Actions</h2>
+
+      <div v-if="events && events.length > 0" class="col-span-2 card-color">
+        <h2 class="font-bold text-25xl font-heading">League Results</h2>
+        <div class="mt-2">
+          <router-link
+            v-for="course of league.courses"
+            :key="course"
+            :to="$route.path + '/results/' + course"
+            class="button-white"
+            >{{ course }}</router-link
+          >
+        </div>
+      </div>
+
+      <div
+        v-if="auth.user && league && league.name"
+        class="col-span-2 card-color-dark"
+      >
+        <h2 class="mb-2 font-bold text-25xl font-heading">Admin Actions</h2>
         <div>
-          <router-link :to="$route.path + '/create-event'" class="button"
+          <router-link :to="$route.path + '/create-event'" class="button-white"
             >Add Event</router-link
           >
-          <router-link :to="$route.path + '/edit'" class="button"
+          <router-link :to="$route.path + '/edit'" class="button-white"
             >Edit League</router-link
           >
-          <button class="button" @click="deleteLeague">Delete League</button>
+          <button class="button-white" @click="deleteLeague">
+            Delete League
+          </button>
           <router-link
             :to="'/competitors/' + this.$route.params.name"
-            class="button"
+            class="button-white"
             >Manage Competitors</router-link
           >
         </div>
       </div>
-      <div v-for="event of events" :key="event.name" class="my-4 card">
-        <h2
-          :class="{ 'text-2xl': auth.user }"
-          class="my-1 text-xl font-heading"
-        >
-          {{ event.name }}
-        </h2>
-        <div v-if="auth.user" class="mb-2 event-actions">
-          <router-link :to="'/events/' + event.id + '/edit'" class="button"
-            >Edit Event</router-link
-          >
-          <router-link :to="'/upload/' + event.id" class="button"
-            >Upload Results</router-link
-          >
-          <button class="button" @click="deleteEvent(event)">
-            Delete Event
-          </button>
-        </div>
-        <div class="my-1">
-          <p v-if="auth.user">
-            <b class="block mt-1 sm:inline">Event ID:</b>
-            {{ event.id }}
-          </p>
-          <p v-if="auth.user && event.uploadKey">
-            <b class="block mt-1 sm:inline">Event Upload Key:</b>
-            {{ event.uploadKey }}
-          </p>
-        </div>
-        <p v-if="event.date">
-          On {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
-            event.date.split('-')[0]
-          }}
-          <template v-if="event.organiser"
-            >organised by {{ event.organiser }}</template
-          >
-        </p>
-        <p v-if="event.moreInformation">{{ event.moreInformation }}</p>
-        <p v-if="event.website">
-          More Information can be found on their
-          <a
-            :href="event.website"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link"
-            >website</a
-          >
-        </p>
-        <div
-          v-if="event.resultUploaded"
-          class="event-actions event-result-actions"
-        >
-          <router-link
-            v-if="league.dynamicEventResults"
-            :to="`/events/${event.id}/results`"
-            class="button"
-            >Results</router-link
-          >
-          <a
-            v-if="event.results"
-            :href="event.results"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-            >HTML Results</a
-          >
-          <a
-            v-if="event.winsplits"
-            :href="event.winsplits"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-            >WinSplits</a
-          >
-          <a
-            v-if="event.routegadget"
-            :href="event.routegadget"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="button"
-            >Routegadget</a
-          >
-        </div>
-      </div>
-    </div>
+
+      <EventOverviewCard
+        v-for="event of events"
+        :key="event.name"
+        :event="event"
+        :league="league"
+        :auth="auth"
+        @eventChanged="refreshDetails"
+      />
+    </Layout>
     <not-found v-if="!league" />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
+import EventOverviewCard from '@/components/EventOverviewCard'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
+    Layout,
+    EventOverviewCard,
     NotFound,
   },
 
@@ -192,19 +148,22 @@ export default {
 
   watch: {
     // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    $route: async function () {
-      await this.getLeague()
-      this.getLeagueEvents()
+    $route: function () {
+      this.refreshDetails()
     },
   },
 
-  mounted: async function () {
+  mounted: function () {
     // Get details on load
-    await this.getLeague()
-    this.getLeagueEvents()
+    this.refreshDetails()
   },
 
   methods: {
+    refreshDetails: async function () {
+      await this.getLeague()
+      this.getLeagueEvents()
+    },
+
     scoringMethodShorthandToFull: (value) => {
       if (value === 'position') return 'Position Based System (100 Max)'
       else if (value === 'position50') return 'Position Based System (50 Max)'
@@ -279,25 +238,10 @@ export default {
       }
     },
 
-    deleteEvent: function (event) {
-      if (
-        confirm(
-          `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`
-        )
-      ) {
-        return axios
-          .delete(`/api/events/${event.id}`)
-          .then(() =>
-            this.$messages.addMessage(`Event: ${event.name} was Deleted`)
-          )
-          .then(() => this.getLeague())
-          .then(() => this.getLeagueEvents())
-          .catch(() =>
-            this.$messages.addMessage(
-              'Problem Deleting Event - Please Try Again'
-            )
-          )
-      }
+    naturalJoin: function (array) {
+      if (array.length <= 1) return array.join(', ')
+      else
+        return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
     },
   },
 }

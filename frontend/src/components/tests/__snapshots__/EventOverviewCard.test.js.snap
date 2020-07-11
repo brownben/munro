@@ -1,0 +1,348 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly - Logged In 1`] = `
+<div
+  class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
+>
+  <div
+    class="px-4 md:px-6 lg:px-8"
+  >
+    <h2
+      class="text-xl font-bold leading-6 font-heading text-main-700"
+    >
+      
+      
+    
+    </h2>
+     
+    <h2
+      class="text-3xl font-bold font-heading text-main-900"
+    >
+      
+      Test Event
+    
+    </h2>
+     
+    <h3
+      class="text-lg text-opacity-75 font-heading text-main-900"
+    >
+      
+        01/01/2001
+        -  Organised By John Doe
+    </h3>
+     
+    <div
+      class="mb-2 py-2"
+    >
+      <p
+        class="mb-1"
+      >
+        
+        Text
+      
+      </p>
+       
+      <p
+        class="mt-1"
+      >
+        
+        More Information can be found on the
+        
+        <a
+          class="link text-main-700"
+          href="http://example.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          event website
+        </a>
+      </p>
+    </div>
+     
+    <div
+      class="pb-4 mt-2"
+    >
+      <router-link-stub
+        class="button"
+        to="/events/undefined/results"
+      >
+        Results
+      </router-link-stub>
+       
+      <a
+        class="button"
+        href="http://results"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        HTML Results
+      </a>
+       
+      <a
+        class="button"
+        href="http://winsplits"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        WinSplits
+      </a>
+       
+      <a
+        class="button"
+        href="http://routegadget"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Routegadget
+      </a>
+    </div>
+  </div>
+   
+  <div
+    class="w-full px-4 pt-4 pb-4 mt-2 shadow md:px-6 bg-main-100 rounded-shape-xl"
+  >
+    <h4
+      class="text-2xl font-bold text-center text-main-800 font-heading"
+    >
+      
+      Admin Actions
+    
+    </h4>
+     
+    <p
+      class="mt-2"
+    >
+      <b
+        class="mr-1 text-main-800"
+      >
+        Event ID:
+      </b>
+      
+      
+    
+    </p>
+     
+    <!---->
+     
+    <router-link-stub
+      class="button-dark"
+      to="/events/undefined/edit"
+    >
+      Edit Event
+    </router-link-stub>
+     
+    <router-link-stub
+      class="button-dark"
+      to="/upload/undefined"
+    >
+      Upload Results
+    </router-link-stub>
+     
+    <button
+      class="button-dark"
+    >
+      
+      Delete Event
+    
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Renders Correctly - Normal View 1`] = `
+<div
+  class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
+>
+  <div
+    class="px-4 md:px-6 lg:px-8"
+  >
+    <!---->
+     
+    <h2
+      class="text-3xl font-bold font-heading text-main-900"
+    >
+      
+      Test Event
+    
+    </h2>
+     
+    <h3
+      class="text-lg text-opacity-75 font-heading text-main-900"
+    >
+      
+        01/01/2001
+        -  Organised By John Doe
+    </h3>
+     
+    <div
+      class="mb-2 py-2"
+    >
+      <p
+        class="mb-1"
+      >
+        
+        Text
+      
+      </p>
+       
+      <p
+        class="mt-1"
+      >
+        
+        More Information can be found on the
+        
+        <a
+          class="link text-main-700"
+          href="http://example.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          event website
+        </a>
+      </p>
+    </div>
+     
+    <div
+      class="pb-4 mt-2"
+    >
+      <router-link-stub
+        class="button"
+        to="/events/undefined/results"
+      >
+        Results
+      </router-link-stub>
+       
+      <a
+        class="button"
+        href="http://results"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        HTML Results
+      </a>
+       
+      <a
+        class="button"
+        href="http://winsplits"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        WinSplits
+      </a>
+       
+      <a
+        class="button"
+        href="http://routegadget"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Routegadget
+      </a>
+    </div>
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Renders Correctly - Show League Title 1`] = `
+<div
+  class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
+>
+  <div
+    class="px-4 md:px-6 lg:px-8"
+  >
+    <h2
+      class="text-xl font-bold leading-6 font-heading text-main-700"
+    >
+      
+      
+    
+    </h2>
+     
+    <h2
+      class="text-3xl font-bold font-heading text-main-900"
+    >
+      
+      Test Event
+    
+    </h2>
+     
+    <h3
+      class="text-lg text-opacity-75 font-heading text-main-900"
+    >
+      
+        01/01/2001
+        -  Organised By John Doe
+    </h3>
+     
+    <div
+      class="mb-2 py-2"
+    >
+      <p
+        class="mb-1"
+      >
+        
+        Text
+      
+      </p>
+       
+      <p
+        class="mt-1"
+      >
+        
+        More Information can be found on the
+        
+        <a
+          class="link text-main-700"
+          href="http://example.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          event website
+        </a>
+      </p>
+    </div>
+     
+    <div
+      class="pb-4 mt-2"
+    >
+      <router-link-stub
+        class="button"
+        to="/events/undefined/results"
+      >
+        Results
+      </router-link-stub>
+       
+      <a
+        class="button"
+        href="http://results"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        HTML Results
+      </a>
+       
+      <a
+        class="button"
+        href="http://winsplits"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        WinSplits
+      </a>
+       
+      <a
+        class="button"
+        href="http://routegadget"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Routegadget
+      </a>
+    </div>
+  </div>
+   
+  <!---->
+</div>
+`;

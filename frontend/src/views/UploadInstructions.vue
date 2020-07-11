@@ -2,7 +2,7 @@
   Instructions for Uploading results
 -->
 <template>
-  <div class="view">
+  <Layout title="Upload Instructions">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },
@@ -11,77 +11,117 @@
       description="Instrcutions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/upload-instructions"
     />
-    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
-      Upload Instructions
-    </h1>
-    <ol>
-      <li>
+    <InstructionCard :number="1">
+      <template #instruction>
         Go to
-        <router-link to="/upload"
+        <router-link to="/upload" class="link text-main-700"
           >https://munro-leagues.herokuapp.com/upload</router-link
         >
+      </template>
+      <template #body>
         <img
           src="@/assets/images/UploadInstructions-EmptyFormNew.png"
           alt="Empty Upload Form"
         />
-      </li>
-      <li>
-        Enter the Event ID and the 20 digit Upload Key Provided. The event name
-        should now be displayed. You can get the Event ID and Upload Key from
-        your league coordinator or by emailing munro.leagues@gmail.com The Event
-        ID will be the the form LeagueNameEventNameYYYY-MM-DD with all spaces
-        removed
+      </template>
+    </InstructionCard>
+
+    <InstructionCard :number="2">
+      <template #instruction>
+        Enter the Event ID and the 20 digit Upload Key Provided
+      </template>
+      <template #body>
+        <p>
+          The event name should now be displayed. You can get the Event ID and
+          Upload Key from your league coordinator or by emailing
+          munro.leagues@gmail.com The Event ID will be the the form
+          LeagueNameEventNameYYYY-MM-DD with all spaces removed
+        </p>
         <img
           src="@/assets/images/UploadInstructions-KeysEnteredNew.png"
           alt="Upload Form with Keys Entered"
         />
-      </li>
-      <li>
-        Select your results file. This file can be an OE CSV File or SITiming
-        Processable CSV file with semi-colon or comma delimiter. Or another
-        semicolon/ comma delimited CSV file with the following headings, these
-        headings can be in any order:
+      </template>
+    </InstructionCard>
+
+    <InstructionCard :number="3">
+      <template #instruction>
+        Select Your Results File
+      </template>
+      <template #body>
+        <p>
+          This file can be an OE CSV File or SITiming Processable CSV file with
+          semi-colon or comma delimiter. Or another semicolon/ comma delimited
+          CSV file with the following headings, these headings can be in any
+          order:
+        </p>
         <code
           >Name; Age Class; Club; Course; Time; Position; Noncompetitive;
-          Status;</code
-        >
-      </li>
-      <li>
-        The upload button should now appear. If you are reuploading results tick
-        the 'Overwrite Existing Results' checkbox
+          Status;
+        </code>
+      </template>
+    </InstructionCard>
+
+    <InstructionCard :number="4">
+      <template #instruction>
+        The `Upload File` Button Should Now Appear
+      </template>
+      <template #body>
+        <p>
+          If you are re-uploading results tick the 'Overwrite Existing Results'
+          checkbox
+        </p>
         <img
           src="@/assets/images/UploadInstructions-ButtonShowingNew.png"
           alt="Upload Form with Upload Button Visible"
         />
-      </li>
-      <li>
-        Enter the URLs of the results uploaded on other websites eg. HTML
-        Results/ Routegadget/ Winsplits. If you forget, need to change these
-        URLs please contact your league admin or munro.leagues@gmail.com who can
-        update them
-      </li>
-      <li>
-        Click Upload - A message should appear saying that the data has been
-        sent. Then a message saying that the results upload is successful should
-        appear and you will be redirected to the league page
-      </li>
-    </ol>
-    <p>
-      If you need any help or wish to upload results in a different format
-      please contact: munro.leagues@gmail.com
-    </p>
-  </div>
+      </template>
+    </InstructionCard>
+
+    <InstructionCard :number="5">
+      <template #instruction>
+        Enter the URLs of the Results Uploaded on Other Websites eg. HTML
+        Results/ Routegadget/ Winsplits.
+      </template>
+      <template #body>
+        <p>
+          If you forget, or need to change these URLs please contact your league
+          admin or munro.leagues@gmail.com who can update them
+        </p>
+      </template>
+    </InstructionCard>
+
+    <InstructionCard :number="6">
+      <template #instruction>
+        Click Upload
+      </template>
+      <template #body>
+        <p>
+          A message should appear saying that the data has been sent. Then a
+          message saying that the results upload is successful should appear and
+          you will be redirected to the league page
+        </p>
+      </template>
+    </InstructionCard>
+
+    <div class="col-span-2 card-color">
+      <p class="p-1">
+        If you need any help or wish to upload results in a different format
+        please contact me at:
+        <span class="text-lg font-heading">munro.leagues@gmail.com</span>
+      </p>
+    </div>
+  </Layout>
 </template>
-<style scoped lang="postcss">
-code {
-  display: block;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  background: #eee;
+
+<script>
+import Layout from '@/components/Layout'
+import InstructionCard from '@/components/InstructionCard'
+
+export default {
+  components: {
+    Layout,
+    InstructionCard,
+  },
 }
-img {
-  display: block;
-  margin: 1rem 5%;
-  max-width: 90%;
-}
-</style>
+</script>

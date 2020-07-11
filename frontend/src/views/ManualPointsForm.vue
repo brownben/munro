@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="view">
+  <Layout title="Manual Points">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -13,10 +13,8 @@
       title="Munro - Manual Points"
       description
     />
-    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
-      Manual Points
-    </h1>
-    <form @submit.prevent="addResult">
+
+    <form class="col-span-2" @submit.prevent="addResult">
       <dropdown-input
         v-model="league"
         :list="leagues.map((league) => league.name)"
@@ -28,33 +26,45 @@
         :list="eventsInLeague.map((event) => event.name + ' - ' + event.date)"
         :include-blank="true"
         label="Event:"
+        class="mt-4"
       />
       <dropdown-input
         v-model="course"
         :list="coursesInLeague"
         :include-blank="true"
         label="Course"
+        class="mt-4"
       />
       <dropdown-input
         v-model="competitor"
         :list="competitorsForLeague.map(competitorTransformForSelect)"
         :include-blank="true"
         label="Competitor:"
+        class="mt-4"
+      />
+      <number-input
+        v-model.number="points"
+        label="Points:"
+        class="mt-4"
+        :min="0"
+        :max="10000"
       />
 
-      <number-input v-model.number="points" label="Points:" :max="10000" />
-      <button class="button-lg">Add Result</button>
+      <button class="mt-8 button-lg">Add Result</button>
     </form>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import DropdownInput from '@/components/DropdownInput'
 import NumberInput from '@/components/NumberInput'
 
 export default {
   components: {
+    Layout,
     DropdownInput,
     NumberInput,
   },

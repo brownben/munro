@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  class="col-span-2 card"
+  event="[object Object]"
+  league="[object Object]"
+>
+  <p
+    class="text-lg font-heading"
+  >
+    <span
+      class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+    >
+      
+      1
+    
+    </span>
+     
+    <span
+      class="align-middle"
+    />
+  </p>
+   
+  <div
+    class="text-opacity-75 text-main-900"
+  />
+</div>
+`;

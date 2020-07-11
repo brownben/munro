@@ -2,17 +2,10 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="view"
+  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
 >
-  <vue-headful-stub
-    description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
-    head="[object Object]"
-    title="Munro - Upload Results"
-    url="https://munro-leagues.herokuapp.com/upload"
-  />
-   
   <h1
-    class="mb-2 text-3xl font-normal text-main font-heading"
+    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
   >
     
     Upload Results
@@ -20,160 +13,186 @@ exports[`Renders Correctly 1`] = `
   </h1>
    
   <div
-    class="mt-2 mb-4 card-color"
+    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
   >
-    <p>
-      
+    <vue-headful-stub
+      description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      head="[object Object]"
+      title="Munro - Upload Results"
+      url="https://munro-leagues.herokuapp.com/upload"
+    />
+     
+    <div
+      class="col-span-2 mt-4 card-color"
+    >
+      <p>
+        
       For instructions on how to upload results please visit
       
-      <router-link-stub
-        class="inline ml-1 text-white link"
-        to="/upload-instructions"
-      >
-        
+        <router-link-stub
+          class="inline ml-1 text-white link"
+          to="/upload-instructions"
+        >
+          
         /upload-instructions
       
-      </router-link-stub>
-    </p>
-  </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Event ID:
-    </label>
+        </router-link-stub>
+      </p>
+    </div>
      
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="text"
-    />
-  </div>
-   
-  <p
-    class="mb-3"
-    style="display: none;"
-  >
-    <b>
-      Event Name:
-    </b>
-    
-    
-  
-  </p>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
+    <div
+      class="col-span-2"
     >
-      Upload Key:
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="text"
-    />
-  </div>
-   
-  <!---->
-   
-  <div
-    class="relative file-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Results File:
-    </label>
-     
-    <p
-      class="w-full px-4 py-2 truncate border outline-none border-main rounded-shape text-body"
-    >
-      
-    Select a File
-    
-      <label
-        class="absolute right-0 inline-block px-4 py-2 text-white border-l border-r border-main rounded-shape bg-main hover:text-main hover:bg-white mt--2 font-heading"
-        for="file"
-      >
-        Browse for File
-      </label>
+      <div>
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Event ID:"
+        >
+          Event ID:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Event ID:"
+          type="text"
+        />
+      </div>
        
-      <input
-        accept=".csv"
-        class="hidden"
-        id="file"
-        type="file"
-      />
-    </p>
+      <p
+        class="mt-4 mb-4"
+        style="display: none;"
+      >
+        <b
+          class="mr-2 text-main-800"
+        >
+          Event Name:
+        </b>
+        
+      
+    
+      </p>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Upload Key:"
+        >
+          Upload Key:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Upload Key:"
+          type="text"
+        />
+      </div>
+       
+      <!---->
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+        >
+          Results File:
+        </label>
+         
+        <p
+          class="w-full pl-3 truncate transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+        >
+          <span
+            class="inline-block py-2"
+          >
+            
+      Select a File
+    
+          </span>
+           
+          <label
+            class="z-10 inline-block float-right h-full px-4 py-2 transition duration-300 border border-opacity-0 appearance-none select-none rounded-shape bg-main-200 text-main-700 hover:text-main-800 hover:bg-main-300 border-main-600 font-heading focus:border-opacity-100 oultine-none"
+            for="file"
+            tabindex="0"
+          >
+            
+      Browse for File
+    
+          </label>
+           
+          <input
+            accept=".csv"
+            class="hidden"
+            id="file"
+            type="file"
+          />
+        </p>
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Results (URL):"
+        >
+          Results (URL):
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Results (URL):"
+          type="url"
+        />
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Routegadget (URL):"
+        >
+          Routegadget (URL):
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Routegadget (URL):"
+          type="url"
+        />
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Winsplits: (URL):"
+        >
+          Winsplits: (URL):
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Winsplits: (URL):"
+          type="url"
+        />
+      </div>
+       
+      <!---->
+    </div>
   </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Results (URL):
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="url"
-    />
-  </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Routegadget (URL):
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="url"
-    />
-  </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Winsplits: (URL):
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="url"
-    />
-  </div>
-   
-  <!---->
 </div>
 `;
 
 exports[`Upload Buttons Shows Correctly 1`] = `
 <div
-  class="view"
+  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
 >
-  <vue-headful-stub
-    description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
-    head="[object Object]"
-    title="Munro - Upload Results"
-    url="https://munro-leagues.herokuapp.com/upload"
-  />
-   
   <h1
-    class="mb-2 text-3xl font-normal text-main font-heading"
+    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
   >
     
     Upload Results
@@ -181,149 +200,182 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </h1>
    
   <div
-    class="mt-2 mb-4 card-color"
+    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
   >
-    <p>
-      
+    <vue-headful-stub
+      description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      head="[object Object]"
+      title="Munro - Upload Results"
+      url="https://munro-leagues.herokuapp.com/upload"
+    />
+     
+    <div
+      class="col-span-2 mt-4 card-color"
+    >
+      <p>
+        
       For instructions on how to upload results please visit
       
-      <router-link-stub
-        class="inline ml-1 text-white link"
-        to="/upload-instructions"
-      >
-        
+        <router-link-stub
+          class="inline ml-1 text-white link"
+          to="/upload-instructions"
+        >
+          
         /upload-instructions
       
-      </router-link-stub>
-    </p>
-  </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Event ID:
-    </label>
+        </router-link-stub>
+      </p>
+    </div>
      
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="text"
-    />
-  </div>
-   
-  <p
-    class="mb-3"
-    style="display: none;"
-  >
-    <b>
-      Event Name:
-    </b>
-    
-    
-  
-  </p>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
+    <div
+      class="col-span-2"
     >
-      Upload Key:
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="text"
-    />
-  </div>
-   
-  <!---->
-   
-  <div
-    class="relative file-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Results File:
-    </label>
-     
-    <p
-      class="w-full px-4 py-2 truncate border outline-none border-main rounded-shape text-body"
-    >
-      
-    Select a File
-    
-      <label
-        class="absolute right-0 inline-block px-4 py-2 text-white border-l border-r border-main rounded-shape bg-main hover:text-main hover:bg-white mt--2 font-heading"
-        for="file"
-      >
-        Browse for File
-      </label>
+      <div>
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Event ID:"
+        >
+          Event ID:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Event ID:"
+          type="text"
+        />
+      </div>
        
-      <input
-        accept=".csv"
-        class="hidden"
-        id="file"
-        type="file"
-      />
-    </p>
-  </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Results (URL):
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="url"
-    />
-  </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Routegadget (URL):
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="url"
-    />
-  </div>
-   
-  <div
-    class="relative text-input top--4"
-  >
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-    >
-      Winsplits: (URL):
-    </label>
-     
-    <input
-      class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-      type="url"
-    />
-  </div>
-   
-  <button
-    class="button-lg"
-  >
+      <p
+        class="mt-4 mb-4"
+        style="display: none;"
+      >
+        <b
+          class="mr-2 text-main-800"
+        >
+          Event Name:
+        </b>
+        
+      
     
-    Upload File
-  
-  </button>
+      </p>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Upload Key:"
+        >
+          Upload Key:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Upload Key:"
+          type="text"
+        />
+      </div>
+       
+      <!---->
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+        >
+          Results File:
+        </label>
+         
+        <p
+          class="w-full pl-3 truncate transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+        >
+          <span
+            class="inline-block py-2"
+          >
+            
+      Select a File
+    
+          </span>
+           
+          <label
+            class="z-10 inline-block float-right h-full px-4 py-2 transition duration-300 border border-opacity-0 appearance-none select-none rounded-shape bg-main-200 text-main-700 hover:text-main-800 hover:bg-main-300 border-main-600 font-heading focus:border-opacity-100 oultine-none"
+            for="file"
+            tabindex="0"
+          >
+            
+      Browse for File
+    
+          </label>
+           
+          <input
+            accept=".csv"
+            class="hidden"
+            id="file"
+            type="file"
+          />
+        </p>
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Results (URL):"
+        >
+          Results (URL):
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Results (URL):"
+          type="url"
+        />
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Routegadget (URL):"
+        >
+          Routegadget (URL):
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Routegadget (URL):"
+          type="url"
+        />
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Winsplits: (URL):"
+        >
+          Winsplits: (URL):
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Winsplits: (URL):"
+          type="url"
+        />
+      </div>
+       
+      <button
+        class="mt-6 button-lg"
+      >
+        
+      Upload File
+    
+      </button>
+    </div>
+  </div>
 </div>
 `;

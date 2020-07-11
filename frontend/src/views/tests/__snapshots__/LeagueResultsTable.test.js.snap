@@ -12,20 +12,34 @@ exports[`Mobile Results Dropdown Works 1`] = `
   />
    
   <h1
-    class="text-3xl font-normal font-heading"
+    class="font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
   >
     <router-link-stub
-      class="link text-main"
+      class="link text-main-700"
       to="/leagues/"
     >
       
-    </router-link-stub>
+      
     
-    - 
-  
+    </router-link-stub>
+     
+    <span
+      class="hidden ml-2 mr-3 md:inline-block"
+    >
+      -
+    </span>
+     
+    <span
+      class="block text-3xl md:inline-block"
+    >
+      
+      
+    </span>
   </h1>
    
-  <filter-menu-stub />
+  <filter-menu-stub
+    class="mt-3 mb-6"
+  />
    
   <div
     class="table-container"
@@ -114,6 +128,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
            
           <td>
             <svg
+              class="fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -158,6 +173,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
            
           <td>
             <svg
+              class="fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -202,6 +218,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
            
           <td>
             <svg
+              class="fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -241,20 +258,34 @@ exports[`Mobile Results Dropdown Works 2`] = `
   />
    
   <h1
-    class="text-3xl font-normal font-heading"
+    class="font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
   >
     <router-link-stub
-      class="link text-main"
+      class="link text-main-700"
       to="/leagues/"
     >
       
-    </router-link-stub>
+      
     
-    - 
-  
+    </router-link-stub>
+     
+    <span
+      class="hidden ml-2 mr-3 md:inline-block"
+    >
+      -
+    </span>
+     
+    <span
+      class="block text-3xl md:inline-block"
+    >
+      
+      
+    </span>
   </h1>
    
-  <filter-menu-stub />
+  <filter-menu-stub
+    class="mt-3 mb-6"
+  />
    
   <div
     class="table-container"
@@ -343,6 +374,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
            
           <td>
             <svg
+              class="fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -387,6 +419,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
            
           <td>
             <svg
+              class=""
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -468,6 +501,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
            
           <td>
             <svg
+              class="fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -507,20 +541,34 @@ exports[`Renders Correctly + Fetches Data 1`] = `
   />
    
   <h1
-    class="text-3xl font-normal font-heading"
+    class="font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
   >
     <router-link-stub
-      class="link text-main"
+      class="link text-main-700"
       to="/leagues/"
     >
       
-    </router-link-stub>
+      
     
-    - 
-  
+    </router-link-stub>
+     
+    <span
+      class="hidden ml-2 mr-3 md:inline-block"
+    >
+      -
+    </span>
+     
+    <span
+      class="block text-3xl md:inline-block"
+    >
+      
+      
+    </span>
   </h1>
    
-  <filter-menu-stub />
+  <filter-menu-stub
+    class="mt-3 mb-6"
+  />
    
   <div
     class="table-container"
@@ -783,7 +831,7 @@ exports[`Renders Correctly + Fetches Data 1`] = `
     class="mx-1 my-6 card"
   >
     <h2
-      class="text-2xl font-heading"
+      class="text-2xl font-bold font-heading"
     >
       Results for Other Courses
     </h2>

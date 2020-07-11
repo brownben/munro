@@ -2,44 +2,77 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="view"
+  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
 >
-  <vue-headful-stub
-    description=""
-    head="[object Object]"
-    title="Munro - Not Found"
-  />
+  <!---->
    
   <div
-    class="mt-5 card"
+    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
   >
-    <h1
-      class="my-2 text-3xl text-main font-heading"
+    <vue-headful-stub
+      description=""
+      head="[object Object]"
+      title="Munro - Not Found"
+    />
+     
+    <div
+      class="w-full col-span-2 text-center"
     >
-      
-      Sorry We Can't Find What You Are Looking For
-    
-    </h1>
-     
-    <p>
-      Please check the URL and Try Again
-    </p>
-     
-    <div>
-      <button
-        class="inline-block button"
+      <img
+        alt="Person Lost looking at Map"
+        class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12"
+        src="@/assets/images/UndrawLost.svg"
+      />
+       
+      <h1
+        class="mt-8 text-4xl font-bold text-main-900 md:mt-12 md:text-5xl leading-12"
       >
         
-        Go Back
-      
-      </button>
+      Sorry, I'm Lost
+    
+      </h1>
        
-      <router-link-stub
-        class="inline-block button"
-        to="/"
+      <h2
+        class="mt-4 text-lg text-opacity-75 md:text-xl text-main-900"
       >
-        Return Home
-      </router-link-stub>
+        
+      I can't currently find what you are looking for, the link might be
+      broken or the page may have moved.
+    
+      </h2>
+       
+      <p
+        class="mt-8 text-lg text-opacity-75 md:text-xl md:mt-12 text-main-900 font-heading"
+      >
+        
+      Try Looking Here:
+    
+      </p>
+       
+      <div
+        class="mt-1"
+      >
+        <router-link-stub
+          class="inline-block px-4 py-2 mx-2 mt-2 text-xl transition duration-300 bg-main-100 text-main-800 rounded-shape hover:bg-main-200"
+          to="/"
+        >
+          Home
+        </router-link-stub>
+         
+        <router-link-stub
+          class="inline-block px-4 py-2 mx-2 mt-2 text-xl transition duration-300 bg-main-100 text-main-800 rounded-shape hover:bg-main-200"
+          to="/leagues"
+        >
+          Leagues
+        </router-link-stub>
+         
+        <router-link-stub
+          class="inline-block px-4 py-2 mx-2 mt-2 text-xl transition duration-300 bg-main-100 text-main-800 rounded-shape hover:bg-main-200"
+          to="/latest-results"
+        >
+          Latest Results
+        </router-link-stub>
+      </div>
     </div>
   </div>
 </div>

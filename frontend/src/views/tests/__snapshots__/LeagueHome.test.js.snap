@@ -10,135 +10,136 @@ exports[`Renders Correctly 1`] = `
     url="https://munro-leagues.herokuapp.com/leagues/"
   />
    
-  <!---->
-   
-  <div
-    class="w-full p-3 mt-2 text-center text-white bg-main"
+  <layout-stub
+    title=""
   >
-    <h2
-      class="text-2xl font-heading"
-    >
-      League Results
-    </h2>
-     
     <div
-      class="pb-1"
-    />
-  </div>
-   
-  <div
-    class="view"
-  >
-    <!---->
-     
-    <div
-      class="my-4 card"
+      class="col-span-2 text-left"
     >
-      <h2
-        class="my-1 text-xl font-heading"
+      <h1
+        class="mt-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
       >
         
-        200m
+        Sprintelope
       
-      </h2>
-       
-      <!---->
-       
-      <div
-        class="my-1"
-      >
-        <!---->
-         
-        <!---->
-      </div>
-       
-      <!---->
+      </h1>
        
       <!---->
        
       <p>
         
-        More Information can be found on their
+        There are normally
+        2 courses -
+        
+        <span
+          class="md:text-lg font-heading"
+        >
+          Long and Short
+        </span>
+      </p>
+       
+      <p>
+        <span
+          class="md:text-lg font-heading"
+        >
+          Graeme Ackland
+        </span>
+        
+        coordinates the league.
+      
+      </p>
+       
+      <p>
+        
+        The scoring for the league is calculated using a
+        
+        <span
+          class="md:text-lg font-heading"
+        >
+          Position Based System (100 Max)
+        </span>
+         
+        <span
+          class="block"
+        >
+          
+          Your
+          
+          <span
+            class="md:text-lg font-heading"
+          >
+            best 2 scores
+          </span>
+          
+          from all
+          4
+          events, count towards your score.
+        
+        </span>
+      </p>
+       
+      <p
+        class="mt-2"
+      >
+        
+        More information can be found at:
         
         <a
-          class="link"
-          href="wwwwwww"
+          class="ml-1 link font-heading text-main-800"
+          href="https://en-gb.facebook.com/sprintelope/"
           rel="noopener noreferrer"
           target="_blank"
         >
-          website
+          https://en-gb.facebook.com/sprintelope/
         </a>
       </p>
-       
-      <!---->
     </div>
+     
     <div
-      class="my-4 card"
+      class="col-span-2 card-color"
     >
       <h2
-        class="my-1 text-xl font-heading"
+        class="font-bold text-25xl font-heading"
       >
-        
-        Longniddry
-      
+        League Results
       </h2>
        
-      <!---->
-       
       <div
-        class="my-1"
+        class="mt-2"
       >
-        <!---->
-         
-        <!---->
+        <router-link-stub
+          class="button-white"
+          to="undefined/results/Long"
+        >
+          Long
+        </router-link-stub>
+        <router-link-stub
+          class="button-white"
+          to="undefined/results/Short"
+        >
+          Short
+        </router-link-stub>
       </div>
-       
-      <p>
-        
-        On 18/04/2018
-        organised by ELO
-      </p>
-       
-      <!---->
-       
-      <!---->
-       
-      <!---->
     </div>
-    <div
-      class="my-4 card"
-    >
-      <h2
-        class="my-1 text-xl font-heading"
-      >
-        
-        South Edinburgh
-      
-      </h2>
-       
-      <!---->
-       
-      <div
-        class="my-1"
-      >
-        <!---->
-         
-        <!---->
-      </div>
-       
-      <p>
-        
-        On 25/04/2018
-        organised by INT
-      </p>
-       
-      <!---->
-       
-      <!---->
-       
-      <!---->
-    </div>
-  </div>
+     
+    <!---->
+     
+    <eventoverviewcard-stub
+      auth="[object Object]"
+      event="[object Object]"
+      league="[object Object]"
+    />
+    <eventoverviewcard-stub
+      auth="[object Object]"
+      event="[object Object]"
+      league="[object Object]"
+    />
+    <eventoverviewcard-stub
+      auth="[object Object]"
+      event="[object Object]"
+      league="[object Object]"
+    />
+  </layout-stub>
    
   <!---->
 </div>

@@ -102,10 +102,10 @@ export default {
 }
 
 .menu-item:hover {
-  @apply bg-main-lighter text-white;
+  @apply bg-main text-white;
 }
 
-@media (min-width: 768px) {
+@screen md {
   .menu-item {
     margin-top: 0.652rem;
     @apply w-auto inline-block top-0 mr-4 p-0 ml-2;

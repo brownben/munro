@@ -15,78 +15,86 @@
 -->
 
 <template>
-  <div class="view">
+  <div>
     <vue-headful
-      v-if="create"
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
-      title="Munro - Create Event"
+      :title="`Munro - ${title}`"
       description
     />
-    <vue-headful
-      v-else
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      title="Munro - Edit Event"
-      description
-    />
-    <div v-if="!notFound">
-      <h1
-        v-if="create"
-        class="mb-2 text-3xl font-normal text-main font-heading"
-      >
-        Create Event
-      </h1>
-      <h1
-        v-if="!create"
-        class="mb-2 text-3xl font-normal text-main font-heading"
-      >
-        Edit Event
-      </h1>
+
+    <Layout v-if="!notFound" :title="title">
       <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
-      <form @submit.prevent="submit">
+      <form class="col-span-2" @submit.prevent="submit">
         <text-input v-model.trim="name" label="Name:" />
-        <text-input v-model.trim="date" label="Date: (YYYY-MM-DD)" />
-        <text-input v-model.trim="organiser" label="Club/ Organiser:" />
-        <text-input v-model.trim="website" label="Website: (URL)" type="url" />
-        <text-input v-model.trim="results" label="Results: (URL)" type="url" />
+        <text-input
+          v-model.trim="date"
+          label="Date: (YYYY-MM-DD)"
+          class="mt-4"
+        />
+        <text-input
+          v-model.trim="organiser"
+          label="Club/ Organiser:"
+          class="mt-4"
+        />
+        <text-input
+          v-model.trim="website"
+          label="Website: (URL)"
+          type="url"
+          class="mt-4"
+        />
+        <text-input
+          v-model.trim="results"
+          label="Results: (URL)"
+          type="url"
+          class="mt-4"
+        />
         <text-input
           v-model.trim="winsplits"
           label="Winsplits: (URL)"
           type="url"
+          class="mt-4"
         />
         <text-input
           v-model.trim="routegadget"
           label="Routegadget: (URL)"
           type="url"
+          class="mt-4"
         />
         <dropdown-input
           v-model="league"
           :list="leagues.map((league) => league.name)"
           label="League:"
+          class="mt-4"
         />
-        <text-input v-model.trim="moreInformation" label="More Information:" />
-        <button v-if="create" class="button-lg">Create Event</button>
-        <button v-if="!create" class="button-lg">Update Event</button>
+        <text-input
+          v-model.trim="moreInformation"
+          label="More Information:"
+          class="mt-4"
+        />
+        <button v-if="create" class="mt-8 button-lg">Create Event</button>
+        <button v-if="!create" class="mt-8 button-lg">Update Event</button>
       </form>
-    </div>
-    <not-found v-if="notFound" />
+    </Layout>
+    <not-found v-else />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import DropdownInput from '@/components/DropdownInput'
 import TextInput from '@/components/TextInput'
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
-    NotFound,
+    Layout,
     DropdownInput,
     TextInput,
+    NotFound,
   },
 
   data: function () {
@@ -106,6 +114,13 @@ export default {
       routegadget: '',
       league: this.$route.params.league,
     }
+  },
+
+  computed: {
+    title: function () {
+      if (this.create) return 'Create Event'
+      else return 'Edit Event'
+    },
   },
 
   // On Load

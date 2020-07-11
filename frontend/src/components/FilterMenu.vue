@@ -5,47 +5,49 @@
 -->
 
 <template>
-  <accordion-dropdown title="Filter">
-    <text-input
-      v-model="preferences.name"
-      label="Name:"
-      class="inline-block w-full md:w-1/2 md:pr-2"
-      @input="onChange"
-    />
-    <text-input
-      v-model="preferences.club"
-      label="Club:"
-      class="inline-block w-full md:w-1/2 md:pl-2"
-      @input="onChange"
-    />
-    <number-input
-      v-model.number="preferences.minAge"
-      :min="0"
-      :max="120"
-      label="Min Age:"
-      class="inline-block w-1/2 pr-2 md:w-1/4 md:-mb-4"
-      @input="onChange"
-    />
-    <number-input
-      v-model.number="preferences.maxAge"
-      :min="0"
-      :max="120"
-      label="Max Age:"
-      class="inline-block w-1/2 pl-2 md:w-1/4 md:-mb-4"
-      @input="onChange"
-    />
-    <checkbox-input
-      v-model="preferences.male"
-      class="inline-block w-1/2 pr-2 text-center md:w-1/4"
-      label="Male:"
-      @input="onChange"
-    />
-    <checkbox-input
-      v-model="preferences.female"
-      class="inline-block w-1/2 pl-2 text-center md:w-1/4"
-      label="Female:"
-      @input="onChange"
-    />
+  <accordion-dropdown title="Filter Results">
+    <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
+      <text-input
+        v-model="preferences.name"
+        label="Name:"
+        class="col-span-2"
+        @input="onChange"
+      />
+      <text-input
+        v-model="preferences.club"
+        label="Club:"
+        class="col-span-2"
+        @input="onChange"
+      />
+      <number-input
+        v-model.number="preferences.minAge"
+        :min="0"
+        :max="120"
+        label="Min Age:"
+        class="col-span-1"
+        @input="onChange"
+      />
+      <number-input
+        v-model.number="preferences.maxAge"
+        :min="0"
+        :max="120"
+        label="Max Age:"
+        class="col-span-1"
+        @input="onChange"
+      />
+      <checkbox-input
+        v-model="preferences.male"
+        class="flex flex-col justify-center col-span-1 pt-2 text-center"
+        label="Male:"
+        @input="onChange"
+      />
+      <checkbox-input
+        v-model="preferences.female"
+        label="Female:"
+        class="flex flex-col justify-center col-span-1 pt-2 text-center"
+        @input="onChange"
+      />
+    </div>
   </accordion-dropdown>
 </template>
 

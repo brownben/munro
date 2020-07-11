@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="view">
+  <Layout title="Admin Login">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -13,28 +13,40 @@
       title="Munro - Login"
       description
     />
-    <h1 class="my-2 text-2xl text-main font-heading">Admin Login</h1>
-    <form @submit.prevent="sendLoginRequest">
-      <text-input v-model="username" label="Email Address:" type="email" />
-      <text-input v-model="password" label="Password:" type="password" />
-      <button class="button-lg">Login</button>
+
+    <form class="col-span-2" @submit.prevent="sendLoginRequest">
+      <TextInput v-model="username" label="Email Address:" type="email" />
+      <TextInput
+        v-model="password"
+        label="Password:"
+        type="password"
+        class="mt-4"
+      />
+
+      <button class="mt-6 button-lg">
+        Login
+      </button>
     </form>
-    <div class="mt-4 card-color">
+
+    <div class="col-span-2 card-color">
       <p>
-        <b class="p-2 text-lg font-heading">Looking for Results Upload?</b>
+        <b class="p-2 font-heading">Looking for Results Upload?</b>
         You don't have to login, just visit the
         <router-link to="/upload" class="link">upload page</router-link>
       </p>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import auth from '@/authentication'
+
+import Layout from '@/components/Layout'
 import TextInput from '@/components/TextInput'
 
 export default {
   components: {
+    Layout,
     TextInput,
   },
 

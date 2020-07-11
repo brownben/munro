@@ -1,323 +1,315 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly - Create 1`] = `
-<div
-  class="view"
->
+<div>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Create Competitor"
   />
    
-  <div>
+  <div
+    class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  >
     <h1
-      class="mb-2 text-3xl font-normal text-main font-heading"
+      class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
     >
       
-      Create Competitor
-    
+    Create Competitor
+  
     </h1>
      
-    <!---->
-     
-    <form>
-      <div
-        class="relative text-input top--4"
+    <div
+      class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+    >
+      <form
+        class="col-span-2"
       >
-        <label
-          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          Name:
-        </label>
-         
-        <input
-          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative text-input top--4"
-      >
-        <label
-          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          Club:
-        </label>
-         
-        <input
-          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative text-input top--4"
-      >
-        <label
-          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          Age Class:
-        </label>
-         
-        <input
-          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative dropdown-input top--4"
-      >
-        <label
-          class="relative p-1 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          League:
-        </label>
-         
-        <div
-          class="visible w-full px-4 py-2 border outline-none border-main rounded-shape"
-        >
-          <p
-            class="h-6 leading-normal truncate"
+        <div>
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Name:"
           >
-            
-          </p>
+            Name:
+          </label>
            
-          <svg
-            class="float-right h-8 fill-current text-main mr--3 mt--68/10"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
-            />
-             
-            <path
-              d="M0-.75h24v24H0z"
-              fill="none"
-            />
-          </svg>
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Name:"
+            type="text"
+          />
         </div>
          
         <div
-          class="absolute z-40 w-full mb-2 text-center bg-white border border-t-0 select-none dropdown text-body border-main"
-          name="open"
-          style="display: none;"
-        />
-      </div>
-       
-      <div
-        class="relative dropdown-input top--4"
-      >
-        <label
-          class="relative p-1 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
+          class="mt-4"
         >
-          Course:
-        </label>
-         
-        <div
-          class="visible w-full px-4 py-2 border outline-none border-main rounded-shape"
-        >
-          <p
-            class="h-6 leading-normal truncate"
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Club:"
           >
-            
-          </p>
+            Club:
+          </label>
            
-          <svg
-            class="float-right h-8 fill-current text-main mr--3 mt--68/10"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
-            />
-             
-            <path
-              d="M0-.75h24v24H0z"
-              fill="none"
-            />
-          </svg>
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Club:"
+            type="text"
+          />
         </div>
          
         <div
-          class="absolute z-40 w-full mb-2 text-center bg-white border border-t-0 select-none dropdown text-body border-main"
-          name="open"
-          style="display: none;"
-        />
-      </div>
-       
-      <button
-        class="button-lg"
-      >
-        Create Competitor
-      </button>
-       
-      <!---->
-    </form>
+          class="mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Age Class:"
+          >
+            Age Class:
+          </label>
+           
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Age Class:"
+            type="text"
+          />
+        </div>
+         
+        <div
+          class="relative mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="League:"
+          >
+            
+    League:
+  
+          </label>
+           
+          <svg
+            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            style="margin-bottom: 0.625rem;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+           
+          <select
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="League:"
+          >
+            <option />
+             
+          </select>
+        </div>
+         
+        <div
+          class="relative mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Course:"
+          >
+            
+    Course:
+  
+          </label>
+           
+          <svg
+            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            style="margin-bottom: 0.625rem;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+           
+          <select
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Course:"
+          >
+            <option />
+             
+          </select>
+        </div>
+         
+        <button
+          class="mt-8 button-lg"
+        >
+          Create Competitor
+        </button>
+      </form>
+    </div>
   </div>
-   
-  <!---->
 </div>
 `;
 
 exports[`Renders Correctly - Upload 1`] = `
-<div
-  class="view"
->
+<div>
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Edit Competitor"
   />
    
-  <div>
-    <!---->
-     
+  <div
+    class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  >
     <h1
-      class="mb-2 text-3xl font-normal text-main font-heading"
+      class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
     >
       
-      Edit Competitor
-    
+    Edit Competitor
+  
     </h1>
      
-    <form>
-      <div
-        class="relative text-input top--4"
+    <div
+      class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+    >
+      <form
+        class="col-span-2"
       >
-        <label
-          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          Name:
-        </label>
-         
-        <input
-          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative text-input top--4"
-      >
-        <label
-          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          Club:
-        </label>
-         
-        <input
-          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative text-input top--4"
-      >
-        <label
-          class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          Age Class:
-        </label>
-         
-        <input
-          class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative dropdown-input top--4"
-      >
-        <label
-          class="relative p-1 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-        >
-          League:
-        </label>
-         
-        <div
-          class="visible w-full px-4 py-2 border outline-none border-main rounded-shape"
-        >
-          <p
-            class="h-6 leading-normal truncate"
+        <div>
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Name:"
           >
-            
-          </p>
+            Name:
+          </label>
            
-          <svg
-            class="float-right h-8 fill-current text-main mr--3 mt--68/10"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
-            />
-             
-            <path
-              d="M0-.75h24v24H0z"
-              fill="none"
-            />
-          </svg>
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Name:"
+            type="text"
+          />
         </div>
          
         <div
-          class="absolute z-40 w-full mb-2 text-center bg-white border border-t-0 select-none dropdown text-body border-main"
-          name="open"
-          style="display: none;"
-        />
-      </div>
-       
-      <div
-        class="relative dropdown-input top--4"
-      >
-        <label
-          class="relative p-1 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
+          class="mt-4"
         >
-          Course:
-        </label>
-         
-        <div
-          class="visible w-full px-4 py-2 border outline-none border-main rounded-shape"
-        >
-          <p
-            class="h-6 leading-normal truncate"
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Club:"
           >
-            
-          </p>
+            Club:
+          </label>
            
-          <svg
-            class="float-right h-8 fill-current text-main mr--3 mt--68/10"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"
-            />
-             
-            <path
-              d="M0-.75h24v24H0z"
-              fill="none"
-            />
-          </svg>
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Club:"
+            type="text"
+          />
         </div>
          
         <div
-          class="absolute z-40 w-full mb-2 text-center bg-white border border-t-0 select-none dropdown text-body border-main"
-          name="open"
-          style="display: none;"
-        />
-      </div>
-       
-      <!---->
-       
-      <button
-        class="button-lg"
-      >
-        Update Competitor
-      </button>
-    </form>
+          class="mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Age Class:"
+          >
+            Age Class:
+          </label>
+           
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Age Class:"
+            type="text"
+          />
+        </div>
+         
+        <div
+          class="relative mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="League:"
+          >
+            
+    League:
+  
+          </label>
+           
+          <svg
+            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            style="margin-bottom: 0.625rem;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+           
+          <select
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="League:"
+          >
+            <option />
+             
+          </select>
+        </div>
+         
+        <div
+          class="relative mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="Course:"
+          >
+            
+    Course:
+  
+          </label>
+           
+          <svg
+            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            style="margin-bottom: 0.625rem;"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+           
+          <select
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="Course:"
+          >
+            <option />
+             
+          </select>
+        </div>
+         
+        <button
+          class="mt-8 button-lg"
+        >
+          Update Competitor
+        </button>
+      </form>
+    </div>
   </div>
-   
-  <!---->
 </div>
 `;

@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="view">
+  <Layout title="Developers">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },
@@ -14,9 +14,17 @@
       description="Developer information about the API and embed pages of Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       url="https://munro-leagues.herokuapp.com/developers"
     />
-    <h1 class="text-3xl font-normal text-main font-heading">Developers</h1>
-    <div class="mt-2 mb-4 card">
-      <h2 class="mb-2 text-2xl font-normal font-heading">API</h2>
+
+    <div class="col-span-2 text-center card-color">
+      <h2 class="text-lg text-center font-heading">
+        <span class="text-xl font-bold">Munro is Open Source!</span> - Code
+        Avaliable on
+        <a class="link" href="https://github.com/brownben/munro">Github</a>
+      </h2>
+    </div>
+
+    <div class="col-span-2 card">
+      <h2 class="my-2 text-3xl font-bold font-heading">API</h2>
       <p>
         All methods use a standard HTTP GET request. The event id is made by
         combining the league name, event name and date and removing all spaces,
@@ -48,13 +56,14 @@
       <h4>/api/results</h4>
       <p>All results</p>
     </div>
-    <div class="my-4 card">
-      <h2 class="mb-2 text-2xl font-normal font-heading">Embed</h2>
+    <div class="col-span-2 card">
+      <h2 class="my-2 text-3xl font-bold font-heading">Embed</h2>
       <p>
         Currently there are two pages designed for embedding in Iframes. Place
         in an IFrame like:
       </p>
       <code
+        class="block w-full p-3 my-4 font-mono text-opacity-100 break-words bg-main-100 text-main-900"
         >&lt;iframe
         src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope
         2018/events&quot;&gt;&lt;/iframe&gt;</code
@@ -66,29 +75,31 @@
       <h4>/embed/leagues/{ LEAGUE NAME }/results/{ COURSE }</h4>
       <p>Contains the league standings for that course</p>
     </div>
-  </div>
+  </Layout>
 </template>
+
+<script>
+import Layout from '@/components/Layout'
+
+export default {
+  components: {
+    Layout,
+  },
+}
+</script>
 
 <style scoped lang="postcss">
 h4 {
-  @apply font-heading text-xl my-2;
+  @apply font-heading text-xl mt-4 text-main-900;
 }
 
 .card {
   @apply text-left items-start;
 }
 
-h1,
-h2,
-h4,
-p {
+card h1,
+card h2,
+card p {
   @apply text-left;
-}
-
-code {
-  display: block;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  background: #eee;
 }
 </style>

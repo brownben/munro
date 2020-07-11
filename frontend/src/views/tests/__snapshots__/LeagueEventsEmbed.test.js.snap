@@ -9,81 +9,21 @@ exports[`Renders Correctly 1`] = `
       title="Munro - "
     />
      
-    <div
-      class="my-4 card"
-    >
-      <h2
-        class="my-1 text-xl font-heading"
-      >
-        200m
-      </h2>
-       
-      <!---->
-       
-      <!---->
-       
-      <p>
-        
-        More Information can be found on their
-        
-        <a
-          class="link"
-          href="wwwwwww"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          website
-        </a>
-      </p>
-       
-      <!---->
-    </div>
-    <div
-      class="my-4 card"
-    >
-      <h2
-        class="my-1 text-xl font-heading"
-      >
-        Longniddry
-      </h2>
-       
-      <p>
-        
-        On 18/04/2018
-        
-          organised by ELO
-        
-      </p>
-       
-      <!---->
-       
-      <!---->
-       
-      <!---->
-    </div>
-    <div
-      class="my-4 card"
-    >
-      <h2
-        class="my-1 text-xl font-heading"
-      >
-        South Edinburgh
-      </h2>
-       
-      <p>
-        
-        On 25/04/2018
-        
-          organised by INT
-        
-      </p>
-       
-      <!---->
-       
-      <!---->
-       
-      <!---->
-    </div>
+    <eventoverviewcard-stub
+      auth="[object Object]"
+      event="[object Object]"
+      league="[object Object]"
+    />
+    <eventoverviewcard-stub
+      auth="[object Object]"
+      event="[object Object]"
+      league="[object Object]"
+    />
+    <eventoverviewcard-stub
+      auth="[object Object]"
+      event="[object Object]"
+      league="[object Object]"
+    />
   </div>
    
   <!---->

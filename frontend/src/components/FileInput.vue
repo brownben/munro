@@ -1,18 +1,21 @@
 <template>
-  <div class="relative file-input top--4">
-    <label
-      class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-      >{{ label }}</label
-    >
+  <div>
+    <label class="block pb-1 select-none font-heading text-main-600">{{
+      label
+    }}</label>
     <p
-      class="w-full px-4 py-2 truncate border outline-none border-main rounded-shape text-body"
+      class="w-full pl-3 truncate transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
     >
-      {{ fileName }}
+      <span class="inline-block py-2">
+        {{ fileName }}
+      </span>
       <label
+        tabindex="0"
         for="file"
-        class="absolute right-0 inline-block px-4 py-2 text-white border-l border-r border-main rounded-shape bg-main hover:text-main hover:bg-white mt--2 font-heading"
-        >Browse for File</label
+        class="z-10 inline-block float-right h-full px-4 py-2 transition duration-300 border border-opacity-0 appearance-none select-none rounded-shape bg-main-200 text-main-700 hover:text-main-800 hover:bg-main-300 border-main-600 font-heading focus:border-opacity-100 oultine-none"
       >
+        Browse for File
+      </label>
       <input
         id="file"
         type="file"
@@ -66,20 +69,3 @@ export default {
   },
 }
 </script>
-<style>
-label {
-  transition: 0.3s;
-}
-
-.mt--2 {
-  margin-top: -0.5rem;
-}
-
-.top--4 {
-  top: -1rem;
-}
-
-.bottom--3 {
-  bottom: -0.75rem;
-}
-</style>

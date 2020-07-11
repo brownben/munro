@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="view">
+  <Layout title="Transfer Result">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -13,10 +13,8 @@
       title="Munro - Transfer Results"
       description
     />
-    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
-      Transfer Result
-    </h1>
-    <form @submit.prevent="transfer">
+
+    <form class="col-span-2" @submit.prevent="transfer">
       <dropdown-input
         v-model="league"
         :list="leagues.map((league) => league.name)"
@@ -28,12 +26,14 @@
         :list="eventsInLeague.map((event) => event.name + ' - ' + event.date)"
         :include-blank="true"
         label="Event:"
+        class="mt-4"
       />
       <dropdown-input
         v-model="course"
         :list="coursesInLeague"
         :include-blank="true"
         label="Course"
+        class="mt-4"
       />
       <dropdown-input
         v-model="result"
@@ -50,24 +50,30 @@
         "
         :include-blank="true"
         label="Result:"
+        class="mt-4"
       />
       <dropdown-input
         v-model="competitor"
         :list="competitorsForLeague.map(competitorTransformForSelect)"
         :include-blank="true"
         label="Competitor:"
+        class="mt-4"
       />
-      <button class="button-lg">Transfer Result</button>
+
+      <button class="mt-8 button-lg">Transfer Result</button>
     </form>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import DropdownInput from '@/components/DropdownInput'
 
 export default {
   components: {
+    Layout,
     DropdownInput,
   },
 

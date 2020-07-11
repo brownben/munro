@@ -17,15 +17,23 @@
         meta: { name: 'robots', content: 'all' },
       }"
     />
-    <h1 class="text-3xl font-normal font-heading">
+    <h1
+      class="font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
+    >
       <router-link
         :to="'/leagues/' + $route.params.name"
-        class="link text-main"
-        >{{ $route.params.name }}</router-link
+        class="link text-main-700"
       >
-      - {{ $route.params.course }}
+        {{ $route.params.name && $route.params.name.trim() }}
+      </router-link>
+      <span class="hidden ml-2 mr-3 md:inline-block">-</span>
+      <span class="block text-3xl md:inline-block">
+        {{ $route.params.course }}</span
+      >
     </h1>
-    <filter-menu @changed="filterChanged" />
+
+    <filter-menu class="mt-3 mb-6" @changed="filterChanged" />
+
     <div
       v-show="filteredResults && filteredResults.length > 0"
       class="table-container"
@@ -130,6 +138,7 @@
                   width="16"
                   height="16"
                   viewBox="0 0 24 24"
+                  class="fill-current text-main-700"
                 >
                   <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
                   <path d="M0 0h24v24H0z" fill="none" />
@@ -174,13 +183,13 @@
         </tbody>
       </table>
     </div>
-    <!-- If no results show, message -->
-    <h2 v-if="!found" class="mx-2 my-10 text-3xl font-heading">
-      Sorry, No Results Could Be Found
-    </h2>
+
+    <transition name="fade">
+      <NoResultsCard v-if="!found || filteredResults.length === 0" />
+    </transition>
 
     <div v-if="otherCourses.length > 0" class="mx-1 my-6 card">
-      <h2 class="text-2xl font-heading">Results for Other Courses</h2>
+      <h2 class="text-2xl font-bold font-heading">Results for Other Courses</h2>
       <div>
         <router-link
           v-for="course in otherCourses"
@@ -196,13 +205,17 @@
 
 <script>
 import axios from 'axios'
+
 import FilterMenu from '@/components/FilterMenu'
 import UpDownArrow from '@/components/UpDownArrows'
+
+const NoResultsCard = () => import('@/components/NoResultsCard')
 
 export default {
   components: {
     FilterMenu,
     UpDownArrow,
+    NoResultsCard,
   },
 
   data: () => ({
@@ -425,15 +438,15 @@ export default {
 }
 
 .table tr:hover:not(.mobile-table-expansion) {
-  @apply bg-main-light;
+  @apply bg-main-200;
 }
 
 .table tr.striped {
-  @apply bg-main-veryLight;
+  @apply bg-main-50;
 }
 
 thead tr {
-  @apply border-b border-main-light;
+  @apply border-b border-main-300;
 }
 
 .table td {
@@ -477,13 +490,11 @@ th:hover > span {
   opacity: 1;
 }
 
-@media (max-width: 640px) {
-  .club {
-    @apply hidden;
-  }
+.club {
+  @apply hidden;
 }
 
-@media (min-width: 640px) {
+@screen sm {
   .club {
     @apply block;
   }

@@ -1,13 +1,29 @@
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Josefin Sans Regular'), local('JosefinSans-Regular'),
+    url('../fonts/Josefin Sans Regular.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/Josefin Sans Bold.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
 @tailwind base;
 
 @tailwind components;
-
-@tailwind utilities;
-
-body,
-html {
-  @apply w-full h-full;
-}
 
 .rounded-shape {
   @apply rounded-tl-lg rounded-br-lg;
@@ -18,69 +34,88 @@ html {
 }
 
 .button {
-  @apply font-heading text-main text-base inline-block leading-normal;
-  @apply border border-main rounded-shape;
-  @apply mt-3 ml-2 py-1 px-3;
-  @apply select-none outline-none appearance-none;
-  transition: 0.3s;
+  @apply inline-block;
+  @apply px-4 py-1 mx-2 mt-2;
+  @apply text-lg text-main-700 font-heading;
+  @apply transition duration-300;
+  @apply outline-none appearance-none select-none;
+  @apply rounded-tl-lg rounded-br-lg border bg-main-100 border-main-500 border-opacity-0;
 }
 
-.button-m-0 {
-  @apply button m-0;
+.button:hover {
+  @apply bg-main-200 text-main-800;
 }
 
-.button-lg {
-  @apply button mt-1 py-1 px-4 mx-0;
-}
-
-.button:hover,
-.button-lg:hover {
-  @apply text-white bg-main-lighter;
+.button:focus {
+  @apply border-opacity-100;
 }
 
 .button-white {
-  @apply font-heading text-white text-base inline-block leading-normal;
-  @apply border border-white rounded-shape;
-  @apply p-2 px-4 mx-2 mt-2;
-  @apply select-none outline-none appearance-none;
-  transition: 0.3s;
+  @apply button;
+  @apply text-white font-heading;
+  @apply bg-purple-100 bg-opacity-10 border-white border-opacity-50;
+
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
 }
 
 .button-white:hover {
-  background-color: #ffffff66;
+  @apply bg-opacity-35;
+}
+
+.button-white:focus {
+  @apply border-opacity-100;
+}
+
+.button-dark {
+  @apply button;
+  @apply text-main-800 font-heading;
+  @apply bg-main-200 border-main-400 border-opacity-0;
+}
+
+.button-dark:hover {
+  @apply bg-main-300 text-main-800;
+}
+
+.button-dark:focus {
+  @apply border-opacity-100;
+}
+
+.button-lg {
+  @apply button;
+  @apply font-bold text-white mx-0 py-2;
+  @apply border border-main-600 border-opacity-0;
+  @apply bg-main-500;
+}
+
+.button-lg:hover {
+  @apply bg-main-400;
+}
+
+.button-lg:focus {
+  @apply border-opacity-100;
 }
 
 .card {
   @apply bg-white text-center rounded-shape-xl;
   @apply flex flex-col justify-center items-center;
   @apply p-4 px-6;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  @apply shadow-md;
 }
 
 .card-color {
   @apply card bg-main text-white border-0;
 }
 
-.view {
-  @apply w-full pt-2 px-8 pb-2;
+.card-color-dark {
+  @apply card bg-main-700 text-white border-0;
 }
 
-@media (min-width: 640px) {
-  .view {
-    @apply px-16;
-  }
-}
+@tailwind utilities;
 
-@media (min-width: 1024px) {
-  .view {
-    @apply px-32;
-  }
-}
-
-@media (min-width: 1280px) {
-  .view {
-    @apply px-64;
-  }
+body,
+html {
+  @apply w-full h-full;
 }
 
 a {

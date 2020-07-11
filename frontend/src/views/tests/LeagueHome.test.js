@@ -50,7 +50,7 @@ test('Renders Correctly', () => {
     },
     stubs: ['router-link', 'vue-headful'],
   })
-  wrapper.setData({ league: sampleSingleLeague, events: sampleThreeEvents })
+  wrapper.setData({ league: sampleSingleLeague[0], events: sampleThreeEvents })
   expect(wrapper.element).toMatchSnapshot()
 })
 
@@ -127,7 +127,6 @@ test('Get League - Correct API Call', async () => {
 
 test('Get League - Success', async () => {
   const mockAddMessage = jest.fn()
-  axios.get.mockResolvedValue({ data: sampleSingleLeague[0] })
   const wrapper = shallowMount(League, {
     mocks: {
       $auth: { user: false },
@@ -137,6 +136,9 @@ test('Get League - Success', async () => {
     },
     stubs: ['router-link', 'vue-headful'],
   })
+  await flushPromises()
+  jest.clearAllMocks()
+  axios.get.mockResolvedValue({ data: sampleSingleLeague[0] })
   await wrapper.vm.getLeague()
   expect(mockAddMessage).toHaveBeenCalledTimes(0)
   expect(wrapper.vm.league).toEqual(sampleSingleLeague[0])
@@ -238,10 +240,10 @@ test('Get League Events - Success', async () => {
   })
   await flushPromises()
   jest.clearAllMocks()
-  axios.get.mockResolvedValue({ data: sampleSingleEvent })
+  axios.get.mockResolvedValue({ data: sampleSingleEvent[0] })
   wrapper.setData({ league: sampleSingleLeague[0] })
   await wrapper.vm.getLeagueEvents()
-  expect(wrapper.vm.events).toEqual(sampleSingleEvent)
+  expect(wrapper.vm.events).toEqual(sampleSingleEvent[0])
 })
 
 test('Get League Events - Success - Logged In', async () => {
@@ -257,10 +259,10 @@ test('Get League Events - Success - Logged In', async () => {
   })
   await flushPromises()
   jest.clearAllMocks()
-  axios.get.mockResolvedValue({ data: sampleSingleEvent })
+  axios.get.mockResolvedValue({ data: sampleSingleEvent[0] })
   wrapper.setData({ league: sampleSingleLeague[0] })
   await wrapper.vm.getLeagueEvents()
-  expect(wrapper.vm.events).toEqual(sampleSingleEvent)
+  expect(wrapper.vm.events).toEqual(sampleSingleEvent[0])
 })
 
 test('Get League Events - Error', async () => {
@@ -304,110 +306,6 @@ test('Get League Events - Error - Logged In', async () => {
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
   expect(mockAddMessage).toHaveBeenLastCalledWith(
     'Problem Getting Event Details'
-  )
-})
-
-test('Delete Event - Correct Confirm', async () => {
-  const mockAddMessage = jest.fn()
-  const wrapper = shallowMount(League, {
-    mocks: {
-      $auth: { user: false },
-      $route: { params: { name: '' } },
-      $messages: { addMessage: mockAddMessage },
-      mounted: () => {},
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  global.confirm = jest.fn()
-  await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
-  expect(global.confirm).toHaveBeenCalledTimes(1)
-  expect(global.confirm).toHaveBeenLastCalledWith(
-    "Are you Sure you Want to Delete Event - EVENT? \nThis Action Can't Be Recovered"
-  )
-})
-
-test('Delete Event - Denied Confirmation', async () => {
-  const mockAddMessage = jest.fn()
-  const wrapper = shallowMount(League, {
-    mocks: {
-      $auth: { user: false },
-      $route: { params: { name: '' } },
-      $messages: { addMessage: mockAddMessage },
-      mounted: () => {},
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  global.confirm = jest.fn().mockReturnValue(false)
-  axios.delete.mockResolvedValue()
-  await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
-  expect(axios.delete).toHaveBeenCalledTimes(0)
-})
-
-test('Delete Event - Correct API Call', async () => {
-  const mockAddMessage = jest.fn()
-  const wrapper = shallowMount(League, {
-    mocks: {
-      $auth: { user: false },
-      $route: { params: { name: '' } },
-      $messages: { addMessage: mockAddMessage },
-      mounted: () => {},
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  global.confirm = jest.fn().mockReturnValue(true)
-  axios.delete.mockResolvedValue()
-  await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
-  expect(axios.delete).toHaveBeenCalledTimes(1)
-  expect(axios.delete).toHaveBeenLastCalledWith('/api/events/EVENT')
-})
-
-test('Delete Event - Success', async () => {
-  const mockGetLeague = jest.fn().mockResolvedValue()
-  const mockGetLeagueEvents = jest.fn()
-  const mockAddMessage = jest.fn()
-  const wrapper = shallowMount(League, {
-    mocks: {
-      $auth: { user: false },
-      $route: { params: { name: '' } },
-      $messages: { addMessage: mockAddMessage },
-      mounted: () => {},
-    },
-    stubs: ['router-link', 'vue-headful'],
-    methods: {
-      getLeague: mockGetLeague,
-      getLeagueEvents: mockGetLeagueEvents,
-    },
-  })
-  await flushPromises()
-  jest.clearAllMocks()
-  global.confirm = jest.fn().mockReturnValue(true)
-  axios.delete.mockResolvedValue()
-  await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
-  expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith('Event: EVENT was Deleted')
-  expect(mockGetLeague).toHaveBeenCalledTimes(1)
-  expect(mockGetLeagueEvents).toHaveBeenCalledTimes(1)
-})
-
-test('Delete Event - Error', async () => {
-  const mockAddMessage = jest.fn()
-  const wrapper = shallowMount(League, {
-    mocks: {
-      $auth: { user: false },
-      $route: { params: { name: '' } },
-      $messages: { addMessage: mockAddMessage },
-      mounted: () => {},
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  await flushPromises()
-  jest.clearAllMocks()
-  global.confirm = jest.fn().mockReturnValue(true)
-  axios.delete.mockRejectedValue()
-  await wrapper.vm.deleteEvent({ id: 'EVENT', name: 'EVENT' })
-  expect(mockAddMessage).toHaveBeenCalledTimes(1)
-  expect(mockAddMessage).toHaveBeenLastCalledWith(
-    'Problem Deleting Event - Please Try Again'
   )
 })
 
@@ -558,4 +456,22 @@ test('Scoring Method Shorthand to Full', () => {
   )
   expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
   expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
+})
+
+test('Natural Join', () => {
+  const wrapper = mount(League, {
+    mocks: {
+      $route: { path: '', params: { name: '' } },
+      $messages: { addMessage: jest.fn() },
+      $auth: { user: {} },
+    },
+    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
+  })
+  expect(wrapper.vm.naturalJoin([])).toBe('')
+  expect(wrapper.vm.naturalJoin([''])).toBe('')
+  expect(wrapper.vm.naturalJoin(['A'])).toBe('A')
+  expect(wrapper.vm.naturalJoin(['Apple'])).toBe('Apple')
+  expect(wrapper.vm.naturalJoin(['A', 'B'])).toBe('A and B')
+  expect(wrapper.vm.naturalJoin(['A', 'B', 'C'])).toBe('A, B and C')
+  expect(wrapper.vm.naturalJoin(['A', 'B', 'C', 'D'])).toBe('A, B, C and D')
 })

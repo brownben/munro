@@ -12,42 +12,31 @@
 -->
 
 <template>
-  <div class="view">
+  <div>
     <vue-headful
-      v-if="create"
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
-      title="Munro - Create League"
+      :title="`Munro - ${title}`"
       description
     />
-    <vue-headful
-      v-else
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      title="Munro - Edit League"
-      description
-    />
-    <div v-if="!notFound">
-      <h1
-        v-if="create"
-        class="mb-2 text-3xl font-normal text-main font-heading"
-      >
-        Create League
-      </h1>
-      <h1
-        v-if="!create"
-        class="mb-2 text-3xl font-normal text-main font-heading"
-      >
-        Edit League
-      </h1>
-      <form @submit.prevent="submit">
+
+    <Layout v-if="!notFound" :title="title">
+      <form class="col-span-2" @submit.prevent="submit">
         <text-input v-model.trim="name" label="Name:" />
-        <text-input v-model.trim="year" label="Year:" />
-        <text-input v-model.trim="info" label="Description:" />
-        <text-input v-model.trim="website" label="Website: (URL)" type="url" />
-        <text-input v-model.trim="coordinator" label="Coordinator:" />
+        <text-input v-model.trim="year" label="Year:" class="mt-4" />
+        <text-input v-model.trim="info" label="Description:" class="mt-4" />
+        <text-input
+          v-model.trim="website"
+          label="Website: (URL)"
+          type="url"
+          class="mt-4"
+        />
+        <text-input
+          v-model.trim="coordinator"
+          label="Coordinator:"
+          class="mt-4"
+        />
         <dropdown-input
           v-model="scoringMethod"
           :list="[
@@ -62,41 +51,51 @@
             'From Upload File',
           ]"
           label="Scoring Method:"
+          class="mt-4"
         />
         <number-input
           v-model.number="numberOfCountingEvents"
           :min="1"
           label="Number of Events to Count:"
+          class="mt-4"
         />
-        <text-input v-model.trim="courses" label="Courses: (Comma Separated)" />
+        <text-input
+          v-model.trim="courses"
+          label="Courses: (Comma Separated)"
+          class="mt-4"
+        />
         <checkbox-input
           v-model="dynamicResults"
           label="Dynamic Event Results:"
-          class="mb-5 text-left"
+          class="mt-6 mb-5 text-left"
         />
         <button v-if="create" class="button-lg">Create League</button>
-        <button v-if="!create" class="button-lg">Update League</button>
+        <button v-else class="button-lg">Update League</button>
       </form>
-    </div>
-    <not-found v-if="notFound" />
+    </Layout>
+    <not-found v-else />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import DropdownInput from '@/components/DropdownInput'
 import TextInput from '@/components/TextInput'
 import NumberInput from '@/components/NumberInput'
 import CheckboxInput from '@/components/CheckboxInput'
+
 const NotFound = () => import('@/views/NotFound')
 
 export default {
   components: {
-    NotFound,
+    Layout,
     DropdownInput,
     TextInput,
     NumberInput,
     CheckboxInput,
+    NotFound,
   },
 
   data: function () {
@@ -115,6 +114,13 @@ export default {
       numberOfEvents: 0,
       dynamicResults: true,
     }
+  },
+
+  computed: {
+    title: function () {
+      if (this.create) return 'Create League'
+      else return 'Edit League'
+    },
   },
 
   // On Load

@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div
-  class="view"
+<layout-stub
+  title="Merge Competitors"
 >
   <vue-headful-stub
     description=""
@@ -10,15 +10,9 @@ exports[`Renders Correctly 1`] = `
     title="Munro - Merge Competitors"
   />
    
-  <h1
-    class="mb-2 text-3xl font-normal text-main font-heading"
+  <form
+    class="col-span-2"
   >
-    
-    Merge Competitors
-  
-  </h1>
-   
-  <form>
     <dropdown-input-stub
       include-blank="true"
       label="League:"
@@ -28,6 +22,7 @@ exports[`Renders Correctly 1`] = `
     />
      
     <dropdown-input-stub
+      class="mt-4"
       include-blank="true"
       label="Course:"
       list=""
@@ -36,6 +31,7 @@ exports[`Renders Correctly 1`] = `
     />
      
     <dropdown-input-stub
+      class="mt-4"
       include-blank="true"
       label="Competitor to Keep:"
       list=""
@@ -44,6 +40,7 @@ exports[`Renders Correctly 1`] = `
     />
      
     <dropdown-input-stub
+      class="mt-4"
       include-blank="true"
       label="Competitor to be Merged:"
       list=""
@@ -52,10 +49,10 @@ exports[`Renders Correctly 1`] = `
     />
      
     <button
-      class="button-lg"
+      class="mt-8 button-lg"
     >
       Merge Competitors
     </button>
   </form>
-</div>
+</layout-stub>
 `;

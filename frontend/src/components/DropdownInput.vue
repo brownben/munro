@@ -6,39 +6,37 @@
 -->
 
 <template>
-  <div class="relative dropdown-input" :class="{ 'top--4': shift }">
+  <div class="relative">
     <label
-      class="relative p-1 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-      >{{ label }}</label
+      class="block pb-1 select-none font-heading text-main-600"
+      :for="label"
     >
-    <div
-      class="visible w-full px-4 py-2 border outline-none border-main rounded-shape"
-      @click="toggle"
+      {{ label }}
+    </label>
+
+    <svg
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+      style="margin-bottom: 0.625rem;"
     >
-      <p class="h-6 leading-normal truncate">{{ currentValue }}</p>
-      <svg
-        class="float-right h-8 fill-current text-main mr--3 mt--68/10"
-        viewBox="0 0 24 24"
-      >
-        <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z" />
-        <path d="M0-.75h24v24H0z" fill="none" />
-      </svg>
-    </div>
-    <transition name="open">
-      <div
-        v-show="open"
-        class="absolute z-40 w-full mb-2 text-center bg-white border border-t-0 select-none dropdown text-body border-main"
-      >
-        <p
-          v-for="item in list"
-          :key="item"
-          class="px-3 py-2 leading-normal text-center truncate select-none hover:bg-main-veryLight"
-          @click="changeSelection(item)"
-        >
-          {{ item }}
-        </p>
-      </div>
-    </transition>
+      <path d="M19 9l-7 7-7-7" />
+    </svg>
+    <select
+      :id="label"
+      v-model="currentValue"
+      class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+      @change="$emit('input', currentValue)"
+    >
+      <option v-if="shift" />
+      <option v-for="item in list" :key="item" :value="item">
+        {{ item }}
+      </option>
+    </select>
   </div>
 </template>
 
@@ -77,55 +75,11 @@ export default {
       this.currentValue = value
     },
   },
-
-  methods: {
-    changeSelection: function (value) {
-      this.open = false
-      this.currentValue = value
-      this.$emit('input', value)
-    },
-
-    toggle: function () {
-      this.open = !this.open
-      if (this.open) this.$emit('opened')
-    },
-  },
 }
 </script>
 
-<style>
-.open-enter-active,
-.open-leave-active {
-  transition: 0.3s transform;
-  transform: scaleY(1);
-  transform-origin: top;
-}
-.open-enter,
-.open-leave-to {
-  transform: scaleY(0);
-  transform-origin: top;
-}
-
-.mt--34\/10 {
-  margin-top: -0.85rem;
-}
-.mt--68\/10 {
-  margin-top: -1.7rem;
-}
-
-.mt--5 {
-  margin-top: -1.25rem;
-}
-
-.mr--3 {
-  margin-right: -0.75rem;
-}
-
-.top--4 {
-  top: -1rem;
-}
-
-.bottom--3 {
-  bottom: -0.75rem;
+<style lang="postcss">
+option {
+  @apply bg-white;
 }
 </style>

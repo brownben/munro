@@ -192,6 +192,10 @@ const router = new Router({
     },
   ],
 
+  scrollBehavior() {
+    return { x: 0, y: 0 }
+  },
+
   // Use natural looking routes (/<route>) not /#<route>
   mode: 'history',
 })

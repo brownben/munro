@@ -10,12 +10,12 @@ exports[`Renders Correctly 1`] = `
   />
    
   <div
-    class="flex-row-reverse items-center justify-center block p-3 pb-4 mt-6 text-center view md:flex"
+    class="flex-row-reverse items-center justify-center block w-10/12 p-3 pb-4 m-auto mt-6 mb-8 text-center md:w-3/4 md:flex"
     id="header"
   >
     <img
       alt="Orienteering Flag Next to Trees and Hills"
-      class="inline-block pb-2 h-80 md:pl-6 xl:pl-20"
+      class="inline-block pb-2 h-80 md:pl-10 xl:pl-20"
       src="@/assets/images/UnDrawOFlagPurple.svg"
     />
      
@@ -28,16 +28,18 @@ exports[`Renders Correctly 1`] = `
     </h2>
   </div>
    
-  <!---->
-   
   <div
-    class="flex flex-row flex-wrap view"
+    class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2 mt-8"
   >
+    <!---->
+     
     <div
-      class="w-full my-4 md:w-1/2 md:px-3"
+      class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
     >
+      <!---->
+       
       <div
-        class="w-full h-full card"
+        class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
         <img
           alt="The Logo of Sprintelope"
@@ -46,46 +48,46 @@ exports[`Renders Correctly 1`] = `
         />
          
         <h1
-          class="my-2 text-2xl font-heading"
+          class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
-          (Not) Sprintelope 2020
+          
+    (Not) Sprintelope 2020
+  
         </h1>
          
         <p>
           
-          Socially Distant Sprint/ Urban Orienteering Events in Edinburgh and
-          the Lothians
-        
+     Socially Distant Sprint/ Urban Orienteering Events in Edinburgh and
+        the Lothians
+  
         </p>
          
         <p>
           
-          More information can be found on their
-          
+    More information can be found on their
+    
           <a
-            class="link"
+            class="link text-main-700"
             href="https://en-gb.facebook.com/sprintelope/"
             rel="noopener noreferrer"
             target="_blank"
           >
-            website
+            
+      website
+    
           </a>
         </p>
          
         <router-link-stub
-          class="button"
+          class="mt-4 button"
           to="/leagues/(Not) Sprintelope 2020"
         >
           View League
         </router-link-stub>
       </div>
-    </div>
-     
-    <div
-      class="w-full h-full my-4 md:w-1/2 md:px-3"
-    >
+       
       <div
-        class="card"
+        class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
         <img
           alt="The Logo of Sprintelope"
@@ -94,234 +96,227 @@ exports[`Renders Correctly 1`] = `
         />
          
         <h1
-          class="my-2 text-2xl font-heading"
+          class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
-          Sprintelope 2019
+          
+    Sprintelope 2019
+  
         </h1>
          
         <p>
           
-          Wednesday Evening Sprint Orienteering Events in Edinburgh and the
-          Lothians
-        
+    Wednesday Evening Sprint Orienteering Events in Edinburgh and the
+        Lothians
+  
         </p>
          
         <p>
           
-          More information can be found on their
-          
+    More information can be found on their
+    
           <a
-            class="link"
+            class="link text-main-700"
             href="https://en-gb.facebook.com/sprintelope/"
             rel="noopener noreferrer"
             target="_blank"
           >
-            website
+            
+      website
+    
           </a>
         </p>
          
         <router-link-stub
-          class="button"
+          class="mt-4 button"
           to="/leagues/Sprintelope 2019"
         >
           View League
         </router-link-stub>
       </div>
-    </div>
-     
-    <div
-      class="w-full my-4 md:w-1/2 md:px-3"
-    >
+       
       <div
-        class="w-full h-full card"
+        class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
+         
         <h1
-          class="my-2 text-2xl font-heading"
+          class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
-          Fight with the Night
+          
+    Fight with the Night
+  
         </h1>
          
         <p>
           
-          Thursday Night Orienteering Events Around Edinburgh Organised By
-          Edinburgh Uni Orienteering Club
-        
+    Thursday Night Orienteering Events Around Edinburgh Organised By
+        Edinburgh Uni Orienteering Club
+  
         </p>
          
         <p>
           
-          More information can be found on their
-          
+    More information can be found on their
+    
           <a
-            class="link"
+            class="link text-main-700"
             href="https://euoc.wordpress.com/"
             rel="noopener noreferrer"
             target="_blank"
           >
-            website
+            
+      website
+    
           </a>
         </p>
          
         <router-link-stub
-          class="button"
+          class="mt-4 button"
           to="/leagues/Fight with the Night 19-20"
         >
           View League
         </router-link-stub>
       </div>
-    </div>
-     
-    <div
-      class="w-full my-4 md:w-1/2 md:px-3"
-    >
+       
       <div
-        class="w-full h-full card"
+        class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
+         
         <h1
-          class="my-2 text-2xl font-heading"
+          class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
-          Northern Night Cup
+          
+    Northern Night Cup
+  
         </h1>
          
         <p>
           
-          A Series of Night Orienteering Events in the North of Scotland
-        
+    A Series of Night Orienteering Events in the North of Scotland
+  
         </p>
          
         <p>
           
-          More information can be found on their
-          
+    More information can be found on their
+    
           <a
-            class="link"
+            class="link text-main-700"
             href="https://www.orienteering.scot/northern-night-cup/"
             rel="noopener noreferrer"
             target="_blank"
           >
-            website
+            
+      website
+    
           </a>
         </p>
          
         <router-link-stub
-          class="button"
+          class="mt-4 button"
           to="/leagues/Northern Night Cup 19-20"
         >
           View League
         </router-link-stub>
       </div>
-    </div>
-  </div>
-   
-  <div
-    class="w-full p-3 text-center text-white bg-main view contours"
-  >
-    <img
-      alt="Munro Logo"
-      class="inline-block h-24 mt-4 mb-2"
-      src="@/assets/images/MunroLogoWhite.png"
-    />
-     
-    <h1
-      class="my-2 text-2xl font-heading"
-    >
-      About
-    </h1>
-     
-    <div
-      class="mb-3 text"
-    >
-      <p>
-        
-        Munro is a sports league results calculator, created originally by Ben
-        Brown for his local Orienteering League as part of his Advanced Higher
-        Computing Project. Munro is designed to be as easy to use as possible
-        providing all the features and information you need, whilst making it
-        fast and simple to view the results; with multiple options to sort and
-        filter them. It supports multiple file formats for upload and several
-        different scoring systems, making the process as quick and stress free
-        as possible for event organisers.
-      
-      </p>
        
-      <p>
-        
-        Munro is Open Source and the code is avaliable on
-        
-        <a
-          class="link"
-          href="https://github.com/brownben/munro"
-        >
-          Github
-        </a>
-      </p>
-       
-      <p>
-        
-        Munro is still under development so any feedback or comments would be
-        welcome, please send them to munro.leagues@gmail.com
-      
-      </p>
-       
-      <p>
-        
-        For any help or enquires please email munro.leagues@gmail.com
-      
-      </p>
-    </div>
-  </div>
-   
-  <div
-    class="flex flex-row flex-wrap view"
-  >
-    <div
-      class="w-full my-4 md:w-1/2 md:px-3"
-    >
       <div
-        class="w-full h-full card"
+        class="w-full col-span-2 p-3 text-center text-white shadow-md bg-main contours rounded-shape-xl"
       >
+        <img
+          alt="Munro Logo"
+          class="inline-block h-24 mt-4 mb-2"
+          src="@/assets/images/MunroLogoWhite.png"
+        />
+         
         <h1
-          class="my-2 text-2xl font-heading"
+          class="my-2 text-3xl font-bold md:text-4xl font-heading"
         >
-          Upload Instructions
+          About
+        </h1>
+         
+        <div
+          class="w-full px-4 mb-3 md:px-8 text"
+        >
+          <p>
+            
+      Munro is a league results calculator, originally created as part of my
+      Advanced Higher Computing Project. It calculates the overall results for
+      a series of events, it is designed to be easy to use and require very
+      little effort for league coordinators and event organisers to use.
+    
+          </p>
+           
+          <p>
+            
+      Munro allows you to see all the information for a league on one place,
+      and provides multiple options to sort and filter results so you can view
+      the results in whatever form you want. It also supports multiple file
+      formats for upload and several different scoring systems, making the
+      process as quick and stress free as possible for event organisers.
+    
+          </p>
+           
+          <p>
+            
+      Munro is still under development so any feedback or comments would be
+      welcome, please send them to munro.leagues@gmail.com For any help or
+      enquires please email munro.leagues@gmail.com
+    
+          </p>
+        </div>
+      </div>
+       
+      <div
+        class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
+      >
+         
+        <h1
+          class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
+        >
+          
+    Upload Instructions
+  
         </h1>
          
         <p>
           
-          Instructions for Event Organisers on how to Upload Results to Munro
-        
+    Instructions for Event Organisers on how to Upload Results to Munro
+  
         </p>
          
+        <!---->
+         
         <router-link-stub
-          class="button"
+          class="mt-4 button"
           to="/upload-instructions"
         >
           View Info
         </router-link-stub>
       </div>
-    </div>
-     
-    <div
-      class="w-full my-4 md:w-1/2 md:px-3"
-    >
+       
       <div
-        class="w-full h-full card"
+        class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
+         
         <h1
-          class="my-2 text-2xl font-heading"
+          class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
-          Developers
+          
+    Developers
+  
         </h1>
          
         <p>
           
-          Information for developers about accessing the API and embedding the
-          site in IFrames
-        
+    Information for developers about accessing the API and embedding the
+        site in IFrames
+  
         </p>
          
+        <!---->
+         
         <router-link-stub
-          class="button"
+          class="mt-4 button"
           to="/developers"
         >
           View Info

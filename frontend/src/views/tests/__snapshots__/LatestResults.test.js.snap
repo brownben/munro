@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div
-  class="view"
+<layout-stub
+  title="Latest Results"
 >
   <vue-headful-stub
     description="The latest results from events on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
@@ -11,151 +11,23 @@ exports[`Renders Correctly 1`] = `
     url="https://munro-leagues.herokuapp.com/latest-results"
   />
    
-  <h1
-    class="text-3xl font-normal text-main font-heading"
-  >
-    Latest Results
-  </h1>
-   
-  <div
-    class="p-4 pb-1 my-5 card"
-  >
-    <h2
-      class="my-2 text-2xl font-heading"
-    >
-      
-      Justice - 200m
-    
-    </h2>
-     
-    <!---->
-     
-    <p>
-      
-      More Information can be found on their
-      
-      <a
-        href="wwwwwww"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        website
-      </a>
-    </p>
-     
-    <span>
-      <router-link-stub
-        class="button"
-        to="/events/Justice200m/results"
-      >
-        
-        Results
-      
-      </router-link-stub>
-       
-      <a
-        class="button"
-        href="w"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        HTML Results
-      </a>
-       
-      <a
-        class="button"
-        href="w"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        WinSplits
-      </a>
-       
-      <a
-        class="button"
-        href="w"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        Routegadget
-      </a>
-    </span>
-  </div>
-  <div
-    class="p-4 pb-1 my-5 card"
-  >
-    <h2
-      class="my-2 text-2xl font-heading"
-    >
-      
-      Sprintelope - Longniddry
-    
-    </h2>
-     
-    <p>
-      
-      On 18/04/2018
-      
-        organised by ELO
-      
-    </p>
-     
-    <!---->
-     
-    <span>
-      <router-link-stub
-        class="button"
-        to="/events/SprintelopeLongniddry2018-04-18/results"
-      >
-        
-        Results
-      
-      </router-link-stub>
-       
-      <!---->
-       
-      <!---->
-       
-      <!---->
-    </span>
-  </div>
-  <div
-    class="p-4 pb-1 my-5 card"
-  >
-    <h2
-      class="my-2 text-2xl font-heading"
-    >
-      
-      Sprintelope - South Edinburgh
-    
-    </h2>
-     
-    <p>
-      
-      On 25/04/2018
-      
-        organised by INT
-      
-    </p>
-     
-    <!---->
-     
-    <span>
-      <router-link-stub
-        class="button"
-        to="/events/SprintelopeSouthEdinburgh2018-04-25/results"
-      >
-        
-        Results
-      
-      </router-link-stub>
-       
-      <!---->
-       
-      <!---->
-       
-      <!---->
-    </span>
-  </div>
-</div>
+  <eventoverviewcard-stub
+    auth="[object Object]"
+    event="[object Object]"
+    league="[object Object]"
+    showleaguename="true"
+  />
+  <eventoverviewcard-stub
+    auth="[object Object]"
+    event="[object Object]"
+    league="[object Object]"
+    showleaguename="true"
+  />
+  <eventoverviewcard-stub
+    auth="[object Object]"
+    event="[object Object]"
+    league="[object Object]"
+    showleaguename="true"
+  />
+</layout-stub>
 `;

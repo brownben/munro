@@ -2,77 +2,89 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="view"
+  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
 >
-  <vue-headful-stub
-    description=""
-    head="[object Object]"
-    title="Munro - Login"
-  />
-   
   <h1
-    class="my-2 text-2xl text-main font-heading"
+    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
   >
+    
     Admin Login
+  
   </h1>
    
-  <form>
-    <div
-      class="relative text-input top--4"
-    >
-      <label
-        class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-      >
-        Email Address:
-      </label>
-       
-      <input
-        class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-        type="email"
-      />
-    </div>
-     
-    <div
-      class="relative text-input top--4"
-    >
-      <label
-        class="relative p-1 pb-0 mx-3 text-sm bg-white select-none font-heading text-main bottom--3"
-      >
-        Password:
-      </label>
-       
-      <input
-        class="w-full px-4 py-2 border outline-none border-main rounded-shape text-body"
-        type="password"
-      />
-    </div>
-     
-    <button
-      class="button-lg"
-    >
-      Login
-    </button>
-  </form>
-   
   <div
-    class="mt-4 card-color"
+    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
   >
-    <p>
-      <b
-        class="p-2 text-lg font-heading"
+    <vue-headful-stub
+      description=""
+      head="[object Object]"
+      title="Munro - Login"
+    />
+     
+    <form
+      class="col-span-2"
+    >
+      <div>
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Email Address:"
+        >
+          Email Address:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Email Address:"
+          type="email"
+        />
+      </div>
+       
+      <div
+        class="mt-4"
       >
-        Looking for Results Upload?
-      </b>
-      
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Password:"
+        >
+          Password:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Password:"
+          type="password"
+        />
+      </div>
+       
+      <button
+        class="mt-6 button-lg"
+      >
+        
+      Login
+    
+      </button>
+    </form>
+     
+    <div
+      class="col-span-2 card-color"
+    >
+      <p>
+        <b
+          class="p-2 font-heading"
+        >
+          Looking for Results Upload?
+        </b>
+        
       You don't have to login, just visit the
       
-      <router-link-stub
-        class="link"
-        to="/upload"
-      >
-        upload page
-      </router-link-stub>
-    </p>
+        <router-link-stub
+          class="link"
+          to="/upload"
+        >
+          upload page
+        </router-link-stub>
+      </p>
+    </div>
   </div>
 </div>
 `;

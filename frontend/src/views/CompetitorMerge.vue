@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <div class="view">
+  <Layout title="Merge Competitors">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -13,10 +13,8 @@
       title="Munro - Merge Competitors"
       description
     />
-    <h1 class="mb-2 text-3xl font-normal text-main font-heading">
-      Merge Competitors
-    </h1>
-    <form @submit.prevent="merge">
+
+    <form class="col-span-2" @submit.prevent="merge">
       <dropdown-input
         v-model="league"
         :list="leagues.map((league) => league.name)"
@@ -28,6 +26,7 @@
         :list="coursesInLeague"
         :include-blank="true"
         label="Course:"
+        class="mt-4"
       />
       <dropdown-input
         v-model="competitorKeep"
@@ -45,6 +44,7 @@
         "
         :include-blank="true"
         label="Competitor to Keep:"
+        class="mt-4"
       />
       <dropdown-input
         v-model="competitorMerge"
@@ -62,18 +62,22 @@
         "
         :include-blank="true"
         label="Competitor to be Merged:"
+        class="mt-4"
       />
-      <button class="button-lg">Merge Competitors</button>
+      <button class="mt-8 button-lg">Merge Competitors</button>
     </form>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
 import DropdownInput from '@/components/DropdownInput'
 
 export default {
   components: {
+    Layout,
     DropdownInput,
   },
 

@@ -13,12 +13,12 @@
       id="messages"
       name="list"
       mode="out-in"
-      class="fixed bottom-0 right-0"
+      class="fixed bottom-0 right-0 mb-4 mr-4"
     >
       <p
         v-for="message of messages"
         :key="message.id"
-        class="z-40 m-3 card-color font-heading"
+        class="z-40 mt-4 text-lg card-color font-heading"
         @click="clear(message.id)"
       >
         {{ message.text }}

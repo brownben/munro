@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 import VueRouter from 'vue-router'
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 
 import League from '@/views/LeagueEventsEmbed'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
@@ -31,7 +31,7 @@ test('Is a Vue Instance', () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   expect(wrapper.isVueInstance()).toBeTruthy()
 })
@@ -48,9 +48,9 @@ test('Renders Correctly', () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
-  wrapper.setData({ league: sampleSingleLeague, events: sampleThreeEvents })
+  wrapper.setData({ league: sampleSingleLeague[0], events: sampleThreeEvents })
   expect(wrapper.element).toMatchSnapshot()
 })
 
@@ -66,7 +66,7 @@ test('Calls Correct Functions on Load', async () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   await flushPromises()
   await wrapper.vm.$mount()
@@ -92,7 +92,7 @@ test('Reload League on Route Change', async () => {
       getLeague: mockGetLeague,
       getLeagueEvents: mockGetLeagueEvents,
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -115,7 +115,7 @@ test('Get League - Correct API Call', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => {},
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -127,7 +127,6 @@ test('Get League - Correct API Call', async () => {
 
 test('Get League - Success', async () => {
   const mockAddMessage = jest.fn()
-  axios.get.mockResolvedValue({ data: sampleSingleLeague[0] })
   const wrapper = shallowMount(League, {
     mocks: {
       $auth: { user: false },
@@ -135,8 +134,11 @@ test('Get League - Success', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => {},
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
+  await flushPromises()
+  jest.clearAllMocks()
+  axios.get.mockResolvedValue({ data: sampleSingleLeague[0] })
   await wrapper.vm.getLeague()
   expect(mockAddMessage).toHaveBeenCalledTimes(0)
   expect(wrapper.vm.league).toEqual(sampleSingleLeague[0])
@@ -151,7 +153,7 @@ test('Get League - Error', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => {},
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -172,7 +174,7 @@ test('Get League Events - No League Data', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => {},
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -192,7 +194,7 @@ test('Get League Events - Correct API', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => {},
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -201,25 +203,6 @@ test('Get League Events - Correct API', async () => {
   await wrapper.vm.getLeagueEvents()
   expect(axios.get).toHaveBeenCalledTimes(1)
   expect(axios.get).toHaveBeenLastCalledWith('/api/leagues/Test/events')
-})
-
-test('Get League Events - Success', async () => {
-  const mockAddMessage = jest.fn()
-  const wrapper = shallowMount(League, {
-    mocks: {
-      $auth: { user: false },
-      $route: { params: { name: '' } },
-      $messages: { addMessage: mockAddMessage },
-      mounted: () => {},
-    },
-    stubs: ['router-link', 'vue-headful'],
-  })
-  await flushPromises()
-  jest.clearAllMocks()
-  axios.get.mockResolvedValue({ data: sampleSingleEvent })
-  wrapper.setData({ league: sampleSingleLeague })
-  await wrapper.vm.getLeagueEvents()
-  expect(wrapper.vm.events).toEqual(sampleSingleEvent)
 })
 
 test('Get League Events - Error', async () => {
@@ -231,7 +214,7 @@ test('Get League Events - Error', async () => {
       $messages: { addMessage: mockAddMessage },
       mounted: () => {},
     },
-    stubs: ['router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
   await flushPromises()
   jest.clearAllMocks()
@@ -244,41 +227,21 @@ test('Get League Events - Error', async () => {
   )
 })
 
-test('Scoring Method Shorthand to Full', () => {
-  const wrapper = mount(League, {
+test('Get League Events - Success', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(League, {
     mocks: {
-      $route: { path: '', params: { name: '' } },
-      $messages: { addMessage: jest.fn() },
+      $auth: { user: false },
+      $route: { params: { name: '' } },
+      $messages: { addMessage: mockAddMessage },
+      mounted: () => {},
     },
-    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful', 'EventOverviewCard'],
   })
-  expect(wrapper.vm.scoringMethodShorthandToFull('position')).toBe(
-    'Position Based (100 Max)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50')).toBe(
-    'Position Based (50 Max)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99')).toBe(
-    'Position Based (99 Max)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('position99average')).toBe(
-    'Position Based (99 Max, Reduced in a Draw)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('positionDouble')).toBe(
-    'Position Based (100 Max, Double Points)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('position50Double')).toBe(
-    'Position Based (50 Max, Double Points)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage')).toBe(
-    'Relative to Average Time (1000 Average)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('timeAverage100')).toBe(
-    'Relative to Average Time (100 Average)'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('file')).toBe(
-    'From Upload File'
-  )
-  expect(wrapper.vm.scoringMethodShorthandToFull('')).toBe('')
-  expect(wrapper.vm.scoringMethodShorthandToFull('pos')).toBe('')
+  await flushPromises()
+  jest.clearAllMocks()
+  axios.get.mockResolvedValue({ data: sampleSingleEvent[0] })
+  wrapper.setData({ league: sampleSingleLeague[0] })
+  await wrapper.vm.getLeagueEvents()
+  expect(wrapper.vm.events).toEqual(sampleSingleEvent[0])
 })
