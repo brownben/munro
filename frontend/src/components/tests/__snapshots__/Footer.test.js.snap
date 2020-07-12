@@ -5,7 +5,7 @@ exports[`Renders Correctly 1`] = `
   class="p-2 mt-2 text-center text-main font-body"
 >
   <p
-    class="inline-block mr-4 text-lg md:mr-6"
+    class="inline-block mr-4 text-base md:text-lg md:mr-6"
   >
     
     Created By

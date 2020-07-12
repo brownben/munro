@@ -1,6 +1,6 @@
 <template>
   <footer class="p-2 mt-2 text-center text-main font-body">
-    <p class="inline-block mr-4 text-lg md:mr-6">
+    <p class="inline-block mr-4 text-base md:text-lg md:mr-6">
       Created By
       <a href="https://brownben.github.io" class="font-heading">Ben Brown</a>
     </p>

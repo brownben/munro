@@ -23,26 +23,41 @@ exports[`Renders Correctly 1`] = `
     />
      
     <div
-      class="col-span-2 text-center card-color"
+      class="col-span-2 text-left card-color"
     >
-      <h2
-        class="text-lg text-center font-heading"
+      <div
+        class="inline-block text-center"
       >
-        <span
-          class="text-xl font-bold"
+        <h2
+          class="text-lg font-heading"
         >
-          Munro is Open Source!
-        </span>
-         - Code
-      Avaliable on
-      
-        <a
-          class="link"
-          href="https://github.com/brownben/munro"
-        >
-          Github
-        </a>
-      </h2>
+          <span
+            class="text-2xl font-bold md:text-xl"
+          >
+            Munro is Open Source!
+          </span>
+           
+          <span
+            class="hidden mx-2 md:inline-block"
+          >
+            -
+          </span>
+           
+          <span
+            class="block md:inline-block"
+          >
+            
+          Code Avaliable on
+          
+            <a
+              class="link"
+              href="https://github.com/brownben/munro"
+            >
+              Github
+            </a>
+          </span>
+        </h2>
+      </div>
     </div>
      
     <div

@@ -15,12 +15,19 @@
       url="https://munro-leagues.herokuapp.com/developers"
     />
 
-    <div class="col-span-2 text-center card-color">
-      <h2 class="text-lg text-center font-heading">
-        <span class="text-xl font-bold">Munro is Open Source!</span> - Code
-        Avaliable on
-        <a class="link" href="https://github.com/brownben/munro">Github</a>
-      </h2>
+    <div class="col-span-2 text-left card-color">
+      <div class="inline-block text-center">
+        <h2 class="text-lg font-heading">
+          <span class="text-2xl font-bold md:text-xl"
+            >Munro is Open Source!</span
+          >
+          <span class="hidden mx-2 md:inline-block">-</span>
+          <span class="block md:inline-block">
+            Code Avaliable on
+            <a class="link" href="https://github.com/brownben/munro">Github</a>
+          </span>
+        </h2>
+      </div>
     </div>
 
     <div class="col-span-2 card">
