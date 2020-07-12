@@ -19,6 +19,7 @@ def leagueToJSON(league):
             "description": league[6],
             "year": league[7],
             "dynamicEventResults": league[8],
+            "moreInformation": league[9],
         }
     else:
         return False
@@ -36,6 +37,7 @@ queryMultiple(
         scoringMethod TEXT NOT NULL,
         numberOfCountingEvents INT,
         courses TEXT,
+        description TEXT,
         moreInformation TEXT,
         year INTEGER,
         dynamicEventResults BOOLEAN,
@@ -101,7 +103,7 @@ def createLeague(data):
     query(
         """
         INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses,
-        moreInformation, year, dynamicEventResults)
+        description, year, dynamicEventResults, moreInformation)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """,
         (
@@ -114,6 +116,7 @@ def createLeague(data):
             data["description"],
             year,
             data["dynamicEventResults"],
+            data["moreInformation"],
         ),
     )
 
@@ -123,7 +126,7 @@ def updateLeague(data):
     query(
         """
         UPDATE leagues
-        SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,moreInformation=%s, year=%s, dynamicEventResults=%s
+        SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,description=%s, year=%s, dynamicEventResults=%s, moreInformation=%s
         WHERE name=%s""",
         (
             data["name"],
@@ -135,6 +138,7 @@ def updateLeague(data):
             data["description"],
             year,
             data["dynamicEventResults"],
+            data["moreInformation"],
             data["oldName"],
         ),
     )
@@ -147,7 +151,7 @@ def deleteLeague(name):
 def findLeague(name):
     result = queryWithOneResult(
         """
-        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents,courses, moreInformation, year, dynamicEventResults
+        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents,courses, description, year, dynamicEventResults, moreInformation
         FROM leagues
         WHERE name=%s
         ORDER BY year DESC, name ASC""",
@@ -162,7 +166,7 @@ def findLeague(name):
 def getAllLeagues():
     result = queryWithResults(
         """
-        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, moreInformation, year, dynamicEventResults
+        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, description, year, dynamicEventResults, moreInformation
         FROM leagues
         ORDER BY year DESC, name ASC"""
     )

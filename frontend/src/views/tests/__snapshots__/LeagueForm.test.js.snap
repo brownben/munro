@@ -53,7 +53,9 @@ exports[`Creation Form - Renders Correctly 1`] = `
           <input
             class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
             id="Year:"
-            type="text"
+            max="2050"
+            min="0"
+            type="number"
           />
         </div>
          
@@ -148,6 +150,23 @@ exports[`Creation Form - Renders Correctly 1`] = `
           <input
             class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
             id="Courses: (Comma Separated)"
+            type="text"
+          />
+        </div>
+         
+        <div
+          class="mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="More Information:"
+          >
+            More Information:
+          </label>
+           
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="More Information:"
             type="text"
           />
         </div>
@@ -239,7 +258,9 @@ exports[`Update Form - Renders Correctly 1`] = `
           <input
             class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
             id="Year:"
-            type="text"
+            max="2050"
+            min="0"
+            type="number"
           />
         </div>
          
@@ -334,6 +355,23 @@ exports[`Update Form - Renders Correctly 1`] = `
           <input
             class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
             id="Courses: (Comma Separated)"
+            type="text"
+          />
+        </div>
+         
+        <div
+          class="mt-4"
+        >
+          <label
+            class="block pb-1 select-none font-heading text-main-600"
+            for="More Information:"
+          >
+            More Information:
+          </label>
+           
+          <input
+            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+            id="More Information:"
             type="text"
           />
         </div>

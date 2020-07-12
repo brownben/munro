@@ -63,6 +63,16 @@
           </span>
         </p>
 
+        <p v-if="league.moreInformation" class="my-2">
+          <span
+            v-for="line of league.moreInformation.split('|')"
+            :key="line"
+            class="block"
+          >
+            {{ line }}
+          </span>
+        </p>
+
         <p v-if="league.website" class="mt-2">
           More information can be found at:
           <a

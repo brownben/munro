@@ -326,7 +326,6 @@ test('Create League - Calls Correct API Location', async () => {
   const sampleInput = { ...sampleSingleLeague[0] }
   sampleInput.courses = sampleInput.courses.join(',')
   delete sampleInput.oldName
-  sampleInput.info = sampleInput.description
   delete sampleInput.description
   sampleInput.scoringMethod = 'Position Based (100 Max)'
   wrapper.setData(sampleInput)
@@ -354,7 +353,6 @@ test('Update League - Calls Correct API Location', async () => {
   delete sampleOutput.numberOfEvents
   const sampleInput = { ...sampleSingleLeague[0] }
   sampleInput.courses = sampleInput.courses.join(',')
-  sampleInput.info = sampleInput.description
   delete sampleInput.description
   sampleInput.oldName = 'name'
   sampleInput.scoringMethod = 'Position Based (100 Max)'
@@ -397,7 +395,6 @@ test('Update League - Successful Creation', async () => {
   wrapper.setMethods({ returnToLeaguePage: mockReturnToLeaguePage })
   const sampleInput = { ...sampleSingleLeague[0] }
   sampleInput.courses = sampleInput.courses.join(',')
-  sampleInput.info = sampleInput.description
   delete sampleInput.description
   wrapper.setData(sampleInput)
   await wrapper.vm.updateLeague()
@@ -462,7 +459,7 @@ test('Get League Details - Success', async () => {
   })
   await wrapper.vm.getLeagueDetails()
   expect(wrapper.vm.notFound).toBeFalsy()
-  expect(wrapper.vm.info).toBe(sampleSingleLeague[0].description)
+  expect(wrapper.vm.description).toBe(sampleSingleLeague[0].description)
   expect(wrapper.vm.website).toBe(sampleSingleLeague[0].website)
   expect(wrapper.vm.courses).toBe(sampleSingleLeague[0].courses.join(','))
   expect(mockAddMessageFunction).toHaveBeenCalledTimes(0)

@@ -9,7 +9,8 @@ export const sampleDataThreeLeagues = [
     scoringMethod: 'position',
     name: 'Sprintelope',
     numberOfCountingEvents: 2,
-    year: '',
+    year: 0,
+    moreInformation: '',
   },
   {
     courses: ['Green', 'Orange', 'Yellow', 'White'],
@@ -20,7 +21,8 @@ export const sampleDataThreeLeagues = [
     scoringMethod: 'position',
     name: 'Test League 1',
     numberOfCountingEvents: 1,
-    year: '',
+    year: 0,
+    moreInformation: '',
   },
   {
     courses: ['White', 'Orange', 'Purple'],
@@ -31,7 +33,8 @@ export const sampleDataThreeLeagues = [
     scoringMethod: 'position',
     name: 'Test League 2',
     numberOfCountingEvents: 6,
-    year: '',
+    year: 0,
+    moreInformation: '',
   },
 ]
 
@@ -45,6 +48,7 @@ export const sampleSingleLeague = [
     name: 'Sprintelope',
     numberOfCountingEvents: 2,
     description: '',
-    year: '',
+    year: 0,
+    moreInformation: '',
   },
 ]

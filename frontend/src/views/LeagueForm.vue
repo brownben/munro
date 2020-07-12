@@ -24,8 +24,17 @@
     <Layout v-if="!notFound" :title="title">
       <form class="col-span-2" @submit.prevent="submit">
         <text-input v-model.trim="name" label="Name:" />
-        <text-input v-model.trim="year" label="Year:" class="mt-4" />
-        <text-input v-model.trim="info" label="Description:" class="mt-4" />
+        <number-input
+          v-model.number="year"
+          label="Year:"
+          :max="2050"
+          class="mt-4"
+        />
+        <text-input
+          v-model.trim="description"
+          label="Description:"
+          class="mt-4"
+        />
         <text-input
           v-model.trim="website"
           label="Website: (URL)"
@@ -62,6 +71,11 @@
         <text-input
           v-model.trim="courses"
           label="Courses: (Comma Separated)"
+          class="mt-4"
+        />
+        <text-input
+          v-model.trim="moreInformation"
+          label="More Information:"
           class="mt-4"
         />
         <checkbox-input
@@ -104,13 +118,14 @@ export default {
       create: true,
       oldName: '',
       name: '',
-      year: '',
+      year: 2000,
       website: '',
       coordinator: '',
       scoringMethod: '',
       numberOfCountingEvents: 1,
       courses: '',
-      info: '',
+      description: '',
+      moreInformation: '',
       numberOfEvents: 0,
       dynamicResults: true,
     }
@@ -205,8 +220,9 @@ export default {
             this.numberOfCountingEvents = response.data.numberOfCountingEvents
             if (response.data.courses)
               this.courses = response.data.courses.join(',')
-            this.info = response.data.description
+            this.description = response.data.description
             this.dynamicResults = response.data.dynamicEventResults
+            this.moreInformation = response.data.moreInformation
           }
         })
         .catch(() =>
@@ -232,8 +248,9 @@ export default {
             ),
             numberOfCountingEvents: this.numberOfCountingEvents,
             courses: this.courses,
-            description: this.info,
+            description: this.description,
             dynamicEventResults: this.dynamicResults,
+            moreInformation: this.moreInformation,
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
@@ -258,8 +275,9 @@ export default {
             ),
             numberOfCountingEvents: this.numberOfCountingEvents,
             courses: this.courses,
-            description: this.info,
+            description: this.description,
             dynamicEventResults: this.dynamicResults,
+            moreInformation: this.moreInformation,
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>

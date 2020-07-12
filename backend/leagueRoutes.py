@@ -20,6 +20,7 @@ leagueParser.add_argument("courses")
 leagueParser.add_argument("description")
 leagueParser.add_argument("year")
 leagueParser.add_argument("dynamicEventResults")
+leagueParser.add_argument("moreInformation")
 # Update request
 leagueUpdateParser = leagueParser
 leagueUpdateParser.add_argument("oldName")
