@@ -108,8 +108,8 @@
 
 <script>
 import Layout from '@/components/Layout'
-import AboutCard from '@/components/AboutCard'
-import LeagueOverviewCard from '@/components/LeagueOverviewCard'
+import AboutCard from '@/components/cards/AboutCard'
+import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard'
 
 export default {
   components: {

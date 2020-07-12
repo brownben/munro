@@ -27,7 +27,7 @@
       </p>
     </div>
     <div class="col-span-2">
-      <text-input
+      <TextInput
         v-model.trim.lazy="eventId"
         label="Event ID:"
         @input="findEvent"
@@ -38,31 +38,31 @@
         {{ event.name }}
       </p>
 
-      <text-input v-model.trim="uploadKey" label="Upload Key:" class="mt-4" />
+      <TextInput v-model.trim="uploadKey" label="Upload Key:" class="mt-4" />
 
       <!-- If Event already have results, confirm they want to overwrite -->
-      <checkbox-input
+      <CheckboxInput
         v-if="event.resultUploaded"
         v-model="overwrite"
         label="Overwrite Existing Results:"
         class="mt-6 text-left"
       />
 
-      <file-input label="Results File:" class="mt-4" @file="fileRead" />
+      <FileInput label="Results File:" class="mt-4" @file="fileRead" />
 
-      <text-input
+      <TextInput
         v-model.trim="event.results"
         label="Results (URL):"
         type="url"
         class="mt-4"
       />
-      <text-input
+      <TextInput
         v-model.trim="event.routegadget"
         label="Routegadget (URL):"
         type="url"
         class="mt-4"
       />
-      <text-input
+      <TextInput
         v-model.trim="event.winsplits"
         label="Winsplits: (URL):"
         type="url"
@@ -85,16 +85,17 @@
 import axios from 'axios'
 
 import Layout from '@/components/Layout'
-import CheckboxInput from '@/components/CheckboxInput'
-import TextInput from '@/components/TextInput'
-import FileInput from '@/components/FileInput'
+
+import TextInput from '@/components/inputs/TextInput'
+import FileInput from '@/components/inputs/FileInput'
+import CheckboxInput from '@/components/inputs/CheckboxInput'
 
 export default {
   components: {
     Layout,
-    CheckboxInput,
     TextInput,
     FileInput,
+    CheckboxInput,
   },
 
   data: function () {

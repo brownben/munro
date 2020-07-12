@@ -37,6 +37,8 @@ module.exports = {
 
       borderRadius: {
         xl: '1rem',
+        shape: '0.5rem 0 0.5rem 0',
+        'shape-xl': '1rem 0 1rem 0',
       },
 
       opacity: {

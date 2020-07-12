@@ -59,6 +59,7 @@
     "eslint-plugin-vue": "^6.2.2",
     "jest-localstorage-mock": "^2.4.2",
     "postcss-import": "^12.0.1",
+    "postcss-preset-env": "^6.7.0",
     "postcss-url": "^9.0.0",
     "prettier": "^2.0.5",
     "tailwindcss": "^1.4.6",

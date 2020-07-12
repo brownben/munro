@@ -9,187 +9,192 @@ import Router from 'vue-router'
 
 import messageStore from '@/messageStore'
 
-const CompetitorForm = () => import('@/views/CompetitorForm')
-const CompetitorMerge = () => import('@/views/CompetitorMerge')
-const Competitors = () => import('@/views/Competitors')
-const EventForm = () => import('@/views/EventForm')
-const Home = () => import('@/views/Home')
-const LeagueForm = () => import('@/views/LeagueForm')
-const League = () => import('@/views/LeagueHome')
-const Leagues = () => import('@/views/Leagues')
-const LeagueEventsEmbed = () => import('@/views/LeagueEventsEmbed')
-const Login = () => import('@/views/Login')
-const NotFound = () => import('@/views/NotFound')
-const LeagueResultsTable = () => import('@/views/LeagueResultsTable')
-const EventResultsTable = () => import('@/views/EventResultsTable')
-const ResultTransfer = () => import('@/views/ResultTransfer')
-const Upload = () => import('@/views/Upload')
-const UploadInstructions = () => import('@/views/UploadInstructions')
-const Developers = () => import('@/views/Developers')
-const LatestResults = () => import('@/views/LatestResults')
-const ManualPointsForm = () => import('@/views/ManualPointsForm')
-
 // Bind to Vue Instance
 Vue.use(Router)
 
+const homeRoutes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import('@/views/Home'),
+  },
+]
+const loginRoutes = [
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/admin/Login'),
+  },
+  {
+    path: '/logout',
+    beforeEnter: function (to, from, next) {
+      // Logout then redirect to the home page
+      router.app.$auth
+        .logout()
+        .then(() => {
+          next('/')
+          messageStore.addMessage('Goodbye - Logged Out Successfully')
+        })
+        .catch(() =>
+          messageStore.addMessage('Problem Logging Out - Please Try Again')
+        )
+    },
+  },
+]
+const competitorRoutes = [
+  {
+    path: '/create-competitor',
+    name: 'Create Competitor',
+    component: () => import('@/views/admin/CompetitorForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/competitors',
+    name: 'Competitors',
+    component: () => import('@/views/admin/Competitors'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/competitors/:id/edit',
+    name: 'Edit Competitors',
+    component: () => import('@/views/admin/CompetitorForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/competitors/merge',
+    name: 'Merge Competitors',
+    component: () => import('@/views/admin/CompetitorMerge'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/competitors/:league',
+    name: 'Competitors for League',
+    component: () => import('@/views/admin/Competitors'),
+    beforeEnter: requireAuthentication,
+  },
+]
+const leagueRoutes = [
+  {
+    path: '/create-league',
+    name: 'Create League',
+    component: () => import('@/views/admin/LeagueForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/leagues',
+    name: 'Leagues',
+    component: () => import('@/views/Leagues'),
+  },
+  {
+    path: '/leagues/:name',
+    name: 'League',
+    component: () => import('@/views/LeagueHome'),
+  },
+  {
+    path: '/leagues/:name/edit',
+    name: 'Edit League',
+    component: () => import('@/views/admin/LeagueForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/leagues/:league/create-event',
+    name: 'Create Event for League',
+    component: () => import('@/views/admin/EventForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/embed/leagues/:name/events',
+    name: 'Embed League Events',
+    component: () => import('@/views/LeagueEventsEmbed'),
+  },
+  {
+    path: '/leagues/:name/results/:course',
+    name: 'League Course Results',
+    component: () => import('@/views/LeagueResultsTable'),
+  },
+  {
+    path: '/embed/leagues/:name/results/:course',
+    name: 'Embed League Course Results',
+    component: () => import('@/views/LeagueResultsTable'),
+  },
+]
+const eventRoutes = [
+  {
+    path: '/create-event',
+    name: 'Create Event',
+    component: () => import('@/views/admin/EventForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/events/:id/edit',
+    name: 'Edit Events',
+    component: () => import('@/views/admin/EventForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/events/:event/results',
+    name: 'Event Results',
+    component: () => import('@/views/EventResultsTable'),
+  },
+]
+const resultRoutes = [
+  {
+    path: '/latest-results',
+    name: 'Latest Results',
+    component: () => import('@/views/LatestResults'),
+  },
+  {
+    path: '/results/transfer',
+    name: 'Transfer Result',
+    component: () => import('@/views/admin/ResultTransfer'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/results/manual',
+    name: 'Manual Result',
+    component: () => import('@/views/admin/ManualPointsForm'),
+  },
+]
+const uploadRoutes = [
+  {
+    path: '/upload',
+    name: 'Upload Results',
+    component: () => import('@/views/Upload'),
+  },
+  {
+    path: '/upload/:id',
+    name: 'Upload Results (From Event Page)',
+    component: () => import('@/views/Upload'),
+  },
+  {
+    path: '/upload-instructions',
+    name: 'Upload Instructions',
+    component: () => import('@/views/UploadInstructions'),
+  },
+  {
+    path: '/developers',
+    name: 'Developers',
+    component: () => import('@/views/Developers'),
+  },
+]
+const notFoundRoutes = [
+  {
+    path: '*',
+    name: 'NotFound',
+    component: () => import('@/views/NotFound'),
+  },
+]
+
 const router = new Router({
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home,
-    },
-    {
-      path: '/create-competitor',
-      name: 'Create Competitor',
-      component: CompetitorForm,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/competitors',
-      name: 'Competitors',
-      component: Competitors,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/competitors/:id/edit',
-      name: 'Edit Competitors',
-      component: CompetitorForm,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/competitors/merge',
-      name: 'Merge Competitors',
-      component: CompetitorMerge,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/competitors/:league',
-      name: 'Competitors for League',
-      component: Competitors,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/create-league',
-      name: 'Create League',
-      component: LeagueForm,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/leagues',
-      name: 'Leagues',
-      component: Leagues,
-    },
-    {
-      path: '/leagues/:name',
-      name: 'League',
-      component: League,
-    },
-    {
-      path: '/embed/leagues/:name/events',
-      name: 'Embed League Events',
-      component: LeagueEventsEmbed,
-    },
-    {
-      path: '/leagues/:name/edit',
-      name: 'Edit League',
-      component: LeagueForm,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/leagues/:league/create-event',
-      name: 'Create Event for League',
-      component: EventForm,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/leagues/:name/results/:course',
-      name: 'League Course Results',
-      component: LeagueResultsTable,
-    },
-    {
-      path: '/embed/leagues/:name/results/:course',
-      name: 'Embed League Course Results',
-      component: LeagueResultsTable,
-    },
-    {
-      path: '/create-event',
-      name: 'Create Event',
-      component: EventForm,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/events/:id/edit',
-      name: 'Edit Events',
-      component: EventForm,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/events/:event/results',
-      name: 'Event Results',
-      component: EventResultsTable,
-    },
-    {
-      path: '/upload',
-      name: 'Upload Results',
-      component: Upload,
-    },
-    {
-      path: '/upload/:id',
-      name: 'Upload Results (From Event Page)',
-      component: Upload,
-    },
-    {
-      path: '/upload-instructions',
-      name: 'Upload Instructions',
-      component: UploadInstructions,
-    },
-    {
-      path: '/results/transfer',
-      name: 'Transfer Result',
-      component: ResultTransfer,
-      beforeEnter: requireAuthentication,
-    },
-    {
-      path: '/results/manual',
-      name: 'Manual Result',
-      component: ManualPointsForm,
-    },
-    {
-      path: '/latest-results',
-      name: 'Latest Results',
-      component: LatestResults,
-    },
-    {
-      path: '/developers',
-      name: 'Developers',
-      component: Developers,
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login,
-    },
-    {
-      path: '/logout',
-      beforeEnter: function (to, from, next) {
-        // Logout then redirect to the home page
-        router.app.$auth
-          .logout()
-          .then(() => {
-            next('/')
-            messageStore.addMessage('Goodbye - Logged Out Successfully')
-          })
-          .catch(() =>
-            messageStore.addMessage('Problem Logging Out - Please Try Again')
-          )
-      },
-    },
-    {
-      path: '*',
-      name: 'NotFound',
-      component: NotFound,
-    },
+    ...homeRoutes,
+    ...loginRoutes,
+    ...competitorRoutes,
+    ...leagueRoutes,
+    ...eventRoutes,
+    ...resultRoutes,
+    ...uploadRoutes,
+    ...notFoundRoutes,
   ],
 
   scrollBehavior() {

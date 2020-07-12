@@ -209,7 +209,7 @@ import axios from 'axios'
 import FilterMenu from '@/components/FilterMenu'
 import UpDownArrow from '@/components/UpDownArrows'
 
-const NoResultsCard = () => import('@/components/NoResultsCard')
+const NoResultsCard = () => import('@/components/cards/NoResultsCard')
 
 export default {
   components: {

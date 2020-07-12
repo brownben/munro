@@ -28,7 +28,7 @@
 import axios from 'axios'
 
 import Layout from '@/components/Layout'
-import EventOverviewCard from '@/components/EventOverviewCard'
+import EventOverviewCard from '@/components/cards/EventOverviewCard'
 
 export default {
   components: {

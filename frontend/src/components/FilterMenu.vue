@@ -5,21 +5,21 @@
 -->
 
 <template>
-  <accordion-dropdown title="Filter Results">
+  <AccordionDropdown title="Filter Results">
     <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
-      <text-input
+      <TextInput
         v-model="preferences.name"
         label="Name:"
         class="col-span-2"
         @input="onChange"
       />
-      <text-input
+      <TextInput
         v-model="preferences.club"
         label="Club:"
         class="col-span-2"
         @input="onChange"
       />
-      <number-input
+      <NumberInput
         v-model.number="preferences.minAge"
         :min="0"
         :max="120"
@@ -27,7 +27,7 @@
         class="col-span-1"
         @input="onChange"
       />
-      <number-input
+      <NumberInput
         v-model.number="preferences.maxAge"
         :min="0"
         :max="120"
@@ -35,34 +35,34 @@
         class="col-span-1"
         @input="onChange"
       />
-      <checkbox-input
+      <CheckboxInput
         v-model="preferences.male"
         class="flex flex-col justify-center col-span-1 pt-2 text-center"
         label="Male:"
         @input="onChange"
       />
-      <checkbox-input
+      <CheckboxInput
         v-model="preferences.female"
         label="Female:"
         class="flex flex-col justify-center col-span-1 pt-2 text-center"
         @input="onChange"
       />
     </div>
-  </accordion-dropdown>
+  </AccordionDropdown>
 </template>
 
 <script>
-import CheckboxInput from './CheckboxInput'
-import AccordionDropdown from './AccordionDropdown'
-import TextInput from './TextInput'
-import NumberInput from './NumberInput'
+import AccordionDropdown from '@/components/inputs/AccordionDropdown'
+import TextInput from '@/components/inputs/TextInput'
+import NumberInput from '@/components/inputs/NumberInput'
+import CheckboxInput from '@/components/inputs/CheckboxInput'
 
 export default {
   components: {
-    CheckboxInput,
     AccordionDropdown,
     TextInput,
     NumberInput,
+    CheckboxInput,
   },
 
   data: () => ({

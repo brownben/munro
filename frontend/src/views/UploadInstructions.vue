@@ -116,7 +116,7 @@
 
 <script>
 import Layout from '@/components/Layout'
-import InstructionCard from '@/components/InstructionCard'
+import InstructionCard from '@/components/cards/InstructionCard'
 
 export default {
   components: {

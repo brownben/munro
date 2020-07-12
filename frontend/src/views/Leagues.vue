@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout'
-import LeagueOverviewCard from '@/components/LeagueOverviewCard'
-
 import axios from 'axios'
+
+import Layout from '@/components/Layout'
+import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard'
 
 export default {
   components: {

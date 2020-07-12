@@ -31,7 +31,7 @@
 <script>
 import axios from 'axios'
 
-import EventOverviewCard from '@/components/EventOverviewCard'
+import EventOverviewCard from '@/components/cards/EventOverviewCard'
 const NotFound = () => import('@/views/NotFound')
 
 export default {

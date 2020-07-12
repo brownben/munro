@@ -35,17 +35,17 @@ test('Overwrite Checkbox Shows When Expected', () => {
     mocks: {
       $route: { params: { id: '' } },
     },
-    stubs: ['checkbox-input', 'router-link', 'vue-headful'],
+    stubs: ['CheckboxInput', 'router-link', 'vue-headful'],
   })
   wrapper.setData({
     event: { resultUploaded: true },
   })
   expect(wrapper.vm.event.resultUploaded).toBe(true)
-  expect(wrapper.findAll('checkbox-input-stub').length).toBe(1)
+  expect(wrapper.findAll('CheckboxInput-stub').length).toBe(1)
   wrapper.setData({
     event: { resultUploaded: false },
   })
-  expect(wrapper.findAll('checkbox-input-stub').length).toBe(0)
+  expect(wrapper.findAll('CheckboxInput-stub').length).toBe(0)
 })
 
 test('Upload Buttons Shows Correctly', () => {

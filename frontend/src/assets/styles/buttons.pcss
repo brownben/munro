@@ -1,0 +1,71 @@
+/* Standard Button (On Card) */
+
+.button {
+  @apply inline-block bg-main-100;
+  @apply px-4 py-1 mx-2 mt-2;
+  @apply text-lg text-main-700 font-heading;
+  @apply transition duration-300;
+  @apply outline-none appearance-none select-none;
+  @apply rounded-shape border border-main-500 border-opacity-0;
+
+  &:hover {
+    @apply bg-main-200 text-main-800;
+  }
+
+  &:focus {
+    @apply border-opacity-100;
+  }
+}
+
+/* White Button (On Dark) */
+
+.button-white {
+  @apply button bg-purple-100;
+  @apply text-white;
+  @apply bg-opacity-10 border-white border-opacity-50;
+
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+
+  &:hover {
+    @apply bg-opacity-35 text-white;
+  }
+
+  &:focus {
+    @apply border-opacity-100;
+  }
+}
+
+/* Dark Button (On Purple) */
+
+.button-dark {
+  @apply button bg-main-200;
+  @apply text-main-800;
+  @apply border-main-400 border-opacity-0;
+
+  &:hover {
+    @apply bg-main-300 text-main-800;
+  }
+
+  &:focus {
+    @apply border-opacity-100;
+  }
+}
+
+/* Button Large (Forms) */
+
+.button-lg {
+  @apply button;
+  @apply mx-0 py-2;
+  @apply font-bold text-white;
+  @apply border border-main-600 border-opacity-0;
+  @apply bg-main-500;
+
+  &:hover {
+    @apply bg-main-400 text-white;
+  }
+
+  &:focus {
+    @apply border-opacity-100;
+  }
+}
