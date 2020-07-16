@@ -41,21 +41,21 @@
       <table class="table">
         <thead>
           <tr>
-            <th @click="sortBy('position')">
+            <th class="position" @click="sortBy('position')">
               <p>Pos.</p>
               <up-down-arrow
                 :ascending="ascendingSort"
                 :active="sortedBy === 'position'"
               />
             </th>
-            <th @click="sortBy('name')">
+            <th class="name" @click="sortBy('name')">
               <p>Name</p>
               <up-down-arrow
                 :ascending="ascendingSort"
                 :active="sortedBy === 'name'"
               />
             </th>
-            <th @click="sortBy('age')">
+            <th class="ageClass" @click="sortBy('age')">
               <p>Class</p>
               <up-down-arrow
                 :ascending="ascendingSort"
@@ -69,9 +69,8 @@
                 :active="sortedBy === 'club'"
               />
             </th>
-            <th @click="sortBy('totalPoints')">
+            <th class="totalPoints" @click="sortBy('totalPoints')">
               <p>Points</p>
-
               <up-down-arrow
                 :ascending="ascendingSort"
                 :active="sortedBy === 'totalPoints'"
@@ -109,11 +108,19 @@
             >
               <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
 
-              <td>{{ result.position }}</td>
-              <td>{{ result.name }}</td>
-              <td>{{ result.ageClass }}</td>
+              <td class="position">{{ result.position }}</td>
+              <td class="name">
+                <span class="block font-normal sm:font-light">
+                  {{ result.name }}
+                </span>
+                <span class="block text-xs sm:hidden">
+                  <span class="mr-4">{{ result.ageClass }}</span>
+                  <span>{{ result.club }}</span>
+                </span>
+              </td>
+              <td class="ageClass">{{ result.ageClass }}</td>
               <td class="club">{{ result.club }}</td>
-              <td>{{ result.totalPoints }}</td>
+              <td class="totalPoints">{{ result.totalPoints }}</td>
 
               <template v-if="!smallWindow">
                 <td
@@ -132,19 +139,19 @@
                   {{ result.points[eventsWithResults.indexOf(event)] }}
                 </td>
               </template>
-              <td v-else>
+              <td v-else class="arrow">
                 <svg
-                  v-if="!openedRows.includes(filteredResults.indexOf(result))"
+                  :class="{
+                    'rotate-180': openedRows.includes(
+                      filteredResults.indexOf(result)
+                    ),
+                  }"
                   width="16"
                   height="16"
                   viewBox="0 0 24 24"
-                  class="fill-current text-main-700"
+                  class="transition-all duration-300 transform fill-current text-main-700"
                 >
                   <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                  <path d="M0 0h24v24H0z" fill="none" />
-                </svg>
-                <svg v-else width="16" height="16" viewBox="0 0 24 24">
-                  <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z" />
                   <path d="M0 0h24v24H0z" fill="none" />
                 </svg>
               </td>
@@ -185,7 +192,9 @@
     </div>
 
     <transition name="fade">
-      <NoResultsCard v-if="!found || filteredResults.length === 0" />
+      <NoResultsCard
+        v-if="!loading && (!found || filteredResults.length === 0)"
+      />
     </transition>
 
     <div v-if="otherCourses.length > 0" class="mx-1 my-6 card">
@@ -235,6 +244,7 @@ export default {
       male: true,
       female: true,
     },
+    loading: true,
   }),
 
   computed: {
@@ -295,22 +305,27 @@ export default {
     $route: async function () {
       this.rawResults = []
       this.openedRows = []
+
+      this.loading = true
       await this.getResults()
       await this.getEventList()
-      this.getOtherCourses()
+      await this.getOtherCourses()
+      this.loading = false
     },
   },
 
   // On load
-  mounted: function () {
+  mounted: async function () {
     // Mobile resize watcher
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
 
     // Fetch Data
-    this.getResults()
-    this.getEventList()
-    this.getOtherCourses()
+    this.loading = true
+    await this.getResults()
+    await this.getEventList()
+    await this.getOtherCourses()
+    this.loading = false
   },
 
   destroyed() {
@@ -429,95 +444,116 @@ export default {
 }
 
 .table {
-  @apply w-full;
-}
+  @apply w-full border-collapse;
 
-.table tr {
-  transition: 0.3s;
-  @apply bg-white;
-}
+  & thead tr {
+    @apply border-b border-main-300;
+  }
 
-.table tr:hover:not(.mobile-table-expansion) {
-  @apply bg-main-200;
-}
+  & tr {
+    @apply bg-white border-collapse transition duration-300;
 
-.table tr.striped {
-  @apply bg-main-50;
-}
+    &.striped {
+      @apply bg-main-50;
+    }
 
-thead tr {
-  @apply border-b border-main-300;
-}
+    &:hover:not(.mobile-table-expansion) {
+      @apply bg-main-200;
+    }
+  }
 
-.table td {
-  @apply text-center py-2 px-1 font-body font-light;
-}
+  & td {
+    @apply py-2 text-center px-1 font-body font-light;
 
-.table th {
-  white-space: nowrap;
-  @apply font-heading select-none text-center font-normal py-2;
-}
+    &.name {
+      @apply py-1;
+    }
+  }
 
-.table th p {
-  @apply inline-block;
-}
-.table th div {
-  @apply inline-block ml-1;
+  & th {
+    white-space: nowrap;
+    @apply font-heading select-none text-center font-normal py-2;
+
+    & p {
+      @apply inline-block;
+    }
+
+    & div {
+      @apply inline-block ml-1;
+    }
+
+    & span {
+      margin-left: -110%;
+      opacity: 0;
+      transition: 0.3s;
+      @apply absolute shadow font-heading bg-white z-40 py-1 px-2 mt-6 text-center;
+    }
+
+    &:hover > span {
+      opacity: 1;
+    }
+  }
 }
 
 .mobile-table-expansion td {
   @apply text-right;
-}
-.mobile-table-expansion td p {
-  @apply mr-3;
-}
-.mobile-table-expansion td span {
-  @apply pl-2 pr-4 w-4 inline-block;
-}
 
-td.points {
-  @apply px-0 pl-0 pr-0;
-}
+  & p {
+    @apply mr-3 text-right;
+  }
 
-th span {
-  margin-left: -110%;
-  opacity: 0;
-  transition: 0.3s;
-  @apply absolute shadow font-heading bg-white z-40 py-1 px-2 mt-6 text-center;
-}
-
-th:hover > span {
-  opacity: 1;
-}
-
-.club {
-  @apply hidden;
-}
-
-@screen sm {
-  .club {
-    @apply block;
+  & span {
+    @apply pl-2 pr-4 w-4 inline-block;
   }
 }
 
-@media (min-width: 1200px) {
-  table th .points-arrow.up-down-arrow {
-    @apply inline-block;
+table td,
+table th {
+  &.name {
+    @apply text-left pl-6;
   }
-}
-@media (max-width: 1200px) {
-  table th .points-arrow.up-down-arrow {
+
+  &.club,
+  &.ageClass {
     @apply hidden;
   }
-  td.points {
-    @apply px-1;
+
+  &.points {
+    @apply pl-0 pr-0 px-0;
+  }
+
+  @screen sm {
+    &.club,
+    &.ageClass {
+      @apply table-cell;
+    }
   }
 }
 
-@media (max-width: 1000px) {
-  td.points {
-    padding-left: 0.15rem;
-    padding-right: 0.15rem;
+table td {
+  &.points {
+    padding: 0 0.1rem;
+    @apply text-sm;
+  }
+
+  @screen md {
+    &.points {
+      @apply px-1;
+    }
+  }
+
+  @screen xl {
+    &.points {
+      @apply px-2 text-base;
+    }
+  }
+}
+
+table th .points-arrow.up-down-arrow {
+  @apply hidden;
+
+  @screen xl {
+    @apply inline-block;
   }
 }
 </style>

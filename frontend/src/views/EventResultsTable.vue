@@ -58,14 +58,14 @@
                     :active="sortedBy === 'position'"
                   />
                 </th>
-                <th @click="sortBy('name')">
+                <th class="name" @click="sortBy('name')">
                   <p>Name</p>
                   <up-down-arrow
                     :ascending="ascendingSort"
                     :active="sortedBy === 'name'"
                   />
                 </th>
-                <th @click="sortBy('age')">
+                <th class="ageClass" @click="sortBy('age')">
                   <p>Class</p>
                   <up-down-arrow
                     :ascending="ascendingSort"
@@ -95,9 +95,18 @@
                 :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
               >
                 <td v-if="result.type">*</td>
+                <td v-else-if="result.incomplete">-</td>
                 <td v-else>{{ result.position || '' }}</td>
-                <td>{{ result.name }}</td>
-                <td>{{ result.ageClass }}</td>
+                <td class="name">
+                  <span class="block font-normal sm:font-light">
+                    {{ result.name }}
+                  </span>
+                  <span class="block text-xs sm:hidden">
+                    <span class="mr-4">{{ result.ageClass }}</span>
+                    <span>{{ result.club }}</span>
+                  </span>
+                </td>
+                <td class="ageClass">{{ result.ageClass }}</td>
                 <td class="club">{{ result.club }}</td>
                 <td>{{ elapsedTime(result.time) }}</td>
               </tr>
@@ -108,7 +117,9 @@
 
       <transition name="fade">
         <NoResultsCard
-          v-if="(eventFound && !found) || filteredResults.length === 0"
+          v-if="
+            !loading && ((eventFound && !found) || filteredResults.length === 0)
+          "
           class="col-span-2"
         />
       </transition>
@@ -152,6 +163,7 @@ export default {
       male: true,
       female: true,
     },
+    loading: true,
   }),
 
   computed: {
@@ -211,16 +223,21 @@ export default {
   watch: {
     $route: async function () {
       this.rawResults = []
+
+      this.loading = true
       await this.getResults()
       await this.getEvent()
+      this.loading = false
     },
   },
 
   // On load
-  mounted: function () {
+  mounted: async function () {
     // Fetch Data
-    this.getResults()
-    this.getEvent()
+    this.loading = true
+    await this.getResults()
+    await this.getEvent()
+    this.loading = false
   },
 
   methods: {
@@ -313,61 +330,81 @@ export default {
 
 <style lang="postcss">
 .table {
-  @apply w-full;
-}
+  @apply w-full border-collapse;
 
-.table tr {
-  transition: 0.3s;
-  @apply bg-white;
-}
+  & thead tr {
+    @apply border-b border-main-300;
+  }
 
-.table tr:hover:not(.mobile-table-expansion) {
-  @apply bg-main-200;
-}
+  & tr {
+    @apply bg-white border-collapse transition duration-300;
 
-.table tr.striped {
-  @apply bg-main-50;
-}
+    &.striped {
+      @apply bg-main-50;
+    }
 
-thead tr {
-  @apply border-b border-main-200;
-}
+    &:hover:not(.mobile-table-expansion) {
+      @apply bg-main-200;
+    }
+  }
 
-.table td {
-  @apply text-center py-2 px-1 font-body font-light;
-}
+  & td {
+    @apply py-2 text-center px-1 font-body font-light;
 
-.table th {
-  white-space: nowrap;
-  @apply font-heading select-none text-center font-normal py-2;
-}
+    &.name {
+      @apply py-1;
+    }
+  }
 
-.table th p {
-  @apply inline-block;
-}
-.table th div {
-  @apply inline-block ml-1;
-}
+  & th {
+    white-space: nowrap;
+    @apply font-heading select-none text-center font-normal py-2;
 
-td.points {
-  @apply px-0 pl-0 pr-0;
-}
+    & p {
+      @apply inline-block;
+    }
 
-th:hover > span {
-  opacity: 1;
+    & div {
+      @apply inline-block ml-1;
+    }
+
+    & span {
+      margin-left: -110%;
+      opacity: 0;
+      transition: 0.3s;
+      @apply absolute shadow font-heading bg-white z-40 py-1 px-2 mt-6 text-center;
+    }
+
+    &:hover > span {
+      opacity: 1;
+    }
+  }
 }
 
 .active {
   @apply bg-main-200 text-main-800;
 }
 
-.club {
-  @apply hidden;
-}
+table td,
+table th {
+  &.name {
+    @apply text-left pl-6;
 
-@screen md {
-  .club {
-    @apply block;
+    @screen lg {
+      @apply pl-10;
+    }
+  }
+
+  &.club,
+  &.ageClass {
+    @apply hidden;
+  }
+
+  @screen sm {
+    &.club,
+    &.ageClass {
+      @apply table-cell;
+    }
   }
 }
 </style>

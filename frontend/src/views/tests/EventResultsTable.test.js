@@ -412,6 +412,7 @@ test('Get Event Details - Makes Request with Correct ID', async () => {
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
   })
+  await flushPromises()
   jest.resetAllMocks()
   axios.get.mockResolvedValue({ data: [] })
   await wrapper.vm.getEvent()

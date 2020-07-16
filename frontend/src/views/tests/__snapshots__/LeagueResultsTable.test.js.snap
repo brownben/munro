@@ -50,7 +50,9 @@ exports[`Mobile Results Dropdown Works 1`] = `
     >
       <thead>
         <tr>
-          <th>
+          <th
+            class="position"
+          >
             <p>
               Pos.
             </p>
@@ -60,7 +62,9 @@ exports[`Mobile Results Dropdown Works 1`] = `
             />
           </th>
            
-          <th>
+          <th
+            class="name"
+          >
             <p>
               Name
             </p>
@@ -68,7 +72,9 @@ exports[`Mobile Results Dropdown Works 1`] = `
             <up-down-arrow-stub />
           </th>
            
-          <th>
+          <th
+            class="ageClass"
+          >
             <p>
               Class
             </p>
@@ -86,7 +92,9 @@ exports[`Mobile Results Dropdown Works 1`] = `
             <up-down-arrow-stub />
           </th>
            
-          <th>
+          <th
+            class="totalPoints"
+          >
             <p>
               Points
             </p>
@@ -104,15 +112,41 @@ exports[`Mobile Results Dropdown Works 1`] = `
         <tr
           class="normal-table-row striped"
         >
-          <td>
+          <td
+            class="position"
+          >
             1
           </td>
            
-          <td>
-            Linda Reid
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Linda Reid
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                W35
+              </span>
+               
+              <span>
+                ESOC
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             W35
           </td>
            
@@ -122,13 +156,17 @@ exports[`Mobile Results Dropdown Works 1`] = `
             ESOC
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             100
           </td>
            
-          <td>
+          <td
+            class="arrow"
+          >
             <svg
-              class="fill-current text-main-700"
+              class="transition-all duration-300 transform fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -149,15 +187,41 @@ exports[`Mobile Results Dropdown Works 1`] = `
         <tr
           class="normal-table-row"
         >
-          <td>
+          <td
+            class="position"
+          >
             2
           </td>
            
-          <td>
-            Harvey Blue
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Harvey Blue
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                M21
+              </span>
+               
+              <span>
+                INT
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             M21
           </td>
            
@@ -167,13 +231,17 @@ exports[`Mobile Results Dropdown Works 1`] = `
             INT
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             99
           </td>
            
-          <td>
+          <td
+            class="arrow"
+          >
             <svg
-              class="fill-current text-main-700"
+              class="transition-all duration-300 transform fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -194,15 +262,41 @@ exports[`Mobile Results Dropdown Works 1`] = `
         <tr
           class="normal-table-row striped"
         >
-          <td>
+          <td
+            class="position"
+          >
             3
           </td>
            
-          <td>
-            Bob Blu Jones
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Bob Blu Jones
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                M65
+              </span>
+               
+              <span>
+                ESOC
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             M65
           </td>
            
@@ -212,13 +306,17 @@ exports[`Mobile Results Dropdown Works 1`] = `
             ESOC
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             98
           </td>
            
-          <td>
+          <td
+            class="arrow"
+          >
             <svg
-              class="fill-current text-main-700"
+              class="transition-all duration-300 transform fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -296,7 +394,9 @@ exports[`Mobile Results Dropdown Works 2`] = `
     >
       <thead>
         <tr>
-          <th>
+          <th
+            class="position"
+          >
             <p>
               Pos.
             </p>
@@ -306,7 +406,9 @@ exports[`Mobile Results Dropdown Works 2`] = `
             />
           </th>
            
-          <th>
+          <th
+            class="name"
+          >
             <p>
               Name
             </p>
@@ -314,7 +416,9 @@ exports[`Mobile Results Dropdown Works 2`] = `
             <up-down-arrow-stub />
           </th>
            
-          <th>
+          <th
+            class="ageClass"
+          >
             <p>
               Class
             </p>
@@ -332,7 +436,9 @@ exports[`Mobile Results Dropdown Works 2`] = `
             <up-down-arrow-stub />
           </th>
            
-          <th>
+          <th
+            class="totalPoints"
+          >
             <p>
               Points
             </p>
@@ -350,15 +456,41 @@ exports[`Mobile Results Dropdown Works 2`] = `
         <tr
           class="normal-table-row striped"
         >
-          <td>
+          <td
+            class="position"
+          >
             1
           </td>
            
-          <td>
-            Linda Reid
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Linda Reid
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                W35
+              </span>
+               
+              <span>
+                ESOC
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             W35
           </td>
            
@@ -368,13 +500,17 @@ exports[`Mobile Results Dropdown Works 2`] = `
             ESOC
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             100
           </td>
            
-          <td>
+          <td
+            class="arrow"
+          >
             <svg
-              class="fill-current text-main-700"
+              class="transition-all duration-300 transform fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -395,15 +531,41 @@ exports[`Mobile Results Dropdown Works 2`] = `
         <tr
           class="normal-table-row"
         >
-          <td>
+          <td
+            class="position"
+          >
             2
           </td>
            
-          <td>
-            Harvey Blue
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Harvey Blue
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                M21
+              </span>
+               
+              <span>
+                INT
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             M21
           </td>
            
@@ -413,19 +575,23 @@ exports[`Mobile Results Dropdown Works 2`] = `
             INT
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             99
           </td>
            
-          <td>
+          <td
+            class="arrow"
+          >
             <svg
-              class=""
+              class="transition-all duration-300 transform fill-current text-main-700 rotate-180"
               height="16"
               viewBox="0 0 24 24"
               width="16"
             >
               <path
-                d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
+                d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
               />
                
               <path
@@ -477,15 +643,41 @@ exports[`Mobile Results Dropdown Works 2`] = `
         <tr
           class="normal-table-row striped"
         >
-          <td>
+          <td
+            class="position"
+          >
             3
           </td>
            
-          <td>
-            Bob Blu Jones
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Bob Blu Jones
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                M65
+              </span>
+               
+              <span>
+                ESOC
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             M65
           </td>
            
@@ -495,13 +687,17 @@ exports[`Mobile Results Dropdown Works 2`] = `
             ESOC
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             98
           </td>
            
-          <td>
+          <td
+            class="arrow"
+          >
             <svg
-              class="fill-current text-main-700"
+              class="transition-all duration-300 transform fill-current text-main-700"
               height="16"
               viewBox="0 0 24 24"
               width="16"
@@ -579,7 +775,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
     >
       <thead>
         <tr>
-          <th>
+          <th
+            class="position"
+          >
             <p>
               Pos.
             </p>
@@ -589,7 +787,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             />
           </th>
            
-          <th>
+          <th
+            class="name"
+          >
             <p>
               Name
             </p>
@@ -597,7 +797,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             <up-down-arrow-stub />
           </th>
            
-          <th>
+          <th
+            class="ageClass"
+          >
             <p>
               Class
             </p>
@@ -615,7 +817,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             <up-down-arrow-stub />
           </th>
            
-          <th>
+          <th
+            class="totalPoints"
+          >
             <p>
               Points
             </p>
@@ -677,15 +881,41 @@ exports[`Renders Correctly + Fetches Data 1`] = `
         <tr
           class="normal-table-row striped"
         >
-          <td>
+          <td
+            class="position"
+          >
             1
           </td>
            
-          <td>
-            Linda Reid
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Linda Reid
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                W35
+              </span>
+               
+              <span>
+                ESOC
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             W35
           </td>
            
@@ -695,7 +925,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             ESOC
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             100
           </td>
            
@@ -726,15 +958,41 @@ exports[`Renders Correctly + Fetches Data 1`] = `
         <tr
           class="normal-table-row"
         >
-          <td>
+          <td
+            class="position"
+          >
             2
           </td>
            
-          <td>
-            Harvey Blue
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Harvey Blue
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                M21
+              </span>
+               
+              <span>
+                INT
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             M21
           </td>
            
@@ -744,7 +1002,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             INT
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             99
           </td>
            
@@ -775,15 +1035,41 @@ exports[`Renders Correctly + Fetches Data 1`] = `
         <tr
           class="normal-table-row striped"
         >
-          <td>
+          <td
+            class="position"
+          >
             3
           </td>
            
-          <td>
-            Bob Blu Jones
+          <td
+            class="name"
+          >
+            <span
+              class="block font-normal sm:font-light"
+            >
+              
+                Bob Blu Jones
+              
+            </span>
+             
+            <span
+              class="block text-xs sm:hidden"
+            >
+              <span
+                class="mr-4"
+              >
+                M65
+              </span>
+               
+              <span>
+                ESOC
+              </span>
+            </span>
           </td>
            
-          <td>
+          <td
+            class="ageClass"
+          >
             M65
           </td>
            
@@ -793,7 +1079,9 @@ exports[`Renders Correctly + Fetches Data 1`] = `
             ESOC
           </td>
            
-          <td>
+          <td
+            class="totalPoints"
+          >
             98
           </td>
            

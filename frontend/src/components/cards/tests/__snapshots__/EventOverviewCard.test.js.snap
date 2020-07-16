@@ -75,7 +75,7 @@ exports[`Renders Correctly - Logged In 1`] = `
         rel="noopener noreferrer"
         target="_blank"
       >
-        HTML Results
+        Raw Results
       </a>
        
       <a
@@ -218,7 +218,7 @@ exports[`Renders Correctly - Normal View 1`] = `
         rel="noopener noreferrer"
         target="_blank"
       >
-        HTML Results
+        Raw Results
       </a>
        
       <a
@@ -320,7 +320,7 @@ exports[`Renders Correctly - Show League Title 1`] = `
         rel="noopener noreferrer"
         target="_blank"
       >
-        HTML Results
+        Raw Results
       </a>
        
       <a

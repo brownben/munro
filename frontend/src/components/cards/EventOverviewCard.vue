@@ -58,7 +58,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="button"
-          >HTML Results</a
+          >Raw Results</a
         >
         <a
           v-if="event.winsplits"
