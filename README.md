@@ -5,9 +5,9 @@
 
 ## Fast and Easy Results for Sporting Leagues
 
-![license - MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
+[![license - MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://github.com/brownben/munro/blob/master/LICENSE.md)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-![Travis (.org)](https://img.shields.io/travis/brownben/munro?style=flat-square)
+[![Travis (.org)](https://img.shields.io/travis/brownben/munro?style=flat-square)](https://travis-ci.org/github/brownben/munro)
 
 [munro-leagues.herokuapp.com](https://munro-leagues.herokuapp.com)
 

@@ -96,7 +96,8 @@ export default {
         (competitor) =>
           competitor.league === this.league && competitor.course === this.course
       )
-      return filtered.sort((a, b) => a.name > b.name)
+
+      return filtered.sort((a, b) => (a.name > b.name) - (a.name < b.name))
     },
 
     coursesInLeague: function () {
