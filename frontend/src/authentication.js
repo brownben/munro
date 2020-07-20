@@ -2,36 +2,34 @@
   authentication.js
 
   Contains the functions to interact with the autthentication api.
-  Stores login state in isLoggedIn for the views to access, this is updated using checkLogin
 */
 
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import axios from 'axios'
 
 export default {
   login: function (username, password) {
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(username, password)
+    return axios
+      .post(
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ',
+        {
+          email: username,
+          password,
+          returnSecureToken: true,
+        },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      .then((response) => response.data)
       .then((user) => {
         this.user = user
-        return user
+        document.cookie = `token=${user.idToken};secure;samesite=strict;path=/`
+        return this.user
       })
   },
 
   logout: function () {
-    return firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        this.user = false
-      })
-  },
-
-  checkLogin: function () {
-    this.user = firebase.auth().currentUser
-    if (this.user) return true
-    else return false
+    this.user = false
+    document.cookie = 'token=;secure;samesite=strict;path=/'
+    return Promise.resolve(this.user)
   },
 
   user: false,

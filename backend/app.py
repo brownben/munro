@@ -29,10 +29,9 @@ if not app.debug:
         frame_options_allow_from="*",
         content_security_policy={
             "script-src": "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=' storage.googleapis.com",
-            "default-src": "'self' www.googleapis.com",
-            "img-src": "*",
-            "style-src": "'self' 'unsafe-inline' fonts.googleapis.com",
-            "font-src": "'self' fonts.googleapis.com fonts.gstatic.com",
+            "default-src": "'self'",
+            "style-src": "'self' 'unsafe-inline'",
+            "connect-src": "'self' identitytoolkit.googleapis.com",
         },
     )
 else:
