@@ -158,10 +158,13 @@ def createResult(data):
 
 
 def updateResult(data):
+    if data["position"] == "":
+        data["position"] = -1
+
     query(
         """
         UPDATE results
-        SET time=%s, position=%s, points=%s, incomplete=%s, event=%s, competitor=%s
+        SET time=%s, position=%s, points=%s, incomplete=%s, event=%s, competitor=%s, type=%s
         WHERE rowid=%s
     """,
         (
@@ -171,6 +174,7 @@ def updateResult(data):
             data["incomplete"],
             data["event"],
             data["competitor"],
+            data["type"],
             data["rowid"],
         ),
     )
@@ -220,6 +224,17 @@ def deleteResultsByEvent(event):
             AND type <> 'max'
             AND type <> 'average'
             AND type <> 'manual'
+            AND type <> 'userUpload'
+        """,
+        (event,),
+    )
+
+
+def deleteResultsByEventAll(event):
+    query(
+        """
+        DELETE FROM results
+        WHERE event=%s
         """,
         (event,),
     )
@@ -229,7 +244,7 @@ def deleteResultsByCompetitor(competitor):
     query("DELETE FROM results WHERE competitor=%s", (competitor,))
 
 
-def findResults(rowid):
+def getResult(rowid):
     result = queryWithOneResult(
         """
         SELECT time, position, points, incomplete, event, type, competitor, id
@@ -271,7 +286,11 @@ def getResultsForCompetitorNonDynamic(competitor):
         """
         SELECT string_agg(results.points::text,';')
         FROM results, competitors
-        WHERE results.competitor=competitors.rowid AND type IS NULL AND competitors.rowid=%s
+        WHERE results.competitor=competitors.rowid
+            AND type <> 'max'
+            AND type <> 'average'
+            AND type <> 'manual'
+            AND competitors.rowid=%s
         GROUP BY competitors.rowid
     """,
         (competitor,),
@@ -321,7 +340,6 @@ def getResultsForCourse(league, course):
         """,
         (course, league),
     )
-
     resultsList = []
 
     leagueDetails = leagues.findLeague(league)

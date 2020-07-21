@@ -33,9 +33,16 @@
       @change="$emit('input', currentValue)"
     >
       <option v-if="shift" />
-      <option v-for="item in list" :key="item" :value="item">
-        {{ item }}
-      </option>
+      <template v-if="!optionTextDifferentToValue">
+        <option v-for="item in list" :key="item" :value="item">
+          {{ item }}
+        </option>
+      </template>
+      <template v-else>
+        <option v-for="item in list" :key="item.text" :value="item.value">
+          {{ item.text }}
+        </option>
+      </template>
     </select>
   </div>
 </template>
@@ -60,6 +67,10 @@ export default {
     shift: {
       type: Boolean,
       default: true,
+    },
+    optionTextDifferentToValue: {
+      type: Boolean,
+      default: false,
     },
   },
 

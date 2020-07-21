@@ -147,64 +147,64 @@ exports[`Creation Form - Renders Correctly 1`] = `
               value="Position Based (100 Max)"
             >
               
-      Position Based (100 Max)
-    
+        Position Based (100 Max)
+      
             </option>
             <option
               value="Position Based (99 Max)"
             >
               
-      Position Based (99 Max)
-    
+        Position Based (99 Max)
+      
             </option>
             <option
               value="Position Based (50 Max)"
             >
               
-      Position Based (50 Max)
-    
+        Position Based (50 Max)
+      
             </option>
             <option
               value="Position Based (100 Max, Double Points)"
             >
               
-      Position Based (100 Max, Double Points)
-    
+        Position Based (100 Max, Double Points)
+      
             </option>
             <option
               value="Position Based (50 Max, Double Points)"
             >
               
-      Position Based (50 Max, Double Points)
-    
+        Position Based (50 Max, Double Points)
+      
             </option>
             <option
               value="Position Based (99 Max, Reduced in a Draw)"
             >
               
-      Position Based (99 Max, Reduced in a Draw)
-    
+        Position Based (99 Max, Reduced in a Draw)
+      
             </option>
             <option
               value="Relative to Average Time (1000 Average)"
             >
               
-      Relative to Average Time (1000 Average)
-    
+        Relative to Average Time (1000 Average)
+      
             </option>
             <option
               value="Relative to Average Time (100 Average)"
             >
               
-      Relative to Average Time (100 Average)
-    
+        Relative to Average Time (100 Average)
+      
             </option>
             <option
               value="From Upload File"
             >
               
-      From Upload File
-    
+        From Upload File
+      
             </option>
           </select>
         </div>
@@ -443,64 +443,64 @@ exports[`Update Form - Renders Correctly 1`] = `
               value="Position Based (100 Max)"
             >
               
-      Position Based (100 Max)
-    
+        Position Based (100 Max)
+      
             </option>
             <option
               value="Position Based (99 Max)"
             >
               
-      Position Based (99 Max)
-    
+        Position Based (99 Max)
+      
             </option>
             <option
               value="Position Based (50 Max)"
             >
               
-      Position Based (50 Max)
-    
+        Position Based (50 Max)
+      
             </option>
             <option
               value="Position Based (100 Max, Double Points)"
             >
               
-      Position Based (100 Max, Double Points)
-    
+        Position Based (100 Max, Double Points)
+      
             </option>
             <option
               value="Position Based (50 Max, Double Points)"
             >
               
-      Position Based (50 Max, Double Points)
-    
+        Position Based (50 Max, Double Points)
+      
             </option>
             <option
               value="Position Based (99 Max, Reduced in a Draw)"
             >
               
-      Position Based (99 Max, Reduced in a Draw)
-    
+        Position Based (99 Max, Reduced in a Draw)
+      
             </option>
             <option
               value="Relative to Average Time (1000 Average)"
             >
               
-      Relative to Average Time (1000 Average)
-    
+        Relative to Average Time (1000 Average)
+      
             </option>
             <option
               value="Relative to Average Time (100 Average)"
             >
               
-      Relative to Average Time (100 Average)
-    
+        Relative to Average Time (100 Average)
+      
             </option>
             <option
               value="From Upload File"
             >
               
-      From Upload File
-    
+        From Upload File
+      
             </option>
           </select>
         </div>

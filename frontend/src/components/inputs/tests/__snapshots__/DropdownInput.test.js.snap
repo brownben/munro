@@ -39,22 +39,22 @@ exports[`Renders Correctly 1`] = `
       value="Item 1"
     >
       
-      Item 1
-    
+        Item 1
+      
     </option>
     <option
       value="Item 2"
     >
       
-      Item 2
-    
+        Item 2
+      
     </option>
     <option
       value="Item 3"
     >
       
-      Item 3
-    
+        Item 3
+      
     </option>
   </select>
 </div>

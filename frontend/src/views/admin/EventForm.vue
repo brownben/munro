@@ -73,6 +73,11 @@
           label="More Information:"
           class="mt-4"
         />
+        <CheckboxInput
+          v-model="userSubmittedResults"
+          label="Allow User Submitted Results:"
+          class="mt-6 text-left"
+        />
         <button v-if="create" class="mt-8 button-lg">Create Event</button>
         <button v-if="!create" class="mt-8 button-lg">Update Event</button>
       </form>
@@ -85,8 +90,11 @@
 import axios from 'axios'
 
 import Layout from '@/components/Layout'
+
 import DropdownInput from '@/components/inputs/DropdownInput'
 import TextInput from '@/components/inputs/TextInput'
+import CheckboxInput from '@/components/inputs/CheckboxInput'
+
 const NotFound = () => import('@/views/NotFound')
 
 export default {
@@ -94,6 +102,7 @@ export default {
     Layout,
     DropdownInput,
     TextInput,
+    CheckboxInput,
     NotFound,
   },
 
@@ -112,6 +121,7 @@ export default {
       results: '',
       winsplits: '',
       routegadget: '',
+      userSubmittedResults: false,
       league: this.$route.params.league,
     }
   },
@@ -155,6 +165,7 @@ export default {
             this.winsplits = response.data.winsplits
             this.routegadget = response.data.routegadget
             this.league = response.data.league
+            this.userSubmittedResults = response.data.userSubmittedResults
           }
         })
         .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
@@ -199,6 +210,7 @@ export default {
             winsplits: this.winsplits,
             routegadget: this.routegadget,
             league: this.league,
+            userSubmittedResults: this.userSubmittedResults,
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
@@ -223,6 +235,7 @@ export default {
             winsplits: this.winsplits,
             routegadget: this.routegadget,
             league: this.league,
+            userSubmittedResults: this.userSubmittedResults,
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch((error) =>

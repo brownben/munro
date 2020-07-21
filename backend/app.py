@@ -80,6 +80,7 @@ api.add_resource(competitorRoutes.Competitor, "/api/competitors/<competitorId>")
 api.add_resource(resultRoutes.Results, "/api/results")
 api.add_resource(resultRoutes.ManualResult, "/api/results/manual")
 api.add_resource(resultRoutes.TransferResult, "/api/results/transfer")
+api.add_resource(resultRoutes.Result, "/api/results/<resultId>")
 api.add_resource(resultRoutes.ResultsForEvent, "/api/events/<eventId>/results")
 api.add_resource(
     resultRoutes.ResultsForCompetitor,
@@ -88,6 +89,7 @@ api.add_resource(
 
 api.add_resource(uploadRoutes.Upload, "/api/upload")
 api.add_resource(uploadRoutes.UploadStream, "/api/upload/stream")
+api.add_resource(uploadRoutes.UploadResult, "/api/upload/result")
 
 # Serve app files
 @app.route("/", defaults={"path": ""})

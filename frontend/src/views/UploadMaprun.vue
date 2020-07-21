@@ -4,9 +4,9 @@
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
-      title="Munro - Upload Results"
-      description="Upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
-      url="https://munro-leagues.herokuapp.com/upload"
+      title="Munro - Import MapRun Results"
+      description="Import results from MapRun to to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      url="https://munro-leagues.herokuapp.com/upload/maprun"
     />
 
     <div class="col-span-2">

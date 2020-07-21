@@ -19,6 +19,7 @@ eventParser.add_argument("website")
 eventParser.add_argument("results")
 eventParser.add_argument("winsplits")
 eventParser.add_argument("routegadget")
+eventParser.add_argument("userSubmittedResults")
 eventParser.add_argument(
     "league", help="This field cannot be blank", required=True
 )

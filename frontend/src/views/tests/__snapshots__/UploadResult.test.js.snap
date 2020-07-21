@@ -1,0 +1,281 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<div
+  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+>
+  <h1
+    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  >
+    
+    Submit Result
+  
+  </h1>
+   
+  <div
+    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+  >
+    <vue-headful-stub
+      description="Sumbit results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      head="[object Object]"
+      title="Munro - Submit Result"
+      url="https://munro-leagues.herokuapp.com/upload/result"
+    />
+     
+    <div
+      class="col-span-2"
+    >
+      <div
+        class="relative"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Event:"
+        >
+          
+    Event:
+  
+        </label>
+         
+        <svg
+          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="margin-bottom: 0.625rem;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+         
+        <select
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Event:"
+        >
+          <option />
+           
+        </select>
+      </div>
+       
+      <div
+        class="relative mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Your Course:"
+        >
+          
+    Your Course:
+  
+        </label>
+         
+        <svg
+          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="margin-bottom: 0.625rem;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+         
+        <select
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Your Course:"
+        >
+          <option />
+           
+        </select>
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Your Name:"
+        >
+          Your Name:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Your Name:"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Your Time: (HH:MM:SS)"
+        >
+          Your Time: (HH:MM:SS)
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Your Time: (HH:MM:SS)"
+          type="text"
+        />
+      </div>
+       
+      <!---->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Upload Buttons Shows Correctly 1`] = `
+<div
+  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+>
+  <h1
+    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  >
+    
+    Submit Result
+  
+  </h1>
+   
+  <div
+    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+  >
+    <vue-headful-stub
+      description="Sumbit results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      head="[object Object]"
+      title="Munro - Submit Result"
+      url="https://munro-leagues.herokuapp.com/upload/result"
+    />
+     
+    <div
+      class="col-span-2"
+    >
+      <div
+        class="relative"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Event:"
+        >
+          
+    Event:
+  
+        </label>
+         
+        <svg
+          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="margin-bottom: 0.625rem;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+         
+        <select
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Event:"
+        >
+          <option />
+           
+        </select>
+      </div>
+       
+      <div
+        class="relative mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Your Course:"
+        >
+          
+    Your Course:
+  
+        </label>
+         
+        <svg
+          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          style="margin-bottom: 0.625rem;"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+         
+        <select
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Your Course:"
+        >
+          <option />
+           
+        </select>
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Your Name:"
+        >
+          Your Name:
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Your Name:"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="mt-4"
+      >
+        <label
+          class="block pb-1 select-none font-heading text-main-600"
+          for="Your Time: (HH:MM:SS)"
+        >
+          Your Time: (HH:MM:SS)
+        </label>
+         
+        <input
+          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          id="Your Time: (HH:MM:SS)"
+          type="text"
+        />
+      </div>
+       
+      <button
+        class="mt-8 button-lg"
+      >
+        
+      Submit Result
+    
+      </button>
+    </div>
+  </div>
+</div>
+`;

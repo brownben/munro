@@ -37,6 +37,20 @@ streamParser.add_argument(
     "course", help="This field cannot be blank", required=True
 )
 
+resultParser = reqparse.RequestParser()
+resultParser.add_argument(
+    "eventId", help="This field cannot be blank", required=True
+)
+resultParser.add_argument(
+    "time", help="This field cannot be blank", required=True
+)
+resultParser.add_argument(
+    "name", help="This field cannot be blank", required=True
+)
+resultParser.add_argument(
+    "course", help="This field cannot be blank", required=True
+)
+
 
 class Upload(Resource):
     def post(self):
@@ -217,3 +231,53 @@ def newResults(exisitingResults, latestResults):
         if result["type"] not in existingResultIds
     ]
 
+
+class UploadResult(Resource):
+    def post(self):
+        data = resultParser.parse_args()
+        eventData, leagueOfEvent = getEventLeagueData(data["eventId"])
+
+        if not eventData["userSubmittedResults"]:
+            return returnError(
+                "Error: That Event Doesn't Accept User Submitted Results"
+            )
+
+        try:
+            competitor = competitors.getCompetitorByNameCourseAndLeague(
+                data["name"], data["course"], leagueOfEvent["name"]
+            )
+            if not competitor:
+                competitor = competitors.createCompetitor(
+                    {
+                        "name": data["name"],
+                        "ageClass": "",
+                        "club": "",
+                        "course": data["course"],
+                        "league": leagueOfEvent["name"],
+                    }
+                )
+            else:
+                competitor = competitor["id"]
+
+            results.createResult(
+                {
+                    "time": csv.timeToSeconds(data["time"]),
+                    "position": "",
+                    "points": 0,
+                    "incomplete": False,
+                    "event": data["eventId"],
+                    "competitor": competitor,
+                    "type": "userUpload",
+                }
+            )
+
+            upload.recalculateResults(
+                data["eventId"], leagueOfEvent["scoringMethod"]
+            )
+            dynamicResults.calculate(eventData["league"])
+
+            return returnMessage("Points Assigned")
+        except:
+            return returnError(
+                "Error: Problem Uploading Result - Please Try Again"
+            )

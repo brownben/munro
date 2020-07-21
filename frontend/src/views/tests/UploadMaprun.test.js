@@ -1,7 +1,3 @@
-/*
-  Upload View Unit Tests
-*/
-
 import axios from 'axios'
 
 import { mount } from '@vue/test-utils'
@@ -266,7 +262,7 @@ test('Get MapRun Data - Error', async () => {
   )
 })
 
-test('Get MapRun Data - Error', async () => {
+test('Get MapRun Data - Error', () => {
   const mockAddMessage = jest.fn()
   const wrapper = mount(Upload, {
     mocks: {
