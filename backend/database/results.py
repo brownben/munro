@@ -45,6 +45,16 @@ def fullResultToJSON(result):
         return False
 
 
+def recalcResultToJSON(result):
+    return {
+        "rowid": result[0],
+        "time": result[1],
+        "incomplete": result[2] == "true",
+        "course": result[3],
+        "type": result[4],
+    }
+
+
 def getPointsForEvent(results, eventId):
     # Find Event matching the ID
     filteredPoints = [event for event in results if event["event"] == eventId]
@@ -166,6 +176,23 @@ def updateResult(data):
     )
 
 
+def recalcUpdateResult(data):
+    query(
+        """
+        UPDATE results
+        SET time=%s, position=%s, points=%s, incomplete=%s
+        WHERE rowid=%s
+    """,
+        (
+            data["time"],
+            data["position"],
+            data["points"],
+            data["incomplete"],
+            data["rowid"],
+        ),
+    )
+
+
 def updatePoints(result, points):
     query(
         """
@@ -186,7 +213,16 @@ def deleteAllResults():
 
 
 def deleteResultsByEvent(event):
-    query("DELETE FROM results WHERE event=%s AND type IS NULL", (event,))
+    query(
+        """
+        DELETE FROM results
+        WHERE event=%s
+            AND type <> 'max'
+            AND type <> 'average'
+            AND type <> 'manual'
+        """,
+        (event,),
+    )
 
 
 def deleteResultsByCompetitor(competitor):
@@ -255,6 +291,23 @@ def getResultsByEvent(event):
         (event,),
     )
     return list(map(fullResultToJSON, result))
+
+
+def getResultsByEventForRecalc(event):
+    result = queryWithResults(
+        """
+        SELECT results.rowid, results.time,  results.incomplete, competitors.course, results.type
+        FROM competitors, results
+        WHERE results.competitor=competitors.rowid
+            AND event=%s
+            AND type <> 'manual'
+            AND type <> 'max'
+            AND type <> 'average'
+        ORDER BY competitors.course ASC, results.time ASC
+    """,
+        (event,),
+    )
+    return list(map(recalcResultToJSON, result))
 
 
 def getResultsForCourse(league, course):

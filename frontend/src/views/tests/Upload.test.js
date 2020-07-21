@@ -153,7 +153,7 @@ test('Upload File - Success', async () => {
   await wrapper.vm.uploadFile()
 
   expect(mockRouterPush).toHaveBeenCalledTimes(1)
-  expect(mockRouterPush).toHaveBeenLastCalledWith('/leagues/test')
+  expect(mockRouterPush).toHaveBeenLastCalledWith('/events/1/results')
   expect(mockAddMessage).toHaveBeenCalledTimes(2)
   expect(mockAddMessage).toHaveBeenNthCalledWith(1, 'Upload Data Sent')
   expect(mockAddMessage).toHaveBeenLastCalledWith(

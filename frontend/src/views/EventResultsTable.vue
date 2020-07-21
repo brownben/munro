@@ -94,7 +94,12 @@
                 :key="result.id"
                 :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
               >
-                <td v-if="result.type" class="position">*</td>
+                <td
+                  v-if="['max', 'average', 'manual'].includes(result.type)"
+                  class="position"
+                >
+                  *
+                </td>
                 <td v-else-if="result.incomplete" class="position">-</td>
                 <td v-else class="position">{{ result.position || '' }}</td>
                 <td class="name">

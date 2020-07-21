@@ -1,11 +1,5 @@
-<!--
-  Upload Page
-
-  Upload results to database.
--->
-
 <template>
-  <Layout title="Upload Results">
+  <Layout title="Import MapRun Results">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },
@@ -15,17 +9,6 @@
       url="https://munro-leagues.herokuapp.com/upload"
     />
 
-    <div class="col-span-2 mt-4 card-color">
-      <p>
-        For instructions on how to upload results please visit
-        <router-link
-          to="/upload-instructions"
-          class="inline ml-1 text-white link"
-        >
-          /upload-instructions
-        </router-link>
-      </p>
-    </div>
     <div class="col-span-2">
       <TextInput
         v-model.trim.lazy="eventId"
@@ -39,43 +22,26 @@
       </p>
 
       <TextInput v-model.trim="uploadKey" label="Upload Key:" class="mt-4" />
-
-      <!-- If Event already have results, confirm they want to overwrite -->
-      <CheckboxInput
-        v-if="event.resultUploaded"
-        v-model="overwrite"
-        label="Overwrite Existing Results:"
-        class="mt-6 text-left"
-      />
-
-      <FileInput label="Results File:" class="mt-4" @file="fileRead" />
-
       <TextInput
-        v-model.trim="event.results"
-        label="Results (URL):"
-        type="url"
+        v-model.trim="maprunId"
+        label="MapRun Event Id:"
         class="mt-4"
       />
-      <TextInput
-        v-model.trim="event.routegadget"
-        label="Routegadget (URL):"
-        type="url"
-        class="mt-4"
-      />
-      <TextInput
-        v-model.trim="event.winsplits"
-        label="Winsplits: (URL):"
-        type="url"
+
+      <DropdownInput
+        v-model="course"
+        label="Course:"
+        :list="league.courses"
         class="mt-4"
       />
 
       <!-- Only show upload once all fields have been filled -->
       <button
-        v-if="eventId && uploadKey && file"
+        v-if="eventId && uploadKey && course"
         class="mt-6 button-lg"
         @click="uploadFile"
       >
-        Upload File
+        Import Data
       </button>
     </div>
   </Layout>
@@ -87,15 +53,13 @@ import axios from 'axios'
 import Layout from '@/components/Layout'
 
 import TextInput from '@/components/inputs/TextInput'
-import FileInput from '@/components/inputs/FileInput'
-import CheckboxInput from '@/components/inputs/CheckboxInput'
+import DropdownInput from '@/components/inputs/DropdownInput'
 
 export default {
   components: {
     Layout,
     TextInput,
-    FileInput,
-    CheckboxInput,
+    DropdownInput,
   },
 
   data: function () {
@@ -103,20 +67,9 @@ export default {
       eventId: '',
       uploadKey: '',
       event: {},
-      file: '',
-      overwrite: false,
-      results: '',
-      routegadget: '',
-      winsplits: '',
-    }
-  },
-
-  // On load
-  mounted: function () {
-    // If passed with Event ID, autofill Event ID
-    if (this.$route.params.id) {
-      this.eventId = this.$route.params.id
-      this.findEvent()
+      league: {},
+      maprunId: '',
+      course: '',
     }
   },
 
@@ -125,32 +78,35 @@ export default {
       // Fetch event details so name of event can be checked and if results are uploaded
       return axios
         .get(`/api/events/${this.eventId}`)
-        .then((response) => {
+        .then(async (response) => {
           this.event = response.data
           if (!this.event.name) {
             this.event = {}
+            this.league = {}
             this.event.name = 'No Event Found'
-          }
+          } else
+            this.league = await axios
+              .get(`/api/leagues/${this.event.league}`)
+              .then((response) => response.data)
         })
+        .then(() => {})
         .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
     },
 
-    fileRead: function (file) {
-      this.file = file
-    },
+    uploadFile: async function () {
+      const file = await this.getMaprunData()
+      if (!file || file.split('\n').length < 1)
+        return this.$messages.addMessage(
+          'Error: No MapRun Event Found With That Id'
+        )
 
-    uploadFile: function () {
-      // Send data to the server
       this.$messages.addMessage('Upload Data Sent')
       return axios
-        .post('/api/upload', {
+        .post('/api/upload/stream', {
           eventId: this.eventId,
           uploadKey: this.uploadKey,
-          file: this.file,
-          overwrite: this.overwrite,
-          results: this.event.results,
-          winsplits: this.event.winsplits,
-          routegadget: this.event.routegadget,
+          file: file,
+          course: this.course,
         })
         .then(() => {
           this.$messages.addMessage('Results Uploaded Successfully')
@@ -158,6 +114,39 @@ export default {
         })
         .catch((error) =>
           this.$messages.addMessage(error.response.data.message)
+        )
+    },
+
+    maprunHTMLtoCSV: function (html) {
+      return html
+        .replace(/\n/g, '')
+        .replace(/<\/.*?>/g, '')
+        .replace(/'>Track/g, '')
+        .replace(/<a href='reitti.cgi.*?pID=/g, '')
+        .replace(/<a.*?>/g, '')
+        .split('<tr>')
+        .filter((row) => !row.includes('DOCTYPE') && !row.includes('<th'))
+        .map((row) =>
+          row
+            .split(/<td.*?>/g)
+            .slice(2, 6)
+            .map((string) => string.trim())
+            .join()
+        )
+        .join('\n')
+    },
+
+    getMaprunData: function () {
+      return axios
+        .get(
+          `https://www.p.fne.com.au/rg/cgi-bin/SelectResultFileForSplitsBrowserFiltered.cgi?act=fileToSplitsBrowser&eventName=CombinedResults_${this.maprunId}.csv`
+        )
+        .then((response) => response.data)
+        .then((data) => this.maprunHTMLtoCSV(data))
+        .catch((error) =>
+          this.$messages.addMessage(
+            'Error: Problem Connecting to MapRun Server'
+          )
         )
     },
   },

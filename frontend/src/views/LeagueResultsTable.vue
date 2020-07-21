@@ -132,7 +132,9 @@
                     ),
                     bold:
                       result.types &&
-                      result.types[eventsWithResults.indexOf(event)] !== '',
+                      ['max', 'average', 'manual'].includes(
+                        result.types[eventsWithResults.indexOf(event)]
+                      ),
                   }"
                   class="points"
                 >

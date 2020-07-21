@@ -1,9 +1,10 @@
 from flask_restful import Resource, reqparse
 
-from database import events
+from database import events, leagues
 from requireAuthentication import requireAuthentication
 
 from routeFunctions import returnMessage, returnError
+from uploadFunctions import recalculateResults
 
 # Check POST request has all the relevent fields
 eventParser = reqparse.RequestParser()
@@ -103,3 +104,24 @@ class EventsWithUploadKey(Resource):
 class EventsLatestWithResults(Resource):
     def get(self):
         return events.getLatestEventsWithResults()
+
+
+class EventRecalculateResults(Resource):
+    @requireAuthentication
+    def post(self, eventId):
+        try:
+            eventData = events.getEventWithUploadKey(eventId)
+            leagueOfEvent = leagues.findLeague(eventData["league"])
+        except:
+            return returnError("Problem Getting Information from the Database")
+
+        try:
+            recalculateResults(eventId, leagueOfEvent["scoringMethod"])
+            return returnMessage(
+                "Event - {} was Results Updated".format(eventData["name"])
+            )
+
+        except:
+            return returnError(
+                "Error: Problem Recalculating Results - Please Try Again"
+            )
