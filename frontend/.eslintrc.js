@@ -48,5 +48,6 @@ module.exports = {
         allowCoexistStyle: false,
       },
     ],
+    'no-promise-executor-return': 'off',
   },
 }
