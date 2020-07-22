@@ -9,7 +9,7 @@ chardet==3.0.4
 Click==7.1.2
 colorama==0.4.3
 coverage==5.2
-Flask==1.1.1
+Flask==1.1.2
 Flask-Compress==1.5.0
 Flask-Cors==3.0.8
 Flask-RESTful==0.3.7
