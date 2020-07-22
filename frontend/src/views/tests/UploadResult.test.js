@@ -251,9 +251,7 @@ test('Upload Result - Success', async () => {
   })
   expect(mockRouterPush).toHaveBeenCalledTimes(1)
   expect(mockRouterPush).toHaveBeenLastCalledWith('/events/1/results')
-  expect(mockAddMessage).toHaveBeenLastCalledWith(
-    'Result Uploaded Successfully'
-  )
+  expect(mockAddMessage).toHaveBeenCalledWith('Result Uploaded Successfully')
 })
 
 test('Upload Result - Failure', async () => {
