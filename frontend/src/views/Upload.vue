@@ -154,7 +154,7 @@ export default {
         })
         .then(() => {
           this.$messages.addMessage('Results Uploaded Successfully')
-          this.$router.push(`/leagues/${this.event.league}`)
+          this.$router.push(`/events/${this.eventId}/results`)
         })
         .catch((error) =>
           this.$messages.addMessage(error.response.data.message)

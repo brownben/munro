@@ -94,9 +94,14 @@
                 :key="result.id"
                 :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
               >
-                <td v-if="result.type">*</td>
-                <td v-else-if="result.incomplete">-</td>
-                <td v-else>{{ result.position || '' }}</td>
+                <td
+                  v-if="['max', 'average', 'manual'].includes(result.type)"
+                  class="position"
+                >
+                  *
+                </td>
+                <td v-else-if="result.incomplete" class="position">-</td>
+                <td v-else class="position">{{ result.position || '' }}</td>
                 <td class="name">
                   <span class="block font-normal sm:font-light">
                     {{ result.name }}
@@ -108,7 +113,7 @@
                 </td>
                 <td class="ageClass">{{ result.ageClass }}</td>
                 <td class="club">{{ result.club }}</td>
-                <td>{{ elapsedTime(result.time) }}</td>
+                <td class="time">{{ elapsedTime(result.time) }}</td>
               </tr>
             </tbody>
           </table>
@@ -383,6 +388,17 @@ export default {
 
 .active {
   @apply bg-main-200 text-main-800;
+}
+
+table td {
+  &.time,
+  &.position {
+    @apply font-normal;
+
+    @screen sm {
+      @apply font-light;
+    }
+  }
 }
 
 table td,

@@ -93,6 +93,18 @@ def getCompetitorsByLeague(league):
     return list(map(competitorToJSON, result))
 
 
+def getCompetitorByNameCourseAndLeague(name, course, league):
+    result = queryWithOneResult(
+        """
+        SELECT rowid, name, ageClass, club, course, league
+        FROM competitors
+        WHERE name=%s AND course=%s AND league=%s
+    """,
+        (name, course, league),
+    )
+    return competitorToJSON(result)
+
+
 def deleteAllCompetitors():
     query("DELETE FROM competitors")
 

@@ -6,8 +6,6 @@
 */
 
 import Vue from 'vue'
-import firebase from 'firebase/app'
-import 'firebase/auth'
 import vueHeadful from 'vue-headful'
 
 import App from './App'
@@ -25,27 +23,9 @@ Vue.prototype.$auth = auth
 
 Vue.component('VueHeadful', vueHeadful)
 
-firebase.initializeApp({
-  apiKey: 'AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ ',
-  authDomain: 'munro-leagues.firebaseapp.com',
-  projectId: 'munro-leagues',
-})
-firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
-
 /* eslint-disable no-new */
-const app = new Vue({
+new Vue({
   el: '#app',
   router,
   render: (h) => h(App),
-})
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    app.$auth.user = user
-    user.getIdToken().then((token) => {
-      document.cookie = `token=${token};secure;samesite=strict;path=/`
-    })
-  } else {
-    document.cookie = 'token=;secure;samesite=strict;path=/'
-  }
 })

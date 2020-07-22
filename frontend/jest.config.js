@@ -16,8 +16,6 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest',
   },
 
-  setupFiles: ['jest-localstorage-mock'],
-
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },

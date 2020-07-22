@@ -10,6 +10,7 @@ export const sampleSingleEvent = {
   moreInformation: '',
   name: 'Bush Estate',
   resultUploaded: false,
+  userSubmittedResults: false,
 }
 
 export const sampleThreeEvents = [

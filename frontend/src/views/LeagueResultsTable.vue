@@ -132,7 +132,9 @@
                     ),
                     bold:
                       result.types &&
-                      result.types[eventsWithResults.indexOf(event)] !== '',
+                      ['max', 'average', 'manual'].includes(
+                        result.types[eventsWithResults.indexOf(event)]
+                      ),
                   }"
                   class="points"
                 >
@@ -457,7 +459,8 @@ export default {
       @apply bg-main-50;
     }
 
-    &:hover:not(.mobile-table-expansion) {
+    &:hover:not(.mobile-table-expansion),
+    &:hover:not(.mobile-table-expansion) + .mobile-table-expansion {
       @apply bg-main-200;
     }
   }
@@ -531,9 +534,21 @@ table th {
 }
 
 table td {
+  &.totalPoints,
+  &.position {
+    @apply font-normal;
+  }
+
   &.points {
     padding: 0 0.1rem;
     @apply text-sm;
+  }
+
+  @screen sm {
+    &.totalPoints,
+    &.position {
+      @apply font-light;
+    }
   }
 
   @screen md {

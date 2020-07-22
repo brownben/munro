@@ -4,6 +4,20 @@ from database import results
 from requireAuthentication import requireAuthentication
 from routeFunctions import returnMessage, returnError
 
+resultParser = reqparse.RequestParser()
+resultParser.add_argument(
+    "event", help="This field cannot be blank", required=True
+)
+resultParser.add_argument(
+    "competitor", help="This field cannot be blank", required=True
+)
+resultParser.add_argument("rowid")
+resultParser.add_argument("time")
+resultParser.add_argument("position")
+resultParser.add_argument("points")
+resultParser.add_argument("incomplete")
+resultParser.add_argument("type")
+
 transferResultParser = reqparse.RequestParser()
 transferResultParser.add_argument(
     "competitor", help="This field cannot be blank", required=True
@@ -29,9 +43,55 @@ class Results(Resource):
         return results.getAllResults()
 
     @requireAuthentication
+    def post(self):
+        data = resultParser.parse_args()
+
+        try:
+            results.createResult(data)
+            return returnMessage("Result was Created")
+
+        except:
+            return returnError(
+                "Error: Problem Creating Result - Please Try Again"
+            )
+
+    @requireAuthentication
     def delete(self):
         results.deleteAllResults()
         return returnMessage("All Results were Deleted")
+
+
+class Result(Resource):
+    def get(self, resultId):
+        try:
+            return results.getResult(resultId)
+        except:
+            return returnError(
+                "Error: Problem Fetching Result - Please Try Again"
+            )
+
+    @requireAuthentication
+    def put(self, resultId):
+        data = resultParser.parse_args()
+
+        try:
+            results.updateResult(data)
+            return returnMessage("Result was Updated")
+
+        except:
+            return returnError(
+                "Error: Problem Updating Result - Please Try Again"
+            )
+
+    @requireAuthentication
+    def delete(self, resultId):
+        try:
+            results.deleteResult(resultId)
+            return returnMessage("Result Deleted")
+        except:
+            return returnError(
+                "Error: Problem Deleting Result - Please Try Again"
+            )
 
 
 class ResultsForCourse(Resource):

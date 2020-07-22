@@ -30,7 +30,10 @@ def findHeaders(data):
         [["COURSE", "COURSECLASS"], "course"],
         [["TIME", "RACETIME"], "time"],
         [["PL", "POS.", "POS", "POSITION"], "position"],
-        [["NC", "NONCOMPETITIVE"], "nonCompetitive"],
+        [
+            ["NC", "NONCOMPETITIVE", "NON COMPETITIVE", "NON-COMPETITIVE"],
+            "nonCompetitive",
+        ],
         [["STATUS", "CLASSIFIER"], "status"],
         [["POINTS"], "file_points"],
     ]
@@ -44,33 +47,27 @@ def findHeaders(data):
 
     return checkAllHeadersPresent(list(locations.keys()), locations)
 
+
 def checkHeader(cell, value, expectedHeaders, locations):
     for header in expectedHeaders:
-        if (
-            value.upper() in header[0]
-            and header[1] not in locations
-        ):
+        if value.upper() in header[0] and header[1] not in locations:
             locations[header[1]] = cell
             return locations
     return locations
 
+
 def checkAllHeadersPresent(headersList, locations):
     # Check all expected field are in the file
     otherHeaders = [
-        "ageClass",
-        "club",
         "course",
         "time",
-        "position",
-        "nonCompetitive",
-        "status",
     ]
 
     hasNameAndSurname = "firstName" in headersList and "surname" in headersList
     hasName = "name" in headersList
-    hasOtherHeader = all([header in headersList for header in otherHeaders])
+    hasOtherHeaders = all([header in headersList for header in otherHeaders])
 
-    if not ((hasName or hasNameAndSurname) and hasOtherHeader):
+    if not ((hasName or hasNameAndSurname) and hasOtherHeaders):
         return False
 
     return locations
@@ -102,16 +99,21 @@ def parseToObjects(data, headerLocations):
         parsedRow = {}
 
         parsedRow["name"] = getName(row, headerLocations)
-        parsedRow["ageClass"] = row[headerLocations["ageClass"]]
-        parsedRow["club"] = row[headerLocations["club"]]
+        parsedRow["ageClass"] = row.get(headerLocations["ageClass"], "")
+        parsedRow["club"] = row.get(headerLocations["club"], "")
         parsedRow["course"] = row[headerLocations["course"]]
         parsedRow["time"] = timeToSeconds(row[headerLocations["time"]])
 
-        if headerLocations.get('file_points', False) and row[headerLocations["file_points"]]:
-            parsedRow['file_points'] = int(row[headerLocations["file_points"]])
+        if (
+            headerLocations.get("file_points", False)
+            and row[headerLocations["file_points"]]
+        ):
+            parsedRow["file_points"] = int(row[headerLocations["file_points"]])
 
         try:
-            parsedRow["position"] = int(row[headerLocations["position"]])
+            parsedRow["position"] = int(
+                row.get(headerLocations["position"], "")
+            )
         except ValueError:
             parsedRow["position"] = ""
 
@@ -124,17 +126,18 @@ def parseToObjects(data, headerLocations):
 
 def resultIncomplete(row, headerLocations):
     return (
-        row[headerLocations["nonCompetitive"]] == "Y"
-        or row[headerLocations["nonCompetitive"]] == "1"
+        row.get(headerLocations["nonCompetitive"], "") == "Y"
+        or row.get(headerLocations["nonCompetitive"], "") == "1"
         or (
-            row[headerLocations["status"]] != ""
-            and row[headerLocations["status"]] != "0"
+            row.get(headerLocations["status"], "") != ""
+            and row.get(headerLocations["status"], "") != "0"
         )
     )
 
+
 def getName(row, headerLocations):
     if "firstName" in headerLocations:
-        return(
+        return (
             row[headerLocations["firstName"]]
             + " "
             + row[headerLocations["surname"]]

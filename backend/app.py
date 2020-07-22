@@ -29,10 +29,9 @@ if not app.debug:
         frame_options_allow_from="*",
         content_security_policy={
             "script-src": "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=' storage.googleapis.com",
-            "default-src": "'self' www.googleapis.com",
-            "img-src": "*",
-            "style-src": "'self' 'unsafe-inline' fonts.googleapis.com",
-            "font-src": "'self' fonts.googleapis.com fonts.gstatic.com",
+            "default-src": "'self'",
+            "style-src": "'self' 'unsafe-inline'",
+            "connect-src": "'self' identitytoolkit.googleapis.com p.fne.com.au",
         },
     )
 else:
@@ -67,6 +66,10 @@ api.add_resource(
     eventRoutes.EventWithUploadKey, "/api/events/<eventId>/uploadKey"
 )
 api.add_resource(
+    eventRoutes.EventRecalculateResults,
+    "/api/events/<eventId>/recalculate-results",
+)
+api.add_resource(
     eventRoutes.EventsLatestWithResults, "/api/events/latest-results"
 )
 
@@ -77,6 +80,7 @@ api.add_resource(competitorRoutes.Competitor, "/api/competitors/<competitorId>")
 api.add_resource(resultRoutes.Results, "/api/results")
 api.add_resource(resultRoutes.ManualResult, "/api/results/manual")
 api.add_resource(resultRoutes.TransferResult, "/api/results/transfer")
+api.add_resource(resultRoutes.Result, "/api/results/<resultId>")
 api.add_resource(resultRoutes.ResultsForEvent, "/api/events/<eventId>/results")
 api.add_resource(
     resultRoutes.ResultsForCompetitor,
@@ -84,6 +88,8 @@ api.add_resource(
 )
 
 api.add_resource(uploadRoutes.Upload, "/api/upload")
+api.add_resource(uploadRoutes.UploadStream, "/api/upload/stream")
+api.add_resource(uploadRoutes.UploadResult, "/api/upload/result")
 
 # Serve app files
 @app.route("/", defaults={"path": ""})

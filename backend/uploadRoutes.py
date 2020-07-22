@@ -23,6 +23,34 @@ uploadParser.add_argument("results")
 uploadParser.add_argument("winsplits")
 uploadParser.add_argument("routegadget")
 
+streamParser = reqparse.RequestParser()
+streamParser.add_argument(
+    "eventId", help="This field cannot be blank", required=True
+)
+streamParser.add_argument(
+    "uploadKey", help="This field cannot be blank", required=True
+)
+streamParser.add_argument(
+    "file", help="This field cannot be blank", required=True
+)
+streamParser.add_argument(
+    "course", help="This field cannot be blank", required=True
+)
+
+resultParser = reqparse.RequestParser()
+resultParser.add_argument(
+    "eventId", help="This field cannot be blank", required=True
+)
+resultParser.add_argument(
+    "time", help="This field cannot be blank", required=True
+)
+resultParser.add_argument(
+    "name", help="This field cannot be blank", required=True
+)
+resultParser.add_argument(
+    "course", help="This field cannot be blank", required=True
+)
+
 
 class Upload(Resource):
     def post(self):
@@ -33,13 +61,20 @@ class Upload(Resource):
             return returnError("Problem Processing Uploaded Data")
 
 
-def checkUpload(data):
-    # get all relevent data from other parts of the database
+def getEventLeagueData(eventId):
     try:
-        eventData = events.getEventWithUploadKey(data["eventId"])
+        eventData = events.getEventWithUploadKey(eventId)
         leagueOfEvent = leagues.findLeague(eventData["league"])
+
+        return eventData, leagueOfEvent
+
     except:
         return returnError("Problem Getting Information from the Database")
+
+
+def checkUpload(data):
+    # get all relevent data from other parts of the database
+    eventData, leagueOfEvent = getEventLeagueData(data["eventId"])
 
     # Check upload credentials are correct
     if eventData["uploadKey"] != data["uploadKey"]:
@@ -133,3 +168,116 @@ def getCompetitorData(eventData, dataWithPoints):
         dataWithCompetitors.append(result)
 
     return dataWithCompetitors
+
+
+class UploadStream(Resource):
+    def post(self):
+        data = streamParser.parse_args()
+        eventData, leagueOfEvent = getEventLeagueData(data["eventId"])
+        existingResults = results.getResultsByEventForRecalc(data["eventId"])
+
+        if eventData["uploadKey"] != data["uploadKey"]:
+            return returnError("Upload Key is Incorrect")
+
+        try:
+            streamData = data["file"].split("\n")
+            resultsList = [
+                streamResultToDict(result, data["eventId"], data["course"])
+                for result in streamData
+            ]
+            resultsToAdd = newResults(existingResults, resultsList)
+            resultsWithCompetitors = getCompetitorData(eventData, resultsToAdd)
+
+            for result in resultsWithCompetitors:
+                results.createResult(result)
+
+            upload.recalculateResults(
+                data["eventId"], leagueOfEvent["scoringMethod"]
+            )
+            dynamicResults.calculate(eventData["league"])
+
+            events.setResultsUploaded(True, data["eventId"])
+
+            return returnMessage(
+                str(len(resultsWithCompetitors)) + " Results Imported"
+            )
+
+        except:
+            return returnError("Problem Processing Uploaded Data")
+
+
+def streamResultToDict(result, event, course):
+    splitResult = result.split(",")
+
+    return {
+        "type": splitResult[1],
+        "name": splitResult[0],
+        "time": csv.timeToSeconds(splitResult[2]),
+        "incomplete": splitResult[3] != "OK",
+        "ageClass": splitResult[4:5] or "",
+        "club": splitResult[5:6] or "",
+        "position": "",
+        "points": 0,
+        "event": event,
+        "course": course,
+    }
+
+
+def newResults(exisitingResults, latestResults):
+    existingResultIds = [result["type"] for result in exisitingResults]
+    return [
+        result
+        for result in latestResults
+        if result["type"] not in existingResultIds
+    ]
+
+
+class UploadResult(Resource):
+    def post(self):
+        data = resultParser.parse_args()
+        eventData, leagueOfEvent = getEventLeagueData(data["eventId"])
+
+        if not eventData["userSubmittedResults"]:
+            return returnError(
+                "Error: That Event Doesn't Accept User Submitted Results"
+            )
+
+        try:
+            competitor = competitors.getCompetitorByNameCourseAndLeague(
+                data["name"], data["course"], leagueOfEvent["name"]
+            )
+            if not competitor:
+                competitor = competitors.createCompetitor(
+                    {
+                        "name": data["name"],
+                        "ageClass": "",
+                        "club": "",
+                        "course": data["course"],
+                        "league": leagueOfEvent["name"],
+                    }
+                )
+            else:
+                competitor = competitor["id"]
+
+            results.createResult(
+                {
+                    "time": csv.timeToSeconds(data["time"]),
+                    "position": "",
+                    "points": 0,
+                    "incomplete": False,
+                    "event": data["eventId"],
+                    "competitor": competitor,
+                    "type": "userUpload",
+                }
+            )
+
+            upload.recalculateResults(
+                data["eventId"], leagueOfEvent["scoringMethod"]
+            )
+            dynamicResults.calculate(eventData["league"])
+
+            return returnMessage("Points Assigned")
+        except:
+            return returnError(
+                "Error: Problem Uploading Result - Please Try Again"
+            )

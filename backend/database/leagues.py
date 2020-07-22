@@ -54,6 +54,7 @@ queryMultiple(
         results TEXT,
         winsplits TEXT,
         routegadget TEXT,
+        userSubmittedResults BOOLEAN,
         league TEXT NOT NULL,
         uploadKey TEXT,
         UNIQUE (id),

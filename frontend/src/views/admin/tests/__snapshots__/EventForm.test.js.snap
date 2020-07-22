@@ -195,6 +195,29 @@ exports[`Creation Form - Renders Correctly 1`] = `
           />
         </div>
          
+        <div
+          class="mt-6 text-left"
+        >
+          <label
+            class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
+          >
+            <span
+              class="mr-3 align-top"
+            >
+              Allow User Submitted Results:
+            </span>
+             
+            <input
+              class="sr-only"
+              type="checkbox"
+            />
+             
+            <span
+              class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
+            />
+          </label>
+        </div>
+         
         <button
           class="mt-8 button-lg"
         >
@@ -401,6 +424,29 @@ exports[`Update Form - Renders Correctly 1`] = `
             id="More Information:"
             type="text"
           />
+        </div>
+         
+        <div
+          class="mt-6 text-left"
+        >
+          <label
+            class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
+          >
+            <span
+              class="mr-3 align-top"
+            >
+              Allow User Submitted Results:
+            </span>
+             
+            <input
+              class="sr-only"
+              type="checkbox"
+            />
+             
+            <span
+              class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
+            />
+          </label>
         </div>
          
         <!---->
