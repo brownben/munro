@@ -19,7 +19,7 @@ exports[`Renders Correctly 1`] = `
       description="Instrcutions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       head="[object Object]"
       title="Munro - Upload Instructions"
-      url="https://munro-leagues.herokuapp.com/upload-instructions"
+      url="https://munro-leagues.herokuapp.com/upload/instructions"
     />
      
     <div
@@ -44,9 +44,9 @@ exports[`Renders Correctly 1`] = `
       
           <router-link-stub
             class="link text-main-700"
-            to="/upload"
+            to="/upload/file"
           >
-            https://munro-leagues.herokuapp.com/upload
+            https://munro-leagues.herokuapp.com/upload/file
           </router-link-stub>
         </span>
       </p>

@@ -47,13 +47,13 @@ exports[`Renders Correctly 1`] = `
           src="@/assets/images/SprintelopeLogo.png"
         />
          
-        <h1
+        <h2
           class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
           
     (Not) Sprintelope 2020
   
-        </h1>
+        </h2>
          
         <p>
           
@@ -95,13 +95,13 @@ exports[`Renders Correctly 1`] = `
           src="@/assets/images/SprintelopeLogo.png"
         />
          
-        <h1
+        <h2
           class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
           
     Sprintelope 2019
   
-        </h1>
+        </h2>
          
         <p>
           
@@ -138,13 +138,13 @@ exports[`Renders Correctly 1`] = `
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
-        <h1
+        <h2
           class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
           
     Fight with the Night
   
-        </h1>
+        </h2>
          
         <p>
           
@@ -181,13 +181,13 @@ exports[`Renders Correctly 1`] = `
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
-        <h1
+        <h2
           class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
           
     Northern Night Cup
   
-        </h1>
+        </h2>
          
         <p>
           
@@ -270,13 +270,13 @@ exports[`Renders Correctly 1`] = `
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
-        <h1
+        <h2
           class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
           
     Upload Instructions
   
-        </h1>
+        </h2>
          
         <p>
           
@@ -288,7 +288,7 @@ exports[`Renders Correctly 1`] = `
          
         <router-link-stub
           class="mt-4 button"
-          to="/upload-instructions"
+          to="/upload/instructions"
         >
           View Info
         </router-link-stub>
@@ -298,13 +298,13 @@ exports[`Renders Correctly 1`] = `
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
-        <h1
+        <h2
           class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
         >
           
     Developers
   
-        </h1>
+        </h2>
          
         <p>
           

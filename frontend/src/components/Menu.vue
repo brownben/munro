@@ -13,13 +13,18 @@
       <router-link to="/">Munro</router-link>
     </h1>
     <svg
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
       viewBox="0 0 24 24"
-      class="absolute right-0 inline-block float-right h-12 p-2 mr-2 fill-current text-main md:hidden"
+      stroke="currentColor"
+      class="absolute right-0 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
       @click="showMenu = !showMenu"
     >
-      <path d="M0 0h24v24H0z" fill="none" />
-      <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      <path d="M4 6h16M4 12h16M4 18h16" />
     </svg>
+
     <transition name="shrink">
       <nav
         v-show="showMenu || !smallWindow"
@@ -102,7 +107,7 @@ export default {
 }
 
 .menu-item:hover {
-  @apply bg-main text-white;
+  @apply bg-main-400 text-white;
 }
 
 @screen md {

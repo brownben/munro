@@ -3,16 +3,16 @@
     class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
   >
     <div class="px-4 md:px-6 lg:px-8">
-      <h2
+      <h3
         v-if="showLeagueName"
         class="text-xl font-bold leading-6 font-heading text-main-700"
       >
         {{ event.league }}
-      </h2>
+      </h3>
       <h2 class="text-3xl font-bold font-heading text-main-900">
         {{ event.name }}
       </h2>
-      <h3 class="text-lg text-opacity-75 font-heading text-main-900">
+      <h4 class="text-lg text-opacity-75 font-heading text-main-900">
         <template v-if="event.date">
           {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
             event.date.split('-')[0]
@@ -22,7 +22,7 @@
         <template v-if="event.organiser"
           >Organised By {{ event.organiser }}</template
         >
-      </h3>
+      </h4>
 
       <div
         class="mb-2"

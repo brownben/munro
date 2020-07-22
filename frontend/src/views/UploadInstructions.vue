@@ -9,13 +9,13 @@
       }"
       title="Munro - Upload Instructions"
       description="Instrcutions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
-      url="https://munro-leagues.herokuapp.com/upload-instructions"
+      url="https://munro-leagues.herokuapp.com/upload/instructions"
     />
     <InstructionCard :number="1">
       <template #instruction>
         Go to
-        <router-link to="/upload" class="link text-main-700"
-          >https://munro-leagues.herokuapp.com/upload</router-link
+        <router-link to="/upload/file" class="link text-main-700"
+          >https://munro-leagues.herokuapp.com/upload/file</router-link
         >
       </template>
       <template #body>

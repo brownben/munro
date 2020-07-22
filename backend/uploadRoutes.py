@@ -210,7 +210,7 @@ def streamResultToDict(result, event, course):
     splitResult = result.split(",")
 
     return {
-        "type": splitResult[1],
+        "type": course + splitResult[1],
         "name": splitResult[0],
         "time": csv.timeToSeconds(splitResult[2]),
         "incomplete": splitResult[3] != "OK",

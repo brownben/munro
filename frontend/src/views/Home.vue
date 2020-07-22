@@ -93,7 +93,7 @@
         title="Upload Instructions"
         description="Instructions for Event Organisers on how to Upload Results to Munro"
         buttonText="View Info"
-        alternativeLink="/upload-instructions"
+        alternativeLink="/upload/instructions"
       />
       <LeagueOverviewCard
         title="Developers"

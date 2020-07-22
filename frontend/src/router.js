@@ -162,6 +162,16 @@ const uploadRoutes = [
     component: () => import('@/views/Upload'),
   },
   {
+    path: '/upload/instructions',
+    name: 'Upload Instructions',
+    component: () => import('@/views/UploadInstructions'),
+  },
+  {
+    path: '/upload/file',
+    name: 'Upload Results File',
+    component: () => import('@/views/UploadFile'),
+  },
+  {
     path: '/upload/maprun',
     name: 'MapRun Results Import',
     component: () => import('@/views/UploadMaprun'),
@@ -174,12 +184,7 @@ const uploadRoutes = [
   {
     path: '/upload/:id',
     name: 'Upload Results (From Event Page)',
-    component: () => import('@/views/Upload'),
-  },
-  {
-    path: '/upload-instructions',
-    name: 'Upload Instructions',
-    component: () => import('@/views/UploadInstructions'),
+    component: () => import('@/views/UploadFile'),
   },
   {
     path: '/developers',

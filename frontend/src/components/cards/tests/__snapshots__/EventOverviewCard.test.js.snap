@@ -7,13 +7,13 @@ exports[`Renders Correctly - Logged In 1`] = `
   <div
     class="px-4 md:px-6 lg:px-8"
   >
-    <h2
+    <h3
       class="text-xl font-bold leading-6 font-heading text-main-700"
     >
       
       
     
-    </h2>
+    </h3>
      
     <h2
       class="text-3xl font-bold font-heading text-main-900"
@@ -23,13 +23,13 @@ exports[`Renders Correctly - Logged In 1`] = `
     
     </h2>
      
-    <h3
+    <h4
       class="text-lg text-opacity-75 font-heading text-main-900"
     >
       
         01/01/2001
         -  Organised By John Doe
-    </h3>
+    </h4>
      
     <div
       class="mb-2 py-2"
@@ -166,13 +166,13 @@ exports[`Renders Correctly - Normal View 1`] = `
     
     </h2>
      
-    <h3
+    <h4
       class="text-lg text-opacity-75 font-heading text-main-900"
     >
       
         01/01/2001
         -  Organised By John Doe
-    </h3>
+    </h4>
      
     <div
       class="mb-2 py-2"
@@ -252,13 +252,13 @@ exports[`Renders Correctly - Show League Title 1`] = `
   <div
     class="px-4 md:px-6 lg:px-8"
   >
-    <h2
+    <h3
       class="text-xl font-bold leading-6 font-heading text-main-700"
     >
       
       
     
-    </h2>
+    </h3>
      
     <h2
       class="text-3xl font-bold font-heading text-main-900"
@@ -268,13 +268,13 @@ exports[`Renders Correctly - Show League Title 1`] = `
     
     </h2>
      
-    <h3
+    <h4
       class="text-lg text-opacity-75 font-heading text-main-900"
     >
       
         01/01/2001
         -  Organised By John Doe
-    </h3>
+    </h4>
      
     <div
       class="mb-2 py-2"

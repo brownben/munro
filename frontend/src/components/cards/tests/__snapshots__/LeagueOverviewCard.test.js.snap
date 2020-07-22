@@ -7,13 +7,13 @@ exports[`Renders Correctly 1`] = `
   league="[object Object]"
 >
    
-  <h1
+  <h2
     class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
   >
     
     
   
-  </h1>
+  </h2>
    
   <p>
     
