@@ -263,6 +263,7 @@ def getAllResults():
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
+            AND results.type <> 'hidden'
     """
     )
     return list(map(fullResultToJSON, result))
@@ -290,6 +291,7 @@ def getResultsForCompetitorNonDynamic(competitor):
             AND type <> 'max'
             AND type <> 'average'
             AND type <> 'manual'
+            AND results.type <> 'hidden'
             AND competitors.rowid=%s
         GROUP BY competitors.rowid
     """,
@@ -304,7 +306,9 @@ def getResultsByEvent(event):
         SELECT results.time, results.position, results.points, results.incomplete, results.event, results.type,
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
-        WHERE results.competitor=competitors.rowid AND event=%s
+        WHERE results.competitor=competitors.rowid
+            AND event=%s
+            AND results.type <> 'hidden'
         ORDER BY competitors.course ASC, results.position ASC
     """,
         (event,),
@@ -322,6 +326,7 @@ def getResultsByEventForRecalc(event):
             AND type <> 'manual'
             AND type <> 'max'
             AND type <> 'average'
+            AND results.type <> 'hidden'
         ORDER BY competitors.course ASC, results.time ASC
     """,
         (event,),
@@ -335,7 +340,10 @@ def getResultsForCourse(league, course):
         SELECT competitors.name, competitors.ageClass, competitors.club, array_agg(results.event),
          array_agg(results.points), array_agg(results.type)
         FROM competitors, results
-        WHERE results.competitor=competitors.rowid AND competitors.course=%s AND competitors.league=%s
+        WHERE results.competitor=competitors.rowid
+            AND competitors.course=%s
+            AND competitors.league=%s
+            AND results.type <> 'hidden'
         GROUP BY competitors.rowid
         """,
         (course, league),
@@ -373,7 +381,10 @@ def getDynamicResults(league):
         """
         SELECT time, position, points, incomplete, event, type, competitor, rowid
         FROM results, events
-        WHERE results.type IS NOT NULL AND results.event=events.id AND events.league=%s
+        WHERE results.type IS NOT NULL
+            AND results.type <> 'hidden'
+            AND results.event=events.id
+            AND events.league=%s
     """,
         (league,),
     )
