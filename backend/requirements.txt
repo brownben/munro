@@ -34,7 +34,7 @@ pycodestyle==2.6.0
 pylint==2.5.3
 pytz==2020.1
 requests==2.24.0
-rsa==4.0
+rsa==4.6
 scandir==1.10.0
 six==1.15.0
 typed-ast==1.4.1
