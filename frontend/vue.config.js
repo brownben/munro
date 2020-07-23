@@ -97,6 +97,7 @@ const pwa = {
   },
 
   workboxOptions: {
+    navigateFallback: '/static/index.html',
     runtimeCaching: [
       {
         urlPattern: /^https:\/\/munro-leagues\.herokuapp\.com\/api\/.*/,
