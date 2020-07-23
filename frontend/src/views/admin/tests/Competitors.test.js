@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { shallowMount } from '@vue/test-utils'
+import VueRouter from 'vue-router'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
+
 import Competitors from '@/views/admin/Competitors'
 
 jest.mock('axios')
@@ -34,7 +36,7 @@ test('Renders Correctly', () => {
 test('Get Competitors - Success', async () => {
   const wrapper = shallowMount(Competitors, {
     mocks: {
-      $route: { params: { league: '' } },
+      $route: { params: { league: 'a' } },
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -66,7 +68,7 @@ test('Renders Error', async () => {
   const mockAddMessage = jest.fn()
   const wrapper = shallowMount(Competitors, {
     mocks: {
-      $route: { params: { league: '' } },
+      $route: { params: { league: 'a' } },
       $messages: { addMessage: mockAddMessage },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -83,7 +85,7 @@ test('Renders Error', async () => {
 test('Change Sort Order', () => {
   const wrapper = shallowMount(Competitors, {
     mocks: {
-      $route: { params: { league: '' } },
+      $route: { params: { league: 'a' } },
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -99,7 +101,7 @@ test('Change Sort Order', () => {
 test('Sort', () => {
   const wrapper = shallowMount(Competitors, {
     mocks: {
-      $route: { params: { league: '' } },
+      $route: { params: { league: 'a' } },
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -116,50 +118,28 @@ test('Sort', () => {
   ).toEqual([{ a: 3 }, { a: 2 }, { a: 1 }, { a: 1 }])
 })
 
-test('Get Leagues - Processes Response Correctly', async () => {
-  const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(Competitors, {
+test('Reload Competitors on Route Change', async () => {
+  const mockGetCompetitors = jest.fn().mockResolvedValue()
+
+  const localVue = createLocalVue()
+  localVue.use(VueRouter)
+  const router = new VueRouter({ routes: [{ path: '/' }, { path: '/other' }] })
+  shallowMount(Competitors, {
+    localVue,
+    router,
     mocks: {
-      $route: { path: '/events/1/edit', params: { league: '', id: '' } },
-      $messages: { addMessage: mockAddMessageFunction },
+      $auth: { user: true },
     },
-    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
-  })
-  axios.get.mockResolvedValue({ data: [{ league: '1' }, { league: '2' }] })
-  await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([{ league: '1' }, { league: '2' }])
-
-  axios.get.mockResolvedValue({ data: [] })
-  await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([])
-
-  axios.get.mockResolvedValue({
-    data: [
-      { league: 'a', property: 3 },
-      { league: '2', another: 4 },
-    ],
-  })
-  await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([
-    { league: 'a', property: 3 },
-    { league: '2', another: 4 },
-  ])
-})
-
-test('Get Leagues - Shows Message on Error', async () => {
-  const mockAddMessageFunction = jest.fn()
-  const wrapper = shallowMount(Competitors, {
-    mocks: {
-      $route: { path: '/events/1/edit', params: { league: '', id: '' } },
-      $messages: { addMessage: mockAddMessageFunction },
+    methods: {
+      getCompetitors: mockGetCompetitors,
     },
-    stubs: ['dropdown-input', 'router-link', 'vue-headful'],
+    stubs: ['router-link', 'vue-headful'],
   })
-  axios.get.mockRejectedValue()
-  await wrapper.vm.getLeagues()
-  expect(wrapper.vm.leagues).toEqual([])
-  expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
-  expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
-    'Problem Fetching List of Leagues'
-  )
+  await flushPromises()
+  jest.clearAllMocks()
+  expect(mockGetCompetitors).toHaveBeenCalledTimes(0)
+  router.push('/other')
+  await flushPromises()
+  expect(mockGetCompetitors).toHaveBeenCalledTimes(1)
+  expect(mockGetCompetitors).toHaveBeenLastCalledWith()
 })

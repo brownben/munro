@@ -46,11 +46,12 @@ test('Return from Page', () => {
     },
     stubs: ['router-link', 'vue-headful'],
   })
+  wrapper.setData({ league: 'a' })
   wrapper.vm.returnToCompetitorsPage({ data: { message: 'Hello' } })
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
   expect(mockAddMessage).toHaveBeenLastCalledWith('Hello')
   expect(mockRouterPush).toHaveBeenCalledTimes(1)
-  expect(mockRouterPush).toHaveBeenLastCalledWith('/competitors')
+  expect(mockRouterPush).toHaveBeenLastCalledWith('/leagues/a/competitors')
 })
 
 test('Elapsed Time', () => {

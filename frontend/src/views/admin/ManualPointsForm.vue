@@ -199,7 +199,7 @@ export default {
     returnToCompetitorsPage: function (response) {
       // Go to league page after successful update/ creation
       this.$messages.addMessage(response.data.message)
-      this.$router.push('/competitors')
+      this.$router.push(`/leagues/${this.league}/competitors`)
     },
   },
 }

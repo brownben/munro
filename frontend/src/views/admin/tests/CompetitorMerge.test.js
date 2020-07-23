@@ -32,16 +32,17 @@ test('Return from Page', () => {
   const wrapper = shallowMount(CompetitorMerge, {
     mocks: {
       $messages: { addMessage: mockAddMessage },
-      $route: { path: '/competitors/1/edit', params: { id: '' } },
+      $route: { path: '/competitors/1/edit', params: { league: 'a' } },
       $router: { push: mockRouterPush },
     },
     stubs: ['router-link', 'vue-headful'],
   })
+  wrapper.setData({ league: 'a' })
   wrapper.vm.returnToCompetitorsPage({ data: { message: 'Hello' } })
   expect(mockAddMessage).toHaveBeenCalledTimes(1)
   expect(mockAddMessage).toHaveBeenLastCalledWith('Hello')
   expect(mockRouterPush).toHaveBeenCalledTimes(1)
-  expect(mockRouterPush).toHaveBeenLastCalledWith('/competitors')
+  expect(mockRouterPush).toHaveBeenLastCalledWith('/leagues/a/competitors')
 })
 
 test('Courses in League', () => {

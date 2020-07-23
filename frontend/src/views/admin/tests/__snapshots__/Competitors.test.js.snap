@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <layout-stub
-  title="Competitors"
+  title=""
 >
   <vue-headful-stub
     description=""
@@ -10,53 +10,68 @@ exports[`Renders Correctly 1`] = `
     title="Munro - Competitors"
   />
    
+  <h1
+    class="col-span-2 font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
+  >
+    <router-link-stub
+      class="link text-main-700"
+      to="/leagues/"
+    >
+      
+      
+    
+    </router-link-stub>
+     
+    <span
+      class="hidden ml-2 mr-3 md:inline-block"
+    >
+      -
+    </span>
+     
+    <span
+      class="block text-3xl md:inline-block"
+    >
+       Competitors
+    </span>
+  </h1>
+   
   <div
-    class="col-span-2 card"
+    class="col-span-2 card-color-dark"
   >
     <h2
-      class="text-3xl font-bold text-main-800 font-heading"
+      class="text-3xl font-bold text-white font-heading"
     >
-      Actions
+      Admin Actions
     </h2>
      
     <div>
       <router-link-stub
-        class="button"
-        to="/create-competitor"
+        class="button-white"
+        to="/competitors/create"
       >
         Add Competitor
       </router-link-stub>
        
       <router-link-stub
-        class="button"
+        class="button-white"
         to="/competitors/merge"
       >
         Merge Competitors
       </router-link-stub>
        
       <router-link-stub
-        class="button"
+        class="button-white"
         to="/results/transfer"
       >
         Transfer Result
       </router-link-stub>
        
       <router-link-stub
-        class="button"
+        class="button-white"
         to="/results/manual"
       >
         Manual Points
       </router-link-stub>
-    </div>
-     
-    <div
-      class="w-full mt-6 text-left"
-    >
-      <dropdowninput-stub
-        label="League:"
-        list=""
-        value=""
-      />
     </div>
   </div>
    

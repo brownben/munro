@@ -67,7 +67,7 @@ api.add_resource(
 )
 api.add_resource(
     eventRoutes.EventRecalculateResults,
-    "/api/events/<eventId>/recalculate-results",
+    "/api/events/<eventId>/results/recalculate",
 )
 api.add_resource(
     eventRoutes.EventsLatestWithResults, "/api/events/latest-results"

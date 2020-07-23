@@ -36,11 +36,8 @@
           Hello {{ $auth.user.displayName || 'Admin' }}!
         </h2>
         <div class="pb-2">
-          <router-link to="/create-league" class="button-white"
+          <router-link to="/leagues/create" class="button-white"
             >Create New League</router-link
-          >
-          <router-link to="/competitors" class="button-white"
-            >Manage Competitors</router-link
           >
           <router-link to="/upload" class="button-white"
             >Upload Results</router-link

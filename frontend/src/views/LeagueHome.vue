@@ -85,6 +85,29 @@
         </p>
       </div>
 
+      <div
+        v-if="auth.user && league && league.name"
+        class="col-span-2 card-color-dark"
+      >
+        <h2 class="mb-2 font-bold text-25xl font-heading">Admin Actions</h2>
+        <div>
+          <router-link :to="`${$route.path}/create-event`" class="button-white"
+            >Add Event</router-link
+          >
+          <router-link :to="`${$route.path}/edit`" class="button-white"
+            >Edit League</router-link
+          >
+          <button class="button-white" @click="deleteLeague">
+            Delete League
+          </button>
+          <router-link
+            :to="`/leagues/${this.$route.params.name}/competitors`"
+            class="button-white"
+            >Manage Competitors</router-link
+          >
+        </div>
+      </div>
+
       <div v-if="events && events.length > 0" class="col-span-2 card-color">
         <h2 class="font-bold text-25xl font-heading">League Results</h2>
         <div class="mt-2">
@@ -94,29 +117,6 @@
             :to="$route.path + '/results/' + course"
             class="button-white"
             >{{ course }}</router-link
-          >
-        </div>
-      </div>
-
-      <div
-        v-if="auth.user && league && league.name"
-        class="col-span-2 card-color-dark"
-      >
-        <h2 class="mb-2 font-bold text-25xl font-heading">Admin Actions</h2>
-        <div>
-          <router-link :to="$route.path + '/create-event'" class="button-white"
-            >Add Event</router-link
-          >
-          <router-link :to="$route.path + '/edit'" class="button-white"
-            >Edit League</router-link
-          >
-          <button class="button-white" @click="deleteLeague">
-            Delete League
-          </button>
-          <router-link
-            :to="'/competitors/' + this.$route.params.name"
-            class="button-white"
-            >Manage Competitors</router-link
           >
         </div>
       </div>

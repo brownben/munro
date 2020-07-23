@@ -348,7 +348,7 @@ export default {
       @apply bg-main-50;
     }
 
-    &:hover:not(.mobile-table-expansion) {
+    &:hover {
       @apply bg-main-200;
     }
   }
@@ -371,17 +371,6 @@ export default {
 
     & div {
       @apply inline-block ml-1;
-    }
-
-    & span {
-      margin-left: -110%;
-      opacity: 0;
-      transition: 0.3s;
-      @apply absolute shadow font-heading bg-white z-40 py-1 px-2 mt-6 text-center;
-    }
-
-    &:hover > span {
-      opacity: 1;
     }
   }
 }

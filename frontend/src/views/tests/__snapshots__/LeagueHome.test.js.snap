@@ -97,6 +97,8 @@ exports[`Renders Correctly 1`] = `
       </p>
     </div>
      
+    <!---->
+     
     <div
       class="col-span-2 card-color"
     >
@@ -123,8 +125,6 @@ exports[`Renders Correctly 1`] = `
         </router-link-stub>
       </div>
     </div>
-     
-    <!---->
      
     <eventoverviewcard-stub
       auth="[object Object]"

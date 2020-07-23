@@ -49,11 +49,12 @@ def generateUploadKey():
 def createEvent(data):
     eventId = (data["league"] + data["name"] + data["date"]).replace(" ", "")
     uploadKey = generateUploadKey()
+
     query(
         """
         INSERT INTO events (id,name,date,resultUploaded,organiser,moreInformation,
             website,results,winsplits,routegadget,userSubmittedResults,league,uploadKey)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """,
         (
             eventId,

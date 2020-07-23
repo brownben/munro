@@ -43,15 +43,15 @@ const loginRoutes = [
 ]
 const competitorRoutes = [
   {
-    path: '/create-competitor',
-    name: 'Create Competitor',
-    component: () => import('@/views/admin/CompetitorForm'),
+    path: '/leagues/:league/competitors',
+    name: 'Competitors',
+    component: () => import('@/views/admin/Competitors'),
     beforeEnter: requireAuthentication,
   },
   {
-    path: '/competitors',
-    name: 'Competitors',
-    component: () => import('@/views/admin/Competitors'),
+    path: '/competitors/create',
+    name: 'Create Competitor',
+    component: () => import('@/views/admin/CompetitorForm'),
     beforeEnter: requireAuthentication,
   },
   {
@@ -66,24 +66,18 @@ const competitorRoutes = [
     component: () => import('@/views/admin/CompetitorMerge'),
     beforeEnter: requireAuthentication,
   },
-  {
-    path: '/competitors/:league',
-    name: 'Competitors for League',
-    component: () => import('@/views/admin/Competitors'),
-    beforeEnter: requireAuthentication,
-  },
 ]
 const leagueRoutes = [
-  {
-    path: '/create-league',
-    name: 'Create League',
-    component: () => import('@/views/admin/LeagueForm'),
-    beforeEnter: requireAuthentication,
-  },
   {
     path: '/leagues',
     name: 'Leagues',
     component: () => import('@/views/Leagues'),
+  },
+  {
+    path: '/leagues/create',
+    name: 'Create League',
+    component: () => import('@/views/admin/LeagueForm'),
+    beforeEnter: requireAuthentication,
   },
   {
     path: '/leagues/:name',
@@ -94,6 +88,20 @@ const leagueRoutes = [
     path: '/leagues/:name/edit',
     name: 'Edit League',
     component: () => import('@/views/admin/LeagueForm'),
+    beforeEnter: requireAuthentication,
+  },
+]
+const eventRoutes = [
+  {
+    path: '/events/create',
+    name: 'Create Event',
+    component: () => import('@/views/admin/EventForm'),
+    beforeEnter: requireAuthentication,
+  },
+  {
+    path: '/events/:id/edit',
+    name: 'Edit Events',
+    component: () => import('@/views/admin/EventForm'),
     beforeEnter: requireAuthentication,
   },
   {
@@ -108,6 +116,18 @@ const leagueRoutes = [
     component: () => import('@/views/LeagueEventsEmbed'),
   },
   {
+    path: '/latest-results',
+    name: 'Latest Results',
+    component: () => import('@/views/LatestResults'),
+  },
+]
+const resultRoutes = [
+  {
+    path: '/events/:event/results',
+    name: 'Event Results',
+    component: () => import('@/views/EventResultsTable'),
+  },
+  {
     path: '/leagues/:name/results/:course',
     name: 'League Course Results',
     component: () => import('@/views/LeagueResultsTable'),
@@ -116,32 +136,6 @@ const leagueRoutes = [
     path: '/embed/leagues/:name/results/:course',
     name: 'Embed League Course Results',
     component: () => import('@/views/LeagueResultsTable'),
-  },
-]
-const eventRoutes = [
-  {
-    path: '/create-event',
-    name: 'Create Event',
-    component: () => import('@/views/admin/EventForm'),
-    beforeEnter: requireAuthentication,
-  },
-  {
-    path: '/events/:id/edit',
-    name: 'Edit Events',
-    component: () => import('@/views/admin/EventForm'),
-    beforeEnter: requireAuthentication,
-  },
-  {
-    path: '/events/:event/results',
-    name: 'Event Results',
-    component: () => import('@/views/EventResultsTable'),
-  },
-]
-const resultRoutes = [
-  {
-    path: '/latest-results',
-    name: 'Latest Results',
-    component: () => import('@/views/LatestResults'),
   },
   {
     path: '/results/transfer',

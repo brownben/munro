@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <Layout title="Competitors">
+  <Layout>
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -13,32 +13,35 @@
       title="Munro - Competitors"
       description
     />
+    <h1
+      class="col-span-2 font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
+    >
+      <router-link
+        :to="'/leagues/' + $route.params.league"
+        class="link text-main-700"
+      >
+        {{ $route.params.league && $route.params.league.trim() }}
+      </router-link>
+      <span class="hidden ml-2 mr-3 md:inline-block">-</span>
+      <span class="block text-3xl md:inline-block"> Competitors</span>
+    </h1>
 
-    <div class="col-span-2 card">
-      <h2 class="text-3xl font-bold text-main-800 font-heading">Actions</h2>
+    <div class="col-span-2 card-color-dark">
+      <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
 
       <div>
-        <router-link to="/create-competitor" class="button"
+        <router-link to="/competitors/create" class="button-white"
           >Add Competitor</router-link
         >
-        <router-link to="/competitors/merge" class="button"
+        <router-link to="/competitors/merge" class="button-white"
           >Merge Competitors</router-link
         >
-        <router-link to="/results/transfer" class="button"
+        <router-link to="/results/transfer" class="button-white"
           >Transfer Result</router-link
         >
-        <router-link to="/results/manual" class="button"
+        <router-link to="/results/manual" class="button-white"
           >Manual Points</router-link
         >
-      </div>
-
-      <div class="w-full mt-6 text-left">
-        <DropdownInput
-          v-model="league"
-          :list="leagues.map((league) => league.name)"
-          :shift="false"
-          label="League:"
-        />
       </div>
     </div>
 
@@ -48,21 +51,28 @@
     >
       <thead>
         <tr>
-          <th @click="sortBy('name')">
+          <th @click="sortBy('id')">
+            <p>Id</p>
+            <up-down-arrow
+              :ascending="ascendingSort"
+              :active="sortedBy === 'id'"
+            />
+          </th>
+          <th class="text-left" @click="sortBy('name')">
             <p>Name</p>
             <up-down-arrow
               :ascending="ascendingSort"
               :active="sortedBy === 'name'"
             />
           </th>
-          <th @click="sortBy('club')">
+          <th class="club" @click="sortBy('club')">
             <p>Club</p>
             <up-down-arrow
               :ascending="ascendingSort"
               :active="sortedBy === 'club'"
             />
           </th>
-          <th @click="sortBy('ageClass')">
+          <th class="ageClass" @click="sortBy('ageClass')">
             <p>Class</p>
             <up-down-arrow
               :ascending="ascendingSort"
@@ -85,10 +95,19 @@
           :class="{ striped: sortedCompetitors.indexOf(competitor) % 2 === 0 }"
           @click="$router.push('/competitors/' + competitor.id + '/edit')"
         >
-          <td>{{ competitor.name }}</td>
-          <td>{{ competitor.club }}</td>
-          <td>{{ competitor.ageClass }}</td>
-          <td>{{ competitor.course }}</td>
+          <td class="text-center">{{ competitor.id }}</td>
+          <td>
+            <span class="block font-normal md:font-light">
+              {{ competitor.name }}
+            </span>
+            <span class="block text-xs md:hidden">
+              <span class="mr-4">{{ competitor.ageClass }}</span>
+              <span>{{ competitor.club }}</span>
+            </span>
+          </td>
+          <td class="text-center club">{{ competitor.club }}</td>
+          <td class="text-center ageClass">{{ competitor.ageClass }}</td>
+          <td class="text-center">{{ competitor.course }}</td>
         </tr>
       </tbody>
     </table>
@@ -100,13 +119,11 @@ import axios from 'axios'
 
 import Layout from '@/components/Layout'
 import UpDownArrow from '@/components/UpDownArrows'
-import DropdownInput from '@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {
     Layout,
     UpDownArrow,
-    DropdownInput,
   },
 
   data: () => ({
@@ -120,7 +137,7 @@ export default {
   computed: {
     filteredCompetitors: function () {
       return this.competitors.filter(
-        (competitor) => competitor.league === this.league
+        (competitor) => competitor.league === this.$route.params.league
       )
     },
 
@@ -133,10 +150,13 @@ export default {
     },
   },
 
-  created: function () {
-    if (this.$route.params.league && this.$route.params.league !== '')
-      this.league = this.$route.params.league
-    this.getLeagues()
+  watch: {
+    $route: function () {
+      this.getCompetitors()
+    },
+  },
+
+  mounted: function () {
     this.getCompetitors()
   },
 
@@ -174,55 +194,59 @@ export default {
       else this.ascendingSort = !this.ascendingSort
       this.sortedBy = sortBy
     },
-
-    getLeagues: function () {
-      return axios
-        .get('/api/leagues')
-        .then((response) => {
-          this.leagues = response.data
-        })
-        .catch(() =>
-          this.$messages.addMessage('Problem Fetching List of Leagues')
-        )
-    },
   },
 }
 </script>
 <style lang="postcss">
 .table {
-  @apply w-full;
-}
+  @apply w-full border-collapse;
 
-.table tr {
-  transition: 0.3s;
-  @apply bg-white;
-}
+  & thead tr {
+    @apply border-b border-main-300;
+  }
 
-.table tr:hover:not(.mobile-table-expansion) {
-  @apply bg-main-200;
-}
+  & tr {
+    @apply bg-white border-collapse transition duration-300;
 
-.table tr.striped {
-  @apply bg-main-50;
-}
+    &.striped {
+      @apply bg-main-50;
+    }
 
-thead tr {
-  @apply border-b border-main-200;
-}
+    &:hover {
+      @apply bg-main-200;
+    }
+  }
 
-.table td {
-  @apply text-center py-2 px-1 font-body font-light;
-}
+  & td {
+    @apply py-2 px-2 font-body font-light;
+  }
 
-.table th {
-  white-space: nowrap;
-  @apply font-heading select-none text-center font-normal py-2;
-}
+  & th {
+    white-space: nowrap;
+    @apply font-heading select-none font-normal py-2 px-2;
 
-.table th p {
-  @apply inline-block;
-}
-.table th div {
-  @apply inline-block ml-1;
+    & p {
+      @apply inline-block;
+    }
+
+    & div {
+      @apply inline-block ml-1;
+    }
+  }
+
+  & td,
+  & th {
+    &.club,
+    &.ageClass {
+      @apply hidden;
+    }
+
+    @screen md {
+      &.club,
+      &.ageClass {
+        @apply table-cell;
+      }
+    }
+  }
 }
 </style>
