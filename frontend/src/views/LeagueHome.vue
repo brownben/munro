@@ -110,7 +110,7 @@
 
       <div v-if="events && events.length > 0" class="col-span-2 card-color">
         <h2 class="font-bold text-25xl font-heading">League Results</h2>
-        <div class="mt-2">
+        <div class="w-full sm:mt-2">
           <router-link
             v-for="course of league.courses"
             :key="course"

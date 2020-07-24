@@ -17,7 +17,7 @@
     <div class="w-full col-span-2 text-center">
       <img
         src="@/assets/images/UndrawLost.svg"
-        class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12"
+        class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12 max-h-112"
         alt="Person Lost looking at Map"
       />
 

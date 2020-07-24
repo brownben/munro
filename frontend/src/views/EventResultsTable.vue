@@ -12,7 +12,6 @@
     />
     <Layout v-if="eventFound" gapSmall>
       <h1
-        v-show="event"
         class="col-span-2 mt-1 text-2xl font-bold md:text-3xl font-heading text-main-900"
       >
         <router-link
@@ -22,11 +21,14 @@
           {{ (event.league && event.league.trim()) || '' }}
         </router-link>
         <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-        <span class="block text-3xl md:inline-block">{{
-          event.name || ''
-        }}</span>
+        <span class="block text-3xl md:inline-block">
+          {{ event.name || '' }}
+        </span>
       </h1>
-      <div v-show="event && coursesInResults" class="col-span-2 card">
+      <div
+        v-show="coursesInResults && coursesInResults.length > 0"
+        class="col-span-2 card"
+      >
         <h3 class="text-3xl font-bold font-heading">Courses</h3>
         <div>
           <button
@@ -217,7 +219,7 @@ export default {
 
     coursesInResults: function () {
       const courses = [
-        ...new Set(this.rawResults.map((result) => result.course)),
+        ...new Set(this.rawResults?.map((result) => result.course)),
       ]
       this.setChosenCourse(courses)
       return courses
@@ -230,8 +232,8 @@ export default {
       this.rawResults = []
 
       this.loading = true
-      await this.getResults()
       await this.getEvent()
+      await this.getResults()
       this.loading = false
     },
   },
@@ -240,8 +242,8 @@ export default {
   mounted: async function () {
     // Fetch Data
     this.loading = true
-    await this.getResults()
     await this.getEvent()
+    await this.getResults()
     this.loading = false
   },
 
@@ -333,7 +335,7 @@ export default {
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .table {
   @apply w-full border-collapse;
 

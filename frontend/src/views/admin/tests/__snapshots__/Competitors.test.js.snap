@@ -44,7 +44,9 @@ exports[`Renders Correctly 1`] = `
       Admin Actions
     </h2>
      
-    <div>
+    <div
+      class="w-full"
+    >
       <router-link-stub
         class="button-white"
         to="/competitors/create"

@@ -435,7 +435,7 @@ export default {
 }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .strikethrough {
   text-decoration: line-through;
 }

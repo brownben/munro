@@ -109,7 +109,7 @@ exports[`Renders Correctly 1`] = `
       </h2>
        
       <div
-        class="mt-2"
+        class="w-full sm:mt-2"
       >
         <router-link-stub
           class="button-white"

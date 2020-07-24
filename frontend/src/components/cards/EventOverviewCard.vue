@@ -45,9 +45,9 @@
         </p>
       </div>
 
-      <div v-if="event.resultUploaded" class="pb-4 mt-2">
+      <div class="pb-4 mt-2">
         <router-link
-          v-if="league.dynamicEventResults"
+          v-if="event.resultUploaded && league.dynamicEventResults"
           :to="`/events/${event.id}/results`"
           class="button"
           >Results</router-link

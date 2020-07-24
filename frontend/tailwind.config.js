@@ -29,6 +29,10 @@ module.exports = {
     },
 
     extend: {
+      maxHeight: {
+        '112': '28rem',
+      },
+
       fontSize: {
         '25xl': '1.65rem',
         '35xl': '2rem',

@@ -29,7 +29,7 @@
     <div class="col-span-2 card-color-dark">
       <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
 
-      <div>
+      <div class="w-full">
         <router-link to="/competitors/create" class="button-white"
           >Add Competitor</router-link
         >
@@ -97,11 +97,13 @@
         >
           <td class="text-center">{{ competitor.id }}</td>
           <td>
-            <span class="block font-normal md:font-light">
+            <span class="block font-normal text-left md:font-light">
               {{ competitor.name }}
             </span>
             <span class="block text-xs md:hidden">
-              <span class="mr-4">{{ competitor.ageClass }}</span>
+              <span v-if="competitor.ageClass" class="mr-4">
+                {{ competitor.ageClass }}
+              </span>
               <span>{{ competitor.club }}</span>
             </span>
           </td>
@@ -197,7 +199,7 @@ export default {
   },
 }
 </script>
-<style lang="postcss">
+<style lang="postcss" scoped>
 .table {
   @apply w-full border-collapse;
 
