@@ -99,20 +99,19 @@ def parseToObjects(data, headerLocations):
         parsedRow = {}
 
         parsedRow["name"] = getName(row, headerLocations)
-        parsedRow["ageClass"] = row.get(headerLocations["ageClass"], "")
-        parsedRow["club"] = row.get(headerLocations["club"], "")
+        parsedRow["ageClass"] = getDataFromRow(row, headerLocations, "ageClass")
+        parsedRow["club"] = getDataFromRow(row, headerLocations, "club")
         parsedRow["course"] = row[headerLocations["course"]]
         parsedRow["time"] = timeToSeconds(row[headerLocations["time"]])
 
-        if (
-            headerLocations.get("file_points", False)
-            and row[headerLocations["file_points"]]
+        if headerLocations.get("file_points", False) and listGet(
+            row, headerLocations["file_points"]
         ):
             parsedRow["file_points"] = int(row[headerLocations["file_points"]])
 
         try:
             parsedRow["position"] = int(
-                row.get(headerLocations["position"], "")
+                listGet(row, headerLocations["position"])
             )
         except ValueError:
             parsedRow["position"] = ""
@@ -125,13 +124,13 @@ def parseToObjects(data, headerLocations):
 
 
 def resultIncomplete(row, headerLocations):
+    nonCompetitive = getDataFromRow(row, headerLocations, "nonCompetitive")
+    status = getDataFromRow(row, headerLocations, "status")
+
     return (
-        row.get(headerLocations["nonCompetitive"], "") == "Y"
-        or row.get(headerLocations["nonCompetitive"], "") == "1"
-        or (
-            row.get(headerLocations["status"], "") != ""
-            and row.get(headerLocations["status"], "") != "0"
-        )
+        nonCompetitive == "Y"
+        or nonCompetitive == "1"
+        or (status != "" and status != "0")
     )
 
 
@@ -144,3 +143,21 @@ def getName(row, headerLocations):
         )
 
     return row[headerLocations["name"]]
+
+
+def getDataFromRow(row, headers, item):
+    itemPosition = headers.get(item, False)
+
+    if itemPosition:
+        return listGet(row, itemPosition)
+    else:
+        return ""
+
+
+def listGet(array, item, fallback=""):
+    item = array[item : item + 1]
+
+    if item:
+        return item[0]
+    else:
+        return fallback
