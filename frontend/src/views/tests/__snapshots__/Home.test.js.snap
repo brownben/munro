@@ -38,7 +38,7 @@ exports[`Renders Correctly 1`] = `
     >
       <!---->
        
-      <div
+      <section
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
         <img
@@ -84,9 +84,9 @@ exports[`Renders Correctly 1`] = `
         >
           View League
         </router-link-stub>
-      </div>
+      </section>
        
-      <div
+      <section
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
         <img
@@ -132,9 +132,9 @@ exports[`Renders Correctly 1`] = `
         >
           View League
         </router-link-stub>
-      </div>
+      </section>
        
-      <div
+      <section
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
@@ -175,9 +175,9 @@ exports[`Renders Correctly 1`] = `
         >
           View League
         </router-link-stub>
-      </div>
+      </section>
        
-      <div
+      <section
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
@@ -217,9 +217,9 @@ exports[`Renders Correctly 1`] = `
         >
           View League
         </router-link-stub>
-      </div>
+      </section>
        
-      <div
+      <section
         class="w-full col-span-2 p-3 text-center text-white shadow-md bg-main contours rounded-shape-xl"
       >
         <img
@@ -264,9 +264,9 @@ exports[`Renders Correctly 1`] = `
     
           </p>
         </div>
-      </div>
+      </section>
        
-      <div
+      <section
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
@@ -292,9 +292,9 @@ exports[`Renders Correctly 1`] = `
         >
           View Info
         </router-link-stub>
-      </div>
+      </section>
        
-      <div
+      <section
         class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
       >
          
@@ -321,7 +321,7 @@ exports[`Renders Correctly 1`] = `
         >
           View Info
         </router-link-stub>
-      </div>
+      </section>
     </div>
   </div>
 </div>

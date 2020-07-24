@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
   >
     <div class="px-4 md:px-6 lg:px-8">
@@ -105,7 +105,7 @@
         Delete Event
       </button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -22,7 +22,7 @@ exports[`Renders Correctly 1`] = `
       url="https://munro-leagues.herokuapp.com/upload/instructions"
     />
      
-    <div
+    <section
       class="col-span-2 card"
     >
       <p
@@ -59,9 +59,9 @@ exports[`Renders Correctly 1`] = `
           src="@/assets/images/UploadInstructions-EmptyFormNew.png"
         />
       </div>
-    </div>
+    </section>
      
-    <div
+    <section
       class="col-span-2 card"
     >
       <p
@@ -101,9 +101,9 @@ exports[`Renders Correctly 1`] = `
           src="@/assets/images/UploadInstructions-KeysEnteredNew.png"
         />
       </div>
-    </div>
+    </section>
      
-    <div
+    <section
       class="col-span-2 card"
     >
       <p
@@ -144,9 +144,9 @@ exports[`Renders Correctly 1`] = `
       
         </code>
       </div>
-    </div>
+    </section>
      
-    <div
+    <section
       class="col-span-2 card"
     >
       <p
@@ -184,9 +184,9 @@ exports[`Renders Correctly 1`] = `
           src="@/assets/images/UploadInstructions-ButtonShowingNew.png"
         />
       </div>
-    </div>
+    </section>
      
-    <div
+    <section
       class="col-span-2 card"
     >
       <p
@@ -220,9 +220,9 @@ exports[`Renders Correctly 1`] = `
       
         </p>
       </div>
-    </div>
+    </section>
      
-    <div
+    <section
       class="col-span-2 card"
     >
       <p
@@ -256,7 +256,7 @@ exports[`Renders Correctly 1`] = `
       
         </p>
       </div>
-    </div>
+    </section>
      
     <div
       class="col-span-2 card-color"

@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
   >
     <slot />
@@ -25,7 +25,7 @@
       :to="alternativeLink || `/leagues/${title}`"
       >{{ buttonText }}</router-link
     >
-  </div>
+  </section>
 </template>
 
 <script>

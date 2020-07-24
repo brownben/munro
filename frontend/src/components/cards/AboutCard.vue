@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     class="w-full col-span-2 p-3 text-center text-white shadow-md bg-main contours rounded-shape-xl"
   >
     <img
@@ -29,7 +29,7 @@
         enquires please email munro.leagues@gmail.com
       </p>
     </div>
-  </div>
+  </section>
 </template>
 <style lang="postcss">
 .contours {

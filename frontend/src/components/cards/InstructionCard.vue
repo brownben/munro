@@ -1,5 +1,5 @@
 <template>
-  <div class="col-span-2 card">
+  <section class="col-span-2 card">
     <p class="text-lg font-heading">
       <span
         class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
@@ -14,8 +14,9 @@
     <div class="text-opacity-75 text-main-900">
       <slot name="body" />
     </div>
-  </div>
+  </section>
 </template>
+
 <script>
 export default {
   props: {
@@ -23,6 +24,7 @@ export default {
   },
 }
 </script>
+
 <style lang="postcss" scoped>
 img {
   @apply mt-2;

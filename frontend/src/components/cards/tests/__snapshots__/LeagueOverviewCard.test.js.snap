@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div
+<section
   class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
   event="[object Object]"
   league="[object Object]"
@@ -29,5 +29,5 @@ exports[`Renders Correctly 1`] = `
   >
     View League
   </router-link-stub>
-</div>
+</section>
 `;
