@@ -23,7 +23,7 @@
         {{ $route.params.league && $route.params.league.trim() }}
       </router-link>
       <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-      <span class="block text-3xl md:inline-block"> Competitors</span>
+      <span class="block text-35xl md:inline-block"> Competitors</span>
     </h1>
 
     <div class="col-span-2 card-color-dark">
@@ -93,7 +93,7 @@
           v-for="competitor of sortedCompetitors"
           :key="competitor.name + competitor.league + competitor.course"
           :class="{ striped: sortedCompetitors.indexOf(competitor) % 2 === 0 }"
-          @click="$router.push('/competitors/' + competitor.id + '/edit')"
+          @click="$router.push(`/competitors/${competitor.id}`)"
         >
           <td class="text-center">{{ competitor.id }}</td>
           <td>
@@ -220,12 +220,12 @@ export default {
   }
 
   & td {
-    @apply py-2 px-2 font-body font-light;
+    @apply py-2 px-1 font-body font-light;
   }
 
   & th {
     white-space: nowrap;
-    @apply font-heading select-none font-normal py-2 px-2;
+    @apply font-heading select-none font-normal py-2;
 
     & p {
       @apply inline-block;

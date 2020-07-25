@@ -55,6 +55,11 @@ const competitorRoutes = [
     beforeEnter: requireAuthentication,
   },
   {
+    path: '/competitors/:id',
+    name: 'Competitor',
+    component: () => import('@/views/Competitor'),
+  },
+  {
     path: '/competitors/:id/edit',
     name: 'Edit Competitors',
     component: () => import('@/views/admin/CompetitorForm'),

@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly - Logged In 1`] = `
+<section
+  class="flex flex-col col-span-2 pt-6 text-center bg-white shadow-md lg:col-span-1 rounded-shape-xl"
+>
+  <h2
+    class="px-4 mb-2 font-bold leading-8 text-25xl md:text-3xl font-heading text-main-700"
+  >
+    
+      
+    
+  </h2>
+   
+  <div
+    class="flex flex-col flex-wrap justify-around w-full sm:flex-row"
+  >
+    <div
+      class="inline-block mx-4 mt-6 mb-2 leading-8 whitespace-no-wrap sm:mt-8 font-heading text-main-900 sm:mb-0"
+    >
+      <p
+        class="text-6xl font-bold xl:text-8xl"
+      >
+        
+          1006:52
+        
+      </p>
+       
+      <p
+        class="inline-block mt-4 text-opacity-50 uppercase text-main-900"
+      >
+        
+        Time
+      
+      </p>
+    </div>
+     
+    <div
+      class="inline-block mx-4 mt-8 leading-8 whitespace-no-wrap sm:mt-8 font-heading text-main-900"
+    >
+      <p
+        class="text-6xl font-bold xl:text-8xl"
+      >
+        
+          *
+        
+      </p>
+       
+      <p
+        class="inline-block mt-4 text-opacity-50 uppercase sm:mt-4 text-main-900"
+      >
+        
+        Position
+      
+      </p>
+    </div>
+  </div>
+   
+  <div>
+    <p
+      class="mt-2 text-xl text-opacity-75 sm:mt-0 text-main-900 font-heading"
+    >
+      <span
+        class="text-2xl font-bold"
+      >
+         49
+      </span>
+       Points
+    
+    </p>
+     
+    <router-link-stub
+      class="mt-4 mb-4 sm:mt-3 button"
+      to="/events/TestEvent/results"
+    >
+      
+      View Results
+    
+    </router-link-stub>
+  </div>
+   
+  <div
+    class="flex-grow w-full px-4 pt-4 pb-4 mt-2 shadow md:px-6 bg-main-100 rounded-shape-xl"
+  >
+    <h3
+      class="mb-2 text-2xl font-bold text-center text-main-800 font-heading"
+    >
+      
+      Admin Actions
+    
+    </h3>
+     
+    <div
+      class="flex flex-row flex-wrap justify-around px-6"
+    >
+      <p
+        class="mx-2 mb-1"
+      >
+        <b
+          class="mr-2 text-main-800"
+        >
+          Id:
+        </b>
+        
+        7
+      
+      </p>
+       
+      <p
+        class="mx-2 mb-1"
+      >
+        <b
+          class="mr-2 text-main-800"
+        >
+          Type:
+        </b>
+        
+        manual
+      
+      </p>
+       
+      <p
+        class="mx-2 mb-1 font-bold text-main-800 font-heading"
+      >
+        
+        Incomplete Result
+      
+      </p>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`Renders Correctly - Not Logged In 1`] = `
+<section
+  class="flex flex-col col-span-2 pt-6 text-center bg-white shadow-md lg:col-span-1 rounded-shape-xl"
+>
+  <h2
+    class="px-4 mb-2 font-bold leading-8 text-25xl md:text-3xl font-heading text-main-700"
+  >
+    
+      
+    
+  </h2>
+   
+  <div
+    class="flex flex-col flex-wrap justify-around w-full sm:flex-row"
+  >
+    <div
+      class="inline-block mx-4 mt-6 mb-2 leading-8 whitespace-no-wrap sm:mt-8 font-heading text-main-900 sm:mb-0"
+    >
+      <p
+        class="text-6xl font-bold xl:text-8xl"
+      >
+        
+          1010:12
+        
+      </p>
+       
+      <p
+        class="inline-block mt-4 text-opacity-50 uppercase text-main-900"
+      >
+        
+        Time
+      
+      </p>
+    </div>
+     
+    <div
+      class="inline-block mx-4 mt-8 leading-8 whitespace-no-wrap sm:mt-8 font-heading text-main-900"
+    >
+      <p
+        class="text-6xl font-bold xl:text-8xl"
+      >
+        
+          5
+          
+        <sup
+          class="relative inline-block -ml-3 text-3xl font-normal text-opacity-75 -top-7 text-main-900"
+        >
+          
+            th
+          
+        </sup>
+      </p>
+       
+      <p
+        class="inline-block mt-4 text-opacity-50 uppercase sm:mt-4 text-main-900"
+      >
+        
+        Position
+      
+      </p>
+    </div>
+  </div>
+   
+  <div>
+    <p
+      class="mt-2 text-xl text-opacity-75 sm:mt-0 text-main-900 font-heading"
+    >
+      <span
+        class="text-2xl font-bold"
+      >
+         43
+      </span>
+       Points
+    
+    </p>
+     
+    <router-link-stub
+      class="mt-4 mb-4 sm:mt-3 button"
+      to="/events/TestEvent/results"
+    >
+      
+      View Results
+    
+    </router-link-stub>
+  </div>
+   
+  <!---->
+</section>
+`;

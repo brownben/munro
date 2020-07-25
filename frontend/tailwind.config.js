@@ -29,6 +29,18 @@ module.exports = {
     },
 
     extend: {
+      screens: {
+        '2xl': '1650px',
+      },
+
+      lineHeight: {
+        '12': '3rem',
+      },
+
+      inset: {
+        '-7': '-1.75rem',
+      },
+
       maxHeight: {
         '112': '28rem',
       },
@@ -37,6 +49,9 @@ module.exports = {
         '25xl': '1.65rem',
         '35xl': '2rem',
         '45xl': '2.75rem',
+        '55xl': '3.5rem',
+        '7xl': '4.5rem',
+        '8xl': '5rem',
       },
 
       borderRadius: {

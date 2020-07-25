@@ -29,7 +29,7 @@ exports[`Renders Correctly 1`] = `
     </span>
      
     <span
-      class="block text-3xl md:inline-block"
+      class="block text-35xl md:inline-block"
     >
        Competitors
     </span>
