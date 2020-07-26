@@ -4,7 +4,7 @@
   The main app file containing the base structure of the app, and base styling
 -->
 <template>
-  <div id="app" class="flex flex-col w-full h-full">
+  <div id="app" class="flex flex-col w-full min-h-full">
     <AppMenu v-show="!$route.path.includes('embed')" />
 
     <div id="content" class="flex-grow">
@@ -16,21 +16,17 @@
         />
       </transition>
     </div>
-
-    <AppFooter />
   </div>
 </template>
 
 <script>
 import AppMenu from '@/components/Menu'
 import Messages from '@/components/Messages'
-import AppFooter from '@/components/Footer'
 
 export default {
   components: {
     AppMenu,
     Messages,
-    AppFooter,
   },
 
   data: function () {

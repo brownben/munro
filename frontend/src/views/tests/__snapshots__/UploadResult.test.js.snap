@@ -13,7 +13,7 @@ exports[`Renders Correctly 1`] = `
   </h1>
    
   <div
-    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
   >
     <vue-headful-stub
       description="Sumbit results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
@@ -150,7 +150,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   </h1>
    
   <div
-    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
   >
     <vue-headful-stub
       description="Sumbit results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"

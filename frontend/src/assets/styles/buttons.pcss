@@ -2,11 +2,23 @@
 
 .button {
   @apply inline-block bg-main-100;
-  @apply px-4 py-1 mx-2 mt-2;
+  @apply px-4 py-1 mx-0 mt-3 w-full;
   @apply text-lg text-main-700 font-heading;
   @apply transition duration-300;
   @apply outline-none appearance-none select-none;
   @apply rounded-shape border border-main-500 border-opacity-0;
+
+  &.no-expansion {
+    @apply w-auto mx-2 mt-2;
+  }
+
+  &.no-expansion.mx-0 {
+    @apply w-auto mx-0 mt-2;
+  }
+
+  @screen sm {
+    @apply w-auto mx-2 mt-2;
+  }
 
   &:hover {
     @apply bg-main-200 text-main-800;

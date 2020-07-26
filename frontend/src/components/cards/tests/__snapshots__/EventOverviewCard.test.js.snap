@@ -5,7 +5,7 @@ exports[`Renders Correctly - Logged In 1`] = `
   class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
 >
   <div
-    class="px-4 md:px-6 lg:px-8"
+    class="w-full px-4 md:px-6 lg:px-8"
   >
     <h3
       class="text-xl font-bold leading-6 font-heading text-main-700"
@@ -60,7 +60,7 @@ exports[`Renders Correctly - Logged In 1`] = `
     </div>
      
     <div
-      class="pb-4 mt-2"
+      class="w-full pb-4 mt-2"
     >
       <router-link-stub
         class="button"
@@ -154,7 +154,7 @@ exports[`Renders Correctly - Normal View 1`] = `
   class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
 >
   <div
-    class="px-4 md:px-6 lg:px-8"
+    class="w-full px-4 md:px-6 lg:px-8"
   >
     <!---->
      
@@ -203,7 +203,7 @@ exports[`Renders Correctly - Normal View 1`] = `
     </div>
      
     <div
-      class="pb-4 mt-2"
+      class="w-full pb-4 mt-2"
     >
       <router-link-stub
         class="button"
@@ -250,7 +250,7 @@ exports[`Renders Correctly - Show League Title 1`] = `
   class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
 >
   <div
-    class="px-4 md:px-6 lg:px-8"
+    class="w-full px-4 md:px-6 lg:px-8"
   >
     <h3
       class="text-xl font-bold leading-6 font-heading text-main-700"
@@ -305,7 +305,7 @@ exports[`Renders Correctly - Show League Title 1`] = `
     </div>
      
     <div
-      class="pb-4 mt-2"
+      class="w-full pb-4 mt-2"
     >
       <router-link-stub
         class="button"

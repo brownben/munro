@@ -1,41 +1,35 @@
 <template>
-  <section
-    class="w-full col-span-2 p-3 text-center text-white shadow-md bg-main contours rounded-shape-xl"
-  >
-    <img
-      src="@/assets/images/MunroLogoWhite.png"
-      alt="Munro Logo"
-      class="inline-block h-24 mt-4 mb-2"
-    />
-    <h1 class="my-2 text-3xl font-bold md:text-4xl font-heading">About</h1>
-    <div class="w-full px-4 mb-3 md:px-8 text">
-      <p>
-        Munro is a league results calculator, originally created as part of my
-        Advanced Higher Computing Project. It calculates the overall results for
-        a series of events, it is designed to be easy to use and require very
-        little effort for league coordinators and event organisers to use.
-      </p>
-      <p>
-        Munro allows you to see all the information for a league on one place,
-        and provides multiple options to sort and filter results so you can view
-        the results in whatever form you want. It also supports multiple file
-        formats for upload and several different scoring systems, making the
-        process as quick and stress free as possible for event organisers.
-      </p>
+  <section class="w-full py-10 text-white bg-main-400 md:py-12">
+    <div
+      class="flex flex-col items-center justify-between w-10/12 mx-auto md:flex-row md:w-3/4 xl:w-2/3"
+    >
+      <div class="w-full mb-8 text-center md:w-1/2 md:text-left md:m-0">
+        <h2
+          class="mb-2 text-4xl tracking-tight text-white leading-12 xl:text-45xl font-heading"
+        >
+          Find
+          <strong class="tracking-normal text-white text-normal"
+            >Everything</strong
+          >
+          You Need
+        </h2>
+        <h3
+          class="mb-2 text-2xl leading-8 text-white text-opacity-75 md:mb-3 font-heading"
+        >
+          Made for Orienteering,
+          <strong class="font-normal text-white text-opacity-100"
+            >Perfect</strong
+          >
+          for Any League
+        </h3>
+      </div>
 
-      <p>
-        Munro is still under development so any feedback or comments would be
-        welcome, please send them to munro.leagues@gmail.com For any help or
-        enquires please email munro.leagues@gmail.com
-      </p>
+      <img
+        class="h-64 md:h-56"
+        src="@/assets/images/UnDrawOFlagWhite.svg"
+        alt="Orienteering Flag in Front of Trees and Hills"
+        loading="lazy"
+      />
     </div>
   </section>
 </template>
-<style lang="postcss">
-.contours {
-  background-image: url('../../assets/images/topography.svg');
-}
-.text p {
-  @apply my-2;
-}
-</style>

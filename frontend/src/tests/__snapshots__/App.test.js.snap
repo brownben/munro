@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="flex flex-col w-full h-full"
+  class="flex flex-col w-full min-h-full"
   id="app"
 >
   <appmenu-stub />
@@ -20,7 +20,5 @@ exports[`Renders Correctly 1`] = `
       name="fade"
     />
   </div>
-   
-  <appfooter-stub />
 </div>
 `;

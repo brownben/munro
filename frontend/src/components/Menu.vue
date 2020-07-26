@@ -6,7 +6,7 @@
 -->
 
 <template>
-  <header id="menu" class="w-full bg-white select-none h-13 border-top">
+  <header id="menu" class="w-full select-none h-13">
     <h1
       class="inline-block w-full h-12 text-4xl text-center md:w-auto font-heading text-main md:mx-8"
     >
@@ -19,7 +19,7 @@
       stroke-width="2"
       viewBox="0 0 24 24"
       stroke="currentColor"
-      class="absolute right-0 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
+      class="absolute right-0 z-20 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
       @click="showMenu = !showMenu"
     >
       <path d="M4 6h16M4 12h16M4 18h16" />
@@ -88,10 +88,6 @@ export default {
   margin-top: 3.25rem;
 }
 
-.border-top {
-  border-top: 0.25rem solid hsl(290, 90%, 45%);
-}
-
 .top--13 {
   top: -3.25rem;
 }
@@ -140,7 +136,8 @@ export default {
   -webkit-transition: all 0.3s ease-in-out 0s;
 }
 
-#menu nav:not(.smallWindow) a:hover:before {
+#menu nav:not(.smallWindow) a:hover:before,
+#menu nav:not(.smallWindow) a:focus:before {
   visibility: visible;
   transform: scaleX(1);
   -webkit-transform: scaleX(1);

@@ -7,7 +7,7 @@
       {{ title }}
     </h1>
     <div
-      class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+      class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
       :class="{ gapSmall: gapSmall }"
     >
       <slot />

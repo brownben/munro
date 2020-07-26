@@ -28,9 +28,12 @@
       </button>
     </form>
 
-    <div class="col-span-2 card-color">
+    <div class="col-span-2 p-4 card-color">
       <p>
-        <b class="p-2 font-heading">Looking for Results Upload?</b>
+        <b
+          class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
+          >Looking for Results Upload?</b
+        >
         You don't have to login, just visit the
         <router-link to="/upload" class="link">upload page</router-link>
       </p>

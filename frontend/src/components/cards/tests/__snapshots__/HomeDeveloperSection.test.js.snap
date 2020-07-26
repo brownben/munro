@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders Correctly 1`] = `
+<section
+  class="w-full py-10 bg-main-1 md:py-12"
+>
+  <div
+    class="flex flex-col-reverse items-center justify-between w-10/12 mx-auto md:flex-row lg:w-3/4 xl:w-2/3"
+  >
+    <div
+      class="w-full text-center md:mb-12 md:w-1/2 md:text-left md:m-0"
+    >
+      <h2
+        class="mb-2 text-4xl tracking-tight xl:text-5xl text-main-800 font-heading leading-12 xl:leading-14"
+      >
+        
+        Just How
+        
+        <strong
+          class="tracking-normal text-main-700"
+        >
+          You
+        </strong>
+         Want It
+      
+      </h2>
+       
+      <h3
+        class="mt-3 text-2xl leading-8 text-opacity-50 font-heading text-main-900"
+      >
+        
+        Sort and Filter the Results
+      
+      </h3>
+       
+      <h3
+        class="mb-2 text-2xl leading-8 text-opacity-50 md:mb-3 font-heading text-main-900"
+      >
+        
+        or Build Your Own Way to View Results
+      
+      </h3>
+       
+      <router-link-stub
+        class="mx-0 mt-2 button no-expansion"
+        to="/developers"
+      >
+        View API Docs
+      </router-link-stub>
+    </div>
+     
+    <div
+      class="mb-12 md:mb-0"
+    >
+      <img
+        alt="Crane Building Website"
+        class="w-2/3 mx-auto xl:w-7/12"
+        loading="lazy"
+        src="@/assets/images/Crane.svg"
+      />
+    </div>
+  </div>
+</section>
+`;

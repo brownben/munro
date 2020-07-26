@@ -2,29 +2,23 @@
 
 exports[`Renders Correctly 1`] = `
 <section
-  class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
+  class="flex flex-col items-center justify-around col-span-2 px-4 pt-6 pb-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl px-6"
   event="[object Object]"
   league="[object Object]"
 >
    
   <h2
-    class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900"
+    class="mt-2 mb-4 text-2xl font-bold leading-6 xl:text-25xl font-heading text-main-900 text-3xl md:text-35xl leading-8 mb-3"
   >
     
     
   
   </h2>
    
-  <p>
-    
-    
-  
-  </p>
-   
   <!---->
    
   <router-link-stub
-    class="mt-4 button"
+    class="mt-3 button mt-2"
     to="/leagues/"
   >
     View League

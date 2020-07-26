@@ -13,7 +13,7 @@ exports[`Renders Correctly 1`] = `
   </h1>
    
   <div
-    class="grid grid-cols-2 gap-8 mb-4 md:gap-6 lg:gap-8"
+    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
   >
     <vue-headful-stub
       description=""
@@ -66,11 +66,11 @@ exports[`Renders Correctly 1`] = `
     </form>
      
     <div
-      class="col-span-2 card-color"
+      class="col-span-2 p-4 card-color"
     >
       <p>
         <b
-          class="p-2 font-heading"
+          class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
         >
           Looking for Results Upload?
         </b>

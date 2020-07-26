@@ -35,6 +35,7 @@ module.exports = {
 
       lineHeight: {
         '12': '3rem',
+        '14': '3.5rem',
       },
 
       inset: {
@@ -66,8 +67,12 @@ module.exports = {
       },
 
       colors: {
+        gray: {
+          '100': '#fbf8fc',
+        },
         main: {
           default: '#B80BDA',
+          '1': '#fefaff',
           '50': '#FAE7FE',
           '100': '#F8DDFD',
           '200': '#F2C0FC',

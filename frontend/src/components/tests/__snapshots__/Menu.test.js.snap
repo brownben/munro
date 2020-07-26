@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly - Desktop 1`] = `
 <header
-  class="w-full bg-white select-none h-13 border-top"
+  class="w-full select-none h-13"
   id="menu"
 >
   <h1
@@ -16,7 +16,7 @@ exports[`Renders Correctly - Desktop 1`] = `
   </h1>
    
   <svg
-    class="absolute right-0 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
+    class="absolute right-0 z-20 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
     fill="none"
     stroke="currentColor"
     stroke-linecap="round"
@@ -61,7 +61,7 @@ exports[`Renders Correctly - Desktop 1`] = `
 
 exports[`Renders Correctly - Desktop 2`] = `
 <header
-  class="w-full bg-white select-none h-13 border-top"
+  class="w-full select-none h-13"
   id="menu"
 >
   <h1
@@ -75,7 +75,7 @@ exports[`Renders Correctly - Desktop 2`] = `
   </h1>
    
   <svg
-    class="absolute right-0 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
+    class="absolute right-0 z-20 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
     fill="none"
     stroke="currentColor"
     stroke-linecap="round"
@@ -120,7 +120,7 @@ exports[`Renders Correctly - Desktop 2`] = `
 
 exports[`Renders Correctly - Mobile 1`] = `
 <header
-  class="w-full bg-white select-none h-13 border-top"
+  class="w-full select-none h-13"
   id="menu"
 >
   <h1
@@ -134,7 +134,7 @@ exports[`Renders Correctly - Mobile 1`] = `
   </h1>
    
   <svg
-    class="absolute right-0 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
+    class="absolute right-0 z-20 inline-block float-right h-12 p-2 mr-2 text-main md:hidden"
     fill="none"
     stroke="currentColor"
     stroke-linecap="round"

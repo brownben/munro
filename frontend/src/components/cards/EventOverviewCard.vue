@@ -2,7 +2,7 @@
   <section
     class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
   >
-    <div class="px-4 md:px-6 lg:px-8">
+    <div class="w-full px-4 md:px-6 lg:px-8">
       <h3
         v-if="showLeagueName"
         class="text-xl font-bold leading-6 font-heading text-main-700"
@@ -45,7 +45,7 @@
         </p>
       </div>
 
-      <div class="pb-4 mt-2">
+      <div class="w-full pb-4 mt-2">
         <router-link
           v-if="event.resultUploaded && league.dynamicEventResults"
           :to="`/events/${event.id}/results`"

@@ -1,27 +1,26 @@
 <template>
   <section
-    class="flex flex-col items-center justify-around col-span-2 px-4 py-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
+    class="flex flex-col items-center justify-around col-span-2 px-4 pt-6 pb-4 text-center bg-white shadow-md md:col-span-1 md:px-3 xl:px-4 rounded-shape-xl"
+    :class="{ 'px-6': larger }"
   >
     <slot />
-    <h2 class="my-2 text-2xl font-bold xl:text-25xl font-heading text-main-900">
+    <h2
+      class="mt-2 mb-4 text-2xl font-bold leading-6 xl:text-25xl font-heading text-main-900"
+      :class="{ 'text-3xl md:text-35xl leading-8 mb-3': larger }"
+    >
       {{ title }}
     </h2>
-    <p>
+    <p
+      v-if="description"
+      class="mb-2 leading-5 text-opacity-75 text-main-900"
+      :class="{ 'font-heading text-lg leading-6': larger }"
+    >
       {{ description }}
     </p>
-    <p v-if="website">
-      More information can be found on their
-      <a
-        :href="website"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="link text-main-700"
-      >
-        website
-      </a>
-    </p>
+
     <router-link
-      class="mt-4 button"
+      class="mt-3 button"
+      :class="{ 'mt-2': larger }"
       :to="alternativeLink || `/leagues/${title}`"
       >{{ buttonText }}</router-link
     >
@@ -36,6 +35,7 @@ export default {
     website: { type: String, default: '' },
     alternativeLink: { type: String, default: '' },
     buttonText: { type: String, default: 'View League' },
+    larger: { type: Boolean, default: true },
   },
 }
 </script>
