@@ -486,7 +486,9 @@ test('Results With Age Class Split', () => {
   wrapper.setData({ rawResults: [] })
   expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([])
   wrapper.setData({ rawResults: [{ name: 'M45' }] })
-  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([{ name: 'M45' }])
+  expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([
+    { name: 'M45', gender: '' },
+  ])
   wrapper.setData({ rawResults: [{ ageClass: 'M45' }] })
   expect(wrapper.vm.resultsWithAgeClassSplit).toEqual([
     { ageClass: 'M45', age: 45, gender: 'M' },

@@ -261,8 +261,9 @@ export default {
             result.gender = 'M'
           else if (['W', 'F', 'D'].includes(regexMatch[1].toUpperCase()))
             result.gender = 'W'
+          else result.gender = ''
           result.age = parseInt(regexMatch[2], 10)
-        }
+        } else result.gender = ''
         return result
       })
     },
@@ -282,17 +283,26 @@ export default {
 
     filteredResults: function () {
       // Filter results by preferences
+      const matchesGender = (result) =>
+        (this.filterPreferences.male && this.filterPreferences.female) ||
+        (this.filterPreferences.male && result.gender === 'M') ||
+        (this.filterPreferences.female && result.gender === 'W') ||
+        (!this.filterPreferences.female &&
+          !this.filterPreferences.male &&
+          result.gender === '')
+
+      const matchesAge = (result) =>
+        (this.filterPreferences.maxAge >= 100 &&
+          this.filterPreferences.minAge === 0) ||
+        (this.filterPreferences.minAge <= result.age &&
+          result.age <= this.filterPreferences.maxAge)
+
       return this.sortedResults.filter(
         (result) =>
           result.name.match(new RegExp(this.filterPreferences.name, 'i')) &&
           result.club.match(new RegExp(this.filterPreferences.club, 'i')) &&
-          ((this.filterPreferences.male && this.filterPreferences.female) ||
-            (this.filterPreferences.male && result.gender === 'M') ||
-            (this.filterPreferences.female && result.gender === 'W')) &&
-          ((this.filterPreferences.maxAge >= 100 &&
-            this.filterPreferences.minAge === 0) ||
-            (this.filterPreferences.minAge <= result.age &&
-              result.age <= this.filterPreferences.maxAge))
+          matchesGender(result) &&
+          matchesAge(result)
       )
     },
 
