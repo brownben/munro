@@ -59,6 +59,7 @@
         v-for="result of results"
         :key="result.id"
         :result="result"
+        @resultChanged="getCompetitorResults"
       />
     </Layout>
     <not-found v-if="!competitor" />
@@ -82,7 +83,7 @@ export default {
 
   data: function () {
     return {
-      competitor: false,
+      competitor: {},
       results: [],
       auth: this.$auth,
     }

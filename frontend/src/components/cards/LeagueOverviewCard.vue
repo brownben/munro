@@ -12,8 +12,8 @@
     </h2>
     <p
       v-if="description"
-      class="mb-2 leading-5 text-opacity-75 text-main-900"
-      :class="{ 'font-heading text-lg leading-6': larger }"
+      class="mb-2 leading-5 text-opacity-75 text-main-900 font-heading"
+      :class="{ 'text-lg leading-6': larger }"
     >
       {{ description }}
     </p>

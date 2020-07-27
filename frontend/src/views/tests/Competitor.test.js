@@ -98,6 +98,8 @@ test('Get Competitor - Error', async () => {
   expect(mockAddMessage).toHaveBeenLastCalledWith(
     'Problem Getting Competitor Details'
   )
+  wrapper.setData({ competitor: false })
+  expect(wrapper.element).toMatchSnapshot()
 })
 
 test('Get Competitor Results - Correct API Call', async () => {

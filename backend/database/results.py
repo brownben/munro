@@ -193,6 +193,29 @@ def updateResult(data):
     )
 
 
+def updateResultIncomplete(data):
+    query(
+        """
+        UPDATE results
+        SET incomplete=%s
+        WHERE rowid=%s
+    """,
+        (data["incomplete"] == "True", data["rowid"],),
+    )
+
+
+def updateResultHidden(data):
+    hidden = data.get("type") or False
+    query(
+        """
+        UPDATE results
+        SET type=%s
+        WHERE rowid=%s
+    """,
+        (hidden, data["rowid"],),
+    )
+
+
 def recalcUpdateResult(data):
     query(
         """

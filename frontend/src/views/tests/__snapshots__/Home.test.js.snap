@@ -96,7 +96,7 @@ exports[`Renders Correctly 1`] = `
         </h2>
          
         <p
-          class="mb-2 leading-5 text-opacity-75 text-main-900"
+          class="mb-2 leading-5 text-opacity-75 text-main-900 font-heading"
         >
           
      Socially Distant Sprint/ Urban Orienteering Around Edinburgh
@@ -124,7 +124,7 @@ exports[`Renders Correctly 1`] = `
         </h2>
          
         <p
-          class="mb-2 leading-5 text-opacity-75 text-main-900"
+          class="mb-2 leading-5 text-opacity-75 text-main-900 font-heading"
         >
           
     Thursday Night Orienteering Events Around Edinburgh
@@ -152,7 +152,7 @@ exports[`Renders Correctly 1`] = `
         </h2>
          
         <p
-          class="mb-2 leading-5 text-opacity-75 text-main-900"
+          class="mb-2 leading-5 text-opacity-75 text-main-900 font-heading"
         >
           
     Night Orienteering Events in the North of Scotland

@@ -24,7 +24,7 @@
       <h2 class="pb-2 text-4xl font-bold font-heading">
         Hello {{ $auth.user.displayName || 'Admin' }}!
       </h2>
-      <div>
+      <div class="mx-6">
         <router-link to="/leagues/create" class="button-white"
           >Create New League</router-link
         >

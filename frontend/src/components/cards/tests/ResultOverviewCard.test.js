@@ -1,5 +1,17 @@
-import { mount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import ResultsCard from '@/components/cards/ResultOverviewCard'
+
+import axios from 'axios'
+
+jest.mock('axios')
+
+const flushPromises = () =>
+  new Promise((resolve) => global.setImmediate(resolve))
+
+beforeEach(() => {
+  jest.resetAllMocks()
+  axios.get.mockRejectedValue()
+})
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(ResultsCard, {
@@ -119,4 +131,150 @@ test('Position Superscript', () => {
   expect(wrapper.vm.positionSuperscript(112)).toBe('th')
   expect(wrapper.vm.positionSuperscript(121)).toBe('st')
   expect(wrapper.vm.positionSuperscript(122)).toBe('nd')
+})
+
+test('Hide Result', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(ResultsCard, {
+    mocks: {
+      $messages: { addMessage: mockAddMessage },
+      $auth: { user: true },
+    },
+    propsData: {
+      result: {
+        id: 7,
+        event: 'EVENT',
+        type: '',
+      },
+    },
+    stubs: ['router-link'],
+  })
+  global.confirm = jest.fn().mockReturnValue(true)
+  axios.put.mockResolvedValue()
+  await wrapper.vm.hideResult()
+  expect(axios.put).toHaveBeenCalledTimes(1)
+  expect(axios.put).toHaveBeenLastCalledWith('/api/results/7', {
+    rowid: 7,
+    action: 'hide',
+    event: 'EVENT',
+    type: 'hidden',
+  })
+  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenLastCalledWith('Result Updated')
+})
+
+test('Hide Result - Restore', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(ResultsCard, {
+    mocks: {
+      $messages: { addMessage: mockAddMessage },
+      $auth: { user: true },
+    },
+    propsData: {
+      result: {
+        id: 7,
+        event: 'EVENT',
+        type: 'hidden',
+      },
+    },
+    stubs: ['router-link'],
+  })
+  global.confirm = jest.fn().mockReturnValue(true)
+  axios.put.mockResolvedValue()
+  await wrapper.vm.hideResult()
+  expect(axios.put).toHaveBeenCalledTimes(1)
+  expect(axios.put).toHaveBeenLastCalledWith('/api/results/7', {
+    rowid: 7,
+    action: 'hide',
+    event: 'EVENT',
+    type: null,
+  })
+  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenLastCalledWith('Result Updated')
+})
+
+test('Hide Result - Error', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(ResultsCard, {
+    mocks: {
+      $messages: { addMessage: mockAddMessage },
+      $auth: { user: true },
+    },
+    propsData: {
+      result: {
+        id: 7,
+        event: 'EVENT',
+        type: '',
+      },
+    },
+    stubs: ['router-link'],
+  })
+  await flushPromises()
+  jest.clearAllMocks()
+  global.confirm = jest.fn().mockReturnValue(true)
+  axios.put.mockRejectedValue()
+  await wrapper.vm.hideResult()
+  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Hiding Result - Please Try Again'
+  )
+})
+
+test('Incomplete Result', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(ResultsCard, {
+    mocks: {
+      $messages: { addMessage: mockAddMessage },
+      $auth: { user: true },
+    },
+    propsData: {
+      result: {
+        id: 7,
+        event: 'EVENT',
+        type: '',
+        incomplete: false,
+      },
+    },
+    stubs: ['router-link'],
+  })
+  global.confirm = jest.fn().mockReturnValue(true)
+  axios.put.mockResolvedValue()
+  await wrapper.vm.incompleteResult()
+  expect(axios.put).toHaveBeenCalledTimes(1)
+  expect(axios.put).toHaveBeenLastCalledWith('/api/results/7', {
+    rowid: 7,
+    action: 'incomplete',
+    event: 'EVENT',
+    incomplete: true,
+  })
+  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenLastCalledWith('Result Updated')
+})
+
+test('Incomplete Result - Error', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(ResultsCard, {
+    mocks: {
+      $messages: { addMessage: mockAddMessage },
+      $auth: { user: true },
+    },
+    propsData: {
+      result: {
+        id: 7,
+        event: 'EVENT',
+        type: '',
+        incomplete: false,
+      },
+    },
+    stubs: ['router-link'],
+  })
+  await flushPromises()
+  jest.clearAllMocks()
+  global.confirm = jest.fn().mockReturnValue(true)
+  axios.put.mockRejectedValue()
+  await wrapper.vm.incompleteResult()
+  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Updating Result - Please Try Again'
+  )
 })

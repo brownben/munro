@@ -60,7 +60,7 @@
 
       <router-link
         :to="`/events/${result.event}/results`"
-        class="mt-4 mb-4 sm:mt-3 button"
+        class="mx-6 mt-4 mb-4 sm:mt-3 button"
       >
         View Results
       </router-link>
@@ -71,7 +71,7 @@
       class="flex-grow w-full px-4 pt-4 pb-4 mt-2 shadow md:px-6 bg-main-100 rounded-shape-xl"
     >
       <h3
-        class="mb-2 text-2xl font-bold text-center text-main-800 font-heading"
+        class="mb-1 text-2xl font-bold text-center text-main-800 font-heading"
       >
         Admin Actions
       </h3>
@@ -87,15 +87,27 @@
         </p>
         <p
           v-if="result.incomplete"
-          class="mx-2 mb-1 font-bold text-main-800 font-heading"
+          class="mx-2 font-bold text-main-800 font-heading"
         >
           Incomplete Result
         </p>
+      </div>
+      <div class="w-full mt-2">
+        <button class="button-dark" @click="incompleteResult">
+          <template v-if="result.incomplete">Mark as Complete</template>
+          <template v-else>Mark as Incomplete</template>
+        </button>
+        <button class="button-dark" @click="hideResult">
+          <template v-if="result.type !== 'hidden'">Hide Result</template>
+          <template v-else>Include Result</template>
+        </button>
       </div>
     </div>
   </section>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
   props: {
     result: {
@@ -125,6 +137,41 @@ export default {
       const timeInSeconds = Math.abs(totalTimeInSeconds % 60)
 
       return `${this.twoDigits(timeInMinutes)}:${this.twoDigits(timeInSeconds)}`
+    },
+
+    hideResult: function () {
+      let type = 'hidden'
+      if (this.result.type === 'hidden') type = null
+
+      return axios
+        .put(`/api/results/${this.result.id}`, {
+          rowid: this.result.id,
+          action: 'hide',
+          event: this.result.event,
+          type,
+        })
+        .then(() => this.$messages.addMessage(`Result Updated`))
+        .then(() => this.$emit('resultChanged'))
+        .catch(() =>
+          this.$messages.addMessage('Problem Hiding Result - Please Try Again')
+        )
+    },
+
+    incompleteResult: function () {
+      return axios
+        .put(`/api/results/${this.result.id}`, {
+          rowid: this.result.id,
+          action: 'incomplete',
+          incomplete: !this.result.incomplete,
+          event: this.result.event,
+        })
+        .then(() => this.$messages.addMessage(`Result Updated`))
+        .then(() => this.$emit('resultChanged'))
+        .catch(() =>
+          this.$messages.addMessage(
+            'Problem Updating Result - Please Try Again'
+          )
+        )
     },
   },
 }
