@@ -35,7 +35,7 @@
             v-for="course in coursesInResults"
             :key="course"
             :class="{ active: chosenCourse === course }"
-            class="inline-block button"
+            class="inline-block button no-expannsion"
             @click="chosenCourse = course"
           >
             {{ course }}
@@ -222,7 +222,8 @@ export default {
           result.name.match(new RegExp(this.filterPreferences.name, 'i')) &&
           result.club.match(new RegExp(this.filterPreferences.club, 'i')) &&
           matchesGender(result) &&
-          matchesAge(result)
+          matchesAge(result) &&
+          result.course === this.chosenCourse
       )
     },
 
