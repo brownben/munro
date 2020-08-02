@@ -73,10 +73,14 @@
 
 .button-lg {
   @apply button;
-  @apply mx-0 py-2;
+  @apply py-2 w-auto mx-0 mt-2;
   @apply font-bold text-white;
   @apply border border-main-600 border-opacity-0;
   @apply bg-main-500;
+
+  @screen sm {
+    @apply w-auto mx-0 mt-2;
+  }
 
   &:hover {
     @apply bg-main-400 text-white;

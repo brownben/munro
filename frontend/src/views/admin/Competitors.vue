@@ -91,7 +91,7 @@
       <tbody is="transition-group" name="fade">
         <tr
           v-for="competitor of sortedCompetitors"
-          :key="competitor.name + competitor.league + competitor.course"
+          :key="competitor.id"
           :class="{ striped: sortedCompetitors.indexOf(competitor) % 2 === 0 }"
           @click="$router.push(`/competitors/${competitor.id}`)"
         >

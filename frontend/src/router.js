@@ -55,6 +55,12 @@ const competitorRoutes = [
     beforeEnter: requireAuthentication,
   },
   {
+    path: '/competitors/merge',
+    name: 'Merge Competitors',
+    component: () => import('@/views/admin/CompetitorMerge'),
+    beforeEnter: requireAuthentication,
+  },
+  {
     path: '/competitors/:id',
     name: 'Competitor',
     component: () => import('@/views/Competitor'),
@@ -63,12 +69,6 @@ const competitorRoutes = [
     path: '/competitors/:id/edit',
     name: 'Edit Competitors',
     component: () => import('@/views/admin/CompetitorForm'),
-    beforeEnter: requireAuthentication,
-  },
-  {
-    path: '/competitors/merge',
-    name: 'Merge Competitors',
-    component: () => import('@/views/admin/CompetitorMerge'),
     beforeEnter: requireAuthentication,
   },
 ]

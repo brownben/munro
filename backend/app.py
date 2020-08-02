@@ -31,7 +31,7 @@ if not app.debug:
             "script-src": "'self' 'sha256-4RS22DYeB7U14dra4KcQYxmwt5HkOInieXK1NUMBmQI=' storage.googleapis.com",
             "default-src": "'self'",
             "style-src": "'self' 'unsafe-inline'",
-            "connect-src": "'self' identitytoolkit.googleapis.com p.fne.com.au",
+            "connect-src": "'self' identitytoolkit.googleapis.com wwww.p.fne.com.au",
         },
     )
 else:

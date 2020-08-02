@@ -43,12 +43,12 @@
     </div>
 
     <p
-      class="block mr-4 text-base leading-4 text-opacity-75 font-heading text-main-800"
+      class="block text-base leading-4 text-opacity-75 font-heading text-main-800"
     >
       Created By
       <a
         href="https://brownben.github.io"
-        class="font-bold text-opacity-75 transition duration-300 text-main-700 hover:text-opacity-100"
+        class="font-bold transition duration-300 text-main-700 hover:text-opacity-75"
         >Ben Brown</a
       >
     </p>
@@ -56,25 +56,25 @@
     <router-link
       v-if="!auth.user"
       to="/login"
-      class="text-sm font-bold text-opacity-50 transition duration-300 hover:text-opacity-75 text-main-700 font-heading"
+      class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
     >
       Admin Login
     </router-link>
     <router-link
       v-else
       to="/logout"
-      class="text-sm font-bold text-opacity-50 transition duration-300 hover:text-opacity-75 text-main-700 font-heading"
+      class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
     >
       Logout
     </router-link>
     <p
-      class="inline-block text-sm font-bold text-opacity-25 text-main-700 font-heading"
+      class="inline-block text-sm font-bold text-opacity-50 text-main-700 font-heading"
     >
       •
     </p>
     <a
       href="mailto:munro.leagues@gmail.com"
-      class="text-sm font-bold text-opacity-50 transition duration-300 hover:text-opacity-75 text-main-700 font-heading"
+      class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
     >
       Contact
     </a>

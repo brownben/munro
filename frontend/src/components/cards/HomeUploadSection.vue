@@ -11,7 +11,7 @@
           <strong class="tracking-normal text-main-600">Seconds</strong>
         </h2>
         <h3
-          class="mb-2 text-2xl leading-10 text-opacity-50 md:mb-3 font-heading text-main-900"
+          class="mb-2 text-2xl leading-8 text-opacity-50 md:mb-3 font-heading text-main-900"
         >
           No Fuss. No Hassle. Results Created with Ease
         </h3>

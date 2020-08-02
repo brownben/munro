@@ -80,7 +80,7 @@
     </div>
     <div
       v-if="auth.user"
-      class="w-full px-4 pt-4 pb-4 mt-2 shadow md:px-6 bg-main-100 rounded-shape-xl"
+      class="w-full px-4 pt-4 pb-4 mt-2 bg-gray-100 shadow md:px-6 rounded-shape-xl"
     >
       <h4 class="text-2xl font-bold text-center text-main-800 font-heading">
         Admin Actions

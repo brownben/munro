@@ -16,7 +16,7 @@ exports[`Renders Correctly 1`] = `
     class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
   >
     <vue-headful-stub
-      description="Instrcutions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      description="Instructions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
       head="[object Object]"
       title="Munro - Upload Instructions"
       url="https://munro-leagues.herokuapp.com/upload/instructions"
@@ -139,10 +139,16 @@ exports[`Renders Correctly 1`] = `
         </p>
          
         <code>
-          Name; Age Class; Club; Course; Time; Position; Noncompetitive;
-        Status;
+          Name; Age Class; Club; Course; Time; Position; NonCompetitive;
       
         </code>
+         
+        <p>
+          
+        Age Class, Club, Position and NonCompetitive are optional, but are
+        highly recommended to make sure the matching is done correctly
+      
+        </p>
       </div>
     </section>
      
@@ -157,46 +163,6 @@ exports[`Renders Correctly 1`] = `
         >
           
       4
-    
-        </span>
-         
-        <span
-          class="align-middle"
-        >
-          
-      The \`Upload File\` Button Should Now Appear
-    
-        </span>
-      </p>
-       
-      <div
-        class="text-opacity-75 text-main-900"
-      >
-        <p>
-          
-        If you are re-uploading results tick the 'Overwrite Existing Results'
-        checkbox
-      
-        </p>
-         
-        <img
-          alt="Upload Form with Upload Button Visible"
-          src="@/assets/images/UploadInstructions-ButtonShowingNew.png"
-        />
-      </div>
-    </section>
-     
-    <section
-      class="col-span-2 card"
-    >
-      <p
-        class="text-lg font-heading"
-      >
-        <span
-          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
-        >
-          
-      5
     
         </span>
          
@@ -219,6 +185,46 @@ exports[`Renders Correctly 1`] = `
         admin or munro.leagues@gmail.com who can update them
       
         </p>
+      </div>
+    </section>
+     
+    <section
+      class="col-span-2 card"
+    >
+      <p
+        class="text-lg font-heading"
+      >
+        <span
+          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+        >
+          
+      5
+    
+        </span>
+         
+        <span
+          class="align-middle"
+        >
+          
+      Confirm if Replacing Results
+    
+        </span>
+      </p>
+       
+      <div
+        class="text-opacity-75 text-main-900"
+      >
+        <p>
+          
+        If you are re-uploading results tick the 'Overwrite Existing Results'
+        checkbox, to remove previous results
+      
+        </p>
+         
+        <img
+          alt="Upload Form with Upload Button Visible"
+          src="@/assets/images/UploadInstructions-ButtonShowingNew.png"
+        />
       </div>
     </section>
      
