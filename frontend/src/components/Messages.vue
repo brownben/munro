@@ -13,7 +13,7 @@
       id="messages"
       name="list"
       mode="out-in"
-      class="fixed bottom-0 right-0 mb-4 mr-4"
+      class="fixed bottom-0 right-0 mx-4 my-4"
     >
       <p
         v-for="message of messages"
