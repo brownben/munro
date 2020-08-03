@@ -6,12 +6,8 @@
   <div>
     <div v-if="league">
       <vue-headful
-        :title="'Munro - ' + $route.params.name"
-        :description="
-          'Event Information and Results for the ' +
-          $route.params.name +
-          'league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features'
-        "
+        :title="`Munro - ${$route.params.name} League`"
+        :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
         :head="{
           meta: { name: 'robots', content: 'noindex' },
         }"

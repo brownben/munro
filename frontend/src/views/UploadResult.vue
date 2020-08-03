@@ -5,7 +5,7 @@
         meta: { name: 'robots', content: 'all' },
       }"
       title="Munro - Submit Result"
-      description="Sumbit results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      description="Manually Submit a Result to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/upload/result"
     />
 

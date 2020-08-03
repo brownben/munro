@@ -10,8 +10,8 @@
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
-      title="Munro - Not Found"
-      description
+      title="Munro - I'm Lost"
+      description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     />
 
     <div class="w-full col-span-2 text-center">

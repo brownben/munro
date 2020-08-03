@@ -3,8 +3,7 @@
 exports[`Renders Correctly 1`] = `
 <div>
   <vue-headful-stub
-    description="Event Information and Results for the
-         league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    description="Event Information and Results for the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     head="[object Object]"
     title="Munro - "
     url="https://munro-leagues.herokuapp.com/leagues/"

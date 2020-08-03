@@ -11,7 +11,7 @@
   <div class="w-full px-4 pt-2 md:px-8 lg:px-16 xl:px-20">
     <vue-headful
       :title="`Munro - ${$route.params.name} - ${$route.params.course} Results`"
-      :description="`Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`"
+      :description="`Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}/results/${$route.params.course}`"
       :head="{
         meta: { name: 'robots', content: 'all' },

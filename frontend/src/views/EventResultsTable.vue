@@ -4,7 +4,7 @@
       :title="`Munro - ${event.name || ''} Event Results`"
       :description="`Results from the ${event.name || ''} event of the ${
         event.league || ''
-      } league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`"
+      } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/events/${$route.params.event}`"
       :head="{
         meta: { name: 'robots', content: 'all' },

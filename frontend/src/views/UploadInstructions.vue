@@ -8,7 +8,7 @@
         meta: { name: 'robots', content: 'all' },
       }"
       title="Munro - Upload Instructions"
-      description="Instructions for how to upload results to Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+      description="Instructions for how to Upload Results to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/upload/instructions"
     />
     <InstructionCard :number="1">

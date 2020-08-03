@@ -1,8 +1,10 @@
 <template>
   <div>
     <vue-headful
-      :title="`Munro - ${competitor.name} - Competitor`"
-      :description="`Competitor Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features`"
+      :title="`Munro - ${competitor.name || ''} - Competitor`"
+      :description="`Results for ${competitor.name || ''} in the ${
+        competitor.league || ''
+      } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/competitors/${$route.params.id}`"
       :head="{
         meta: { name: 'robots', content: 'all' },

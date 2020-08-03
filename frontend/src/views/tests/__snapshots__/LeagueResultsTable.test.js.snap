@@ -5,7 +5,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
   class="w-full px-4 pt-2 md:px-8 lg:px-16 xl:px-20"
 >
   <vue-headful-stub
-    description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    description="Results from the  course of the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     head="[object Object]"
     title="Munro -  -  Results"
     url="https://munro-leagues.herokuapp.com/leagues//results/"
@@ -349,7 +349,7 @@ exports[`Mobile Results Dropdown Works 2`] = `
   class="w-full px-4 pt-2 md:px-8 lg:px-16 xl:px-20"
 >
   <vue-headful-stub
-    description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    description="Results from the  course of the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     head="[object Object]"
     title="Munro -  -  Results"
     url="https://munro-leagues.herokuapp.com/leagues//results/"
@@ -730,7 +730,7 @@ exports[`Renders Correctly + Fetches Data 1`] = `
   class="w-full px-4 pt-2 md:px-8 lg:px-16 xl:px-20"
 >
   <vue-headful-stub
-    description="Results from the  course of the  league on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    description="Results from the  course of the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     head="[object Object]"
     title="Munro -  -  Results"
     url="https://munro-leagues.herokuapp.com/leagues//results/"

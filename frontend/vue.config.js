@@ -6,7 +6,7 @@ const pwa = {
     name: 'Munro Leagues',
     short_name: 'Munro',
     description:
-      'Fast and Easy Results System for Orienteering Leagues by Munro, a simple way to calculate the results for orienteering leagues, with search and sort features',
+      'League Results. Sorted with Munro. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options',
     display: 'standalone',
     start_url: '/',
     background_color: '#b80bda',

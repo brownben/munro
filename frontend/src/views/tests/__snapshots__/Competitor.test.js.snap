@@ -3,9 +3,9 @@
 exports[`Get Competitor - Error 1`] = `
 <div>
   <vue-headful-stub
-    description="Competitor Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    description="Results for  in the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     head="[object Object]"
-    title="Munro - undefined - Competitor"
+    title="Munro -  - Competitor"
     url="https://munro-leagues.herokuapp.com/competitors/undefined"
   />
    
@@ -20,9 +20,9 @@ exports[`Renders Correctly 1`] = `
   competitor="[object Object]"
 >
   <vue-headful-stub
-    description="Competitor Results on Munro, the Fast and Easy Results System for Orienteering Leagues. A simple way to calculate the results for orienteering leagues, with search and sort features"
+    description="Results for  in the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     head="[object Object]"
-    title="Munro - undefined - Competitor"
+    title="Munro -  - Competitor"
     url="https://munro-leagues.herokuapp.com/competitors/"
   />
    

@@ -10,9 +10,9 @@ exports[`Renders Correctly 1`] = `
     class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
   >
     <vue-headful-stub
-      description=""
+      description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       head="[object Object]"
-      title="Munro - Not Found"
+      title="Munro - I'm Lost"
     />
      
     <div
