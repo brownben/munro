@@ -6,24 +6,23 @@ exports[`Renders Correctly 1`] = `
   event="[object Object]"
   league="[object Object]"
 >
-  <p
-    class="text-lg font-heading"
+  <h2
+    class="mb-2 text-2xl text-center font-heading"
   >
-    <span
-      class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+    <p
+      class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
     >
       
       1
     
-    </span>
+    </p>
      
-    <span
-      class="align-middle"
-    />
-  </p>
+      
+    
+  </h2>
    
   <div
-    class="text-opacity-75 text-main-900"
+    class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
   />
 </section>
 `;

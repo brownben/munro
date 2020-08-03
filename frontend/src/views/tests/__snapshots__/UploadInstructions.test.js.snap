@@ -25,38 +25,33 @@ exports[`Renders Correctly 1`] = `
     <section
       class="col-span-2 card"
     >
-      <p
-        class="text-lg font-heading"
+      <h2
+        class="mb-2 text-2xl text-center font-heading"
       >
-        <span
-          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+        <p
+          class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
         >
           
       1
     
-        </span>
+        </p>
          
-        <span
-          class="align-middle"
-        >
-          
       Go to
       
-          <router-link-stub
-            class="link text-main-700"
-            to="/upload/file"
-          >
-            https://munro-leagues.herokuapp.com/upload/file
-          </router-link-stub>
-        </span>
-      </p>
+        <router-link-stub
+          class="link text-main-700"
+          to="/upload/file"
+        >
+          https://munro-leagues.herokuapp.com/upload/file
+        </router-link-stub>
+      </h2>
        
       <div
-        class="text-opacity-75 text-main-900"
+        class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
       >
         <img
           alt="Empty Upload Form"
-          src="@/assets/images/UploadInstructions-EmptyFormNew.png"
+          src="@/assets/images/UploadInstructions-Blank.png"
         />
       </div>
     </section>
@@ -64,41 +59,47 @@ exports[`Renders Correctly 1`] = `
     <section
       class="col-span-2 card"
     >
-      <p
-        class="text-lg font-heading"
+      <h2
+        class="mb-2 text-2xl text-center font-heading"
       >
-        <span
-          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+        <p
+          class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
         >
           
       2
     
-        </span>
+        </p>
          
-        <span
-          class="align-middle"
-        >
-          
       Enter the Event ID and the 20 digit Upload Key Provided
     
-        </span>
-      </p>
+      </h2>
        
       <div
-        class="text-opacity-75 text-main-900"
+        class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
       >
         <p>
           
-        The event name should now be displayed. You can get the Event ID and
-        Upload Key from your league coordinator or by emailing
-        munro.leagues@gmail.com The Event ID will be the the form
-        LeagueNameEventNameYYYY-MM-DD with all spaces removed
-      
+      The event name should now be displayed.
+    
+        </p>
+         
+        <p>
+          
+      The Event ID will be the the form LeagueNameEventNameYYYY-MM-DD with all
+      spaces removed.
+    
+        </p>
+         
+        <p>
+          
+      You can get the Event ID and Upload Key from your league coordinator or
+      by emailing munro.leagues@gmail.com
+    
         </p>
          
         <img
-          alt="Upload Form with Keys Entered"
-          src="@/assets/images/UploadInstructions-KeysEnteredNew.png"
+          alt="Upload Form with Event ID and Upload Key Included"
+          src="@/assets/images/UploadInstructions-EventDetails.png"
         />
       </div>
     </section>
@@ -106,48 +107,49 @@ exports[`Renders Correctly 1`] = `
     <section
       class="col-span-2 card"
     >
-      <p
-        class="text-lg font-heading"
+      <h2
+        class="mb-2 text-2xl text-center font-heading"
       >
-        <span
-          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+        <p
+          class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
         >
           
       3
     
-        </span>
+        </p>
          
-        <span
-          class="align-middle"
-        >
-          
       Select Your Results File
     
-        </span>
-      </p>
+      </h2>
        
       <div
-        class="text-opacity-75 text-main-900"
+        class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
       >
         <p>
           
-        This file can be an OE CSV File or SITiming Processable CSV file with
-        semi-colon or comma delimiter. Or another semicolon/ comma delimited
-        CSV file with the following headings, these headings can be in any
-        order:
-      
+      Munro accepts any CSV results file in a sensible format, it has been
+      tested with OE CSV files and SITiming Processable CSV files.
+    
+        </p>
+         
+        <p>
+          
+      It can be semicolon or comma delimited and should have the following
+      headings (they can be in any order):
+    
         </p>
          
         <code>
-          Name; Age Class; Club; Course; Time; Position; NonCompetitive;
-      
+          
+      Name; Age Class; Club; Course; Time; Position; NonCompetitive; Status;
+    
         </code>
          
         <p>
           
-        Age Class, Club, Position and NonCompetitive are optional, but are
-        highly recommended to make sure the matching is done correctly
-      
+      Age Class, Club, Position and NonCompetitive are optional, but are
+      highly recommended to make sure the matching is done correctly
+    
         </p>
       </div>
     </section>
@@ -155,75 +157,41 @@ exports[`Renders Correctly 1`] = `
     <section
       class="col-span-2 card"
     >
-      <p
-        class="text-lg font-heading"
+      <h2
+        class="mb-2 text-2xl text-center font-heading"
       >
-        <span
-          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+        <p
+          class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
         >
           
       4
     
-        </span>
+        </p>
          
-        <span
-          class="align-middle"
-        >
+      Enter Other Results Information
+    
+      </h2>
+       
+      <div
+        class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
+      >
+        <p>
           
       Enter the URLs of the Results Uploaded on Other Websites eg. HTML
       Results/ Routegadget/ Winsplits.
     
-        </span>
-      </p>
-       
-      <div
-        class="text-opacity-75 text-main-900"
-      >
-        <p>
-          
-        If you forget, or need to change these URLs please contact your league
-        admin or munro.leagues@gmail.com who can update them
-      
         </p>
-      </div>
-    </section>
-     
-    <section
-      class="col-span-2 card"
-    >
-      <p
-        class="text-lg font-heading"
-      >
-        <span
-          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
-        >
-          
-      5
-    
-        </span>
          
-        <span
-          class="align-middle"
-        >
-          
-      Confirm if Replacing Results
-    
-        </span>
-      </p>
-       
-      <div
-        class="text-opacity-75 text-main-900"
-      >
         <p>
           
-        If you are re-uploading results tick the 'Overwrite Existing Results'
-        checkbox, to remove previous results
-      
+      If you forget, or need to change these URLs please contact your league
+      admin or munro.leagues@gmail.com who can update them
+    
         </p>
          
         <img
-          alt="Upload Form with Upload Button Visible"
-          src="@/assets/images/UploadInstructions-ButtonShowingNew.png"
+          alt="Upload Form with Completeted with Upload Button Showing"
+          src="@/assets/images/UploadInstructions-Complete.png"
         />
       </div>
     </section>
@@ -231,35 +199,61 @@ exports[`Renders Correctly 1`] = `
     <section
       class="col-span-2 card"
     >
-      <p
-        class="text-lg font-heading"
+      <h2
+        class="mb-2 text-2xl text-center font-heading"
       >
-        <span
-          class="inline-flex items-center justify-center w-8 h-8 mr-2 font-bold text-center align-middle border-2 rounded-full border-main text-main font-heading font-lg"
+        <p
+          class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+        >
+          
+      5
+    
+        </p>
+         
+       Confirm if Replacing Results
+    
+      </h2>
+       
+      <div
+        class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
+      >
+        <p>
+          
+      If results already exist a 'Overwrite Existing Results' checkbox will
+      appear, to confirm you wish to replace the exisiting results, tick the
+      box
+    
+        </p>
+      </div>
+    </section>
+     
+    <section
+      class="col-span-2 card"
+    >
+      <h2
+        class="mb-2 text-2xl text-center font-heading"
+      >
+        <p
+          class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
         >
           
       6
     
-        </span>
+        </p>
          
-        <span
-          class="align-middle"
-        >
-          
-      Click Upload
+      Click \`Upload File\`
     
-        </span>
-      </p>
+      </h2>
        
       <div
-        class="text-opacity-75 text-main-900"
+        class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
       >
         <p>
           
-        A message should appear saying that the data has been sent. Then a
-        message saying that the results upload is successful should appear and
-        you will be redirected to the league page
-      
+      A message should appear saying that the data has been sent. Then a
+      message saying that the results upload is successful should appear and
+      you will be redirected to the results table
+    
         </p>
       </div>
     </section>
