@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import Developers from '@/views/Developers'
+import Developers from '@/views/Developers.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(Developers, {

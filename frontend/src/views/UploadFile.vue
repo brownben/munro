@@ -84,11 +84,11 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
+import Layout from '@/components/Layout.vue'
 
-import TextInput from '@/components/inputs/TextInput'
-import FileInput from '@/components/inputs/FileInput'
-import CheckboxInput from '@/components/inputs/CheckboxInput'
+import TextInput from '@/components/inputs/TextInput.vue'
+import FileInput from '@/components/inputs/FileInput.vue'
+import CheckboxInput from '@/components/inputs/CheckboxInput.vue'
 
 export default {
   components: {

@@ -71,10 +71,10 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import ResultOverviewCard from '@/components/cards/ResultOverviewCard'
+import Layout from '@/components/Layout.vue'
+import ResultOverviewCard from '@/components/cards/ResultOverviewCard.vue'
 
-const NotFound = () => import('@/views/NotFound')
+const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {

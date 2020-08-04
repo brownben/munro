@@ -107,8 +107,8 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout'
-import InstructionCard from '@/components/cards/InstructionCard'
+import Layout from '@/components/Layout.vue'
+import InstructionCard from '@/components/cards/InstructionCard.vue'
 
 export default {
   components: {

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import NumberInput from '@/components/inputs/NumberInput'
+import NumberInput from '@/components/inputs/NumberInput.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(NumberInput)

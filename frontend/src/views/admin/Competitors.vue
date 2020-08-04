@@ -119,8 +119,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import UpDownArrow from '@/components/UpDownArrows'
+import Layout from '@/components/Layout.vue'
+import UpDownArrow from '@/components/UpDownArrows.vue'
 
 export default {
   components: {

@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import Home from '@/views/Home'
+import Home from '@/views/Home.vue'
 
 beforeEach(() => {
   jest.clearAllMocks()

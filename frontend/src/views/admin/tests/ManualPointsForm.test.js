@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { mount, shallowMount } from '@vue/test-utils'
-import ManualPointsForm from '@/views/admin/ManualPointsForm'
+import ManualPointsForm from '@/views/admin/ManualPointsForm.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 import { sampleThreeResultsDraw } from '@/tests/test data/results'
 

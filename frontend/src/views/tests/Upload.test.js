@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Upload from '@/views/Upload'
+import Upload from '@/views/Upload.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(Upload, {

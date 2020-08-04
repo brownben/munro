@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import AboutCard from '@/components/cards/AboutCard'
+import AboutCard from '@/components/cards/AboutCard.vue'
 
 beforeEach(() => localStorage.clear())
 

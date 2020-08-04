@@ -28,8 +28,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard'
+import Layout from '@/components/Layout.vue'
+import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard.vue'
 
 export default {
   components: {

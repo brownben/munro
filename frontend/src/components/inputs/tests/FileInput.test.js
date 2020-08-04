@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import FileInput from '@/components/inputs/FileInput'
+import FileInput from '@/components/inputs/FileInput.vue'
 
 test('File Change - No Files', () => {
   const wrapper = mount(FileInput, {

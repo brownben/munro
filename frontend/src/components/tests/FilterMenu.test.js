@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import FilterMenu from '@/components/FilterMenu'
+import FilterMenu from '@/components/FilterMenu.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(FilterMenu)

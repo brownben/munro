@@ -217,10 +217,10 @@
 <script>
 import axios from 'axios'
 
-import FilterMenu from '@/components/FilterMenu'
-import UpDownArrow from '@/components/UpDownArrows'
+import FilterMenu from '@/components/FilterMenu.vue'
+import UpDownArrow from '@/components/UpDownArrows.vue'
 
-const NoResultsCard = () => import('@/components/cards/NoResultsCard')
+const NoResultsCard = () => import('@/components/cards/NoResultsCard.vue')
 
 export default {
   components: {
@@ -314,30 +314,34 @@ export default {
 
   // If route changes without reload (if only course parameter changes)
   watch: {
-    $route: async function () {
+    $route: function () {
       this.rawResults = []
       this.openedRows = []
 
       this.loading = true
-      await this.getResults()
-      await this.getEventList()
-      await this.getOtherCourses()
-      this.loading = false
+      return this.getResults()
+        .then(() => this.getEventList())
+        .then(() => this.getOtherCourses())
+        .then(() => {
+          this.loading = false
+        })
     },
   },
 
   // On load
-  mounted: async function () {
+  mounted: function () {
     // Mobile resize watcher
     window.addEventListener('resize', this.handleResize)
     this.handleResize()
 
     // Fetch Data
     this.loading = true
-    await this.getResults()
-    await this.getEventList()
-    await this.getOtherCourses()
-    this.loading = false
+    return this.getResults()
+      .then(() => this.getEventList())
+      .then(() => this.getOtherCourses())
+      .then(() => {
+        this.loading = false
+      })
   },
 
   destroyed() {

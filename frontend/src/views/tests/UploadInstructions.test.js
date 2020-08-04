@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import UploadInstructions from '@/views/UploadInstructions'
+import UploadInstructions from '@/views/UploadInstructions.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(UploadInstructions, {

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import NoResultsCard from '@/components/cards/NoResultsCard'
+import NoResultsCard from '@/components/cards/NoResultsCard.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(NoResultsCard)

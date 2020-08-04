@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { mount } from '@vue/test-utils'
-import Leagues from '@/views/Leagues'
+import Leagues from '@/views/Leagues.vue'
 import {
   sampleDataThreeLeagues,
   sampleSingleLeague,

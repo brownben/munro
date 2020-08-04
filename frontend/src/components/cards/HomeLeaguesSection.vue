@@ -42,7 +42,7 @@
   </section>
 </template>
 <script>
-import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard'
+import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard.vue'
 
 export default {
   components: {

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { mount, shallowMount } from '@vue/test-utils'
-import ResultTransfer from '@/views/admin/ResultTransfer'
+import ResultTransfer from '@/views/admin/ResultTransfer.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 import { sampleThreeResultsDraw } from '@/tests/test data/results'
 

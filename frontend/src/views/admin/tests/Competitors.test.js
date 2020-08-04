@@ -2,7 +2,7 @@ import axios from 'axios'
 import VueRouter from 'vue-router'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 
-import Competitors from '@/views/admin/Competitors'
+import Competitors from '@/views/admin/Competitors.vue'
 
 jest.mock('axios')
 const flushPromises = () =>

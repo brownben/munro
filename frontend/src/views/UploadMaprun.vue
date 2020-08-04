@@ -50,10 +50,10 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
+import Layout from '@/components/Layout.vue'
 
-import TextInput from '@/components/inputs/TextInput'
-import DropdownInput from '@/components/inputs/DropdownInput'
+import TextInput from '@/components/inputs/TextInput.vue'
+import DropdownInput from '@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {
@@ -78,42 +78,45 @@ export default {
       // Fetch event details so name of event can be checked and if results are uploaded
       return axios
         .get(`/api/events/${this.eventId}`)
-        .then(async (response) => {
+        .then((response) => {
           this.event = response.data
           if (!this.event.name) {
             this.event = {}
             this.league = {}
             this.event.name = 'No Event Found'
-          } else
-            this.league = await axios
-              .get(`/api/leagues/${this.event.league}`)
-              .then((response) => response.data)
+          } else return axios.get(`/api/leagues/${this.event.league}`)
         })
-        .then(() => {})
+        .then((response) => {
+          if (response) this.league = response.data
+        })
         .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
     },
 
-    uploadFile: async function () {
-      const file = await this.getMaprunData()
-      if (!file || file.split('\n').length < 1)
-        return this.$messages.addMessage(
-          'Error: No MapRun Event Found With That Id'
-        )
+    uploadFile: function () {
+      return this.getMaprunData()
+        .then((file) => {
+          if (!file || file.split('\n').length < 1)
+            throw new Error('Error: No MapRun Event Found With That Id')
 
-      this.$messages.addMessage('Upload Data Sent')
-      return axios
-        .post('/api/upload/stream', {
-          eventId: this.eventId,
-          uploadKey: this.uploadKey,
-          file: file,
-          course: this.course,
+          this.$messages.addMessage('Upload Data Sent')
+          return file
         })
+        .then((file) =>
+          axios.post('/api/upload/stream', {
+            eventId: this.eventId,
+            uploadKey: this.uploadKey,
+            file: file,
+            course: this.course,
+          })
+        )
         .then(() => {
           this.$messages.addMessage('Results Uploaded Successfully')
           this.$router.push(`/events/${this.eventId}/results`)
         })
         .catch((error) =>
-          this.$messages.addMessage(error.response.data.message)
+          this.$messages.addMessage(
+            error?.response?.data?.message ?? error?.message
+          )
         )
     },
 

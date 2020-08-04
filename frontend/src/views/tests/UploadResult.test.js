@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { mount } from '@vue/test-utils'
 
-import Upload from '@/views/UploadResult'
+import Upload from '@/views/UploadResult.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 
 jest.mock('axios')

@@ -138,12 +138,12 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import FilterMenu from '@/components/FilterMenu'
-import UpDownArrow from '@/components/UpDownArrows'
+import Layout from '@/components/Layout.vue'
+import FilterMenu from '@/components/FilterMenu.vue'
+import UpDownArrow from '@/components/UpDownArrows.vue'
 
-const NoResultsCard = () => import('@/components/cards/NoResultsCard')
-const NotFound = () => import('@/views/NotFound')
+const NoResultsCard = () => import('@/components/cards/NoResultsCard.vue')
+const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {
@@ -238,23 +238,27 @@ export default {
 
   // If route changes without reload (if only course parameter changes)
   watch: {
-    $route: async function () {
+    $route: function () {
       this.rawResults = []
 
       this.loading = true
-      await this.getEvent()
-      await this.getResults()
-      this.loading = false
+      return this.getEvent()
+        .then(() => this.getResults())
+        .then(() => {
+          this.loading = false
+        })
     },
   },
 
   // On load
-  mounted: async function () {
+  mounted: function () {
     // Fetch Data
     this.loading = true
-    await this.getEvent()
-    await this.getResults()
-    this.loading = false
+    return this.getEvent()
+      .then(() => this.getResults())
+      .then(() => {
+        this.loading = false
+      })
   },
 
   methods: {

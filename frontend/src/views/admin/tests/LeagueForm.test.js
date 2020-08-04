@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 import { mount } from '@vue/test-utils'
-import LeagueForm from '@/views/admin/LeagueForm'
+import LeagueForm from '@/views/admin/LeagueForm.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 
 jest.mock('axios')

@@ -44,8 +44,8 @@
 <script>
 import auth from '@/authentication'
 
-import Layout from '@/components/Layout'
-import TextInput from '@/components/inputs/TextInput'
+import Layout from '@/components/Layout.vue'
+import TextInput from '@/components/inputs/TextInput.vue'
 
 export default {
   components: {

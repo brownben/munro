@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import InstructionCard from '@/components/cards/InstructionCard'
+import InstructionCard from '@/components/cards/InstructionCard.vue'
 
 import axios from 'axios'
 

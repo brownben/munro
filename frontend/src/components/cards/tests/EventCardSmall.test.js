@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import EventCardSmall from '@/components/cards/EventCardSmall'
+import EventCardSmall from '@/components/cards/EventCardSmall.vue'
 
 beforeEach(() => {
   jest.resetAllMocks()

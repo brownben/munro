@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import Messages from '@/components/Messages'
+import Messages from '@/components/Messages.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(Messages, {

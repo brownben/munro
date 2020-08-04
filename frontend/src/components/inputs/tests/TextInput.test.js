@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import TextInput from '@/components/inputs/TextInput'
+import TextInput from '@/components/inputs/TextInput.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(TextInput)

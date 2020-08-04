@@ -45,15 +45,13 @@
 </template>
 
 <script>
-import Hero from '@/components/Hero'
-
-import LeaguesSection from '@/components/cards/HomeLeaguesSection'
-import AboutCard from '@/components/cards/AboutCard'
-import EventsSection from '@/components/cards/HomeEventsSection'
-import UploadSection from '@/components/cards/HomeUploadSection'
-import DeveloperSection from '@/components/cards/HomeDeveloperSection'
-
-import AppFooter from '@/components/Footer'
+import Hero from '@/components/Hero.vue'
+import LeaguesSection from '@/components/cards/HomeLeaguesSection.vue'
+import AboutCard from '@/components/cards/AboutCard.vue'
+import EventsSection from '@/components/cards/HomeEventsSection.vue'
+import UploadSection from '@/components/cards/HomeUploadSection.vue'
+import DeveloperSection from '@/components/cards/HomeDeveloperSection.vue'
+import AppFooter from '@/components/Footer.vue'
 
 export default {
   components: {

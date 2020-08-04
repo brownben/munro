@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import EventOverviewCard from '@/components/cards/EventOverviewCard'
+import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
 
 import axios from 'axios'
 

@@ -94,13 +94,13 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import DropdownInput from '@/components/inputs/DropdownInput'
-import TextInput from '@/components/inputs/TextInput'
-import NumberInput from '@/components/inputs/NumberInput'
-import CheckboxInput from '@/components/inputs/CheckboxInput'
+import Layout from '@/components/Layout.vue'
+import DropdownInput from '@/components/inputs/DropdownInput.vue'
+import TextInput from '@/components/inputs/TextInput.vue'
+import NumberInput from '@/components/inputs/NumberInput.vue'
+import CheckboxInput from '@/components/inputs/CheckboxInput.vue'
 
-const NotFound = () => import('@/views/NotFound')
+const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {

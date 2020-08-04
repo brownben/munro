@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Footer from '@/components/Footer'
+import Footer from '@/components/Footer.vue'
 
 beforeEach(() => localStorage.clear())
 

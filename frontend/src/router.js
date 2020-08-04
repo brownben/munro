@@ -16,14 +16,14 @@ const homeRoutes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home'),
+    component: () => import('@/views/Home.vue'),
   },
 ]
 const loginRoutes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/admin/Login'),
+    component: () => import('@/views/admin/Login.vue'),
   },
   {
     path: '/logout',
@@ -45,30 +45,30 @@ const competitorRoutes = [
   {
     path: '/leagues/:league/competitors',
     name: 'Competitors',
-    component: () => import('@/views/admin/Competitors'),
+    component: () => import('@/views/admin/Competitors.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/competitors/create',
     name: 'Create Competitor',
-    component: () => import('@/views/admin/CompetitorForm'),
+    component: () => import('@/views/admin/CompetitorForm.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/competitors/merge',
     name: 'Merge Competitors',
-    component: () => import('@/views/admin/CompetitorMerge'),
+    component: () => import('@/views/admin/CompetitorMerge.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/competitors/:id',
     name: 'Competitor',
-    component: () => import('@/views/Competitor'),
+    component: () => import('@/views/Competitor.vue'),
   },
   {
     path: '/competitors/:id/edit',
     name: 'Edit Competitors',
-    component: () => import('@/views/admin/CompetitorForm'),
+    component: () => import('@/views/admin/CompetitorForm.vue'),
     beforeEnter: requireAuthentication,
   },
 ]
@@ -76,23 +76,23 @@ const leagueRoutes = [
   {
     path: '/leagues',
     name: 'Leagues',
-    component: () => import('@/views/Leagues'),
+    component: () => import('@/views/Leagues.vue'),
   },
   {
     path: '/leagues/create',
     name: 'Create League',
-    component: () => import('@/views/admin/LeagueForm'),
+    component: () => import('@/views/admin/LeagueForm.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/leagues/:name',
     name: 'League',
-    component: () => import('@/views/LeagueHome'),
+    component: () => import('@/views/LeagueHome.vue'),
   },
   {
     path: '/leagues/:name/edit',
     name: 'Edit League',
-    component: () => import('@/views/admin/LeagueForm'),
+    component: () => import('@/views/admin/LeagueForm.vue'),
     beforeEnter: requireAuthentication,
   },
 ]
@@ -100,102 +100,102 @@ const eventRoutes = [
   {
     path: '/events/create',
     name: 'Create Event',
-    component: () => import('@/views/admin/EventForm'),
+    component: () => import('@/views/admin/EventForm.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/events/:id/edit',
     name: 'Edit Events',
-    component: () => import('@/views/admin/EventForm'),
+    component: () => import('@/views/admin/EventForm.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/leagues/:league/create-event',
     name: 'Create Event for League',
-    component: () => import('@/views/admin/EventForm'),
+    component: () => import('@/views/admin/EventForm.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/embed/leagues/:name/events',
     name: 'Embed League Events',
-    component: () => import('@/views/LeagueEventsEmbed'),
+    component: () => import('@/views/LeagueEventsEmbed.vue'),
   },
   {
     path: '/latest-results',
     name: 'Latest Results',
-    component: () => import('@/views/LatestResults'),
+    component: () => import('@/views/LatestResults.vue'),
   },
 ]
 const resultRoutes = [
   {
     path: '/events/:event/results',
     name: 'Event Results',
-    component: () => import('@/views/EventResultsTable'),
+    component: () => import('@/views/EventResultsTable.vue'),
   },
   {
     path: '/leagues/:name/results/:course',
     name: 'League Course Results',
-    component: () => import('@/views/LeagueResultsTable'),
+    component: () => import('@/views/LeagueResultsTable.vue'),
   },
   {
     path: '/embed/leagues/:name/results/:course',
     name: 'Embed League Course Results',
-    component: () => import('@/views/LeagueResultsTable'),
+    component: () => import('@/views/LeagueResultsTable.vue'),
   },
   {
     path: '/results/transfer',
     name: 'Transfer Result',
-    component: () => import('@/views/admin/ResultTransfer'),
+    component: () => import('@/views/admin/ResultTransfer.vue'),
     beforeEnter: requireAuthentication,
   },
   {
     path: '/results/manual',
     name: 'Manual Result',
-    component: () => import('@/views/admin/ManualPointsForm'),
+    component: () => import('@/views/admin/ManualPointsForm.vue'),
   },
 ]
 const uploadRoutes = [
   {
     path: '/upload',
     name: 'Upload Results',
-    component: () => import('@/views/Upload'),
+    component: () => import('@/views/Upload.vue'),
   },
   {
     path: '/upload/instructions',
     name: 'Upload Instructions',
-    component: () => import('@/views/UploadInstructions'),
+    component: () => import('@/views/UploadInstructions.vue'),
   },
   {
     path: '/upload/file',
     name: 'Upload Results File',
-    component: () => import('@/views/UploadFile'),
+    component: () => import('@/views/UploadFile.vue'),
   },
   {
     path: '/upload/maprun',
     name: 'MapRun Results Import',
-    component: () => import('@/views/UploadMaprun'),
+    component: () => import('@/views/UploadMaprun.vue'),
   },
   {
     path: '/upload/result',
     name: 'User Submitted Results Form',
-    component: () => import('@/views/UploadResult'),
+    component: () => import('@/views/UploadResult.vue'),
   },
   {
     path: '/upload/:id',
     name: 'Upload Results (From Event Page)',
-    component: () => import('@/views/UploadFile'),
+    component: () => import('@/views/UploadFile.vue'),
   },
   {
     path: '/developers',
     name: 'Developers',
-    component: () => import('@/views/Developers'),
+    component: () => import('@/views/Developers.vue'),
   },
 ]
 const notFoundRoutes = [
   {
     path: '*',
     name: 'NotFound',
-    component: () => import('@/views/NotFound'),
+    component: () => import('@/views/NotFound.vue'),
   },
 ]
 

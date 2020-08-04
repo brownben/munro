@@ -5,7 +5,7 @@
 import axios from 'axios'
 
 import { mount } from '@vue/test-utils'
-import Upload from '@/views/UploadFile'
+import Upload from '@/views/UploadFile.vue'
 
 jest.mock('axios')
 

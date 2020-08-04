@@ -6,7 +6,7 @@ import axios from 'axios'
 import VueRouter from 'vue-router'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 
-import League from '@/views/LeagueHome'
+import League from '@/views/LeagueHome.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 import { sampleSingleEvent, sampleThreeEvents } from '@/tests/test data/events'
 

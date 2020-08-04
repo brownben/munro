@@ -27,8 +27,8 @@
 <script>
 import axios from 'axios'
 
-import EventOverviewCard from '@/components/cards/EventOverviewCard'
-const NotFound = () => import('@/views/NotFound')
+import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
+const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {
@@ -45,16 +45,14 @@ export default {
 
   watch: {
     // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    $route: async function () {
-      await this.getLeague()
-      this.getLeagueEvents()
+    $route: function () {
+      return this.getLeague().then(() => this.getLeagueEvents())
     },
   },
 
-  mounted: async function () {
+  mounted: function () {
     // Get details on load
-    await this.getLeague()
-    this.getLeagueEvents()
+    return this.getLeague().then(() => this.getLeagueEvents())
   },
 
   methods: {

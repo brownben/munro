@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import AppMenu from '@/components/Menu'
-import Messages from '@/components/Messages'
+import AppMenu from '@/components/Menu.vue'
+import Messages from '@/components/Messages.vue'
 
 export default {
   components: {

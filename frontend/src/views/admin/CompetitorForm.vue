@@ -44,11 +44,11 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import DropdownInput from '@/components/inputs/DropdownInput'
-import TextInput from '@/components/inputs/TextInput'
+import Layout from '@/components/Layout.vue'
+import DropdownInput from '@/components/inputs/DropdownInput.vue'
+import TextInput from '@/components/inputs/TextInput.vue'
 
-const NotFound = () => import('@/views/NotFound')
+const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {

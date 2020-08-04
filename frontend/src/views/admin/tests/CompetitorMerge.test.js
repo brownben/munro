@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { shallowMount } from '@vue/test-utils'
-import CompetitorMerge from '@/views/admin/CompetitorMerge'
+import CompetitorMerge from '@/views/admin/CompetitorMerge.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 
 jest.mock('axios')

@@ -1,5 +1,5 @@
 import { mount, shallowMount } from '@vue/test-utils'
-import ResultsCard from '@/components/cards/ResultOverviewCard'
+import ResultsCard from '@/components/cards/ResultOverviewCard.vue'
 
 import axios from 'axios'
 

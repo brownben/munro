@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Layout from '@/components/Layout'
+import Layout from '@/components/Layout.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(Layout)

@@ -27,8 +27,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import EventOverviewCard from '@/components/cards/EventOverviewCard'
+import Layout from '@/components/Layout.vue'
+import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
 
 export default {
   components: {

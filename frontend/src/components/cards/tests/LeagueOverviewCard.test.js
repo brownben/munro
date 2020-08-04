@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard'
+import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard.vue'
 
 import axios from 'axios'
 

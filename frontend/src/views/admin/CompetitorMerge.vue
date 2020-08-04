@@ -33,13 +33,7 @@
         :list="
           competitorsForLeague.map(
             (competitor) =>
-              competitor.id +
-              ' - ' +
-              competitor.name +
-              ' - ' +
-              competitor.ageClass +
-              ' - ' +
-              competitor.club
+              `${competitor.id} - ${competitor.name} - ${competitor.ageClass} - ${competitor.club}`
           )
         "
         :include-blank="true"
@@ -51,13 +45,7 @@
         :list="
           competitorsForLeague.map(
             (competitor) =>
-              competitor.id +
-              ' - ' +
-              competitor.name +
-              ' - ' +
-              competitor.ageClass +
-              ' - ' +
-              competitor.club
+              `${competitor.id} - ${competitor.name} - ${competitor.ageClass} - ${competitor.club}`
           )
         "
         :include-blank="true"
@@ -72,8 +60,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import DropdownInput from '@/components/inputs/DropdownInput'
+import Layout from '@/components/Layout.vue'
+import DropdownInput from '@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {

@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import Login from '@/views/admin/Login'
+import Login from '@/views/admin/Login.vue'
 import auth from '@/authentication'
 
 auth.login = jest.fn()

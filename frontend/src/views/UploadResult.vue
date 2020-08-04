@@ -49,9 +49,9 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import TextInput from '@/components/inputs/TextInput'
-import DropdownInput from '@/components/inputs/DropdownInput'
+import Layout from '@/components/Layout.vue'
+import TextInput from '@/components/inputs/TextInput.vue'
+import DropdownInput from '@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {
@@ -84,9 +84,8 @@ export default {
     },
   },
 
-  mounted: async function () {
-    await this.getEvents()
-    await this.getLeagues()
+  mounted: function () {
+    return this.getEvents().then(() => this.getLeagues())
   },
 
   methods: {

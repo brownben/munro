@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import UpDownArrows from '@/components/UpDownArrows'
+import UpDownArrows from '@/components/UpDownArrows.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(UpDownArrows)

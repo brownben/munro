@@ -3,7 +3,7 @@
 */
 
 import { shallowMount } from '@vue/test-utils'
-import App from '@/App'
+import App from '@/App.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = shallowMount(App, {

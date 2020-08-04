@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import HomeDeveloperSection from '@/components/cards/HomeDeveloperSection'
+import HomeDeveloperSection from '@/components/cards/HomeDeveloperSection.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(HomeDeveloperSection, { stubs: ['router-link'] })

@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import CheckboxInput from '@/components/inputs/CheckboxInput'
+import CheckboxInput from '@/components/inputs/CheckboxInput.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(CheckboxInput)

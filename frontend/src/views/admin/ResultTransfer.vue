@@ -68,8 +68,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import DropdownInput from '@/components/inputs/DropdownInput'
+import Layout from '@/components/Layout.vue'
+import DropdownInput from '@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {

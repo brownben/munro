@@ -3,7 +3,7 @@
 */
 
 import { mount } from '@vue/test-utils'
-import NotFound from '@/views/NotFound'
+import NotFound from '@/views/NotFound.vue'
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(NotFound, {

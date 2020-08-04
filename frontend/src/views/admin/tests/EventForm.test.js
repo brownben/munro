@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 import { mount } from '@vue/test-utils'
-import EventForm from '@/views/admin/EventForm'
+import EventForm from '@/views/admin/EventForm.vue'
 import { sampleSingleEvent } from '@/tests/test data/events'
 
 jest.mock('axios')

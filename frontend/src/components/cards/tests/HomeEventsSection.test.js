@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 import { mount, shallowMount } from '@vue/test-utils'
-import HomeEventsSection from '@/components/cards/HomeEventsSection'
+import HomeEventsSection from '@/components/cards/HomeEventsSection.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 
 jest.mock('axios')

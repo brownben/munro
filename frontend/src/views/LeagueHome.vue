@@ -136,10 +136,10 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout'
-import EventOverviewCard from '@/components/cards/EventOverviewCard'
+import Layout from '@/components/Layout.vue'
+import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
 
-const NotFound = () => import('@/views/NotFound')
+const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {
@@ -169,9 +169,8 @@ export default {
   },
 
   methods: {
-    refreshDetails: async function () {
-      await this.getLeague()
-      this.getLeagueEvents()
+    refreshDetails: function () {
+      return this.getLeague().then(() => this.getLeagueEvents())
     },
 
     scoringMethodShorthandToFull: (value) => {

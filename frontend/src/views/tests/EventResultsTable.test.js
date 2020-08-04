@@ -2,7 +2,7 @@ import axios from 'axios'
 import VueRouter from 'vue-router'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 
-import ResultsTable from '@/views/EventResultsTable'
+import ResultsTable from '@/views/EventResultsTable.vue'
 import { sampleThreeEvents } from '@/tests/test data/events'
 import {
   sampleSingleResult,
@@ -122,7 +122,7 @@ test('Results With Age Class Split', () => {
 
 test('Refresh Data on Route Change', async () => {
   const mockGetResults = jest.fn().mockResolvedValue()
-  const mockGetEvent = jest.fn()
+  const mockGetEvent = jest.fn().mockResolvedValue()
   const localVue = createLocalVue()
   localVue.use(VueRouter)
   const router = new VueRouter({ routes: [{ path: '/' }, { path: '/other' }] })
