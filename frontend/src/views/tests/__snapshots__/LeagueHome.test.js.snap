@@ -9,14 +9,12 @@ exports[`Renders Correctly 1`] = `
     url="https://munro-leagues.herokuapp.com/leagues/"
   />
    
-  <layout-stub
-    title=""
-  >
-    <div
-      class="col-span-2 text-left"
+  <div>
+    <section
+      class="w-10/12 pt-2 pb-8 mx-auto md:w-3/4 xl:w-2/3"
     >
       <h1
-        class="mt-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+        class="mx-auto text-3xl font-bold md:text-35xl font-heading md:mb-0 text-main-900"
       >
         
         Sprintelope
@@ -25,19 +23,23 @@ exports[`Renders Correctly 1`] = `
        
       <!---->
        
-      <p>
+      <p
+        class="leading-6 text-opacity-75 text-main-900"
+      >
         
         There are normally
         2 courses -
         
         <span
-          class="md:text-lg font-heading"
+          class="md:text-lg font-heading text-main-900"
         >
           Long and Short
         </span>
       </p>
        
-      <p>
+      <p
+        class="leading-6 text-opacity-75 text-main-900"
+      >
         <span
           class="md:text-lg font-heading"
         >
@@ -48,12 +50,14 @@ exports[`Renders Correctly 1`] = `
       
       </p>
        
-      <p>
+      <p
+        class="leading-6 text-opacity-75 text-main-900"
+      >
         
         The scoring for the league is calculated using a
         
         <span
-          class="md:text-lg font-heading"
+          class="md:text-lg font-heading text-main-900"
         >
           Position Based System (100 Max)
         </span>
@@ -65,7 +69,7 @@ exports[`Renders Correctly 1`] = `
           Your
           
           <span
-            class="md:text-lg font-heading"
+            class="md:text-lg font-heading text-main-900"
           >
             best 2 scores
           </span>
@@ -80,7 +84,7 @@ exports[`Renders Correctly 1`] = `
       <!---->
        
       <p
-        class="mt-2"
+        class="mt-2 leading-6 text-opacity-75 text-main-900"
       >
         
         More information can be found at:
@@ -94,21 +98,23 @@ exports[`Renders Correctly 1`] = `
           https://en-gb.facebook.com/sprintelope/
         </a>
       </p>
-    </div>
+    </section>
      
     <!---->
      
-    <div
-      class="col-span-2 card-color"
+    <section
+      class="w-full col-span-3 pt-5 pb-6 text-center text-white bg-main-500"
     >
       <h2
-        class="font-bold text-25xl font-heading"
+        class="text-2xl font-bold font-heading"
       >
+        
         League Results
+      
       </h2>
        
       <div
-        class="w-full sm:mt-2"
+        class="w-10/12 mx-auto sm:mt-2"
       >
         <router-link-stub
           class="button-white"
@@ -123,24 +129,48 @@ exports[`Renders Correctly 1`] = `
           Short
         </router-link-stub>
       </div>
-    </div>
+    </section>
      
-    <eventoverviewcard-stub
-      auth="[object Object]"
-      event="[object Object]"
-      league="[object Object]"
-    />
-    <eventoverviewcard-stub
-      auth="[object Object]"
-      event="[object Object]"
-      league="[object Object]"
-    />
-    <eventoverviewcard-stub
-      auth="[object Object]"
-      event="[object Object]"
-      league="[object Object]"
-    />
-  </layout-stub>
+    <section
+      class="w-full pt-6 pb-12 bg-gray-100 border-t md:pt-8 border-main-100"
+    >
+      <div
+        class="flex items-center justify-between w-10/12 mx-auto mb-6 md:w-3/4 xl:w-2/3"
+      >
+        <h2
+          class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
+        >
+          
+          Events
+        
+        </h2>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="grid w-10/12 gap-8 mx-auto md:w-3/4 lg:w-2/3"
+      >
+        <eventoverviewcard-stub
+          auth="[object Object]"
+          event="[object Object]"
+          league="[object Object]"
+        />
+        <eventoverviewcard-stub
+          auth="[object Object]"
+          event="[object Object]"
+          league="[object Object]"
+        />
+        <eventoverviewcard-stub
+          auth="[object Object]"
+          event="[object Object]"
+          league="[object Object]"
+        />
+      </div>
+    </section>
+     
+    <appfooter-stub />
+  </div>
    
   <!---->
 </div>

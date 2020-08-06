@@ -220,7 +220,7 @@ export default {
   }
 
   & td {
-    @apply py-2 px-1 font-body font-light;
+    @apply py-2 px-1 font-sans font-light;
   }
 
   & th {

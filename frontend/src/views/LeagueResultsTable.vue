@@ -181,7 +181,9 @@
                       ),
                       bold:
                         result.types &&
-                        result.types[eventsWithResults.indexOf(event)] !== '',
+                        ['manual', 'max', 'average'].includes(
+                          result.types[eventsWithResults.indexOf(event)]
+                        ),
                     }"
                     >{{ result.points[eventsWithResults.indexOf(event)] }}</span
                   >
@@ -480,7 +482,7 @@ export default {
   }
 
   & td {
-    @apply py-2 text-center px-1 font-body font-light;
+    @apply py-2 text-center px-1 font-sans font-light;
 
     &.name {
       @apply py-1;

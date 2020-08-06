@@ -2,11 +2,11 @@
 
 exports[`Renders Correctly - Desktop 1`] = `
 <header
-  class="w-full select-none h-13"
+  class="w-full h-12 select-none"
   id="menu"
 >
   <h1
-    class="inline-block w-full h-12 text-4xl text-center md:w-auto font-heading text-main md:mx-8"
+    class="inline-block w-full h-12 text-4xl text-center leading-12 md:text-35xl md:w-auto font-heading text-main md:mx-8"
   >
     <router-link-stub
       to="/"
@@ -30,7 +30,7 @@ exports[`Renders Correctly - Desktop 1`] = `
   </svg>
    
   <nav
-    class="relative z-50 flex flex-col justify-center w-full text-lg font-normal bg-white text-main h-screen--13 md:mr-2 md:h-12 md:float-right top--13 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block mt-13 md:mt-0"
+    class="relative z-50 flex flex-col justify-center w-full mt-12 text-lg font-normal bg-white text-main h-screen--12 md:mr-2 md:h-12 md:float-right -top-12 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block md:mt-0"
     name="shrink"
   >
     <router-link-stub
@@ -61,11 +61,11 @@ exports[`Renders Correctly - Desktop 1`] = `
 
 exports[`Renders Correctly - Desktop 2`] = `
 <header
-  class="w-full select-none h-13"
+  class="w-full h-12 select-none"
   id="menu"
 >
   <h1
-    class="inline-block w-full h-12 text-4xl text-center md:w-auto font-heading text-main md:mx-8"
+    class="inline-block w-full h-12 text-4xl text-center leading-12 md:text-35xl md:w-auto font-heading text-main md:mx-8"
   >
     <router-link-stub
       to="/"
@@ -89,7 +89,7 @@ exports[`Renders Correctly - Desktop 2`] = `
   </svg>
    
   <nav
-    class="relative z-50 flex flex-col justify-center w-full text-lg font-normal bg-white text-main h-screen--13 md:mr-2 md:h-12 md:float-right top--13 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block mt-13 md:mt-0"
+    class="relative z-50 flex flex-col justify-center w-full mt-12 text-lg font-normal bg-white text-main h-screen--12 md:mr-2 md:h-12 md:float-right -top-12 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block md:mt-0"
     name="shrink"
   >
     <router-link-stub
@@ -120,11 +120,11 @@ exports[`Renders Correctly - Desktop 2`] = `
 
 exports[`Renders Correctly - Mobile 1`] = `
 <header
-  class="w-full select-none h-13"
+  class="w-full h-12 select-none"
   id="menu"
 >
   <h1
-    class="inline-block w-full h-12 text-4xl text-center md:w-auto font-heading text-main md:mx-8"
+    class="inline-block w-full h-12 text-4xl text-center leading-12 md:text-35xl md:w-auto font-heading text-main md:mx-8"
   >
     <router-link-stub
       to="/"
@@ -148,7 +148,7 @@ exports[`Renders Correctly - Mobile 1`] = `
   </svg>
    
   <nav
-    class="relative z-50 flex flex-col justify-center w-full text-lg font-normal bg-white text-main h-screen--13 md:mr-2 md:h-12 md:float-right top--13 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block mt-13 md:mt-0 smallWindow"
+    class="relative z-50 flex flex-col justify-center w-full mt-12 text-lg font-normal bg-white text-main h-screen--12 md:mr-2 md:h-12 md:float-right -top-12 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block md:mt-0 smallWindow"
     name="shrink"
     style="display: none;"
   >

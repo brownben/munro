@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       heading: ['Josefin Sans', 'sans-serif'],
-      body: [
+      sans: [
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',
@@ -69,6 +69,7 @@ module.exports = {
       colors: {
         gray: {
           '100': '#fbf8fc',
+          '200': '#f5edf7',
         },
         main: {
           default: '#B80BDA',

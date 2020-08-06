@@ -6,9 +6,9 @@
 -->
 
 <template>
-  <header id="menu" class="w-full select-none h-13">
+  <header id="menu" class="w-full h-12 select-none">
     <h1
-      class="inline-block w-full h-12 text-4xl text-center md:w-auto font-heading text-main md:mx-8"
+      class="inline-block w-full h-12 text-4xl text-center leading-12 md:text-35xl md:w-auto font-heading text-main md:mx-8"
     >
       <router-link to="/">Munro</router-link>
     </h1>
@@ -31,7 +31,7 @@
         :class="{
           smallWindow: smallWindow,
         }"
-        class="relative z-50 flex flex-col justify-center w-full text-lg font-normal bg-white text-main h-screen--13 md:mr-2 md:h-12 md:float-right top--13 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block mt-13 md:mt-0"
+        class="relative z-50 flex flex-col justify-center w-full mt-12 text-lg font-normal bg-white text-main h-screen--12 md:mr-2 md:h-12 md:float-right -top-12 md:top-0 md:bg-transparent align-center md:w-auto md:inline-block md:mt-0"
       >
         <router-link to="/leagues" class="menu-item">Leagues</router-link>
         <router-link to="/latest-results" class="menu-item"
@@ -80,20 +80,12 @@ export default {
 }
 </script>
 <style lang="postcss">
-.h-13 {
-  height: 3.25rem;
+.-top-12 {
+  top: -3rem;
 }
 
-.mt-13 {
-  margin-top: 3.25rem;
-}
-
-.top--13 {
-  top: -3.25rem;
-}
-
-.h-screen--13 {
-  height: calc(100vh - 3.25rem);
+.h-screen--12 {
+  height: calc(100vh - 3rem);
 }
 
 .menu-item {

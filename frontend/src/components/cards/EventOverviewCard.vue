@@ -1,39 +1,51 @@
 <template>
   <section
-    class="flex flex-col items-center justify-between col-span-2 pt-4 text-center bg-white shadow-md rounded-shape-xl"
+    class="flex flex-col items-center justify-between col-span-2 pt-5 text-center bg-white shadow-md rounded-shape-xl"
   >
-    <div class="w-full px-4 md:px-6 lg:px-8">
+    <div class="w-full px-5 md:px-6 lg:px-8">
       <h3
         v-if="showLeagueName"
         class="text-xl font-bold leading-6 font-heading text-main-700"
       >
         {{ event.league }}
       </h3>
-      <h2 class="text-3xl font-bold font-heading text-main-900">
+      <h2
+        class="mt-2 mb-1 text-3xl font-bold leading-8 font-heading text-main-900"
+      >
         {{ event.name }}
       </h2>
-      <h4 class="text-lg text-opacity-75 font-heading text-main-900">
-        <template v-if="event.date">
+      <h4
+        class="mt-1 text-lg text-opacity-75 font-heading text-main-900 last:mb-4 md:mt-0"
+      >
+        <span v-if="event.date" class="leading-4">
           {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
             event.date.split('-')[0]
           }}
-        </template>
-        <template v-if="event.organiser && event.date"> - </template>
-        <template v-if="event.organiser"
-          >Organised By {{ event.organiser }}</template
+        </span>
+        <span
+          v-if="event.organiser && event.date"
+          class="hidden mx-1 md:inline-block"
+          >-</span
         >
+        <span
+          v-if="event.organiser"
+          class="block text-base leading-4 md:inline-block md:text-lg"
+        >
+          Organised By {{ event.organiser }}
+        </span>
       </h4>
 
       <div
-        class="mb-2"
+        v-if="event.moreInformation || event.website"
+        class="mt-3 mb-2 md:mt-0"
         :class="{
-          'py-2': event.moreInformation || event.website,
+          'py-3': event.moreInformation || event.website,
         }"
       >
-        <p v-if="event.moreInformation" class="mb-1">
+        <p v-if="event.moreInformation" class="text-opacity-75 text-main-900">
           {{ event.moreInformation }}
         </p>
-        <p v-if="event.website" class="mt-1">
+        <p v-if="event.website" class="mt-1 text-opacity-75 text-main-900">
           More Information can be found on the
           <a
             :href="event.website"
@@ -45,7 +57,15 @@
         </p>
       </div>
 
-      <div class="w-full pb-4 mt-2">
+      <div
+        v-if="
+          event.resultUploaded ||
+          event.results ||
+          event.winsplits ||
+          event.routegadget
+        "
+        class="w-full pb-4 mt-2"
+      >
         <router-link
           v-if="event.resultUploaded && league.dynamicEventResults"
           :to="`/events/${event.id}/results`"
@@ -80,18 +100,14 @@
     </div>
     <div
       v-if="auth.user"
-      class="w-full px-4 pt-4 pb-4 mt-2 bg-gray-100 shadow md:px-6 rounded-shape-xl"
+      class="w-full px-4 pt-4 pb-4 mt-2 bg-main-50 md:px-6 rounded-shape-xl"
     >
-      <h4 class="text-2xl font-bold text-center text-main-800 font-heading">
-        Admin Actions
-      </h4>
-
-      <p class="mt-2">
-        <b class="mr-1 text-main-800">Event ID:</b>
+      <p class="mx-2 mt-2">
+        <b class="mr-1 select-none text-main-800">Event ID:</b>
         {{ event.id }}
       </p>
-      <p v-if="event.uploadKey" class="mb-2">
-        <b class="mr-1 text-main-800">Event Upload Key:</b>
+      <p v-if="event.uploadKey" class="mb-3">
+        <b class="mr-1 select-none text-main-800">Event Upload Key:</b>
         {{ event.uploadKey }}
       </p>
 
@@ -142,3 +158,8 @@ export default {
   },
 }
 </script>
+<style lang="postcss">
+.last\:mb-4:last-child {
+  @apply mb-4;
+}
+</style>

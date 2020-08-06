@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="py-4 text-center border-t border-opacity-25 md:py-8 xl:py-10 font-body border-main-200"
+    class="py-4 font-sans text-center bg-white border-t md:py-8 xl:py-10 border-main-100"
   >
     <div class="w-full mb-6 text-center">
       <a

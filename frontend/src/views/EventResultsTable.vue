@@ -30,7 +30,7 @@
         class="col-span-2 card"
       >
         <h3 class="text-3xl font-bold font-heading">Courses</h3>
-        <div>
+        <div class="w-full">
           <button
             v-for="course in coursesInResults"
             :key="course"
@@ -370,7 +370,7 @@ export default {
   }
 
   & td {
-    @apply py-2 text-center px-1 font-body font-light;
+    @apply py-2 text-center px-1 font-sans font-light;
 
     &.name {
       @apply py-1;
