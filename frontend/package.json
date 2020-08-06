@@ -38,7 +38,7 @@
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-headful": "^2.1.0",
-    "vue-router": "^3.3.4"
+    "vue-router": "^3.4.1"
   },
   "devDependencies": {
     "@vue/cli": "^4.4.6",
