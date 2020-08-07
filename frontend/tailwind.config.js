@@ -1,31 +1,13 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: ['./src/**/*.html', './src/**/*.vue'],
 
   theme: {
     fontFamily: {
       heading: ['Josefin Sans', 'sans-serif'],
-      sans: [
-        'system-ui',
-        '-apple-system',
-        'BlinkMacSystemFont',
-        'Segoe UI',
-        'Roboto',
-        'Oxygen',
-        'Ubuntu',
-        'Cantarell',
-        'Fira Sans',
-        'Droid Sans',
-        'Helvetica Neue',
-        'sans-serif',
-      ],
-      mono: [
-        'Menlo',
-        'Monaco',
-        ' Consolas',
-        'Liberation Mono',
-        'Courier New',
-        'monospace',
-      ],
+      sans: defaultTheme.fontFamily.sans,
+      mono: defaultTheme.fontFamily.mono,
     },
 
     extend: {
@@ -39,7 +21,7 @@ module.exports = {
       },
 
       inset: {
-        '-7': '-1.75rem',
+        '-5': '-1.25rem',
       },
 
       maxHeight: {
@@ -47,12 +29,7 @@ module.exports = {
       },
 
       fontSize: {
-        '25xl': '1.65rem',
-        '35xl': '2rem',
-        '45xl': '2.75rem',
-        '55xl': '3.5rem',
         '7xl': '4.5rem',
-        '8xl': '5rem',
       },
 
       borderRadius: {
@@ -70,7 +47,16 @@ module.exports = {
         gray: {
           '100': '#fbf8fc',
           '200': '#f5edf7',
+
+          '300': 'hsl(290, 12.5%, 84.3%)',
+          '400': 'hsl(290, 11%, 66.1%)',
+          '500': 'hsl(290, 8.9%, 46.1%)',
+          '600': 'hsl(290, 13.8%, 34.1%)',
+          '700': 'hsl(290, 19.1%, 26.7%)',
+          '800': 'hsl(290, 26%, 19.6%)',
+          '900': 'hsl(290, 35.3%, 13.3%)',
         },
+
         main: {
           default: '#B80BDA',
           '1': '#fefaff',

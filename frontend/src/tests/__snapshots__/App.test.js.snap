@@ -8,14 +8,12 @@ exports[`Renders Correctly 1`] = `
   <appmenu-stub />
    
   <div
-    class="flex-grow"
+    class="flex flex-col flex-grow"
     id="content"
   >
     <messages-stub />
      
     <router-view-stub
-      class=""
-      id="router-view"
       mode="out-in"
       name="fade"
     />

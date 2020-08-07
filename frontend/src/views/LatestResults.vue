@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <Layout title="Latest Results">
+  <Layout title="Latest Results" :footer="events && events.length > 0">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },

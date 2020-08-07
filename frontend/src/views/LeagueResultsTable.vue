@@ -8,7 +8,7 @@
 -->
 
 <template>
-  <div class="w-full px-4 pt-2 md:px-8 lg:px-16 xl:px-20">
+  <Layout class="w-full" wide>
     <vue-headful
       :title="`Munro - ${$route.params.name} - ${$route.params.course} Results`"
       :description="`Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -17,191 +17,201 @@
         meta: { name: 'robots', content: 'all' },
       }"
     />
-    <h1
-      class="font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
-    >
-      <router-link
-        :to="'/leagues/' + $route.params.name"
-        class="link text-main-700"
+    <template #title>
+      <h1 class="text-3xl font-bold leading-tight font-heading">
+        <router-link
+          :to="'/leagues/' + $route.params.name"
+          class="text-2xl md:text-3xl"
+        >
+          {{ $route.params.name && $route.params.name.trim() }}
+        </router-link>
+        <span class="hidden ml-2 mr-3 md:inline-block">-</span>
+        <span class="block text-3xl md:inline-block">
+          {{ $route.params.course }}</span
+        >
+      </h1>
+    </template>
+
+    <template #white>
+      <filter-menu class="col-span-2" @changed="filterChanged" />
+    </template>
+
+    <template #fullWidth>
+      <div
+        v-show="filteredResults && filteredResults.length > 0"
+        class="w-full col-span-2 px-6 mx-auto lg:px-8"
+        :class="{
+          'max-w-screen-xl': eventsWithResults.length <= 10,
+        }"
       >
-        {{ $route.params.name && $route.params.name.trim() }}
-      </router-link>
-      <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-      <span class="block text-3xl md:inline-block">
-        {{ $route.params.course }}</span
-      >
-    </h1>
-
-    <filter-menu class="mt-3 mb-6" @changed="filterChanged" />
-
-    <div
-      v-show="filteredResults && filteredResults.length > 0"
-      class="table-container"
-    >
-      <table class="table">
-        <thead>
-          <tr>
-            <th class="position" @click="sortBy('position')">
-              <p>Pos.</p>
-              <up-down-arrow
-                :ascending="ascendingSort"
-                :active="sortedBy === 'position'"
-              />
-            </th>
-            <th class="name" @click="sortBy('name')">
-              <p>Name</p>
-              <up-down-arrow
-                :ascending="ascendingSort"
-                :active="sortedBy === 'name'"
-              />
-            </th>
-            <th class="ageClass" @click="sortBy('age')">
-              <p>Class</p>
-              <up-down-arrow
-                :ascending="ascendingSort"
-                :active="sortedBy === 'age'"
-              />
-            </th>
-            <th class="club" @click="sortBy('club')">
-              <p>Club</p>
-              <up-down-arrow
-                :ascending="ascendingSort"
-                :active="sortedBy === 'club'"
-              />
-            </th>
-            <th class="totalPoints" @click="sortBy('totalPoints')">
-              <p>Points</p>
-              <up-down-arrow
-                :ascending="ascendingSort"
-                :active="sortedBy === 'totalPoints'"
-              />
-            </th>
-
-            <template v-if="!smallWindow">
-              <th
-                v-for="event of eventsWithResults"
-                :key="eventsWithResults.indexOf(event)"
-                class="relative points"
-                @click="sortBy('points-' + eventsWithResults.indexOf(event))"
-              >
-                <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
-                <span>{{ event.name }}</span>
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="position" @click="sortBy('position')">
+                <p>Pos.</p>
                 <up-down-arrow
                   :ascending="ascendingSort"
-                  :active="
-                    sortedBy === 'points-' + eventsWithResults.indexOf(event)
-                  "
-                  class="points-arrow"
+                  :active="sortedBy === 'position'"
                 />
               </th>
-            </template>
-            <td v-else />
-          </tr>
-        </thead>
-        <tbody is="transition-group" name="fade">
-          <template v-for="result of filteredResults">
-            <tr
-              :key="result.name"
-              :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
-              class="normal-table-row"
-              @click="toggleRow(filteredResults.indexOf(result))"
-            >
-              <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
-
-              <td class="position">{{ result.position }}</td>
-              <td class="name">
-                <span class="block font-normal sm:font-light">
-                  {{ result.name }}
-                </span>
-                <span class="block text-xs sm:hidden">
-                  <span class="mr-4">{{ result.ageClass }}</span>
-                  <span>{{ result.club }}</span>
-                </span>
-              </td>
-              <td class="ageClass">{{ result.ageClass }}</td>
-              <td class="club">{{ result.club }}</td>
-              <td class="totalPoints">{{ result.totalPoints }}</td>
+              <th class="name" @click="sortBy('name')">
+                <p>Name</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'name'"
+                />
+              </th>
+              <th class="ageClass" @click="sortBy('age')">
+                <p>Class</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'age'"
+                />
+              </th>
+              <th class="club" @click="sortBy('club')">
+                <p>Club</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'club'"
+                />
+              </th>
+              <th class="totalPoints" @click="sortBy('totalPoints')">
+                <p>Points</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'totalPoints'"
+                />
+              </th>
 
               <template v-if="!smallWindow">
-                <td
+                <th
                   v-for="event of eventsWithResults"
                   :key="eventsWithResults.indexOf(event)"
-                  :class="{
-                    strikethrough: !result.largestPoints.includes(
-                      eventsWithResults.indexOf(event)
-                    ),
-                    bold:
-                      result.types &&
-                      ['max', 'average', 'manual'].includes(
-                        result.types[eventsWithResults.indexOf(event)]
-                      ),
-                  }"
-                  class="points"
+                  class="relative points"
+                  @click="sortBy('points-' + eventsWithResults.indexOf(event))"
                 >
-                  {{ result.points[eventsWithResults.indexOf(event)] }}
-                </td>
+                  <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
+                  <span>{{ event.name }}</span>
+                  <up-down-arrow
+                    :ascending="ascendingSort"
+                    :active="
+                      sortedBy === 'points-' + eventsWithResults.indexOf(event)
+                    "
+                    class="points-arrow"
+                  />
+                </th>
               </template>
-              <td v-else class="arrow">
-                <svg
-                  :class="{
-                    'rotate-180': openedRows.includes(
-                      filteredResults.indexOf(result)
-                    ),
-                  }"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  class="transition-all duration-300 transform fill-current text-main-700"
-                >
-                  <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-                  <path d="M0 0h24v24H0z" fill="none" />
-                </svg>
-              </td>
+              <td v-else />
             </tr>
-            <tr
-              v-if="
-                smallWindow &&
-                openedRows.includes(filteredResults.indexOf(result))
-              "
-              :key="result.name + '-mobile'"
-              :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
-              class="mobile-table-expansion"
-            >
-              <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
-              <td colspan="100%">
-                <p
-                  v-for="event of eventsWithResults"
-                  :key="eventsWithResults.indexOf(event)"
-                >
-                  {{ event.name }}:
-                  <span
+          </thead>
+          <tbody is="transition-group" name="fade">
+            <template v-for="result of filteredResults">
+              <tr
+                :key="result.name"
+                class="normal-table-row"
+                :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
+                @click="toggleRow(filteredResults.indexOf(result))"
+              >
+                <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
+
+                <td class="position">{{ result.position }}</td>
+                <td class="name">
+                  <span class="block font-normal sm:font-light">
+                    {{ result.name }}
+                  </span>
+                  <span class="block text-xs sm:hidden">
+                    <span class="mr-4">{{ result.ageClass }}</span>
+                    <span>{{ result.club }}</span>
+                  </span>
+                </td>
+                <td class="ageClass">{{ result.ageClass }}</td>
+                <td class="club">{{ result.club }}</td>
+                <td class="totalPoints">{{ result.totalPoints }}</td>
+
+                <template v-if="!smallWindow">
+                  <td
+                    v-for="event of eventsWithResults"
+                    :key="eventsWithResults.indexOf(event)"
                     :class="{
                       strikethrough: !result.largestPoints.includes(
                         eventsWithResults.indexOf(event)
                       ),
                       bold:
                         result.types &&
-                        ['manual', 'max', 'average'].includes(
+                        ['max', 'average', 'manual'].includes(
                           result.types[eventsWithResults.indexOf(event)]
                         ),
                     }"
-                    >{{ result.points[eventsWithResults.indexOf(event)] }}</span
+                    class="points"
                   >
-                </p>
-              </td>
-            </tr>
-          </template>
-        </tbody>
-      </table>
-    </div>
+                    {{ result.points[eventsWithResults.indexOf(event)] }}
+                  </td>
+                </template>
+                <td v-else class="arrow">
+                  <svg
+                    :class="{
+                      'rotate-180': openedRows.includes(
+                        filteredResults.indexOf(result)
+                      ),
+                    }"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    class="transition-all duration-300 transform fill-current text-main-700"
+                  >
+                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                    <path d="M0 0h24v24H0z" fill="none" />
+                  </svg>
+                </td>
+              </tr>
+              <tr
+                v-if="
+                  smallWindow &&
+                  openedRows.includes(filteredResults.indexOf(result))
+                "
+                :key="result.name + '-mobile'"
+                :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
+                class="mobile-table-expansion"
+              >
+                <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
+                <td colspan="100%">
+                  <p
+                    v-for="event of eventsWithResults"
+                    :key="eventsWithResults.indexOf(event)"
+                  >
+                    {{ event.name }}:
+                    <span
+                      :class="{
+                        strikethrough: !result.largestPoints.includes(
+                          eventsWithResults.indexOf(event)
+                        ),
+                        bold:
+                          result.types &&
+                          ['manual', 'max', 'average'].includes(
+                            result.types[eventsWithResults.indexOf(event)]
+                          ),
+                      }"
+                      >{{
+                        result.points[eventsWithResults.indexOf(event)]
+                      }}</span
+                    >
+                  </p>
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
 
-    <transition name="fade">
-      <NoResultsCard
-        v-if="!loading && (!found || filteredResults.length === 0)"
-      />
-    </transition>
+      <transition name="fade">
+        <NoResultsCard
+          v-if="!loading && (!found || filteredResults.length === 0)"
+          class="col-span-2"
+        />
+      </transition>
+    </template>
 
-    <div v-if="otherCourses.length > 0" class="mx-1 my-6 card">
+    <div v-if="otherCourses.length > 0" class="col-span-2 card">
       <h2 class="text-2xl font-bold font-heading">Results for Other Courses</h2>
       <div>
         <router-link
@@ -213,12 +223,13 @@
         >
       </div>
     </div>
-  </div>
+  </Layout>
 </template>
 
 <script>
 import axios from 'axios'
 
+import Layout from '@/components/Layout.vue'
 import FilterMenu from '@/components/FilterMenu.vue'
 import UpDownArrow from '@/components/UpDownArrows.vue'
 
@@ -226,6 +237,7 @@ const NoResultsCard = () => import('@/components/cards/NoResultsCard.vue')
 
 export default {
   components: {
+    Layout,
     FilterMenu,
     UpDownArrow,
     NoResultsCard,
@@ -502,14 +514,18 @@ export default {
     }
 
     & span {
-      margin-left: -110%;
-      opacity: 0;
-      transition: 0.3s;
-      @apply absolute shadow font-heading bg-white z-40 py-1 px-2 mt-6 text-center;
+      width: calc(100% + 3.5rem);
+      left: -1.75rem;
+
+      @apply absolute block z-40;
+      @apply opacity-0 transition duration-300;
+      @apply py-2 px-2;
+      @apply font-sans text-sm leading-tight text-center break-words whitespace-normal;
+      @apply shadow bg-white rounded-shape;
     }
 
     &:hover > span {
-      opacity: 1;
+      @apply opacity-100;
     }
   }
 }

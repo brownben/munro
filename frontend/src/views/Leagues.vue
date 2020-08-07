@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <Layout title="Leagues">
+  <Layout title="Leagues" :footer="leagues && leagues.length > 0">
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },

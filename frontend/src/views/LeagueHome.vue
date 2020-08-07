@@ -7,7 +7,7 @@
 -->
 
 <template>
-  <div>
+  <Layout :footer="league.name && events && events.length > 0" :white="false">
     <vue-headful
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -17,43 +17,33 @@
       }"
     />
 
-    <div v-if="league && league.name">
-      <section class="w-10/12 pt-2 pb-8 mx-auto md:w-3/4 xl:w-2/3">
-        <h1
-          class="mx-auto text-3xl font-bold md:text-35xl font-heading md:mb-0 text-main-900"
-        >
-          {{ league.name }}
-        </h1>
-        <h2
-          v-if="league.description"
-          class="mb-4 text-lg text-opacity-75 font-heading text-main-900"
-        >
-          {{ league.description }}
-        </h2>
+    <template #title>
+      <h1 class="text-3xl font-bold leading-tight font-heading">
+        {{ league.name }}
+      </h1>
+      <h2 v-if="league.description" class="mt-2 text-lg font-heading">
+        {{ league.description }}
+      </h2>
+    </template>
 
-        <p
-          v-if="league.courses"
-          class="leading-6 text-opacity-75 text-main-900"
-        >
+    <template #white>
+      <section class="w-full text-left bg-white">
+        <p v-if="league.courses" class="w-full leading-6 text-gray-600">
           There are normally
           {{ league.courses.length }} courses -
-          <span class="md:text-lg font-heading text-main-900">{{
+          <span class="text-gray-900 md:text-lg font-heading">{{
             naturalJoin(league.courses)
           }}</span>
         </p>
-        <p
-          v-if="league.coordinator"
-          class="leading-6 text-opacity-75 text-main-900"
-        >
-          <span class="md:text-lg font-heading">{{ league.coordinator }}</span>
+        <p v-if="league.coordinator" class="w-full leading-6 text-gray-600">
+          <span class="text-gray-900 md:text-lg font-heading">{{
+            league.coordinator
+          }}</span>
           coordinates the league.
         </p>
-        <p
-          v-if="league.scoringMethod"
-          class="leading-6 text-opacity-75 text-main-900"
-        >
+        <p v-if="league.scoringMethod" class="w-full leading-6 text-gray-600">
           The scoring for the league is calculated using a
-          <span class="md:text-lg font-heading text-main-900">{{
+          <span class="text-gray-900 md:text-lg font-heading">{{
             scoringMethodShorthandToFull(league.scoringMethod)
           }}</span>
 
@@ -62,7 +52,7 @@
             class="block"
           >
             Your
-            <span class="md:text-lg font-heading text-main-900"
+            <span class="text-gray-900 md:text-lg font-heading"
               >best {{ league.numberOfCountingEvents }} scores</span
             >
             from all
@@ -73,7 +63,7 @@
 
         <p
           v-if="league.moreInformation"
-          class="my-2 leading-6 text-opacity-75 text-main-900"
+          class="w-full my-2 leading-6 text-gray-600"
         >
           <span
             v-for="line of league.moreInformation.split('|')"
@@ -84,10 +74,7 @@
           </span>
         </p>
 
-        <p
-          v-if="league.website"
-          class="mt-2 leading-6 text-opacity-75 text-main-900"
-        >
+        <p v-if="league.website" class="w-full mt-2 leading-6 text-gray-600">
           More information can be found at:
           <a
             :href="league.website"
@@ -98,10 +85,12 @@
           >
         </p>
       </section>
+    </template>
 
+    <template #fullWidth>
       <section
         v-if="auth.user && league && league.name"
-        class="w-full col-span-3 pt-5 pb-6 text-center text-white bg-main-700"
+        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-500"
       >
         <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
         <div class="w-10/12 mx-auto sm:mt-2">
@@ -112,15 +101,15 @@
             Delete League
           </button>
           <router-link
-            :to="`/leagues/${this.$route.params.name}/competitors`"
+            :to="`/leagues/${$route.params.name}/competitors`"
             class="button-white"
             >Manage Competitors</router-link
           >
         </div>
       </section>
-
       <section
-        class="w-full col-span-3 pt-5 pb-6 text-center text-white bg-main-500"
+        v-if="league.courses && league.courses.length > 0"
+        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-700"
       >
         <h2 class="text-2xl font-bold font-heading">
           League Results
@@ -135,60 +124,54 @@
           >
         </div>
       </section>
+    </template>
 
-      <section
+    <template v-if="league && league.name">
+      <div
         v-if="events && events.length > 0"
-        class="w-full pt-6 pb-12 bg-gray-100 border-t md:pt-8 border-main-100"
+        class="flex items-center justify-between w-full col-span-2 py-2 bg-gray-100 sm:py-0"
       >
-        <div
-          class="flex items-center justify-between w-10/12 mx-auto mb-6 md:w-3/4 xl:w-2/3"
+        <h2
+          class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
         >
-          <h2
-            class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
-          >
-            Events
-          </h2>
+          Events
+        </h2>
 
-          <router-link
-            v-if="auth.user"
-            :to="`${$route.path}/create-event`"
-            class="inline-block px-4 pt-2 pb-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
-          >
-            <span class="mr-1 text-xl">+</span> Add Event
-          </router-link>
-        </div>
-
-        <div class="grid w-10/12 gap-8 mx-auto md:w-3/4 lg:w-2/3">
-          <EventOverviewCard
-            v-for="event of events"
-            :key="event.name"
-            :event="event"
-            :league="league"
-            :auth="auth"
-            @eventChanged="refreshDetails"
-          />
-        </div>
-      </section>
-
-      <AppFooter />
-    </div>
-    <not-found v-if="!league" />
-  </div>
+        <router-link
+          v-if="auth.user"
+          :to="`${$route.path}/create-event`"
+          class="inline-block px-4 pt-2 pb-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
+        >
+          <span class="mr-1 text-xl">+</span> Add Event
+        </router-link>
+      </div>
+      <EventOverviewCard
+        v-for="event of events"
+        :key="event.name"
+        :event="event"
+        :league="league"
+        :auth="auth"
+        class="col-span-2"
+        @eventChanged="refreshDetails"
+      />
+    </template>
+    <NotFound v-if="!league" />
+  </Layout>
 </template>
 
 <script>
 import axios from 'axios'
 
+import Layout from '@/components/Layout.vue'
 import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
-
-import AppFooter from '@/components/Footer.vue'
 
 const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {
+    Layout,
     EventOverviewCard,
-    AppFooter,
+
     NotFound,
   },
 

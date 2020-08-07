@@ -2,7 +2,10 @@
 
 exports[`Renders Correctly 1`] = `
 <layout-stub
+  footer="true"
+  grid="true"
   title="Latest Results"
+  white="true"
 >
   <vue-headful-stub
     description="The latest results from events on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"

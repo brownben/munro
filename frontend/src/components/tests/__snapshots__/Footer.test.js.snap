@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <footer
-  class="py-4 font-sans text-center bg-white border-t md:py-8 xl:py-10 border-main-100"
+  class="py-6 font-sans text-center bg-white border-t md:py-8 xl:py-10 border-main-100"
 >
   <div
     class="w-full mb-6 text-center"
@@ -47,44 +47,48 @@ exports[`Renders Correctly 1`] = `
     </a>
   </div>
    
-  <p
-    class="block text-base leading-4 text-opacity-75 font-heading text-main-800"
+  <div
+    class="md:mt-1"
   >
-    
-      Created By
-      
-    <a
-      class="font-bold transition duration-300 text-main-700 hover:text-opacity-75"
-      href="https://brownben.github.io"
+    <p
+      class="block text-base font-bold leading-4 text-gray-500 font-heading"
     >
-      Ben Brown
+      
+        Created By
+        
+      <a
+        class="transition duration-300 text-main-600 hover:text-main-800"
+        href="https://brownben.github.io"
+      >
+        Ben Brown
+      </a>
+    </p>
+     
+    <router-link-stub
+      class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+      to="/login"
+    >
+      
+        Admin Login
+      
+    </router-link-stub>
+     
+    <p
+      class="inline-block text-sm text-gray-500 font-heading"
+    >
+      
+        •
+      
+    </p>
+     
+    <a
+      class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+      href="mailto:munro.leagues@gmail.com"
+    >
+      
+        Contact
+      
     </a>
-  </p>
-   
-  <router-link-stub
-    class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
-    to="/login"
-  >
-    
-      Admin Login
-    
-  </router-link-stub>
-   
-  <p
-    class="inline-block text-sm font-bold text-opacity-50 text-main-700 font-heading"
-  >
-    
-      •
-    
-  </p>
-   
-  <a
-    class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
-    href="mailto:munro.leagues@gmail.com"
-  >
-    
-      Contact
-    
-  </a>
+  </div>
 </footer>
 `;

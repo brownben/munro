@@ -12,27 +12,24 @@
     />
 
     <Layout v-if="competitor && competitor.name">
-      <div class="col-span-2 text-left">
+      <template #title>
         <router-link
           :to="`/leagues/${competitor.league}`"
-          class="block mt-2 text-2xl font-bold font-heading text-main-600 md:text-25xl link"
+          class="text-xl font-bold text-gray-500 font-heading"
         >
           {{ competitor.league }}
         </router-link>
-        <h1
-          class="my-1 text-4xl font-bold leading-10 md:my-3 md:text-5xl font-heading text-main-900"
-        >
+        <h1 class="text-4xl font-bold font-heading leading-12">
           {{ competitor.name }}
         </h1>
-        <h2
-          class="text-lg text-opacity-75 md:text-xl font-heading text-main-900"
-        >
+        <h2 class="text-xl text-gray-600 font-heading">
+          <span class="mr-2 md:mr-4">{{ competitor.course }}</span>
           <span v-if="competitor.club" class="mr-2 md:mr-4">
             {{ competitor.club }}</span
           >
           <span v-if="competitor.ageClass"> {{ competitor.ageClass }}</span>
         </h2>
-      </div>
+      </template>
 
       <div v-if="competitor && $auth.user" class="col-span-2 card-color-dark">
         <h2 class="text-3xl font-bold text-white font-heading">

@@ -8,11 +8,11 @@
       {{ event.league }}
     </h3>
     <h4
-      class="my-3 text-3xl font-bold leading-8 sm:my-2 md:text-25xl xl:text-3xl xl:mt-2 xl:mb-3 font-heading text-main-900"
+      class="my-3 text-3xl font-bold leading-8 text-gray-900 sm:my-2 xl:text-3xl xl:mt-2 xl:mb-3 font-heading"
     >
       {{ event.name }}
     </h4>
-    <h5 class="mb-2 leading-4 text-opacity-75 font-heading text-main-900">
+    <h5 class="mb-2 leading-4 text-gray-500 font-heading">
       <template v-if="event.date">
         {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
           event.date.split('-')[0]

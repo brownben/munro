@@ -5,14 +5,12 @@
     >
       <div class="w-full mb-12 text-center md:w-1/2 md:text-left md:mb-0">
         <h2
-          class="mb-2 text-4xl tracking-tight xl:text-5xl text-main-900 font-heading leading-12 xl:leading-14"
+          class="mb-2 text-4xl tracking-tight text-gray-900 xl:text-5xl font-heading leading-12 xl:leading-14"
         >
           Upload Results in
           <strong class="tracking-normal text-main-600">Seconds</strong>
         </h2>
-        <h3
-          class="mb-2 text-2xl leading-8 text-opacity-50 md:mb-3 font-heading text-main-900"
-        >
+        <h3 class="mb-2 text-2xl leading-8 text-gray-500 md:mb-3 font-heading">
           No Fuss. No Hassle. Results Created with Ease
         </h3>
         <router-link

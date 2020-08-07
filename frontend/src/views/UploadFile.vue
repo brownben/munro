@@ -15,7 +15,7 @@
       url="https://munro-leagues.herokuapp.com/upload/file"
     />
 
-    <div class="col-span-2 mt-4 card-color">
+    <div class="col-span-2 card-color-dark">
       <p>
         For instructions on how to upload results please visit
         <router-link

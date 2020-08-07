@@ -2,7 +2,11 @@
 
 exports[`Renders Correctly 1`] = `
 <div>
-  <div>
+  <layout-stub
+    grid="true"
+    title=""
+    white="true"
+  >
     <vue-headful-stub
       description="Event Information and Results for the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       head="[object Object]"
@@ -24,7 +28,7 @@ exports[`Renders Correctly 1`] = `
       event="[object Object]"
       league="[object Object]"
     />
-  </div>
+  </layout-stub>
    
   <!---->
 </div>

@@ -9,150 +9,172 @@ exports[`Renders Correctly - Create 1`] = `
   />
    
   <div
-    class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+    class="flex-grow h-full bg-white"
   >
-    <h1
-      class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+    <header
+      class="text-gray-900 bg-white"
     >
-      
-    Create Competitor
-  
-    </h1>
-     
-    <div
-      class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-    >
-      <form
-        class="col-span-2"
+      <div
+        class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
       >
-        <div>
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Name:"
-          >
-            Name:
-          </label>
-           
-          <input
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Name:"
-            type="text"
-          />
-        </div>
-         
-        <div
-          class="mt-4"
+        <h1
+          class="text-3xl font-bold leading-tight font-heading"
         >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Club:"
-          >
-            Club:
-          </label>
-           
-          <input
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Club:"
-            type="text"
-          />
-        </div>
-         
+          
+          Create Competitor
+        
+        </h1>
+      </div>
+    </header>
+     
+    <main>
+      <!---->
+       
+      <div
+        class="w-full"
+      />
+       
+      <div
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      >
         <div
-          class="mt-4"
+          class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
         >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Age Class:"
+          <form
+            class="col-span-2"
           >
-            Age Class:
-          </label>
-           
-          <input
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Age Class:"
-            type="text"
-          />
-        </div>
-         
-        <div
-          class="relative mt-4"
-        >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="League:"
-          >
-            
+            <div>
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Name:"
+              >
+                Name:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Name:"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Club:"
+              >
+                Club:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Club:"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Age Class:"
+              >
+                Age Class:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Age Class:"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="relative mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="League:"
+              >
+                
     League:
   
-          </label>
-           
-          <svg
-            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            style="margin-bottom: 0.625rem;"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-           
-          <select
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="League:"
-          >
-            <option />
+              </label>
+               
+              <svg
+                class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                style="margin-bottom: 0.625rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+               
+              <select
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="League:"
+              >
+                <option />
+                 
+              </select>
+            </div>
              
-          </select>
-        </div>
-         
-        <div
-          class="relative mt-4"
-        >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Course:"
-          >
-            
+            <div
+              class="relative mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Course:"
+              >
+                
     Course:
   
-          </label>
-           
-          <svg
-            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            style="margin-bottom: 0.625rem;"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-           
-          <select
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Course:"
-          >
-            <option />
+              </label>
+               
+              <svg
+                class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                style="margin-bottom: 0.625rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+               
+              <select
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Course:"
+              >
+                <option />
+                 
+              </select>
+            </div>
              
-          </select>
+            <button
+              class="mt-8 button-lg"
+            >
+              Create Competitor
+            </button>
+          </form>
         </div>
-         
-        <button
-          class="mt-8 button-lg"
-        >
-          Create Competitor
-        </button>
-      </form>
-    </div>
+      </div>
+    </main>
+     
+    <!---->
   </div>
 </div>
 `;
@@ -166,150 +188,172 @@ exports[`Renders Correctly - Upload 1`] = `
   />
    
   <div
-    class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+    class="flex-grow h-full bg-white"
   >
-    <h1
-      class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+    <header
+      class="text-gray-900 bg-white"
     >
-      
-    Edit Competitor
-  
-    </h1>
-     
-    <div
-      class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-    >
-      <form
-        class="col-span-2"
+      <div
+        class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
       >
-        <div>
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Name:"
-          >
-            Name:
-          </label>
-           
-          <input
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Name:"
-            type="text"
-          />
-        </div>
-         
-        <div
-          class="mt-4"
+        <h1
+          class="text-3xl font-bold leading-tight font-heading"
         >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Club:"
-          >
-            Club:
-          </label>
-           
-          <input
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Club:"
-            type="text"
-          />
-        </div>
-         
+          
+          Edit Competitor
+        
+        </h1>
+      </div>
+    </header>
+     
+    <main>
+      <!---->
+       
+      <div
+        class="w-full"
+      />
+       
+      <div
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      >
         <div
-          class="mt-4"
+          class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
         >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Age Class:"
+          <form
+            class="col-span-2"
           >
-            Age Class:
-          </label>
-           
-          <input
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Age Class:"
-            type="text"
-          />
-        </div>
-         
-        <div
-          class="relative mt-4"
-        >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="League:"
-          >
-            
+            <div>
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Name:"
+              >
+                Name:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Name:"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Club:"
+              >
+                Club:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Club:"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Age Class:"
+              >
+                Age Class:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Age Class:"
+                type="text"
+              />
+            </div>
+             
+            <div
+              class="relative mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="League:"
+              >
+                
     League:
   
-          </label>
-           
-          <svg
-            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            style="margin-bottom: 0.625rem;"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-           
-          <select
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="League:"
-          >
-            <option />
+              </label>
+               
+              <svg
+                class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                style="margin-bottom: 0.625rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+               
+              <select
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="League:"
+              >
+                <option />
+                 
+              </select>
+            </div>
              
-          </select>
-        </div>
-         
-        <div
-          class="relative mt-4"
-        >
-          <label
-            class="block pb-1 select-none font-heading text-main-600"
-            for="Course:"
-          >
-            
+            <div
+              class="relative mt-4"
+            >
+              <label
+                class="block pb-1 select-none font-heading text-main-600"
+                for="Course:"
+              >
+                
     Course:
   
-          </label>
-           
-          <svg
-            class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            style="margin-bottom: 0.625rem;"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-           
-          <select
-            class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-            id="Course:"
-          >
-            <option />
+              </label>
+               
+              <svg
+                class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                style="margin-bottom: 0.625rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+               
+              <select
+                class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+                id="Course:"
+              >
+                <option />
+                 
+              </select>
+            </div>
              
-          </select>
+            <button
+              class="mt-8 button-lg"
+            >
+              Update Competitor
+            </button>
+          </form>
         </div>
-         
-        <button
-          class="mt-8 button-lg"
-        >
-          Update Competitor
-        </button>
-      </form>
-    </div>
+      </div>
+    </main>
+     
+    <!---->
   </div>
 </div>
 `;

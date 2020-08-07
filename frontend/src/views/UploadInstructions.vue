@@ -2,7 +2,7 @@
   Instructions for Uploading results
 -->
 <template>
-  <Layout title="Upload Instructions">
+  <Layout title="Upload Instructions" footer>
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },

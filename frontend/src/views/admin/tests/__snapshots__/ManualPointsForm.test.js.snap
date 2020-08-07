@@ -2,402 +2,446 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  class="flex-grow h-full bg-white"
 >
-  <h1
-    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  <header
+    class="text-gray-900 bg-white"
   >
-    
-    Manual Points
-  
-  </h1>
+    <div
+      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+    >
+      <h1
+        class="text-3xl font-bold leading-tight font-heading"
+      >
+        
+          Manual Points
+        
+      </h1>
+    </div>
+  </header>
    
-  <div
-    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-  >
-    <vue-headful-stub
-      description=""
-      head="[object Object]"
-      title="Munro - Manual Points"
+  <main>
+    <!---->
+     
+    <div
+      class="w-full"
     />
      
-    <form
-      class="col-span-2"
+    <div
+      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="relative"
-        include-blank="true"
+        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
       >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="League:"
+        <vue-headful-stub
+          description=""
+          head="[object Object]"
+          title="Munro - Manual Points"
+        />
+         
+        <form
+          class="col-span-2"
         >
-          
+          <div
+            class="relative"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="League:"
+            >
+              
     League:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="League:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="League:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
-      </div>
-       
-      <div
-        class="relative mt-4"
-        include-blank="true"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Event:"
-        >
-          
+          <div
+            class="relative mt-4"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Event:"
+            >
+              
     Event:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Event:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Event:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
-      </div>
-       
-      <div
-        class="relative mt-4"
-        include-blank="true"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Course"
-        >
-          
+          <div
+            class="relative mt-4"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Course"
+            >
+              
     Course
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Course"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Course"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
-      </div>
-       
-      <div
-        class="relative mt-4"
-        include-blank="true"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Competitor:"
-        >
-          
+          <div
+            class="relative mt-4"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Competitor:"
+            >
+              
     Competitor:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Competitor:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Competitor:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
+          <div
+            class="mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Points:"
+            >
+              Points:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Points:"
+              max="10000"
+              min="0"
+              type="number"
+            />
+          </div>
+           
+          <button
+            class="mt-8 button-lg"
+          >
+            Add Result
+          </button>
+        </form>
       </div>
-       
-      <div
-        class="mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Points:"
-        >
-          Points:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Points:"
-          max="10000"
-          min="0"
-          type="number"
-        />
-      </div>
-       
-      <button
-        class="mt-8 button-lg"
-      >
-        Add Result
-      </button>
-    </form>
-  </div>
+    </div>
+  </main>
+   
+  <!---->
 </div>
 `;
 
 exports[`Results Sorted Correctly 1`] = `
 <div
-  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  class="flex-grow h-full bg-white"
 >
-  <h1
-    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  <header
+    class="text-gray-900 bg-white"
   >
-    
-    Manual Points
-  
-  </h1>
+    <div
+      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+    >
+      <h1
+        class="text-3xl font-bold leading-tight font-heading"
+      >
+        
+          Manual Points
+        
+      </h1>
+    </div>
+  </header>
    
-  <div
-    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-  >
-    <vue-headful-stub
-      description=""
-      head="[object Object]"
-      title="Munro - Manual Points"
+  <main>
+    <!---->
+     
+    <div
+      class="w-full"
     />
      
-    <form
-      class="col-span-2"
+    <div
+      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="relative"
-        include-blank="true"
+        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
       >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="League:"
+        <vue-headful-stub
+          description=""
+          head="[object Object]"
+          title="Munro - Manual Points"
+        />
+         
+        <form
+          class="col-span-2"
         >
-          
+          <div
+            class="relative"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="League:"
+            >
+              
     League:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="League:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="League:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
-      </div>
-       
-      <div
-        class="relative mt-4"
-        include-blank="true"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Event:"
-        >
-          
+          <div
+            class="relative mt-4"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Event:"
+            >
+              
     Event:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Event:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Event:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
-      </div>
-       
-      <div
-        class="relative mt-4"
-        include-blank="true"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Course"
-        >
-          
+          <div
+            class="relative mt-4"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Course"
+            >
+              
     Course
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Course"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Course"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
-      </div>
-       
-      <div
-        class="relative mt-4"
-        include-blank="true"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Competitor:"
-        >
-          
+          <div
+            class="relative mt-4"
+            include-blank="true"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Competitor:"
+            >
+              
     Competitor:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Competitor:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Competitor:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
+          <div
+            class="mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Points:"
+            >
+              Points:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Points:"
+              max="10000"
+              min="0"
+              type="number"
+            />
+          </div>
+           
+          <button
+            class="mt-8 button-lg"
+          >
+            Add Result
+          </button>
+        </form>
       </div>
-       
-      <div
-        class="mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Points:"
-        >
-          Points:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Points:"
-          max="10000"
-          min="0"
-          type="number"
-        />
-      </div>
-       
-      <button
-        class="mt-8 button-lg"
-      >
-        Add Result
-      </button>
-    </form>
-  </div>
+    </div>
+  </main>
+   
+  <!---->
 </div>
 `;

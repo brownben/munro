@@ -6,7 +6,7 @@
   @apply text-lg text-main-700 font-heading;
   @apply transition duration-300;
   @apply outline-none appearance-none select-none;
-  @apply rounded-shape border border-main-500 border-opacity-0;
+  @apply rounded-shape;
 
   &.no-expansion {
     @apply w-auto mx-2 mt-2;
@@ -24,12 +24,9 @@
     @apply w-auto mx-2 mt-2;
   }
 
-  &:hover {
-    @apply bg-main-200 text-main-800;
-  }
-
+  &:hover,
   &:focus {
-    @apply border-opacity-100;
+    @apply bg-main-200 text-main-800;
   }
 }
 
@@ -38,7 +35,7 @@
 .button-white {
   @apply button bg-purple-100;
   @apply text-white;
-  @apply bg-opacity-10 border-white border-opacity-50;
+  @apply bg-opacity-10 border border-white border-opacity-50;
   @apply w-full mx-0 mt-3;
 
   @screen sm {
@@ -48,12 +45,9 @@
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
 
-  &:hover {
-    @apply bg-opacity-35 text-white;
-  }
-
+  &:hover,
   &:focus {
-    @apply border-opacity-100;
+    @apply bg-opacity-35 text-white;
   }
 }
 
@@ -62,14 +56,10 @@
 .button-dark {
   @apply button bg-main-200;
   @apply text-main-800;
-  @apply border-main-400 border-opacity-0;
 
-  &:hover {
-    @apply bg-main-300 text-main-800;
-  }
-
+  &:hover,
   &:focus {
-    @apply border-opacity-100;
+    @apply bg-main-300 text-main-800;
   }
 }
 
@@ -79,18 +69,14 @@
   @apply button;
   @apply py-2 w-auto mx-0 mt-2;
   @apply font-bold text-white;
-  @apply border border-main-600 border-opacity-0;
   @apply bg-main-500;
 
   @screen sm {
     @apply w-auto mx-0 mt-2;
   }
 
-  &:hover {
-    @apply bg-main-400 text-white;
-  }
-
+  &:hover,
   &:focus {
-    @apply border-opacity-100;
+    @apply bg-main-400 text-white;
   }
 }

@@ -5,14 +5,14 @@
   >
     <slot />
     <h2
-      class="mt-2 mb-4 text-2xl font-bold leading-6 xl:text-25xl font-heading text-main-900"
-      :class="{ 'text-3xl md:text-35xl leading-8 mb-3': larger }"
+      class="mt-2 mb-4 text-2xl font-bold leading-6 text-gray-900 xl:text-3xl font-heading"
+      :class="{ 'text-3xl md:text-3xl leading-8 mb-3': larger }"
     >
       {{ title }}
     </h2>
     <p
       v-if="description"
-      class="mb-2 leading-5 text-opacity-75 text-main-900 font-heading"
+      class="mb-2 leading-5 text-gray-900 text-opacity-75 font-heading"
       :class="{ 'text-lg leading-6': larger }"
     >
       {{ description }}

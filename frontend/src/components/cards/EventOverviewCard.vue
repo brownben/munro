@@ -10,12 +10,12 @@
         {{ event.league }}
       </h3>
       <h2
-        class="mt-2 mb-1 text-3xl font-bold leading-8 font-heading text-main-900"
+        class="mt-2 mb-1 text-3xl font-bold leading-8 font-heading text-gray-900"
       >
         {{ event.name }}
       </h2>
       <h4
-        class="mt-1 text-lg text-opacity-75 font-heading text-main-900 last:mb-4 md:mt-0"
+        class="mt-1 text-lg text-opacity-75 font-heading text-gray-900 last:mb-4 md:mt-0"
       >
         <span v-if="event.date" class="leading-4">
           {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
@@ -42,10 +42,10 @@
           'py-3': event.moreInformation || event.website,
         }"
       >
-        <p v-if="event.moreInformation" class="text-opacity-75 text-main-900">
+        <p v-if="event.moreInformation" class="text-opacity-75 text-gray-900">
           {{ event.moreInformation }}
         </p>
-        <p v-if="event.website" class="mt-1 text-opacity-75 text-main-900">
+        <p v-if="event.website" class="mt-1 text-opacity-75 text-gray-900">
           More Information can be found on the
           <a
             :href="event.website"

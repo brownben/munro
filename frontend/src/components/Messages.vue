@@ -18,7 +18,7 @@
       <p
         v-for="message of messages"
         :key="message.id"
-        class="z-40 mt-4 text-lg card-color font-heading"
+        class="z-40 mt-4 text-lg select-none card-color font-heading"
         @click="clear(message.id)"
       >
         {{ message.text }}

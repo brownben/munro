@@ -2,89 +2,111 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  class="flex-grow h-full bg-white"
 >
-  <h1
-    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  <header
+    class="text-gray-900 bg-white"
   >
-    
-    Admin Login
-  
-  </h1>
-   
-  <div
-    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-  >
-    <vue-headful-stub
-      description=""
-      head="[object Object]"
-      title="Munro - Login"
-    />
-     
-    <form
-      class="col-span-2"
+    <div
+      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
     >
-      <div>
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Email Address:"
-        >
-          Email Address:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Email Address:"
-          type="email"
-        />
-      </div>
-       
-      <div
-        class="mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Password:"
-        >
-          Password:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Password:"
-          type="password"
-        />
-      </div>
-       
-      <button
-        class="mt-6 button-lg"
+      <h1
+        class="text-3xl font-bold leading-tight font-heading"
       >
         
-      Login
-    
-      </button>
-    </form>
+          Admin Login
+        
+      </h1>
+    </div>
+  </header>
+   
+  <main>
+    <!---->
      
     <div
-      class="col-span-2 p-4 card-color"
+      class="w-full"
+    />
+     
+    <div
+      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
-      <p>
-        <b
-          class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
+      <div
+        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+      >
+        <vue-headful-stub
+          description=""
+          head="[object Object]"
+          title="Munro - Login"
+        />
+         
+        <form
+          class="col-span-2"
         >
-          Looking for Results Upload?
-        </b>
-        
+          <div>
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Email Address:"
+            >
+              Email Address:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Email Address:"
+              type="email"
+            />
+          </div>
+           
+          <div
+            class="mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Password:"
+            >
+              Password:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Password:"
+              type="password"
+            />
+          </div>
+           
+          <button
+            class="mt-6 button-lg"
+          >
+            
+      Login
+    
+          </button>
+        </form>
+         
+        <div
+          class="col-span-2 p-4 card-color"
+        >
+          <p>
+            <b
+              class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
+            >
+              Looking for Results Upload?
+            </b>
+            
       You don't have to login, just visit the
       
-        <router-link-stub
-          class="link"
-          to="/upload"
-        >
-          upload page
-        </router-link-stub>
-      </p>
+            <router-link-stub
+              class="link"
+              to="/upload"
+            >
+              upload page
+            </router-link-stub>
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
+   
+  <!---->
 </div>
 `;

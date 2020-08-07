@@ -17,6 +17,9 @@ beforeEach(() => {
 
 test('Is a Vue Instance', () => {
   const wrapper = mount(Leagues, {
+    mocks: {
+      $auth: { user: false },
+    },
     stubs: ['router-link', 'vue-headful'],
   })
   wrapper.setData({ leagues: sampleDataThreeLeagues })
@@ -25,6 +28,9 @@ test('Is a Vue Instance', () => {
 
 test('Renders Correctly', () => {
   const wrapper = mount(Leagues, {
+    mocks: {
+      $auth: { user: false },
+    },
     stubs: ['router-link', 'vue-headful'],
   })
   expect(wrapper.element).toMatchSnapshot()
@@ -33,6 +39,9 @@ test('Renders Correctly', () => {
 test('Call Get Leagues On Load', () => {
   const mockGetLeagues = jest.fn()
   mount(Leagues, {
+    mocks: {
+      $auth: { user: false },
+    },
     methods: {
       getLeagues: mockGetLeagues,
     },
@@ -45,6 +54,9 @@ test('Call Get Leagues On Load', () => {
 test('Get Leagues - Request Called Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(Leagues, {
+    mocks: {
+      $auth: { user: false },
+    },
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -60,6 +72,9 @@ test('Get Leagues - Request Called Correctly', async () => {
 test('Get Leagues - Processes Response Correctly', async () => {
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(Leagues, {
+    mocks: {
+      $auth: { user: false },
+    },
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
@@ -89,6 +104,9 @@ test('Get Leagues - Processes Response Correctly', async () => {
 test('Get Leagues - Shows Message on Error', async () => {
   const mockAddMessageFunction = jest.fn()
   const wrapper = mount(Leagues, {
+    mocks: {
+      $auth: { user: false },
+    },
     mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },

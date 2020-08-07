@@ -1,177 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders Correctly 1`] = `
-<div>
+<layout-stub
+  footer="true"
+  grid="true"
+  title=""
+>
   <vue-headful-stub
     description="Event Information and Results for the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
     head="[object Object]"
     title="Munro - "
     url="https://munro-leagues.herokuapp.com/leagues/"
   />
-   
-  <div>
-    <section
-      class="w-10/12 pt-2 pb-8 mx-auto md:w-3/4 xl:w-2/3"
+      
+  <div
+    class="flex items-center justify-between w-full col-span-2 py-2 bg-gray-100 sm:py-0"
+  >
+    <h2
+      class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
     >
-      <h1
-        class="mx-auto text-3xl font-bold md:text-35xl font-heading md:mb-0 text-main-900"
-      >
-        
-        Sprintelope
       
-      </h1>
-       
-      <!---->
-       
-      <p
-        class="leading-6 text-opacity-75 text-main-900"
-      >
-        
-        There are normally
-        2 courses -
-        
-        <span
-          class="md:text-lg font-heading text-main-900"
-        >
-          Long and Short
-        </span>
-      </p>
-       
-      <p
-        class="leading-6 text-opacity-75 text-main-900"
-      >
-        <span
-          class="md:text-lg font-heading"
-        >
-          Graeme Ackland
-        </span>
-        
-        coordinates the league.
+        Events
       
-      </p>
-       
-      <p
-        class="leading-6 text-opacity-75 text-main-900"
-      >
-        
-        The scoring for the league is calculated using a
-        
-        <span
-          class="md:text-lg font-heading text-main-900"
-        >
-          Position Based System (100 Max)
-        </span>
-         
-        <span
-          class="block"
-        >
-          
-          Your
-          
-          <span
-            class="md:text-lg font-heading text-main-900"
-          >
-            best 2 scores
-          </span>
-          
-          from all
-          4
-          events, count towards your score.
-        
-        </span>
-      </p>
-       
-      <!---->
-       
-      <p
-        class="mt-2 leading-6 text-opacity-75 text-main-900"
-      >
-        
-        More information can be found at:
-        
-        <a
-          class="ml-1 link font-heading text-main-800"
-          href="https://en-gb.facebook.com/sprintelope/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          https://en-gb.facebook.com/sprintelope/
-        </a>
-      </p>
-    </section>
+    </h2>
      
     <!---->
-     
-    <section
-      class="w-full col-span-3 pt-5 pb-6 text-center text-white bg-main-500"
-    >
-      <h2
-        class="text-2xl font-bold font-heading"
-      >
-        
-        League Results
-      
-      </h2>
-       
-      <div
-        class="w-10/12 mx-auto sm:mt-2"
-      >
-        <router-link-stub
-          class="button-white"
-          to="undefined/results/Long"
-        >
-          Long
-        </router-link-stub>
-        <router-link-stub
-          class="button-white"
-          to="undefined/results/Short"
-        >
-          Short
-        </router-link-stub>
-      </div>
-    </section>
-     
-    <section
-      class="w-full pt-6 pb-12 bg-gray-100 border-t md:pt-8 border-main-100"
-    >
-      <div
-        class="flex items-center justify-between w-10/12 mx-auto mb-6 md:w-3/4 xl:w-2/3"
-      >
-        <h2
-          class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
-        >
-          
-          Events
-        
-        </h2>
-         
-        <!---->
-      </div>
-       
-      <div
-        class="grid w-10/12 gap-8 mx-auto md:w-3/4 lg:w-2/3"
-      >
-        <eventoverviewcard-stub
-          auth="[object Object]"
-          event="[object Object]"
-          league="[object Object]"
-        />
-        <eventoverviewcard-stub
-          auth="[object Object]"
-          event="[object Object]"
-          league="[object Object]"
-        />
-        <eventoverviewcard-stub
-          auth="[object Object]"
-          event="[object Object]"
-          league="[object Object]"
-        />
-      </div>
-    </section>
-     
-    <appfooter-stub />
   </div>
    
+  <eventoverviewcard-stub
+    auth="[object Object]"
+    class="col-span-2"
+    event="[object Object]"
+    league="[object Object]"
+  />
+  <eventoverviewcard-stub
+    auth="[object Object]"
+    class="col-span-2"
+    event="[object Object]"
+    league="[object Object]"
+  />
+  <eventoverviewcard-stub
+    auth="[object Object]"
+    class="col-span-2"
+    event="[object Object]"
+    league="[object Object]"
+  />
+   
   <!---->
-</div>
+</layout-stub>
 `;

@@ -7,13 +7,10 @@
   <div id="app" class="flex flex-col w-full min-h-full">
     <AppMenu v-show="!$route.path.includes('embed')" />
 
-    <div id="content" class="flex-grow">
+    <div id="content" class="flex flex-col flex-grow">
       <Messages />
       <transition name="fade" mode="out-in">
-        <router-view
-          id="router-view"
-          :class="{ embed: $route.path.includes('embed') }"
-        />
+        <router-view />
       </transition>
     </div>
   </div>

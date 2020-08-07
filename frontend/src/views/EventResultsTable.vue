@@ -10,37 +10,37 @@
         meta: { name: 'robots', content: 'all' },
       }"
     />
-    <Layout v-if="eventFound" gapSmall>
-      <h1
-        class="col-span-2 mt-1 text-2xl font-bold md:text-3xl font-heading text-main-900"
-      >
-        <router-link
-          :to="'/leagues/' + event.league"
-          class="link text-main-700"
-        >
-          {{ (event.league && event.league.trim()) || '' }}
-        </router-link>
-        <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-        <span class="block text-3xl md:inline-block">
-          {{ event.name || '' }}
-        </span>
-      </h1>
-      <div
-        v-show="coursesInResults && coursesInResults.length > 0"
-        class="col-span-2 card"
-      >
-        <h3 class="text-3xl font-bold font-heading">Courses</h3>
-        <div class="w-full">
-          <button
-            v-for="course in coursesInResults"
-            :key="course"
-            :class="{ active: chosenCourse === course }"
-            class="inline-block button no-expannsion"
-            @click="chosenCourse = course"
+    <Layout v-if="eventFound">
+      <template #title>
+        <h1 class="text-3xl font-bold leading-tight font-heading">
+          <router-link
+            :to="'/leagues/' + event.league"
+            class="text-xl md:text-3xl"
           >
-            {{ course }}
-          </button>
-        </div>
+            {{ event.league || '' }}
+          </router-link>
+          <span class="hidden ml-2 mr-3 md:inline-block">-</span>
+          <span class="block text-4xl md:text-3xl md:inline-block">
+            {{ event.name || '' }}
+          </span>
+        </h1>
+      </template>
+
+      <div v-if="coursesInResults" class="block col-span-2 card">
+        <h2
+          class="text-2xl font-bold tracking-tight text-gray-900 leadiing-6 font-heading"
+        >
+          Courses
+        </h2>
+        <button
+          v-for="course in coursesInResults"
+          :key="course"
+          :class="{ 'bg-main-200 text-main-800': chosenCourse === course }"
+          class="button"
+          @click="chosenCourse = course"
+        >
+          {{ course }}
+        </button>
       </div>
 
       <filter-menu class="col-span-2 my-0" @changed="filterChanged" />
@@ -389,10 +389,6 @@ export default {
       @apply inline-block ml-1;
     }
   }
-}
-
-.active {
-  @apply bg-main-200 text-main-800;
 }
 
 table td {

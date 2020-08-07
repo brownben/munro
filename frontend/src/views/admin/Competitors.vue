@@ -13,18 +13,21 @@
       title="Munro - Competitors"
       description
     />
-    <h1
-      class="col-span-2 font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
-    >
-      <router-link
-        :to="'/leagues/' + $route.params.league"
-        class="link text-main-700"
-      >
-        {{ $route.params.league && $route.params.league.trim() }}
-      </router-link>
-      <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-      <span class="block text-35xl md:inline-block"> Competitors</span>
-    </h1>
+
+    <template #title>
+      <h1 class="text-3xl font-bold leading-tight font-heading">
+        <router-link
+          :to="'/leagues/' + $route.params.league"
+          class="text-xl md:text-3xl"
+        >
+          {{ $route.params.league }}
+        </router-link>
+        <span class="hidden ml-2 mr-3 md:inline-block">-</span>
+        <span class="block text-4xl md:text-3xl md:inline-block">
+          Competitors
+        </span>
+      </h1>
+    </template>
 
     <div class="col-span-2 card-color-dark">
       <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>

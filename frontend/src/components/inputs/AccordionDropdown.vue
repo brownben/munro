@@ -8,7 +8,7 @@
 
 <template>
   <details
-    class="transition-all duration-300 shadow-md outline-none appearance-none select-none rounded-shape-xl focus:shadow-lg"
+    class="transition-all duration-300 bg-white shadow-md outline-none appearance-none select-none rounded-shape-xl focus:shadow-lg"
   >
     <summary
       class="transition-all duration-300 outline-none appearance-none select-none rounded-shape-xl"

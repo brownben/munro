@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="py-4 font-sans text-center bg-white border-t md:py-8 xl:py-10 border-main-100"
+    class="py-6 font-sans text-center bg-white border-t md:py-8 xl:py-10 border-main-100"
   >
     <div class="w-full mb-6 text-center">
       <a
@@ -41,43 +41,40 @@
         </svg>
       </a>
     </div>
+    <div class="md:mt-1">
+      <p class="block text-base font-bold leading-4 text-gray-600 font-heading">
+        Created By
+        <a
+          href="https://brownben.github.io"
+          class="transition duration-300 text-main-600 hover:text-main-800"
+          >Ben Brown</a
+        >
+      </p>
 
-    <p
-      class="block text-base leading-4 text-opacity-75 font-heading text-main-800"
-    >
-      Created By
-      <a
-        href="https://brownben.github.io"
-        class="font-bold transition duration-300 text-main-700 hover:text-opacity-75"
-        >Ben Brown</a
+      <router-link
+        v-if="!auth.user"
+        to="/login"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
       >
-    </p>
-
-    <router-link
-      v-if="!auth.user"
-      to="/login"
-      class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
-    >
-      Admin Login
-    </router-link>
-    <router-link
-      v-else
-      to="/logout"
-      class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
-    >
-      Logout
-    </router-link>
-    <p
-      class="inline-block text-sm font-bold text-opacity-50 text-main-700 font-heading"
-    >
-      •
-    </p>
-    <a
-      href="mailto:munro.leagues@gmail.com"
-      class="text-sm font-bold text-opacity-75 transition duration-300 hover:text-opacity-100 text-main-700 font-heading"
-    >
-      Contact
-    </a>
+        Admin Login
+      </router-link>
+      <router-link
+        v-else
+        to="/logout"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+      >
+        Logout
+      </router-link>
+      <p class="inline-block text-sm text-gray-500 font-heading">
+        •
+      </p>
+      <a
+        href="mailto:munro.leagues@gmail.com"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+      >
+        Contact
+      </a>
+    </div>
   </footer>
 </template>
 

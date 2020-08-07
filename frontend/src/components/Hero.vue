@@ -1,7 +1,7 @@
 <template>
-  <div class="relative z-0 w-full pt-16 -mt-16">
+  <div class="relative z-10 w-full bg-white">
     <section
-      class="flex-row-reverse items-center justify-between w-full pt-4 pb-12 mx-auto text-center md:flex md:w-10/12 md:text-left xl:w-3/4 2xl:w-2/3"
+      class="flex-row-reverse items-center justify-between w-full pt-4 pb-12 mx-auto text-center font-heading md:flex md:w-10/12 md:text-left xl:w-3/4 2xl:w-2/3"
     >
       <div
         class="w-full py-4 mx-auto mb-8 select-none md:m-0 sm:mb-10 sm:w-3/4 md:w-1/2"
@@ -15,18 +15,16 @@
 
       <div>
         <h2
-          class="leading-10 tracking-tight md:leading-12 text-45xl sm:text-55xl md:text-5xl lg:text-55xl xl:text-6xl text-main-800 font-heading"
+          class="text-4xl leading-10 tracking-tight text-main-800 md:text-5xl xl:text-6xl"
         >
           League Results.
         </h2>
-        <h2
-          class="text-5xl font-bold sm:text-6xl md:text-55xl lg:text-6xl xl:text-7xl text-main-500 font-heading"
-        >
+        <h2 class="text-5xl font-bold text-main-500 sm:text-6xl lg:text-7xl">
           Sorted.
         </h2>
         <router-link
           to="/leagues"
-          class="mx-0 mt-2 md:mt-3 xl:mt-4 button no-expansion"
+          class="mx-0 mt-2 md:mt-4 button no-expansion"
         >
           View All Leagues
         </router-link>

@@ -10,14 +10,10 @@
           Just How
           <strong class="tracking-normal text-main-700">You</strong> Want It
         </h2>
-        <h3
-          class="mt-3 text-2xl leading-8 text-opacity-50 font-heading text-main-900"
-        >
+        <h3 class="mt-3 text-2xl leading-8 text-gray-500 font-heading">
           Sort and Filter the Results
         </h3>
-        <h3
-          class="mb-2 text-2xl leading-8 text-opacity-50 md:mb-3 font-heading text-main-900"
-        >
+        <h3 class="mb-2 text-2xl leading-8 text-gray-500 md:mb-3 font-heading">
           or Build Your Own Way to View Results
         </h3>
         <router-link to="/developers" class="mx-0 mt-2 button no-expansion"

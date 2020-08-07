@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <Layout title="Developers">
+  <Layout title="Developers" footer>
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'all' },
@@ -31,7 +31,7 @@
     </div>
 
     <div class="col-span-2 card">
-      <h2 class="my-2 text-3xl font-bold font-heading">API</h2>
+      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">API</h2>
       <p>
         All methods use a standard HTTP GET request. The event id is made by
         combining the league name, event name and date and removing all spaces,
@@ -64,13 +64,13 @@
       <p>All results</p>
     </div>
     <div class="col-span-2 card">
-      <h2 class="my-2 text-3xl font-bold font-heading">Embed</h2>
+      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">Embed</h2>
       <p>
         Currently there are two pages designed for embedding in Iframes. Place
         in an IFrame like:
       </p>
       <code
-        class="block w-full p-3 my-4 font-mono text-opacity-100 break-words bg-main-100 text-main-900"
+        class="block w-full px-3 py-2 my-2 font-mono font-normal text-gray-900 bg-main-100 rounded-shape"
         >&lt;iframe
         src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope
         2018/events&quot;&gt;&lt;/iframe&gt;</code
@@ -96,17 +96,21 @@ export default {
 </script>
 
 <style scoped lang="postcss">
-h4 {
-  @apply font-heading text-xl mt-4 text-main-900;
-}
-
 .card {
   @apply text-left items-start;
-}
 
-card h1,
-card h2,
-card p {
-  @apply text-left;
+  & h4 {
+    @apply font-heading text-xl mt-4 text-gray-900;
+  }
+
+  & p {
+    @apply text-gray-600;
+  }
+
+  & h1,
+  & h2,
+  & p {
+    @apply text-left;
+  }
 }
 </style>

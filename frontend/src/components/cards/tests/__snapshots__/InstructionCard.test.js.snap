@@ -7,7 +7,7 @@ exports[`Renders Correctly 1`] = `
   league="[object Object]"
 >
   <h2
-    class="mb-2 text-2xl text-center font-heading"
+    class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
   >
     <p
       class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
@@ -22,7 +22,7 @@ exports[`Renders Correctly 1`] = `
   </h2>
    
   <div
-    class="w-full mx-auto text-lg leading-8 text-opacity-75 text-main-900 body"
+    class="w-full mx-auto leading-8 text-gray-600 body"
   />
 </section>
 `;

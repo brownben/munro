@@ -2,266 +2,310 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  class="flex-grow h-full bg-white"
 >
-  <h1
-    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  <header
+    class="text-gray-900 bg-white"
   >
-    
-    Import MapRun Results
-  
-  </h1>
+    <div
+      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+    >
+      <h1
+        class="text-3xl font-bold leading-tight font-heading"
+      >
+        
+          Import MapRun Results
+        
+      </h1>
+    </div>
+  </header>
    
-  <div
-    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-  >
-    <vue-headful-stub
-      description="Import results from MapRun to to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      head="[object Object]"
-      title="Munro - Import MapRun Results"
-      url="https://munro-leagues.herokuapp.com/upload/maprun"
+  <main>
+    <!---->
+     
+    <div
+      class="w-full"
     />
      
     <div
-      class="col-span-2"
+      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
-      <div>
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Event ID:"
-        >
-          Event ID:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Event ID:"
-          type="text"
-        />
-      </div>
-       
-      <p
-        class="mt-4 mb-4"
-        style="display: none;"
+      <div
+        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
       >
-        <b
-          class="mr-2 text-main-800"
+        <vue-headful-stub
+          description="Import results from MapRun to to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+          head="[object Object]"
+          title="Munro - Import MapRun Results"
+          url="https://munro-leagues.herokuapp.com/upload/maprun"
+        />
+         
+        <div
+          class="col-span-2"
         >
-          Event Name:
-        </b>
-        
+          <div>
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Event ID:"
+            >
+              Event ID:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Event ID:"
+              type="text"
+            />
+          </div>
+           
+          <p
+            class="mt-4 mb-4"
+            style="display: none;"
+          >
+            <b
+              class="mr-2 text-main-800"
+            >
+              Event Name:
+            </b>
+            
       
     
-      </p>
-       
-      <div
-        class="mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Upload Key:"
-        >
-          Upload Key:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Upload Key:"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="MapRun Event Id:"
-        >
-          MapRun Event Id:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="MapRun Event Id:"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Course:"
-        >
-          
+          </p>
+           
+          <div
+            class="mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Upload Key:"
+            >
+              Upload Key:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Upload Key:"
+              type="text"
+            />
+          </div>
+           
+          <div
+            class="mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="MapRun Event Id:"
+            >
+              MapRun Event Id:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="MapRun Event Id:"
+              type="text"
+            />
+          </div>
+           
+          <div
+            class="relative mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Course:"
+            >
+              
     Course:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Course:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Course:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
+          <!---->
+        </div>
       </div>
-       
-      <!---->
     </div>
-  </div>
+  </main>
+   
+  <!---->
 </div>
 `;
 
 exports[`Upload Buttons Shows Correctly 1`] = `
 <div
-  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  class="flex-grow h-full bg-white"
 >
-  <h1
-    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  <header
+    class="text-gray-900 bg-white"
   >
-    
-    Import MapRun Results
-  
-  </h1>
+    <div
+      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+    >
+      <h1
+        class="text-3xl font-bold leading-tight font-heading"
+      >
+        
+          Import MapRun Results
+        
+      </h1>
+    </div>
+  </header>
    
-  <div
-    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-  >
-    <vue-headful-stub
-      description="Import results from MapRun to to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      head="[object Object]"
-      title="Munro - Import MapRun Results"
-      url="https://munro-leagues.herokuapp.com/upload/maprun"
+  <main>
+    <!---->
+     
+    <div
+      class="w-full"
     />
      
     <div
-      class="col-span-2"
+      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
-      <div>
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Event ID:"
-        >
-          Event ID:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Event ID:"
-          type="text"
-        />
-      </div>
-       
-      <p
-        class="mt-4 mb-4"
-        style="display: none;"
+      <div
+        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
       >
-        <b
-          class="mr-2 text-main-800"
+        <vue-headful-stub
+          description="Import results from MapRun to to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+          head="[object Object]"
+          title="Munro - Import MapRun Results"
+          url="https://munro-leagues.herokuapp.com/upload/maprun"
+        />
+         
+        <div
+          class="col-span-2"
         >
-          Event Name:
-        </b>
-        
+          <div>
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Event ID:"
+            >
+              Event ID:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Event ID:"
+              type="text"
+            />
+          </div>
+           
+          <p
+            class="mt-4 mb-4"
+            style="display: none;"
+          >
+            <b
+              class="mr-2 text-main-800"
+            >
+              Event Name:
+            </b>
+            
       
     
-      </p>
-       
-      <div
-        class="mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Upload Key:"
-        >
-          Upload Key:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Upload Key:"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="MapRun Event Id:"
-        >
-          MapRun Event Id:
-        </label>
-         
-        <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="MapRun Event Id:"
-          type="text"
-        />
-      </div>
-       
-      <div
-        class="relative mt-4"
-      >
-        <label
-          class="block pb-1 select-none font-heading text-main-600"
-          for="Course:"
-        >
-          
+          </p>
+           
+          <div
+            class="mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Upload Key:"
+            >
+              Upload Key:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Upload Key:"
+              type="text"
+            />
+          </div>
+           
+          <div
+            class="mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="MapRun Event Id:"
+            >
+              MapRun Event Id:
+            </label>
+             
+            <input
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="MapRun Event Id:"
+              type="text"
+            />
+          </div>
+           
+          <div
+            class="relative mt-4"
+          >
+            <label
+              class="block pb-1 select-none font-heading text-main-600"
+              for="Course:"
+            >
+              
     Course:
   
-        </label>
-         
-        <svg
-          class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          style="margin-bottom: 0.625rem;"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-         
-        <select
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-          id="Course:"
-        >
-          <option />
+            </label>
+             
+            <svg
+              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              style="margin-bottom: 0.625rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+             
+            <select
+              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              id="Course:"
+            >
+              <option />
+               
+            </select>
+          </div>
            
-        </select>
-      </div>
-       
-      <button
-        class="mt-6 button-lg"
-      >
-        
+          <button
+            class="mt-6 button-lg"
+          >
+            
       Import Data
     
-      </button>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
+  </main>
+   
+  <!---->
 </div>
 `;

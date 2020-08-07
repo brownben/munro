@@ -2,39 +2,16 @@
 
 exports[`Renders Correctly 1`] = `
 <layout-stub
+  grid="true"
   title=""
+  white="true"
 >
   <vue-headful-stub
     description=""
     head="[object Object]"
     title="Munro - Competitors"
   />
-   
-  <h1
-    class="col-span-2 font-bold text-left text-25xl md:text-3xl font-heading text-main-900"
-  >
-    <router-link-stub
-      class="link text-main-700"
-      to="/leagues/"
-    >
-      
-      
     
-    </router-link-stub>
-     
-    <span
-      class="hidden ml-2 mr-3 md:inline-block"
-    >
-      -
-    </span>
-     
-    <span
-      class="block text-35xl md:inline-block"
-    >
-       Competitors
-    </span>
-  </h1>
-   
   <div
     class="col-span-2 card-color-dark"
   >

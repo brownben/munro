@@ -2,26 +2,48 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="w-10/12 mx-auto md:w-3/4 xl:w-2/3 md:mt-2"
+  class="flex-grow h-full bg-white"
 >
-  <h1
-    class="my-2 text-3xl font-bold md:text-35xl font-heading text-main-700"
+  <header
+    class="text-gray-900 bg-white"
   >
-    
-    Leagues
-  
-  </h1>
+    <div
+      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+    >
+      <h1
+        class="text-3xl font-bold leading-tight font-heading"
+      >
+        
+          Leagues
+        
+      </h1>
+    </div>
+  </header>
    
-  <div
-    class="grid grid-cols-2 gap-8 pb-8 md:gap-6 lg:gap-8"
-  >
-    <vue-headful-stub
-      description="League Results on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      head="[object Object]"
-      title="Munro - Leagues"
-      url="https://munro-leagues.herokuapp.com/leagues"
+  <main>
+    <!---->
+     
+    <div
+      class="w-full"
     />
      
-  </div>
+    <div
+      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+    >
+      <div
+        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+      >
+        <vue-headful-stub
+          description="League Results on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+          head="[object Object]"
+          title="Munro - Leagues"
+          url="https://munro-leagues.herokuapp.com/leagues"
+        />
+         
+      </div>
+    </div>
+  </main>
+   
+  <!---->
 </div>
 `;

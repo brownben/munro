@@ -4,7 +4,7 @@
 
 <template>
   <div>
-    <div v-if="league">
+    <Layout v-if="league">
       <vue-headful
         :title="`Munro - ${$route.params.name} League`"
         :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -20,18 +20,20 @@
         :league="league"
         :auth="auth"
       />
-    </div>
+    </Layout>
     <not-found v-if="!league" />
   </div>
 </template>
 <script>
 import axios from 'axios'
 
+import Layout from '@/components/Layout.vue'
 import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
 const NotFound = () => import('@/views/NotFound.vue')
 
 export default {
   components: {
+    Layout,
     EventOverviewCard,
     NotFound,
   },

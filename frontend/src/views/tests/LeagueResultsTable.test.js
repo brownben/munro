@@ -4,7 +4,7 @@
 
 import axios from 'axios'
 import VueRouter from 'vue-router'
-import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
 
 import ResultsTable from '@/views/LeagueResultsTable.vue'
 import { sampleThreeEvents } from '@/tests/test data/events'
@@ -518,9 +518,9 @@ test('Results With Age Class Split', () => {
 })
 
 test('Mobile Results Dropdown Works', () => {
-  global.innerWidth = 500
+  global.innerWidth = 200
   global.dispatchEvent(new Event('resize'))
-  const wrapper = shallowMount(ResultsTable, {
+  const wrapper = mount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
       $messages: { addMessage: jest.fn() },
