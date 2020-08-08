@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <Layout>
+  <Layout hasMobileSubTitle>
     <vue-headful
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -18,7 +18,7 @@
       <h1 class="text-3xl font-bold leading-tight font-heading">
         <router-link
           :to="'/leagues/' + $route.params.league"
-          class="text-xl md:text-3xl"
+          class="text-xl text-main-700 md:text-3xl"
         >
           {{ $route.params.league }}
         </router-link>

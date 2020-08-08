@@ -57,7 +57,7 @@ exports[`Renders Correctly 1`] = `
   <!---->
    
   <section
-    class="w-full pt-8 pb-10 bg-gray-100 border-t border-main-100"
+    class="w-full pt-8 pb-10 border-t bg-gray-50 border-main-100"
   >
     <div
       class="max-w-screen-xl mx-auto sm:px-6 lg:px-8"
@@ -183,7 +183,7 @@ exports[`Renders Correctly 1`] = `
         class="w-full mb-8 text-center md:w-1/2 md:text-left md:m-0"
       >
         <h2
-          class="mb-2 text-4xl tracking-tight text-white leading-12 font-heading md:mb-6"
+          class="mb-2 text-4xl tracking-tight text-white leading-12 font-heading"
         >
           
         Find
@@ -274,7 +274,7 @@ exports[`Renders Correctly 1`] = `
   </section>
    
   <section
-    class="w-full py-10 bg-gray-100 border-t md:py-12 border-main-100"
+    class="w-full py-10 border-t bg-gray-50 md:py-12 border-main-100"
   >
     <div
       class="flex flex-col-reverse items-center justify-between w-10/12 mx-auto md:flex-row lg:w-3/4 xl:w-2/3"
@@ -384,13 +384,13 @@ exports[`Renders Correctly 1`] = `
       class="md:mt-1"
     >
       <p
-        class="block text-base font-bold leading-4 text-gray-500 font-heading"
+        class="block text-base text-gray-600 font-heading"
       >
         
         Created By
         
         <a
-          class="transition duration-300 text-main-600 hover:text-main-800"
+          class="font-bold transition duration-300 text-main-600 hover:text-main-800"
           href="https://brownben.github.io"
         >
           Ben Brown
@@ -407,7 +407,7 @@ exports[`Renders Correctly 1`] = `
       </router-link-stub>
        
       <p
-        class="inline-block text-sm text-gray-500 font-heading"
+        class="inline-block text-sm text-gray-400 font-heading"
       >
         
         •

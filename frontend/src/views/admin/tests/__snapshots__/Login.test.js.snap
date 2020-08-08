@@ -8,7 +8,7 @@ exports[`Renders Correctly 1`] = `
     class="text-gray-900 bg-white"
   >
     <div
-      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+      class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8 pt-6"
     >
       <h1
         class="text-3xl font-bold leading-tight font-heading"
@@ -31,7 +31,7 @@ exports[`Renders Correctly 1`] = `
       class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
       >
         <vue-headful-stub
           description=""
@@ -44,14 +44,14 @@ exports[`Renders Correctly 1`] = `
         >
           <div>
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Email Address:"
             >
               Email Address:
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Email Address:"
               type="email"
             />
@@ -61,14 +61,14 @@ exports[`Renders Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Password:"
             >
               Password:
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Password:"
               type="password"
             />

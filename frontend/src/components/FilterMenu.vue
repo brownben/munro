@@ -37,14 +37,14 @@
       />
       <CheckboxInput
         v-model="preferences.male"
-        class="flex flex-col justify-center col-span-1 pt-2 text-center"
-        label="Male:"
+        class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 text-center md:pt-4 md:pb-0"
+        label="Male"
         @input="onChange"
       />
       <CheckboxInput
         v-model="preferences.female"
-        label="Female:"
-        class="flex flex-col justify-center col-span-1 pt-2 text-center"
+        label="Female"
+        class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 md:pt-4 md:pb-0text-center"
         @input="onChange"
       />
     </div>

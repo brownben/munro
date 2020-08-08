@@ -8,7 +8,7 @@ exports[`Renders Correctly 1`] = `
     class="text-gray-900 bg-white"
   >
     <div
-      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+      class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8 pt-6"
     >
       <h1
         class="text-3xl font-bold leading-tight font-heading"
@@ -31,7 +31,7 @@ exports[`Renders Correctly 1`] = `
       class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
       >
         <vue-headful-stub
           description="Developer information about the API and embed pages of Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
@@ -289,13 +289,13 @@ exports[`Renders Correctly 1`] = `
       class="md:mt-1"
     >
       <p
-        class="block text-base font-bold leading-4 text-gray-500 font-heading"
+        class="block text-base text-gray-600 font-heading"
       >
         
         Created By
         
         <a
-          class="transition duration-300 text-main-600 hover:text-main-800"
+          class="font-bold transition duration-300 text-main-600 hover:text-main-800"
           href="https://brownben.github.io"
         >
           Ben Brown
@@ -312,7 +312,7 @@ exports[`Renders Correctly 1`] = `
       </router-link-stub>
        
       <p
-        class="inline-block text-sm text-gray-500 font-heading"
+        class="inline-block text-sm text-gray-400 font-heading"
       >
         
         •

@@ -40,14 +40,14 @@ exports[`Renders Correctly 1`] = `
         class="col-span-2"
       >
         <label
-          class="block pb-1 select-none font-heading text-main-600"
+          class="block pb-1 text-gray-600 select-none font-heading"
           for="Name:"
         >
           Name:
         </label>
          
         <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
           id="Name:"
           type="text"
         />
@@ -57,14 +57,14 @@ exports[`Renders Correctly 1`] = `
         class="col-span-2"
       >
         <label
-          class="block pb-1 select-none font-heading text-main-600"
+          class="block pb-1 text-gray-600 select-none font-heading"
           for="Club:"
         >
           Club:
         </label>
          
         <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
           id="Club:"
           type="text"
         />
@@ -74,14 +74,14 @@ exports[`Renders Correctly 1`] = `
         class="col-span-1"
       >
         <label
-          class="block pb-1 select-none font-heading text-main-600"
+          class="block pb-1 text-gray-600 select-none font-heading"
           for="Min Age:"
         >
           Min Age:
         </label>
          
         <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
           id="Min Age:"
           max="120"
           min="0"
@@ -93,14 +93,14 @@ exports[`Renders Correctly 1`] = `
         class="col-span-1"
       >
         <label
-          class="block pb-1 select-none font-heading text-main-600"
+          class="block pb-1 text-gray-600 select-none font-heading"
           for="Max Age:"
         >
           Max Age:
         </label>
          
         <input
-          class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+          class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
           id="Max Age:"
           max="120"
           min="0"
@@ -109,48 +109,62 @@ exports[`Renders Correctly 1`] = `
       </div>
        
       <div
-        class="flex flex-col justify-center col-span-1 pt-2 text-center"
+        class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 text-center md:pt-4 md:pb-0"
       >
         <label
-          class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
+          class="relative flex flex-row items-center select-none"
         >
-          <span
-            class="mr-3 align-top"
+          <svg
+            class="absolute left-0 w-5 h-5 text-white"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Male:
-          </span>
+            <path
+              d="M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z"
+            />
+          </svg>
            
           <input
-            class="sr-only"
+            class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-400 checked:border-main-400"
             type="checkbox"
           />
            
           <span
-            class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
-          />
+            class="ml-3 leading-tight text-gray-600 font-heading"
+          >
+            Male
+          </span>
         </label>
       </div>
        
       <div
-        class="flex flex-col justify-center col-span-1 pt-2 text-center"
+        class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 md:pt-4 md:pb-0text-center"
       >
         <label
-          class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
+          class="relative flex flex-row items-center select-none"
         >
-          <span
-            class="mr-3 align-top"
+          <svg
+            class="absolute left-0 w-5 h-5 text-white"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Female:
-          </span>
+            <path
+              d="M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z"
+            />
+          </svg>
            
           <input
-            class="sr-only"
+            class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-400 checked:border-main-400"
             type="checkbox"
           />
            
           <span
-            class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
-          />
+            class="ml-3 leading-tight text-gray-600 font-heading"
+          >
+            Female
+          </span>
         </label>
       </div>
     </div>

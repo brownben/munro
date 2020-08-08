@@ -12,9 +12,7 @@ exports[`Renders Correctly + Fetches Data 1`] = `
   <!---->
    
   <layout-stub
-    grid="true"
     title=""
-    white="true"
   >
     <vue-headful-stub
       description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"

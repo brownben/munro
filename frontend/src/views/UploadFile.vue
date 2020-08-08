@@ -15,7 +15,7 @@
       url="https://munro-leagues.herokuapp.com/upload/file"
     />
 
-    <div class="col-span-2 card-color-dark">
+    <div class="col-span-2 card-color">
       <p>
         For instructions on how to upload results please visit
         <router-link
@@ -26,6 +26,7 @@
         </router-link>
       </p>
     </div>
+
     <div class="col-span-2">
       <TextInput
         v-model.trim.lazy="eventId"
@@ -44,8 +45,8 @@
       <CheckboxInput
         v-if="event.resultUploaded"
         v-model="overwrite"
-        label="Overwrite Existing Results:"
-        class="mt-6 text-left"
+        label="Overwrite Existing Results"
+        class="my-6 text-left"
       />
 
       <FileInput label="Results File:" class="mt-4" @file="fileRead" />

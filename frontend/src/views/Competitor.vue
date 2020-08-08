@@ -11,11 +11,11 @@
       }"
     />
 
-    <Layout v-if="competitor && competitor.name">
+    <Layout v-if="competitor && competitor.name" hasMobileSubTitle>
       <template #title>
         <router-link
           :to="`/leagues/${competitor.league}`"
-          class="text-xl font-bold text-gray-500 font-heading"
+          class="mb-1 text-xl font-bold text-main-700 font-heading"
         >
           {{ competitor.league }}
         </router-link>

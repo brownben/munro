@@ -4,7 +4,7 @@
   @apply inline-block bg-main-100;
   @apply px-4 py-1 mx-0 mt-3 w-full;
   @apply text-lg text-main-700 font-heading;
-  @apply transition duration-300;
+  @apply transition duration-300 ease-in-out;
   @apply outline-none appearance-none select-none;
   @apply rounded-shape;
 
@@ -66,17 +66,14 @@
 /* Button Large (Forms) */
 
 .button-lg {
-  @apply button;
-  @apply py-2 w-auto mx-0 mt-2;
-  @apply font-bold text-white;
-  @apply bg-main-500;
-
-  @screen sm {
-    @apply w-auto mx-0 mt-2;
-  }
+  @apply py-2 px-4 w-auto mx-0 mt-2;
+  @apply border rounded-shape bg-white;
+  @apply text-lg text-gray-500 font-heading leading-tight;
+  @apply transition duration-300 ease-in-out;
+  @apply outline-none appearance-none select-none;
 
   &:hover,
   &:focus {
-    @apply bg-main-400 text-white;
+    @apply shadow-outline border-main-400 text-main-700;
   }
 }

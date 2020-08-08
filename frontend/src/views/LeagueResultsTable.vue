@@ -8,7 +8,7 @@
 -->
 
 <template>
-  <Layout class="w-full" wide>
+  <Layout class="w-full" wide hasMobileSubTitle>
     <vue-headful
       :title="`Munro - ${$route.params.name} - ${$route.params.course} Results`"
       :description="`Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -21,7 +21,7 @@
       <h1 class="text-3xl font-bold leading-tight font-heading">
         <router-link
           :to="'/leagues/' + $route.params.name"
-          class="text-2xl md:text-3xl"
+          class="text-xl text-main-700 md:text-3xl"
         >
           {{ $route.params.name && $route.params.name.trim() }}
         </router-link>
@@ -202,14 +202,14 @@
           </tbody>
         </table>
       </div>
-
-      <transition name="fade">
-        <NoResultsCard
-          v-if="!loading && (!found || filteredResults.length === 0)"
-          class="col-span-2"
-        />
-      </transition>
     </template>
+
+    <transition name="fade">
+      <NoResultsCard
+        v-if="!loading && (!found || filteredResults.length === 0)"
+        class="col-span-2 -mt-8"
+      />
+    </transition>
 
     <div v-if="otherCourses.length > 0" class="col-span-2 card">
       <h2 class="text-2xl font-bold font-heading">Results for Other Courses</h2>

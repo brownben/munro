@@ -9,19 +9,26 @@
 
 <template>
   <div>
-    <label
-      class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
-    >
-      <span class="mr-3 align-top">{{ label }}</span>
+    <label class="relative flex flex-row items-center select-none">
+      <svg
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        class="absolute left-0 w-5 h-5 text-white"
+      >
+        <path
+          d="M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z"
+        />
+      </svg>
       <input
-        :checked="value"
         type="checkbox"
-        class="sr-only"
+        class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-400 checked:border-main-400"
+        :checked="value"
         @change="$emit('input', $event.target.checked)"
       />
-      <span
-        class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
-      />
+      <span class="ml-3 leading-tight text-gray-600 font-heading">{{
+        label
+      }}</span>
     </label>
   </div>
 </template>
@@ -42,19 +49,3 @@ export default {
   },
 }
 </script>
-
-<style scoped lang="postcss">
-[type='checkbox']:checked + span {
-  @apply inline-block w-2 h-4 m-0;
-  border: 1.5px solid theme('colors.main.500');
-  border-top: 0;
-  margin-left: 5px;
-  border-left: 0;
-  transition: 0.3s ease-in-out;
-  transform: rotate(405deg);
-}
-
-[type='checkbox']:focus + span {
-  @apply border-main-700;
-}
-</style>

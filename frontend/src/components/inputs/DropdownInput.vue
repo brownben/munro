@@ -6,44 +6,52 @@
 -->
 
 <template>
-  <div class="relative">
+  <div>
     <label
-      class="block pb-1 select-none font-heading text-main-600"
+      class="block pb-1 text-gray-600 select-none font-heading"
       :for="label"
     >
       {{ label }}
     </label>
 
-    <svg
-      fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-      style="margin-bottom: 0.625rem;"
-    >
-      <path d="M19 9l-7 7-7-7" />
-    </svg>
-    <select
-      :id="label"
-      v-model="currentValue"
-      class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-      @change="$emit('input', currentValue)"
-    >
-      <option v-if="shift" />
-      <template v-if="!optionTextDifferentToValue">
-        <option v-for="item in list" :key="item" :value="item">
-          {{ item }}
-        </option>
-      </template>
-      <template v-else>
-        <option v-for="item in list" :key="item.text" :value="item.value">
-          {{ item.text }}
-        </option>
-      </template>
-    </select>
+    <div class="relative">
+      <span
+        class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+      >
+        <svg
+          class="w-5 h-5 text-gray-400"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+        >
+          <path
+            d="M19 9l-7 7-7-7"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </span>
+
+      <select
+        :id="label"
+        v-model="currentValue"
+        class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+        @change="$emit('input', currentValue)"
+      >
+        <option v-if="shift" />
+        <template v-if="!optionTextDifferentToValue">
+          <option v-for="item in list" :key="item" :value="item">
+            {{ item }}
+          </option>
+        </template>
+        <template v-else>
+          <option v-for="item in list" :key="item.text" :value="item.value">
+            {{ item.text }}
+          </option>
+        </template>
+      </select>
+    </div>
   </div>
 </template>
 

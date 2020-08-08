@@ -2,8 +2,7 @@
   Menu Component Unit Tests
 */
 
-import VueRouter from 'vue-router'
-import { createLocalVue, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import Menu from '@/components/Menu.vue'
 
 test('Is a Vue Instance', () => {

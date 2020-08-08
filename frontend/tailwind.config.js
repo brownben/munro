@@ -1,16 +1,16 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
   purge: ['./src/**/*.html', './src/**/*.vue'],
 
   theme: {
-    fontFamily: {
-      heading: ['Josefin Sans', 'sans-serif'],
-      sans: defaultTheme.fontFamily.sans,
-      mono: defaultTheme.fontFamily.mono,
-    },
-
     extend: {
+      fontFamily: {
+        heading: ['Josefin Sans', 'sans-serif'],
+      },
+
+      boxShadow: {
+        outline: '0 0 0 3px rgba(213, 61, 245, 0.5)',
+      },
+
       screens: {
         '2xl': '1650px',
       },
@@ -45,9 +45,9 @@ module.exports = {
 
       colors: {
         gray: {
-          '100': '#fbf8fc',
-          '200': '#f5edf7',
-
+          '50': 'hsl(290, 20%, 98%)',
+          '100': 'hsl(290, 15.8%, 96.3%)',
+          '200': 'hsl(290, 13%, 91%)',
           '300': 'hsl(290, 12.5%, 84.3%)',
           '400': 'hsl(290, 11%, 66.1%)',
           '500': 'hsl(290, 8.9%, 46.1%)',
@@ -74,6 +74,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+
+  variants: {
+    border: ['responsive', 'hover', 'focus', 'checked'],
+    backgroundColor: ['responsive', 'hover', 'focus', 'checked'],
+  },
+
   plugins: [],
 }

@@ -2,9 +2,8 @@
 
 exports[`Renders Correctly 1`] = `
 <layout-stub
-  grid="true"
+  hasmobilesubtitle="true"
   title=""
-  white="true"
 >
   <vue-headful-stub
     description=""

@@ -8,7 +8,7 @@ exports[`Renders Correctly 1`] = `
     class="text-gray-900 bg-white"
   >
     <div
-      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+      class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8 pt-6"
     >
       <h1
         class="text-3xl font-bold leading-tight font-heading"
@@ -31,7 +31,7 @@ exports[`Renders Correctly 1`] = `
       class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
       >
         <vue-headful-stub
           description=""
@@ -43,11 +43,10 @@ exports[`Renders Correctly 1`] = `
           class="col-span-2"
         >
           <div
-            class="relative"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="League:"
             >
               
@@ -55,36 +54,43 @@ exports[`Renders Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="League:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="League:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Event:"
             >
               
@@ -92,36 +98,43 @@ exports[`Renders Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Event:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Event:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Course"
             >
               
@@ -129,36 +142,43 @@ exports[`Renders Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Course"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Course"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Result:"
             >
               
@@ -166,36 +186,43 @@ exports[`Renders Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Result:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Result:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Competitor:"
             >
               
@@ -203,28 +230,35 @@ exports[`Renders Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Competitor:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Competitor:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <button
@@ -249,7 +283,7 @@ exports[`Results Sorted Correctly 1`] = `
     class="text-gray-900 bg-white"
   >
     <div
-      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+      class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8 pt-6"
     >
       <h1
         class="text-3xl font-bold leading-tight font-heading"
@@ -272,7 +306,7 @@ exports[`Results Sorted Correctly 1`] = `
       class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
       >
         <vue-headful-stub
           description=""
@@ -284,11 +318,10 @@ exports[`Results Sorted Correctly 1`] = `
           class="col-span-2"
         >
           <div
-            class="relative"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="League:"
             >
               
@@ -296,36 +329,43 @@ exports[`Results Sorted Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="League:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="League:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Event:"
             >
               
@@ -333,36 +373,43 @@ exports[`Results Sorted Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Event:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Event:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Course"
             >
               
@@ -370,36 +417,43 @@ exports[`Results Sorted Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Course"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Course"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Result:"
             >
               
@@ -407,36 +461,43 @@ exports[`Results Sorted Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Result:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Result:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <div
-            class="relative mt-4"
+            class="mt-4"
             include-blank="true"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Competitor:"
             >
               
@@ -444,28 +505,35 @@ exports[`Results Sorted Correctly 1`] = `
   
             </label>
              
-            <svg
-              class="absolute bottom-0 right-0 h-6 mr-2 text-main-500"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              style="margin-bottom: 0.625rem;"
-              viewBox="0 0 24 24"
+            <div
+              class="relative"
             >
-              <path
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-             
-            <select
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none appearance-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
-              id="Competitor:"
-            >
-              <option />
+              <span
+                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              >
+                <svg
+                  class="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
                
-            </select>
+              <select
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Competitor:"
+              >
+                <option />
+                 
+              </select>
+            </div>
           </div>
            
           <button

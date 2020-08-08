@@ -3,9 +3,7 @@
 exports[`Renders Correctly 1`] = `
 <div>
   <layout-stub
-    grid="true"
     title=""
-    white="true"
   >
     <vue-headful-stub
       description="Event Information and Results for the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"

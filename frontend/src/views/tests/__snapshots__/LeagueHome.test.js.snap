@@ -3,7 +3,7 @@
 exports[`Renders Correctly 1`] = `
 <layout-stub
   footer="true"
-  grid="true"
+  gray="true"
   title=""
 >
   <vue-headful-stub
@@ -14,7 +14,7 @@ exports[`Renders Correctly 1`] = `
   />
       
   <div
-    class="flex items-center justify-between w-full col-span-2 py-2 bg-gray-100 sm:py-0"
+    class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
   >
     <h2
       class="text-lg leading-5 uppercase align-middle font-heading text-main-700"

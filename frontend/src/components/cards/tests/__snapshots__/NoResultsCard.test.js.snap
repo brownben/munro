@@ -4,10 +4,15 @@ exports[`Renders Correctly 1`] = `
 <section
   class="mt-2 text-center card"
 >
-  <img
-    alt="Person Looking At Map"
-    src="@/assets/images/UndrawLost.svg"
-  />
+  <div
+    class="inline-block w-full"
+  >
+    <img
+      alt="Person Lost looking at Map"
+      class="object-contain w-full mx-auto max-h-64"
+      src="@/assets/images/UndrawLost.svg"
+    />
+  </div>
    
   <h1
     class="mt-8 text-3xl font-bold text-gray-900 font-heading"

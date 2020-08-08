@@ -8,7 +8,7 @@ exports[`Renders Correctly 1`] = `
     class="text-gray-900 bg-white"
   >
     <div
-      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+      class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8 pt-6"
     >
       <h1
         class="text-3xl font-bold leading-tight font-heading"
@@ -31,7 +31,7 @@ exports[`Renders Correctly 1`] = `
       class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
       >
         <vue-headful-stub
           description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
@@ -41,7 +41,7 @@ exports[`Renders Correctly 1`] = `
         />
          
         <div
-          class="col-span-2 card-color-dark"
+          class="col-span-2 card-color"
         >
           <p>
             
@@ -63,14 +63,14 @@ exports[`Renders Correctly 1`] = `
         >
           <div>
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Event ID:"
             >
               Event ID:
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Event ID:"
               type="text"
             />
@@ -94,14 +94,14 @@ exports[`Renders Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Upload Key:"
             >
               Upload Key:
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Upload Key:"
               type="text"
             />
@@ -113,16 +113,16 @@ exports[`Renders Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
             >
               Results File:
             </label>
              
             <p
-              class="w-full pl-3 truncate transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
             >
               <span
-                class="inline-block py-2"
+                class="inline-block text-gray-600 select-none"
               >
                 
       Select a File
@@ -130,7 +130,7 @@ exports[`Renders Correctly 1`] = `
               </span>
                
               <label
-                class="z-10 inline-block float-right h-full px-4 py-2 transition duration-300 border border-opacity-0 appearance-none select-none rounded-shape bg-main-200 text-main-700 hover:text-main-800 hover:bg-main-300 border-main-600 font-heading focus:border-opacity-100 oultine-none"
+                class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
                 for="file"
                 tabindex="0"
               >
@@ -141,7 +141,7 @@ exports[`Renders Correctly 1`] = `
                
               <input
                 accept=".csv"
-                class="hidden"
+                class="hidden outline-none"
                 id="file"
                 type="file"
               />
@@ -152,14 +152,14 @@ exports[`Renders Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Results (URL):"
             >
               Results (URL):
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Results (URL):"
               type="url"
             />
@@ -169,14 +169,14 @@ exports[`Renders Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Routegadget (URL):"
             >
               Routegadget (URL):
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Routegadget (URL):"
               type="url"
             />
@@ -186,14 +186,14 @@ exports[`Renders Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Winsplits: (URL):"
             >
               Winsplits: (URL):
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Winsplits: (URL):"
               type="url"
             />
@@ -217,7 +217,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
     class="text-gray-900 bg-white"
   >
     <div
-      class="max-w-screen-xl px-6 py-6 mx-auto lg:px-8"
+      class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8 pt-6"
     >
       <h1
         class="text-3xl font-bold leading-tight font-heading"
@@ -240,7 +240,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
       class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
       >
         <vue-headful-stub
           description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
@@ -250,7 +250,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
         />
          
         <div
-          class="col-span-2 card-color-dark"
+          class="col-span-2 card-color"
         >
           <p>
             
@@ -272,14 +272,14 @@ exports[`Upload Buttons Shows Correctly 1`] = `
         >
           <div>
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Event ID:"
             >
               Event ID:
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Event ID:"
               type="text"
             />
@@ -303,14 +303,14 @@ exports[`Upload Buttons Shows Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Upload Key:"
             >
               Upload Key:
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Upload Key:"
               type="text"
             />
@@ -322,16 +322,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
             >
               Results File:
             </label>
              
             <p
-              class="w-full pl-3 truncate transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
             >
               <span
-                class="inline-block py-2"
+                class="inline-block text-gray-600 select-none"
               >
                 
       Select a File
@@ -339,7 +339,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
               </span>
                
               <label
-                class="z-10 inline-block float-right h-full px-4 py-2 transition duration-300 border border-opacity-0 appearance-none select-none rounded-shape bg-main-200 text-main-700 hover:text-main-800 hover:bg-main-300 border-main-600 font-heading focus:border-opacity-100 oultine-none"
+                class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
                 for="file"
                 tabindex="0"
               >
@@ -350,7 +350,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
                
               <input
                 accept=".csv"
-                class="hidden"
+                class="hidden outline-none"
                 id="file"
                 type="file"
               />
@@ -361,14 +361,14 @@ exports[`Upload Buttons Shows Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Results (URL):"
             >
               Results (URL):
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Results (URL):"
               type="url"
             />
@@ -378,14 +378,14 @@ exports[`Upload Buttons Shows Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Routegadget (URL):"
             >
               Routegadget (URL):
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Routegadget (URL):"
               type="url"
             />
@@ -395,14 +395,14 @@ exports[`Upload Buttons Shows Correctly 1`] = `
             class="mt-4"
           >
             <label
-              class="block pb-1 select-none font-heading text-main-600"
+              class="block pb-1 text-gray-600 select-none font-heading"
               for="Winsplits: (URL):"
             >
               Winsplits: (URL):
             </label>
              
             <input
-              class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
               id="Winsplits: (URL):"
               type="url"
             />

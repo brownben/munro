@@ -17,7 +17,7 @@ exports[`Renders Correctly 1`] = `
       class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
     >
       <div
-        class="px-6 sm:px-0 grid grid-cols-2 sm:gap-8 gap-6 "
+        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
       >
         <vue-headful-stub
           description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"

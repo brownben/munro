@@ -7,7 +7,7 @@
 -->
 
 <template>
-  <Layout :footer="league.name && events && events.length > 0" :white="false">
+  <Layout :footer="league.name && events && events.length > 0" gray>
     <vue-headful
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -129,7 +129,7 @@
     <template v-if="league && league.name">
       <div
         v-if="events && events.length > 0"
-        class="flex items-center justify-between w-full col-span-2 py-2 bg-gray-100 sm:py-0"
+        class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
       >
         <h2
           class="text-lg leading-5 uppercase align-middle font-heading text-main-700"

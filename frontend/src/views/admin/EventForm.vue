@@ -75,7 +75,7 @@
         />
         <CheckboxInput
           v-model="userSubmittedResults"
-          label="Allow User Submitted Results:"
+          label="Allow Users to Submit Results"
           class="mt-6 text-left"
         />
         <button v-if="create" class="mt-8 button-lg">Create Event</button>

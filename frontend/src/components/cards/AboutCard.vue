@@ -5,7 +5,7 @@
     >
       <div class="w-full mb-8 text-center md:w-1/2 md:text-left md:m-0">
         <h2
-          class="mb-2 text-4xl tracking-tight text-white leading-12 font-heading md:mb-6"
+          class="mb-2 text-4xl tracking-tight text-white leading-12 font-heading"
         >
           Find
           <strong class="tracking-normal text-white text-normal"

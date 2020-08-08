@@ -2,9 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <layout-stub
-  grid="true"
   title="Merge Competitors"
-  white="true"
 >
   <vue-headful-stub
     description=""

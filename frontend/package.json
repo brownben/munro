@@ -38,7 +38,7 @@
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
     "vue-headful": "^2.1.0",
-    "vue-router": "^3.3.4"
+    "vue-router": "^3.4.1"
   },
   "devDependencies": {
     "@vue/cli": "^4.4.6",
@@ -60,7 +60,7 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-url": "^9.0.0",
     "prettier": "^2.0.5",
-    "tailwindcss": "^1.6.1",
+    "tailwindcss": "^1.6.2",
     "vue-eslint-parser": "^7.1.0",
     "vue-template-compiler": "^2.6.11"
   },

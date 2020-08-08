@@ -42,11 +42,11 @@
       </a>
     </div>
     <div class="md:mt-1">
-      <p class="block text-base font-bold leading-4 text-gray-600 font-heading">
+      <p class="block text-base text-gray-600 font-heading">
         Created By
         <a
           href="https://brownben.github.io"
-          class="transition duration-300 text-main-600 hover:text-main-800"
+          class="font-bold transition duration-300 text-main-600 hover:text-main-800"
           >Ben Brown</a
         >
       </p>
@@ -65,7 +65,7 @@
       >
         Logout
       </router-link>
-      <p class="inline-block text-sm text-gray-500 font-heading">
+      <p class="inline-block text-sm text-gray-400 font-heading">
         •
       </p>
       <a

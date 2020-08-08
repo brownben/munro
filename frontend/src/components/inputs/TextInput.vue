@@ -1,7 +1,7 @@
 <template>
   <div>
     <label
-      class="block pb-1 select-none font-heading text-main-600"
+      class="block pb-1 text-gray-600 select-none font-heading"
       :for="label"
       >{{ label }}</label
     >
@@ -9,7 +9,7 @@
       :id="label"
       :value="value"
       :type="type"
-      class="w-full px-3 py-2 transition-all duration-300 border-2 border-opacity-0 outline-none rounded-shape text-body bg-main-100 border-main focus:border-opacity-100"
+      class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
       @input="$emit('input', $event.target.value)"
     />
   </div>

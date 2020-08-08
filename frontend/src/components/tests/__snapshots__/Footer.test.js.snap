@@ -51,13 +51,13 @@ exports[`Renders Correctly 1`] = `
     class="md:mt-1"
   >
     <p
-      class="block text-base font-bold leading-4 text-gray-500 font-heading"
+      class="block text-base text-gray-600 font-heading"
     >
       
         Created By
         
       <a
-        class="transition duration-300 text-main-600 hover:text-main-800"
+        class="font-bold transition duration-300 text-main-600 hover:text-main-800"
         href="https://brownben.github.io"
       >
         Ben Brown
@@ -74,7 +74,7 @@ exports[`Renders Correctly 1`] = `
     </router-link-stub>
      
     <p
-      class="inline-block text-sm text-gray-500 font-heading"
+      class="inline-block text-sm text-gray-400 font-heading"
     >
       
         •

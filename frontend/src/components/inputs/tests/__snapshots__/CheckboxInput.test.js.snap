@@ -3,22 +3,29 @@
 exports[`Renders Correctly - Checked 1`] = `
 <div>
   <label
-    class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
+    class="relative flex flex-row items-center select-none"
   >
-    <span
-      class="mr-3 align-top"
+    <svg
+      class="absolute left-0 w-5 h-5 text-white"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      Test Checkbox
-    </span>
+      <path
+        d="M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z"
+      />
+    </svg>
      
     <input
-      class="sr-only"
+      class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-400 checked:border-main-400"
       type="checkbox"
     />
      
     <span
-      class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
-    />
+      class="ml-3 leading-tight text-gray-600 font-heading"
+    >
+      Test Checkbox
+    </span>
   </label>
 </div>
 `;
@@ -26,22 +33,29 @@ exports[`Renders Correctly - Checked 1`] = `
 exports[`Renders Correctly - Unchecked 1`] = `
 <div>
   <label
-    class="m-0 mt-1 text-lg transition ease-out delay-500 select-none text-md font-heading text-main"
+    class="relative flex flex-row items-center select-none"
   >
-    <span
-      class="mr-3 align-top"
+    <svg
+      class="absolute left-0 w-5 h-5 text-white"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      Another Input
-    </span>
+      <path
+        d="M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z"
+      />
+    </svg>
      
     <input
-      class="sr-only"
+      class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-400 checked:border-main-400"
       type="checkbox"
     />
      
     <span
-      class="inline-block w-4 h-4 mt-1 transition-all duration-300 ease-in-out border-2 border-main-300"
-    />
+      class="ml-3 leading-tight text-gray-600 font-heading"
+    >
+      Another Input
+    </span>
   </label>
 </div>
 `;

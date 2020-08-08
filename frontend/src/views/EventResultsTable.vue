@@ -10,12 +10,12 @@
         meta: { name: 'robots', content: 'all' },
       }"
     />
-    <Layout v-if="eventFound">
+    <Layout v-if="eventFound" hasMobileSubTitle>
       <template #title>
         <h1 class="text-3xl font-bold leading-tight font-heading">
           <router-link
             :to="'/leagues/' + event.league"
-            class="text-xl md:text-3xl"
+            class="text-xl md:text-3xl text-main-700"
           >
             {{ event.league || '' }}
           </router-link>

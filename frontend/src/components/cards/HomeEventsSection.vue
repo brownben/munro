@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="latestResults && latestResults.length > 1"
-    class="w-full pt-8 pb-10 bg-gray-100"
+    class="w-full pt-8 pb-10 bg-gray-50"
   >
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
       <div class="flex flex-row flex-wrap justify-between px-6 mx-auto mb-4">

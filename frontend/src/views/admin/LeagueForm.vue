@@ -80,11 +80,11 @@
         />
         <CheckboxInput
           v-model="dynamicResults"
-          label="Dynamic Event Results:"
-          class="mt-6 mb-5 text-left"
+          label="Enable Dynamic Event Results"
+          class="mt-6 text-left"
         />
-        <button v-if="create" class="button-lg">Create League</button>
-        <button v-else class="button-lg">Update League</button>
+        <button v-if="create" class="mt-8 button-lg">Create League</button>
+        <button v-else class="mt-8 button-lg">Update League</button>
       </form>
     </Layout>
     <not-found v-else />

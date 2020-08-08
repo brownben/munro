@@ -56,8 +56,6 @@ test('Get Leagues - Request Called Correctly', async () => {
   const wrapper = mount(Leagues, {
     mocks: {
       $auth: { user: false },
-    },
-    mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -74,8 +72,6 @@ test('Get Leagues - Processes Response Correctly', async () => {
   const wrapper = mount(Leagues, {
     mocks: {
       $auth: { user: false },
-    },
-    mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -106,8 +102,6 @@ test('Get Leagues - Shows Message on Error', async () => {
   const wrapper = mount(Leagues, {
     mocks: {
       $auth: { user: false },
-    },
-    mocks: {
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['router-link', 'vue-headful'],
