@@ -37,7 +37,7 @@
           :key="course"
           :class="{ 'bg-main-200 text-main-800': chosenCourse === course }"
           class="button"
-          @click="chosenCourse = course"
+          @click="setChosenCourse(course)"
         >
           {{ course }}
         </button>
@@ -231,14 +231,15 @@ export default {
       const courses = [
         ...new Set(this.rawResults?.map((result) => result.course)),
       ]
-      this.setChosenCourse(courses)
+      if (courses.length >= 1 && !this.chosenCourse)
+        this.setChosenCourse(courses[0])
       return courses
     },
   },
 
-  // If route changes without reload (if only course parameter changes)
+  // If route changes without reload (if only event parameter changes)
   watch: {
-    $route: function () {
+    '$route.params.event': function () {
       this.rawResults = []
 
       this.loading = true
@@ -248,12 +249,17 @@ export default {
           this.loading = false
         })
     },
+
+    '$route.params.course': function () {
+      this.chosenCourse = this.$route.params.course
+    },
   },
 
   // On load
   mounted: function () {
     // Fetch Data
     this.loading = true
+    if (this.$route.params.course) this.chosenCourse = this.$route.params.course
     return this.getEvent()
       .then(() => this.getResults())
       .then(() => {
@@ -329,8 +335,9 @@ export default {
       this.filterPreferences.female = data.female
     },
 
-    setChosenCourse: function (courses) {
-      this.chosenCourse = courses[0]
+    setChosenCourse: function (course) {
+      this.chosenCourse = course
+      this.$router.push(`/events/${this.$route.params.event}/results/${course}`)
     },
 
     twoDigits: function (number) {

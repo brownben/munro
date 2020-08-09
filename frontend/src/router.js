@@ -133,6 +133,11 @@ const resultRoutes = [
     component: () => import('@/views/EventResultsTable.vue'),
   },
   {
+    path: '/events/:event/results/:course',
+    name: 'Event Results Course Specified',
+    component: () => import('@/views/EventResultsTable.vue'),
+  },
+  {
     path: '/leagues/:name/results/:course',
     name: 'League Course Results',
     component: () => import('@/views/LeagueResultsTable.vue'),
