@@ -1,22 +1,21 @@
 <template>
   <section
     class="flex flex-col items-center justify-between col-span-2 pt-5 text-center bg-white shadow-md rounded-shape-xl"
+    :class="{ 'xl:col-span-1': !showFullDetails }"
   >
-    <div class="w-full px-5 md:px-6 lg:px-8">
+    <div class="flex-grow w-full px-5 my-auto md:px-6 lg:px-8">
       <h3
         v-if="showLeagueName"
-        class="text-xl font-bold leading-6 font-heading text-main-700"
+        class="text-xs font-bold leading-tight tracking-wider uppercase md:text-sm font-heading text-main-700"
       >
         {{ event.league }}
       </h3>
       <h2
-        class="mt-2 mb-1 text-3xl font-bold leading-8 font-heading text-gray-900"
+        class="mt-2 mb-1 text-3xl font-bold leading-tight tracking-tight text-gray-900 font-heading"
       >
         {{ event.name }}
       </h2>
-      <h4
-        class="mt-1 text-lg text-opacity-75 font-heading text-gray-900 last:mb-4 md:mt-0"
-      >
+      <h4 class="mt-1 text-lg text-gray-600 font-heading last:mb-4 md:mt-0">
         <span v-if="event.date" class="leading-4">
           {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
             event.date.split('-')[0]
@@ -29,23 +28,21 @@
         >
         <span
           v-if="event.organiser"
-          class="block text-base leading-4 md:inline-block md:text-lg"
+          class="block text-base leading-tight md:inline-block md:text-lg"
         >
           Organised By {{ event.organiser }}
         </span>
       </h4>
 
       <div
-        v-if="event.moreInformation || event.website"
-        class="mt-3 mb-2 md:mt-0"
-        :class="{
-          'py-3': event.moreInformation || event.website,
-        }"
+        v-if="showFullDetails && (event.moreInformation || event.website)"
+        class="mt-2 mb-4 text-base leading-snug"
       >
-        <p v-if="event.moreInformation" class="text-opacity-75 text-gray-900">
+        <p v-if="event.moreInformation" class="mb-1 text-gray-500 break-words">
           {{ event.moreInformation }}
         </p>
-        <p v-if="event.website" class="mt-1 text-opacity-75 text-gray-900">
+
+        <p v-if="event.moreInformation" class="text-gray-500">
           More Information can be found on the
           <a
             :href="event.website"
@@ -59,12 +56,12 @@
 
       <div
         v-if="
-          event.resultUploaded ||
+          (event.resultUploaded && league.dynamicEventResults) ||
           event.results ||
           event.winsplits ||
           event.routegadget
         "
-        class="w-full pb-4 mt-2"
+        class="w-full pb-5 mt-3"
       >
         <router-link
           v-if="event.resultUploaded && league.dynamicEventResults"
@@ -102,22 +99,26 @@
       v-if="auth.user"
       class="w-full px-4 pt-4 pb-4 mt-2 bg-main-50 md:px-6 rounded-shape-xl"
     >
-      <p class="mx-2 mt-2">
-        <b class="mr-1 select-none text-main-800">Event ID:</b>
-        {{ event.id }}
-      </p>
-      <p v-if="event.uploadKey" class="mb-3">
-        <b class="mr-1 select-none text-main-800">Event Upload Key:</b>
-        {{ event.uploadKey }}
-      </p>
+      <div class="mb-2">
+        <p class="mx-2">
+          <b class="mr-1 select-none text-main-800">Event ID:</b>
+          {{ event.id }}
+        </p>
+        <p v-if="event.uploadKey">
+          <b class="mr-1 select-none text-main-800">Event Upload Key:</b>
+          {{ event.uploadKey }}
+        </p>
+      </div>
 
-      <router-link :to="'/events/' + event.id + '/edit'" class="button-dark"
+      <router-link
+        :to="'/events/' + event.id + '/edit'"
+        class="button button-dark"
         >Edit Event</router-link
       >
-      <router-link :to="'/upload/' + event.id" class="button-dark"
+      <router-link :to="'/upload/' + event.id" class="button button-dark"
         >Upload Results</router-link
       >
-      <button class="button-dark" @click="deleteEvent(event)">
+      <button class="button button-dark" @click="deleteEvent(event)">
         Delete Event
       </button>
     </div>
@@ -133,6 +134,7 @@ export default {
     event: { type: Object, default: () => ({}) },
     league: { type: Object, default: () => ({}) },
     auth: { type: Object, default: () => ({}) },
+    showFullDetails: { type: Boolean, default: true },
   },
 
   methods: {

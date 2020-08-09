@@ -29,20 +29,20 @@
       </h1>
     </template>
 
-    <div class="col-span-2 card-color-dark">
+    <div class="col-span-2 card card-color-dark">
       <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
 
       <div class="w-full">
-        <router-link to="/competitors/create" class="button-white"
+        <router-link to="/competitors/create" class="button button-white"
           >Add Competitor</router-link
         >
-        <router-link to="/competitors/merge" class="button-white"
+        <router-link to="/competitors/merge" class="button button-white"
           >Merge Competitors</router-link
         >
-        <router-link to="/results/transfer" class="button-white"
+        <router-link to="/results/transfer" class="button button-white"
           >Transfer Result</router-link
         >
-        <router-link to="/results/manual" class="button-white"
+        <router-link to="/results/manual" class="button button-white"
           >Manual Points</router-link
         >
       </div>

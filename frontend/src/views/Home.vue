@@ -25,10 +25,10 @@
         Hello {{ $auth.user.displayName || 'Admin' }}!
       </h2>
       <div class="mx-6">
-        <router-link to="/leagues/create" class="button-white"
+        <router-link to="/leagues/create" class="button button-white"
           >Create New League</router-link
         >
-        <router-link to="/upload" class="button-white"
+        <router-link to="/upload" class="button button-white"
           >Upload Results</router-link
         >
       </div>

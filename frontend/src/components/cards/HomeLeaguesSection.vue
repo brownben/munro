@@ -22,6 +22,7 @@
           website="https://en-gb.facebook.com/sprintelope/"
           alternativeLink="/leagues/(Not) Sprintelope 2020"
           :larger="false"
+          smaller
         />
         <LeagueOverviewCard
           title="Fight with the Night"
@@ -29,6 +30,7 @@
           website="https://euoc.wordpress.com/"
           alternativeLink="/leagues/Fight with the Night 19-20"
           :larger="false"
+          smaller
         />
         <LeagueOverviewCard
           title="Northern Night Cup"
@@ -36,6 +38,7 @@
           website="https://www.orienteering.scot/northern-night-cup/"
           alternativeLink="/leagues/Northern Night Cup 19-20"
           :larger="false"
+          smaller
         />
       </div>
     </div>

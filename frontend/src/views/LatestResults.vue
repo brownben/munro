@@ -21,6 +21,7 @@
       :event="event"
       :league="{ dynamicEventResults: true }"
       :showLeagueName="true"
+      :showFullDetails="false"
     />
   </Layout>
 </template>

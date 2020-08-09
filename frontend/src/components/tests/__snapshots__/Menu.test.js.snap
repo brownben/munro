@@ -17,11 +17,12 @@ exports[`Renders Correctly 1`] = `
           class="flex-shrink-0"
         >
           <router-link-stub
+            aria-label="Home"
             class="flex flex-row items-center"
             to="/"
           >
             <svg
-              alt="Mountains Shaped as M"
+              alt="Munro Logo (Mountains Shaped as M)"
               class="inline-block w-10 h-8 sm:w-20 md:w-10"
               fill="none"
               viewBox="0 0 301 260"
@@ -186,11 +187,12 @@ exports[`Renders Correctly 2`] = `
           class="flex-shrink-0"
         >
           <router-link-stub
+            aria-label="Home"
             class="flex flex-row items-center"
             to="/"
           >
             <svg
-              alt="Mountains Shaped as M"
+              alt="Munro Logo (Mountains Shaped as M)"
               class="inline-block w-10 h-8 sm:w-20 md:w-10"
               fill="none"
               viewBox="0 0 301 260"

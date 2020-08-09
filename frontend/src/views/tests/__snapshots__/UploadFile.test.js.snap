@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="flex-grow h-full bg-white"
+  class="flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -23,183 +23,185 @@ exports[`Renders Correctly 1`] = `
   <main>
     <!---->
      
-    <div
-      class="w-full"
-    />
+    <!---->
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
       >
-        <vue-headful-stub
-          description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro - Upload Results File"
-          url="https://munro-leagues.herokuapp.com/upload/file"
-        />
-         
         <div
-          class="col-span-2 card-color"
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
         >
-          <p>
-            
+          <vue-headful-stub
+            description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro - Upload Results File"
+            url="https://munro-leagues.herokuapp.com/upload/file"
+          />
+           
+          <div
+            class="col-span-2 card card-color"
+          >
+            <p>
+              
       For instructions on how to upload results please visit
       
-            <router-link-stub
-              class="inline ml-1 text-white link"
-              to="/upload/instructions"
-            >
-              
+              <router-link-stub
+                class="inline ml-1 text-white link"
+                to="/upload/instructions"
+              >
+                
         /upload/instructions
       
-            </router-link-stub>
-          </p>
-        </div>
-         
-        <div
-          class="col-span-2"
-        >
-          <div>
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Event ID:"
-            >
-              Event ID:
-            </label>
-             
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Event ID:"
-              type="text"
-            />
-          </div>
-           
-          <p
-            class="mt-4 mb-4"
-            style="display: none;"
-          >
-            <b
-              class="mr-2 text-main-800"
-            >
-              Event Name:
-            </b>
-            
-      
-    
-          </p>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Upload Key:"
-            >
-              Upload Key:
-            </label>
-             
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Upload Key:"
-              type="text"
-            />
-          </div>
-           
-          <!---->
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-            >
-              Results File:
-            </label>
-             
-            <p
-              class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-            >
-              <span
-                class="inline-block text-gray-600 select-none"
-              >
-                
-      Select a File
-    
-              </span>
-               
-              <label
-                class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
-                for="file"
-                tabindex="0"
-              >
-                
-      Browse for File
-    
-              </label>
-               
-              <input
-                accept=".csv"
-                class="hidden outline-none"
-                id="file"
-                type="file"
-              />
+              </router-link-stub>
             </p>
           </div>
            
           <div
-            class="mt-4"
+            class="col-span-2"
           >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Results (URL):"
-            >
-              Results (URL):
-            </label>
+            <div>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Event ID:"
+              >
+                Event ID:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Event ID:"
+                type="text"
+              />
+            </div>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Results (URL):"
-              type="url"
-            />
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Routegadget (URL):"
+            <p
+              class="mt-4 mb-4"
+              style="display: none;"
             >
-              Routegadget (URL):
-            </label>
+              <b
+                class="mr-2 text-main-800"
+              >
+                Event Name:
+              </b>
+              
+      
+    
+            </p>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Routegadget (URL):"
-              type="url"
-            />
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Winsplits: (URL):"
+            <div
+              class="mt-4"
             >
-              Winsplits: (URL):
-            </label>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Upload Key:"
+              >
+                Upload Key:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Upload Key:"
+                type="text"
+              />
+            </div>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Winsplits: (URL):"
-              type="url"
-            />
+            <!---->
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+              >
+                Results File:
+              </label>
+               
+              <p
+                class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+              >
+                <span
+                  class="inline-block text-gray-600 select-none"
+                >
+                  
+      Select a File
+    
+                </span>
+                 
+                <label
+                  class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
+                  for="file"
+                  tabindex="0"
+                >
+                  
+      Browse for File
+    
+                </label>
+                 
+                <input
+                  accept=".csv"
+                  class="hidden outline-none"
+                  id="file"
+                  type="file"
+                />
+              </p>
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Results (URL):"
+              >
+                Results (URL):
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Results (URL):"
+                type="url"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Routegadget (URL):"
+              >
+                Routegadget (URL):
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Routegadget (URL):"
+                type="url"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Winsplits: (URL):"
+              >
+                Winsplits: (URL):
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Winsplits: (URL):"
+                type="url"
+              />
+            </div>
+             
+            <!---->
           </div>
-           
-          <!---->
         </div>
       </div>
     </div>
@@ -211,7 +213,7 @@ exports[`Renders Correctly 1`] = `
 
 exports[`Upload Buttons Shows Correctly 1`] = `
 <div
-  class="flex-grow h-full bg-white"
+  class="flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -232,189 +234,191 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   <main>
     <!---->
      
-    <div
-      class="w-full"
-    />
+    <!---->
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
       >
-        <vue-headful-stub
-          description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro - Upload Results File"
-          url="https://munro-leagues.herokuapp.com/upload/file"
-        />
-         
         <div
-          class="col-span-2 card-color"
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
         >
-          <p>
-            
+          <vue-headful-stub
+            description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro - Upload Results File"
+            url="https://munro-leagues.herokuapp.com/upload/file"
+          />
+           
+          <div
+            class="col-span-2 card card-color"
+          >
+            <p>
+              
       For instructions on how to upload results please visit
       
-            <router-link-stub
-              class="inline ml-1 text-white link"
-              to="/upload/instructions"
-            >
-              
+              <router-link-stub
+                class="inline ml-1 text-white link"
+                to="/upload/instructions"
+              >
+                
         /upload/instructions
       
-            </router-link-stub>
-          </p>
-        </div>
-         
-        <div
-          class="col-span-2"
-        >
-          <div>
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Event ID:"
-            >
-              Event ID:
-            </label>
-             
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Event ID:"
-              type="text"
-            />
-          </div>
-           
-          <p
-            class="mt-4 mb-4"
-            style="display: none;"
-          >
-            <b
-              class="mr-2 text-main-800"
-            >
-              Event Name:
-            </b>
-            
-      
-    
-          </p>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Upload Key:"
-            >
-              Upload Key:
-            </label>
-             
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Upload Key:"
-              type="text"
-            />
-          </div>
-           
-          <!---->
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-            >
-              Results File:
-            </label>
-             
-            <p
-              class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-            >
-              <span
-                class="inline-block text-gray-600 select-none"
-              >
-                
-      Select a File
-    
-              </span>
-               
-              <label
-                class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
-                for="file"
-                tabindex="0"
-              >
-                
-      Browse for File
-    
-              </label>
-               
-              <input
-                accept=".csv"
-                class="hidden outline-none"
-                id="file"
-                type="file"
-              />
+              </router-link-stub>
             </p>
           </div>
            
           <div
-            class="mt-4"
+            class="col-span-2"
           >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Results (URL):"
-            >
-              Results (URL):
-            </label>
+            <div>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Event ID:"
+              >
+                Event ID:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Event ID:"
+                type="text"
+              />
+            </div>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Results (URL):"
-              type="url"
-            />
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Routegadget (URL):"
+            <p
+              class="mt-4 mb-4"
+              style="display: none;"
             >
-              Routegadget (URL):
-            </label>
+              <b
+                class="mr-2 text-main-800"
+              >
+                Event Name:
+              </b>
+              
+      
+    
+            </p>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Routegadget (URL):"
-              type="url"
-            />
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Winsplits: (URL):"
+            <div
+              class="mt-4"
             >
-              Winsplits: (URL):
-            </label>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Upload Key:"
+              >
+                Upload Key:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Upload Key:"
+                type="text"
+              />
+            </div>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Winsplits: (URL):"
-              type="url"
-            />
-          </div>
-           
-          <button
-            class="mt-6 button-lg"
-          >
-            
+            <!---->
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+              >
+                Results File:
+              </label>
+               
+              <p
+                class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+              >
+                <span
+                  class="inline-block text-gray-600 select-none"
+                >
+                  
+      Select a File
+    
+                </span>
+                 
+                <label
+                  class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
+                  for="file"
+                  tabindex="0"
+                >
+                  
+      Browse for File
+    
+                </label>
+                 
+                <input
+                  accept=".csv"
+                  class="hidden outline-none"
+                  id="file"
+                  type="file"
+                />
+              </p>
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Results (URL):"
+              >
+                Results (URL):
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Results (URL):"
+                type="url"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Routegadget (URL):"
+              >
+                Routegadget (URL):
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Routegadget (URL):"
+                type="url"
+              />
+            </div>
+             
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Winsplits: (URL):"
+              >
+                Winsplits: (URL):
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Winsplits: (URL):"
+                type="url"
+              />
+            </div>
+             
+            <button
+              class="mt-6 button-lg"
+            >
+              
       Upload File
     
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     </div>

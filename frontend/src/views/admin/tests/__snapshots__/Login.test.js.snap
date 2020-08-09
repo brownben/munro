@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="flex-grow h-full bg-white"
+  class="flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -23,85 +23,87 @@ exports[`Renders Correctly 1`] = `
   <main>
     <!---->
      
-    <div
-      class="w-full"
-    />
+    <!---->
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
       >
-        <vue-headful-stub
-          description=""
-          head="[object Object]"
-          title="Munro - Login"
-        />
-         
-        <form
-          class="col-span-2"
+        <div
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
         >
-          <div>
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Email Address:"
-            >
-              Email Address:
-            </label>
-             
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Email Address:"
-              type="email"
-            />
-          </div>
+          <vue-headful-stub
+            description=""
+            head="[object Object]"
+            title="Munro - Login"
+          />
            
-          <div
-            class="mt-4"
+          <form
+            class="col-span-2"
           >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Password:"
-            >
-              Password:
-            </label>
+            <div>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Email Address:"
+              >
+                Email Address:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Email Address:"
+                type="email"
+              />
+            </div>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Password:"
-              type="password"
-            />
-          </div>
-           
-          <button
-            class="mt-6 button-lg"
-          >
-            
+            <div
+              class="mt-4"
+            >
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Password:"
+              >
+                Password:
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Password:"
+                type="password"
+              />
+            </div>
+             
+            <button
+              class="mt-6 button-lg"
+            >
+              
       Login
     
-          </button>
-        </form>
-         
-        <div
-          class="col-span-2 p-4 card-color"
-        >
-          <p>
-            <b
-              class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
-            >
-              Looking for Results Upload?
-            </b>
-            
+            </button>
+          </form>
+           
+          <div
+            class="col-span-2 p-4 card card-color"
+          >
+            <p>
+              <b
+                class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
+              >
+                Looking for Results Upload?
+              </b>
+              
       You don't have to login, just visit the
       
-            <router-link-stub
-              class="link"
-              to="/upload"
-            >
-              upload page
-            </router-link-stub>
-          </p>
+              <router-link-stub
+                class="link"
+                to="/upload"
+              >
+                upload page
+              </router-link-stub>
+            </p>
+          </div>
         </div>
       </div>
     </div>

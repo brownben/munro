@@ -9,15 +9,8 @@
   @apply rounded-shape;
 
   &.no-expansion {
-    @apply w-auto mx-2 mt-2;
-  }
-
-  &.no-expansion.mx-0 {
+    /* Home Page - Don't Take Up Full Width */
     @apply w-auto mx-0 mt-2;
-  }
-
-  &.no-expansion.ml-0 {
-    @apply w-auto ml-0 mr-2 mt-2;
   }
 
   @screen sm {
@@ -28,38 +21,33 @@
   &:focus {
     @apply bg-main-200 text-main-800;
   }
-}
 
-/* White Button (On Dark) */
+  &.button-dark {
+    /* On Light Pink Card Background */
+    @apply bg-main-200 bg-opacity-50;
+    @apply text-main-800;
 
-.button-white {
-  @apply button bg-purple-100;
-  @apply text-white;
-  @apply bg-opacity-10 border border-white border-opacity-50;
-  @apply w-full mx-0 mt-3;
-
-  @screen sm {
-    @apply w-auto mx-2 mt-2;
+    &:hover,
+    &:focus {
+      @apply bg-opacity-100 text-main-800;
+    }
   }
 
-  padding-top: 0.375rem;
-  padding-bottom: 0.375rem;
+  &.button-white {
+    /* On Dark Purple Background */
+    @apply bg-purple-100 bg-opacity-0;
+    @apply text-white leading-tight;
+    @apply border border-white border-opacity-50;
+    @apply w-full mx-0 mt-3 py-2  px-4;
 
-  &:hover,
-  &:focus {
-    @apply bg-opacity-35 text-white;
-  }
-}
+    @screen sm {
+      @apply w-auto mx-2 mt-2;
+    }
 
-/* Dark Button (On Purple) */
-
-.button-dark {
-  @apply button bg-main-200;
-  @apply text-main-800;
-
-  &:hover,
-  &:focus {
-    @apply bg-main-300 text-main-800;
+    &:hover,
+    &:focus {
+      @apply bg-opacity-25 text-white;
+    }
   }
 }
 
@@ -74,6 +62,10 @@
 
   &:hover,
   &:focus {
-    @apply shadow-outline border-main-400 text-main-700;
+    @apply border-main-400 text-main-700;
+  }
+
+  &:focus {
+    @apply shadow-outline;
   }
 }

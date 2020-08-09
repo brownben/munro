@@ -2,7 +2,7 @@
 
 exports[`Mobile Results Dropdown Works 1`] = `
 <div
-  class="flex-grow h-full w-full bg-white"
+  class="flex-grow h-full w-full"
   wide=""
 >
   <header
@@ -902,21 +902,25 @@ exports[`Mobile Results Dropdown Works 1`] = `
     </div>
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6 pt-6 sm:pt-8"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6 pt-6 sm:pt-8"
       >
-        <vue-headful-stub
-          description="Results from the  course of the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro -  -  Results"
-          url="https://munro-leagues.herokuapp.com/leagues//results/"
-        />
-            
-        <!---->
-         
-        <!---->
+        <div
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        >
+          <vue-headful-stub
+            description="Results from the  course of the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro -  -  Results"
+            url="https://munro-leagues.herokuapp.com/leagues//results/"
+          />
+              
+          <!---->
+           
+          <!---->
+        </div>
       </div>
     </div>
   </main>
@@ -927,7 +931,7 @@ exports[`Mobile Results Dropdown Works 1`] = `
 
 exports[`Mobile Results Dropdown Works 2`] = `
 <div
-  class="flex-grow h-full w-full bg-white"
+  class="flex-grow h-full w-full"
   wide=""
 >
   <header
@@ -1864,21 +1868,25 @@ exports[`Mobile Results Dropdown Works 2`] = `
     </div>
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6 pt-6 sm:pt-8"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6 pt-6 sm:pt-8"
       >
-        <vue-headful-stub
-          description="Results from the  course of the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro -  -  Results"
-          url="https://munro-leagues.herokuapp.com/leagues//results/"
-        />
-            
-        <!---->
-         
-        <!---->
+        <div
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        >
+          <vue-headful-stub
+            description="Results from the  course of the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro -  -  Results"
+            url="https://munro-leagues.herokuapp.com/leagues//results/"
+          />
+              
+          <!---->
+           
+          <!---->
+        </div>
       </div>
     </div>
   </main>

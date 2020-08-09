@@ -16,6 +16,7 @@
             <router-link
               to="/"
               class="flex flex-row items-center"
+              aria-label="Home"
               @click.native="menuOpen = false"
             >
               <svg
@@ -23,7 +24,7 @@
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 class="inline-block w-10 h-8 sm:w-20 md:w-10"
-                alt="Mountains Shaped as M"
+                alt="Munro Logo (Mountains Shaped as M)"
               >
                 <path
                   d="M300.058 259.827L260.933 0L89.3914 259.82L300.058 259.827Z"

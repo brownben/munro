@@ -90,36 +90,36 @@
     <template #fullWidth>
       <section
         v-if="auth.user && league && league.name"
-        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-500"
+        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
       >
         <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
         <div class="w-10/12 mx-auto sm:mt-2">
-          <router-link :to="`${$route.path}/edit`" class="button-white"
+          <router-link :to="`${$route.path}/edit`" class="button button-white"
             >Edit League</router-link
           >
-          <button class="button-white" @click="deleteLeague">
+          <button class="button button-white" @click="deleteLeague">
             Delete League
           </button>
           <router-link
             :to="`/leagues/${$route.params.name}/competitors`"
-            class="button-white"
+            class="button button-white"
             >Manage Competitors</router-link
           >
         </div>
       </section>
       <section
         v-if="league.courses && league.courses.length > 0"
-        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-700"
+        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-500"
       >
         <h2 class="text-2xl font-bold font-heading">
           League Results
         </h2>
-        <div class="w-10/12 mx-auto sm:mt-2">
+        <div class="w-full px-6 mx-auto sm:mt-2">
           <router-link
             v-for="course of league.courses"
             :key="course"
             :to="$route.path + '/results/' + course"
-            class="button-white"
+            class="button button-white"
             >{{ course }}</router-link
           >
         </div>

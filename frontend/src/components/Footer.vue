@@ -9,7 +9,7 @@
         rel="noopener noreferrer"
       >
         <svg
-          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
           viewBox="0 0 400 400"
           aria-label="Twitter"
         >
@@ -30,7 +30,7 @@
         rel="noopener noreferrer"
       >
         <svg
-          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
           aria-label="Github"
           viewBox="0 0 24 24"
         >
@@ -46,7 +46,7 @@
         Created By
         <a
           href="https://brownben.github.io"
-          class="font-bold transition duration-300 text-main-600 hover:text-main-800"
+          class="font-bold transition duration-300 text-main-600 hover:text-main-800 focus:text-main-800"
           >Ben Brown</a
         >
       </p>
@@ -54,14 +54,14 @@
       <router-link
         v-if="!auth.user"
         to="/login"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
       >
         Admin Login
       </router-link>
       <router-link
         v-else
         to="/logout"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
       >
         Logout
       </router-link>
@@ -70,7 +70,7 @@
       </p>
       <a
         href="mailto:munro.leagues@gmail.com"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
       >
         Contact
       </a>

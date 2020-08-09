@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-grow h-full" :class="gray ? 'bg-gray-50' : 'bg-white'">
+  <div class="flex-grow h-full">
     <header v-if="title || $slots.title" class="text-gray-900 bg-white">
       <div
         class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8"
@@ -21,17 +21,19 @@
           </div>
         </div>
       </div>
-      <div class="w-full">
+      <div v-if="$slots.fullWidth" class="w-full">
         <slot name="fullWidth" />
       </div>
-      <div
-        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
-        :class="{
-          'pt-6 sm:pt-8': $slots.fullWidth,
-        }"
-      >
-        <div class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8">
-          <slot />
+      <div v-if="$slots.default" :class="gray ? 'bg-gray-50' : 'bg-white'">
+        <div
+          class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+          :class="{
+            'pt-6 sm:pt-8': $slots.fullWidth,
+          }"
+        >
+          <div class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8">
+            <slot />
+          </div>
         </div>
       </div>
     </main>

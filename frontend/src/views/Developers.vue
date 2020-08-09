@@ -15,7 +15,7 @@
       url="https://munro-leagues.herokuapp.com/developers"
     />
 
-    <div class="col-span-2 text-left card-color">
+    <div class="col-span-2 text-left card card-color">
       <div class="inline-block text-center">
         <h2 class="text-lg font-heading">
           <span class="text-2xl font-bold md:text-xl"

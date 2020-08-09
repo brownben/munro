@@ -32,18 +32,21 @@ exports[`Renders Correctly 1`] = `
     class="col-span-2"
     event="[object Object]"
     league="[object Object]"
+    showfulldetails="true"
   />
   <eventoverviewcard-stub
     auth="[object Object]"
     class="col-span-2"
     event="[object Object]"
     league="[object Object]"
+    showfulldetails="true"
   />
   <eventoverviewcard-stub
     auth="[object Object]"
     class="col-span-2"
     event="[object Object]"
     league="[object Object]"
+    showfulldetails="true"
   />
    
   <!---->

@@ -28,7 +28,7 @@
       </button>
     </form>
 
-    <div class="col-span-2 p-4 card-color">
+    <div class="col-span-2 p-4 card card-color">
       <p>
         <b
           class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"

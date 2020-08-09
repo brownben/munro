@@ -14,7 +14,7 @@ exports[`Renders Correctly 1`] = `
     >
       <svg
         aria-label="Twitter"
-        class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+        class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
         viewBox="0 0 400 400"
       >
         <path
@@ -36,7 +36,7 @@ exports[`Renders Correctly 1`] = `
     >
       <svg
         aria-label="Github"
-        class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+        class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
         viewBox="0 0 24 24"
       >
         <path
@@ -57,7 +57,7 @@ exports[`Renders Correctly 1`] = `
         Created By
         
       <a
-        class="font-bold transition duration-300 text-main-600 hover:text-main-800"
+        class="font-bold transition duration-300 text-main-600 hover:text-main-800 focus:text-main-800"
         href="https://brownben.github.io"
       >
         Ben Brown
@@ -65,7 +65,7 @@ exports[`Renders Correctly 1`] = `
     </p>
      
     <router-link-stub
-      class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+      class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
       to="/login"
     >
       
@@ -82,7 +82,7 @@ exports[`Renders Correctly 1`] = `
     </p>
      
     <a
-      class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+      class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
       href="mailto:munro.leagues@gmail.com"
     >
       

@@ -11,10 +11,6 @@ module.exports = {
         outline: '0 0 0 3px rgba(213, 61, 245, 0.5)',
       },
 
-      screens: {
-        '2xl': '1650px',
-      },
-
       lineHeight: {
         '12': '3rem',
         '14': '3.5rem',
@@ -38,11 +34,6 @@ module.exports = {
         'shape-xl': '1rem 0 1rem 0',
       },
 
-      opacity: {
-        '10': '.1',
-        '35': '.35',
-      },
-
       colors: {
         gray: {
           '50': 'hsl(290, 20%, 98%)',
@@ -59,7 +50,7 @@ module.exports = {
 
         main: {
           default: '#B80BDA',
-          '1': '#fefaff',
+          '1': '#FEFAFF',
           '50': '#FAE7FE',
           '100': '#F8DDFD',
           '200': '#F2C0FC',

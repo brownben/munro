@@ -9,7 +9,7 @@ exports[`Renders Correctly - Create 1`] = `
   />
    
   <div
-    class="flex-grow h-full bg-white"
+    class="flex-grow h-full"
   >
     <header
       class="text-gray-900 bg-white"
@@ -30,160 +30,162 @@ exports[`Renders Correctly - Create 1`] = `
     <main>
       <!---->
        
-      <div
-        class="w-full"
-      />
+      <!---->
        
       <div
-        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+        class="bg-white"
       >
         <div
-          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+          class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
         >
-          <form
-            class="col-span-2"
+          <div
+            class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
           >
-            <div>
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Name:"
-              >
-                Name:
-              </label>
-               
-              <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Name:"
-                type="text"
-              />
-            </div>
-             
-            <div
-              class="mt-4"
+            <form
+              class="col-span-2"
             >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Club:"
-              >
-                Club:
-              </label>
+              <div>
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Name:"
+                >
+                  Name:
+                </label>
+                 
+                <input
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Name:"
+                  type="text"
+                />
+              </div>
                
-              <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Club:"
-                type="text"
-              />
-            </div>
-             
-            <div
-              class="mt-4"
-            >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Age Class:"
+              <div
+                class="mt-4"
               >
-                Age Class:
-              </label>
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Club:"
+                >
+                  Club:
+                </label>
+                 
+                <input
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Club:"
+                  type="text"
+                />
+              </div>
                
-              <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Age Class:"
-                type="text"
-              />
-            </div>
-             
-            <div
-              class="mt-4"
-            >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="League:"
+              <div
+                class="mt-4"
               >
-                
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Age Class:"
+                >
+                  Age Class:
+                </label>
+                 
+                <input
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Age Class:"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="mt-4"
+              >
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="League:"
+                >
+                  
     League:
   
-              </label>
+                </label>
+                 
+                <div
+                  class="relative"
+                >
+                  <span
+                    class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                  >
+                    <svg
+                      class="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 9l-7 7-7-7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </span>
+                   
+                  <select
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    id="League:"
+                  >
+                    <option />
+                     
+                  </select>
+                </div>
+              </div>
                
               <div
-                class="relative"
+                class="mt-4"
               >
-                <span
-                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Course:"
                 >
-                  <svg
-                    class="w-5 h-5 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19 9l-7 7-7-7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                    />
-                  </svg>
-                </span>
-                 
-                <select
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                  id="League:"
-                >
-                  <option />
-                   
-                </select>
-              </div>
-            </div>
-             
-            <div
-              class="mt-4"
-            >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Course:"
-              >
-                
+                  
     Course:
   
-              </label>
-               
-              <div
-                class="relative"
-              >
-                <span
-                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
-                >
-                  <svg
-                    class="w-5 h-5 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19 9l-7 7-7-7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                    />
-                  </svg>
-                </span>
+                </label>
                  
-                <select
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                  id="Course:"
+                <div
+                  class="relative"
                 >
-                  <option />
+                  <span
+                    class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                  >
+                    <svg
+                      class="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 9l-7 7-7-7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </span>
                    
-                </select>
+                  <select
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    id="Course:"
+                  >
+                    <option />
+                     
+                  </select>
+                </div>
               </div>
-            </div>
-             
-            <button
-              class="mt-8 button-lg"
-            >
-              Create Competitor
-            </button>
-          </form>
+               
+              <button
+                class="mt-8 button-lg"
+              >
+                Create Competitor
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </main>
@@ -202,7 +204,7 @@ exports[`Renders Correctly - Upload 1`] = `
   />
    
   <div
-    class="flex-grow h-full bg-white"
+    class="flex-grow h-full"
   >
     <header
       class="text-gray-900 bg-white"
@@ -223,160 +225,162 @@ exports[`Renders Correctly - Upload 1`] = `
     <main>
       <!---->
        
-      <div
-        class="w-full"
-      />
+      <!---->
        
       <div
-        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+        class="bg-white"
       >
         <div
-          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+          class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
         >
-          <form
-            class="col-span-2"
+          <div
+            class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
           >
-            <div>
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Name:"
-              >
-                Name:
-              </label>
-               
-              <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Name:"
-                type="text"
-              />
-            </div>
-             
-            <div
-              class="mt-4"
+            <form
+              class="col-span-2"
             >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Club:"
-              >
-                Club:
-              </label>
+              <div>
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Name:"
+                >
+                  Name:
+                </label>
+                 
+                <input
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Name:"
+                  type="text"
+                />
+              </div>
                
-              <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Club:"
-                type="text"
-              />
-            </div>
-             
-            <div
-              class="mt-4"
-            >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Age Class:"
+              <div
+                class="mt-4"
               >
-                Age Class:
-              </label>
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Club:"
+                >
+                  Club:
+                </label>
+                 
+                <input
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Club:"
+                  type="text"
+                />
+              </div>
                
-              <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Age Class:"
-                type="text"
-              />
-            </div>
-             
-            <div
-              class="mt-4"
-            >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="League:"
+              <div
+                class="mt-4"
               >
-                
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Age Class:"
+                >
+                  Age Class:
+                </label>
+                 
+                <input
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Age Class:"
+                  type="text"
+                />
+              </div>
+               
+              <div
+                class="mt-4"
+              >
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="League:"
+                >
+                  
     League:
   
-              </label>
+                </label>
+                 
+                <div
+                  class="relative"
+                >
+                  <span
+                    class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                  >
+                    <svg
+                      class="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 9l-7 7-7-7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </span>
+                   
+                  <select
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    id="League:"
+                  >
+                    <option />
+                     
+                  </select>
+                </div>
+              </div>
                
               <div
-                class="relative"
+                class="mt-4"
               >
-                <span
-                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                <label
+                  class="block pb-1 text-gray-600 select-none font-heading"
+                  for="Course:"
                 >
-                  <svg
-                    class="w-5 h-5 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19 9l-7 7-7-7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                    />
-                  </svg>
-                </span>
-                 
-                <select
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                  id="League:"
-                >
-                  <option />
-                   
-                </select>
-              </div>
-            </div>
-             
-            <div
-              class="mt-4"
-            >
-              <label
-                class="block pb-1 text-gray-600 select-none font-heading"
-                for="Course:"
-              >
-                
+                  
     Course:
   
-              </label>
-               
-              <div
-                class="relative"
-              >
-                <span
-                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
-                >
-                  <svg
-                    class="w-5 h-5 text-gray-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19 9l-7 7-7-7"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="1.5"
-                    />
-                  </svg>
-                </span>
+                </label>
                  
-                <select
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                  id="Course:"
+                <div
+                  class="relative"
                 >
-                  <option />
+                  <span
+                    class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                  >
+                    <svg
+                      class="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 9l-7 7-7-7"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                      />
+                    </svg>
+                  </span>
                    
-                </select>
+                  <select
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    id="Course:"
+                  >
+                    <option />
+                     
+                  </select>
+                </div>
               </div>
-            </div>
-             
-            <button
-              class="mt-8 button-lg"
-            >
-              Update Competitor
-            </button>
-          </form>
+               
+              <button
+                class="mt-8 button-lg"
+              >
+                Update Competitor
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </main>

@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="flex-grow h-full bg-white"
+  class="flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -23,145 +23,147 @@ exports[`Renders Correctly 1`] = `
   <main>
     <!---->
      
-    <div
-      class="w-full"
-    />
+    <!---->
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
       >
-        <vue-headful-stub
-          description="Manually Submit a Result to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro - Submit Result"
-          url="https://munro-leagues.herokuapp.com/upload/result"
-        />
-         
         <div
-          class="col-span-2"
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
         >
-          <div>
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Event:"
-            >
-              
+          <vue-headful-stub
+            description="Manually Submit a Result to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro - Submit Result"
+            url="https://munro-leagues.herokuapp.com/upload/result"
+          />
+           
+          <div
+            class="col-span-2"
+          >
+            <div>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Event:"
+              >
+                
     Event:
   
-            </label>
+              </label>
+               
+              <div
+                class="relative"
+              >
+                <span
+                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 9l-7 7-7-7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </span>
+                 
+                <select
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Event:"
+                >
+                  <option />
+                   
+                </select>
+              </div>
+            </div>
              
             <div
-              class="relative"
+              class="mt-4"
             >
-              <span
-                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Your Course:"
               >
-                <svg
-                  class="w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19 9l-7 7-7-7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </span>
-               
-              <select
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Event:"
-              >
-                <option />
-                 
-              </select>
-            </div>
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Your Course:"
-            >
-              
+                
     Your Course:
   
-            </label>
+              </label>
+               
+              <div
+                class="relative"
+              >
+                <span
+                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 9l-7 7-7-7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </span>
+                 
+                <select
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Your Course:"
+                >
+                  <option />
+                   
+                </select>
+              </div>
+            </div>
              
             <div
-              class="relative"
+              class="mt-4"
             >
-              <span
-                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Your Name:"
               >
-                <svg
-                  class="w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19 9l-7 7-7-7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </span>
+                Your Name:
+              </label>
                
-              <select
+              <input
                 class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Your Course:"
-              >
-                <option />
-                 
-              </select>
+                id="Your Name:"
+                type="text"
+              />
             </div>
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Your Name:"
-            >
-              Your Name:
-            </label>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Your Name:"
-              type="text"
-            />
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Your Time: (HH:MM:SS)"
+            <div
+              class="mt-4"
             >
-              Your Time: (HH:MM:SS)
-            </label>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Your Time: (HH:MM:SS)"
+              >
+                Your Time: (HH:MM:SS)
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Your Time: (HH:MM:SS)"
+                type="text"
+              />
+            </div>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Your Time: (HH:MM:SS)"
-              type="text"
-            />
+            <!---->
           </div>
-           
-          <!---->
         </div>
       </div>
     </div>
@@ -173,7 +175,7 @@ exports[`Renders Correctly 1`] = `
 
 exports[`Upload Buttons Shows Correctly 1`] = `
 <div
-  class="flex-grow h-full bg-white"
+  class="flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -194,151 +196,153 @@ exports[`Upload Buttons Shows Correctly 1`] = `
   <main>
     <!---->
      
-    <div
-      class="w-full"
-    />
+    <!---->
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
       >
-        <vue-headful-stub
-          description="Manually Submit a Result to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro - Submit Result"
-          url="https://munro-leagues.herokuapp.com/upload/result"
-        />
-         
         <div
-          class="col-span-2"
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
         >
-          <div>
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Event:"
-            >
-              
+          <vue-headful-stub
+            description="Manually Submit a Result to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro - Submit Result"
+            url="https://munro-leagues.herokuapp.com/upload/result"
+          />
+           
+          <div
+            class="col-span-2"
+          >
+            <div>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Event:"
+              >
+                
     Event:
   
-            </label>
+              </label>
+               
+              <div
+                class="relative"
+              >
+                <span
+                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 9l-7 7-7-7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </span>
+                 
+                <select
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Event:"
+                >
+                  <option />
+                   
+                </select>
+              </div>
+            </div>
              
             <div
-              class="relative"
+              class="mt-4"
             >
-              <span
-                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Your Course:"
               >
-                <svg
-                  class="w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19 9l-7 7-7-7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </span>
-               
-              <select
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Event:"
-              >
-                <option />
-                 
-              </select>
-            </div>
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Your Course:"
-            >
-              
+                
     Your Course:
   
-            </label>
+              </label>
+               
+              <div
+                class="relative"
+              >
+                <span
+                  class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+                >
+                  <svg
+                    class="w-5 h-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 9l-7 7-7-7"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </span>
+                 
+                <select
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  id="Your Course:"
+                >
+                  <option />
+                   
+                </select>
+              </div>
+            </div>
              
             <div
-              class="relative"
+              class="mt-4"
             >
-              <span
-                class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Your Name:"
               >
-                <svg
-                  class="w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19 9l-7 7-7-7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </span>
+                Your Name:
+              </label>
                
-              <select
+              <input
                 class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-                id="Your Course:"
-              >
-                <option />
-                 
-              </select>
+                id="Your Name:"
+                type="text"
+              />
             </div>
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Your Name:"
-            >
-              Your Name:
-            </label>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Your Name:"
-              type="text"
-            />
-          </div>
-           
-          <div
-            class="mt-4"
-          >
-            <label
-              class="block pb-1 text-gray-600 select-none font-heading"
-              for="Your Time: (HH:MM:SS)"
+            <div
+              class="mt-4"
             >
-              Your Time: (HH:MM:SS)
-            </label>
+              <label
+                class="block pb-1 text-gray-600 select-none font-heading"
+                for="Your Time: (HH:MM:SS)"
+              >
+                Your Time: (HH:MM:SS)
+              </label>
+               
+              <input
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                id="Your Time: (HH:MM:SS)"
+                type="text"
+              />
+            </div>
              
-            <input
-              class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
-              id="Your Time: (HH:MM:SS)"
-              type="text"
-            />
-          </div>
-           
-          <button
-            class="mt-8 button-lg"
-          >
-            
+            <button
+              class="mt-8 button-lg"
+            >
+              
       Submit Result
     
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -96,7 +96,7 @@
       </p>
     </InstructionCard>
 
-    <div class="col-span-2 card-color">
+    <div class="col-span-2 card card-color">
       <p class="p-1">
         If you need any help or wish to upload results in a different format
         please contact me at:

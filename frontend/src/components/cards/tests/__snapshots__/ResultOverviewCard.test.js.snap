@@ -134,13 +134,13 @@ exports[`Renders Correctly - Logged In 1`] = `
       class="w-full mt-2"
     >
       <button
-        class="button-dark"
+        class="button button-dark"
       >
         Mark as Complete
       </button>
        
       <button
-        class="button-dark"
+        class="button button-dark"
       >
         Hide Result
       </button>

@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="flex-grow h-full bg-white"
+  class="flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -23,275 +23,277 @@ exports[`Renders Correctly 1`] = `
   <main>
     <!---->
      
-    <div
-      class="w-full"
-    />
+    <!---->
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
       >
-        <vue-headful-stub
-          description="Instructions for how to Upload Results to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro - Upload Instructions"
-          url="https://munro-leagues.herokuapp.com/upload/instructions"
-        />
-         
-        <section
-          class="col-span-2 card"
+        <div
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
         >
-          <h2
-            class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
+          <vue-headful-stub
+            description="Instructions for how to Upload Results to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro - Upload Instructions"
+            url="https://munro-leagues.herokuapp.com/upload/instructions"
+          />
+           
+          <section
+            class="col-span-2 card"
           >
-            <p
-              class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+            <h2
+              class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
             >
-              
+              <p
+                class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+              >
+                
       1
     
-            </p>
-             
+              </p>
+               
       Go to
       
-            <router-link-stub
-              class="link text-main-700"
-              to="/upload/file"
+              <router-link-stub
+                class="link text-main-700"
+                to="/upload/file"
+              >
+                https://munro-leagues.herokuapp.com/upload/file
+              </router-link-stub>
+            </h2>
+             
+            <div
+              class="w-full mx-auto leading-8 text-gray-600 body"
             >
-              https://munro-leagues.herokuapp.com/upload/file
-            </router-link-stub>
-          </h2>
+              <img
+                alt="Empty Upload Form"
+                src="@/assets/images/UploadInstructions-Blank.png"
+              />
+            </div>
+          </section>
            
-          <div
-            class="w-full mx-auto leading-8 text-gray-600 body"
+          <section
+            class="col-span-2 card"
           >
-            <img
-              alt="Empty Upload Form"
-              src="@/assets/images/UploadInstructions-Blank.png"
-            />
-          </div>
-        </section>
-         
-        <section
-          class="col-span-2 card"
-        >
-          <h2
-            class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
-          >
-            <p
-              class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+            <h2
+              class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
             >
-              
+              <p
+                class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+              >
+                
       2
     
-            </p>
-             
+              </p>
+               
       Enter the Event ID and the 20 digit Upload Key Provided
     
-          </h2>
-           
-          <div
-            class="w-full mx-auto leading-8 text-gray-600 body"
-          >
-            <p>
-              
+            </h2>
+             
+            <div
+              class="w-full mx-auto leading-8 text-gray-600 body"
+            >
+              <p>
+                
       The event name should now be displayed.
     
-            </p>
-             
-            <p>
-              
+              </p>
+               
+              <p>
+                
       The Event ID will be the the form LeagueNameEventNameYYYY-MM-DD with all
       spaces removed.
     
-            </p>
-             
-            <p>
-              
+              </p>
+               
+              <p>
+                
       You can get the Event ID and Upload Key from your league coordinator or
       by emailing munro.leagues@gmail.com
     
-            </p>
-             
-            <img
-              alt="Upload Form with Event ID and Upload Key Included"
-              src="@/assets/images/UploadInstructions-EventDetails.png"
-            />
-          </div>
-        </section>
-         
-        <section
-          class="col-span-2 card"
-        >
-          <h2
-            class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
+              </p>
+               
+              <img
+                alt="Upload Form with Event ID and Upload Key Included"
+                src="@/assets/images/UploadInstructions-EventDetails.png"
+              />
+            </div>
+          </section>
+           
+          <section
+            class="col-span-2 card"
           >
-            <p
-              class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+            <h2
+              class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
             >
-              
+              <p
+                class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+              >
+                
       3
     
-            </p>
-             
+              </p>
+               
       Select Your Results File
     
-          </h2>
-           
-          <div
-            class="w-full mx-auto leading-8 text-gray-600 body"
-          >
-            <p>
-              
+            </h2>
+             
+            <div
+              class="w-full mx-auto leading-8 text-gray-600 body"
+            >
+              <p>
+                
       Munro accepts any CSV results file in a sensible format, it has been
       tested with OE CSV files and SITiming Processable CSV files.
     
-            </p>
-             
-            <p>
-              
+              </p>
+               
+              <p>
+                
       It can be semicolon or comma delimited and should have the following
       headings (they can be in any order):
     
-            </p>
-             
-            <code>
-              
+              </p>
+               
+              <code>
+                
       Name; Age Class; Club; Course; Time; Position; NonCompetitive; Status;
     
-            </code>
-             
-            <p>
-              
+              </code>
+               
+              <p>
+                
       Age Class, Club, Position and NonCompetitive are optional, but are
       highly recommended to make sure the matching is done correctly
     
-            </p>
-          </div>
-        </section>
-         
-        <section
-          class="col-span-2 card"
-        >
-          <h2
-            class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
+              </p>
+            </div>
+          </section>
+           
+          <section
+            class="col-span-2 card"
           >
-            <p
-              class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+            <h2
+              class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
             >
-              
+              <p
+                class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+              >
+                
       4
     
-            </p>
-             
+              </p>
+               
       Enter Other Results Information
     
-          </h2>
-           
-          <div
-            class="w-full mx-auto leading-8 text-gray-600 body"
-          >
-            <p>
-              
+            </h2>
+             
+            <div
+              class="w-full mx-auto leading-8 text-gray-600 body"
+            >
+              <p>
+                
       Enter the URLs of the Results Uploaded on Other Websites eg. HTML
       Results/ Routegadget/ Winsplits.
     
-            </p>
-             
-            <p>
-              
+              </p>
+               
+              <p>
+                
       If you forget, or need to change these URLs please contact your league
       admin or munro.leagues@gmail.com who can update them
     
-            </p>
-             
-            <img
-              alt="Upload Form with Completeted with Upload Button Showing"
-              src="@/assets/images/UploadInstructions-Complete.png"
-            />
-          </div>
-        </section>
-         
-        <section
-          class="col-span-2 card"
-        >
-          <h2
-            class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
+              </p>
+               
+              <img
+                alt="Upload Form with Completeted with Upload Button Showing"
+                src="@/assets/images/UploadInstructions-Complete.png"
+              />
+            </div>
+          </section>
+           
+          <section
+            class="col-span-2 card"
           >
-            <p
-              class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+            <h2
+              class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
             >
-              
+              <p
+                class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+              >
+                
       5
     
-            </p>
-             
+              </p>
+               
        Confirm if Replacing Results
     
-          </h2>
-           
-          <div
-            class="w-full mx-auto leading-8 text-gray-600 body"
-          >
-            <p>
-              
+            </h2>
+             
+            <div
+              class="w-full mx-auto leading-8 text-gray-600 body"
+            >
+              <p>
+                
       If results already exist a 'Overwrite Existing Results' checkbox will
       appear, to confirm you wish to replace the exisiting results, tick the
       box
     
-            </p>
-          </div>
-        </section>
-         
-        <section
-          class="col-span-2 card"
-        >
-          <h2
-            class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
+              </p>
+            </div>
+          </section>
+           
+          <section
+            class="col-span-2 card"
           >
-            <p
-              class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+            <h2
+              class="mt-2 mb-4 text-2xl text-center text-gray-900 font-heading"
             >
-              
+              <p
+                class="block w-8 h-8 mx-auto mb-1 text-lg font-bold leading-8 text-center align-middle border-2 rounded-full md:inline-block md:mr-3 border-main text-main font-heading"
+              >
+                
       6
     
-            </p>
-             
+              </p>
+               
       Click \`Upload File\`
     
-          </h2>
-           
-          <div
-            class="w-full mx-auto leading-8 text-gray-600 body"
-          >
-            <p>
-              
+            </h2>
+             
+            <div
+              class="w-full mx-auto leading-8 text-gray-600 body"
+            >
+              <p>
+                
       A message should appear saying that the data has been sent. Then a
       message saying that the results upload is successful should appear and
       you will be redirected to the results table
     
-            </p>
-          </div>
-        </section>
-         
-        <div
-          class="col-span-2 card-color"
-        >
-          <p
-            class="p-1"
+              </p>
+            </div>
+          </section>
+           
+          <div
+            class="col-span-2 card card-color"
           >
-            
+            <p
+              class="p-1"
+            >
+              
       If you need any help or wish to upload results in a different format
       please contact me at:
       
-            <span
-              class="text-lg font-heading"
-            >
-              munro.leagues@gmail.com
-            </span>
-          </p>
+              <span
+                class="text-lg font-heading"
+              >
+                munro.leagues@gmail.com
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -310,7 +312,7 @@ exports[`Renders Correctly 1`] = `
       >
         <svg
           aria-label="Twitter"
-          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
           viewBox="0 0 400 400"
         >
           <path
@@ -332,7 +334,7 @@ exports[`Renders Correctly 1`] = `
       >
         <svg
           aria-label="Github"
-          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
           viewBox="0 0 24 24"
         >
           <path
@@ -353,7 +355,7 @@ exports[`Renders Correctly 1`] = `
         Created By
         
         <a
-          class="font-bold transition duration-300 text-main-600 hover:text-main-800"
+          class="font-bold transition duration-300 text-main-600 hover:text-main-800 focus:text-main-800"
           href="https://brownben.github.io"
         >
           Ben Brown
@@ -361,7 +363,7 @@ exports[`Renders Correctly 1`] = `
       </p>
        
       <router-link-stub
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
         to="/login"
       >
         
@@ -378,7 +380,7 @@ exports[`Renders Correctly 1`] = `
       </p>
        
       <a
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
         href="mailto:munro.leagues@gmail.com"
       >
         

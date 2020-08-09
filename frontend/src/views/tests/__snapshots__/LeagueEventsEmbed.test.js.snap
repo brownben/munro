@@ -15,16 +15,19 @@ exports[`Renders Correctly 1`] = `
       auth="[object Object]"
       event="[object Object]"
       league="[object Object]"
+      showfulldetails="true"
     />
     <eventoverviewcard-stub
       auth="[object Object]"
       event="[object Object]"
       league="[object Object]"
+      showfulldetails="true"
     />
     <eventoverviewcard-stub
       auth="[object Object]"
       event="[object Object]"
       league="[object Object]"
+      showfulldetails="true"
     />
   </layout-stub>
    

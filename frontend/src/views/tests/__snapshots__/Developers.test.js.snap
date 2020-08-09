@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="flex-grow h-full bg-white"
+  class="flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -23,217 +23,219 @@ exports[`Renders Correctly 1`] = `
   <main>
     <!---->
      
-    <div
-      class="w-full"
-    />
+    <!---->
      
     <div
-      class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
+      class="bg-white"
     >
       <div
-        class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
+        class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
       >
-        <vue-headful-stub
-          description="Developer information about the API and embed pages of Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-          head="[object Object]"
-          title="Munro - Developers"
-          url="https://munro-leagues.herokuapp.com/developers"
-        />
-         
         <div
-          class="col-span-2 text-left card-color"
+          class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8"
         >
+          <vue-headful-stub
+            description="Developer information about the API and embed pages of Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+            head="[object Object]"
+            title="Munro - Developers"
+            url="https://munro-leagues.herokuapp.com/developers"
+          />
+           
           <div
-            class="inline-block text-center"
+            class="col-span-2 text-left card card-color"
           >
-            <h2
-              class="text-lg font-heading"
+            <div
+              class="inline-block text-center"
             >
-              <span
-                class="text-2xl font-bold md:text-xl"
+              <h2
+                class="text-lg font-heading"
               >
-                Munro is Open Source!
-              </span>
-               
-              <span
-                class="hidden mx-2 md:inline-block"
-              >
-                -
-              </span>
-               
-              <span
-                class="block md:inline-block"
-              >
-                
+                <span
+                  class="text-2xl font-bold md:text-xl"
+                >
+                  Munro is Open Source!
+                </span>
+                 
+                <span
+                  class="hidden mx-2 md:inline-block"
+                >
+                  -
+                </span>
+                 
+                <span
+                  class="block md:inline-block"
+                >
+                  
           Code Avaliable on
           
-                <a
-                  class="link"
-                  href="https://github.com/brownben/munro"
-                >
-                  Github
-                </a>
-              </span>
-            </h2>
+                  <a
+                    class="link"
+                    href="https://github.com/brownben/munro"
+                  >
+                    Github
+                  </a>
+                </span>
+              </h2>
+            </div>
           </div>
-        </div>
-         
-        <div
-          class="col-span-2 card"
-        >
-          <h2
-            class="my-2 text-3xl font-bold text-gray-900 font-heading"
-          >
-            API
-          </h2>
            
-          <p>
-            
+          <div
+            class="col-span-2 card"
+          >
+            <h2
+              class="my-2 text-3xl font-bold text-gray-900 font-heading"
+            >
+              API
+            </h2>
+             
+            <p>
+              
       All methods use a standard HTTP GET request. The event id is made by
       combining the league name, event name and date and removing all spaces,
       it is avaliable for the league admin to view. Dates are in the form
       YYYY-MM-DD
     
-          </p>
+            </p>
+             
+            <h4>
+              /api/leagues
+            </h4>
+             
+            <p>
+              List of all the leagues and their details
+            </p>
+             
+            <h4>
+              /api/leagues/{ LEAGUE NAME }
+            </h4>
+             
+            <p>
+              Details of a specific league
+            </p>
+             
+            <h4>
+              /api/leagues/{ LEAGUE NAME }/events
+            </h4>
+             
+            <p>
+              Events from a specific league
+            </p>
+             
+            <h4>
+              /api/leagues/{ LEAGUE NAME }/results/{ COURSE }
+            </h4>
+             
+            <p>
+              The overall league standings for a given course and league
+            </p>
+             
+            <h4>
+              /api/events
+            </h4>
+             
+            <p>
+              List of all events
+            </p>
+             
+            <h4>
+              /api/events/{ EVENT ID }
+            </h4>
+             
+            <p>
+              Details of a specific event
+            </p>
+             
+            <h4>
+              /api/events/{ EVENT ID }/results
+            </h4>
+             
+            <p>
+              Results from a specific event
+            </p>
+             
+            <h4>
+              /api/events/latest-results
+            </h4>
+             
+            <p>
+              The latest events with results
+            </p>
+             
+            <h4>
+              /api/competitors
+            </h4>
+             
+            <p>
+              List of all the competitors
+            </p>
+             
+            <h4>
+              /api/competitors/{ COMPETITOR ID }
+            </h4>
+             
+            <p>
+              A specific competitors details
+            </p>
+             
+            <h4>
+              /api/competitors/{ COMPETITOR ID }/results
+            </h4>
+             
+            <p>
+              All the events of a specific competitor
+            </p>
+             
+            <h4>
+              /api/results
+            </h4>
+             
+            <p>
+              All results
+            </p>
+          </div>
            
-          <h4>
-            /api/leagues
-          </h4>
-           
-          <p>
-            List of all the leagues and their details
-          </p>
-           
-          <h4>
-            /api/leagues/{ LEAGUE NAME }
-          </h4>
-           
-          <p>
-            Details of a specific league
-          </p>
-           
-          <h4>
-            /api/leagues/{ LEAGUE NAME }/events
-          </h4>
-           
-          <p>
-            Events from a specific league
-          </p>
-           
-          <h4>
-            /api/leagues/{ LEAGUE NAME }/results/{ COURSE }
-          </h4>
-           
-          <p>
-            The overall league standings for a given course and league
-          </p>
-           
-          <h4>
-            /api/events
-          </h4>
-           
-          <p>
-            List of all events
-          </p>
-           
-          <h4>
-            /api/events/{ EVENT ID }
-          </h4>
-           
-          <p>
-            Details of a specific event
-          </p>
-           
-          <h4>
-            /api/events/{ EVENT ID }/results
-          </h4>
-           
-          <p>
-            Results from a specific event
-          </p>
-           
-          <h4>
-            /api/events/latest-results
-          </h4>
-           
-          <p>
-            The latest events with results
-          </p>
-           
-          <h4>
-            /api/competitors
-          </h4>
-           
-          <p>
-            List of all the competitors
-          </p>
-           
-          <h4>
-            /api/competitors/{ COMPETITOR ID }
-          </h4>
-           
-          <p>
-            A specific competitors details
-          </p>
-           
-          <h4>
-            /api/competitors/{ COMPETITOR ID }/results
-          </h4>
-           
-          <p>
-            All the events of a specific competitor
-          </p>
-           
-          <h4>
-            /api/results
-          </h4>
-           
-          <p>
-            All results
-          </p>
-        </div>
-         
-        <div
-          class="col-span-2 card"
-        >
-          <h2
-            class="my-2 text-3xl font-bold text-gray-900 font-heading"
+          <div
+            class="col-span-2 card"
           >
-            Embed
-          </h2>
-           
-          <p>
-            
+            <h2
+              class="my-2 text-3xl font-bold text-gray-900 font-heading"
+            >
+              Embed
+            </h2>
+             
+            <p>
+              
       Currently there are two pages designed for embedding in Iframes. Place
       in an IFrame like:
     
-          </p>
-           
-          <code
-            class="block w-full px-3 py-2 my-2 font-mono font-normal text-gray-900 bg-main-100 rounded-shape"
-          >
-            &lt;iframe
+            </p>
+             
+            <code
+              class="block w-full px-3 py-2 my-2 font-mono font-normal text-gray-900 bg-main-100 rounded-shape"
+            >
+              &lt;iframe
       src="https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope
       2018/events"&gt;&lt;/iframe&gt;
-          </code>
-           
-          <h4>
-            /embed/leagues/{ LEAGUE NAME }/events
-          </h4>
-           
-          <p>
-            
+            </code>
+             
+            <h4>
+              /embed/leagues/{ LEAGUE NAME }/events
+            </h4>
+             
+            <p>
+              
       Contains a list of all events in the league and links to the results
     
-          </p>
-           
-          <h4>
-            /embed/leagues/{ LEAGUE NAME }/results/{ COURSE }
-          </h4>
-           
-          <p>
-            Contains the league standings for that course
-          </p>
+            </p>
+             
+            <h4>
+              /embed/leagues/{ LEAGUE NAME }/results/{ COURSE }
+            </h4>
+             
+            <p>
+              Contains the league standings for that course
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -252,7 +254,7 @@ exports[`Renders Correctly 1`] = `
       >
         <svg
           aria-label="Twitter"
-          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
           viewBox="0 0 400 400"
         >
           <path
@@ -274,7 +276,7 @@ exports[`Renders Correctly 1`] = `
       >
         <svg
           aria-label="Github"
-          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200"
+          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
           viewBox="0 0 24 24"
         >
           <path
@@ -295,7 +297,7 @@ exports[`Renders Correctly 1`] = `
         Created By
         
         <a
-          class="font-bold transition duration-300 text-main-600 hover:text-main-800"
+          class="font-bold transition duration-300 text-main-600 hover:text-main-800 focus:text-main-800"
           href="https://brownben.github.io"
         >
           Ben Brown
@@ -303,7 +305,7 @@ exports[`Renders Correctly 1`] = `
       </p>
        
       <router-link-stub
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
         to="/login"
       >
         
@@ -320,7 +322,7 @@ exports[`Renders Correctly 1`] = `
       </p>
        
       <a
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
         href="mailto:munro.leagues@gmail.com"
       >
         

@@ -90,11 +90,11 @@
         </p>
       </div>
       <div class="w-full mt-2">
-        <button class="button-dark" @click="incompleteResult">
+        <button class="button button-dark" @click="incompleteResult">
           <template v-if="result.incomplete">Mark as Complete</template>
           <template v-else>Mark as Incomplete</template>
         </button>
-        <button class="button-dark" @click="hideResult">
+        <button class="button button-dark" @click="hideResult">
           <template v-if="result.type !== 'hidden'">Hide Result</template>
           <template v-else>Include Result</template>
         </button>
