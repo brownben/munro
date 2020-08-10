@@ -1,11 +1,26 @@
-language: node_js
-node_js:
-  - 10
+dist: xenial
+os: linux
+language: python
+jobs:
+  include:
+    - language: node_js
+      node_js:
+        - 12
 
-before_install:
-  - cd frontend
+      before_install:
+        - cd frontend
 
-script:
-  - npm run eslint:check
-  - npm run test
-  - npm run build
+      script:
+        - npm run eslint:check
+        - npm run test
+        - npm run build
+
+    - language: python
+      python: '3.7'
+      before_install:
+        - cd backend
+      install:
+        - pip install -r requirements.txt
+      script:
+        - coverage run -m pytest
+        - coverage report

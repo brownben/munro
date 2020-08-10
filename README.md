@@ -69,4 +69,9 @@ set DATABASE_URL=<database-url>
 
 # run on all interfaces, defaults to port 5000
 flask run --host=0.0.0.0
+
+# run tests and generate coverage
+coverage run -m pytest && coverage report -m && coverage html -d tests/coverage
+
+
 ```
