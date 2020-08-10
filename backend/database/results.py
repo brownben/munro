@@ -1,4 +1,7 @@
-import pointsFunctions
+from points import helpers as pointsHelpers
+from points.biggestPoints import biggestPoints
+from points.assignPosition import assignPosition
+
 from . import events, leagues
 from .sqlQuery import query, queryWithOneResult, queryWithResults
 
@@ -128,10 +131,8 @@ def courseResultToJSON(result, league, eventsList):
     ]
 
     # Calculate the total and which scores make this
-    largestPoints = pointsFunctions.biggestPoints(
-        points, numberOfCountingEvents
-    )
-    totalPoints = pointsFunctions.calculateTotal(largestPoints, points)
+    largestPoints = biggestPoints(points, numberOfCountingEvents)
+    totalPoints = pointsHelpers.calculateTotal(largestPoints, points)
 
     # Change to object rather than tuple
 
@@ -399,7 +400,7 @@ def getResultsForCourse(league, course):
     sortedResults = sorted(
         resultsList, key=lambda x: x["totalPoints"], reverse=True
     )
-    return pointsFunctions.assignPosition(sortedResults)
+    return assignPosition(sortedResults)
 
 
 def transferResult(result, competitor):

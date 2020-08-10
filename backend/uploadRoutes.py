@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse
 
 import csvFunctions as csv
-import pointsFunctions as points
+from points import assignPoints
 import uploadFunctions as upload
 import dynamicPointsFunctions as dynamicResults
 from database import competitors, leagues, events, results
@@ -106,7 +106,7 @@ def processUpload(data, eventData, leagueOfEvent):
     parsedDataSorted = sorted(
         parsedDataNoExtraCourses, key=lambda x: x["time"], reverse=True
     )
-    dataWithPoints = points.assignPoints(
+    dataWithPoints = assignPoints(
         parsedDataSorted, leagueOfEvent["scoringMethod"]
     )
 

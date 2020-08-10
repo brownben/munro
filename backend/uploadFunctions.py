@@ -1,6 +1,7 @@
 # Functions to Match Competitors during upload and to remove competitors with the wrong course during upload
 
-import pointsFunctions as points
+from points import assignPoints
+from points.assignPosition import assignPositionsMultipleCourses
 from database import results
 
 
@@ -69,38 +70,10 @@ def removeExtraCourses(results, courses):
     return resultsWithCoursesRemoved
 
 
-def assignPositions(results):
-    lastCourse = False
-    lastPosition = 0
-    lastTime = -1
-    numberTied = 1
-
-    for result in results:
-        if result["course"] != lastCourse:
-            lastPosition = 0
-            lastCourse = result["course"]
-            lastTime = -1
-            numberTied = 1
-
-        if result["time"] != lastTime:
-            lastTime = result["time"]
-            lastPosition += numberTied
-            numberTied = 0
-
-        if not result["incomplete"]:
-            numberTied += 1
-            result["position"] = lastPosition
-
-        else:
-            result["position"] = -1
-
-    return results
-
-
 def recalculateResults(eventId, leagueScoring):
     exisitingResults = results.getResultsByEventForRecalc(eventId)
-    resultsWithPositions = assignPositions(exisitingResults)
-    resultsWithPoints = points.assignPoints(resultsWithPositions, leagueScoring)
+    resultsWithPositions = assignPositionMultipleCourses(exisitingResults)
+    resultsWithPoints = assignPoints(resultsWithPositions, leagueScoring)
 
     for result in resultsWithPoints:
         results.recalcUpdateResult(result)
