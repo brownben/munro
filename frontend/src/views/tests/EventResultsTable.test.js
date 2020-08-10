@@ -1,6 +1,5 @@
 import axios from 'axios'
-import VueRouter from 'vue-router'
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 
 import ResultsTable from '@/views/EventResultsTable.vue'
 import { sampleThreeEvents } from '@/tests/test data/events'
@@ -26,7 +25,7 @@ test('Is a Vue Instance', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -39,7 +38,7 @@ test('Renders Correctly + Fetches Data', async () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     methods: {
@@ -64,7 +63,7 @@ test('Elapsed Time', () => {
   const wrapper = mount(ResultsTable, {
     mocks: {
       $route: { path: '/competitors/1/edit', params: { id: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
   })
@@ -82,7 +81,7 @@ test('Results With Age Class Split', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     computed: {
@@ -132,7 +131,7 @@ test('Refresh Data on Route Change', async () => {
     mocks: {
       $messages: { addMessage: jest.fn() },
       $route: { params: { event: 'EVENTA', course: 'A' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
     },
     methods: {
       getResults: mockGetResults,
@@ -159,7 +158,7 @@ test('Filter Changed', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -194,7 +193,7 @@ test('Sort By - Same Property', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -209,7 +208,7 @@ test('Sort By - Different Property', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -224,7 +223,7 @@ test('Sort - Ascending', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -249,7 +248,7 @@ test('Sort - Descending', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -274,7 +273,7 @@ test('Filtered Results', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -315,7 +314,7 @@ test('Sorted Results', () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { name: '', course: '' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -352,7 +351,7 @@ test('Get Results - Correct API Call', async () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { event: 'EVENT' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -370,7 +369,7 @@ test('Get Results - Success - Results', async () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { event: 'EVENT' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: mockAddMessage },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -388,7 +387,7 @@ test('Get Results - Success - No Results', async () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { event: 'EVENT' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: mockAddMessage },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -407,7 +406,7 @@ test('Get Results - Error', async () => {
   const wrapper = shallowMount(ResultsTable, {
     mocks: {
       $route: { params: { event: 'EVENT' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: mockAddMessage },
     },
     stubs: ['router-link', 'vue-headful'],
@@ -426,7 +425,7 @@ test('Get Event Details - Makes Request with Correct ID', async () => {
   const wrapper = mount(ResultsTable, {
     mocks: {
       $route: { params: { event: 'EVENT' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
@@ -444,7 +443,7 @@ test('Get Event Details - No Event Found', async () => {
   const wrapper = mount(ResultsTable, {
     mocks: {
       $route: { params: { event: 'EVENT' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
       $messages: { addMessage: mockAddMessageFunction },
     },
     stubs: ['dropdown-input', 'router-link', 'vue-headful'],
@@ -459,7 +458,7 @@ test('Sets Chosen Course If Provided', () => {
   const wrapper = mount(ResultsTable, {
     mocks: {
       $route: { params: { course: 'Hello' } },
-      $router: { replace: jest.fn() },
+      $router: { replace: jest.fn(), push: jest.fn() },
     },
     stubs: ['router-link', 'vue-headful'],
   })
