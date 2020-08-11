@@ -1,0 +1,22 @@
+__all__ = [
+    "__init__",
+    "returnMessage",
+    "competitorMerge",
+    "competitorResults",
+    "competitors",
+    "eventResults",
+    "events",
+    "eventsLatestResults",
+    "eventsUploadKey",
+    "leagueEvents",
+    "leagueResults",
+    "leagues",
+    "results",
+    "resultsManual",
+    "resultsRecalculate",
+    "resultsTransfer",
+    "uploadFile",
+    "uploadResult",
+    "uploadStream",
+]
+

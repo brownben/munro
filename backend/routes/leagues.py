@@ -1,8 +1,8 @@
 from flask_restful import Resource, reqparse
 
-from database import events, leagues
+from database import leagues
 from requireAuthentication import requireAuthentication
-from routeFunctions import returnMessage, returnError
+from .returnMessages import returnMessage, returnError
 
 # Check POST request has all the relevent fields
 # Create request
@@ -77,14 +77,3 @@ class League(Resource):
             return returnMessage("League - {} was Deleted".format(name))
         except:
             return returnError("Problem Deleting League")
-
-
-class LeagueEvents(Resource):
-    def get(self, name):
-        return events.getEventsOfLeague(name)
-
-
-class LeagueEventsWithUploadKey(Resource):
-    @requireAuthentication
-    def get(self, name):
-        return events.getEventsOfLeagueWithUploadKey(name)

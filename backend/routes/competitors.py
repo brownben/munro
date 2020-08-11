@@ -3,7 +3,7 @@ from flask_restful import Resource, reqparse
 from database import competitors
 from requireAuthentication import requireAuthentication
 
-from routeFunctions import returnMessage, returnError
+from .returnMessages import returnMessage, returnError
 
 competitorParser = reqparse.RequestParser()
 competitorParser.add_argument(
@@ -15,14 +15,6 @@ competitorParser.add_argument("ageClass")
 competitorParser.add_argument("course")
 competitorParser.add_argument(
     "league", help="This field cannot be blank", required=True
-)
-
-competitorMergeParser = reqparse.RequestParser()
-competitorMergeParser.add_argument(
-    "competitorKeep", help="This field cannot be blank", required=True
-)
-competitorMergeParser.add_argument(
-    "competitorMerge", help="This field cannot be blank", required=True
 )
 
 
@@ -77,16 +69,3 @@ class Competitor(Resource):
             "Competitor - {} was Deleted".format(competitor["name"])
         )
 
-
-class CompetitorMerge(Resource):
-    @requireAuthentication
-    def post(self):
-        data = competitorMergeParser.parse_args()
-
-        try:
-            competitors.mergeCompetitors(
-                data["competitorKeep"], data["competitorMerge"]
-            )
-            return returnMessage("Competitors Merged Successfully")
-        except:
-            return returnError("Error: Merging Competitors - Please Try Again")

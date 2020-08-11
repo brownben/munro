@@ -2,7 +2,7 @@
 
 from points import assignPoints
 from points.assignPosition import assignPositionsMultipleCourses
-from database import results
+from database import results, competitors
 
 
 def nameToInitial(name):
@@ -77,3 +77,55 @@ def recalculateResults(eventId, leagueScoring):
 
     for result in resultsWithPoints:
         results.recalcUpdateResult(result)
+
+
+def getCompetitorData(eventData, dataWithPoints):
+    allCompetitors = competitors.getCompetitorsByLeague(eventData["league"])
+
+    dataWithCompetitors = []
+
+    for result in dataWithPoints:
+        competitor = matchCompetitor(allCompetitors, result)
+        if competitor:
+            result["competitor"] = competitor["id"]
+        else:
+            # If no match create competitor and save id as that in the result
+            result["competitor"] = competitors.createCompetitor(
+                {
+                    "name": result["name"],
+                    "ageClass": result["ageClass"],
+                    "club": result["club"],
+                    "course": result["course"],
+                    "league": eventData["league"],
+                }
+            )
+        dataWithCompetitors.append(result)
+
+    return dataWithCompetitors
+
+
+def streamResultToDict(result, event, course):
+    splitResult = result.split(",")
+
+    return {
+        "type": course + splitResult[1],
+        "name": splitResult[0],
+        "time": csv.timeToSeconds(splitResult[2]),
+        "incomplete": splitResult[3] != "OK",
+        "ageClass": splitResult[4:5] or "",
+        "club": splitResult[5:6] or "",
+        "position": "",
+        "points": 0,
+        "event": event,
+        "course": course,
+    }
+
+
+def newResults(exisitingResults, latestResults):
+    existingResultIds = [result["type"] for result in exisitingResults]
+    return [
+        result
+        for result in latestResults
+        if result["type"] not in existingResultIds
+    ]
+

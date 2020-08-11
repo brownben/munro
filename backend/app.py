@@ -6,12 +6,7 @@ from flask_talisman import Talisman
 import os
 import json
 
-
-import competitorRoutes
-import eventRoutes
-import leagueRoutes
-import resultRoutes
-import uploadRoutes
+from routes import *
 
 
 # Set up Flask with plugins
@@ -37,8 +32,6 @@ if not app.debug:
 else:
     import requests  # Enable for Development Forwarding
 
-app.secret_key = os.urandom(25)
-
 
 @api.representation("application/json")
 def output_json(data, code, headers):
@@ -48,48 +41,47 @@ def output_json(data, code, headers):
 
 
 # Bind all logic with the routes
-api.add_resource(leagueRoutes.Leagues, "/api/leagues")
-api.add_resource(leagueRoutes.League, "/api/leagues/<name>")
-api.add_resource(leagueRoutes.LeagueEvents, "/api/leagues/<name>/events")
+api.add_resource(leagues.Leagues, "/api/leagues")
+api.add_resource(leagues.League, "/api/leagues/<name>")
+api.add_resource(leagueEvents.LeagueEvents, "/api/leagues/<name>/events")
 api.add_resource(
-    leagueRoutes.LeagueEventsWithUploadKey,
+    leagueEvents.LeagueEventsWithUploadKey,
     "/api/leagues/<name>/events/uploadKey",
 )
 api.add_resource(
-    resultRoutes.ResultsForCourse, "/api/leagues/<name>/results/<course>"
+    leagueResults.ResultsForCourse, "/api/leagues/<name>/results/<course>",
 )
 
-api.add_resource(eventRoutes.Events, "/api/events")
-api.add_resource(eventRoutes.EventsWithUploadKey, "/api/events/uploadKey")
-api.add_resource(eventRoutes.Event, "/api/events/<eventId>")
+api.add_resource(events.Events, "/api/events")
+api.add_resource(events.EventsWithUploadKey, "/api/events/uploadKey")
+api.add_resource(events.Event, "/api/events/<eventId>")
+api.add_resource(events.EventWithUploadKey, "/api/events/<eventId>/uploadKey")
 api.add_resource(
-    eventRoutes.EventWithUploadKey, "/api/events/<eventId>/uploadKey"
-)
-api.add_resource(
-    eventRoutes.EventRecalculateResults,
+    resultsRecalculate.EventRecalculateResults,
     "/api/events/<eventId>/results/recalculate",
 )
 api.add_resource(
-    eventRoutes.EventsLatestWithResults, "/api/events/latest-results"
+    eventsLatestResults.EventsLatestWithResults, "/api/events/latest-results",
 )
 
-api.add_resource(competitorRoutes.Competitors, "/api/competitors")
-api.add_resource(competitorRoutes.CompetitorMerge, "/api/competitors/merge")
-api.add_resource(competitorRoutes.Competitor, "/api/competitors/<competitorId>")
+api.add_resource(competitors.Competitors, "/api/competitors")
+api.add_resource(competitorMerge.CompetitorMerge, "/api/competitors/merge")
+api.add_resource(competitors.Competitor, "/api/competitors/<competitorId>")
 
-api.add_resource(resultRoutes.Results, "/api/results")
-api.add_resource(resultRoutes.ManualResult, "/api/results/manual")
-api.add_resource(resultRoutes.TransferResult, "/api/results/transfer")
-api.add_resource(resultRoutes.Result, "/api/results/<resultId>")
-api.add_resource(resultRoutes.ResultsForEvent, "/api/events/<eventId>/results")
+api.add_resource(results.Results, "/api/results")
+api.add_resource(resultsManual.ManualResult, "/api/results/manual")
+api.add_resource(resultsTransfer.TransferResult, "/api/results/transfer")
+api.add_resource(results.Result, "/api/results/<resultId>")
+api.add_resource(eventResults.ResultsForEvent, "/api/events/<eventId>/results")
 api.add_resource(
-    resultRoutes.ResultsForCompetitor,
+    competitorResults.ResultsForCompetitor,
     "/api/competitors/<competitorId>/results",
 )
 
-api.add_resource(uploadRoutes.Upload, "/api/upload")
-api.add_resource(uploadRoutes.UploadStream, "/api/upload/stream")
-api.add_resource(uploadRoutes.UploadResult, "/api/upload/result")
+api.add_resource(uploadFile.Upload, "/api/upload")
+api.add_resource(uploadStream.UploadStream, "/api/upload/stream")
+api.add_resource(uploadResult.UploadResult, "/api/upload/result")
+
 
 # Serve app files
 @app.route("/", defaults={"path": ""})
