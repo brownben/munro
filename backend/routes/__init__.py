@@ -1,6 +1,6 @@
 __all__ = [
     "__init__",
-    "returnMessage",
+    "returnMessages",
     "competitorMerge",
     "competitorResults",
     "competitors",

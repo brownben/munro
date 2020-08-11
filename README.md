@@ -7,7 +7,7 @@
 
 [![license - MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](https://github.com/brownben/munro/blob/master/LICENSE.md)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![Travis (.org)](https://img.shields.io/travis/brownben/munro?style=flat-square)](https://travis-ci.org/github/brownben/munro)
+[![Travis (.com)](https://img.shields.io/travis/com/brownben/munro?style=flat-square)](https://travis-ci.com/github/brownben/munro)
 
 [munro-leagues.herokuapp.com](https://munro-leagues.herokuapp.com)
 
