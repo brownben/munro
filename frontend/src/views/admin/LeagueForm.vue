@@ -78,11 +78,6 @@
           label="More Information:"
           class="mt-4"
         />
-        <CheckboxInput
-          v-model="dynamicResults"
-          label="Enable Dynamic Event Results"
-          class="mt-6 text-left"
-        />
         <button v-if="create" class="mt-8 button-lg">Create League</button>
         <button v-else class="mt-8 button-lg">Update League</button>
       </form>
@@ -98,7 +93,6 @@ import Layout from '@/components/Layout.vue'
 import DropdownInput from '@/components/inputs/DropdownInput.vue'
 import TextInput from '@/components/inputs/TextInput.vue'
 import NumberInput from '@/components/inputs/NumberInput.vue'
-import CheckboxInput from '@/components/inputs/CheckboxInput.vue'
 
 const NotFound = () => import('@/views/NotFound.vue')
 
@@ -108,7 +102,6 @@ export default {
     DropdownInput,
     TextInput,
     NumberInput,
-    CheckboxInput,
     NotFound,
   },
 
@@ -221,7 +214,7 @@ export default {
             if (response.data.courses)
               this.courses = response.data.courses.join(',')
             this.description = response.data.description
-            this.dynamicResults = response.data.dynamicEventResults
+            this.dynamicResults = response.data.dynamicEventResults ?? true
             this.moreInformation = response.data.moreInformation
           }
         })
