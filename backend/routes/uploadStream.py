@@ -24,8 +24,11 @@ streamParser.add_argument(
 class UploadStream(Resource):
     def post(self):
         data = streamParser.parse_args()
-        eventData, leagueOfEvent = getEventLeagueData(data["eventId"])
+        eventData, leagueOfEvent = upload.getEventLeagueData(data["eventId"])
         existingResults = results.getResultsByEventForRecalc(data["eventId"])
+
+        if eventData == "error":
+            return leagueOfEvent
 
         if eventData["uploadKey"] != data["uploadKey"]:
             return returnError("Upload Key is Incorrect")

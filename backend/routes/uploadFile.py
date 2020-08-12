@@ -33,20 +33,12 @@ class Upload(Resource):
             return returnError("Problem Processing Uploaded Data")
 
 
-def getEventLeagueData(eventId):
-    try:
-        eventData = events.getEventWithUploadKey(eventId)
-        leagueOfEvent = leagues.findLeague(eventData["league"])
-
-        return eventData, leagueOfEvent
-
-    except:
-        return returnError("Problem Getting Information from the Database")
-
-
 def checkUpload(data):
     # get all relevent data from other parts of the database
-    eventData, leagueOfEvent = getEventLeagueData(data["eventId"])
+    eventData, leagueOfEvent = upload.getEventLeagueData(data["eventId"])
+
+    if eventData == "error":
+        return leagueOfEvent
 
     # Check upload credentials are correct
     if eventData["uploadKey"] != data["uploadKey"]:

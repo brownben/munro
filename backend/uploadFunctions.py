@@ -1,8 +1,9 @@
 # Functions to Match Competitors during upload and to remove competitors with the wrong course during upload
 
-from points import assignPoints
+from points.assignPoints import assignPoints
 from points.assignPosition import assignPositionsMultipleCourses
-from database import results, competitors
+from database import results, competitors, events, leagues
+from routes.returnMessages import returnError
 
 
 def nameToInitial(name):
@@ -72,7 +73,7 @@ def removeExtraCourses(results, courses):
 
 def recalculateResults(eventId, leagueScoring):
     exisitingResults = results.getResultsByEventForRecalc(eventId)
-    resultsWithPositions = assignPositionMultipleCourses(exisitingResults)
+    resultsWithPositions = assignPositionsMultipleCourses(exisitingResults)
     resultsWithPoints = assignPoints(resultsWithPositions, leagueScoring)
 
     for result in resultsWithPoints:
@@ -128,4 +129,18 @@ def newResults(exisitingResults, latestResults):
         for result in latestResults
         if result["type"] not in existingResultIds
     ]
+
+
+def getEventLeagueData(eventId):
+    try:
+        eventData = events.getEventWithUploadKey(eventId)
+        leagueOfEvent = leagues.findLeague(eventData["league"])
+
+        return eventData, leagueOfEvent
+
+    except:
+        return (
+            "error",
+            returnError("Problem Getting Information from the Database"),
+        )
 
