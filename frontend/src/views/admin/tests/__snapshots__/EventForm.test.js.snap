@@ -46,14 +46,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
             >
               <div>
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Name:"
                 >
-                  Name:
+                  
+    Name:
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Name:"
                   type="text"
                 />
@@ -63,14 +65,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Date: (YYYY-MM-DD)"
                 >
-                  Date: (YYYY-MM-DD)
+                  
+    Date: (YYYY-MM-DD)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Date: (YYYY-MM-DD)"
                   type="text"
                 />
@@ -80,14 +84,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Club/ Organiser:"
                 >
-                  Club/ Organiser:
+                  
+    Club/ Organiser:
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Club/ Organiser:"
                   type="text"
                 />
@@ -97,14 +103,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Website: (URL)"
                 >
-                  Website: (URL)
+                  
+    Website: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Website: (URL)"
                   type="url"
                 />
@@ -114,14 +122,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Results: (URL)"
                 >
-                  Results: (URL)
+                  
+    Results: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Results: (URL)"
                   type="url"
                 />
@@ -131,14 +141,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Winsplits: (URL)"
                 >
-                  Winsplits: (URL)
+                  
+    Winsplits: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Winsplits: (URL)"
                   type="url"
                 />
@@ -148,14 +160,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Routegadget: (URL)"
                 >
-                  Routegadget: (URL)
+                  
+    Routegadget: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Routegadget: (URL)"
                   type="url"
                 />
@@ -165,7 +179,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="League:"
                 >
                   
@@ -195,7 +209,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
                   </span>
                    
                   <select
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="League:"
                   >
                     <option />
@@ -208,14 +222,16 @@ exports[`Creation Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="More Information:"
                 >
-                  More Information:
+                  
+    More Information:
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="More Information:"
                   type="text"
                 />
@@ -315,14 +331,16 @@ exports[`Update Form - Renders Correctly 1`] = `
             >
               <div>
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Name:"
                 >
-                  Name:
+                  
+    Name:
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Name:"
                   type="text"
                 />
@@ -332,14 +350,16 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Date: (YYYY-MM-DD)"
                 >
-                  Date: (YYYY-MM-DD)
+                  
+    Date: (YYYY-MM-DD)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Date: (YYYY-MM-DD)"
                   type="text"
                 />
@@ -349,14 +369,16 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Club/ Organiser:"
                 >
-                  Club/ Organiser:
+                  
+    Club/ Organiser:
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Club/ Organiser:"
                   type="text"
                 />
@@ -366,14 +388,16 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Website: (URL)"
                 >
-                  Website: (URL)
+                  
+    Website: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Website: (URL)"
                   type="url"
                 />
@@ -383,14 +407,16 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Results: (URL)"
                 >
-                  Results: (URL)
+                  
+    Results: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Results: (URL)"
                   type="url"
                 />
@@ -400,14 +426,16 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Winsplits: (URL)"
                 >
-                  Winsplits: (URL)
+                  
+    Winsplits: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Winsplits: (URL)"
                   type="url"
                 />
@@ -417,14 +445,16 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="Routegadget: (URL)"
                 >
-                  Routegadget: (URL)
+                  
+    Routegadget: (URL)
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="Routegadget: (URL)"
                   type="url"
                 />
@@ -434,7 +464,7 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="League:"
                 >
                   
@@ -464,7 +494,7 @@ exports[`Update Form - Renders Correctly 1`] = `
                   </span>
                    
                   <select
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="League:"
                   >
                     <option />
@@ -477,14 +507,16 @@ exports[`Update Form - Renders Correctly 1`] = `
                 class="mt-4"
               >
                 <label
-                  class="block pb-1 text-gray-600 select-none font-heading"
+                  class="block pb-1 select-none font-heading text-gray-600"
                   for="More Information:"
                 >
-                  More Information:
+                  
+    More Information:
+  
                 </label>
                  
                 <input
-                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                  class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                   id="More Information:"
                   type="text"
                 />

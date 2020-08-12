@@ -88,14 +88,16 @@ exports[`Mobile Results Dropdown Works 1`] = `
                   class="col-span-2"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 select-none font-heading text-gray-600"
                     for="Name:"
                   >
-                    Name:
+                    
+    Name:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Name:"
                     type="text"
                   />
@@ -105,14 +107,16 @@ exports[`Mobile Results Dropdown Works 1`] = `
                   class="col-span-2"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 select-none font-heading text-gray-600"
                     for="Club:"
                   >
-                    Club:
+                    
+    Club:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Club:"
                     type="text"
                   />
@@ -122,14 +126,16 @@ exports[`Mobile Results Dropdown Works 1`] = `
                   class="col-span-1"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 text-gray-600 select-none font-heading text-gray-600"
                     for="Min Age:"
                   >
-                    Min Age:
+                    
+    Min Age:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Min Age:"
                     max="120"
                     min="0"
@@ -141,14 +147,16 @@ exports[`Mobile Results Dropdown Works 1`] = `
                   class="col-span-1"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 text-gray-600 select-none font-heading text-gray-600"
                     for="Max Age:"
                   >
-                    Max Age:
+                    
+    Max Age:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Max Age:"
                     max="120"
                     min="0"
@@ -1017,14 +1025,16 @@ exports[`Mobile Results Dropdown Works 2`] = `
                   class="col-span-2"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 select-none font-heading text-gray-600"
                     for="Name:"
                   >
-                    Name:
+                    
+    Name:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Name:"
                     type="text"
                   />
@@ -1034,14 +1044,16 @@ exports[`Mobile Results Dropdown Works 2`] = `
                   class="col-span-2"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 select-none font-heading text-gray-600"
                     for="Club:"
                   >
-                    Club:
+                    
+    Club:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Club:"
                     type="text"
                   />
@@ -1051,14 +1063,16 @@ exports[`Mobile Results Dropdown Works 2`] = `
                   class="col-span-1"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 text-gray-600 select-none font-heading text-gray-600"
                     for="Min Age:"
                   >
-                    Min Age:
+                    
+    Min Age:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Min Age:"
                     max="120"
                     min="0"
@@ -1070,14 +1084,16 @@ exports[`Mobile Results Dropdown Works 2`] = `
                   class="col-span-1"
                 >
                   <label
-                    class="block pb-1 text-gray-600 select-none font-heading"
+                    class="block pb-1 text-gray-600 select-none font-heading text-gray-600"
                     for="Max Age:"
                   >
-                    Max Age:
+                    
+    Max Age:
+  
                   </label>
                    
                   <input
-                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                    class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                     id="Max Age:"
                     max="120"
                     min="0"

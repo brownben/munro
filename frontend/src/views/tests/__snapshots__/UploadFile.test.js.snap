@@ -64,14 +64,16 @@ exports[`Renders Correctly 1`] = `
           >
             <div>
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Event ID:"
               >
-                Event ID:
+                
+    Event ID:
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Event ID:"
                 type="text"
               />
@@ -95,14 +97,16 @@ exports[`Renders Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Upload Key:"
               >
-                Upload Key:
+                
+    Upload Key:
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Upload Key:"
                 type="text"
               />
@@ -120,7 +124,7 @@ exports[`Renders Correctly 1`] = `
               </label>
                
               <p
-                class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
               >
                 <span
                   class="inline-block text-gray-600 select-none"
@@ -153,14 +157,16 @@ exports[`Renders Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Results (URL):"
               >
-                Results (URL):
+                
+    Results (URL):
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Results (URL):"
                 type="url"
               />
@@ -170,14 +176,16 @@ exports[`Renders Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Routegadget (URL):"
               >
-                Routegadget (URL):
+                
+    Routegadget (URL):
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Routegadget (URL):"
                 type="url"
               />
@@ -187,14 +195,16 @@ exports[`Renders Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Winsplits: (URL):"
               >
-                Winsplits: (URL):
+                
+    Winsplits: (URL):
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Winsplits: (URL):"
                 type="url"
               />
@@ -275,14 +285,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
           >
             <div>
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Event ID:"
               >
-                Event ID:
+                
+    Event ID:
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Event ID:"
                 type="text"
               />
@@ -306,14 +318,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Upload Key:"
               >
-                Upload Key:
+                
+    Upload Key:
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Upload Key:"
                 type="text"
               />
@@ -331,7 +345,7 @@ exports[`Upload Buttons Shows Correctly 1`] = `
               </label>
                
               <p
-                class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
               >
                 <span
                   class="inline-block text-gray-600 select-none"
@@ -364,14 +378,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Results (URL):"
               >
-                Results (URL):
+                
+    Results (URL):
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Results (URL):"
                 type="url"
               />
@@ -381,14 +397,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Routegadget (URL):"
               >
-                Routegadget (URL):
+                
+    Routegadget (URL):
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Routegadget (URL):"
                 type="url"
               />
@@ -398,14 +416,16 @@ exports[`Upload Buttons Shows Correctly 1`] = `
               class="mt-4"
             >
               <label
-                class="block pb-1 text-gray-600 select-none font-heading"
+                class="block pb-1 select-none font-heading text-gray-600"
                 for="Winsplits: (URL):"
               >
-                Winsplits: (URL):
+                
+    Winsplits: (URL):
+  
               </label>
                
               <input
-                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+                class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
                 id="Winsplits: (URL):"
                 type="url"
               />

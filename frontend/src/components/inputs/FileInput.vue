@@ -4,7 +4,7 @@
       label
     }}</label>
     <p
-      class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main"
+      class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
     >
       <span
         class="inline-block"
