@@ -39,8 +39,9 @@ jobs:
       deploy:
         provider: heroku
         app: munro-leagues
-        api_key: HEROKU_API_KEY
-        skip_cleanup: true
+        strategy: api
+        api_key: $HEROKU_API_KEY
         on:
           repo: brownben/munro
           branch: master
+        edge: true
