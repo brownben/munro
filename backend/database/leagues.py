@@ -105,7 +105,7 @@ def createLeague(data):
         """
         INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses,
         description, year, dynamicEventResults, moreInformation)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """,
         (
             data["name"],
