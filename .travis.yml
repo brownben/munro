@@ -1,12 +1,12 @@
 dist: xenial
 os: linux
-language: python
+language: node_js
+node_js:
+  - 12
+
 jobs:
   include:
-    - language: node_js
-      node_js:
-        - 12
-
+    - stage: Test
       before_install:
         - cd frontend
 
@@ -24,3 +24,23 @@ jobs:
       script:
         - coverage run -m pytest
         - coverage report
+
+    - stage: Build + Deploy
+      before_install:
+        - cd frontend
+
+      script:
+        - npm run build
+        - cp ../backend/dist/index.html ../backend/dist/static/index.html
+
+      before_deploy:
+        - cd ../backend
+
+      deploy:
+        provider: heroku
+        app: munro-leagues
+        api_key: HEROKU_API_KEY
+        skip_cleanup: true
+        on:
+          repo: brownben/munro
+          branch: master
