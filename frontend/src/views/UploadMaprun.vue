@@ -127,6 +127,7 @@ export default {
         .replace(/'>Track/g, '')
         .replace(/<a href='reitti.cgi.*?pID=/g, '')
         .replace(/<a.*?>/g, '')
+        .replace(/\(Rev[0-9]+\)/g, '')
         .split('<tr>')
         .filter((row) => !row.includes('DOCTYPE') && !row.includes('<th'))
         .map((row) =>
