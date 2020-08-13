@@ -160,3 +160,65 @@ test('Get Competitor Results - Error', async () => {
     'Problem Getting Competitor Results'
   )
 })
+
+test('Get Competitor League - Correct API Call', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(Competitor, {
+    mocks: {
+      $auth: { user: false },
+      $route: { params: { id: 'Test' } },
+      $messages: { addMessage: mockAddMessage },
+      mounted: () => {},
+    },
+    stubs: ['router-link', 'vue-headful'],
+  })
+  await flushPromises()
+  jest.clearAllMocks()
+  axios.get.mockResolvedValue()
+  wrapper.setData({ competitor: { league: 'TEST' } })
+  await wrapper.vm.getCompetitorLeague()
+  expect(axios.get).toHaveBeenCalledTimes(1)
+  expect(axios.get).toHaveBeenLastCalledWith('/api/leagues/TEST')
+})
+
+test('Get Competitor Results - Success', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(Competitor, {
+    mocks: {
+      $auth: { user: false },
+      $route: { params: { name: '' } },
+      $messages: { addMessage: mockAddMessage },
+      mounted: () => {},
+    },
+    stubs: ['router-link', 'vue-headful'],
+  })
+  wrapper.setData({ competitor: { league: 'TEST' } })
+  await flushPromises()
+  jest.clearAllMocks()
+  axios.get.mockResolvedValue({ data: sampleSingleLeague[0] })
+  await wrapper.vm.getCompetitorLeague()
+  expect(mockAddMessage).toHaveBeenCalledTimes(0)
+  expect(wrapper.vm.league).toEqual(sampleSingleLeague[0])
+})
+
+test('Get Competitor Results - Error', async () => {
+  const mockAddMessage = jest.fn()
+  const wrapper = shallowMount(Competitor, {
+    mocks: {
+      $auth: { user: false },
+      $route: { params: { name: '' } },
+      $messages: { addMessage: mockAddMessage },
+      mounted: () => {},
+    },
+    stubs: ['router-link', 'vue-headful'],
+  })
+  wrapper.setData({ competitor: { league: 'TEST' } })
+  await flushPromises()
+  jest.clearAllMocks()
+  axios.get.mockRejectedValue()
+  await wrapper.vm.getCompetitorLeague()
+  expect(mockAddMessage).toHaveBeenCalledTimes(1)
+  expect(mockAddMessage).toHaveBeenLastCalledWith(
+    'Problem Getting League Details'
+  )
+})

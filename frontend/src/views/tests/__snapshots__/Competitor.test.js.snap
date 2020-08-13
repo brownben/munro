@@ -1,33 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Get Competitor - Error 1`] = `
-<div>
-  <vue-headful-stub
-    description="Results for  in the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-    head="[object Object]"
-    title="Munro -  - Competitor"
-    url="https://munro-leagues.herokuapp.com/competitors/undefined"
-  />
-   
-  <!---->
-   
-  <!---->
-</div>
-`;
+exports[`Get Competitor - Error 1`] = `<!---->`;
 
-exports[`Renders Correctly 1`] = `
-<div
-  competitor="[object Object]"
->
-  <vue-headful-stub
-    description="Results for  in the  league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-    head="[object Object]"
-    title="Munro -  - Competitor"
-    url="https://munro-leagues.herokuapp.com/competitors/"
-  />
-   
-  <!---->
-   
-  <!---->
-</div>
-`;
+exports[`Renders Correctly 1`] = `<!---->`;

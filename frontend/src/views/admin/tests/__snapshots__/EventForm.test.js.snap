@@ -9,7 +9,7 @@ exports[`Creation Form - Renders Correctly 1`] = `
   />
    
   <div
-    class="flex-grow h-full"
+    class="flex flex-col flex-grow h-full"
   >
     <header
       class="text-gray-900 bg-white"
@@ -27,13 +27,15 @@ exports[`Creation Form - Renders Correctly 1`] = `
       </div>
     </header>
      
-    <main>
+    <main
+      class="flex flex-col flex-grow"
+    >
       <!---->
        
       <!---->
        
       <div
-        class="bg-white"
+        class="flex-grow bg-white"
       >
         <div
           class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
@@ -294,7 +296,7 @@ exports[`Update Form - Renders Correctly 1`] = `
   />
    
   <div
-    class="flex-grow h-full"
+    class="flex flex-col flex-grow h-full"
   >
     <header
       class="text-gray-900 bg-white"
@@ -312,13 +314,15 @@ exports[`Update Form - Renders Correctly 1`] = `
       </div>
     </header>
      
-    <main>
+    <main
+      class="flex flex-col flex-grow"
+    >
       <!---->
        
       <!---->
        
       <div
-        class="bg-white"
+        class="flex-grow bg-white"
       >
         <div
           class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"

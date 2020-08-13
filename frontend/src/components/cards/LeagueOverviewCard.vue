@@ -25,7 +25,7 @@
     </div>
 
     <router-link
-      class="inline-block w-auto px-3 py-2 text-base leading-tight whitespace-no-wrap transition duration-300 ease-in-out text-main-700 font-heading rounded-shape hover:text-main-800 focus:text-main-800 sm:my-0 hover:bg-main-100 focus:bg-main-100"
+      class="inline-block w-auto px-3 py-2 text-base leading-tight whitespace-no-wrap transition duration-300 ease-in-out select-none text-main-700 font-heading rounded-shape hover:text-main-800 focus:text-main-800 sm:my-0 hover:bg-main-100 focus:bg-main-100"
       :class="
         smaller
           ? 'w-full bg-main-100 hover:bg-main-200 focus:bg-main-200 px-4 mt-5 sm:mt-4 sm:w-auto md:bg-transparent md:hover:bg-main-100 md:focus:bg-main-100'

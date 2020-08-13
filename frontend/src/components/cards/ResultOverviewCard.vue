@@ -13,6 +13,7 @@
 
     <div class="flex flex-row flex-wrap justify-around w-full">
       <div
+        v-if="showTime"
         class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
       >
         <p class="text-5xl font-bold">
@@ -110,6 +111,10 @@ export default {
     result: {
       type: Object,
       default: () => {},
+    },
+    showTime: {
+      type: Boolean,
+      default: false,
     },
   },
 

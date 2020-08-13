@@ -19,6 +19,18 @@ const homeRoutes = [
     component: () => import('@/views/Home.vue'),
   },
 ]
+const searchRoutes = [
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import('@/views/Search.vue'),
+  },
+  {
+    path: '/search/:query',
+    name: 'Search Query',
+    component: () => import('@/views/Search.vue'),
+  },
+]
 const loginRoutes = [
   {
     path: '/login',
@@ -207,6 +219,7 @@ const notFoundRoutes = [
 const router = new Router({
   routes: [
     ...homeRoutes,
+    ...searchRoutes,
     ...loginRoutes,
     ...competitorRoutes,
     ...leagueRoutes,

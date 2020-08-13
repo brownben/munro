@@ -20,7 +20,6 @@
       :key="league.name"
       :title="league.name"
       :description="league.description"
-      :website="league.website"
     />
   </Layout>
 </template>

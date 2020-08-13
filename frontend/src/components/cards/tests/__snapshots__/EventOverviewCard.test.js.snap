@@ -7,13 +7,14 @@ exports[`Renders Correctly - Logged In 1`] = `
   <div
     class="flex-grow w-full px-5 my-auto md:px-6 lg:px-8"
   >
-    <h3
-      class="text-xs font-bold leading-tight tracking-wider uppercase md:text-sm font-heading text-main-700"
+    <router-link-stub
+      class="text-xs font-bold leading-tight tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700"
+      to="/leagues/undefined"
     >
       
       
     
-    </h3>
+    </router-link-stub>
      
     <h2
       class="mt-2 mb-1 text-3xl font-bold leading-tight tracking-tight text-gray-900 font-heading"
@@ -284,13 +285,14 @@ exports[`Renders Correctly - Show League Title 1`] = `
   <div
     class="flex-grow w-full px-5 my-auto md:px-6 lg:px-8"
   >
-    <h3
-      class="text-xs font-bold leading-tight tracking-wider uppercase md:text-sm font-heading text-main-700"
+    <router-link-stub
+      class="text-xs font-bold leading-tight tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700"
+      to="/leagues/undefined"
     >
       
       
     
-    </h3>
+    </router-link-stub>
      
     <h2
       class="mt-2 mb-1 text-3xl font-bold leading-tight tracking-tight text-gray-900 font-heading"

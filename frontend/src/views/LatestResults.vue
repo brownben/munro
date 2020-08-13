@@ -17,7 +17,7 @@
 
     <EventOverviewCard
       v-for="event of events"
-      :key="event.name"
+      :key="event.id"
       :event="event"
       :league="{ dynamicEventResults: true }"
       :showLeagueName="true"

@@ -2,7 +2,7 @@
 
 exports[`Renders Correctly 1`] = `
 <div
-  class="flex-grow h-full"
+  class="flex flex-col flex-grow h-full"
 >
   <header
     class="text-gray-900 bg-white"
@@ -20,7 +20,9 @@ exports[`Renders Correctly 1`] = `
     </div>
   </header>
    
-  <main>
+  <main
+    class="flex flex-col flex-grow"
+  >
     <!---->
      
     <!---->

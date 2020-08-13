@@ -4,12 +4,13 @@
     :class="{ 'xl:col-span-1': !showFullDetails }"
   >
     <div class="flex-grow w-full px-5 my-auto md:px-6 lg:px-8">
-      <h3
+      <router-link
         v-if="showLeagueName"
-        class="text-xs font-bold leading-tight tracking-wider uppercase md:text-sm font-heading text-main-700"
+        :to="`/leagues/${event.league}`"
+        class="text-xs font-bold leading-tight tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700"
       >
         {{ event.league }}
-      </h3>
+      </router-link>
       <h2
         class="mt-2 mb-1 text-3xl font-bold leading-tight tracking-tight text-gray-900 font-heading"
       >

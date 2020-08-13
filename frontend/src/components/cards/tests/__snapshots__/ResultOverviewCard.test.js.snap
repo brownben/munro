@@ -15,25 +15,7 @@ exports[`Renders Correctly - Logged In 1`] = `
   <div
     class="flex flex-row flex-wrap justify-around w-full"
   >
-    <div
-      class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
-    >
-      <p
-        class="text-5xl font-bold"
-      >
-        
-          1006:52
-        
-      </p>
-       
-      <p
-        class="inline-block text-sm text-gray-500 uppercase"
-      >
-        
-        Time
-      
-      </p>
-    </div>
+    <!---->
      
     <div
       class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
@@ -164,25 +146,7 @@ exports[`Renders Correctly - Not Logged In 1`] = `
   <div
     class="flex flex-row flex-wrap justify-around w-full"
   >
-    <div
-      class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
-    >
-      <p
-        class="text-5xl font-bold"
-      >
-        
-          1010:12
-        
-      </p>
-       
-      <p
-        class="inline-block text-sm text-gray-500 uppercase"
-      >
-        
-        Time
-      
-      </p>
-    </div>
+    <!---->
      
     <div
       class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
