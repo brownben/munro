@@ -2,50 +2,39 @@
 
 exports[`Renders Correctly 1`] = `
 <section
-  class="w-full py-10 text-white bg-main md:py-12"
+  class="w-full pt-10 pb-8 text-white bg-main-500 md:py-12"
 >
   <div
-    class="flex flex-col items-center justify-between w-10/12 mx-auto md:flex-row md:w-3/4 xl:w-2/3"
+    class="flex flex-col-reverse items-center justify-around w-11/12 mx-auto md:flex-row md:w-10/12 xl:max-w-screen-xl"
   >
     <div
-      class="w-full mb-8 text-center md:w-1/2 md:text-left md:m-0"
+      class="w-full mt-12 text-center md:w-1/2 md:text-left md:m-0"
     >
       <h2
-        class="mb-2 text-4xl tracking-tight text-white leading-12 font-heading"
+        class="text-2xl tracking-tight text-white md:mb-2 lg:text-3xl font-heading"
       >
         
-        Find
-        
-        <strong
-          class="tracking-normal text-white text-normal"
-        >
-          Everything
-        </strong>
-        
-        You Need
+        Made for Orienteering
       
       </h2>
        
-      <h3
-        class="mb-2 text-2xl font-light leading-8 text-white md:mb-3"
+      <h2
+        class="text-4xl tracking-tight text-white md:leading-tight md:mb-2 md:text-5xl font-heading"
       >
-        
-        Made for Orienteering,
-        
         <strong
-          class="font-heading"
+          class="font-bold tracking-normal"
         >
           Perfect
         </strong>
-        
-        for Any League
+         for All
+        Leagues
       
-      </h3>
+      </h2>
     </div>
      
     <img
       alt="Orienteering Flag in Front of Trees and Hills"
-      class="h-64 md:h-56"
+      class="h-64 md:h-56 lg:h-64"
       loading="lazy"
       src="@/assets/images/UnDrawOFlagWhite.svg"
     />

@@ -1,7 +1,7 @@
 <template>
   <section class="w-full py-10 bg-white border-t md:py-12 border-main-100">
     <div
-      class="flex flex-col items-center justify-between w-10/12 mx-auto md:flex-row-reverse lg:w-3/4 xl:w-2/3"
+      class="flex flex-col items-center justify-between w-10/12 mx-auto md:flex-row-reverse lg:w-3/4 xl:max-w-screen-xl"
     >
       <div class="w-full mb-12 text-center md:w-1/2 md:text-left md:mb-0">
         <h2

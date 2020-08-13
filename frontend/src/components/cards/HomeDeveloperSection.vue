@@ -1,7 +1,7 @@
 <template>
   <section class="w-full py-10 border-t bg-gray-50 md:py-12 border-main-100">
     <div
-      class="flex flex-col-reverse items-center justify-between w-10/12 mx-auto md:flex-row lg:w-3/4 xl:w-2/3"
+      class="flex flex-col items-center justify-between w-10/12 mx-auto md:flex-row-reverse lg:w-3/4 xl:max-w-screen-xl"
     >
       <div class="w-full text-center md:mb-12 md:w-1/2 md:text-left md:m-0">
         <h2
@@ -20,7 +20,7 @@
           >View API Docs</router-link
         >
       </div>
-      <div class="mb-12 md:mb-0">
+      <div class="mt-12 md:mt-0">
         <img
           class="w-2/3 mx-auto xl:w-7/12"
           src="@/assets/images/Crane.svg"
