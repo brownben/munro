@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 
 from database import results, events, leagues
+from uploadFunctions import recalculateResults
 from requireAuthentication import requireAuthentication
 from .returnMessages import returnMessage, returnError
 

@@ -4,6 +4,7 @@ from points.assignPoints import assignPoints
 from points.assignPosition import assignPositionsMultipleCourses
 from database import results, competitors, events, leagues
 from routes.returnMessages import returnError
+import csvFunctions as csv
 
 
 def nameToInitial(name):
