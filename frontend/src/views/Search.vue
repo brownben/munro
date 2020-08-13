@@ -3,7 +3,7 @@
     <template #title>
       <vue-headful
         :head="{ meta: { name: 'robots', content: 'all' } }"
-        :title="`Munro - &quot;${$route.params.query}&quot;`"
+        :title="`Munro - &quot;${$route.params.query || ''}&quot;`"
         description="Munro - League Results.
     Sorted. Sports League Results Calculated Quick and Easily, with Results
     Sorting and Filtering Options"
@@ -19,7 +19,7 @@
 
     <div
       v-if="leagues.length > 0"
-      class="flex flex-row flex-wrap justify-between w-full col-span-2 mt-2 -mb-4"
+      class="flex flex-row flex-wrap justify-between w-full col-span-2 -mb-4"
     >
       <h2
         class="inline-block py-2 leading-tight tracking-wide uppercase select-none font-heading text-main-600"
@@ -43,7 +43,7 @@
 
     <h2
       v-if="events.length > 0"
-      class="col-span-2 mt-2 -mb-4 uppercase select-none font-heading text-main-700"
+      class="col-span-2 -mb-4 uppercase select-none font-heading text-main-700"
     >
       Events
     </h2>
@@ -59,7 +59,7 @@
 
     <h2
       v-if="competitors.length > 0"
-      class="col-span-2 mt-2 -mb-4 uppercase select-none font-heading text-main-700"
+      class="col-span-2 -mb-4 uppercase select-none font-heading text-main-700"
     >
       Competitors
     </h2>
@@ -74,12 +74,14 @@
         leagues.length === 0 &&
         events.length === 0 &&
         competitors.length === 0 &&
-        !loading
+        !loading &&
+        $route.params.query
       "
-      :text="`Sorry I Couldn't Find &quot;${$route.params.query}&quot;`"
+      :text="`Sorry I Couldn't Find &quot;${$route.params.query || ''}&quot;`"
       secondaryText="Try Tweaking Your Search Query To Find a Match"
       class="col-span-2"
     />
+    <p v-else>&nbsp;</p>
   </Layout>
 </template>
 <script>
@@ -126,7 +128,7 @@ export default {
     getDetails: function () {
       this.loading = true
       return axios
-        .get(`/api/search?query=${this.$route.params.query}`)
+        .get(`/api/search?query=${this.$route.params.query ?? ''}`)
         .then((response) => {
           this.events = response.data.events
           this.leagues = response.data.leagues

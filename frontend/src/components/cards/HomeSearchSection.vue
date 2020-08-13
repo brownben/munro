@@ -21,7 +21,7 @@
           v-model="searchQuery"
           type="text"
           spellcheck="false"
-          class="w-full py-2 pl-10 pr-24 font-sans leading-snug transition duration-300 ease-in-out bg-transparent border border-white border-opacity-50 outline-none appearance-none text-main-100 focus:border-opacity-100 focus:text-white rounded-shape"
+          class="w-full py-2 pl-10 pr-24 font-sans leading-snug transition duration-300 ease-in-out bg-transparent border border-white border-opacity-50 outline-none appearance-none text-main-100 focus:border-opacity-100 focus:text-white rounded-shape focus:shadow-outline-white"
           @focus="searchFocused = true"
           @blur="searchFocused = false"
         />
@@ -32,7 +32,6 @@
               ? 'bg-white text-main-600 hover:bg-main-200 focus:bg-main-200'
               : 'bg-main-100 text-main-600 hover:bg-white focus:bg-white'
           "
-          @click="$router.push(`/search/${searchQuery}`)"
         >
           Search
         </button>

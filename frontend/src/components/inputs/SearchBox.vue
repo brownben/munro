@@ -9,7 +9,7 @@
       v-model="query"
       type="text"
       spellcheck="false"
-      class="w-full py-2 pl-10 pr-24 font-sans leading-snug text-gray-500 transition duration-300 ease-in-out border border-gray-100 outline-none appearance-none bg-gray-50 rounded-shape focus:border-main-300 focus:text-gray-900 focus:bg-white"
+      class="w-full py-2 pl-10 pr-24 font-sans leading-snug text-gray-500 transition duration-300 ease-in-out border border-gray-100 outline-none appearance-none bg-gray-50 rounded-shape focus:border-main-300 focus:text-gray-900 focus:bg-white focus:shadow-outline"
       @focus="searchFocused = true"
       @blur="searchFocused = false"
     />
