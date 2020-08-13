@@ -1,16 +1,16 @@
 __all__ = [
     "__init__",
     "returnMessages",
+    "competitors",
     "competitorMerge",
     "competitorResults",
-    "competitors",
-    "eventResults",
     "events",
-    "eventsLatestResults",
     "eventsUploadKey",
+    "eventResults",
+    "eventsLatestResults",
+    "leagues",
     "leagueEvents",
     "leagueResults",
-    "leagues",
     "results",
     "resultsManual",
     "resultsRecalculate",
@@ -18,5 +18,6 @@ __all__ = [
     "uploadFile",
     "uploadResult",
     "uploadStream",
+    "search",
 ]
 

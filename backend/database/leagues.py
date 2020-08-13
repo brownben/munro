@@ -84,6 +84,8 @@ queryMultiple(
         FOREIGN KEY(event) REFERENCES events(id)
         ON UPDATE CASCADE ON DELETE CASCADE
     )""",
+        "CREATE EXTENSION IF NOT EXISTS pg_trgm",
+        "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch ",
     ]
 )
 

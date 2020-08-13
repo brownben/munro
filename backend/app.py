@@ -82,6 +82,7 @@ api.add_resource(uploadFile.Upload, "/api/upload")
 api.add_resource(uploadStream.UploadStream, "/api/upload/stream")
 api.add_resource(uploadResult.UploadResult, "/api/upload/result")
 
+api.add_resource(search.Search, "/api/search")
 
 # Serve app files
 @app.route("/", defaults={"path": ""})
