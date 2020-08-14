@@ -70,7 +70,7 @@
         in an IFrame like:
       </p>
       <code
-        class="block w-full px-3 py-2 my-2 font-mono font-normal text-gray-900 bg-main-100 rounded-shape"
+        class="block w-full px-3 py-2 my-2 font-mono font-normal text-gray-900 break-words bg-main-100 rounded-shape"
         >&lt;iframe
         src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope
         2018/events&quot;&gt;&lt;/iframe&gt;</code

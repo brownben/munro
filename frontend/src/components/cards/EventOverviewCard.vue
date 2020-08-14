@@ -138,6 +138,8 @@ export default {
     showFullDetails: { type: Boolean, default: true },
   },
 
+  emits: ['eventChanged'],
+
   methods: {
     deleteEvent: function (event) {
       if (

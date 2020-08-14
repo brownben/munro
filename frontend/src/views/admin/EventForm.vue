@@ -87,6 +87,7 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
 import Layout from '@/components/Layout.vue'
@@ -95,7 +96,7 @@ import DropdownInput from '@/components/inputs/DropdownInput.vue'
 import TextInput from '@/components/inputs/TextInput.vue'
 import CheckboxInput from '@/components/inputs/CheckboxInput.vue'
 
-const NotFound = () => import('@/views/NotFound.vue')
+const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))
 
 export default {
   components: {

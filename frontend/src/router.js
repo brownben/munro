@@ -1,16 +1,6 @@
-/*
-  router.js
-
-  Sets up the VueJS router, defining all routes and which view to display for each one
-*/
-
-import Vue from 'vue'
-import Router from 'vue-router'
-
-import messageStore from '@/messageStore'
-
-// Bind to Vue Instance
-Vue.use(Router)
+import { createRouter, createWebHistory } from 'vue-router'
+import messageStore from '@/messageStore.js'
+import auth from '@/authentication.js'
 
 const homeRoutes = [
   {
@@ -210,13 +200,14 @@ const uploadRoutes = [
 ]
 const notFoundRoutes = [
   {
-    path: '*',
+    path: '/*',
     name: 'NotFound',
     component: () => import('@/views/NotFound.vue'),
   },
 ]
 
-const router = new Router({
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes: [
     ...homeRoutes,
     ...searchRoutes,
@@ -228,20 +219,14 @@ const router = new Router({
     ...uploadRoutes,
     ...notFoundRoutes,
   ],
-
   scrollBehavior() {
-    return { x: 0, y: 0 }
+    return { top: 0, left: 0 }
   },
-
-  // Use natural looking routes (/<route>) not /#<route>
-  mode: 'history',
 })
-
-export default router
 
 function requireAuthentication(to, from, next) {
   // Check they are logged in before going to restricted route, if they are not redirect
-  const currentUser = router.app.$auth.user
+  const currentUser = auth.user
   if (!currentUser) {
     next({
       path: '/login',
@@ -249,3 +234,5 @@ function requireAuthentication(to, from, next) {
     })
   } else next()
 }
+
+export default router

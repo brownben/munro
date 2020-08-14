@@ -160,12 +160,13 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
 import Layout from '@/components/Layout.vue'
 import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
 
-const NotFound = () => import('@/views/NotFound.vue')
+const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))
 
 export default {
   components: {

@@ -44,6 +44,6 @@ export default {
 }
 
 .body code {
-  @apply my-4 font-mono bg-main-100 text-gray-900 text-opacity-100 px-3 py-2 w-full block rounded-shape font-normal;
+  @apply my-4 font-mono bg-main-100 text-gray-900 text-opacity-100 px-3 py-2 w-full block rounded-shape font-normal break-words;
 }
 </style>

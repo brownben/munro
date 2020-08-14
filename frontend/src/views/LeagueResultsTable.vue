@@ -104,7 +104,7 @@
               <td v-else />
             </tr>
           </thead>
-          <tbody is="transition-group" name="fade">
+          <transition-group tag="tbody" name="fade">
             <template v-for="result of filteredResults">
               <tr
                 :key="result.name"
@@ -120,7 +120,9 @@
                     {{ result.name }}
                   </span>
                   <span class="block text-xs sm:hidden">
-                    <span class="mr-4">{{ result.ageClass }}</span>
+                    <span v-if="result.ageClass" class="mr-4">{{
+                      result.ageClass
+                    }}</span>
                     <span>{{ result.club }}</span>
                   </span>
                 </td>
@@ -164,42 +166,47 @@
                   </svg>
                 </td>
               </tr>
-              <tr
+              <template
                 v-if="
                   smallWindow &&
                   openedRows.includes(filteredResults.indexOf(result))
                 "
-                :key="result.name + '-mobile'"
-                :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
-                class="mobile-table-expansion"
               >
-                <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
-                <td colspan="100%">
-                  <p
-                    v-for="event of eventsWithResults"
-                    :key="eventsWithResults.indexOf(event)"
-                  >
-                    {{ event.name }}:
-                    <span
-                      :class="{
-                        strikethrough: !result.largestPoints.includes(
-                          eventsWithResults.indexOf(event)
-                        ),
-                        bold:
-                          result.types &&
-                          ['manual', 'max', 'average'].includes(
-                            result.types[eventsWithResults.indexOf(event)]
-                          ),
-                      }"
-                      >{{
-                        result.points[eventsWithResults.indexOf(event)]
-                      }}</span
+                <tr
+                  :key="result.name + '-mobile'"
+                  :class="{
+                    striped: filteredResults.indexOf(result) % 2 === 0,
+                  }"
+                  class="mobile-table-expansion"
+                >
+                  <!-- :class - If odd number results, add background color to give stripe effect to make it easier to read -->
+                  <td colspan="100%">
+                    <p
+                      v-for="event of eventsWithResults"
+                      :key="eventsWithResults.indexOf(event)"
                     >
-                  </p>
-                </td>
-              </tr>
+                      {{ event.name }}:
+                      <span
+                        :class="{
+                          strikethrough: !result.largestPoints.includes(
+                            eventsWithResults.indexOf(event)
+                          ),
+                          bold:
+                            result.types &&
+                            ['manual', 'max', 'average'].includes(
+                              result.types[eventsWithResults.indexOf(event)]
+                            ),
+                        }"
+                        >{{
+                          result.points[eventsWithResults.indexOf(event)]
+                        }}</span
+                      >
+                    </p>
+                  </td>
+                </tr>
+              </template>
             </template>
-          </tbody>
+          </transition-group>
         </table>
       </div>
     </template>
@@ -207,7 +214,7 @@
     <transition name="fade">
       <NoResultsCard
         v-if="!loading && (!found || filteredResults.length === 0)"
-        class="col-span-2 -mt-8"
+        class="col-span-2"
       />
     </transition>
 
@@ -227,13 +234,16 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
 import Layout from '@/components/Layout.vue'
 import FilterMenu from '@/components/FilterMenu.vue'
 import UpDownArrow from '@/components/UpDownArrows.vue'
 
-const NoResultsCard = () => import('@/components/cards/NoResultsCard.vue')
+const NoResultsCard = defineAsyncComponent(() =>
+  import('@/components/cards/NoResultsCard.vue')
+)
 
 export default {
   components: {

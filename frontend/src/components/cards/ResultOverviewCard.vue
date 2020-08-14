@@ -118,6 +118,8 @@ export default {
     },
   },
 
+  emits: ['resultChanged'],
+
   methods: {
     positionSuperscript: function (position) {
       if (position % 10 === 1 && position % 100 !== 11) return 'st'

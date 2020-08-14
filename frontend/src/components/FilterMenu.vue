@@ -8,44 +8,44 @@
   <AccordionDropdown title="Filter Results">
     <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
       <TextInput
-        v-model="preferences.name"
+        v-model="name"
         label="Name:"
         class="col-span-2"
-        @input="onChange"
+        @update:modelValue="onChange"
       />
       <TextInput
-        v-model="preferences.club"
+        v-model="club"
         label="Club:"
         class="col-span-2"
-        @input="onChange"
+        @update:modelValue="onChange"
       />
       <NumberInput
-        v-model.number="preferences.minAge"
+        v-model.number="minAge"
         :min="0"
         :max="120"
         label="Min Age:"
         class="col-span-1"
-        @input="onChange"
+        @update:modelValue="onChange"
       />
       <NumberInput
-        v-model.number="preferences.maxAge"
+        v-model.number="maxAge"
         :min="0"
         :max="120"
         label="Max Age:"
         class="col-span-1"
-        @input="onChange"
+        @update:modelValue="onChange"
       />
       <CheckboxInput
-        v-model="preferences.male"
+        v-model="male"
         class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 text-center md:pt-4 md:pb-0"
         label="Male"
-        @input="onChange"
+        @update:modelValue="onChange"
       />
       <CheckboxInput
-        v-model="preferences.female"
+        v-model="female"
         label="Female"
         class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 md:pt-4 md:pb-0text-center"
-        @input="onChange"
+        @update:modelValue="onChange"
       />
     </div>
   </AccordionDropdown>
@@ -65,20 +65,27 @@ export default {
     CheckboxInput,
   },
 
+  emits: ['changed'],
+
   data: () => ({
-    preferences: {
-      name: '',
-      club: '',
-      minAge: 0,
-      maxAge: 100,
-      male: true,
-      female: true,
-    },
+    name: '',
+    club: '',
+    minAge: 0,
+    maxAge: 100,
+    male: true,
+    female: true,
   }),
 
   methods: {
     onChange: function () {
-      this.$emit('changed', this.preferences)
+      this.$emit('changed', {
+        name: this.name,
+        club: this.club,
+        minAge: this.minAge,
+        maxAge: this.maxAge,
+        male: this.male,
+        female: this.female,
+      })
     },
   },
 }
