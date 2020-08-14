@@ -76,6 +76,7 @@
         <TextInput
           v-model.trim="moreInformation"
           label="More Information:"
+          type="textarea"
           class="mt-4"
         />
         <button v-if="create" class="mt-8 button-lg">Create League</button>
@@ -215,7 +216,10 @@ export default {
               this.courses = response.data.courses.join(',')
             this.description = response.data.description
             this.dynamicResults = response.data.dynamicEventResults ?? true
-            this.moreInformation = response.data.moreInformation
+            this.moreInformation = response.data.moreInformation.replace(
+              /\|\s*/g,
+              '\n'
+            )
           }
         })
         .catch(() =>
@@ -243,7 +247,7 @@ export default {
             courses: this.courses,
             description: this.description,
             dynamicEventResults: this.dynamicResults,
-            moreInformation: this.moreInformation,
+            moreInformation: this.moreInformation.replace(/\n/g, '|'),
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
@@ -270,7 +274,7 @@ export default {
             courses: this.courses,
             description: this.description,
             dynamicEventResults: this.dynamicResults,
-            moreInformation: this.moreInformation,
+            moreInformation: this.moreInformation.replace(/\n/g, '|'),
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>

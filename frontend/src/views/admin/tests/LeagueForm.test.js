@@ -418,7 +418,6 @@ test('Update League - Error in Creation', async () => {
   wrapper.setData({ name: 'Test League', scoringMethod: 'position' })
   axios.put.mockRejectedValue()
   await wrapper.vm.updateLeague()
-  expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
     'Error: Problem Updating League - Please Try Again'
   )
@@ -437,7 +436,6 @@ test('Get League Details - Error', async () => {
   jest.clearAllMocks()
   axios.get.mockRejectedValue()
   await wrapper.vm.getLeagueDetails()
-  expect(mockAddMessageFunction).toHaveBeenCalledTimes(1)
   expect(mockAddMessageFunction).toHaveBeenLastCalledWith(
     'Problem Fetching League Details'
   )
@@ -462,7 +460,6 @@ test('Get League Details - Success', async () => {
   expect(wrapper.vm.description).toBe(sampleSingleLeague[0].description)
   expect(wrapper.vm.website).toBe(sampleSingleLeague[0].website)
   expect(wrapper.vm.courses).toBe(sampleSingleLeague[0].courses.join(','))
-  expect(mockAddMessageFunction).toHaveBeenCalledTimes(0)
 })
 
 test('Get League Details - Not Found', async () => {

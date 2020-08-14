@@ -8,6 +8,17 @@
       {{ label }}
     </label>
     <input
+      v-if="type !== 'textarea'"
+      :id="label"
+      :value="value"
+      :type="type"
+      class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
+      @input="$emit('input', $event.target.value)"
+      @focus="focus = true"
+      @blur="focus = false"
+    />
+    <textarea
+      v-else
       :id="label"
       :value="value"
       :type="type"
