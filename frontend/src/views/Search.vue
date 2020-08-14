@@ -85,6 +85,7 @@
   </Layout>
 </template>
 <script>
+import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
 import Layout from '@/components/Layout.vue'
@@ -93,7 +94,9 @@ import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
 import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard.vue'
 import CompetitorOverviewCard from '@/components/cards/CompetitorOverviewCard.vue'
 
-const NoResults = () => import('@/components/cards/NoResultsCard.vue')
+const NoResults = defineAsyncComponent(() =>
+  import('@/components/cards/NoResultsCard.vue')
+)
 
 export default {
   components: {

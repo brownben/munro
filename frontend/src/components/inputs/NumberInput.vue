@@ -9,12 +9,12 @@
     </label>
     <input
       :id="label"
-      :value="value"
+      :value="modelValue"
       :min="min"
       :max="max"
       type="number"
       class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
-      @input="$emit('input', $event.target.value)"
+      @input="$emit('update:modelValue', parseInt($event.target.value))"
       @focus="focus = true"
       @blur="focus = false"
     />
@@ -26,7 +26,7 @@ export default {
   name: 'NumberInput',
 
   props: {
-    value: {
+    modelValue: {
       type: Number,
       default: 0,
     },
@@ -43,6 +43,8 @@ export default {
       default: 100,
     },
   },
+
+  emits: ['update:modelValue'],
 
   data: () => ({
     focus: false,

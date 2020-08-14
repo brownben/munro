@@ -4,15 +4,15 @@
   The main app file containing the base structure of the app, and base styling
 -->
 <template>
-  <div id="app" class="flex flex-col w-full min-h-full">
-    <AppMenu v-show="!$route.path.includes('embed')" />
+  <AppMenu v-show="!$route.path.includes('embed')" />
 
-    <div id="content" class="flex flex-col flex-grow">
-      <Messages />
+  <div id="content" class="flex flex-col flex-grow">
+    <Messages />
+    <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <router-view />
+        <component :is="Component" />
       </transition>
-    </div>
+    </router-view>
   </div>
 </template>
 
@@ -33,12 +33,3 @@ export default {
   },
 }
 </script>
-
-<style>
-::selection {
-  background: #f3e5f5;
-}
-::-moz-selection {
-  background: #f3e5f5;
-}
-</style>

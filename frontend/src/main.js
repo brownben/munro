@@ -1,31 +1,17 @@
-/*
-  main.js
-
-  The main vue instance. The authentication wrapper and messageStore
-  are bound to this instance so they can be accessed throughout the full app
-*/
-
-import Vue from 'vue'
+import { createApp } from 'vue'
 import vueHeadful from 'vue-headful'
 
-import App from './App'
+import App from './App.vue'
 import router from './router'
-import auth from './authentication'
-import messageStore from './messageStore'
+import auth from './authentication.js'
+import messageStore from './messageStore.js'
 
-import './registerServiceWorker'
 import './assets/styles/tailwind.pcss'
+import './registerServiceWorker'
 
-Vue.config.productionTip = false
-
-Vue.prototype.$messages = messageStore
-Vue.prototype.$auth = auth
-
-Vue.component('VueHeadful', vueHeadful)
-
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  render: (h) => h(App),
-})
+const app = createApp(App)
+app.use(router)
+app.component('VueHeadful', vueHeadful)
+app.config.globalProperties.$auth = auth
+app.config.globalProperties.$messages = messageStore
+app.mount('#app')

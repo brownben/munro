@@ -45,82 +45,82 @@
 
       <filter-menu class="col-span-2 my-0" @changed="filterChanged" />
 
-      <div
-        v-if="filteredResults && filteredResults.length > 0"
-        class="col-span-2"
-      >
-        <transition name="shrink">
-          <table class="table mb-2">
-            <thead>
-              <tr>
-                <th @click="sortBy('position')">
-                  <p>Pos.</p>
-                  <up-down-arrow
-                    :ascending="ascendingSort"
-                    :active="sortedBy === 'position'"
-                  />
-                </th>
-                <th class="name" @click="sortBy('name')">
-                  <p>Name</p>
-                  <up-down-arrow
-                    :ascending="ascendingSort"
-                    :active="sortedBy === 'name'"
-                  />
-                </th>
-                <th class="ageClass" @click="sortBy('age')">
-                  <p>Class</p>
-                  <up-down-arrow
-                    :ascending="ascendingSort"
-                    :active="sortedBy === 'age'"
-                  />
-                </th>
-                <th class="club" @click="sortBy('club')">
-                  <p>Club</p>
-                  <up-down-arrow
-                    :ascending="ascendingSort"
-                    :active="sortedBy === 'club'"
-                  />
-                </th>
-                <th @click="sortBy('time')">
-                  <p>Time</p>
-                  <up-down-arrow
-                    :ascending="ascendingSort"
-                    :active="sortedBy === 'time'"
-                  />
-                </th>
-              </tr>
-            </thead>
-            <tbody is="transition-group" name="fade">
-              <tr
-                v-for="result in filteredResults"
-                :key="result.id"
-                :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
+      <transition name="shrink">
+        <table
+          v-if="filteredResults && filteredResults.length > 0"
+          class="table col-span-2 mb-2"
+        >
+          <thead>
+            <tr>
+              <th @click="sortBy('position')">
+                <p>Pos.</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'position'"
+                />
+              </th>
+              <th class="name" @click="sortBy('name')">
+                <p>Name</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'name'"
+                />
+              </th>
+              <th class="ageClass" @click="sortBy('age')">
+                <p>Class</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'age'"
+                />
+              </th>
+              <th class="club" @click="sortBy('club')">
+                <p>Club</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'club'"
+                />
+              </th>
+              <th @click="sortBy('time')">
+                <p>Time</p>
+                <up-down-arrow
+                  :ascending="ascendingSort"
+                  :active="sortedBy === 'time'"
+                />
+              </th>
+            </tr>
+          </thead>
+          <transition-group tag="tbody" name="fade">
+            <tr
+              v-for="result in filteredResults"
+              :key="result.id"
+              :class="{ striped: filteredResults.indexOf(result) % 2 === 0 }"
+            >
+              <td
+                v-if="['max', 'average', 'manual'].includes(result.type)"
+                class="position"
               >
-                <td
-                  v-if="['max', 'average', 'manual'].includes(result.type)"
-                  class="position"
-                >
-                  *
-                </td>
-                <td v-else-if="result.incomplete" class="position">-</td>
-                <td v-else class="position">{{ result.position || '' }}</td>
-                <td class="name">
-                  <span class="block font-normal sm:font-light">
-                    {{ result.name }}
-                  </span>
-                  <span class="block text-xs sm:hidden">
-                    <span class="mr-4">{{ result.ageClass }}</span>
-                    <span>{{ result.club }}</span>
-                  </span>
-                </td>
-                <td class="ageClass">{{ result.ageClass }}</td>
-                <td class="club">{{ result.club }}</td>
-                <td class="time">{{ elapsedTime(result.time) }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </transition>
-      </div>
+                *
+              </td>
+              <td v-else-if="result.incomplete" class="position">-</td>
+              <td v-else class="position">{{ result.position || '' }}</td>
+              <td class="name">
+                <span class="block font-normal sm:font-light">
+                  {{ result.name }}
+                </span>
+                <span class="block text-xs sm:hidden">
+                  <span v-if="result.ageClass" class="mr-4">{{
+                    result.ageClass
+                  }}</span>
+                  <span>{{ result.club }}</span>
+                </span>
+              </td>
+              <td class="ageClass">{{ result.ageClass }}</td>
+              <td class="club">{{ result.club }}</td>
+              <td class="time">{{ elapsedTime(result.time) }}</td>
+            </tr>
+          </transition-group>
+        </table>
+      </transition>
 
       <transition name="fade">
         <NoResultsCard
@@ -137,13 +137,16 @@
 
 <script>
 import axios from 'axios'
+import { defineAsyncComponent } from 'vue'
 
 import Layout from '@/components/Layout.vue'
 import FilterMenu from '@/components/FilterMenu.vue'
 import UpDownArrow from '@/components/UpDownArrows.vue'
 
-const NoResultsCard = () => import('@/components/cards/NoResultsCard.vue')
-const NotFound = () => import('@/views/NotFound.vue')
+const NoResultsCard = defineAsyncComponent(() =>
+  import('@/components/cards/NoResultsCard.vue')
+)
+const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))
 
 export default {
   components: {

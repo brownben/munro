@@ -49,6 +49,8 @@ export default {
     },
   },
 
+  emits: ['file'],
+
   data: () => ({
     fileName: 'Select a File',
   }),
