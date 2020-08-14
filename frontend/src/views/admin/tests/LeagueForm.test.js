@@ -3,7 +3,7 @@
 */
 
 import axios from 'axios'
-import { mount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import LeagueForm from '@/views/admin/LeagueForm.vue'
 import { sampleSingleLeague } from '@/tests/test data/leagues'
 
@@ -464,7 +464,7 @@ test('Get League Details - Success', async () => {
 
 test('Get League Details - Not Found', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = mount(LeagueForm, {
+  const wrapper = shallowMount(LeagueForm, {
     mocks: {
       $route: { path: '/leagues/1/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },

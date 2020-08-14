@@ -353,7 +353,7 @@ test('Get Competitor Details - Error', async () => {
 
 test('Get Competitor Details - Not Found', async () => {
   const mockAddMessageFunction = jest.fn()
-  const wrapper = mount(CompetitorForm, {
+  const wrapper = shallowMount(CompetitorForm, {
     mocks: {
       $route: { path: '/leagues/1/edit', params: { name: '' } },
       $messages: { addMessage: mockAddMessageFunction },

@@ -46,41 +46,14 @@ exports[`Renders Correctly + Fetches Data 1`] = `
       >
         
       I can't currently find what you are looking for, the link might be
-      broken or the page may have moved.
+      broken or the page may have moved
     
       </h2>
        
-      <p
-        class="mt-8 text-lg text-gray-600 md:text-xl md:mt-12 font-heading"
-      >
-        
-      Try Looking Here:
-    
-      </p>
-       
       <div
-        class="mt-1"
+        class="flex flex-row items-center justify-center mt-12"
       >
-        <router-link-stub
-          class="px-4 py-2 text-xl button"
-          to="/"
-        >
-          Home
-        </router-link-stub>
-         
-        <router-link-stub
-          class="px-4 py-2 text-xl button"
-          to="/leagues"
-        >
-          Leagues
-        </router-link-stub>
-         
-        <router-link-stub
-          class="px-4 py-2 text-xl button"
-          to="/latest-results"
-        >
-          Latest Results
-        </router-link-stub>
+        <searchbox-stub />
       </div>
     </div>
   </layout-stub>

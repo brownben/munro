@@ -29,20 +29,11 @@
       </h1>
       <h2 class="mt-6 text-lg text-gray-500 md:text-xl">
         I can't currently find what you are looking for, the link might be
-        broken or the page may have moved.
+        broken or the page may have moved
       </h2>
 
-      <p class="mt-8 text-lg text-gray-600 md:text-xl md:mt-12 font-heading">
-        Try Looking Here:
-      </p>
-      <div class="mt-1">
-        <router-link to="/" class="px-4 py-2 text-xl button">Home</router-link>
-        <router-link to="/leagues" class="px-4 py-2 text-xl button"
-          >Leagues</router-link
-        >
-        <router-link to="/latest-results" class="px-4 py-2 text-xl button"
-          >Latest Results</router-link
-        >
+      <div class="flex flex-row items-center justify-center mt-12">
+        <SearchBox />
       </div>
     </div>
   </Layout>
@@ -50,10 +41,12 @@
 
 <script>
 import Layout from '@/components/Layout.vue'
+import SearchBox from '@/components/inputs/SearchBox.vue'
 
 export default {
   components: {
     Layout,
+    SearchBox,
   },
 }
 </script>
