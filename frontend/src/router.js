@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import messageStore from '@/messageStore.js'
+import messageStore from '@/messageStore'
 import auth from '@/authentication.js'
 
 const homeRoutes = [
@@ -200,7 +200,7 @@ const uploadRoutes = [
 ]
 const notFoundRoutes = [
   {
-    path: '/*',
+    path: '/:catchAll(.*)',
     name: 'NotFound',
     component: () => import('@/views/NotFound.vue'),
   },
