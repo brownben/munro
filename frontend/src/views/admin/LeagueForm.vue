@@ -73,10 +73,9 @@
           label="Courses: (Comma Separated)"
           class="mt-4"
         />
-        <TextInput
+        <TextareaInput
           v-model.trim="moreInformation"
           label="More Information:"
-          type="textarea"
           class="mt-4"
         />
         <button v-if="create" class="mt-8 button-lg">Create League</button>
@@ -94,6 +93,7 @@ import axios from 'axios'
 import Layout from '@/components/Layout.vue'
 import DropdownInput from '@/components/inputs/DropdownInput.vue'
 import TextInput from '@/components/inputs/TextInput.vue'
+import TextareaInput from '@/components/inputs/TextareaInput.vue'
 import NumberInput from '@/components/inputs/NumberInput.vue'
 
 const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))

@@ -1,7 +1,7 @@
 <template>
   <div>
     <label
-      class="block pb-1 text-gray-600 select-none font-heading"
+      class="block pb-1 select-none font-heading"
       :class="focus ? 'text-main-600' : 'text-gray-600'"
       :for="label"
     >

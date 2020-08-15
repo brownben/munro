@@ -37,9 +37,9 @@
 
       <select
         :id="label"
-        v-model="currentValue"
+        :value="modelValue"
         class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
-        @change="$emit('update:modelValue', currentValue)"
+        @change="$emit('update:modelValue', $event.target.value)"
         @focus="focus = true"
         @blur="focus = false"
       >
@@ -88,19 +88,9 @@ export default {
 
   emits: ['update:modelValue'],
 
-  data: function () {
-    return {
-      open: false,
-      currentValue: this.modelValue,
-      focus: false,
-    }
-  },
-
-  watch: {
-    value: function (value) {
-      this.currentValue = value
-    },
-  },
+  data: () => ({
+    focus: false,
+  }),
 }
 </script>
 

@@ -6,15 +6,14 @@
   "author": "brownben <9870007+brownben@users.noreply.github.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --modern",
-    "test:unit": "vue-cli-service test:unit",
     "lint": "npm run prettier:fix && npm run eslint:fix",
     "check": "npm run prettier:check && npm run eslint:check",
     "eslint:check": "vue-cli-service lint --no-fix",
     "eslint:fix": "vue-cli-service lint",
     "prettier:check": "prettier --check **",
     "prettier:fix": "prettier --write ** ",
-    "test": "jest -i"
+    "test": "vue-cli-service test:unit -i",
+    "build": "vue-cli-service build --modern"
   },
   "dependencies": {
     "axios": "^0.19.2",
