@@ -144,6 +144,7 @@ def courseResultToJSON(result, league, eventsList):
         "totalPoints": totalPoints,
         "largestPoints": largestPoints,
         "types": types,
+        "id": result[6],
     }
 
 
@@ -361,10 +362,10 @@ def getResultsByEventForRecalc(event):
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
             AND event=%s
-            AND COALESCE(type,'') <> 'manual'
-            AND COALESCE(type,'') <> 'max'
-            AND COALESCE(type,'') <> 'average'
-            AND COALESCE(type,'') <> 'hidden'
+            AND COALESCE(type, '') <> 'manual'
+            AND COALESCE(type, '') <> 'max'
+            AND COALESCE(type, '') <> 'average'
+            AND COALESCE(type, '') <> 'hidden'
         ORDER BY competitors.course ASC, results.time ASC
     """,
         (event,),
@@ -376,7 +377,7 @@ def getResultsForCourse(league, course):
     results = queryWithResults(
         """
         SELECT competitors.name, competitors.ageClass, competitors.club, array_agg(results.event),
-         array_agg(results.points), array_agg(results.type)
+         array_agg(results.points), array_agg(results.type), competitors.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
             AND competitors.course=%s
