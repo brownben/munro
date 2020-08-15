@@ -134,17 +134,24 @@ def courseResultToJSON(result, league, eventsList):
     largestPoints = biggestPoints(points, numberOfCountingEvents)
     totalPoints = pointsHelpers.calculateTotal(largestPoints, points)
 
+    pointsInformation = [
+        {
+            "score": point,
+            "counting": i in largestPoints,
+            "type": types[i],
+            "event": eventsWithResults[i]["id"],
+        }
+        for i, point in enumerate(points)
+    ]
     # Change to object rather than tuple
 
     return {
+        "id": result[6],
         "name": result[0],
         "ageClass": result[1],
         "club": result[2],
-        "points": points,
         "totalPoints": totalPoints,
-        "largestPoints": largestPoints,
-        "types": types,
-        "id": result[6],
+        "points": pointsInformation,
     }
 
 

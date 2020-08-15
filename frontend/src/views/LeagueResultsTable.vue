@@ -85,18 +85,16 @@
 
               <template v-if="!smallWindow">
                 <th
-                  v-for="event of eventsWithResults"
-                  :key="eventsWithResults.indexOf(event)"
+                  v-for="(event, i) of eventsWithResults"
+                  :key="event.id"
                   class="relative points"
-                  @click="sortBy('points-' + eventsWithResults.indexOf(event))"
+                  @click="sortBy(`points-${i}`)"
                 >
                   <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
                   <span>{{ event.name }}</span>
                   <up-down-arrow
                     :ascending="ascendingSort"
-                    :active="
-                      sortedBy === 'points-' + eventsWithResults.indexOf(event)
-                    "
+                    :active="sortedBy === `points-${i}`"
                     class="points-arrow"
                   />
                 </th>
@@ -106,9 +104,9 @@
           </thead>
           <transition-group name="list">
             <ExpandingTableRow
-              v-for="result of filteredResults"
+              v-for="(result, i) of filteredResults"
               :key="result.id"
-              :striped="filteredResults.indexOf(result) % 2 === 0"
+              :striped="i % 2 === 0"
               :smallWindow="smallWindow"
             >
               <td class="position">{{ result.position }}</td>
@@ -129,45 +127,28 @@
 
               <template v-if="!smallWindow">
                 <td
-                  v-for="event of eventsWithResults"
-                  :key="eventsWithResults.indexOf(event)"
+                  v-for="point of result.points"
+                  :key="point.event"
                   :class="{
-                    strikethrough: !result.largestPoints.includes(
-                      eventsWithResults.indexOf(event)
-                    ),
-                    bold:
-                      result.types &&
-                      ['max', 'average', 'manual'].includes(
-                        result.types[eventsWithResults.indexOf(event)]
-                      ),
+                    strikethrough: !point.counting,
+                    bold: ['manual', 'max', 'average'].includes(point.type),
                   }"
                   class="points"
                 >
-                  {{ result.points[eventsWithResults.indexOf(event)] }}
+                  {{ point.score }}
                 </td>
               </template>
 
               <template #expansion>
                 <td colspan="100%">
-                  <p
-                    v-for="event of eventsWithResults"
-                    :key="eventsWithResults.indexOf(event)"
-                  >
-                    {{ event.name }}:
+                  <p v-for="(point, i) of result.points" :key="point.event">
+                    {{ eventsWithResults[i].name }}:
                     <span
                       :class="{
-                        strikethrough: !result.largestPoints.includes(
-                          eventsWithResults.indexOf(event)
-                        ),
-                        bold:
-                          result.types &&
-                          ['manual', 'max', 'average'].includes(
-                            result.types[eventsWithResults.indexOf(event)]
-                          ),
+                        strikethrough: !point.counting,
+                        bold: ['manual', 'max', 'average'].includes(point.type),
                       }"
-                      >{{
-                        result.points[eventsWithResults.indexOf(event)]
-                      }}</span
+                      >{{ point.score }}</span
                     >
                   </p>
                 </td>
@@ -390,10 +371,10 @@ export default {
       let sortFunction
       if (byPoints) {
         sortFunction = (a, b) => {
-          if (a.points[property] === b.points[property]) return 0
-          else if (a.points[property] === null) return 1
-          else if (b.points[property] === null) return -1
-          else if (a.points[property] < b.points[property]) return 1
+          if (a.points[property].score === b.points[property].score) return 0
+          else if (a.points[property].score === null) return 1
+          else if (b.points[property].score === null) return -1
+          else if (a.points[property].score < b.points[property].score) return 1
           else return -1
         }
       } else {
