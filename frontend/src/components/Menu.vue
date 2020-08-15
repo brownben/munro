@@ -121,10 +121,10 @@
   -->
     <transition
       enter-active-class="transition duration-100 ease-out origin-top transform"
-      enter-class="scale-y-90 opacity-75"
+      enter-from-class="scale-y-90 opacity-75"
       enter-to-class="scale-y-100 opacity-100"
       leave-active-class="transition duration-75 ease-in origin-top transform"
-      leave-class="scale-y-100 opacity-100"
+      leave-from-class="scale-y-100 opacity-100"
       leave-to-class="scale-y-90 opacity-75"
     >
       <div

@@ -103,6 +103,7 @@ export default {
     Layout,
     DropdownInput,
     TextInput,
+    TextareaInput,
     NumberInput,
     NotFound,
   },
