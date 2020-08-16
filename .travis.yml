@@ -31,7 +31,7 @@ jobs:
 
       script:
         - npm run build
-        - cp ../backend/dist/index.html ../backend/dist/static/index.html
+        - cp ../backend/dist/static/index.html ../backend/dist/index.html
 
       before_deploy:
         - cd ../backend
