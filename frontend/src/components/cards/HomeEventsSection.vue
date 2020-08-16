@@ -31,7 +31,7 @@
 <script>
 import axios from 'axios'
 
-import EventCard from '@/components/cards/EventCardSmall.vue'
+import EventCard from '/@/components/cards/EventCardSmall.vue'
 
 export default {
   components: {

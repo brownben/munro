@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import CheckboxInput from '@/components/inputs/CheckboxInput'
+import CheckboxInput from '../CheckboxInput'
 
 test('Renders Correctly', () => {
   const wrapper = shallowMount(CheckboxInput, {

@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Admin Login">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
@@ -32,20 +32,21 @@
       <p>
         <b
           class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
-          >Looking for Results Upload?</b
-        >
+        >Looking for Results Upload?</b>
         You don't have to login, just visit the
-        <router-link to="/upload" class="link">upload page</router-link>
+        <router-link to="/upload" class="link">
+          upload page
+        </router-link>
       </p>
     </div>
   </Layout>
 </template>
 
 <script>
-import auth from '@/authentication'
+import auth from '/@/authentication'
 
-import Layout from '@/components/Layout.vue'
-import TextInput from '@/components/inputs/TextInput.vue'
+import Layout from '/@/components/Layout.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
 
 export default {
   components: {

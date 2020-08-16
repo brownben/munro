@@ -1,6 +1,6 @@
 <template>
-  <Layout v-if="competitor && competitor.name" hasMobileSubTitle gray footer>
-    <vue-headful
+  <Layout v-if="competitor && competitor.name" has-mobile-sub-title gray footer>
+    <Meta
       :title="`Munro - ${competitor.name || ''} - Competitor`"
       :description="`Results for ${competitor.name || ''} in the ${
         competitor.league || ''
@@ -41,25 +41,26 @@
         <router-link
           :to="`/competitors/${$route.params.id}/edit`"
           class="button button-white"
-          >Edit Competitor</router-link
         >
-        <router-link to="/competitors/merge" class="button button-white"
-          >Merge Competitors</router-link
-        >
-        <router-link to="/results/transfer" class="button button-white"
-          >Transfer Result</router-link
-        >
-        <router-link to="/results/manual" class="button button-white"
-          >Manual Points</router-link
-        >
+          Edit Competitor
+        </router-link>
+        <router-link to="/competitors/merge" class="button button-white">
+          Merge Competitors
+        </router-link>
+        <router-link to="/results/transfer" class="button button-white">
+          Transfer Result
+        </router-link>
+        <router-link to="/results/manual" class="button button-white">
+          Manual Points
+        </router-link>
       </div>
     </div>
     <ResultOverviewCard
       v-for="result of results"
       :key="result.id"
       :result="result"
-      :showTime="league.dynamicEventResults"
-      @resultChanged="getCompetitorResults"
+      :show-time="league.dynamicEventResults"
+      @result-changed="getCompetitorResults"
     />
   </Layout>
 </template>
@@ -67,8 +68,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import ResultOverviewCard from '@/components/cards/ResultOverviewCard.vue'
+import Layout from '/@/components/Layout.vue'
+import ResultOverviewCard from '/@/components/cards/ResultOverviewCard.vue'
 
 export default {
   components: {

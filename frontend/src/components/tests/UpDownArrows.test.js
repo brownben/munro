@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import UpDownArrows from '@/components/UpDownArrows.vue'
+import UpDownArrows from '../UpDownArrows.vue'
 
 test('Renders Correctly', () => {
   const wrapper = shallowMount(UpDownArrows)

@@ -7,10 +7,10 @@
 
 <template>
   <transition name="fade">
-    <div
-      is="transition-group"
+    <transition-group
       v-show="messages.length > 0"
       id="messages"
+      tag="div"
       name="list"
       mode="out-in"
       class="fixed bottom-0 right-0 mx-4 my-4"
@@ -23,7 +23,7 @@
       >
         {{ message.text }}
       </p>
-    </div>
+    </transition-group>
   </transition>
 </template>
 

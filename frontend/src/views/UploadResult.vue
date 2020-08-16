@@ -1,6 +1,6 @@
 <template>
   <Layout title="Submit Result">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -13,7 +13,7 @@
       <DropdownInput
         v-model="eventId"
         label="Event:"
-        :optionTextDifferentToValue="true"
+        :option-text-different-to-value="true"
         :list="
           events.map((event) => ({
             text: `${event.league} - ${event.name}`,
@@ -49,9 +49,9 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import TextInput from '@/components/inputs/TextInput.vue'
-import DropdownInput from '@/components/inputs/DropdownInput.vue'
+import Layout from '/@/components/Layout.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {

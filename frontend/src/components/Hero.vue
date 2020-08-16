@@ -7,7 +7,7 @@
         class="w-full py-4 mx-auto mb-8 select-none md:m-0 sm:mb-10 sm:w-3/4 md:w-1/2"
       >
         <img
-          src="@/assets/images/RunnerLeagueTable.svg"
+          src="/@/assets/images/RunnerLeagueTable.svg"
           alt="Man Running In Front of Hills, with League Table In Front Of Him"
           class="w-full"
         />

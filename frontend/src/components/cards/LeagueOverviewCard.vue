@@ -32,8 +32,9 @@
           : 'mt-4 sm:mr-0 sm:ml-4'
       "
       :to="alternativeLink || `/leagues/${title}`"
-      >{{ buttonText }}</router-link
     >
+      {{ buttonText }}
+    </router-link>
   </section>
 </template>
 

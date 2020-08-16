@@ -2,7 +2,7 @@
   Unit Tests for /frontend/src/authentication.js
 */
 
-import authentication from '@/authentication'
+import authentication from '../authentication'
 
 import axios from 'axios'
 jest.mock('axios')

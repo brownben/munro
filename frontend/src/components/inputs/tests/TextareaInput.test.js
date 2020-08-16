@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import TextareaInput from '@/components/inputs/TextareaInput'
+import TextareaInput from '../TextareaInput'
 
 test('Renders Correctly', () => {
   const wrapper = shallowMount(TextareaInput, {

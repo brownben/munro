@@ -6,7 +6,7 @@
 
 <template>
   <div>
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -25,12 +25,12 @@
         Hello {{ $auth.user.displayName || 'Admin' }}!
       </h2>
       <div class="mx-6">
-        <router-link to="/leagues/create" class="button button-white"
-          >Create New League</router-link
-        >
-        <router-link to="/upload" class="button button-white"
-          >Upload Results</router-link
-        >
+        <router-link to="/leagues/create" class="button button-white">
+          Create New League
+        </router-link>
+        <router-link to="/upload" class="button button-white">
+          Upload Results
+        </router-link>
       </div>
     </section>
 
@@ -45,14 +45,14 @@
 </template>
 
 <script>
-import Hero from '@/components/Hero.vue'
-import LeaguesSection from '@/components/cards/HomeLeaguesSection.vue'
-import AboutCard from '@/components/cards/AboutCard.vue'
-import EventsSection from '@/components/cards/HomeEventsSection.vue'
-import UploadSection from '@/components/cards/HomeUploadSection.vue'
-import SearchSection from '@/components/cards/HomeSearchSection.vue'
-import DeveloperSection from '@/components/cards/HomeDeveloperSection.vue'
-import AppFooter from '@/components/Footer.vue'
+import Hero from '/@/components/Hero.vue'
+import LeaguesSection from '/@/components/cards/HomeLeaguesSection.vue'
+import AboutCard from '/@/components/cards/AboutCard.vue'
+import EventsSection from '/@/components/cards/HomeEventsSection.vue'
+import UploadSection from '/@/components/cards/HomeUploadSection.vue'
+import SearchSection from '/@/components/cards/HomeSearchSection.vue'
+import DeveloperSection from '/@/components/cards/HomeDeveloperSection.vue'
+import AppFooter from '/@/components/Footer.vue'
 
 export default {
   components: {

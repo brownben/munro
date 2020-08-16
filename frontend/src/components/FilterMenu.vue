@@ -52,10 +52,10 @@
 </template>
 
 <script>
-import AccordionDropdown from '@/components/inputs/AccordionDropdown.vue'
-import TextInput from '@/components/inputs/TextInput.vue'
-import NumberInput from '@/components/inputs/NumberInput.vue'
-import CheckboxInput from '@/components/inputs/CheckboxInput.vue'
+import AccordionDropdown from '/@/components/inputs/AccordionDropdown.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import NumberInput from '/@/components/inputs/NumberInput.vue'
+import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
 
 export default {
   components: {

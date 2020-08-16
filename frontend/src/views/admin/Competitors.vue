@@ -5,8 +5,8 @@
 -->
 
 <template>
-  <Layout hasMobileSubTitle>
-    <vue-headful
+  <Layout has-mobile-sub-title>
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
@@ -30,21 +30,23 @@
     </template>
 
     <div class="col-span-2 card card-color-dark">
-      <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
+      <h2 class="text-3xl font-bold text-white font-heading">
+        Admin Actions
+      </h2>
 
       <div class="w-full">
-        <router-link to="/competitors/create" class="button button-white"
-          >Add Competitor</router-link
-        >
-        <router-link to="/competitors/merge" class="button button-white"
-          >Merge Competitors</router-link
-        >
-        <router-link to="/results/transfer" class="button button-white"
-          >Transfer Result</router-link
-        >
-        <router-link to="/results/manual" class="button button-white"
-          >Manual Points</router-link
-        >
+        <router-link to="/competitors/create" class="button button-white">
+          Add Competitor
+        </router-link>
+        <router-link to="/competitors/merge" class="button button-white">
+          Merge Competitors
+        </router-link>
+        <router-link to="/results/transfer" class="button button-white">
+          Transfer Result
+        </router-link>
+        <router-link to="/results/manual" class="button button-white">
+          Manual Points
+        </router-link>
       </div>
     </div>
 
@@ -91,14 +93,16 @@
           </th>
         </tr>
       </thead>
-      <tbody is="transition-group" name="fade">
+      <transition-group name="list" tag="tbody">
         <tr
           v-for="competitor of sortedCompetitors"
           :key="competitor.id"
           :class="{ striped: sortedCompetitors.indexOf(competitor) % 2 === 0 }"
           @click="$router.push(`/competitors/${competitor.id}`)"
         >
-          <td class="text-center">{{ competitor.id }}</td>
+          <td class="text-center">
+            {{ competitor.id }}
+          </td>
           <td>
             <span class="block font-normal text-left md:font-light">
               {{ competitor.name }}
@@ -110,11 +114,17 @@
               <span>{{ competitor.club }}</span>
             </span>
           </td>
-          <td class="text-center club">{{ competitor.club }}</td>
-          <td class="text-center ageClass">{{ competitor.ageClass }}</td>
-          <td class="text-center">{{ competitor.course }}</td>
+          <td class="text-center club">
+            {{ competitor.club }}
+          </td>
+          <td class="text-center ageClass">
+            {{ competitor.ageClass }}
+          </td>
+          <td class="text-center">
+            {{ competitor.course }}
+          </td>
         </tr>
-      </tbody>
+      </transition-group>
     </table>
   </Layout>
 </template>
@@ -122,8 +132,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import UpDownArrow from '@/components/UpDownArrows.vue'
+import Layout from '/@/components/Layout.vue'
+import UpDownArrow from '/@/components/UpDownArrows.vue'
 
 export default {
   components: {

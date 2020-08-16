@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Upload Results File">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -85,11 +85,11 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
+import Layout from '/@/components/Layout.vue'
 
-import TextInput from '@/components/inputs/TextInput.vue'
-import FileInput from '@/components/inputs/FileInput.vue'
-import CheckboxInput from '@/components/inputs/CheckboxInput.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import FileInput from '/@/components/inputs/FileInput.vue'
+import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
 
 export default {
   components: {

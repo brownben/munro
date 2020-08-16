@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Latest Results" :footer="events && events.length > 0">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -20,16 +20,16 @@
       :key="event.id"
       :event="event"
       :league="{ dynamicEventResults: true }"
-      :showLeagueName="true"
-      :showFullDetails="false"
+      :show-league-name="true"
+      :show-full-details="false"
     />
   </Layout>
 </template>
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
+import Layout from '/@/components/Layout.vue'
+import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 
 export default {
   components: {

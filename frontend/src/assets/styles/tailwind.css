@@ -1,8 +1,8 @@
 @import 'tailwindcss/base';
-@import './base.pcss';
+@import './base.css';
 
 @import 'tailwindcss/components';
-@import './buttons.pcss';
-@import './cards.pcss';
+@import './buttons.css';
+@import './cards.css';
 
 @import 'tailwindcss/utilities';

@@ -1,6 +1,6 @@
 <template>
   <Layout title="Upload Results">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -95,9 +95,7 @@
         stroke="currentColor"
         class="h-8 mb-2 text-main-700"
       >
-        <path
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        ></path>
+        <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
       <h2 class="mt-2 text-2xl font-bold text-gray-900 font-heading">
         Upload Instructions
@@ -110,7 +108,7 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout.vue'
+import Layout from '/@/components/Layout.vue'
 
 export default {
   components: {

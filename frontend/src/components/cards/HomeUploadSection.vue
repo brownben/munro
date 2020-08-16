@@ -16,13 +16,14 @@
         <router-link
           to="/upload/instructions"
           class="mx-0 mt-2 button no-expansion"
-          >View Instructions</router-link
         >
+          View Instructions
+        </router-link>
       </div>
 
       <img
         class="w-2/3 md:w-5/12 xl:w-1/3"
-        src="@/assets/images/UnDrawUpload.svg"
+        src="/@/assets/images/UnDrawUpload.svg"
         alt="Person Bringing Files for Upload"
         loading="lazy"
       />
