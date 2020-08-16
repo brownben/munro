@@ -25,8 +25,7 @@
         <span
           v-if="event.organiser && event.date"
           class="hidden mx-1 md:inline-block"
-          >-</span
-        >
+        >-</span>
         <span
           v-if="event.organiser"
           class="block text-base leading-tight md:inline-block md:text-lg"
@@ -50,17 +49,16 @@
             target="_blank"
             rel="noopener noreferrer"
             class="link text-main-700"
-            >event website</a
-          >
+          >event website</a>
         </p>
       </div>
 
       <div
         v-if="
           (event.resultUploaded && league.dynamicEventResults) ||
-          event.results ||
-          event.winsplits ||
-          event.routegadget
+            event.results ||
+            event.winsplits ||
+            event.routegadget
         "
         class="w-full pb-5 mt-3"
       >
@@ -68,32 +66,30 @@
           v-if="event.resultUploaded && league.dynamicEventResults"
           :to="`/events/${event.id}/results`"
           class="button"
-          >Results</router-link
         >
+          Results
+        </router-link>
         <a
           v-if="event.results"
           :href="event.results"
           target="_blank"
           rel="noopener noreferrer"
           class="button"
-          >Raw Results</a
-        >
+        >Raw Results</a>
         <a
           v-if="event.winsplits"
           :href="event.winsplits"
           target="_blank"
           rel="noopener noreferrer"
           class="button"
-          >WinSplits</a
-        >
+        >WinSplits</a>
         <a
           v-if="event.routegadget"
           :href="event.routegadget"
           target="_blank"
           rel="noopener noreferrer"
           class="button"
-          >Routegadget</a
-        >
+        >Routegadget</a>
       </div>
     </div>
     <div
@@ -114,11 +110,12 @@
       <router-link
         :to="'/events/' + event.id + '/edit'"
         class="button button-dark"
-        >Edit Event</router-link
       >
-      <router-link :to="'/upload/' + event.id" class="button button-dark"
-        >Upload Results</router-link
-      >
+        Edit Event
+      </router-link>
+      <router-link :to="'/upload/' + event.id" class="button button-dark">
+        Upload Results
+      </router-link>
       <button class="button button-dark" @click="deleteEvent(event)">
         Delete Event
       </button>
@@ -138,7 +135,7 @@ export default {
     showFullDetails: { type: Boolean, default: true },
   },
 
-  emits: ['eventChanged'],
+  emits: ['event-changed'],
 
   methods: {
     deleteEvent: function (event) {
@@ -152,7 +149,7 @@ export default {
           .then(() =>
             this.$messages.addMessage(`Event: ${event.name} was Deleted`)
           )
-          .then(() => this.$emit('eventChanged'))
+          .then(() => this.$emit('event-changed'))
           .catch(() =>
             this.$messages.addMessage(
               'Problem Deleting Event - Please Try Again'

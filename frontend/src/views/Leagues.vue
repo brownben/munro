@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Leagues" :footer="leagues && leagues.length > 0">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -27,8 +27,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard.vue'
+import Layout from '/@/components/Layout.vue'
+import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 
 export default {
   components: {

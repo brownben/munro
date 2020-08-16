@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import DropdownInput from '@/components/inputs/DropdownInput'
+import DropdownInput from '../DropdownInput'
 
 test('Renders Correctly', () => {
   const wrapper = shallowMount(DropdownInput, {
@@ -38,7 +38,7 @@ test('Emits Data On Change', async () => {
   expect(wrapper.emitted()['update:modelValue'][0]).toContain('newOutput')
 })
 
-test('Shift Option Works', async () => {
+test('Shift Option Works', () => {
   const wrapper = shallowMount(DropdownInput, {
     props: { shift: true },
   })
@@ -47,7 +47,7 @@ test('Shift Option Works', async () => {
   expect(options[0].text()).toBe('')
 })
 
-test('String Options', async () => {
+test('String Options', () => {
   const wrapper = shallowMount(DropdownInput, {
     props: {
       list: ['1', '2', '3'],
@@ -59,12 +59,12 @@ test('String Options', async () => {
   expect(options.map((option) => option.text())).toEqual(['1', '2', '3'])
 })
 
-test('Object Options', async () => {
+test('Object Options', () => {
   const wrapper = shallowMount(DropdownInput, {
     props: {
       list: ['1', '2', '3'].map((item) => ({
         text: item,
-        value: parseInt(item),
+        value: parseInt(item, 10),
       })),
       shift: false,
       optionTextDifferentToValue: true,

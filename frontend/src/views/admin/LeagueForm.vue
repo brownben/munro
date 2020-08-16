@@ -13,7 +13,7 @@
 
 <template>
   <div>
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
@@ -78,8 +78,12 @@
           label="More Information:"
           class="mt-4"
         />
-        <button v-if="create" class="mt-8 button-lg">Create League</button>
-        <button v-else class="mt-8 button-lg">Update League</button>
+        <button v-if="create" class="mt-8 button-lg">
+          Create League
+        </button>
+        <button v-else class="mt-8 button-lg">
+          Update League
+        </button>
       </form>
     </Layout>
     <not-found v-else />
@@ -90,13 +94,13 @@
 import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import DropdownInput from '@/components/inputs/DropdownInput.vue'
-import TextInput from '@/components/inputs/TextInput.vue'
-import TextareaInput from '@/components/inputs/TextareaInput.vue'
-import NumberInput from '@/components/inputs/NumberInput.vue'
+import Layout from '/@/components/Layout.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import TextareaInput from '/@/components/inputs/TextareaInput.vue'
+import NumberInput from '/@/components/inputs/NumberInput.vue'
 
-const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))
+const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
 export default {
   components: {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-headful
+    <Meta
       :title="`Munro - ${event.name || ''} Event Results`"
       :description="`Results from the ${event.name || ''} event of the ${
         event.league || ''
@@ -10,7 +10,7 @@
         meta: { name: 'robots', content: 'all' },
       }"
     />
-    <Layout v-if="eventFound" hasMobileSubTitle>
+    <Layout v-if="eventFound" has-mobile-sub-title>
       <template #title>
         <h1 class="text-3xl font-bold leading-tight font-heading">
           <router-link
@@ -101,8 +101,12 @@
               >
                 *
               </td>
-              <td v-else-if="result.incomplete" class="position">-</td>
-              <td v-else class="position">{{ result.position || '' }}</td>
+              <td v-else-if="result.incomplete" class="position">
+                -
+              </td>
+              <td v-else class="position">
+                {{ result.position || '' }}
+              </td>
               <td class="name">
                 <span class="block font-normal sm:font-light">
                   {{ result.name }}
@@ -114,9 +118,15 @@
                   <span>{{ result.club }}</span>
                 </span>
               </td>
-              <td class="ageClass">{{ result.ageClass }}</td>
-              <td class="club">{{ result.club }}</td>
-              <td class="time">{{ elapsedTime(result.time) }}</td>
+              <td class="ageClass">
+                {{ result.ageClass }}
+              </td>
+              <td class="club">
+                {{ result.club }}
+              </td>
+              <td class="time">
+                {{ elapsedTime(result.time) }}
+              </td>
             </tr>
           </transition-group>
         </table>
@@ -139,14 +149,14 @@
 import axios from 'axios'
 import { defineAsyncComponent } from 'vue'
 
-import Layout from '@/components/Layout.vue'
-import FilterMenu from '@/components/FilterMenu.vue'
-import UpDownArrow from '@/components/UpDownArrows.vue'
+import Layout from '/@/components/Layout.vue'
+import FilterMenu from '/@/components/FilterMenu.vue'
+import UpDownArrow from '/@/components/UpDownArrows.vue'
 
 const NoResultsCard = defineAsyncComponent(() =>
-  import('@/components/cards/NoResultsCard.vue')
+  import('/@/components/cards/NoResultsCard.vue')
 )
-const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))
+const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
 export default {
   components: {

@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import NumberInput from '@/components/inputs/NumberInput'
+import NumberInput from '../NumberInput'
 
 test('Renders Correctly', () => {
   const wrapper = shallowMount(NumberInput, {

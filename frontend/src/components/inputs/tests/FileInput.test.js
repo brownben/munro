@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import FileInput from '@/components/inputs/FileInput'
+import FileInput from '../FileInput'
 
 test('Renders Correctly', () => {
   const wrapper = shallowMount(FileInput, {

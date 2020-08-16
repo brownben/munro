@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Developers" footer>
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -18,9 +18,7 @@
     <div class="col-span-2 text-left card card-color">
       <div class="inline-block text-center">
         <h2 class="text-lg font-heading">
-          <span class="text-2xl font-bold md:text-xl"
-            >Munro is Open Source!</span
-          >
+          <span class="text-2xl font-bold md:text-xl">Munro is Open Source!</span>
           <span class="hidden mx-2 md:inline-block">-</span>
           <span class="block md:inline-block">
             Code Avaliable on
@@ -31,7 +29,9 @@
     </div>
 
     <div class="col-span-2 card">
-      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">API</h2>
+      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">
+        API
+      </h2>
       <p>
         All methods use a standard HTTP GET request. The event id is made by
         combining the league name, event name and date and removing all spaces,
@@ -64,17 +64,18 @@
       <p>All results</p>
     </div>
     <div class="col-span-2 card">
-      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">Embed</h2>
+      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">
+        Embed
+      </h2>
       <p>
         Currently there are two pages designed for embedding in Iframes. Place
         in an IFrame like:
       </p>
       <code
         class="block w-full px-3 py-2 my-2 font-mono font-normal text-gray-900 break-words bg-main-100 rounded-shape"
-        >&lt;iframe
+      >&lt;iframe
         src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope
-        2018/events&quot;&gt;&lt;/iframe&gt;</code
-      >
+        2018/events&quot;&gt;&lt;/iframe&gt;</code>
       <h4>/embed/leagues/{ LEAGUE NAME }/events</h4>
       <p>
         Contains a list of all events in the league and links to the results
@@ -86,7 +87,7 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout.vue'
+import Layout from '/@/components/Layout.vue'
 
 export default {
   components: {

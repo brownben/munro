@@ -8,7 +8,7 @@
 
 <template>
   <Layout :footer="league.name && events && events.length > 0" gray>
-    <vue-headful
+    <Meta
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}`"
@@ -52,9 +52,7 @@
             class="block"
           >
             Your
-            <span class="text-gray-900 md:text-lg font-heading"
-              >best {{ league.numberOfCountingEvents }} scores</span
-            >
+            <span class="text-gray-900 md:text-lg font-heading">best {{ league.numberOfCountingEvents }} scores</span>
             from all
             {{ league.numberOfEvents }}
             events, count towards your score.
@@ -81,8 +79,7 @@
             target="_blank"
             rel="noopener noreferrer"
             class="ml-1 link font-heading text-main-800"
-            >{{ league.website }}</a
-          >
+          >{{ league.website }}</a>
         </p>
       </section>
     </template>
@@ -92,19 +89,22 @@
         v-if="auth.user && league && league.name"
         class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
       >
-        <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
+        <h2 class="text-2xl font-bold font-heading">
+          Admin Actions
+        </h2>
         <div class="w-10/12 mx-auto sm:mt-2">
-          <router-link :to="`${$route.path}/edit`" class="button button-white"
-            >Edit League</router-link
-          >
+          <router-link :to="`${$route.path}/edit`" class="button button-white">
+            Edit League
+          </router-link>
           <button class="button button-white" @click="deleteLeague">
             Delete League
           </button>
           <router-link
             :to="`/leagues/${$route.params.name}/competitors`"
             class="button button-white"
-            >Manage Competitors</router-link
           >
+            Manage Competitors
+          </router-link>
         </div>
       </section>
       <section
@@ -120,8 +120,9 @@
             :key="course"
             :to="$route.path + '/results/' + course"
             class="button button-white"
-            >{{ course }}</router-link
           >
+            {{ course }}
+          </router-link>
         </div>
       </section>
     </template>
@@ -152,7 +153,7 @@
         :league="league"
         :auth="auth"
         class="col-span-2"
-        @eventChanged="refreshDetails"
+        @event-changed="refreshDetails"
       />
     </template>
     <NotFound v-if="!league" />
@@ -163,10 +164,10 @@
 import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
+import Layout from '/@/components/Layout.vue'
+import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 
-const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))
+const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
 export default {
   components: {

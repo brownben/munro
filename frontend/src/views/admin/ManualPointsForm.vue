@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Manual Points">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
@@ -50,7 +50,9 @@
         :max="10000"
       />
 
-      <button class="mt-8 button-lg">Add Result</button>
+      <button class="mt-8 button-lg">
+        Add Result
+      </button>
     </form>
   </Layout>
 </template>
@@ -58,9 +60,9 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import DropdownInput from '@/components/inputs/DropdownInput.vue'
-import NumberInput from '@/components/inputs/NumberInput.vue'
+import Layout from '/@/components/Layout.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
+import NumberInput from '/@/components/inputs/NumberInput.vue'
 
 export default {
   components: {

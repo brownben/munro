@@ -1,4 +1,4 @@
-import messages from '@/messageStore'
+import messages from '../messageStore'
 
 beforeEach(() => {
   jest.useFakeTimers()

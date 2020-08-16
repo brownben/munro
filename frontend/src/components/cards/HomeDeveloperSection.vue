@@ -16,14 +16,14 @@
         <h3 class="mb-2 text-2xl leading-8 text-gray-500 md:mb-3 font-heading">
           or Build Your Own Way to View Results
         </h3>
-        <router-link to="/developers" class="mx-0 mt-2 button no-expansion"
-          >View API Docs</router-link
-        >
+        <router-link to="/developers" class="mx-0 mt-2 button no-expansion">
+          View API Docs
+        </router-link>
       </div>
       <div class="mt-12 md:mt-0">
         <img
           class="w-2/3 mx-auto xl:w-7/12"
-          src="@/assets/images/Crane.svg"
+          src="/@/assets/images/Crane.svg"
           alt="Crane Building Website"
           loading="lazy"
         />

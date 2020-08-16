@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Merge Competitors">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
@@ -52,7 +52,9 @@
         label="Competitor to be Merged:"
         class="mt-4"
       />
-      <button class="mt-8 button-lg">Merge Competitors</button>
+      <button class="mt-8 button-lg">
+        Merge Competitors
+      </button>
     </form>
   </Layout>
 </template>
@@ -60,8 +62,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import DropdownInput from '@/components/inputs/DropdownInput.vue'
+import Layout from '/@/components/Layout.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {

@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import AccordionDropdown from '@/components/inputs/AccordionDropdown'
+import AccordionDropdown from '../AccordionDropdown'
 
 test('Renders Correctly', () => {
   const wrapper = mount(AccordionDropdown, {

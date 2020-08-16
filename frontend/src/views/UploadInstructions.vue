@@ -3,7 +3,7 @@
 -->
 <template>
   <Layout title="Upload Instructions" footer>
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -14,13 +14,13 @@
     <InstructionCard :number="1">
       <template #title>
         Go to
-        <router-link to="/upload/file" class="link text-main-700"
-          >https://munro-leagues.herokuapp.com/upload/file</router-link
-        >
+        <router-link to="/upload/file" class="link text-main-700">
+          https://munro-leagues.herokuapp.com/upload/file
+        </router-link>
       </template>
       <template #default>
         <img
-          src="@/assets/images/UploadInstructions-Blank.png"
+          src="/@/assets/images/UploadInstructions-Blank.png"
           alt="Empty Upload Form"
         />
       </template>
@@ -42,7 +42,7 @@
         by emailing munro.leagues@gmail.com
       </p>
       <img
-        src="@/assets/images/UploadInstructions-EventDetails.png"
+        src="/@/assets/images/UploadInstructions-EventDetails.png"
         alt="Upload Form with Event ID and Upload Key Included"
       />
     </InstructionCard>
@@ -75,7 +75,7 @@
         admin or munro.leagues@gmail.com who can update them
       </p>
       <img
-        src="@/assets/images/UploadInstructions-Complete.png"
+        src="/@/assets/images/UploadInstructions-Complete.png"
         alt="Upload Form with Completeted with Upload Button Showing"
       />
     </InstructionCard>
@@ -107,8 +107,8 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout.vue'
-import InstructionCard from '@/components/cards/InstructionCard.vue'
+import Layout from '/@/components/Layout.vue'
+import InstructionCard from '/@/components/cards/InstructionCard.vue'
 
 export default {
   components: {

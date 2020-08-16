@@ -17,7 +17,7 @@
               to="/"
               class="flex flex-row items-center"
               aria-label="Home"
-              @click.native="menuOpen = false"
+              @click="menuOpen = false"
             >
               <svg
                 viewBox="0 0 301 260"
@@ -140,7 +140,7 @@
             :class="
               $route.path === link.location ? 'text-main-600 bg-main-100' : null
             "
-            @click.native="menuOpen = false"
+            @click="menuOpen = false"
           >
             {{ link.text }}
           </router-link>
@@ -148,7 +148,7 @@
             v-if="$auth.user"
             to="/logout"
             class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
-            @click.native="menuOpen = false"
+            @click="menuOpen = false"
           >
             Logout
           </router-link>

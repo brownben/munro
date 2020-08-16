@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['alloy', 'alloy/vue'],
+  extends: ['alloy', 'plugin:vue/vue3-recommended'],
 
   env: {
     browser: true,
@@ -35,50 +35,20 @@ module.exports = {
     'require-await': 'error',
     'sort-vars': 'error',
     'max-params': ['error', { max: 4 }],
-    'vue/component-tags-order': [
-      'error',
-      {
-        order: ['template', 'script', 'style'],
-      },
-    ],
-    'vue/no-duplicate-attributes': [
-      'error',
-      {
-        allowCoexistClass: true,
-        allowCoexistStyle: false,
-      },
-    ],
-    'no-promise-executor-return': 'off',
-    'vue/no-multiple-template-root': 'off',
-  },
 
-  overrides: [
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
-      ],
-      env: {
-        jest: true
-      }
-    },
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
-      ],
-      env: {
-        jest: true
-      }
-    },
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
-      ],
-      env: {
-        jest: true
-      }
-    }
-  ],
+    'no-promise-executor-return': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/html-self-closing': [
+      'error',
+      {
+        html: {
+          void: 'always',
+          normal: 'always',
+          component: 'always',
+        },
+        svg: 'always',
+        math: 'always',
+      },
+    ],
+  },
 }

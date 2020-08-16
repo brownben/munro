@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
-import SearchBox from '@/components/inputs/SearchBox'
+import SearchBox from '../SearchBox'
 
 const $route = { path: '/search/a', params: { query: 7 } }
 const $router = { push: jest.fn() }

@@ -8,8 +8,8 @@
 -->
 
 <template>
-  <Layout class="w-full" wide hasMobileSubTitle>
-    <vue-headful
+  <Layout class="w-full" wide has-mobile-sub-title>
+    <Meta
       :title="`Munro - ${$route.params.name} - ${$route.params.course} Results`"
       :description="`Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}/results/${$route.params.course}`"
@@ -27,8 +27,7 @@
         </router-link>
         <span class="hidden ml-2 mr-3 md:inline-block">-</span>
         <span class="block text-3xl md:inline-block">
-          {{ $route.params.course }}</span
-        >
+          {{ $route.params.course }}</span>
       </h1>
     </template>
 
@@ -107,9 +106,11 @@
               v-for="(result, i) of filteredResults"
               :key="result.id"
               :striped="i % 2 === 0"
-              :smallWindow="smallWindow"
+              :small-window="smallWindow"
             >
-              <td class="position">{{ result.position }}</td>
+              <td class="position">
+                {{ result.position }}
+              </td>
               <td class="name">
                 <span class="block font-normal sm:font-light">
                   {{ result.name }}
@@ -121,9 +122,15 @@
                   <span>{{ result.club }}</span>
                 </span>
               </td>
-              <td class="ageClass">{{ result.ageClass }}</td>
-              <td class="club">{{ result.club }}</td>
-              <td class="totalPoints">{{ result.totalPoints }}</td>
+              <td class="ageClass">
+                {{ result.ageClass }}
+              </td>
+              <td class="club">
+                {{ result.club }}
+              </td>
+              <td class="totalPoints">
+                {{ result.totalPoints }}
+              </td>
 
               <template v-if="!smallWindow">
                 <td
@@ -141,15 +148,14 @@
 
               <template #expansion>
                 <td colspan="100%">
-                  <p v-for="(point, i) of result.points" :key="point.event">
-                    {{ eventsWithResults[i].name }}:
+                  <p v-for="(point, j) of result.points" :key="point.event">
+                    {{ eventsWithResults[j].name }}:
                     <span
                       :class="{
                         strikethrough: !point.counting,
                         bold: ['manual', 'max', 'average'].includes(point.type),
                       }"
-                      >{{ point.score }}</span
-                    >
+                    >{{ point.score }}</span>
                   </p>
                 </td>
               </template>
@@ -167,15 +173,18 @@
     </transition>
 
     <div v-if="otherCourses.length > 0" class="col-span-2 mt-6 card">
-      <h2 class="text-2xl font-bold font-heading">Results for Other Courses</h2>
+      <h2 class="text-2xl font-bold font-heading">
+        Results for Other Courses
+      </h2>
       <div>
         <router-link
           v-for="course in otherCourses"
           :key="course"
           :to="'/leagues/' + $route.params.name + '/results/' + course"
           class="button"
-          >{{ course }}</router-link
         >
+          {{ course }}
+        </router-link>
       </div>
     </div>
   </Layout>
@@ -185,13 +194,13 @@
 import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import FilterMenu from '@/components/FilterMenu.vue'
-import UpDownArrow from '@/components/UpDownArrows.vue'
-import ExpandingTableRow from '@/components/ExpandingTableRow'
+import Layout from '/@/components/Layout.vue'
+import FilterMenu from '/@/components/FilterMenu.vue'
+import UpDownArrow from '/@/components/UpDownArrows.vue'
+import ExpandingTableRow from '/@/components/ExpandingTableRow.vue'
 
 const NoResultsCard = defineAsyncComponent(() =>
-  import('@/components/cards/NoResultsCard.vue')
+  import('/@/components/cards/NoResultsCard.vue')
 )
 
 export default {
@@ -316,7 +325,7 @@ export default {
       })
   },
 
-  destroyed() {
+  unmounted() {
     window.removeEventListener('resize', this.handleResize)
   },
 

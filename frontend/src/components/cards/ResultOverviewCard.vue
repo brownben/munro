@@ -92,12 +92,20 @@
       </div>
       <div class="w-full mt-2">
         <button class="button button-dark" @click="incompleteResult">
-          <template v-if="result.incomplete">Mark as Complete</template>
-          <template v-else>Mark as Incomplete</template>
+          <template v-if="result.incomplete">
+            Mark as Complete
+          </template>
+          <template v-else>
+            Mark as Incomplete
+          </template>
         </button>
         <button class="button button-dark" @click="hideResult">
-          <template v-if="result.type !== 'hidden'">Hide Result</template>
-          <template v-else>Include Result</template>
+          <template v-if="result.type !== 'hidden'">
+            Hide Result
+          </template>
+          <template v-else>
+            Include Result
+          </template>
         </button>
       </div>
     </div>
@@ -118,7 +126,7 @@ export default {
     },
   },
 
-  emits: ['resultChanged'],
+  emits: ['result-changed'],
 
   methods: {
     positionSuperscript: function (position) {
@@ -155,7 +163,7 @@ export default {
           type,
         })
         .then(() => this.$messages.addMessage(`Result Updated`))
-        .then(() => this.$emit('resultChanged'))
+        .then(() => this.$emit('result-changed'))
         .catch(() =>
           this.$messages.addMessage('Problem Hiding Result - Please Try Again')
         )
@@ -170,7 +178,7 @@ export default {
           event: this.result.event,
         })
         .then(() => this.$messages.addMessage(`Result Updated`))
-        .then(() => this.$emit('resultChanged'))
+        .then(() => this.$emit('result-changed'))
         .catch(() =>
           this.$messages.addMessage(
             'Problem Updating Result - Please Try Again'

@@ -5,7 +5,7 @@
 <template>
   <div>
     <Layout v-if="league">
-      <vue-headful
+      <Meta
         :title="`Munro - ${$route.params.name} League`"
         :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
         :head="{
@@ -28,9 +28,9 @@
 import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
-const NotFound = defineAsyncComponent(() => import('@/views/NotFound.vue'))
+import Layout from '/@/components/Layout.vue'
+import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
+const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
 export default {
   components: {

@@ -20,7 +20,7 @@
           title="(Not) Sprintelope"
           description=" Socially Distant Sprint/ Urban Orienteering Around Edinburgh"
           website="https://en-gb.facebook.com/sprintelope/"
-          alternativeLink="/leagues/(Not) Sprintelope 2020"
+          alternative-link="/leagues/(Not) Sprintelope 2020"
           :larger="false"
           smaller
         />
@@ -28,7 +28,7 @@
           title="Fight with the Night"
           description="Thursday Night Orienteering Events Around Edinburgh"
           website="https://euoc.wordpress.com/"
-          alternativeLink="/leagues/Fight with the Night 19-20"
+          alternative-link="/leagues/Fight with the Night 19-20"
           :larger="false"
           smaller
         />
@@ -36,7 +36,7 @@
           title="Northern Night Cup"
           description="Night Orienteering Events in the North of Scotland"
           website="https://www.orienteering.scot/northern-night-cup/"
-          alternativeLink="/leagues/Northern Night Cup 19-20"
+          alternative-link="/leagues/Northern Night Cup 19-20"
           :larger="false"
           smaller
         />
@@ -45,7 +45,7 @@
   </section>
 </template>
 <script>
-import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard.vue'
+import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 
 export default {
   components: {

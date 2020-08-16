@@ -6,7 +6,7 @@
 
 <template>
   <Layout title="Transfer Result">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
@@ -60,7 +60,9 @@
         class="mt-4"
       />
 
-      <button class="mt-8 button-lg">Transfer Result</button>
+      <button class="mt-8 button-lg">
+        Transfer Result
+      </button>
     </form>
   </Layout>
 </template>
@@ -68,8 +70,8 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import DropdownInput from '@/components/inputs/DropdownInput.vue'
+import Layout from '/@/components/Layout.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {

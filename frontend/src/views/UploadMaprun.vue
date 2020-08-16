@@ -1,6 +1,6 @@
 <template>
   <Layout title="Import MapRun Results">
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -50,10 +50,10 @@
 <script>
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
+import Layout from '/@/components/Layout.vue'
 
-import TextInput from '@/components/inputs/TextInput.vue'
-import DropdownInput from '@/components/inputs/DropdownInput.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
 export default {
   components: {

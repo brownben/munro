@@ -6,7 +6,7 @@
 
 <template>
   <Layout>
-    <vue-headful
+    <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
       }"
@@ -17,7 +17,7 @@
     <div class="w-full col-span-2 text-center">
       <div class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12">
         <img
-          src="@/assets/images/UndrawLost.svg"
+          src="/@/assets/images/UndrawLost.svg"
           class="object-contain w-full mx-auto max-h-112"
           alt="Person Lost looking at Map"
         />
@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import Layout from '@/components/Layout.vue'
-import SearchBox from '@/components/inputs/SearchBox.vue'
+import Layout from '/@/components/Layout.vue'
+import SearchBox from '/@/components/inputs/SearchBox.vue'
 
 export default {
   components: {

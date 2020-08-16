@@ -38,8 +38,9 @@
       v-if="event.resultUploaded"
       :to="`/events/${event.id}/results`"
       class="mt-4 text-base button"
-      >Results</router-link
     >
+      Results
+    </router-link>
   </section>
 </template>
 

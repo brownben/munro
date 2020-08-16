@@ -45,7 +45,7 @@
   </div>
 </template>
 <script>
-import AppFooter from '@/components/Footer.vue'
+import AppFooter from '/@/components/Footer.vue'
 
 export default {
   components: {

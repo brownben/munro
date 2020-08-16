@@ -1,7 +1,7 @@
 <template>
-  <Layout hasMobileSubTitle gray>
+  <Layout has-mobile-sub-title gray>
     <template #title>
-      <vue-headful
+      <Meta
         :head="{ meta: { name: 'robots', content: 'all' } }"
         :title="`Munro - &quot;${$route.params.query || ''}&quot;`"
         description="Munro - League Results.
@@ -12,7 +12,9 @@
       <div
         class="flex flex-col items-start justify-between sm:items-center sm:flex-row"
       >
-        <h1 class="mb-4 text-3xl font-bold md:mb-0">Search</h1>
+        <h1 class="mb-4 text-3xl font-bold md:mb-0">
+          Search
+        </h1>
         <SearchBox />
       </div>
     </template>
@@ -53,8 +55,8 @@
       :key="event.id"
       :event="event"
       :league="{ dynamicEventResults: true }"
-      :showLeagueName="true"
-      :showFullDetails="false"
+      :show-league-name="true"
+      :show-full-details="false"
     />
 
     <h2
@@ -72,30 +74,32 @@
     <NoResults
       v-if="
         leagues.length === 0 &&
-        events.length === 0 &&
-        competitors.length === 0 &&
-        !loading &&
-        $route.params.query
+          events.length === 0 &&
+          competitors.length === 0 &&
+          !loading &&
+          $route.params.query
       "
       :text="`Sorry I Couldn't Find &quot;${$route.params.query || ''}&quot;`"
-      secondaryText="Try Tweaking Your Search Query To Find a Match"
+      secondary-text="Try Tweaking Your Search Query To Find a Match"
       class="col-span-2"
     />
-    <p v-else>&nbsp;</p>
+    <p v-else>
+      &nbsp;
+    </p>
   </Layout>
 </template>
 <script>
 import { defineAsyncComponent } from 'vue'
 import axios from 'axios'
 
-import Layout from '@/components/Layout.vue'
-import SearchBox from '@/components/inputs/SearchBox.vue'
-import EventOverviewCard from '@/components/cards/EventOverviewCard.vue'
-import LeagueOverviewCard from '@/components/cards/LeagueOverviewCard.vue'
-import CompetitorOverviewCard from '@/components/cards/CompetitorOverviewCard.vue'
+import Layout from '/@/components/Layout.vue'
+import SearchBox from '/@/components/inputs/SearchBox.vue'
+import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
+import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
+import CompetitorOverviewCard from '/@/components/cards/CompetitorOverviewCard.vue'
 
 const NoResults = defineAsyncComponent(() =>
-  import('@/components/cards/NoResultsCard.vue')
+  import('/@/components/cards/NoResultsCard.vue')
 )
 
 export default {
