@@ -11,3 +11,5 @@
 **/*.png
 **/*.svg
 **/*.woff2
+.env.production
+.env.development

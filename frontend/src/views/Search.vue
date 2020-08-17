@@ -74,10 +74,10 @@
     <NoResults
       v-if="
         leagues.length === 0 &&
-        events.length === 0 &&
-        competitors.length === 0 &&
-        !loading &&
-        $route.params.query
+          events.length === 0 &&
+          competitors.length === 0 &&
+          !loading &&
+          $route.params.query
       "
       :text="`Sorry I Couldn't Find &quot;${$route.params.query || ''}&quot;`"
       secondary-text="Try Tweaking Your Search Query To Find a Match"

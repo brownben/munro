@@ -75,10 +75,9 @@
       </p>
       <code
         class="block w-full px-3 py-2 my-2 font-mono font-normal text-gray-900 break-words bg-main-100 rounded-shape"
-        >&lt;iframe
+      >&lt;iframe
         src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope
-        2018/events&quot;&gt;&lt;/iframe&gt;</code
-      >
+        2018/events&quot;&gt;&lt;/iframe&gt;</code>
       <h4>/embed/leagues/{ LEAGUE NAME }/events</h4>
       <p>
         Contains a list of all events in the league and links to the results
