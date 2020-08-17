@@ -47,7 +47,9 @@
         <a
           href="https://brownben.github.io"
           class="font-bold transition duration-300 text-main-600 hover:text-main-800 focus:text-main-800"
-        >Ben Brown</a>
+        >
+          Ben Brown
+        </a>
       </p>
 
       <router-link

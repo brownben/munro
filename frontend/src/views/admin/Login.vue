@@ -32,7 +32,9 @@
       <p>
         <b
           class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
-        >Looking for Results Upload?</b>
+        >
+          Looking for Results Upload?
+        </b>
         You don't have to login, just visit the
         <router-link to="/upload" class="link">
           upload page
