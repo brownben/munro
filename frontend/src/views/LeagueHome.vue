@@ -52,9 +52,7 @@
             class="block"
           >
             Your
-            <span class="text-gray-900 md:text-lg font-heading"
-              >best {{ league.numberOfCountingEvents }} scores</span
-            >
+            <span class="text-gray-900 md:text-lg font-heading">best {{ league.numberOfCountingEvents }} scores</span>
             from all
             {{ league.numberOfEvents }}
             events, count towards your score.
