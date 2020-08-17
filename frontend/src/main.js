@@ -7,7 +7,7 @@ import auth from './authentication.js'
 import messageStore from './messageStore.js'
 
 import './assets/styles/tailwind.css'
-// import './registerServiceWorker'
+import './registerServiceWorker.js'
 
 const app = createApp(App)
 app.use(router)

@@ -27,7 +27,8 @@
         </router-link>
         <span class="hidden ml-2 mr-3 md:inline-block">-</span>
         <span class="block text-3xl md:inline-block">
-          {{ $route.params.course }}</span>
+          {{ $route.params.course }}
+        </span>
       </h1>
     </template>
 
@@ -155,7 +156,9 @@
                         strikethrough: !point.counting,
                         bold: ['manual', 'max', 'average'].includes(point.type),
                       }"
-                    >{{ point.score }}</span>
+                    >
+                      {{ point.score }}
+                    </span>
                   </p>
                 </td>
               </template>
