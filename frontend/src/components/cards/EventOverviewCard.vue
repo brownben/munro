@@ -166,8 +166,3 @@ export default {
   },
 }
 </script>
-<style lang="postcss">
-.last\:mb-4:last-child {
-  @apply mb-4;
-}
-</style>

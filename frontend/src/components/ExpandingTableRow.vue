@@ -37,17 +37,3 @@ export default {
   }),
 }
 </script>
-<style>
-.shrink-enter-active,
-.shrink-leave-active {
-  transition: all 0.3s ease;
-  transform-origin: top;
-}
-.shrink-enter-from {
-  opacity: 0;
-  transform: scaleY(0.9);
-}
-.shrink-leave-to {
-  opacity: 0;
-}
-</style>

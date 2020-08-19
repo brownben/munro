@@ -66,8 +66,3 @@ export default {
   },
 }
 </script>
-<style>
-.h-7\/2 {
-  height: 0.875rem;
-}
-</style>
