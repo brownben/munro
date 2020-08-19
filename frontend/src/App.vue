@@ -4,7 +4,7 @@
   The main app file containing the base structure of the app, and base styling
 -->
 <template>
-  <AppMenu v-show="!$route.path.includes('embed')" />
+  <AppMenu v-show="!$route.path.includes('/embed/')" />
 
   <div id="content" class="flex flex-col flex-grow">
     <Messages />
@@ -24,12 +24,6 @@ export default {
   components: {
     AppMenu,
     Messages,
-  },
-
-  data: function () {
-    return {
-      auth: this.$auth,
-    }
   },
 }
 </script>

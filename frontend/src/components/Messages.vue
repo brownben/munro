@@ -11,7 +11,7 @@
       v-show="messages.length > 0"
       id="messages"
       tag="div"
-      name="list"
+      name="messages"
       mode="out-in"
       class="fixed bottom-0 right-0 mx-4 my-4"
     >
@@ -44,15 +44,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease-out;
-}
-.list-enter,
-.list-leave-to {
-  opacity: 0;
-  transform: translateX(10px);
-}
-</style>

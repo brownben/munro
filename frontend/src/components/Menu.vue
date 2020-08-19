@@ -174,8 +174,3 @@ export default {
   },
 }
 </script>
-<style lang="postcss" scoped>
-.h-full--16 {
-  height: calc(100% - 4rem);
-}
-</style>

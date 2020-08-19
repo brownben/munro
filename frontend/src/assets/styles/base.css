@@ -44,13 +44,8 @@ b {
   @apply font-semibold font-heading;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+option {
+  @apply bg-white;
 }
 
 ::selection {
