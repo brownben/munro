@@ -31,7 +31,7 @@
 export default {
   methods: {
     clear: function (id) {
-      this.$store.messages.commit('clearAllMessages')
+      this.$store.commit('removeMessage', id)
     },
   },
 }

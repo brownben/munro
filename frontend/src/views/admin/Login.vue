@@ -44,8 +44,6 @@
 </template>
 
 <script>
-import auth from '/@/authentication'
-
 import Layout from '/@/components/Layout.vue'
 import TextInput from '/@/components/inputs/TextInput.vue'
 
@@ -63,7 +61,7 @@ export default {
   },
 
   mounted: function () {
-    if (this.$auth.user) {
+    if (this.$store.getters.loggedIn) {
       this.$store.dispatch('createMessage', 'You Are Already Logged In')
       this.$router.push('/')
     }
@@ -84,14 +82,17 @@ export default {
 
     sendLoginRequest: function () {
       if (this.validateLogin()) {
-        return auth
-          .login(this.username, this.password)
+        return this.$store
+          .dispatch('login', {
+            username: this.username,
+            password: this.password,
+          })
           .then((response) => {
             if (response)
               this.$router.replace(this.$route.query.redirect || '/')
             this.$store.dispatch(
               'createMessage',
-              `Hello ${this.$auth.user.displayName || 'Admin'}`
+              `Hello ${this.$store.getters.userName || 'Admin'}`
             )
             this.blankFields()
           })

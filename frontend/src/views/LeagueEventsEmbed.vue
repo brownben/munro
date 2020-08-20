@@ -18,7 +18,6 @@
         :key="event.name"
         :event="event"
         :league="league"
-        :auth="auth"
       />
     </Layout>
     <not-found v-if="!league" />

@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="(result && result.type !== 'hidden') || $auth.user"
+    v-if="(result && result.type !== 'hidden') || $store.getters.loggedIn"
     class="flex flex-col col-span-2 pt-6 text-center bg-white shadow-md lg:col-span-1 rounded-shape-xl"
   >
     <slot>
@@ -70,7 +70,7 @@
     </div>
 
     <div
-      v-if="$auth.user"
+      v-if="$store.getters.loggedIn"
       class="flex-grow w-full px-4 pt-4 pb-4 mt-2 shadow md:px-6 bg-main-50 rounded-shape-xl"
     >
       <div class="flex flex-row flex-wrap justify-around px-6">

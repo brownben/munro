@@ -17,11 +17,11 @@
 
     <Hero />
     <section
-      v-if="auth.user"
+      v-if="$store.getters.loggedIn"
       class="w-full py-8 text-center text-white actions bg-main-600"
     >
       <h2 class="pb-2 text-4xl font-bold font-heading">
-        Hello {{ $auth.user.displayName || 'Admin' }}!
+        Hello {{ $store.getters.userName || 'Admin' }}!
       </h2>
       <div class="mx-6">
         <router-link to="/leagues/create" class="button button-white">
@@ -63,12 +63,6 @@ export default {
     SearchSection,
     DeveloperSection,
     AppFooter,
-  },
-
-  data: function () {
-    return {
-      auth: this.$auth,
-    }
   },
 }
 </script>
