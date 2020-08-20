@@ -97,11 +97,14 @@ export default {
             (event) => event.userSubmittedResults
           )
           if (this.events.length < 1)
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Sorry, No Events Found to Submit Results For'
             )
         })
-        .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Getting Event Details')
+        )
     },
 
     getLeagues: function () {
@@ -111,7 +114,10 @@ export default {
           this.leagues = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching League Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching League Details'
+          )
         )
     },
 
@@ -124,11 +130,11 @@ export default {
           time: this.time,
         })
         .then(() => {
-          this.$messages.addMessage('Result Uploaded Successfully')
+          this.$store.dispatch('createMessage', 'Result Uploaded Successfully')
           this.$router.push(`/events/${this.eventId}/results`)
         })
         .catch((error) =>
-          this.$messages.addMessage(error.response.data.message)
+          this.$store.dispatch('createMessage', error.response.data.message)
         )
     },
   },

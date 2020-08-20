@@ -89,7 +89,9 @@ export default {
         .then((response) => {
           if (response) this.league = response.data
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Event Name')
+        )
     },
 
     uploadFile: function () {
@@ -98,7 +100,7 @@ export default {
           if (!file || file.split('\n').length < 1)
             throw new Error('Error: No MapRun Event Found With That Id')
 
-          this.$messages.addMessage('Upload Data Sent')
+          this.$store.dispatch('createMessage', 'Upload Data Sent')
           return file
         })
         .then((file) =>
@@ -110,11 +112,12 @@ export default {
           })
         )
         .then(() => {
-          this.$messages.addMessage('Results Uploaded Successfully')
+          this.$store.dispatch('createMessage', 'Results Uploaded Successfully')
           this.$router.push(`/events/${this.eventId}/results`)
         })
         .catch((error) =>
-          this.$messages.addMessage(
+          this.$store.dispatch(
+            'createMessage',
             error?.response?.data?.message ?? error?.message
           )
         )
@@ -148,7 +151,8 @@ export default {
         .then((response) => response.data)
         .then((data) => this.maprunHTMLtoCSV(data))
         .catch((error) =>
-          this.$messages.addMessage(
+          this.$store.dispatch(
+            'createMessage',
             'Error: Problem Connecting to MapRun Server'
           )
         )

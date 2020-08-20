@@ -122,7 +122,10 @@ export default {
           }
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Getting Competitor Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Getting Competitor Details'
+          )
         )
     },
 
@@ -133,7 +136,10 @@ export default {
           this.leagues = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching List of Leagues')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching List of Leagues'
+          )
         )
     },
 
@@ -153,12 +159,14 @@ export default {
           })
           .then((response) => this.returnToCompetitorsPage(response))
           .catch(() =>
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Error: Problem Creating Competitor - Please Try Again'
             )
           )
       } else
-        this.$messages.addMessage(
+        this.$store.dispatch(
+          'createMessage',
           'Please Ensure Name and League Fields are not Blank'
         )
     },
@@ -176,17 +184,18 @@ export default {
           })
           .then((response) => this.returnToCompetitorsPage(response))
           .catch((error) =>
-            this.$messages.addMessage(error.response.data.message)
+            this.$store.dispatch('createMessage', error.response.data.message)
           )
       } else
-        this.$messages.addMessage(
+        this.$store.dispatch(
+          'createMessage',
           'Please Ensure Name and League Fields are not Blank'
         )
     },
 
     returnToCompetitorsPage: function (response) {
       // Go to league page after successful update/ creation
-      this.$messages.addMessage(response.data.message)
+      this.$store.dispatch('createMessage', response.data.message)
       this.$router.push(`/leagues/${this.league}/competitors`)
     },
   },

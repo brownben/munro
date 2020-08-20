@@ -183,7 +183,10 @@ export default {
           this.competitors = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching Competitor Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching Competitor Details'
+          )
         )
     },
 

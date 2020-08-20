@@ -13,7 +13,6 @@
       title="Munro - Login"
       description
     />
-
     <form class="col-span-2" @submit.prevent="sendLoginRequest">
       <TextInput v-model="username" label="Email Address:" type="email" />
       <TextInput
@@ -65,12 +64,12 @@ export default {
 
   mounted: function () {
     if (this.$auth.user) {
-      this.$messages.addMessage('You Are Already Logged In')
+      this.$store.dispatch('createMessage', 'You Are Already Logged In')
       this.$router.push('/')
     }
     this.blankFields()
     if (this.$route.query.redirect)
-      this.$messages.addMessage('Please Login to Access that Page')
+      this.$store.dispatch('createMessage', 'Please Login to Access that Page')
   },
 
   methods: {
@@ -90,18 +89,21 @@ export default {
           .then((response) => {
             if (response)
               this.$router.replace(this.$route.query.redirect || '/')
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               `Hello ${this.$auth.user.displayName || 'Admin'}`
             )
             this.blankFields()
           })
           .catch(() =>
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Error: Problem Logging In - Please Try Again'
             )
           )
       } else
-        this.$messages.addMessage(
+        this.$store.dispatch(
+          'createMessage',
           'Problem: Username or Password were left Blank'
         )
     },

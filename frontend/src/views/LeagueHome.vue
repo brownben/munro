@@ -229,7 +229,10 @@ export default {
           this.league = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Getting League Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Getting League Details'
+          )
         )
     },
 
@@ -242,7 +245,10 @@ export default {
               this.events = response.data
             })
             .catch(() =>
-              this.$messages.addMessage('Problem Getting Event Details')
+              this.$store.dispatch(
+                'createMessage',
+                'Problem Getting Event Details'
+              )
             )
         } else {
           return axios
@@ -251,7 +257,10 @@ export default {
               this.events = response.data
             })
             .catch(() =>
-              this.$messages.addMessage('Problem Getting Event Details')
+              this.$store.dispatch(
+                'createMessage',
+                'Problem Getting Event Details'
+              )
             )
         }
       }
@@ -267,11 +276,15 @@ export default {
         return axios
           .delete(`/api/leagues/${this.league.name}`)
           .then(() => {
-            this.$messages.addMessage(`League: ${this.league.name} was Deleted`)
+            this.$store.dispatch(
+              'createMessage',
+              `League: ${this.league.name} was Deleted`
+            )
             this.$router.push('/')
           })
           .catch(() =>
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Problem Deleting League - Please Try Again'
             )
           )

@@ -144,7 +144,9 @@ export default {
         .then(() => {
           this.loading = false
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Data'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Data')
+        )
     },
   },
 }

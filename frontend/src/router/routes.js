@@ -1,4 +1,4 @@
-import messageStore from '/@/messageStore'
+import store from '/@/store'
 import requireAuthentication from './requireAuthentication'
 
 const homeRoutes = [
@@ -34,10 +34,10 @@ const loginRoutes = [
         .logout()
         .then(() => {
           next('/')
-          messageStore.addMessage('Goodbye - Logged Out Successfully')
+          store.messages.add('Goodbye - Logged Out Successfully')
         })
         .catch(() =>
-          messageStore.addMessage('Problem Logging Out - Please Try Again')
+          store.messages.add('Problem Logging Out - Please Try Again')
         )
     },
   },

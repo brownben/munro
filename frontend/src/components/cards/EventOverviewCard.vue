@@ -153,11 +153,15 @@ export default {
         return axios
           .delete(`/api/events/${event.id}`)
           .then(() =>
-            this.$messages.addMessage(`Event: ${event.name} was Deleted`)
+            this.$store.dispatch(
+              'createMessage',
+              `Event: ${event.name} was Deleted`
+            )
           )
           .then(() => this.$emit('event-changed'))
           .catch(() =>
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Problem Deleting Event - Please Try Again'
             )
           )
