@@ -104,7 +104,10 @@ export default {
           this.competitor = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Getting Competitor Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Getting Competitor Details'
+          )
         )
     },
 
@@ -115,7 +118,10 @@ export default {
           this.results = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Getting Competitor Results')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Getting Competitor Results'
+          )
         )
     },
 
@@ -126,7 +132,10 @@ export default {
           this.league = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Getting League Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Getting League Details'
+          )
         )
     },
   },

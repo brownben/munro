@@ -66,7 +66,10 @@ export default {
           this.league = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Getting League Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Getting League Details'
+          )
         )
     },
 
@@ -78,7 +81,10 @@ export default {
             this.events = response.data
           })
           .catch(() =>
-            this.$messages.addMessage('Problem Getting Event Details')
+            this.$store.dispatch(
+              'createMessage',
+              'Problem Getting Event Details'
+            )
           )
       }
       return false

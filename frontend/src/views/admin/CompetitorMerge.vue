@@ -111,7 +111,9 @@ export default {
         .then((response) => {
           this.competitors = response.data
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Competitors'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Competitors')
+        )
     },
 
     getLeagues: function () {
@@ -121,7 +123,10 @@ export default {
           this.leagues = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching League Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching League Details'
+          )
         )
     },
 
@@ -142,14 +147,18 @@ export default {
           })
           .then((response) => this.returnToCompetitorsPage(response))
           .catch((error) =>
-            this.$messages.addMessage(error.response.data.message)
+            this.$store.dispatch('createMessage', error.response.data.message)
           )
-      } else this.$messages.addMessage('The Competitors Selected are the Same')
+      } else
+        this.$store.dispatch(
+          'createMessage',
+          'The Competitors Selected are the Same'
+        )
     },
 
     returnToCompetitorsPage: function (response) {
       // Go to league page after successful update/ creation
-      this.$messages.addMessage(response.data.message)
+      this.$store.dispatch('createMessage', response.data.message)
       this.$router.push(`/leagues/${this.league}/competitors`)
     },
 

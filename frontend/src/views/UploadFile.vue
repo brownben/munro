@@ -133,7 +133,9 @@ export default {
             this.event.name = 'No Event Found'
           }
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Event Name'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Event Name')
+        )
     },
 
     fileRead: function (file) {
@@ -142,7 +144,7 @@ export default {
 
     uploadFile: function () {
       // Send data to the server
-      this.$messages.addMessage('Upload Data Sent')
+      this.$store.dispatch('createMessage', 'Upload Data Sent')
       return axios
         .post('/api/upload', {
           eventId: this.eventId,
@@ -154,11 +156,11 @@ export default {
           routegadget: this.event.routegadget,
         })
         .then(() => {
-          this.$messages.addMessage('Results Uploaded Successfully')
+          this.$store.dispatch('createMessage', 'Results Uploaded Successfully')
           this.$router.push(`/events/${this.eventId}/results`)
         })
         .catch((error) =>
-          this.$messages.addMessage(error.response.data.message)
+          this.$store.dispatch('createMessage', error.response.data.message)
         )
     },
   },

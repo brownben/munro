@@ -162,10 +162,13 @@ export default {
           event: this.result.event,
           type,
         })
-        .then(() => this.$messages.addMessage(`Result Updated`))
+        .then(() => this.$store.dispatch('createMessage', `Result Updated`))
         .then(() => this.$emit('result-changed'))
         .catch(() =>
-          this.$messages.addMessage('Problem Hiding Result - Please Try Again')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Hiding Result - Please Try Again'
+          )
         )
     },
 
@@ -177,10 +180,11 @@ export default {
           incomplete: !this.result.incomplete,
           event: this.result.event,
         })
-        .then(() => this.$messages.addMessage(`Result Updated`))
+        .then(() => this.$store.dispatch('createMessage', `Result Updated`))
         .then(() => this.$emit('result-changed'))
         .catch(() =>
-          this.$messages.addMessage(
+          this.$store.dispatch(
+            'createMessage',
             'Problem Updating Result - Please Try Again'
           )
         )

@@ -149,12 +149,14 @@ export default {
   methods: {
     validateForm: function () {
       if (this.name === '' || this.scoringMethod === '') {
-        this.$messages.addMessage(
+        this.$store.dispatch(
+          'createMessage',
           'Please Ensure Name and Scoring Method Fields are not Blank'
         )
         return false
       } else if (this.name.includes('/') || this.name.includes('\\')) {
-        this.$messages.addMessage(
+        this.$store.dispatch(
+          'createMessage',
           "Please Ensure Name doesn't Include any Slashes"
         )
         return false
@@ -162,7 +164,7 @@ export default {
     },
 
     returnToLeaguePage: function (response) {
-      this.$messages.addMessage(response.data.message)
+      this.$store.dispatch('createMessage', response.data.message)
       this.$router.push(`/leagues/${this.name}`)
     },
 
@@ -229,7 +231,10 @@ export default {
           }
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching League Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching League Details'
+          )
         )
     },
 
@@ -257,7 +262,8 @@ export default {
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Error: Problem Creating League - Please Try Again'
             )
           )
@@ -284,7 +290,8 @@ export default {
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Error: Problem Updating League - Please Try Again'
             )
           )

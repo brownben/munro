@@ -16,7 +16,6 @@
     />
 
     <Hero />
-
     <section
       v-if="auth.user"
       class="w-full py-8 text-center text-white actions bg-main-600"

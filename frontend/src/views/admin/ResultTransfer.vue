@@ -148,7 +148,9 @@ export default {
         .then((response) => {
           this.competitors = response.data
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Competitors'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Competitors')
+        )
     },
 
     getLeagues: function () {
@@ -157,7 +159,9 @@ export default {
         .then((response) => {
           this.leagues = response.data
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Leagues'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Leagues')
+        )
     },
 
     getEvents: function () {
@@ -166,7 +170,9 @@ export default {
         .then((response) => {
           this.events = response.data
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Events'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Events')
+        )
     },
 
     getResults: function () {
@@ -175,7 +181,9 @@ export default {
         .then((response) => {
           this.results = response.data
         })
-        .catch(() => this.$messages.addMessage('Problem Fetching Results'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Fetching Results')
+        )
     },
 
     validateForm: function () {
@@ -240,15 +248,18 @@ export default {
           })
           .then((response) => this.returnToCompetitorsPage(response))
           .catch((error) =>
-            this.$messages.addMessage(error.response.data.message)
+            this.$store.dispatch('createMessage', error.response.data.message)
           )
       } else
-        this.$messages.addMessage('Please Select a Result and a Competitor')
+        this.$store.dispatch(
+          'createMessage',
+          'Please Select a Result and a Competitor'
+        )
     },
 
     returnToCompetitorsPage: function (response) {
       // Go to league page after successful update/ creation
-      this.$messages.addMessage(response.data.message)
+      this.$store.dispatch('createMessage', response.data.message)
       this.$router.push(`/leagues/${this.league}/competitors`)
     },
   },

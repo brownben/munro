@@ -54,7 +54,10 @@ export default {
           this.leagues = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching League Details')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching League Details'
+          )
         )
     },
   },

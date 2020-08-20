@@ -375,7 +375,10 @@ export default {
           this.events = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching List of Events')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching List of Events'
+          )
         )
     },
 

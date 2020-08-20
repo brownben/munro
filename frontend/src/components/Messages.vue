@@ -8,7 +8,7 @@
 <template>
   <transition name="fade">
     <transition-group
-      v-show="messages.length > 0"
+      v-show="$store.getters.allMessages.length > 0"
       id="messages"
       tag="div"
       name="messages"
@@ -16,7 +16,7 @@
       class="fixed bottom-0 right-0 mx-4 my-4"
     >
       <p
-        v-for="message of messages"
+        v-for="message of $store.getters.allMessages"
         :key="message.id"
         class="z-40 mt-4 text-lg select-none card card-color font-heading"
         @click="clear(message.id)"
@@ -29,17 +29,9 @@
 
 <script>
 export default {
-  name: 'Messages',
-
-  data: function () {
-    return {
-      messages: this.$messages.messages,
-    }
-  },
-
   methods: {
     clear: function (id) {
-      this.$messages.removeMessage(id)
+      this.$store.messages.commit('clearAllMessages')
     },
   },
 }

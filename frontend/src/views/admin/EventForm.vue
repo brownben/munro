@@ -173,7 +173,9 @@ export default {
             this.userSubmittedResults = response.data.userSubmittedResults
           }
         })
-        .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Getting Event Details')
+        )
     },
 
     getLeagues: function () {
@@ -183,18 +185,23 @@ export default {
           this.leagues = response.data
         })
         .catch(() =>
-          this.$messages.addMessage('Problem Fetching List of Leagues')
+          this.$store.dispatch(
+            'createMessage',
+            'Problem Fetching List of Leagues'
+          )
         )
     },
 
     validateForm: function () {
       if (this.name === '' || this.league === '') {
-        this.$messages.addMessage(
+        this.$store.dispatch(
+          'createMessage',
           'Please Ensure Name and League Fields are not Blank'
         )
         return false
       } else if (this.name.includes('/') || this.name.includes('\\')) {
-        this.$messages.addMessage(
+        this.$store.dispatch(
+          'createMessage',
           "Please Ensure Name doesn't Include any Slashes"
         )
         return false
@@ -219,7 +226,8 @@ export default {
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch(() =>
-            this.$messages.addMessage(
+            this.$store.dispatch(
+              'createMessage',
               'Error: Problem Creating Event - Please Try Again'
             )
           )
@@ -244,14 +252,14 @@ export default {
           })
           .then((response) => this.returnToLeaguePage(response))
           .catch((error) =>
-            this.$messages.addMessage(error.response.data.message)
+            this.$store.dispatch('createMessage', error.response.data.message)
           )
       }
     },
 
     returnToLeaguePage: function (response) {
       // Go to league page after successful update/ creation
-      this.$messages.addMessage(response.data.message)
+      this.$store.dispatch('createMessage', response.data.message)
       this.$router.push(`/leagues/${this.league}`)
     },
   },

@@ -62,7 +62,9 @@ export default {
         .then((response) => {
           this.events = response.data
         })
-        .catch(() => this.$messages.addMessage('Problem Getting Event Details'))
+        .catch(() =>
+          this.$store.dispatch('createMessage', 'Problem Getting Event Details')
+        )
     },
   },
 }
