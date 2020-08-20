@@ -1,6 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import messageStore from '/@/messageStore'
-import auth from '/@/authentication.js'
+import requireAuthentication from './requireAuthentication'
 
 const homeRoutes = [
   {
@@ -206,33 +205,14 @@ const notFoundRoutes = [
   },
 ]
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes: [
-    ...homeRoutes,
-    ...searchRoutes,
-    ...loginRoutes,
-    ...competitorRoutes,
-    ...leagueRoutes,
-    ...eventRoutes,
-    ...resultRoutes,
-    ...uploadRoutes,
-    ...notFoundRoutes,
-  ],
-  scrollBehavior() {
-    return { top: 0, left: 0 }
-  },
-})
-
-function requireAuthentication(to, from, next) {
-  // Check they are logged in before going to restricted route, if they are not redirect
-  const currentUser = auth.user
-  if (!currentUser) {
-    next({
-      path: '/login',
-      query: { redirect: to.fullPath },
-    })
-  } else next()
-}
-
-export default router
+export default [
+  ...homeRoutes,
+  ...searchRoutes,
+  ...loginRoutes,
+  ...competitorRoutes,
+  ...leagueRoutes,
+  ...eventRoutes,
+  ...resultRoutes,
+  ...uploadRoutes,
+  ...notFoundRoutes,
+]
