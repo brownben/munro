@@ -30,7 +30,7 @@
     </template>
 
     <div
-      v-if="competitor && $auth.user"
+      v-if="competitor && $store.getters.loggedIn"
       class="col-span-2 card card-color-dark"
     >
       <h2 class="text-3xl font-bold text-white font-heading">
@@ -82,7 +82,6 @@ export default {
       competitor: {},
       league: {},
       results: [],
-      auth: this.$auth,
     }
   },
 

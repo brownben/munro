@@ -53,7 +53,7 @@
       </p>
 
       <router-link
-        v-if="!auth.user"
+        v-if="!$store.getters.loggedIn"
         to="/login"
         class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
       >
@@ -78,13 +78,3 @@
     </div>
   </footer>
 </template>
-
-<script>
-export default {
-  data: function () {
-    return {
-      auth: this.$auth,
-    }
-  },
-}
-</script>

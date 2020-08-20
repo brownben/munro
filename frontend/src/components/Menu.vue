@@ -60,7 +60,7 @@
                 {{ link.text }}
               </router-link>
               <router-link
-                v-if="$auth.user"
+                v-if="$store.getters.loggedIn"
                 to="/logout"
                 class="px-3 py-2 ml-4 font-medium leading-5 text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
               >
@@ -145,7 +145,7 @@
             {{ link.text }}
           </router-link>
           <router-link
-            v-if="$auth.user"
+            v-if="$store.getters.loggedIn"
             to="/logout"
             class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
             @click="menuOpen = false"
@@ -160,17 +160,14 @@
 
 <script>
 export default {
-  data: function () {
-    return {
-      auth: this.$auth,
-      menuOpen: false,
+  data: () => ({
+    menuOpen: false,
 
-      links: [
-        { text: 'Leagues', location: '/leagues' },
-        { text: 'Latest Results', location: '/latest-results' },
-        { text: 'Upload Results', location: '/upload' },
-      ],
-    }
-  },
+    links: [
+      { text: 'Leagues', location: '/leagues' },
+      { text: 'Latest Results', location: '/latest-results' },
+      { text: 'Upload Results', location: '/upload' },
+    ],
+  }),
 }
 </script>

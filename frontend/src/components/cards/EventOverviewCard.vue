@@ -99,7 +99,7 @@
       </div>
     </div>
     <div
-      v-if="auth.user"
+      v-if="$store.getters.loggedIn"
       class="w-full px-4 pt-4 pb-4 mt-2 bg-main-50 md:px-6 rounded-shape-xl"
     >
       <div class="mb-2">
@@ -137,7 +137,6 @@ export default {
     showLeagueName: { type: Boolean, default: false },
     event: { type: Object, default: () => ({}) },
     league: { type: Object, default: () => ({}) },
-    auth: { type: Object, default: () => ({}) },
     showFullDetails: { type: Boolean, default: true },
   },
 

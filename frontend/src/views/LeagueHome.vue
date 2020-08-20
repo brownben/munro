@@ -88,7 +88,7 @@
 
     <template #fullWidth>
       <section
-        v-if="auth.user && league && league.name"
+        v-if="$store.getters.loggedIn && league && league.name"
         class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
       >
         <h2 class="text-2xl font-bold font-heading">
@@ -141,7 +141,7 @@
         </h2>
 
         <router-link
-          v-if="auth.user"
+          v-if="$store.getters.loggedIn"
           :to="`${$route.path}/create-event`"
           class="inline-block px-4 pt-2 pb-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
         >
@@ -153,7 +153,6 @@
         :key="event.name"
         :event="event"
         :league="league"
-        :auth="auth"
         class="col-span-2"
         @event-changed="refreshDetails"
       />
@@ -183,7 +182,6 @@ export default {
     return {
       league: {},
       events: [],
-      auth: this.$auth,
     }
   },
 
@@ -238,7 +236,7 @@ export default {
 
     getLeagueEvents: function () {
       if (this.league && this.league.name) {
-        if (this.auth.user) {
+        if (this.$store.getters.loggedIn) {
           return axios
             .get(`/api/leagues/${this.league.name}/events/uploadKey`)
             .then((response) => {

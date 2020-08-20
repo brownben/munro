@@ -30,14 +30,17 @@ const loginRoutes = [
     path: '/logout',
     beforeEnter: function (to, from, next) {
       // Logout then redirect to the home page
-      router.app.$auth
-        .logout()
+      store
+        .dispatch('logout')
         .then(() => {
           next('/')
-          store.messages.add('Goodbye - Logged Out Successfully')
+          store.dispatch('createMessage', 'Goodbye - Logged Out Successfully')
         })
         .catch(() =>
-          store.messages.add('Problem Logging Out - Please Try Again')
+          store.dispatch(
+            'createMessage',
+            'Problem Logging Out - Please Try Again'
+          )
         )
     },
   },
