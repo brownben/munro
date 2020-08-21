@@ -1,4 +1,4 @@
-import store from '/@/store'
+import store from '/@/store/index.ts'
 import requireAuthentication from './requireAuthentication'
 
 const homeRoutes = [

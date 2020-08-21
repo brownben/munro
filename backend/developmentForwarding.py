@@ -3,7 +3,7 @@ import requests
 
 
 def forwardToVue(path):
-    port = "8081"
+    port = "8080"
     mimeType = "text/html"
     requestType = request.args.get("type")
     suffix = ""

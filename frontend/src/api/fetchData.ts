@@ -1,12 +1,12 @@
-import store from '/@/store'
+import store from '/@/store/index'
 
 interface TypedResponse<T = any> extends Response {
   json: <P = T>() => Promise<P>
 }
 
 class FetchDataConfig {
-  public apiLocation = ''
-  public requestMethod?: string = 'GET'
+  public apiLocation: string = ''
+  public data?: object = {}
 
   public useServerErrorMessage?: boolean = true
   public customErrorMessage?: string = ''
@@ -45,5 +45,25 @@ export const getData = <T>(config: FetchDataConfig): Promise<T> =>
       else if (config.customErrorMessage) addMessage(config.customErrorMessage)
 
       if (config.customErrorHandler) throw error
-      return false
+    })
+
+export const postData = <T>(config: FetchDataConfig): Promise<T> =>
+  myFetch<T>(config.apiLocation, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    data: config.data,
+  })
+    .then(checkFailedRequest)
+    .then(parseRequest)
+    .then((data) => {
+      if (config.useServerSuccessMessage) addMessage(data.message)
+      else if (config.customSuccessMessage)
+        addMessage(config.customSuccessMessage)
+      return data
+    })
+    .catch((error: Error) => {
+      if (config.useServerErrorMessage) addMessage(error.message)
+      else if (config.customErrorMessage) addMessage(config.customErrorMessage)
+
+      if (config.customErrorHandler) throw error
     })
