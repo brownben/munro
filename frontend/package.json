@@ -6,12 +6,13 @@
   "author": "brownben <9870007+brownben@users.noreply.github.com>",
   "scripts": {
     "serve": "vite",
-    "eslint:check": "eslint --ext .js,.ts,.vue --no-fix ./",
-    "eslint:fix": "eslint --ext .js,.ts,.vue --fix ./ ",
+    "eslint:check": "eslint --ext .js,.vue --no-fix ./",
+    "eslint:fix": "eslint --ext .js,.vue --fix ./ ",
     "prettier:check": "prettier --check **",
     "prettier:fix": "prettier --write ** ",
-    "lint": "npm run prettier:fix && npm run eslint:fix",
-    "check": "npm run prettier:check && npm run eslint:check",
+    "typescript:check": "tsc",
+    "lint": "npm run typescript:check && npm run prettier:fix && npm run eslint:fix",
+    "check": "npm run typescript:check && npm run prettier:check && npm run eslint:check",
     "test": "jest",
     "generateServiceWorker": "node ./generateSW.js",
     "build": "vite build && npm run generateServiceWorker"
@@ -46,7 +47,7 @@
     "tailwindcss": "^1.7.3",
     "ts-jest": "^25.3.1",
     "ts-loader": "^6.2.2",
-    "typescript": "^3.9.7",
+    "typescript": "^4.0.2",
     "vite": "^1.0.0-rc.4",
     "vue-jest": "^5.0.0-alpha.3"
   },
