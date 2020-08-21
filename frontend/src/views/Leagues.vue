@@ -24,42 +24,24 @@
   </Layout>
 </template>
 
-<script>
-import axios from 'axios'
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
 
-import Layout from '/@/components/Layout.vue'
-import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
+import Layout from '../components/Layout.vue'
+import LeagueOverviewCard from '../components/cards/LeagueOverviewCard.vue'
+
+import { getLeagues } from '../api/leagues'
+
+export const leagues = ref([])
+
+onMounted(async () => {
+  leagues.value = await getLeagues()
+})
 
 export default {
   components: {
     Layout,
     LeagueOverviewCard,
-  },
-
-  data() {
-    return {
-      leagues: [],
-    }
-  },
-
-  mounted: function () {
-    this.getLeagues()
-  },
-
-  methods: {
-    getLeagues: function () {
-      return axios
-        .get('/api/leagues')
-        .then((response) => {
-          this.leagues = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Fetching League Details'
-          )
-        )
-    },
   },
 }
 </script>
