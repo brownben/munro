@@ -1,5 +1,9 @@
 module.exports = {
-  extends: ['alloy', 'plugin:vue/vue3-recommended'],
+  extends: [
+    'alloy',
+    'plugin:vue/vue3-recommended',
+    'plugin:prettier/recommended',
+  ],
 
   env: {
     browser: true,
@@ -50,5 +54,6 @@ module.exports = {
         math: 'always',
       },
     ],
+    'vue/html-indent': 'off',
   },
 }
