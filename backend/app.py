@@ -30,7 +30,7 @@ if not app.debug:
         },
     )
 else:
-    import requests  # Enable for Development Forwarding
+    from developmentForwarding import forwardToVue
 
 
 @api.representation("application/json")
@@ -90,7 +90,7 @@ api.add_resource(search.Search, "/api/search")
 def catch_all(path):
     # If in debug access files from VueJS Development Server
     if app.debug:
-        return requests.get("http://localhost:8080/{}".format(path)).text
+        return forwardToVue(path)
 
     return render_template("index.html")
 
