@@ -1,6 +1,7 @@
-import { getData } from './fetchData'
+import { getData, deleteData } from './requests'
+import { ServerMessage } from './RequestConfigs'
 
-interface league {
+export interface League {
   coordinator: string
   courses: string[]
   description: string
@@ -14,18 +15,21 @@ interface league {
   year: number
 }
 
-export const getLeagues = (): Promise<league[]> =>
-  getData<league[]>({
+export const getLeague = (name: string): Promise<League | null> =>
+  getData<League | null>({
+    apiLocation: `/api/leagues/${name}`,
+    customErrorMessage: 'Problem Fetching League Details',
+  })
+
+export const getLeagues = (): Promise<League[] | null> =>
+  getData<League[]>({
     apiLocation: '/api/leagues',
-    useServerErrorMessage: false,
-    useServerSuccessMessage: false,
     customErrorMessage: 'Problem Fetching Leagues',
   })
 
-export const getLeague = (name: string): Promise<league> =>
-  getData<league>({
+export const deleteLeague = (name: string): Promise<ServerMessage | null> =>
+  deleteData<ServerMessage>({
     apiLocation: `/api/leagues/${name}`,
-    useServerErrorMessage: false,
-    useServerSuccessMessage: false,
-    customErrorMessage: 'Problem Fetching League Details',
+    customErrorMessage: 'Problem Deleting League',
+    customErrorHandler: true,
   })
