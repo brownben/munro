@@ -34,6 +34,4 @@ class ManualResult(Resource):
             )
             return returnMessage("Points Assigned")
         except:
-            return returnError(
-                "Error: Problem Assigning Points - Please Try Again"
-            )
+            return returnError("Error: Problem Assigning Points - Please Try Again")

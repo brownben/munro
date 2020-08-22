@@ -8,4 +8,3 @@ def returnError(message):
 
 def returnUnauthorised(message):
     return {"message": message}, 401
-

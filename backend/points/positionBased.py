@@ -43,9 +43,7 @@ def assignPoints99WithDraw(data):
         resultWithPoints = result
 
         if validResult(result):
-            positionOccurances = countOccuracesOfPosition(
-                data, result["position"]
-            )
+            positionOccurances = countOccuracesOfPosition(data, result["position"])
             points = 100 - result["position"]
             resultWithPoints["points"] = (
                 points + (points - positionOccurances) + 1

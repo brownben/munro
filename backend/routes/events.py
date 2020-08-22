@@ -7,9 +7,7 @@ from .returnMessages import returnMessage, returnError
 
 # Check POST request has all the relevent fields
 eventParser = reqparse.RequestParser()
-eventParser.add_argument(
-    "name", help="This field cannot be blank", required=True
-)
+eventParser.add_argument("name", help="This field cannot be blank", required=True)
 eventParser.add_argument("date")
 eventParser.add_argument("resultUploaded")
 eventParser.add_argument("organiser")
@@ -19,9 +17,7 @@ eventParser.add_argument("results")
 eventParser.add_argument("winsplits")
 eventParser.add_argument("routegadget")
 eventParser.add_argument("userSubmittedResults")
-eventParser.add_argument(
-    "league", help="This field cannot be blank", required=True
-)
+eventParser.add_argument("league", help="This field cannot be blank", required=True)
 
 
 def calculateEventId(data):
@@ -47,9 +43,7 @@ class Events(Resource):
             return returnMessage("Event - {} was Created".format(data["name"]))
 
         except:
-            return returnError(
-                "Error: Problem Creating Event - Please Try Again"
-            )
+            return returnError("Error: Problem Creating Event - Please Try Again")
 
     @requireAuthentication
     def delete(self):
@@ -78,9 +72,7 @@ class Event(Resource):
             )
             return returnMessage("Event - {} was Updated".format(name))
         except:
-            return returnError(
-                "Error: Problem Updating Event - Please Try Again"
-            )
+            return returnError("Error: Problem Updating Event - Please Try Again")
 
     @requireAuthentication
     def delete(self, eventId):

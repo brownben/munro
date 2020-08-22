@@ -147,7 +147,4 @@ class Test_calculateCourseAverage:
             {"course": "red", "time": 8, "incomplete": False, "position": 1,},
         ]
         assert calculateCourseAverage(results)["red"]["average"] == 6
-        assert (
-            round(calculateCourseAverage(results)["red"]["standardDeviation"])
-            == 3
-        )
+        assert round(calculateCourseAverage(results)["red"]["standardDeviation"]) == 3

@@ -24,9 +24,7 @@ def forwardToVue(path):
     if request.args.get("index"):
         suffix += "&index=0"
 
-    standardRequest = requests.get(
-        f"http://localhost:{port}/{path}{suffix}"
-    ).text
+    standardRequest = requests.get(f"http://localhost:{port}/{path}{suffix}").text
     if standardRequest == "Not Found":
         return requests.get(f"http://localhost:{port}/").text
     else:

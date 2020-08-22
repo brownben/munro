@@ -23,7 +23,4 @@ class TransferResult(Resource):
             results.transferResult(data["result"], data["competitor"])
             return returnMessage("Result Transfered")
         except:
-            return returnError(
-                "Error: Problem Transferring Result - Please Try Again"
-            )
-
+            return returnError("Error: Problem Transferring Result - Please Try Again")

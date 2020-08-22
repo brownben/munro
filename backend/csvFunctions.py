@@ -110,9 +110,7 @@ def parseToObjects(data, headerLocations):
             parsedRow["file_points"] = int(row[headerLocations["file_points"]])
 
         try:
-            parsedRow["position"] = int(
-                listGet(row, headerLocations["position"])
-            )
+            parsedRow["position"] = int(listGet(row, headerLocations["position"]))
         except ValueError:
             parsedRow["position"] = ""
 
@@ -136,11 +134,7 @@ def resultIncomplete(row, headerLocations):
 
 def getName(row, headerLocations):
     if "firstName" in headerLocations:
-        return (
-            row[headerLocations["firstName"]]
-            + " "
-            + row[headerLocations["surname"]]
-        )
+        return row[headerLocations["firstName"]] + " " + row[headerLocations["surname"]]
 
     return row[headerLocations["name"]]
 

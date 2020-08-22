@@ -20,13 +20,9 @@ def requireAuthentication(func):
                     id_token, firebase_request_adapter
                 )
             except:
-                return returnUnauthorised(
-                    "Permission Denied - You are not Logged In"
-                )
+                return returnUnauthorised("Permission Denied - You are not Logged In")
         else:
-            return returnUnauthorised(
-                "Permission Denied - You are not Logged In"
-            )
+            return returnUnauthorised("Permission Denied - You are not Logged In")
         return func(*args, **kwargs)
 
     return decorator

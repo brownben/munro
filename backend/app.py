@@ -45,8 +45,7 @@ api.add_resource(leagues.Leagues, "/api/leagues")
 api.add_resource(leagues.League, "/api/leagues/<name>")
 api.add_resource(leagueEvents.LeagueEvents, "/api/leagues/<name>/events")
 api.add_resource(
-    leagueEvents.LeagueEventsWithUploadKey,
-    "/api/leagues/<name>/events/uploadKey",
+    leagueEvents.LeagueEventsWithUploadKey, "/api/leagues/<name>/events/uploadKey",
 )
 api.add_resource(
     leagueResults.ResultsForCourse, "/api/leagues/<name>/results/<course>",
@@ -74,8 +73,7 @@ api.add_resource(resultsTransfer.TransferResult, "/api/results/transfer")
 api.add_resource(results.Result, "/api/results/<resultId>")
 api.add_resource(eventResults.ResultsForEvent, "/api/events/<eventId>/results")
 api.add_resource(
-    competitorResults.ResultsForCompetitor,
-    "/api/competitors/<competitorId>/results",
+    competitorResults.ResultsForCompetitor, "/api/competitors/<competitorId>/results",
 )
 
 api.add_resource(uploadFile.Upload, "/api/upload")
@@ -104,9 +102,7 @@ def api_catch_all(path):
 @app.route("/manifest.json")
 @app.route("/service-worker.js")
 def static_from_root():
-    return send_from_directory(
-        app.static_folder, request.path[1:], cache_timeout=0
-    )
+    return send_from_directory(app.static_folder, request.path[1:], cache_timeout=0)
 
 
 if __name__ == "__main__":

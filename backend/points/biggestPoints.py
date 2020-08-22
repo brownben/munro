@@ -31,8 +31,6 @@ def findBiggestPoints(points, number):
             lastLocation = positionOfLastOccurance(
                 sortedPoints[counter], pointsArray, biggest
             )
-            biggest.append(
-                pointsArray.index(sortedPoints[counter], lastLocation + 1)
-            )
+            biggest.append(pointsArray.index(sortedPoints[counter], lastLocation + 1))
 
     return biggest

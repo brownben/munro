@@ -10,9 +10,7 @@ def assignPoints(data, leagueScoringMethod):
         return False
 
 
-def timeFromAveragePoints(
-    data, averagePoints=1000, standardDeviationPoints=200
-):
+def timeFromAveragePoints(data, averagePoints=1000, standardDeviationPoints=200):
     courseStats = calculateCourseAverage(data)
     dataWithPoints = []
 

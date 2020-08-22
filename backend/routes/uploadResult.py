@@ -8,18 +8,10 @@ from .returnMessages import returnMessage, returnError
 
 
 resultParser = reqparse.RequestParser()
-resultParser.add_argument(
-    "eventId", help="This field cannot be blank", required=True
-)
-resultParser.add_argument(
-    "time", help="This field cannot be blank", required=True
-)
-resultParser.add_argument(
-    "name", help="This field cannot be blank", required=True
-)
-resultParser.add_argument(
-    "course", help="This field cannot be blank", required=True
-)
+resultParser.add_argument("eventId", help="This field cannot be blank", required=True)
+resultParser.add_argument("time", help="This field cannot be blank", required=True)
+resultParser.add_argument("name", help="This field cannot be blank", required=True)
+resultParser.add_argument("course", help="This field cannot be blank", required=True)
 
 
 class UploadResult(Resource):
@@ -64,15 +56,10 @@ class UploadResult(Resource):
                 }
             )
 
-            upload.recalculateResults(
-                data["eventId"], leagueOfEvent["scoringMethod"]
-            )
+            upload.recalculateResults(data["eventId"], leagueOfEvent["scoringMethod"])
             dynamicPoints.calculate(eventData["league"])
 
             return returnMessage("Points Assigned")
 
         except:
-            return returnError(
-                "Error: Problem Uploading Result - Please Try Again"
-            )
-
+            return returnError("Error: Problem Uploading Result - Please Try Again")
