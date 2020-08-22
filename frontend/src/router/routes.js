@@ -26,12 +26,12 @@ const loginRoutes = [
     path: '/logout',
     beforeEnter: function (to, from, next) {
       // Logout then redirect to the home page
+      next('/')
       store
         .dispatch('logout')
-        .then(() => {
-          next('/')
+        .then(() =>
           store.dispatch('createMessage', 'Goodbye - Logged Out Successfully')
-        })
+        )
         .catch(() =>
           store.dispatch(
             'createMessage',

@@ -12,7 +12,7 @@ export interface FetchConfig {
   headers?: {
     'Content-Type'?: string
   }
-  data?: object
+  body?: string
 }
 
 export interface ServerMessage {

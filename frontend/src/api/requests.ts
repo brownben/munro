@@ -10,7 +10,7 @@ export const postData = <T>(config: RequestConfig): Promise<T | null> =>
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      data: config.data,
+      body: JSON.stringify(config.data),
     },
     config
   )
@@ -21,7 +21,7 @@ export const putData = <T>(config: RequestConfig): Promise<T | null> =>
     {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      data: config.data,
+      body: JSON.stringify(config.data),
     },
     config
   )
