@@ -23,20 +23,9 @@
     />
   </Layout>
 </template>
-
-<script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-
-import Layout from '../components/Layout.vue'
-import LeagueOverviewCard from '../components/cards/LeagueOverviewCard.vue'
-
-import { getLeagues } from '../api/leagues'
-
-export const leagues = ref([])
-
-onMounted(async () => {
-  leagues.value = await getLeagues()
-})
+<script lang="ts">
+import Layout from '/@/components/Layout.vue'
+import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 
 export default {
   components: {
@@ -44,4 +33,15 @@ export default {
     LeagueOverviewCard,
   },
 }
+</script>
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+
+import { League, getLeagues } from '/@/api/leagues'
+
+export const leagues = ref<League[]>([])
+
+onMounted(async () => {
+  leagues.value = await getLeagues()
+})
 </script>

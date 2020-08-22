@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="latestResults && latestResults.length > 1"
+    v-if="events && events.length >= 3"
     class="w-full pt-8 pb-10 bg-gray-50"
   >
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
@@ -20,7 +20,7 @@
 
       <div class="grid grid-cols-2 gap-8 px-6 mx-auto md:grid-cols-3">
         <EventCard
-          v-for="event of latestResults.slice(0, 3)"
+          v-for="event of events.slice(0, 3)"
           :key="event.key"
           :event="event"
         />
@@ -28,37 +28,23 @@
     </div>
   </section>
 </template>
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import EventCard from '/@/components/cards/EventCardSmall.vue'
 
 export default {
   components: {
     EventCard,
   },
-
-  data: function () {
-    return {
-      latestResults: [],
-    }
-  },
-
-  mounted: function () {
-    this.getEventsWithResults()
-  },
-
-  methods: {
-    getEventsWithResults: function () {
-      return axios
-        .get('/api/events/latest-results')
-        .then((response) => {
-          this.latestResults = response.data
-        })
-        .catch(() => {
-          this.latestResults = false
-        })
-    },
-  },
 }
+</script>
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+
+import { Event, getLatestResults } from '/@/api/events'
+
+export const events = ref<Event[]>([])
+
+onMounted(async () => {
+  events.value = await getLatestResults()
+})
 </script>
