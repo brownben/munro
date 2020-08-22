@@ -12,7 +12,7 @@
       <div
         class="flex flex-col items-start justify-between sm:items-center sm:flex-row"
       >
-        <h1 class="mb-4 text-3xl font-bold md:mb-0">
+        <h1 class="mb-4 text-3xl font-bold leading-tight sm:mb-0 font-heading">
           Search
         </h1>
         <SearchBox />
@@ -88,9 +88,9 @@
     </p>
   </Layout>
 </template>
-<script>
+
+<script lang="ts">
 import { defineAsyncComponent } from 'vue'
-import axios from 'axios'
 
 import Layout from '/@/components/Layout.vue'
 import SearchBox from '/@/components/inputs/SearchBox.vue'
@@ -111,43 +111,37 @@ export default {
     CompetitorOverviewCard,
     NoResults,
   },
-
-  data: function () {
-    return {
-      events: [],
-      leagues: [],
-      competitors: [],
-      loading: true,
-    }
-  },
-
-  watch: {
-    // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    $route: {
-      immediate: true,
-      handler: function () {
-        this.getDetails()
-      },
-    },
-  },
-
-  methods: {
-    getDetails: function () {
-      this.loading = true
-      return axios
-        .get(`/api/search?query=${this.$route.params.query ?? ''}`)
-        .then((response) => {
-          this.events = response.data.events
-          this.leagues = response.data.leagues
-          this.competitors = response.data.competitors
-        })
-        .then(() => {
-          this.loading = false
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Data')
-        )
-    },
-  },
 }
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+
+import { toSingleString } from '/@/scripts/typeHelpers'
+
+import $store from '/@/store/index'
+import $router from '/@/router/index'
+const { currentRoute: $route } = $router
+
+import { League, Event, Competitor } from '@/api/types'
+import { getQuery } from '/@/api/search'
+
+const loading = ref(true)
+const leagues = ref<League[]>([])
+const events = ref<Event[]>([])
+const competitors = ref<Competitor[]>([])
+
+const getDetails = async () => {
+  loading.value = true
+  const routeParamsQuery = toSingleString($route.value.params.query || '')
+  const queryResult = await getQuery(routeParamsQuery)
+
+  leagues.value = queryResult.leagues
+  events.value = queryResult.events
+  competitors.value = queryResult.competitors
+  loading.value = false
+}
+
+watch($route, getDetails, { immediate: true })
+
+export { loading, leagues, events, competitors }
 </script>

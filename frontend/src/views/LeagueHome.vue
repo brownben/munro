@@ -179,7 +179,7 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 
-import { toSingleString } from '/@/helpers'
+import { toSingleString } from '/@/scripts/typeHelpers'
 
 import $store from '/@/store/index'
 import $router from '/@/router/index'
@@ -188,11 +188,11 @@ const { currentRoute: $route } = $router
 import { League, getLeague, deleteLeague } from '/@/api/leagues'
 import { Event, getLeagueEvents } from '/@/api/events'
 
-export const loading = ref(false)
-export const league = ref<League | null>(null)
-export const events = ref<Event[]>([])
-
-export const refreshDetails = async () => {
+/* Get Data */
+const loading = ref(true)
+const league = ref<League | null>(null)
+const events = ref<Event[]>([])
+const refreshDetails = async () => {
   const routeParamsName = toSingleString($route.value.params.name)
   loading.value = true
 
@@ -209,10 +209,12 @@ export const refreshDetails = async () => {
 
   loading.value = false
 }
-
 watch($route, refreshDetails, { immediate: true })
 
-export const deleteLeagueConfirmation = () => {
+export { loading, league, events, refreshDetails }
+
+/* Template Methods */
+const deleteLeagueConfirmation = () => {
   const routeParamsName = toSingleString($route.value.params.name)
 
   if (
@@ -224,14 +226,12 @@ export const deleteLeagueConfirmation = () => {
       .then(() => $router.push('/'))
       .catch(() => false)
 }
-
-export const leagueCourses = computed(() => {
+const leagueCourses = computed(() => {
   const array = league.value?.courses
   if (array.length <= 1) return array.join(', ')
   else return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
 })
-
-export const scoringMethodShorthandToFull = (value: string): string => {
+const scoringMethodShorthandToFull = (value: string): string => {
   if (value === 'position') return 'Position Based System (100 Max)'
   else if (value === 'position50') return 'Position Based System (50 Max)'
   else if (value === 'position99') return 'Position Based System (99 Max)'
@@ -248,4 +248,6 @@ export const scoringMethodShorthandToFull = (value: string): string => {
   else if (value === 'file') return 'from the points uploaded'
   else return ''
 }
+
+export { deleteLeagueConfirmation, leagueCourses, scoringMethodShorthandToFull }
 </script>

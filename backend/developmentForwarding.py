@@ -21,6 +21,9 @@ def forwardToVue(path):
     elif "png" in path:
         mimeType = "image/png"
 
+    if request.args.get("index"):
+        suffix += "&index=0"
+
     standardRequest = requests.get(
         f"http://localhost:{port}/{path}{suffix}"
     ).text
