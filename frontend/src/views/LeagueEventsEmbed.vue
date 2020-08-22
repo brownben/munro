@@ -34,7 +34,7 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 
-import { toSingleString } from '/@/helpers'
+import { toSingleString } from '/@/scripts/typeHelpers'
 
 import $router from '/@/router/index'
 const { currentRoute: $route } = $router
@@ -42,11 +42,11 @@ const { currentRoute: $route } = $router
 import { League, getLeague } from '/@/api/leagues'
 import { Event, getLeagueEvents } from '/@/api/events'
 
-export const loading = ref(false)
-export const league = ref<League | null>(null)
-export const events = ref<Event[]>([])
+const loading = ref(true)
+const league = ref<League | null>(null)
+const events = ref<Event[]>([])
 
-export const refreshDetails = async () => {
+const refreshDetails = async () => {
   const routeParamsName = toSingleString($route.value.params.name)
   loading.value = true
 
@@ -65,4 +65,6 @@ export const refreshDetails = async () => {
 }
 
 watch($route, refreshDetails, { immediate: true })
+
+export { loading, league, events }
 </script>

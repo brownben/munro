@@ -32,7 +32,7 @@ const showSuccessMessage = <T>(data: T, config: RequestConfig): T => {
 }
 
 const handleError = (error: Error, config: RequestConfig): null => {
-  if (config.useServerErrorMessage ?? true) addMessage(error.message)
+  if (config.useServerErrorMessage) addMessage(error.message)
   if (config.customErrorMessage) addMessage(config.customErrorMessage)
   if (config.customErrorHandler) throw error
 

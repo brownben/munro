@@ -81,8 +81,8 @@ export default {
       this.$emit('changed', {
         name: this.name,
         club: this.club,
-        minAge: this.minAge,
-        maxAge: this.maxAge,
+        minAge: this.minAge || 0,
+        maxAge: this.maxAge || 100,
         male: this.male,
         female: this.female,
       })
