@@ -55,5 +55,11 @@ module.exports = {
       },
     ],
     'vue/html-indent': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+      },
+    ],
   },
 }
