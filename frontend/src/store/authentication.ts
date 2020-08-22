@@ -1,5 +1,5 @@
 import { GetterTree, MutationTree, ActionTree } from 'vuex'
-import { postData } from '/@/api/fetchData'
+import { postData } from '/@/api/requests'
 
 interface user {
   idToken?: string
@@ -31,8 +31,9 @@ const actions = <ActionTree<State, string>>{
         returnSecureToken: true,
       },
       useServerErrorMessage: false,
-      useServerSuccessMessage: false,
-    }).then((user: user) => {
+      customErrorHandler: true,
+    }).then((user: user | null) => {
+      if (user === null) throw new Error()
       context.commit('setUser', user)
       document.cookie = `token=${user.idToken};secure;samesite=strict;path=/`
       return context.state.user
