@@ -6,4 +6,6 @@ export default {
   outDir: '../backend/dist/static',
   assetsDir: './',
   base: '/static',
+
+  esbuildTarget: 'es2015',
 }
