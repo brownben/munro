@@ -25,9 +25,7 @@
     />
   </Layout>
 </template>
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
 import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 
@@ -36,36 +34,16 @@ export default {
     Layout,
     EventOverviewCard,
   },
-
-  data: function () {
-    return {
-      events: [],
-    }
-  },
-
-  watch: {
-    // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    $route: function () {
-      this.getEventsWithResults()
-    },
-  },
-
-  mounted: function () {
-    // Get details on load
-    this.getEventsWithResults()
-  },
-
-  methods: {
-    getEventsWithResults: function () {
-      return axios
-        .get('/api/events/latest-results')
-        .then((response) => {
-          this.events = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Getting Event Details')
-        )
-    },
-  },
 }
+</script>
+<script lang="ts" setup>
+import { ref, onMounted } from 'vue'
+
+import { Event, getLatestResults } from '/@/api/events'
+
+export const events = ref<Event[]>([])
+
+onMounted(async () => {
+  events.value = await getLatestResults()
+})
 </script>

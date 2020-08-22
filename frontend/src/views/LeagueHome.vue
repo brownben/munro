@@ -7,7 +7,11 @@
 -->
 
 <template>
-  <Layout :footer="league.name && events && events.length > 0" gray>
+  <Layout
+    gray
+    :not-found="!league && !loading"
+    :footer="league && league.name && events && events.length > 0"
+  >
     <Meta
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -19,21 +23,21 @@
 
     <template #title>
       <h1 class="text-3xl font-bold leading-tight font-heading">
-        {{ league.name }}
+        {{ league?.name || $route.params.name }}
       </h1>
-      <h2 v-if="league.description" class="mt-2 text-lg font-heading">
+      <h2 v-if="league && league.description" class="mt-2 text-lg font-heading">
         {{ league.description }}
       </h2>
     </template>
 
-    <template #white>
+    <template v-if="league" #white>
       <section class="w-full text-left bg-white">
         <p v-if="league.courses" class="w-full leading-6 text-gray-600">
           There are normally
           {{ league.courses.length }} courses -
-          <span class="text-gray-900 md:text-lg font-heading">{{
-            naturalJoin(league.courses)
-          }}</span>
+          <span class="text-gray-900 md:text-lg font-heading">
+            {{ leagueCourses }}
+          </span>
         </p>
         <p v-if="league.coordinator" class="w-full leading-6 text-gray-600">
           <span class="text-gray-900 md:text-lg font-heading">{{
@@ -88,9 +92,9 @@
       </section>
     </template>
 
-    <template #fullWidth>
+    <template v-if="league" #fullWidth>
       <section
-        v-if="$store.getters.loggedIn && league && league.name"
+        v-if="$store.getters.loggedIn && league.name"
         class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
       >
         <h2 class="text-2xl font-bold font-heading">
@@ -100,7 +104,7 @@
           <router-link :to="`${$route.path}/edit`" class="button button-white">
             Edit League
           </router-link>
-          <button class="button button-white" @click="deleteLeague">
+          <button class="button button-white" @click="deleteLeagueConfirmation">
             Delete League
           </button>
           <router-link
@@ -131,7 +135,7 @@
       </section>
     </template>
 
-    <template v-if="league && league.name">
+    <template v-if="league">
       <div
         v-if="events && events.length > 0"
         class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
@@ -159,143 +163,89 @@
         @event-changed="refreshDetails"
       />
     </template>
-    <NotFound v-if="!league" />
   </Layout>
 </template>
-
-<script>
-import { defineAsyncComponent } from 'vue'
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
 import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
-
-const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
 export default {
   components: {
     Layout,
     EventOverviewCard,
-
-    NotFound,
   },
+}
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
 
-  data: function () {
-    return {
-      league: {},
-      events: [],
-    }
-  },
+import { toSingleString } from '/@/helpers'
 
-  watch: {
-    // Update details if the league in the URL changes (VueJS problem where no reload if the parameter part changes, so needs watched)
-    $route: function () {
-      this.refreshDetails()
-    },
-  },
+import $store from '/@/store/index'
+import $router from '/@/router/index'
+const { currentRoute: $route } = $router
 
-  mounted: function () {
-    // Get details on load
-    this.refreshDetails()
-  },
+import { League, getLeague, deleteLeague } from '/@/api/leagues'
+import { Event, getLeagueEvents } from '/@/api/events'
 
-  methods: {
-    refreshDetails: function () {
-      return this.getLeague().then(() => this.getLeagueEvents())
-    },
+export const loading = ref(false)
+export const league = ref<League | null>(null)
+export const events = ref<Event[]>([])
 
-    scoringMethodShorthandToFull: (value) => {
-      if (value === 'position') return 'Position Based System (100 Max)'
-      else if (value === 'position50') return 'Position Based System (50 Max)'
-      else if (value === 'position99') return 'Position Based System (99 Max)'
-      else if (value === 'position99average')
-        return 'Position Based System (99 Max, Reduced in a Draw)'
-      else if (value === 'positionDouble')
-        return 'Position Based System (100 Max, Double Points)'
-      else if (value === 'position50Double')
-        return 'Position Based System (50 Max, Double Points)'
-      else if (value === 'timeAverage')
-        return 'Time Relative to Average System (1000 Average)'
-      else if (value === 'timeAverage100')
-        return 'Time Relative to Average System (100 Average)'
-      else if (value === 'file') return 'from the points uploaded'
-      else return ''
-    },
+export const refreshDetails = async () => {
+  const routeParamsName = toSingleString($route.value.params.name)
+  loading.value = true
 
-    getLeague: function () {
-      return axios
-        .get(`/api/leagues/${this.$route.params.name}`)
-        .then((response) => {
-          this.league = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Getting League Details'
-          )
-        )
-    },
-
-    getLeagueEvents: function () {
-      if (this.league?.name) {
-        if (this.$store.getters.loggedIn) {
-          return axios
-            .get(`/api/leagues/${this.league.name}/events/uploadKey`)
-            .then((response) => {
-              this.events = response.data
-            })
-            .catch(() =>
-              this.$store.dispatch(
-                'createMessage',
-                'Problem Getting Event Details'
-              )
-            )
-        } else {
-          return axios
-            .get(`/api/leagues/${this.league.name}/events`)
-            .then((response) => {
-              this.events = response.data
-            })
-            .catch(() =>
-              this.$store.dispatch(
-                'createMessage',
-                'Problem Getting Event Details'
-              )
-            )
-        }
+  await Promise.all([
+    getLeagueEvents(routeParamsName, $store.getters.loggedIn).then(
+      (eventDetails) => {
+        events.value = eventDetails
       }
-      return false
-    },
+    ),
+    getLeague(routeParamsName).then((leagueDetails) => {
+      league.value = leagueDetails
+    }),
+  ])
 
-    deleteLeague: function () {
-      if (
-        confirm(
-          `Are you Sure you Want to Delete League - ${this.league.name}? \nThis Action Can't Be Recovered`
-        )
-      ) {
-        return axios
-          .delete(`/api/leagues/${this.league.name}`)
-          .then(() => {
-            this.$store.dispatch(
-              'createMessage',
-              `League: ${this.league.name} was Deleted`
-            )
-            this.$router.push('/')
-          })
-          .catch(() =>
-            this.$store.dispatch(
-              'createMessage',
-              'Problem Deleting League - Please Try Again'
-            )
-          )
-      }
-    },
+  loading.value = false
+}
 
-    naturalJoin: function (array) {
-      if (array.length <= 1) return array.join(', ')
-      else
-        return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
-    },
-  },
+watch($route, refreshDetails, { immediate: true })
+
+export const deleteLeagueConfirmation = () => {
+  const routeParamsName = toSingleString($route.value.params.name)
+
+  if (
+    confirm(
+      `Are you Sure you Want to Delete League - ${league.value.name}? \nThis Action Can't Be Recovered`
+    )
+  )
+    deleteLeague(routeParamsName)
+      .then(() => $router.push('/'))
+      .catch(() => false)
+}
+
+export const leagueCourses = computed(() => {
+  const array = league.value?.courses
+  if (array.length <= 1) return array.join(', ')
+  else return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
+})
+
+export const scoringMethodShorthandToFull = (value: string): string => {
+  if (value === 'position') return 'Position Based System (100 Max)'
+  else if (value === 'position50') return 'Position Based System (50 Max)'
+  else if (value === 'position99') return 'Position Based System (99 Max)'
+  else if (value === 'position99average')
+    return 'Position Based System (99 Max, Reduced in a Draw)'
+  else if (value === 'positionDouble')
+    return 'Position Based System (100 Max, Double Points)'
+  else if (value === 'position50Double')
+    return 'Position Based System (50 Max, Double Points)'
+  else if (value === 'timeAverage')
+    return 'Time Relative to Average System (1000 Average)'
+  else if (value === 'timeAverage100')
+    return 'Time Relative to Average System (100 Average)'
+  else if (value === 'file') return 'from the points uploaded'
+  else return ''
 }
 </script>

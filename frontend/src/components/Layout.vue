@@ -1,6 +1,9 @@
 <template>
   <div class="flex flex-col flex-grow h-full">
-    <header v-if="title || $slots.title" class="text-gray-900 bg-white">
+    <header
+      v-if="(title || $slots.title) && !notFound"
+      class="text-gray-900 bg-white"
+    >
       <div
         class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8"
         :class="hasMobileSubTitle ? 'pt-3 md:pt-6' : 'pt-6'"
@@ -14,18 +17,19 @@
     </header>
 
     <main class="flex flex-col flex-grow">
-      <div v-if="$slots.white" class="bg-white">
+      <NotFound v-if="notFound" />
+      <div v-if="$slots.white && !notFound" class="bg-white">
         <div class="max-w-screen-xl pb-8 mx-auto sm:px-6 lg:px-8">
           <div class="px-6 sm:px-0">
             <slot name="white" />
           </div>
         </div>
       </div>
-      <div v-if="$slots.fullWidth" class="w-full">
+      <div v-if="$slots.fullWidth && !notFound" class="w-full">
         <slot name="fullWidth" />
       </div>
       <div
-        v-if="$slots.default"
+        v-if="$slots.default && !notFound"
         class="flex-grow"
         :class="gray ? 'bg-gray-50 border-t border-main-100 pt-8' : 'bg-white'"
       >
@@ -41,21 +45,26 @@
         </div>
       </div>
     </main>
-    <AppFooter v-if="footer" />
+    <AppFooter v-if="footer && !notFound" />
   </div>
 </template>
 <script>
+import { defineAsyncComponent } from 'vue'
+
 import AppFooter from '/@/components/Footer.vue'
+const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
 export default {
   components: {
     AppFooter,
+    NotFound,
   },
 
   props: {
     title: { type: String, default: '' },
     hasMobileSubTitle: { type: Boolean, default: false },
     gray: { type: Boolean, default: false },
+    notFound: { type: Boolean, default: false },
     footer: { type: Boolean, default: false },
   },
 }
