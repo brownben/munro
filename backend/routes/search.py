@@ -22,4 +22,3 @@ class Search(Resource):
 
         except:
             return returnError("Problem Searching Database")
-

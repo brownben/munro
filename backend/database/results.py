@@ -100,9 +100,7 @@ def courseResultToJSON(result, league, eventsList):
         # Get number of events to count in league
     numberOfCountingEvents = league["numberOfCountingEvents"]
     # Get events with results uploaded
-    eventsWithResults = [
-        event for event in eventsList if event["resultUploaded"]
-    ]
+    eventsWithResults = [event for event in eventsList if event["resultUploaded"]]
 
     # Split Points and events from database string
     # Place in record for each event
@@ -126,8 +124,7 @@ def courseResultToJSON(result, league, eventsList):
     ]
 
     types = [
-        getTypesForEvent(eventsByCompetitor, event["id"])
-        for event in eventsWithResults
+        getTypesForEvent(eventsByCompetitor, event["id"]) for event in eventsWithResults
     ]
 
     # Calculate the total and which scores make this
@@ -400,14 +397,10 @@ def getResultsForCourse(league, course):
     eventsList = events.getEventsOfLeague(league)
 
     for result in list(results):
-        resultsList.append(
-            courseResultToJSON(result, leagueDetails, eventsList)
-        )
+        resultsList.append(courseResultToJSON(result, leagueDetails, eventsList))
 
     # Return results sorted with positions assigned
-    sortedResults = sorted(
-        resultsList, key=lambda x: x["totalPoints"], reverse=True
-    )
+    sortedResults = sorted(resultsList, key=lambda x: x["totalPoints"], reverse=True)
     return assignPosition(sortedResults)
 
 

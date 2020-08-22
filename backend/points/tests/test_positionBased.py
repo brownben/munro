@@ -19,8 +19,7 @@ class Test_assignPoints:
     def test_normalResults99(self):
         results = [{"position": i + 1, "incomplete": False} for i in range(5)]
         output = [
-            {"position": i + 1, "points": 99 - i, "incomplete": False}
-            for i in range(5)
+            {"position": i + 1, "points": 99 - i, "incomplete": False} for i in range(5)
         ]
         assert assignPoints(results, "99") == output
 
@@ -43,8 +42,7 @@ class Test_assignPoints:
     def test_invalidResults(self):
         results = [{"position": i + 1, "incomplete": True} for i in range(5)]
         output = [
-            {"position": i + 1, "points": 0, "incomplete": True}
-            for i in range(5)
+            {"position": i + 1, "points": 0, "incomplete": True} for i in range(5)
         ]
         assert assignPoints(results, "") == output
 
@@ -56,8 +54,7 @@ class Test_assignPoints99WithDraw:
     def test_normalResults(self):
         results = [{"position": i + 1, "incomplete": False} for i in range(5)]
         output = [
-            {"position": i + 1, "points": 99 - i, "incomplete": False}
-            for i in range(5)
+            {"position": i + 1, "points": 99 - i, "incomplete": False} for i in range(5)
         ]
         assert assignPoints99WithDraw(results) == output
 
@@ -85,7 +82,6 @@ class Test_assignPoints99WithDraw:
     def test_invalidResults(self):
         results = [{"position": i + 1, "incomplete": True} for i in range(5)]
         output = [
-            {"position": i + 1, "points": 0, "incomplete": True}
-            for i in range(5)
+            {"position": i + 1, "points": 0, "incomplete": True} for i in range(5)
         ]
         assert assignPoints99WithDraw(results) == output

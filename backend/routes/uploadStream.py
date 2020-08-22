@@ -7,18 +7,10 @@ from database import events, results
 from .returnMessages import returnMessage, returnError
 
 streamParser = reqparse.RequestParser()
-streamParser.add_argument(
-    "eventId", help="This field cannot be blank", required=True
-)
-streamParser.add_argument(
-    "uploadKey", help="This field cannot be blank", required=True
-)
-streamParser.add_argument(
-    "file", help="This field cannot be blank", required=True
-)
-streamParser.add_argument(
-    "course", help="This field cannot be blank", required=True
-)
+streamParser.add_argument("eventId", help="This field cannot be blank", required=True)
+streamParser.add_argument("uploadKey", help="This field cannot be blank", required=True)
+streamParser.add_argument("file", help="This field cannot be blank", required=True)
+streamParser.add_argument("course", help="This field cannot be blank", required=True)
 
 
 class UploadStream(Resource):
@@ -36,30 +28,21 @@ class UploadStream(Resource):
         try:
             streamData = data["file"].split("\n")
             resultsList = [
-                upload.streamResultToDict(
-                    result, data["eventId"], data["course"]
-                )
+                upload.streamResultToDict(result, data["eventId"], data["course"])
                 for result in streamData
             ]
             resultsToAdd = upload.newResults(existingResults, resultsList)
-            resultsWithCompetitors = upload.getCompetitorData(
-                eventData, resultsToAdd
-            )
+            resultsWithCompetitors = upload.getCompetitorData(eventData, resultsToAdd)
 
             for result in resultsWithCompetitors:
                 results.createResult(result)
 
-            upload.recalculateResults(
-                data["eventId"], leagueOfEvent["scoringMethod"]
-            )
+            upload.recalculateResults(data["eventId"], leagueOfEvent["scoringMethod"])
             dynamicPoints.calculate(eventData["league"])
 
             events.setResultsUploaded(True, data["eventId"])
 
-            return returnMessage(
-                str(len(resultsWithCompetitors)) + " Results Imported"
-            )
+            return returnMessage(str(len(resultsWithCompetitors)) + " Results Imported")
 
         except:
             return returnError("Problem Processing Uploaded Data")
-

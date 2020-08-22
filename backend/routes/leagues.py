@@ -7,9 +7,7 @@ from .returnMessages import returnMessage, returnError
 # Check POST request has all the relevent fields
 # Create request
 leagueParser = reqparse.RequestParser()
-leagueParser.add_argument(
-    "name", help="This field cannot be blank", required=True
-)
+leagueParser.add_argument("name", help="This field cannot be blank", required=True)
 leagueParser.add_argument("website")
 leagueParser.add_argument("coordinator")
 leagueParser.add_argument("numberOfCountingEvents")
@@ -42,9 +40,7 @@ class Leagues(Resource):
             leagues.createLeague(data)
             return returnMessage("League - {} was Created".format(name))
         except:
-            return returnError(
-                "Error: Problem Creating League - Please Try Again"
-            )
+            return returnError("Error: Problem Creating League - Please Try Again")
 
 
 class League(Resource):
@@ -57,18 +53,14 @@ class League(Resource):
         name = data["name"]
 
         if data["name"] != data["oldName"] and leagues.findLeague(name):
-            return returnError(
-                "League with Name - {} already Exists".format(name)
-            )
+            return returnError("League with Name - {} already Exists".format(name))
 
         try:
             leagues.updateLeague(data)
             return returnMessage("League - {} was Updated".format(name))
 
         except:
-            return returnError(
-                "Error: Problem Updating League - Please Try Again"
-            )
+            return returnError("Error: Problem Updating League - Please Try Again")
 
     @requireAuthentication
     def delete(self, name):

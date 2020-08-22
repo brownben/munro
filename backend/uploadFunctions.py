@@ -126,9 +126,7 @@ def streamResultToDict(result, event, course):
 def newResults(exisitingResults, latestResults):
     existingResultIds = [result["type"] for result in exisitingResults]
     return [
-        result
-        for result in latestResults
-        if result["type"] not in existingResultIds
+        result for result in latestResults if result["type"] not in existingResultIds
     ]
 
 
@@ -144,4 +142,3 @@ def getEventLeagueData(eventId):
             "error",
             returnError("Problem Getting Information from the Database"),
         )
-

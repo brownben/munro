@@ -9,15 +9,9 @@ from .returnMessages import returnMessage, returnError
 
 # Check POST request for upload has all the relevent fields
 uploadParser = reqparse.RequestParser()
-uploadParser.add_argument(
-    "eventId", help="This field cannot be blank", required=True
-)
-uploadParser.add_argument(
-    "uploadKey", help="This field cannot be blank", required=True
-)
-uploadParser.add_argument(
-    "file", help="This field cannot be blank", required=True
-)
+uploadParser.add_argument("eventId", help="This field cannot be blank", required=True)
+uploadParser.add_argument("uploadKey", help="This field cannot be blank", required=True)
+uploadParser.add_argument("file", help="This field cannot be blank", required=True)
 uploadParser.add_argument("overwrite")
 uploadParser.add_argument("results")
 uploadParser.add_argument("winsplits")
@@ -97,14 +91,9 @@ def saveUpload(data, eventData, dataWithPoints):
         )
 
     events.setResultsUploadedAndURLs(
-        True,
-        eventData["id"],
-        data["results"],
-        data["winsplits"],
-        data["routegadget"],
+        True, eventData["id"], data["results"], data["winsplits"], data["routegadget"],
     )
 
     dynamicPoints.calculate(eventData["league"])
 
     return returnMessage(str(len(dataWithCompetitors)) + " Results Saved")
-

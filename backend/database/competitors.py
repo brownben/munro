@@ -26,13 +26,7 @@ def createCompetitor(data):
         VALUES (%s,%s,%s,%s,%s)
         RETURNING rowid
         """,
-        (
-            data["name"],
-            data["ageClass"],
-            data["club"],
-            data["course"],
-            data["league"],
-        ),
+        (data["name"], data["ageClass"], data["club"], data["course"], data["league"],),
     )
     return result[0]
 

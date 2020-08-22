@@ -226,4 +226,3 @@ def getLatestEventsWithResults():
 
 def deleteAllEvents():
     query("DELETE FROM events")
-

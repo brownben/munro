@@ -20,4 +20,3 @@ class Test_biggestPoints:
         assert biggestPoints([1, 2, 3], 2) == [2, 1]
         assert biggestPoints([1, 1, 1], 1) == [0]
         assert biggestPoints([1, 1, 1], 2) == [0, 1]
-

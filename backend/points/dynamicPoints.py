@@ -12,4 +12,3 @@ def calculate(league):
         elif result["type"] == "average":
             average = round(sum(points) / len(points))
             results.updatePoints(result["id"], average)
-

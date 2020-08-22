@@ -30,9 +30,7 @@ class Results(Resource):
             return returnMessage("Result was Created")
 
         except:
-            return returnError(
-                "Error: Problem Creating Result - Please Try Again"
-            )
+            return returnError("Error: Problem Creating Result - Please Try Again")
 
     @requireAuthentication
     def delete(self):
@@ -45,9 +43,7 @@ class Result(Resource):
         try:
             return results.getResult(resultId)
         except:
-            return returnError(
-                "Error: Problem Fetching Result - Please Try Again"
-            )
+            return returnError("Error: Problem Fetching Result - Please Try Again")
 
     @requireAuthentication
     def put(self, resultId):
@@ -71,9 +67,7 @@ class Result(Resource):
             return returnMessage(message)
 
         except:
-            return returnError(
-                "Error: Problem Updating Results - Please Try Again"
-            )
+            return returnError("Error: Problem Updating Results - Please Try Again")
 
     @requireAuthentication
     def delete(self, resultId):
@@ -81,9 +75,7 @@ class Result(Resource):
             results.deleteResult(resultId)
             return returnMessage("Result Deleted")
         except:
-            return returnError(
-                "Error: Problem Deleting Result - Please Try Again"
-            )
+            return returnError("Error: Problem Deleting Result - Please Try Again")
 
 
 def updateFullResult(data):
@@ -105,4 +97,3 @@ def updatePartialResult(data):
     elif data.get("action") == "hide":
         results.updateResultHidden(data)
         return returnMessage("Result was Updated")
-
