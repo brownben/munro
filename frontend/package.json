@@ -17,7 +17,7 @@
     "build": "vite build && npm run generateServiceWorker"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.20.0",
     "headful": "^1.0.3",
     "register-service-worker": "^1.7.1",
     "vue": "^3.0.0-0",
