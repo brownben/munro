@@ -21,7 +21,7 @@
           v-model="searchQuery"
           type="text"
           spellcheck="false"
-          class="w-full py-2 pl-10 pr-24 font-sans leading-snug transition duration-300 ease-in-out bg-transparent border border-white border-opacity-50 outline-none appearance-none text-main-100 focus:border-opacity-100 focus:text-white rounded-shape focus:shadow-outline-white"
+          class="w-full py-2 pl-10 pr-24 font-sans leading-snug text-white transition duration-300 ease-in-out bg-transparent border border-white border-opacity-50 outline-none appearance-none focus:border-opacity-100 rounded-shape focus:shadow-outline-white"
           @focus="searchFocused = true"
           @blur="searchFocused = false"
         />
