@@ -44,7 +44,7 @@
           {{ event.moreInformation }}
         </p>
 
-        <p v-if="event.moreInformation" class="text-gray-500">
+        <p v-if="event.website" class="text-gray-500">
           More Information can be found on the
           <a
             :href="event.website"
