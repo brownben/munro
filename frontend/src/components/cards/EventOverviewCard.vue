@@ -16,7 +16,7 @@
       >
         {{ event.name }}
       </h2>
-      <h4 class="mt-1 text-lg text-gray-600 font-heading last:mb-4 md:mt-0">
+      <h3 class="mt-1 text-lg text-gray-600 font-heading last:mb-4 md:mt-0">
         <span v-if="event.date" class="leading-4">
           {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
             event.date.split('-')[0]
@@ -34,7 +34,7 @@
         >
           Organised By {{ event.organiser }}
         </span>
-      </h4>
+      </h3>
 
       <div
         v-if="showFullDetails && (event.moreInformation || event.website)"
