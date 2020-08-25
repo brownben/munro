@@ -20,13 +20,9 @@
           <template v-if="result.time">
             {{ elapsedTime(result.time) }}
           </template>
-          <template v-else>
-            *
-          </template>
+          <template v-else> * </template>
         </p>
-        <p class="inline-block text-sm text-gray-500 uppercase">
-          Time
-        </p>
+        <p class="inline-block text-sm text-gray-500 uppercase">Time</p>
       </div>
       <div
         class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
@@ -40,13 +36,9 @@
               {{ positionSuperscript(result.position) }}
             </sup>
           </template>
-          <template v-else>
-            *
-          </template>
+          <template v-else> * </template>
         </p>
-        <p class="inline-block text-sm text-gray-500 uppercase">
-          Position
-        </p>
+        <p class="inline-block text-sm text-gray-500 uppercase">Position</p>
       </div>
       <div
         class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
@@ -54,9 +46,7 @@
         <p class="text-5xl font-bold">
           {{ result.points }}
         </p>
-        <p class="inline-block text-sm text-gray-500 uppercase">
-          Points
-        </p>
+        <p class="inline-block text-sm text-gray-500 uppercase">Points</p>
       </div>
     </div>
 
@@ -92,20 +82,12 @@
       </div>
       <div class="w-full mt-2">
         <button class="button button-dark" @click="incompleteResult">
-          <template v-if="result.incomplete">
-            Mark as Complete
-          </template>
-          <template v-else>
-            Mark as Incomplete
-          </template>
+          <template v-if="result.incomplete"> Mark as Complete </template>
+          <template v-else> Mark as Incomplete </template>
         </button>
         <button class="button button-dark" @click="hideResult">
-          <template v-if="result.type !== 'hidden'">
-            Hide Result
-          </template>
-          <template v-else>
-            Include Result
-          </template>
+          <template v-if="result.type !== 'hidden'"> Hide Result </template>
+          <template v-else> Include Result </template>
         </button>
       </div>
     </div>

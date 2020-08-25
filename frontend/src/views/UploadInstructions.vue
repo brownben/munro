@@ -30,9 +30,7 @@
       :number="2"
       title="Enter the Event ID and the 20 digit Upload Key Provided"
     >
-      <p>
-        The event name should now be displayed.
-      </p>
+      <p>The event name should now be displayed.</p>
       <p>
         The Event ID will be the the form LeagueNameEventNameYYYY-MM-DD with all
         spaces removed.

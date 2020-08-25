@@ -83,9 +83,7 @@
       secondary-text="Try Tweaking Your Search Query To Find a Match"
       class="col-span-2"
     />
-    <p v-else>
-      &nbsp;
-    </p>
+    <p v-else>&nbsp;</p>
   </Layout>
 </template>
 
@@ -98,8 +96,8 @@ import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 import CompetitorOverviewCard from '/@/components/cards/CompetitorOverviewCard.vue'
 
-const NoResults = defineAsyncComponent(() =>
-  import('/@/components/cards/NoResultsCard.vue')
+const NoResults = defineAsyncComponent(
+  () => import('/@/components/cards/NoResultsCard.vue')
 )
 
 export default {

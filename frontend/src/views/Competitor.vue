@@ -33,9 +33,7 @@
       v-if="competitor && $store.getters.loggedIn"
       class="col-span-2 card card-color-dark"
     >
-      <h2 class="text-3xl font-bold text-white font-heading">
-        Admin Actions
-      </h2>
+      <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
 
       <div>
         <router-link

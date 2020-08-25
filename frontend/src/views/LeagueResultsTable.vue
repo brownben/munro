@@ -208,9 +208,7 @@
       v-if="!loading && rawResults.length > 0 && otherCourses.length > 0"
       class="col-span-2 mt-6 card"
     >
-      <h2 class="text-2xl font-bold font-heading">
-        Results for Other Courses
-      </h2>
+      <h2 class="text-2xl font-bold font-heading">Results for Other Courses</h2>
       <div class="w-full">
         <router-link
           v-for="course in otherCourses"
@@ -231,8 +229,8 @@ import Layout from '/@/components/Layout.vue'
 import FilterMenu from '/@/components/FilterMenu.vue'
 import UpDownArrow from '/@/components/UpDownArrows.vue'
 import ExpandingTableRow from '/@/components/ExpandingTableRow.vue'
-const NoResultsCard = defineAsyncComponent(() =>
-  import('/@/components/cards/NoResultsCard.vue')
+const NoResultsCard = defineAsyncComponent(
+  () => import('/@/components/cards/NoResultsCard.vue')
 )
 
 export default {

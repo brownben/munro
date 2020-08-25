@@ -33,12 +33,8 @@
           class="mt-4"
         />
 
-        <button v-if="create" class="mt-8 button-lg">
-          Create Competitor
-        </button>
-        <button v-else class="mt-8 button-lg">
-          Update Competitor
-        </button>
+        <button v-if="create" class="mt-8 button-lg">Create Competitor</button>
+        <button v-else class="mt-8 button-lg">Update Competitor</button>
       </form>
     </Layout>
     <not-found v-else />

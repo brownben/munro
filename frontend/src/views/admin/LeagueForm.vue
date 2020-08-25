@@ -78,12 +78,8 @@
           label="More Information:"
           class="mt-4"
         />
-        <button v-if="create" class="mt-8 button-lg">
-          Create League
-        </button>
-        <button v-else class="mt-8 button-lg">
-          Update League
-        </button>
+        <button v-if="create" class="mt-8 button-lg">Create League</button>
+        <button v-else class="mt-8 button-lg">Update League</button>
       </form>
     </Layout>
     <not-found v-else />

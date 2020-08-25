@@ -31,9 +31,7 @@
     </div>
 
     <div class="col-span-2 card">
-      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">
-        API
-      </h2>
+      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">API</h2>
       <p>
         All methods use a standard HTTP GET request. The event id is made by
         combining the league name, event name and date and removing all spaces,
@@ -66,9 +64,7 @@
       <p>All results</p>
     </div>
     <div class="col-span-2 card">
-      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">
-        Embed
-      </h2>
+      <h2 class="my-2 text-3xl font-bold text-gray-900 font-heading">Embed</h2>
       <p>
         Currently there are two pages designed for embedding in Iframes. Place
         in an IFrame like:
