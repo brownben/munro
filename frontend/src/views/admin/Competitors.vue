@@ -30,9 +30,7 @@
     </template>
 
     <div class="col-span-2 card card-color-dark">
-      <h2 class="text-3xl font-bold text-white font-heading">
-        Admin Actions
-      </h2>
+      <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
 
       <div class="w-full">
         <router-link to="/competitors/create" class="button button-white">

@@ -60,9 +60,7 @@
         class="mt-4"
       />
 
-      <button class="mt-8 button-lg">
-        Transfer Result
-      </button>
+      <button class="mt-8 button-lg">Transfer Result</button>
     </form>
   </Layout>
 </template>

@@ -66,9 +66,7 @@
       >
         Logout
       </router-link>
-      <p class="inline-block text-sm text-gray-400 font-heading">
-        •
-      </p>
+      <p class="inline-block text-sm text-gray-400 font-heading">•</p>
       <a
         href="mailto:munro.leagues@gmail.com"
         class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"

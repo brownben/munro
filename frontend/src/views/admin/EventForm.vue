@@ -78,12 +78,8 @@
           label="Allow Users to Submit Results"
           class="mt-6 text-left"
         />
-        <button v-if="create" class="mt-8 button-lg">
-          Create Event
-        </button>
-        <button v-if="!create" class="mt-8 button-lg">
-          Update Event
-        </button>
+        <button v-if="create" class="mt-8 button-lg">Create Event</button>
+        <button v-if="!create" class="mt-8 button-lg">Update Event</button>
       </form>
     </Layout>
     <not-found v-else />

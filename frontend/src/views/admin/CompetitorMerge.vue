@@ -52,9 +52,7 @@
         label="Competitor to be Merged:"
         class="mt-4"
       />
-      <button class="mt-8 button-lg">
-        Merge Competitors
-      </button>
+      <button class="mt-8 button-lg">Merge Competitors</button>
     </form>
   </Layout>
 </template>

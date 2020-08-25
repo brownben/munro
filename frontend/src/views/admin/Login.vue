@@ -22,9 +22,7 @@
         class="mt-4"
       />
 
-      <button class="mt-6 button-lg">
-        Login
-      </button>
+      <button class="mt-6 button-lg">Login</button>
     </form>
 
     <div class="col-span-2 p-4 card card-color">
@@ -35,9 +33,7 @@
           Looking for Results Upload?
         </b>
         You don't have to login, just visit the
-        <router-link to="/upload" class="link">
-          upload page
-        </router-link>
+        <router-link to="/upload" class="link"> upload page </router-link>
       </p>
     </div>
   </Layout>

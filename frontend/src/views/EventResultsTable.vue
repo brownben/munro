@@ -112,9 +112,7 @@
           >
             *
           </td>
-          <td v-else-if="result.incomplete" class="position">
-            -
-          </td>
+          <td v-else-if="result.incomplete" class="position">-</td>
           <td v-else class="position">
             {{ result.position || '' }}
           </td>
@@ -155,8 +153,8 @@ import { defineAsyncComponent } from 'vue'
 import Layout from '/@/components/Layout.vue'
 import FilterMenu from '/@/components/FilterMenu.vue'
 import UpDownArrow from '/@/components/UpDownArrows.vue'
-const NoResultsCard = defineAsyncComponent(() =>
-  import('/@/components/cards/NoResultsCard.vue')
+const NoResultsCard = defineAsyncComponent(
+  () => import('/@/components/cards/NoResultsCard.vue')
 )
 
 export default {

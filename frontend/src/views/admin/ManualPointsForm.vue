@@ -50,9 +50,7 @@
         :max="10000"
       />
 
-      <button class="mt-8 button-lg">
-        Add Result
-      </button>
+      <button class="mt-8 button-lg">Add Result</button>
     </form>
   </Layout>
 </template>

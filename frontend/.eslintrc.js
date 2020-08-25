@@ -55,6 +55,7 @@ module.exports = {
       },
     ],
     'vue/html-indent': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
     'prettier/prettier': [
       'error',
       {
