@@ -1,8 +1,12 @@
 <template>
-  <tbody v-bind="$attrs">
-    <tr :class="{ striped: striped }" @click="open = !open">
+  <tbody v-bind="$attrs" class="group">
+    <tr
+      class="transition duration-300 ease-in-out bg-white border-collapse group-hover:bg-main-200"
+      :class="{ 'bg-main-50': striped }"
+      @click="open = !open"
+    >
       <slot />
-      <td v-if="smallWindow">
+      <td class="table-cell md:hidden">
         <svg
           :class="{ 'rotate-180': open }"
           width="16"
@@ -16,11 +20,15 @@
       </td>
     </tr>
     <transition name="shrink">
-      <template v-if="smallWindow && open">
-        <tr :class="{ striped: striped }" class="row-expansion">
+      <tr
+        v-show="open"
+        class="text-right transition duration-300 bg-white border-collapse md:hidden group-hover:bg-main-200"
+        :class="{ 'bg-main-50': striped }"
+      >
+        <td colspan="100%">
           <slot name="expansion" />
-        </tr>
-      </template>
+        </td>
+      </tr>
     </transition>
   </tbody>
 </template>
@@ -28,7 +36,6 @@
 <script>
 export default {
   props: {
-    smallWindow: { type: Boolean, default: false },
     striped: { type: Boolean, default: false },
   },
 

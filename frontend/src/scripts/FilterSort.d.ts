@@ -7,16 +7,31 @@ export interface FilterPreferences {
   female: boolean
 }
 
-export interface SortPreferences {
+export interface SortPreferencesEvent {
   ascending: boolean
-  by: SortablePropeties
+  by: SortablePropetiesEvent
 }
 
-export enum SortablePropeties {
+export interface SortPreferencesLeague {
+  ascending: boolean
+  by: SortablePropetiesLeague
+  event?: number
+}
+
+export enum SortablePropetiesEvent {
   name = 'name',
   age = 'age',
   position = 'position',
   club = 'club',
   time = 'time',
+  points = 'points',
+}
+
+export enum SortablePropetiesLeague {
+  name = 'name',
+  age = 'age',
+  position = 'position',
+  club = 'club',
+  totalPoints = 'totalPoints',
   points = 'points',
 }

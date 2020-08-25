@@ -173,9 +173,9 @@ import { ref, watch, computed } from 'vue'
 
 import { toSingleString } from '/@/scripts/typeHelpers'
 import {
-  resultWithAgeGender,
+  eventResultWithAgeGender as resultWithAgeGender,
   filterResults,
-  sortResults,
+  sortEventResults as sortResults,
   elapsedTime,
 } from '/@/scripts/processResults'
 
@@ -183,17 +183,17 @@ import $router from '/@/router/index'
 const { currentRoute: $route } = $router
 
 import { Event, getEvent } from '/@/api/events'
-import { Result, getEventResults } from '/@/api/results'
+import { EventResult, getEventResults } from '/@/api/results'
 import {
   FilterPreferences,
-  SortPreferences,
-  SortablePropeties,
+  SortPreferencesEvent as SortPreferences,
+  SortablePropetiesEvent as SortablePropeties,
 } from '/@/scripts/FilterSort.d'
 
 /* Get Data */
 const loading = ref(true)
 const event = ref<Event | null>(null)
-const rawResults = ref<Result[]>([])
+const rawResults = ref<EventResult[]>([])
 const getData = async () => {
   const routeParamsEvent = toSingleString($route.value.params.event)
   loading.value = true
