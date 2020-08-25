@@ -12,7 +12,7 @@
     class="w-full"
     wide
     has-mobile-sub-title
-    :not-found="!loading && rawResults.length > 0"
+    :not-found="!loading && !league?.name"
   >
     <Meta
       :title="`Munro - ${$route.params.league} - ${$route.params.course} Results`"
