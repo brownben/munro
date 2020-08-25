@@ -20,6 +20,7 @@ def leagueToJSON(league):
             "year": league[7],
             "dynamicEventResults": league[8],
             "moreInformation": league[9],
+            "numberOfEvents": league[10],
         }
     else:
         return False
@@ -152,43 +153,32 @@ def deleteLeague(name):
 
 
 def findLeague(name):
-    result = queryWithOneResult(
-        """
-        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents,courses, description, year, dynamicEventResults, moreInformation
-        FROM leagues
-        WHERE name=%s
-        ORDER BY year DESC, name ASC""",
-        (name,),
+    return leagueToJSON(
+        queryWithOneResult(
+            """
+        SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, COUNT(events.id)
+        FROM leagues, events
+        WHERE leagues.name=%s AND events.league=leagues.name
+        GROUP BY leagues.name
+        ORDER BY leagues.year DESC, leagues.name ASC
+        """,
+            (name,),
+        )
     )
-    json = leagueToJSON(result)
-    if json:
-        json["numberOfEvents"] = getNumberOfEventsInLeague(json["name"])
-    return json
 
 
 def getAllLeagues():
     result = queryWithResults(
         """
-        SELECT name,website,coordinator,scoringMethod,numberOfCountingEvents, courses, description, year, dynamicEventResults, moreInformation
-        FROM leagues
-        ORDER BY year DESC, name ASC"""
+        SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, COUNT(events.id)
+        FROM leagues, events
+        WHERE events.league=leagues.name
+        GROUP BY leagues.name
+        ORDER BY year DESC, name ASC
+        """
     )
-    leagues = list(map(leagueToJSON, result))
-    for league in leagues:
-        league["numberOfEvents"] = getNumberOfEventsInLeague(league["name"])
-    return leagues
+    return list(map(leagueToJSON, result))
 
 
 def deleteAllLeagues():
     query("DELETE FROM leagues")
-
-
-def getNumberOfEventsInLeague(name):
-    result = queryWithResults(
-        """
-        SELECT COUNT(events.name)
-        FROM events
-        WHERE events.league=%s""",
-        (name,),
-    )
-    return result[0][0]
