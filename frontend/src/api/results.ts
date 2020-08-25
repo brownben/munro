@@ -1,6 +1,6 @@
 import { getData } from './requests'
 
-export interface Result {
+export interface EventResult {
   id: number
   time: number
   position: number | ''
@@ -14,13 +14,47 @@ export interface Result {
   course: string
 }
 
-export interface ResultWithAgeGender extends Result {
+export interface LeagueResult {
+  id: number
+  name: string
+  ageClass: string
+  club: string
+
+  totalPoints: number
+  position: number | ''
+
+  points: EventPoints[]
+}
+
+interface EventPoints {
+  score: number | ''
+  counting: boolean
+  type: string
+}
+
+export interface EventResultWithAgeGender extends EventResult {
   age: number
   gender: string
 }
 
-export const getEventResults = (eventId: string): Promise<Result[] | null> =>
-  getData<Result[]>({
+export interface LeagueResultWithAgeGender extends LeagueResult {
+  age: number
+  gender: string
+}
+
+export const getEventResults = (
+  eventId: string
+): Promise<EventResult[] | null> =>
+  getData<EventResult[]>({
     apiLocation: `/api/events/${eventId}/results`,
+    customErrorMessage: 'Problem Fetching Results',
+  })
+
+export const getLeagueResults = (
+  league: string,
+  course: string
+): Promise<LeagueResult[] | null> =>
+  getData<LeagueResult[]>({
+    apiLocation: `/api/leagues/${league}/results/${course}`,
     customErrorMessage: 'Problem Fetching Results',
   })

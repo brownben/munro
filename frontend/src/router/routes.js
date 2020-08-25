@@ -122,11 +122,11 @@ const resultRoutes = [
     component: () => import('/@/views/EventResultsTable.vue'),
   },
   {
-    path: '/leagues/:name/results/:course',
+    path: '/leagues/:league/results/:course',
     component: () => import('/@/views/LeagueResultsTable.vue'),
   },
   {
-    path: '/embed/leagues/:name/results/:course',
+    path: '/embed/leagues/:league/results/:course',
     component: () => import('/@/views/LeagueResultsTable.vue'),
   },
   {

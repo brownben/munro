@@ -8,11 +8,16 @@
 -->
 
 <template>
-  <Layout class="w-full" wide has-mobile-sub-title>
+  <Layout
+    class="w-full"
+    wide
+    has-mobile-sub-title
+    :not-found="!loading && rawResults.length > 0"
+  >
     <Meta
-      :title="`Munro - ${$route.params.name} - ${$route.params.course} Results`"
-      :description="`Results from the ${$route.params.course} course of the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
-      :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}/results/${$route.params.course}`"
+      :title="`Munro - ${$route.params.league} - ${$route.params.course} Results`"
+      :description="`Results from the ${$route.params.course} course of the ${$route.params.league} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
+      :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.league}/results/${$route.params.course}`"
       :head="{
         meta: { name: 'robots', content: 'all' },
       }"
@@ -20,10 +25,10 @@
     <template #title>
       <h1 class="text-3xl font-bold leading-tight font-heading">
         <router-link
-          :to="'/leagues/' + $route.params.name"
+          :to="'/leagues/' + $route.params.league"
           class="text-xl text-main-700 md:text-3xl"
         >
-          {{ $route.params.name && $route.params.name.trim() }}
+          {{ $route.params?.league.trim() }}
         </router-link>
         <span class="hidden ml-2 mr-3 md:inline-block">-</span>
         <span class="block text-3xl md:inline-block">
@@ -33,81 +38,99 @@
     </template>
 
     <template #white>
-      <filter-menu class="col-span-2" @changed="filterChanged" />
+      <FilterMenu class="col-span-2" @changed="filterChanged" />
     </template>
 
     <template #fullWidth>
       <div
-        v-show="filteredResults && filteredResults.length > 0"
-        class="w-full col-span-2 px-6 mx-auto lg:px-8"
+        v-show="results && results.length > 0"
+        class="w-full col-span-2 px-6 mx-auto md:px-8"
         :class="{
           'max-w-screen-xl': eventsWithResults.length <= 10,
         }"
       >
-        <table class="table">
+        <table class="w-full border-collapse">
           <thead>
-            <tr>
-              <th class="position" @click="sortBy('position')">
+            <tr
+              class="transition duration-300 bg-white border-b border-collapse border-main-300"
+            >
+              <th
+                class="position"
+                @click="changeSortPreference(SortablePropeties.position)"
+              >
                 <p>Pos.</p>
                 <up-down-arrow
-                  :ascending="ascendingSort"
-                  :active="sortedBy === 'position'"
+                  :ascending="sortPreferences.ascending"
+                  :active="sortPreferences.by === SortablePropeties.position"
                 />
               </th>
-              <th class="name" @click="sortBy('name')">
+              <th
+                class="name"
+                @click="changeSortPreference(SortablePropeties.name)"
+              >
                 <p>Name</p>
                 <up-down-arrow
-                  :ascending="ascendingSort"
-                  :active="sortedBy === 'name'"
+                  :ascending="sortPreferences.ascending"
+                  :active="sortPreferences.by === SortablePropeties.name"
                 />
               </th>
-              <th class="ageClass" @click="sortBy('age')">
-                <p>Class</p>
+              <th
+                class="ageClass"
+                @click="changeSortPreference(SortablePropeties.age)"
+              >
+                Class
                 <up-down-arrow
-                  :ascending="ascendingSort"
-                  :active="sortedBy === 'age'"
+                  :ascending="sortPreferences.ascending"
+                  :active="sortPreferences.by === SortablePropeties.age"
                 />
               </th>
-              <th class="club" @click="sortBy('club')">
+              <th
+                class="club"
+                @click="changeSortPreference(SortablePropeties.club)"
+              >
                 <p>Club</p>
                 <up-down-arrow
-                  :ascending="ascendingSort"
-                  :active="sortedBy === 'club'"
+                  :ascending="sortPreferences.ascending"
+                  :active="sortPreferences.by === SortablePropeties.club"
                 />
               </th>
-              <th class="totalPoints" @click="sortBy('totalPoints')">
+              <th
+                class="totalPoints"
+                @click="changeSortPreference(SortablePropeties.totalPoints)"
+              >
                 <p>Points</p>
                 <up-down-arrow
-                  :ascending="ascendingSort"
-                  :active="sortedBy === 'totalPoints'"
+                  :ascending="sortPreferences.ascending"
+                  :active="sortPreferences.by === SortablePropeties.totalPoints"
                 />
               </th>
 
-              <template v-if="!smallWindow">
-                <th
-                  v-for="(event, i) of eventsWithResults"
-                  :key="event.id"
-                  class="relative points"
-                  @click="sortBy(`points-${i}`)"
-                >
-                  <p>{{ eventsWithResults.indexOf(event) + 1 }}</p>
-                  <span>{{ event.name }}</span>
-                  <up-down-arrow
-                    :ascending="ascendingSort"
-                    :active="sortedBy === `points-${i}`"
-                    class="points-arrow"
-                  />
-                </th>
-              </template>
-              <td v-else />
+              <th
+                v-for="(event, i) of eventsWithResults"
+                :key="event.id"
+                class="relative hidden points md:table-cell"
+                @click="changeSortPreference(SortablePropeties.points, i)"
+              >
+                <p>{{ i + 1 }}</p>
+                <span>{{ event.name }}</span>
+                <up-down-arrow
+                  :ascending="sortPreferences.ascending"
+                  :active="
+                    sortPreferences.by === SortablePropeties.points &&
+                    sortPreferences.event === i
+                  "
+                  class="points-arrow"
+                />
+              </th>
+
+              <td class="table-cell md:hidden" />
             </tr>
           </thead>
           <transition-group name="list">
             <ExpandingTableRow
-              v-for="(result, i) of filteredResults"
+              v-for="(result, i) of results"
               :key="result.id"
               :striped="i % 2 === 0"
-              :small-window="smallWindow"
             >
               <td class="position">
                 {{ result.position }}
@@ -132,35 +155,41 @@
               <td class="totalPoints">
                 {{ result.totalPoints }}
               </td>
-
-              <template v-if="!smallWindow">
-                <td
-                  v-for="point of result.points"
-                  :key="point.event"
-                  :class="{
-                    strikethrough: !point.counting,
-                    bold: ['manual', 'max', 'average'].includes(point.type),
-                  }"
-                  class="points"
-                >
-                  {{ point.score }}
-                </td>
-              </template>
+              <td
+                v-for="point of result.points"
+                :key="point.event"
+                class="hidden points md:table-cell"
+                :class="{
+                  'line-through': !point.counting,
+                  'font-normal italic': ['manual', 'max', 'average'].includes(
+                    point.type
+                  ),
+                }"
+              >
+                {{ point.score }}
+              </td>
 
               <template #expansion>
-                <td colspan="100%">
-                  <p v-for="(point, j) of result.points" :key="point.event">
-                    {{ eventsWithResults[j].name }}:
-                    <span
-                      :class="{
-                        strikethrough: !point.counting,
-                        bold: ['manual', 'max', 'average'].includes(point.type),
-                      }"
-                    >
-                      {{ point.score }}
-                    </span>
-                  </p>
-                </td>
+                <p
+                  v-for="(point, j) of result.points"
+                  :key="j"
+                  class="mr-4 text-right"
+                >
+                  {{ eventsWithResults[j].name }}:
+                  <span
+                    class="inline-block w-4 pl-2 pr-4"
+                    :class="{
+                      'line-through': !point.counting,
+                      'font-normal italic': [
+                        'manual',
+                        'max',
+                        'average',
+                      ].includes(point.type),
+                    }"
+                  >
+                    {{ point.score }}
+                  </span>
+                </p>
               </template>
             </ExpandingTableRow>
           </transition-group>
@@ -170,20 +199,23 @@
 
     <transition name="fade">
       <NoResultsCard
-        v-if="!loading && (!found || filteredResults.length === 0)"
+        v-if="!loading && results.length === 0"
         class="col-span-2 -mt-2 -mb-6 md:-mt-8"
       />
     </transition>
 
-    <div v-if="otherCourses.length > 0" class="col-span-2 mt-6 card">
+    <div
+      v-if="!loading && rawResults.length > 0 && otherCourses.length > 0"
+      class="col-span-2 mt-6 card"
+    >
       <h2 class="text-2xl font-bold font-heading">
         Results for Other Courses
       </h2>
-      <div>
+      <div class="w-full">
         <router-link
           v-for="course in otherCourses"
           :key="course"
-          :to="'/leagues/' + $route.params.name + '/results/' + course"
+          :to="'/leagues/' + $route.params.league + '/results/' + course"
           class="button"
         >
           {{ course }}
@@ -192,16 +224,13 @@
     </div>
   </Layout>
 </template>
-
-<script>
+<script lang="ts">
 import { defineAsyncComponent } from 'vue'
-import axios from 'axios'
 
 import Layout from '/@/components/Layout.vue'
 import FilterMenu from '/@/components/FilterMenu.vue'
 import UpDownArrow from '/@/components/UpDownArrows.vue'
 import ExpandingTableRow from '/@/components/ExpandingTableRow.vue'
-
 const NoResultsCard = defineAsyncComponent(() =>
   import('/@/components/cards/NoResultsCard.vue')
 )
@@ -214,248 +243,114 @@ export default {
     ExpandingTableRow,
     NoResultsCard,
   },
+}
+</script>
+<script lang="ts" setup>
+import { ref, watch, computed } from 'vue'
 
-  data: () => ({
-    smallWindow: false,
-    found: true,
-    rawResults: [],
-    events: [],
-    otherCourses: [],
-    sortedBy: 'position',
-    ascendingSort: false,
-    filterPreferences: {
-      name: '',
-      club: '',
-      minAge: 0,
-      maxAge: 100,
-      male: true,
-      female: true,
-    },
-    loading: true,
-  }),
+import { toSingleString } from '/@/scripts/typeHelpers'
+import {
+  leagueResultWithAgeGender as resultWithAgeGender,
+  filterResults,
+  sortLeagueResults as sortResults,
+  elapsedTime,
+} from '/@/scripts/processResults'
 
-  computed: {
-    resultsWithAgeClassSplit: function () {
-      // Split age class into age and gender to allow easy sorting
-      return this.rawResults.map((result) => {
-        if (result.ageClass) {
-          const regexMatch = result.ageClass.match(
-            /([MWmwfFDH])[^0-9]*([0-9]*)/
-          )
-          if (['M', 'H'].includes(regexMatch[1].toUpperCase()))
-            result.gender = 'M'
-          else if (['W', 'F', 'D'].includes(regexMatch[1].toUpperCase()))
-            result.gender = 'W'
-          else result.gender = ''
-          result.age = parseInt(regexMatch[2], 10)
-        } else result.gender = ''
-        return result
-      })
-    },
+import $router from '/@/router/index'
+const { currentRoute: $route } = $router
 
-    sortedResults: function () {
-      // Sort results by preference
-      let property = this.sortedBy
-      if (this.sortedBy.includes('points-'))
-        property = parseInt(property.split('-')[1], 10)
-      return this.sort(
-        this.resultsWithAgeClassSplit,
-        property,
-        this.ascendingSort,
-        this.sortedBy.includes('points-')
-      )
-    },
+import { League, getLeague } from '/@/api/leagues'
+import { Event, getLeagueEvents } from '/@/api/events'
+import { LeagueResult, getLeagueResults } from '/@/api/results'
+import {
+  FilterPreferences,
+  SortPreferencesLeague as SortPreferences,
+  SortablePropetiesLeague as SortablePropeties,
+} from '/@/scripts/FilterSort.d'
 
-    filteredResults: function () {
-      // Filter results by preferences
-      const matchesGender = (result) =>
-        (this.filterPreferences.male && this.filterPreferences.female) ||
-        (this.filterPreferences.male && result.gender === 'M') ||
-        (this.filterPreferences.female && result.gender === 'W') ||
-        (!this.filterPreferences.female &&
-          !this.filterPreferences.male &&
-          result.gender === '')
+/* Get Data */
+const loading = ref(true)
+const league = ref<League | null>(null)
+const eventsWithResults = ref<Event[]>([])
+const rawResults = ref<LeagueResult[]>([])
+const getData = async () => {
+  const routeParamsLeague = toSingleString($route.value.params.league)
+  const routeParamsCourse = toSingleString($route.value.params.course)
+  loading.value = true
 
-      const matchesAge = (result) =>
-        (this.filterPreferences.maxAge >= 100 &&
-          this.filterPreferences.minAge === 0) ||
-        (this.filterPreferences.minAge <= result.age &&
-          result.age <= this.filterPreferences.maxAge)
-
-      return this.sortedResults.filter(
-        (result) =>
-          result.name.match(new RegExp(this.filterPreferences.name, 'i')) &&
-          result.club.match(new RegExp(this.filterPreferences.club, 'i')) &&
-          matchesGender(result) &&
-          matchesAge(result)
-      )
-    },
-
-    eventsWithResults: function () {
-      // Get events with results
-      return this.events.filter((event) => event.resultUploaded)
-    },
-  },
-
-  // If route changes without reload (if only course parameter changes)
-  watch: {
-    $route: function () {
-      this.rawResults = []
-
-      this.loading = true
-      return this.getResults()
-        .then(() => this.getEventList())
-        .then(() => this.getOtherCourses())
-        .then(() => {
-          this.loading = false
-        })
-    },
-  },
-
-  // On load
-  mounted: function () {
-    // Mobile resize watcher
-    window.addEventListener('resize', this.handleResize)
-    this.handleResize()
-
-    // Fetch Data
-    this.loading = true
-    return this.getResults()
-      .then(() => this.getEventList())
-      .then(() => this.getOtherCourses())
-      .then(() => {
-        this.loading = false
-      })
-  },
-
-  unmounted() {
-    window.removeEventListener('resize', this.handleResize)
-  },
-
-  methods: {
-    handleResize: function () {
-      if (window.innerWidth > 900) this.smallWindow = false
-      else this.smallWindow = true
-    },
-
-    getResults: function () {
-      return axios
-        .get(
-          `/api/leagues/${this.$route.params.name}/results/${this.$route.params.course}`
-        )
-        .then((response) => {
-          if (response.data.length > 0) this.rawResults = response.data
-          else this.found = false
-        })
-        .catch(() => {
-          this.found = false
-        })
-    },
-
-    getOtherCourses: function () {
-      return axios
-        .get(`/api/leagues/${this.$route.params.name}`)
-        .then((response) => {
-          if (response.data.courses)
-            this.otherCourses = response.data.courses.filter(
-              (course) => course !== this.$route.params.course
-            )
-          else this.otherCourses = false
-          return this.otherCourses
-        })
-        .catch(() => {
-          this.otherCourses = false
-        })
-    },
-
-    getEventList: function () {
-      return axios
-        .get(`/api/leagues/${this.$route.params.name}/events`)
-        .then((response) => {
-          this.events = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Fetching List of Events'
-          )
-        )
-    },
-
-    sort: function (array, property, ascending = true, byPoints = false) {
-      let sortFunction
-      if (byPoints) {
-        sortFunction = (a, b) => {
-          if (a.points[property].score === b.points[property].score) return 0
-          else if (a.points[property].score === null) return 1
-          else if (b.points[property].score === null) return -1
-          else if (a.points[property].score < b.points[property].score) return 1
-          else return -1
-        }
-      } else {
-        sortFunction = (a, b) => {
-          if (a[property] === b[property]) return 0
-          else if (a[property] === null || a[property] === undefined) return 1
-          else if (b[property] === null || b[property] === undefined) return -1
-          else if (a[property] < b[property]) return 1
-          else return -1
-        }
+  await Promise.all([
+    getLeagueResults(routeParamsLeague, routeParamsCourse).then(
+      (resultDetails) => {
+        rawResults.value = resultDetails
       }
-      if (ascending) return array.sort(sortFunction)
-      else return array.sort(sortFunction).reverse()
-    },
+    ),
+    getLeague(routeParamsLeague).then((leagueDetails) => {
+      league.value = leagueDetails
+    }),
+    getLeagueEvents(routeParamsLeague).then((eventDetails) => {
+      eventsWithResults.value = eventDetails.filter(
+        (event) => event.resultUploaded
+      )
+    }),
+  ])
 
-    sortBy: function (sortBy) {
-      if (sortBy !== this.sortedBy) this.ascendingSort = false
-      else this.ascendingSort = !this.ascendingSort
-      this.sortedBy = sortBy
-    },
+  loading.value = false
+}
+watch($route, getData, { immediate: true })
 
-    filterChanged: function (data) {
-      // Update data of view if Filter Menu emits a change
-      this.filterPreferences.name = data.name
-      this.filterPreferences.club = data.club
-      if (data.minAge === '') this.filterPreferences.minAge = 0
-      else this.filterPreferences.minAge = data.minAge
-      if (data.maxAge === '') this.filterPreferences.maxAge = 100
-      else this.filterPreferences.maxAge = data.maxAge
-      this.filterPreferences.male = data.male
-      this.filterPreferences.female = data.female
-    },
-  },
+export { loading, league, eventsWithResults, rawResults }
+
+/* Results */
+const results = computed(() =>
+  rawResults.value
+    .map(resultWithAgeGender)
+    .filter((result) => filterResults(result, filterPreferences.value))
+    .sort(sortResults(sortPreferences.value))
+)
+const otherCourses = computed(
+  () =>
+    league.value?.courses?.filter(
+      (course: string) => course !== toSingleString($route.value.params.course)
+    ) ?? []
+)
+
+export { results, otherCourses }
+
+/* Sort + Filter Preferences */
+const filterPreferences = ref<FilterPreferences>({
+  name: '',
+  club: '',
+  minAge: 0,
+  maxAge: 100,
+  male: true,
+  female: true,
+})
+const sortPreferences = ref<SortPreferences>({
+  ascending: false,
+  by: SortablePropeties.position,
+})
+const filterChanged = (preferences: FilterPreferences) => {
+  filterPreferences.value = preferences
+}
+const changeSortPreference = (property: SortablePropeties, event?: number) => {
+  if (property !== sortPreferences.value.by)
+    sortPreferences.value.ascending = false
+  else if (typeof event === 'number' && event !== sortPreferences.value.event)
+    sortPreferences.value.ascending = true
+  else sortPreferences.value.ascending = !sortPreferences.value.ascending
+  sortPreferences.value.by = property
+  if (typeof event === 'number') sortPreferences.value.event = event
+}
+export {
+  sortPreferences,
+  SortablePropeties,
+  filterChanged,
+  changeSortPreference,
 }
 </script>
 
 <style lang="postcss">
-.strikethrough {
-  text-decoration: line-through;
-}
-
-.bold {
-  font-weight: 400 !important;
-  font-style: italic;
-}
-
-.table {
-  @apply w-full border-collapse;
-
-  & thead tr {
-    @apply border-b border-main-300;
-  }
-
-  & tr {
-    @apply bg-white border-collapse transition duration-300;
-
-    &.striped {
-      @apply bg-main-50;
-    }
-
-    &:hover:not(.row-expansion),
-    &:hover:not(.row-expansion) + .row-expansion {
-      @apply bg-main-200;
-    }
-  }
-
+table {
   & td {
     @apply py-2 text-center px-1 font-sans font-light;
 
@@ -490,18 +385,6 @@ export default {
     &:hover > span {
       @apply opacity-100;
     }
-  }
-}
-
-.row-expansion td {
-  @apply text-right;
-
-  & p {
-    @apply mr-3 text-right;
-  }
-
-  & span {
-    @apply pl-2 pr-4 w-4 inline-block;
   }
 }
 
