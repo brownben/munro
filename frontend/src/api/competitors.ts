@@ -20,3 +20,11 @@ export const getCompetitors = (): Promise<Competitor[] | null> =>
     apiLocation: '/api/competitors',
     customErrorMessage: 'Problem Fetching Competitors',
   })
+
+export const getLeagueCompetitors = (
+  league: string
+): Promise<Competitor[] | null> =>
+  getData<Competitor[]>({
+    apiLocation: `/api/leagues/${league}/competitors`,
+    customErrorMessage: 'Problem Fetching Competitors',
+  })

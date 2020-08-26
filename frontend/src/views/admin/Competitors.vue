@@ -49,53 +49,67 @@
     </div>
 
     <table
-      v-if="filteredCompetitors.length > 0"
-      class="table col-span-2 my-4 table-fixed"
+      v-if="competitors.length > 0"
+      class="table w-full col-span-2 my-4 border-collapse table-fixed"
     >
       <thead>
-        <tr>
-          <th @click="sortBy('id')">
+        <tr
+          class="transition duration-300 bg-white border-b border-collapse border-main-300 hover:bg-main-200"
+        >
+          <th @click="changeSortPreference(SortablePropeties.id)">
             <p>Id</p>
             <up-down-arrow
-              :ascending="ascendingSort"
-              :active="sortedBy === 'id'"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortablePropeties.id"
             />
           </th>
-          <th class="text-left" @click="sortBy('name')">
+          <th
+            class="text-left"
+            @click="changeSortPreference(SortablePropeties.name)"
+          >
             <p>Name</p>
             <up-down-arrow
-              :ascending="ascendingSort"
-              :active="sortedBy === 'name'"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortablePropeties.name"
             />
           </th>
-          <th class="club" @click="sortBy('club')">
+          <th
+            class="club"
+            @click="changeSortPreference(SortablePropeties.club)"
+          >
             <p>Club</p>
             <up-down-arrow
-              :ascending="ascendingSort"
-              :active="sortedBy === 'club'"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortablePropeties.club"
             />
           </th>
-          <th class="ageClass" @click="sortBy('ageClass')">
+          <th
+            class="ageClass"
+            @click="changeSortPreference(SortablePropeties.ageClass)"
+          >
             <p>Class</p>
             <up-down-arrow
-              :ascending="ascendingSort"
-              :active="sortedBy === 'ageClass'"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortablePropeties.ageClass"
             />
           </th>
-          <th @click="sortBy('course')">
+          <th @click="changeSortPreference(SortablePropeties.course)">
             <p>Course</p>
             <up-down-arrow
-              :ascending="ascendingSort"
-              :active="sortedBy === 'course'"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortablePropeties.course"
             />
           </th>
         </tr>
       </thead>
       <transition-group name="list" tag="tbody">
         <tr
-          v-for="competitor of sortedCompetitors"
+          v-for="competitor of competitors"
           :key="competitor.id"
-          :class="{ striped: sortedCompetitors.indexOf(competitor) % 2 === 0 }"
+          class="transition duration-300 bg-white border-collapse hover:bg-main-200"
+          :class="{
+            'bg-main-50': competitors.indexOf(competitor) % 2 === 0,
+          }"
           @click="$router.push(`/competitors/${competitor.id}`)"
         >
           <td class="text-center">
@@ -112,10 +126,10 @@
               <span>{{ competitor.club }}</span>
             </span>
           </td>
-          <td class="text-center club">
+          <td class="hidden text-center md:table-cell">
             {{ competitor.club }}
           </td>
-          <td class="text-center ageClass">
+          <td class="hidden text-center md:table-cell">
             {{ competitor.ageClass }}
           </td>
           <td class="text-center">
@@ -126,10 +140,7 @@
     </table>
   </Layout>
 </template>
-
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
 import UpDownArrow from '/@/components/UpDownArrows.vue'
 
@@ -138,101 +149,61 @@ export default {
     Layout,
     UpDownArrow,
   },
-
-  data: () => ({
-    league: '',
-    leagues: [],
-    competitors: [],
-    ascendingSort: false,
-    sortedBy: 'name',
-  }),
-
-  computed: {
-    filteredCompetitors: function () {
-      return this.competitors.filter(
-        (competitor) => competitor.league === this.$route.params.league
-      )
-    },
-
-    sortedCompetitors: function () {
-      return this.sort(
-        this.filteredCompetitors,
-        this.sortedBy,
-        this.ascendingSort
-      )
-    },
-  },
-
-  watch: {
-    $route: function () {
-      this.getCompetitors()
-    },
-  },
-
-  mounted: function () {
-    this.getCompetitors()
-  },
-
-  methods: {
-    getCompetitors: function () {
-      return axios
-        .get('/api/competitors')
-        .then((response) => {
-          this.competitors = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Fetching Competitor Details'
-          )
-        )
-    },
-
-    sort: function (array, property, ascending = true) {
-      // Selection Sort using Single List for Sorting Results
-
-      const sortFunction = (a, b) => {
-        if (a[property] === b[property]) return 0
-        else if (a[property] === null) return 1
-        else if (b[property] === null) return -1
-        else if (a[property] < b[property]) return 1
-        else return -1
-      }
-
-      if (ascending) return array.sort(sortFunction)
-      else return array.sort(sortFunction).reverse()
-    },
-
-    sortBy: function (sortBy) {
-      // Change what property it is sorted by
-      // If it is a different property, make it sort ascending else change direction of sort
-      if (sortBy !== this.sortedBy) this.ascendingSort = false
-      else this.ascendingSort = !this.ascendingSort
-      this.sortedBy = sortBy
-    },
-  },
 }
 </script>
+<script lang="ts" setup>
+import { ref, watch, computed } from 'vue'
+
+import { toSingleString } from '/@/scripts/typeHelpers'
+import { sortCompetitors } from '/@/scripts/sort'
+
+import $router from '/@/router/index'
+const { currentRoute: $route } = $router
+
+import { Competitor, getLeagueCompetitors } from '/@/api/competitors'
+
+import {
+  SortPreferencesCompetitor as SortPreferences,
+  SortablePropetiesCompetitor as SortablePropeties,
+} from '/@/scripts/FilterSort.d'
+
+/* Get Data */
+const loading = ref(true)
+const rawCompetitors = ref<Competitor[]>([])
+
+const getData = async () => {
+  const routeParamsLeague = toSingleString($route.value.params.league)
+
+  loading.value = true
+  rawCompetitors.value = await getLeagueCompetitors(routeParamsLeague)
+  loading.value = false
+}
+
+const competitors = computed(() =>
+  rawCompetitors.value.sort(sortCompetitors(sortPreferences.value))
+)
+
+watch($route, getData, { immediate: true })
+
+export { loading, competitors }
+
+/* Sorting */
+const sortPreferences = ref<SortPreferences>({
+  ascending: false,
+  by: SortablePropeties.position,
+})
+const changeSortPreference = (property: SortablePropeties) => {
+  if (property !== sortPreferences.value.by)
+    sortPreferences.value.ascending = false
+  else sortPreferences.value.ascending = !sortPreferences.value.ascending
+  sortPreferences.value.by = property
+}
+
+export { sortPreferences, SortablePropeties, changeSortPreference }
+</script>
+
 <style lang="postcss" scoped>
-.table {
-  @apply w-full border-collapse;
-
-  & thead tr {
-    @apply border-b border-main-300;
-  }
-
-  & tr {
-    @apply bg-white border-collapse transition duration-300;
-
-    &.striped {
-      @apply bg-main-50;
-    }
-
-    &:hover {
-      @apply bg-main-200;
-    }
-  }
-
+table {
   & td {
     @apply py-2 px-1 font-sans font-light;
   }
@@ -247,21 +218,6 @@ export default {
 
     & div {
       @apply inline-block ml-1;
-    }
-  }
-
-  & td,
-  & th {
-    &.club,
-    &.ageClass {
-      @apply hidden;
-    }
-
-    @screen md {
-      &.club,
-      &.ageClass {
-        @apply table-cell;
-      }
     }
   }
 }

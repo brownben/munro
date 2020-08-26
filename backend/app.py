@@ -66,6 +66,7 @@ api.add_resource(
 api.add_resource(competitors.Competitors, "/api/competitors")
 api.add_resource(competitorMerge.CompetitorMerge, "/api/competitors/merge")
 api.add_resource(competitors.Competitor, "/api/competitors/<competitorId>")
+api.add_resource(leagueCompetitors.LeagueCompetitors, "/api/leagues/<name>/competitors")
 
 api.add_resource(results.Results, "/api/results")
 api.add_resource(resultsManual.ManualResult, "/api/results/manual")

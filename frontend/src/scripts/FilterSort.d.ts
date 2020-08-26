@@ -18,6 +18,11 @@ export interface SortPreferencesLeague {
   event?: number
 }
 
+export interface SortPreferencesCompetitor {
+  ascending: boolean
+  by: SortablePropetiesCompetitor
+}
+
 export enum SortablePropetiesEvent {
   name = 'name',
   age = 'age',
@@ -34,4 +39,12 @@ export enum SortablePropetiesLeague {
   club = 'club',
   totalPoints = 'totalPoints',
   points = 'points',
+}
+
+export enum SortablePropetiesCompetitor {
+  name = 'name',
+  ageClass = 'ageClass',
+  club = 'club',
+  id = 'id',
+  course = 'course',
 }
