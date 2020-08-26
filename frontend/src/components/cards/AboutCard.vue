@@ -15,6 +15,12 @@
           <strong class="font-bold tracking-normal">Perfect</strong> for All
           Leagues
         </h2>
+        <router-link
+          to="/about"
+          class="inline-block w-auto px-4 py-1 mx-0 mt-1 text-white transition duration-300 ease-in-out outline-none appearance-none select-none md:mt-2 md:text-lg bg-main-600 font-heading rounded-shape hover:bg-main-700"
+        >
+          Introducing Munro
+        </router-link>
       </div>
 
       <img

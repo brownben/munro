@@ -65,6 +65,19 @@ module.exports = {
         },
       },
     },
+
+    typography: (theme) => ({
+      default: {
+        css: {
+          a: {
+            color: theme('colors.main.700'),
+          },
+          h1: {
+            fontFamily: '"Josefin Sans", sans-serif',
+          },
+        },
+      },
+    }),
   },
 
   variants: {
@@ -72,7 +85,7 @@ module.exports = {
     backgroundColor: ['responsive', 'hover', 'focus', 'checked', 'group-hover'],
   },
 
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 
   future: {
     removeDeprecatedGapUtilities: true,
