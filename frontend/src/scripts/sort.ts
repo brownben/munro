@@ -8,7 +8,7 @@ import {
   SortPreferencesCompetitor,
   SortablePropetiesLeague,
 } from './FilterSort.d'
-import { Competitor } from '../api/competitors'
+import { Competitor } from '/@/api/competitors'
 
 const sortComparison = (ascending: boolean, a: any, b: any): 0 | 1 | -1 => {
   const aIsLess = ascending ? -1 : 1
