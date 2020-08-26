@@ -5,25 +5,13 @@
   >
     <slot>
       <h2
-        class="px-4 mb-2 text-xl font-bold tracking-wide uppercase font-heading text-main-700"
+        class="px-4 mb-3 text-xl font-bold tracking-wide uppercase font-heading text-main-700"
       >
         {{ result.eventName }}
       </h2>
     </slot>
 
     <div class="flex flex-row flex-wrap justify-around w-full">
-      <div
-        v-if="showTime"
-        class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
-      >
-        <p class="text-5xl font-bold">
-          <template v-if="result.time">
-            {{ elapsedTime(result.time) }}
-          </template>
-          <template v-else> * </template>
-        </p>
-        <p class="inline-block text-sm text-gray-500 uppercase">Time</p>
-      </div>
       <div
         class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
       >
@@ -41,6 +29,18 @@
         <p class="inline-block text-sm text-gray-500 uppercase">Position</p>
       </div>
       <div
+        v-if="showTime"
+        class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
+      >
+        <p class="text-5xl font-bold">
+          <template v-if="result.time">
+            {{ elapsedTime(result.time) }}
+          </template>
+          <template v-else> * </template>
+        </p>
+        <p class="inline-block text-sm text-gray-500 uppercase">Time</p>
+      </div>
+      <div
         class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
       >
         <p class="text-5xl font-bold">
@@ -52,11 +52,13 @@
 
     <div class="px-6">
       <router-link
+        v-if="showTime"
         :to="`/events/${result.event}/results`"
         class="mt-4 mb-4 sm:mt-3 button"
       >
         View Results
       </router-link>
+      <div v-else class="my-4" />
     </div>
 
     <div

@@ -58,3 +58,11 @@ export const getLeagueResults = (
     apiLocation: `/api/leagues/${league}/results/${course}`,
     customErrorMessage: 'Problem Fetching Results',
   })
+
+export const getCompetitorResults = (
+  competitor: string
+): Promise<EventResult[] | null> =>
+  getData<EventResult[]>({
+    apiLocation: `/api/competitors/${competitor}/results`,
+    customErrorMessage: 'Problem Fetching Results',
+  })
