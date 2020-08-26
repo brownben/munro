@@ -43,12 +43,20 @@ const resultMatchesAge = (
   (filterPreferences.minAge <= result.age &&
     result.age <= filterPreferences.maxAge)
 
+const newRegex = (pattern: string): RegExp => {
+  try {
+    return new RegExp(pattern, 'i')
+  } catch {
+    return /.*/i
+  }
+}
+
 export const filterResults = (
   result: EventResultWithAgeGender | LeagueResultWithAgeGender,
   filterPreferences: FilterPreferences
 ) =>
-  result.name.match(new RegExp(filterPreferences.name, 'i')) &&
-  result.club.match(new RegExp(filterPreferences.club, 'i')) &&
+  result.name.match(newRegex(filterPreferences.name)) &&
+  result.club.match(newRegex(filterPreferences.club)) &&
   resultMatchesGender(result, filterPreferences) &&
   resultMatchesAge(result, filterPreferences)
 
