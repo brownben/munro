@@ -1,9 +1,14 @@
 <template>
-  <Layout v-if="competitor && competitor.name" has-mobile-sub-title gray footer>
+  <Layout
+    has-mobile-sub-title
+    gray
+    :not-found="!loading && !competitor?.name"
+    footer
+  >
     <Meta
-      :title="`Munro - ${competitor.name || ''} - Competitor`"
-      :description="`Results for ${competitor.name || ''} in the ${
-        competitor.league || ''
+      :title="`Munro - ${competitor?.name ?? ''} - Competitor`"
+      :description="`Results for ${competitor?.name ?? ''} in the ${
+        competitor?.league ?? ''
       } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/competitors/${$route.params.id}`"
       :head="{
@@ -12,20 +17,20 @@
     />
     <template #title>
       <router-link
-        :to="`/leagues/${competitor.league}`"
+        :to="`/leagues/${competitor?.league}`"
         class="mb-1 text-xl font-bold text-main-700 font-heading"
       >
-        {{ competitor.league }}
+        {{ competitor?.league }}
       </router-link>
       <h1 class="text-4xl font-bold font-heading leading-12">
-        {{ competitor.name }}
+        {{ competitor?.name }}
       </h1>
       <h2 class="text-xl text-gray-600 font-heading">
-        <span class="mr-2 md:mr-4">{{ competitor.course }}</span>
-        <span v-if="competitor.club" class="mr-2 md:mr-4">
-          {{ competitor.club }}
+        <span class="mr-2 md:mr-4">{{ competitor?.course }}</span>
+        <span v-if="competitor?.club" class="mr-2 md:mr-4">
+          {{ competitor?.club }}
         </span>
-        <span v-if="competitor.ageClass"> {{ competitor.ageClass }}</span>
+        <span v-if="competitor?.ageClass"> {{ competitor?.ageClass }}</span>
       </h2>
     </template>
 
@@ -57,15 +62,13 @@
       v-for="result of results"
       :key="result.id"
       :result="result"
-      :show-time="league.dynamicEventResults"
-      @result-changed="getCompetitorResults"
+      :show-time="league?.dynamicEventResults"
+      @result-changed="refreshDetails"
     />
   </Layout>
 </template>
 
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
 import ResultOverviewCard from '/@/components/cards/ResultOverviewCard.vue'
 
@@ -74,67 +77,47 @@ export default {
     Layout,
     ResultOverviewCard,
   },
-
-  data: function () {
-    return {
-      competitor: {},
-      league: {},
-      results: [],
-    }
-  },
-
-  watch: {
-    $route: {
-      immediate: true,
-      handler: function () {
-        this.getCompetitor().then(() => this.getCompetitorLeague())
-        this.getCompetitorResults()
-      },
-    },
-  },
-
-  methods: {
-    getCompetitor: function () {
-      return axios
-        .get(`/api/competitors/${this.$route.params.id}`)
-        .then((response) => {
-          this.competitor = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Getting Competitor Details'
-          )
-        )
-    },
-
-    getCompetitorResults: function () {
-      return axios
-        .get(`/api/competitors/${this.$route.params.id}/results`)
-        .then((response) => {
-          this.results = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Getting Competitor Results'
-          )
-        )
-    },
-
-    getCompetitorLeague: function () {
-      return axios
-        .get(`/api/leagues/${this.competitor.league}`)
-        .then((response) => {
-          this.league = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Getting League Details'
-          )
-        )
-    },
-  },
 }
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+
+import { toSingleString } from '/@/scripts/typeHelpers'
+
+import $router from '/@/router/index'
+const { currentRoute: $route } = $router
+
+import { League, getLeague } from '/@/api/leagues'
+import { Competitor, getCompetitor } from '/@/api/competitors'
+import { EventResult, getCompetitorResults } from '/@/api/results'
+
+/* Get Data */
+const loading = ref(true)
+const league = ref<League | null>(null)
+const competitor = ref<Competitor | null>(null)
+const results = ref<EventResult[]>([])
+
+const refreshDetails = async () => {
+  const routeParamsId = toSingleString($route.value.params.id)
+  loading.value = true
+
+  await Promise.all([
+    getCompetitor(routeParamsId)
+      .then((competitorDetails) => {
+        competitor.value = competitorDetails
+      })
+      .then(() => getLeague(competitor.value.league))
+      .then((leagueDetails) => {
+        league.value = leagueDetails
+      }),
+    getCompetitorResults(routeParamsId).then((resultDetails) => {
+      results.value = resultDetails
+    }),
+  ])
+
+  loading.value = false
+}
+watch($route, refreshDetails, { immediate: true })
+
+export { loading, league, competitor, results, refreshDetails }
 </script>
