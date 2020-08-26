@@ -108,11 +108,19 @@
     >
       <div class="mb-2">
         <p class="mx-2">
-          <b class="mr-1 select-none text-main-800">Event ID:</b>
+          <b
+            class="block mr-1 leading-tight select-none text-main-800 sm:inline-block"
+          >
+            Event ID:
+          </b>
           {{ event.id }}
         </p>
         <p v-if="event.uploadKey">
-          <b class="mr-1 select-none text-main-800">Event Upload Key:</b>
+          <b
+            class="block mt-3 mr-1 leading-tight select-none text-main-800 sm:inline-block sm:my-2"
+          >
+            Event Upload Key:
+          </b>
           {{ event.uploadKey }}
         </p>
       </div>
@@ -133,9 +141,7 @@
   </section>
 </template>
 
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 export default {
   props: {
     showLeagueName: { type: Boolean, default: false },
@@ -145,31 +151,17 @@ export default {
   },
 
   emits: ['event-changed'],
+}
+</script>
+<script setup>
+import { Event, deleteEvent } from '/@/api/events'
 
-  methods: {
-    deleteEvent: function (event) {
-      if (
-        confirm(
-          `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`
-        )
-      ) {
-        return axios
-          .delete(`/api/events/${event.id}`)
-          .then(() =>
-            this.$store.dispatch(
-              'createMessage',
-              `Event: ${event.name} was Deleted`
-            )
-          )
-          .then(() => this.$emit('event-changed'))
-          .catch(() =>
-            this.$store.dispatch(
-              'createMessage',
-              'Problem Deleting Event - Please Try Again'
-            )
-          )
-      }
-    },
-  },
+export const deleteEvent = (event) => {
+  if (
+    confirm(
+      `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`
+    )
+  )
+    deleteEvent(event.id, event.name).then(() => this.$emit('event-changed'))
 }
 </script>
