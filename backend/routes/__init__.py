@@ -11,6 +11,7 @@ __all__ = [
     "leagues",
     "leagueEvents",
     "leagueResults",
+    "leagueCompetitors",
     "results",
     "resultsManual",
     "resultsRecalculate",

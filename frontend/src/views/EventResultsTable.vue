@@ -170,12 +170,10 @@ export default {
 import { ref, watch, computed } from 'vue'
 
 import { toSingleString } from '/@/scripts/typeHelpers'
-import {
-  eventResultWithAgeGender as resultWithAgeGender,
-  filterResults,
-  sortEventResults as sortResults,
-  elapsedTime,
-} from '/@/scripts/processResults'
+import { elapsedTime } from '/@/scripts/time'
+import { eventResultWithAgeGender as resultWithAgeGender } from '/@/scripts/ageClassSplit'
+import { filterResults } from '/@/scripts/filter'
+import { sortEventResults as sortResults } from '/@/scripts/sort'
 
 import $router from '/@/router/index'
 const { currentRoute: $route } = $router
