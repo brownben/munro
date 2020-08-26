@@ -1,4 +1,5 @@
-import { getData } from './requests'
+import { getData, deleteData } from './requests'
+import { ServerMessage } from './RequestConfigs'
 
 export interface Event {
   id: string
@@ -45,4 +46,14 @@ export const getLatestResults = (): Promise<Event[] | null> =>
   getData<Event[]>({
     apiLocation: '/api/events/latest-results',
     customErrorMessage: 'Problem Fetching Events',
+  })
+
+export const deleteEvent = (
+  id: string,
+  name: string
+): Promise<ServerMessage | null> =>
+  deleteData<ServerMessage>({
+    apiLocation: `/api/events/${id}`,
+    customErrorMessage: 'Problem Deleting Event',
+    customSuccessMessage: `Event \`${name}\` Deleted`,
   })
