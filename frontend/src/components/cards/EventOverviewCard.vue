@@ -153,15 +153,15 @@ export default {
   emits: ['event-changed'],
 }
 </script>
-<script setup>
-import { Event, deleteEvent } from '/@/api/events'
+<script lang="ts" setup>
+import { Event, deleteEvent as apiDeleteEvent } from '/@/api/events'
 
-export const deleteEvent = (event) => {
+export const deleteEvent = (event: Event) => {
   if (
     confirm(
       `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`
     )
   )
-    deleteEvent(event.id, event.name).then(() => this.$emit('event-changed'))
+    apiDeleteEvent(event.id, event.name).then(() => this.$emit('event-changed'))
 }
 </script>
