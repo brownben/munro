@@ -83,11 +83,11 @@
         </p>
       </div>
       <div class="w-full mt-2">
-        <button class="button button-dark" @click="incompleteResult">
+        <button class="button button-dark" @click="incompleteResult(result)">
           <template v-if="result.incomplete"> Mark as Complete </template>
           <template v-else> Mark as Incomplete </template>
         </button>
-        <button class="button button-dark" @click="hideResult">
+        <button class="button button-dark" @click="hideResult(result)">
           <template v-if="result.type !== 'hidden'"> Hide Result </template>
           <template v-else> Include Result </template>
         </button>
@@ -95,9 +95,7 @@
     </div>
   </section>
 </template>
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 export default {
   props: {
     result: {
@@ -111,68 +109,35 @@ export default {
   },
 
   emits: ['result-changed'],
-
-  methods: {
-    positionSuperscript: function (position) {
-      if (position % 10 === 1 && position % 100 !== 11) return 'st'
-      else if (position % 10 === 2 && position % 100 !== 12) return 'nd'
-      else if (position % 10 === 3 && position % 100 !== 13) return 'rd'
-      else return 'th'
-    },
-
-    twoDigits: function (number) {
-      if (number.toString().length < 2) return `0${number.toString()}`
-      else return number
-    },
-
-    elapsedTime: function (totalTimeInSeconds) {
-      if (typeof totalTimeInSeconds !== 'number') return totalTimeInSeconds
-      else if (totalTimeInSeconds === 0) return ''
-
-      const timeInMinutes = Math.floor(totalTimeInSeconds / 60)
-      const timeInSeconds = Math.abs(totalTimeInSeconds % 60)
-
-      return `${this.twoDigits(timeInMinutes)}:${this.twoDigits(timeInSeconds)}`
-    },
-
-    hideResult: function () {
-      let type = 'hidden'
-      if (this.result.type === 'hidden') type = null
-
-      return axios
-        .put(`/api/results/${this.result.id}`, {
-          rowid: this.result.id,
-          action: 'hide',
-          event: this.result.event,
-          type,
-        })
-        .then(() => this.$store.dispatch('createMessage', `Result Updated`))
-        .then(() => this.$emit('result-changed'))
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Hiding Result - Please Try Again'
-          )
-        )
-    },
-
-    incompleteResult: function () {
-      return axios
-        .put(`/api/results/${this.result.id}`, {
-          rowid: this.result.id,
-          action: 'incomplete',
-          incomplete: !this.result.incomplete,
-          event: this.result.event,
-        })
-        .then(() => this.$store.dispatch('createMessage', `Result Updated`))
-        .then(() => this.$emit('result-changed'))
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Updating Result - Please Try Again'
-          )
-        )
-    },
-  },
 }
+</script>
+<script lang="ts" setup="props, { emit }">
+import { elapsedTime } from '/@/scripts/time'
+import {
+  EventResult,
+  hideResult as apiHideResult,
+  incompleteResult as apiIncompleteResult,
+} from '/@/api/results'
+import axios from 'axios'
+
+const positionSuperscript = (position: number) => {
+  if (position % 10 === 1 && position % 100 !== 11) return 'st'
+  else if (position % 10 === 2 && position % 100 !== 12) return 'nd'
+  else if (position % 10 === 3 && position % 100 !== 13) return 'rd'
+  else return 'th'
+}
+
+const hideResult = (result: EventResult) =>
+  apiHideResult(result.id, result.event, result.type !== 'hidden').then(() =>
+    emit('result-changed')
+  )
+
+const incompleteResult = (result: EventResult) => {
+  console.log(result, result.id, result.event, !result.incomplete)
+  apiIncompleteResult(result.id, result.event, !result.incomplete).then(() =>
+    emit('result-changed')
+  )
+}
+
+export { elapsedTime, positionSuperscript, hideResult, incompleteResult }
 </script>

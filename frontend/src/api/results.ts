@@ -1,4 +1,5 @@
-import { getData } from './requests'
+import { getData, putData } from './requests'
+import { ServerMessage } from './RequestConfigs'
 
 export interface EventResult {
   id: number
@@ -65,4 +66,38 @@ export const getCompetitorResults = (
   getData<EventResult[]>({
     apiLocation: `/api/competitors/${competitor}/results`,
     customErrorMessage: 'Problem Fetching Results',
+  })
+
+export const hideResult = (
+  id: number,
+  event: string,
+  hide: boolean
+): Promise<ServerMessage | null> =>
+  putData<ServerMessage>({
+    apiLocation: `/api/results/${id}`,
+    data: {
+      action: 'hide',
+      event: event,
+      type: hide ? 'hidden' : null,
+    },
+    customSuccessMessage: hide ? 'Result Hidden' : 'Result Included',
+    customErrorMessage: 'Problem Updating Result',
+  })
+
+export const incompleteResult = (
+  id: number,
+  event: string,
+  incomplete: boolean
+): Promise<ServerMessage | null> =>
+  putData<ServerMessage>({
+    apiLocation: `/api/results/${id}`,
+    data: {
+      action: 'incomplete',
+      event: event,
+      incomplete,
+    },
+    customSuccessMessage: incomplete
+      ? 'Result Marked as Incomplete'
+      : 'Result Marked as Complete',
+    customErrorMessage: 'Problem Updating Result',
   })
