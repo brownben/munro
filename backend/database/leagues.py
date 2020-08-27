@@ -91,19 +91,14 @@ queryMultiple(
 )
 
 
-def fixInput(year, courses):
+def fixYear(year):
     try:
-        year = int(year)
+        return int(year)
     except ValueError:
-        year = 0
-
-    courses = courses.replace(" ", "")
-
-    return year, courses
+        return 0
 
 
 def createLeague(data):
-    year, courses = fixInput(data["year"], data["courses"])
     query(
         """
         INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses,
@@ -116,9 +111,9 @@ def createLeague(data):
             data["coordinator"],
             data["scoringMethod"],
             data["numberOfCountingEvents"],
-            courses,
+            data["courses"],
             data["description"],
-            year,
+            fixYear(data["year"]),
             data["dynamicEventResults"],
             data["moreInformation"],
         ),
@@ -126,7 +121,6 @@ def createLeague(data):
 
 
 def updateLeague(data):
-    year, courses = fixInput(data["year"], data["courses"])
     query(
         """
         UPDATE leagues
@@ -138,9 +132,9 @@ def updateLeague(data):
             data["coordinator"],
             data["scoringMethod"],
             data["numberOfCountingEvents"],
-            courses,
+            data["courses"],
             data["description"],
-            year,
+            fixYear(data["year"]),
             data["dynamicEventResults"],
             data["moreInformation"],
             data["oldName"],
@@ -157,8 +151,9 @@ def findLeague(name):
         queryWithOneResult(
             """
         SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, COUNT(events.id)
-        FROM leagues, events
-        WHERE leagues.name=%s AND events.league=leagues.name
+        FROM leagues
+        LEFT JOIN events ON leagues.name=events.league
+        WHERE leagues.name=%s
         GROUP BY leagues.name
         ORDER BY leagues.year DESC, leagues.name ASC
         """,
@@ -171,8 +166,8 @@ def getAllLeagues():
     result = queryWithResults(
         """
         SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, COUNT(events.id)
-        FROM leagues, events
-        WHERE events.league=leagues.name
+        FROM leagues
+        LEFT JOIN events ON leagues.name=events.league
         GROUP BY leagues.name
         ORDER BY year DESC, name ASC
         """
