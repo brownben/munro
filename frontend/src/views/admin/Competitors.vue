@@ -190,7 +190,7 @@ export { loading, competitors }
 /* Sorting */
 const sortPreferences = ref<SortPreferences>({
   ascending: false,
-  by: SortablePropeties.position,
+  by: SortablePropeties.name,
 })
 const changeSortPreference = (property: SortablePropeties) => {
   if (property !== sortPreferences.value.by)

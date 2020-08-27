@@ -153,7 +153,7 @@ export default {
   emits: ['event-changed'],
 }
 </script>
-<script lang="ts" setup>
+<script lang="ts" setup="props, { emit }">
 import { Event, deleteEvent as apiDeleteEvent } from '/@/api/events'
 
 export const deleteEvent = (event: Event) => {
@@ -162,6 +162,6 @@ export const deleteEvent = (event: Event) => {
       `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`
     )
   )
-    apiDeleteEvent(event.id, event.name).then(() => this.$emit('event-changed'))
+    apiDeleteEvent(event.id, event.name).then(() => emit('event-changed'))
 }
 </script>
