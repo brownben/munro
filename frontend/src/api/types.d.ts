@@ -1,21 +1,11 @@
-import { League } from '../leagues'
-import { Event } from '../events'
-import { Competitor } from '../competitors'
-import { SearchResult as Search } from '../search'
-import {
+export { League } from './leagues'
+export { Event } from './events'
+export { Competitor } from './competitors'
+export {
   EventResult,
   LeagueResult,
   EventResultWithAgeGender,
   LeagueResultWithAgeGender,
-} from '../results'
-
-export default {
-  League,
-  Event,
-  Competitor,
-  EventResult,
-  LeagueResult,
-  EventResultWithAgeGender,
-  LeagueResultWithAgeGender,
-  Search,
-}
+} from './results'
+export { SearchResult as Search } from './search'
+export { UploadResult } from './upload'

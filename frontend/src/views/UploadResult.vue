@@ -11,7 +11,7 @@
 
     <div class="col-span-2">
       <DropdownInput
-        v-model="eventId"
+        v-model="result.eventId"
         label="Event:"
         :option-text-different-to-value="true"
         :list="
@@ -22,21 +22,21 @@
         "
       />
       <DropdownInput
-        v-model="course"
+        v-model="result.course"
         label="Your Course:"
-        :list="coursesAtEvent"
+        :list="courses"
         class="mt-4"
       />
-      <TextInput v-model.trim="name" label="Your Name:" class="mt-4" />
+      <TextInput v-model.trim="result.name" label="Your Name:" class="mt-4" />
       <TextInput
-        v-model.trim="time"
+        v-model.trim="result.time"
         label="Your Time: (HH:MM:SS)"
         class="mt-4"
       />
 
       <!-- Only show upload once all fields have been filled -->
       <button
-        v-if="eventId && course && name && time"
+        v-if="result.eventId && result.course && result.name && result.time"
         class="mt-8 button-lg"
         @click="uploadResult"
       >
@@ -45,10 +45,7 @@
     </div>
   </Layout>
 </template>
-
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
 import TextInput from '/@/components/inputs/TextInput.vue'
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'
@@ -59,84 +56,69 @@ export default {
     TextInput,
     DropdownInput,
   },
-
-  data: function () {
-    return {
-      eventId: '',
-      name: '',
-      time: '',
-      course: '',
-      events: [],
-      leagues: [],
-    }
-  },
-
-  computed: {
-    coursesAtEvent: function () {
-      const eventSelected = this.events.find(
-        (event) => event.id === this.eventId
-      )
-      const leagueOfEvent = this.leagues.find(
-        (league) => league?.name === eventSelected?.league
-      )
-
-      return leagueOfEvent?.courses
-    },
-  },
-
-  mounted: function () {
-    return this.getEvents().then(() => this.getLeagues())
-  },
-
-  methods: {
-    getEvents: function () {
-      return axios
-        .get('/api/events')
-        .then((response) => {
-          this.events = response.data.filter(
-            (event) => event.userSubmittedResults
-          )
-          if (this.events.length < 1)
-            this.$store.dispatch(
-              'createMessage',
-              'Sorry, No Events Found to Submit Results For'
-            )
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Getting Event Details')
-        )
-    },
-
-    getLeagues: function () {
-      return axios
-        .get('/api/leagues')
-        .then((response) => {
-          this.leagues = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Fetching League Details'
-          )
-        )
-    },
-
-    uploadResult: function () {
-      return axios
-        .post('/api/upload/result', {
-          eventId: this.eventId,
-          course: this.course,
-          name: this.name,
-          time: this.time,
-        })
-        .then(() => {
-          this.$store.dispatch('createMessage', 'Result Uploaded Successfully')
-          this.$router.push(`/events/${this.eventId}/results`)
-        })
-        .catch((error) =>
-          this.$store.dispatch('createMessage', error.response.data.message)
-        )
-    },
-  },
 }
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+
+import { toSingleString } from '/@/scripts/typeHelpers'
+
+import $store from '/@/store/index'
+import $router from '/@/router/index'
+const { currentRoute: $route } = $router
+
+import { League, getLeagues } from '/@/api/leagues'
+import { Event, getEvents } from '/@/api/events'
+import { UploadResult, uploadResult as apiUploadResult } from '/@/api/upload'
+
+/* Get Data */
+const loading = ref(true)
+const leagues = ref<League[]>([])
+const events = ref<Event[]>([])
+const result = ref<UploadResult>({
+  name: '',
+  eventId: '',
+  course: '',
+  time: '',
+})
+
+const refreshDetails = async () => {
+  const routeParamsName = toSingleString($route.value.params.name)
+  loading.value = true
+  await Promise.all([
+    getLeagues().then((data) => {
+      leagues.value = data
+    }),
+    getEvents().then((data) => {
+      events.value = data.filter((event) => event.userSubmittedResults)
+
+      if (events.value.length < 1)
+        $store.dispatch(
+          'createMessage',
+          'Sorry, No Events Found to Submit Results'
+        )
+    }),
+  ])
+  loading.value = false
+}
+
+watch($route, refreshDetails, { immediate: true })
+
+const courses = computed(() => {
+  const eventSelected = events.value.find(
+    (event) => event.id === result.value.eventId
+  )
+  const leagueOfEvent = leagues.value.find(
+    (league) => league?.name === eventSelected?.league
+  )
+
+  return leagueOfEvent?.courses
+})
+
+const uploadResult = () =>
+  apiUploadResult(result.value)
+    .then(() => $router.push(`/events/${result.value.eventId}/results`))
+    .catch(() => false)
+
+export { loading, events, courses, result, uploadResult, refreshDetails }
 </script>
