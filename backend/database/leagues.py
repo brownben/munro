@@ -15,7 +15,7 @@ def leagueToJSON(league):
             "coordinator": league[2],
             "scoringMethod": league[3],
             "numberOfCountingEvents": league[4],
-            "courses": league[5].split(","),
+            "courses": league[5].split(",") if league[5] else "",
             "description": league[6],
             "year": league[7],
             "dynamicEventResults": league[8],
