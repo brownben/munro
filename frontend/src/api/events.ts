@@ -1,4 +1,4 @@
-import { getData, deleteData } from './requests'
+import { getData, postData, putData, deleteData } from './requests'
 import { ServerMessage } from './RequestConfigs'
 
 export interface Event {
@@ -46,6 +46,24 @@ export const getLatestResults = (): Promise<Event[] | null> =>
   getData<Event[]>({
     apiLocation: '/api/events/latest-results',
     customErrorMessage: 'Problem Fetching Events',
+  })
+
+export const createEvent = (data: Event): Promise<ServerMessage | null> =>
+  postData<ServerMessage>({
+    apiLocation: `/api/events`,
+    data,
+    customErrorMessage: 'Problem Creating Event',
+    customSuccessMessage: `League \`${data.name}\` Created`,
+    customErrorHandler: true,
+  })
+
+export const updateEvent = (data: Event): Promise<ServerMessage | null> =>
+  putData<ServerMessage>({
+    apiLocation: `/api/events/${data.id}`,
+    data,
+    customErrorMessage: 'Problem Updating Event',
+    customSuccessMessage: `Event \`${data.name}\` Updated`,
+    customErrorHandler: true,
   })
 
 export const deleteEvent = (

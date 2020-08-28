@@ -15,7 +15,10 @@
 -->
 
 <template>
-  <div>
+  <Layout
+    :title="title"
+    :not-found="$route.path.includes('/edit') && !loading && !event.id"
+  >
     <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -24,79 +27,71 @@
       description
     />
 
-    <Layout v-if="!notFound" :title="title">
-      <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
-      <form class="col-span-2" @submit.prevent="submit">
-        <TextInput v-model.trim="name" label="Name:" />
-        <TextInput
-          v-model.trim="date"
-          label="Date: (YYYY-MM-DD)"
-          class="mt-4"
-        />
-        <TextInput
-          v-model.trim="organiser"
-          label="Club/ Organiser:"
-          class="mt-4"
-        />
-        <TextInput
-          v-model.trim="website"
-          label="Website: (URL)"
-          type="url"
-          class="mt-4"
-        />
-        <TextInput
-          v-model.trim="results"
-          label="Results: (URL)"
-          type="url"
-          class="mt-4"
-        />
-        <TextInput
-          v-model.trim="winsplits"
-          label="Winsplits: (URL)"
-          type="url"
-          class="mt-4"
-        />
-        <TextInput
-          v-model.trim="routegadget"
-          label="Routegadget: (URL)"
-          type="url"
-          class="mt-4"
-        />
-        <DropdownInput
-          v-model="league"
-          :list="leagues.map((league) => league.name)"
-          label="League:"
-          class="mt-4"
-        />
-        <TextInput
-          v-model.trim="moreInformation"
-          label="More Information:"
-          class="mt-4"
-        />
-        <CheckboxInput
-          v-model="userSubmittedResults"
-          label="Allow Users to Submit Results"
-          class="mt-6 text-left"
-        />
-        <button v-if="create" class="mt-8 button-lg">Create Event</button>
-        <button v-if="!create" class="mt-8 button-lg">Update Event</button>
-      </form>
-    </Layout>
-    <not-found v-else />
-  </div>
+    <form class="col-span-2" @submit.prevent="submit">
+      <TextInput v-model.trim="event.name" label="Name:" />
+      <TextInput
+        v-model.trim="event.date"
+        label="Date: (YYYY-MM-DD)"
+        class="mt-4"
+      />
+      <TextInput
+        v-model.trim="event.organiser"
+        label="Club/ Organiser:"
+        class="mt-4"
+      />
+      <TextInput
+        v-model.trim="event.website"
+        label="Website: (URL)"
+        type="url"
+        class="mt-4"
+      />
+      <TextInput
+        v-model.trim="event.results"
+        label="Results: (URL)"
+        type="url"
+        class="mt-4"
+      />
+      <TextInput
+        v-model.trim="event.winsplits"
+        label="Winsplits: (URL)"
+        type="url"
+        class="mt-4"
+      />
+      <TextInput
+        v-model.trim="event.routegadget"
+        label="Routegadget: (URL)"
+        type="url"
+        class="mt-4"
+      />
+      <DropdownInput
+        v-model="event.league"
+        :list="leagues.map((league) => league.name)"
+        label="League:"
+        class="mt-4"
+      />
+      <TextInput
+        v-model.trim="event.moreInformation"
+        label="More Information:"
+        class="mt-4"
+      />
+      <CheckboxInput
+        v-model="event.userSubmittedResults"
+        label="Allow Users to Submit Results"
+        class="mt-6 text-left"
+      />
+      <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
+        Update Event
+      </button>
+      <button v-else class="mt-8 button-lg">Create Event</button>
+    </form>
+  </Layout>
 </template>
 
-<script>
-import { defineAsyncComponent } from 'vue'
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
-
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 import TextInput from '/@/components/inputs/TextInput.vue'
 import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
-
-const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
 export default {
   components: {
@@ -104,160 +99,97 @@ export default {
     DropdownInput,
     TextInput,
     CheckboxInput,
-    NotFound,
-  },
-
-  data: function () {
-    return {
-      id: '',
-      notFound: false,
-      create: true,
-      leagues: [],
-      name: '',
-      date: '',
-      resultUploaded: false,
-      organiser: '',
-      moreInformation: '',
-      website: '',
-      results: '',
-      winsplits: '',
-      routegadget: '',
-      userSubmittedResults: false,
-      league: this.$route.params.league,
-    }
-  },
-
-  computed: {
-    title: function () {
-      if (this.create) return 'Create Event'
-      else return 'Edit Event'
-    },
-  },
-
-  // On Load
-  mounted: function () {
-    this.getLeagues()
-    if (this.$route.path.includes('edit')) {
-      this.create = false
-      this.getEventDetails()
-    }
-  },
-
-  methods: {
-    submit: function () {
-      if (this.create) this.createEvent()
-      else this.updateEvent()
-    },
-
-    getEventDetails: function () {
-      return axios
-        .get(`/api/events/${this.$route.params.id}`)
-        .then((response) => {
-          if (!response.data) this.notFound = true
-          else {
-            this.id = this.$route.params.id
-            this.name = response.data.name
-            this.date = response.data.date
-            this.resultUploaded = response.data.resultUploaded
-            this.organiser = response.data.organiser
-            this.moreInformation = response.data.moreInformation
-            this.website = response.data.website
-            this.results = response.data.results
-            this.winsplits = response.data.winsplits
-            this.routegadget = response.data.routegadget
-            this.league = response.data.league
-            this.userSubmittedResults = response.data.userSubmittedResults
-          }
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Getting Event Details')
-        )
-    },
-
-    getLeagues: function () {
-      return axios
-        .get('/api/leagues')
-        .then((response) => {
-          this.leagues = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Fetching List of Leagues'
-          )
-        )
-    },
-
-    validateForm: function () {
-      if (this.name === '' || this.league === '') {
-        this.$store.dispatch(
-          'createMessage',
-          'Please Ensure Name and League Fields are not Blank'
-        )
-        return false
-      } else if (this.name.includes('/') || this.name.includes('\\')) {
-        this.$store.dispatch(
-          'createMessage',
-          "Please Ensure Name doesn't Include any Slashes"
-        )
-        return false
-      } else return true
-    },
-
-    createEvent: function () {
-      if (this.validateForm()) {
-        return axios
-          .post('/api/events', {
-            name: this.name,
-            date: this.date,
-            resultUploaded: this.resultUploaded,
-            organiser: this.organiser,
-            moreInformation: this.moreInformation,
-            website: this.website,
-            results: this.results,
-            winsplits: this.winsplits,
-            routegadget: this.routegadget,
-            league: this.league,
-            userSubmittedResults: this.userSubmittedResults,
-          })
-          .then((response) => this.returnToLeaguePage(response))
-          .catch(() =>
-            this.$store.dispatch(
-              'createMessage',
-              'Error: Problem Creating Event - Please Try Again'
-            )
-          )
-      }
-    },
-
-    updateEvent: function () {
-      if (this.validateForm()) {
-        return axios
-          .put(`/api/events/${this.id}`, {
-            name: this.name,
-            date: this.date,
-            resultUploaded: this.resultUploaded,
-            organiser: this.organiser,
-            moreInformation: this.moreInformation,
-            website: this.website,
-            results: this.results,
-            winsplits: this.winsplits,
-            routegadget: this.routegadget,
-            league: this.league,
-            userSubmittedResults: this.userSubmittedResults,
-          })
-          .then((response) => this.returnToLeaguePage(response))
-          .catch((error) =>
-            this.$store.dispatch('createMessage', error.response.data.message)
-          )
-      }
-    },
-
-    returnToLeaguePage: function (response) {
-      // Go to league page after successful update/ creation
-      this.$store.dispatch('createMessage', response.data.message)
-      this.$router.push(`/leagues/${this.league}`)
-    },
   },
 }
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+
+import { toSingleString } from '/@/scripts/typeHelpers'
+
+import $store from '/@/store/index'
+import $router from '/@/router/index'
+const { currentRoute: $route } = $router
+
+import { League, getLeagues } from '/@/api/leagues'
+import {
+  Event,
+  getEvent,
+  createEvent as apiCreateEvent,
+  updateEvent as apiUpdateEvent,
+} from '/@/api/events'
+
+const loading = ref(true)
+const leagues = ref<League[]>([])
+const event = ref<Event>({
+  id: '',
+  name: '',
+  date: '',
+  resultUploaded: false,
+  organiser: '',
+  moreInformation: '',
+  website: '',
+  results: '',
+  winsplits: '',
+  routegadget: '',
+  userSubmittedResults: false,
+  league: '',
+})
+
+const refreshDetails = async () => {
+  const routeParamsId = toSingleString($route.value.params.id)
+
+  getLeagues().then((data) => {
+    leagues.value = data
+  })
+
+  if (routeParamsId) {
+    loading.value = true
+    await getEvent(routeParamsId).then((data) => {
+      event.value = data
+    })
+    loading.value = false
+  }
+}
+
+const validateForm = () => {
+  if (event.value.name === '' || event.value.league === '') {
+    $store.dispatch(
+      'createMessage',
+      'Please Ensure Name and League Fields are not Blank'
+    )
+    return false
+  } else if (
+    event.value.name.includes('/') ||
+    event.value.name.includes('\\')
+  ) {
+    $store.dispatch(
+      'createMessage',
+      "Please Ensure Name doesn't Include any Slashes"
+    )
+    return false
+  } else return true
+}
+const createEvent = () => {
+  if (validateForm())
+    return apiCreateEvent(event.value)
+      .then(() => $router.push(`/leagues/${event.value.league}`))
+      .catch(() => false)
+}
+const updateEvent = () => {
+  if (validateForm())
+    return apiUpdateEvent(event.value)
+      .then(() => $router.push(`/leagues/${event.value.league}`))
+      .catch(() => false)
+}
+const submit = () =>
+  $route.value.path.includes('/edit') ? updateEvent() : createEvent()
+
+const title = computed(() =>
+  $route.value.path.includes('/edit') ? 'Edit Event' : 'Create Event'
+)
+
+watch($route, refreshDetails, { immediate: true })
+
+export { loading, leagues, event, submit, title }
 </script>

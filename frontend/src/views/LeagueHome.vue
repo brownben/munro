@@ -143,7 +143,7 @@
 
       <router-link
         v-if="$store.getters.loggedIn"
-        :to="`${$route.path}/create-event`"
+        :to="`/events/create`"
         class="inline-block px-4 pt-2 pb-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
       >
         <span class="mr-1 text-xl">+</span> Add Event
