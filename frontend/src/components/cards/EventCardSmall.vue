@@ -8,7 +8,7 @@
       {{ event.league }}
     </h3>
     <h4
-      class="text-3xl font-bold leading-relaxed tracking-tight text-gray-900 font-heading"
+      class="mt-3 mb-2 text-3xl font-bold leading-none tracking-tight text-gray-900 font-heading"
     >
       {{ event.name }}
     </h4>
