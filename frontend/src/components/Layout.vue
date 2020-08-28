@@ -17,7 +17,6 @@
     </header>
 
     <main class="flex flex-col flex-grow">
-      <NotFound v-if="notFound" />
       <div v-if="$slots.white && !notFound" class="bg-white">
         <div class="max-w-screen-xl pb-8 mx-auto sm:px-6 lg:px-8">
           <div class="px-6 sm:px-0">
@@ -29,9 +28,12 @@
         <slot name="fullWidth" />
       </div>
       <div
-        v-if="$slots.default && !notFound"
         class="flex-grow"
-        :class="gray ? 'bg-gray-50 border-t border-main-100 pt-8' : 'bg-white'"
+        :class="
+          gray && !notFound
+            ? 'bg-gray-50 border-t border-main-100 pt-8'
+            : 'bg-white'
+        "
       >
         <div
           class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
@@ -40,7 +42,8 @@
           }"
         >
           <div class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8">
-            <slot />
+            <NotFound v-if="notFound" />
+            <slot v-else />
           </div>
         </div>
       </div>
