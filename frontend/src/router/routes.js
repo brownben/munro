@@ -103,11 +103,6 @@ const eventRoutes = [
     beforeEnter: requireAuthentication,
   },
   {
-    path: '/leagues/:league/create-event',
-    component: () => import('/@/views/admin/EventForm.vue'),
-    beforeEnter: requireAuthentication,
-  },
-  {
     path: '/embed/leagues/:name/events',
     component: () => import('/@/views/LeagueEventsEmbed.vue'),
   },
