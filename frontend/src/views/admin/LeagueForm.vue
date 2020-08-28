@@ -12,8 +12,11 @@
 -->
 
 <template>
-  <!-- :not-found="!loading && !league?.name && $route.path.includes('edit')" -->
-  <Layout :title="title">
+  <!--  -->
+  <Layout
+    :title="title"
+    :not-found="!loading && !league?.oldName && $route.path.includes('/edit')"
+  >
     <Meta
       :head="{
         meta: { name: 'robots', content: 'noindex' },
@@ -94,7 +97,7 @@
         label="More Information:"
         class="mt-4"
       />
-      <button v-if="$route.path.includes('edit')" class="mt-8 button-lg">
+      <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
         Update League
       </button>
       <button v-else class="mt-8 button-lg">Create League</button>
@@ -202,10 +205,10 @@ const updateLeague = () => {
       .catch(() => false)
 }
 const submit = () =>
-  $route.value.path.includes('edit') ? updateLeague() : createLeague()
+  $route.value.path.includes('/edit') ? updateLeague() : createLeague()
 
 const title = computed(() =>
-  $route.value.path.includes('edit') ? 'Edit League' : 'Create League'
+  $route.value.path.includes('/edit') ? 'Edit League' : 'Create League'
 )
 
 watch($route, refreshDetails, { immediate: true })

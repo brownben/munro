@@ -59,7 +59,7 @@
 
       <div
         v-if="
-          (event.resultUploaded && league.dynamicEventResults) ||
+          (event.resultUploaded && league?.dynamicEventResults) ||
           event.results ||
           event.winsplits ||
           event.routegadget
@@ -67,7 +67,7 @@
         class="w-full pb-5 mt-3"
       >
         <router-link
-          v-if="event.resultUploaded && league.dynamicEventResults"
+          v-if="event.resultUploaded && league?.dynamicEventResults"
           :to="`/events/${event.id}/results`"
           class="button"
         >
