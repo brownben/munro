@@ -131,34 +131,32 @@
       </section>
     </template>
 
-    <template v-if="league">
-      <div
-        v-if="events && events.length > 0"
-        class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
+    <div
+      v-if="events?.length > 0"
+      class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
+    >
+      <h2
+        class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
       >
-        <h2
-          class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
-        >
-          Events
-        </h2>
+        Events
+      </h2>
 
-        <router-link
-          v-if="$store.getters.loggedIn"
-          :to="`${$route.path}/create-event`"
-          class="inline-block px-4 pt-2 pb-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
-        >
-          <span class="mr-1 text-xl">+</span> Add Event
-        </router-link>
-      </div>
-      <EventOverviewCard
-        v-for="event of events"
-        :key="event.name"
-        :event="event"
-        :league="league"
-        class="col-span-2"
-        @event-changed="refreshDetails"
-      />
-    </template>
+      <router-link
+        v-if="$store.getters.loggedIn"
+        :to="`${$route.path}/create-event`"
+        class="inline-block px-4 pt-2 pb-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
+      >
+        <span class="mr-1 text-xl">+</span> Add Event
+      </router-link>
+    </div>
+    <EventOverviewCard
+      v-for="event of events"
+      :key="event.name"
+      :event="event"
+      :league="league"
+      class="col-span-2"
+      @event-changed="refreshDetails"
+    />
   </Layout>
 </template>
 <script lang="ts">
@@ -191,7 +189,6 @@ const events = ref<Event[]>([])
 const refreshDetails = async () => {
   const routeParamsName = toSingleString($route.value.params.name)
   loading.value = true
-
   await Promise.all([
     getLeagueEvents(routeParamsName, $store.getters.loggedIn).then(
       (eventDetails) => {
@@ -202,7 +199,6 @@ const refreshDetails = async () => {
       league.value = leagueDetails
     }),
   ])
-
   loading.value = false
 }
 watch($route, refreshDetails, { immediate: true })

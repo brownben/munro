@@ -132,12 +132,10 @@ const hideResult = (result: EventResult) =>
     emit('result-changed')
   )
 
-const incompleteResult = (result: EventResult) => {
-  console.log(result, result.id, result.event, !result.incomplete)
+const incompleteResult = (result: EventResult) =>
   apiIncompleteResult(result.id, result.event, !result.incomplete).then(() =>
     emit('result-changed')
   )
-}
 
 export { elapsedTime, positionSuperscript, hideResult, incompleteResult }
 </script>
