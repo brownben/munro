@@ -71,7 +71,6 @@ import { League, getLeagues } from '/@/api/leagues'
 import { Event, getEvents } from '/@/api/events'
 import { UploadResult, uploadResult as apiUploadResult } from '/@/api/upload'
 
-/* Get Data */
 const loading = ref(true)
 const leagues = ref<League[]>([])
 const events = ref<Event[]>([])

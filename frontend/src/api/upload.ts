@@ -8,6 +8,16 @@ export interface UploadResult {
   time: string
 }
 
+export interface UploadFile {
+  eventId: string
+  uploadKey: string
+  file: string
+  overwrite: boolean
+  results: string
+  winsplits: string
+  routegadget: string
+}
+
 export const uploadResult = (
   data: UploadResult
 ): Promise<ServerMessage | null> =>
@@ -16,5 +26,14 @@ export const uploadResult = (
     data,
     customErrorMessage: 'Problem Uploading Result',
     customSuccessMessage: `Result for \`${data.name}\` Created`,
+    customErrorHandler: true,
+  })
+
+export const uploadFile = (data: UploadFile): Promise<ServerMessage | null> =>
+  postData<ServerMessage>({
+    apiLocation: `/api/upload`,
+    data,
+    customErrorMessage: 'Problem Uploading File',
+    customSuccessMessage: `Results Uploaded Successfully`,
     customErrorHandler: true,
   })
