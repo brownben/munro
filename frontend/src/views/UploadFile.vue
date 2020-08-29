@@ -29,21 +29,25 @@
 
     <div class="col-span-2">
       <TextInput
-        v-model.trim.lazy="eventId"
+        v-model.lazy="uploadConfig.eventId"
         label="Event ID:"
         @input="findEvent"
       />
 
-      <p v-show="event.name" class="mt-4 mb-4">
+      <p v-show="event?.name" class="mt-4 mb-4">
         <b class="mr-2 text-main-800">Event Name:</b>
-        {{ event.name }}
+        {{ event?.name }}
       </p>
 
-      <TextInput v-model.trim="uploadKey" label="Upload Key:" class="mt-4" />
+      <TextInput
+        v-model.trim="uploadConfig.uploadKey"
+        label="Upload Key:"
+        class="mt-4"
+      />
 
       <!-- If Event already have results, confirm they want to overwrite -->
       <CheckboxInput
-        v-if="event.resultUploaded"
+        v-if="uploadConfig.resultUploaded"
         v-model="overwrite"
         label="Overwrite Existing Results"
         class="my-6 text-left"
@@ -52,19 +56,19 @@
       <FileInput label="Results File:" class="mt-4" @file="fileRead" />
 
       <TextInput
-        v-model.trim="event.results"
+        v-model.trim="uploadConfig.results"
         label="Results (URL):"
         type="url"
         class="mt-4"
       />
       <TextInput
-        v-model.trim="event.routegadget"
+        v-model.trim="uploadConfig.routegadget"
         label="Routegadget (URL):"
         type="url"
         class="mt-4"
       />
       <TextInput
-        v-model.trim="event.winsplits"
+        v-model.trim="uploadConfig.winsplits"
         label="Winsplits: (URL):"
         type="url"
         class="mt-4"
@@ -72,7 +76,9 @@
 
       <!-- Only show upload once all fields have been filled -->
       <button
-        v-if="eventId && uploadKey && file"
+        v-if="
+          uploadConfig.eventId && uploadConfig.uploadKey && uploadConfig.file
+        "
         class="mt-6 button-lg"
         @click="uploadFile"
       >
@@ -81,15 +87,11 @@
     </div>
   </Layout>
 </template>
-
-<script>
-import axios from 'axios'
-
-import Layout from '/@/components/Layout.vue'
-
-import TextInput from '/@/components/inputs/TextInput.vue'
-import FileInput from '/@/components/inputs/FileInput.vue'
-import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
+<script lang="ts">
+import Layout from '../components/Layout.vue'
+import TextInput from '../components/inputs/TextInput.vue'
+import FileInput from '../components/inputs/FileInput.vue'
+import CheckboxInput from '../components/inputs/CheckboxInput.vue'
 
 export default {
   components: {
@@ -98,71 +100,51 @@ export default {
     FileInput,
     CheckboxInput,
   },
-
-  data: function () {
-    return {
-      eventId: '',
-      uploadKey: '',
-      event: {},
-      file: '',
-      overwrite: false,
-      results: '',
-      routegadget: '',
-      winsplits: '',
-    }
-  },
-
-  // On load
-  mounted: function () {
-    // If passed with Event ID, autofill Event ID
-    if (this.$route.params.id) {
-      this.eventId = this.$route.params.id
-      this.findEvent()
-    }
-  },
-
-  methods: {
-    findEvent: function () {
-      // Fetch event details so name of event can be checked and if results are uploaded
-      return axios
-        .get(`/api/events/${this.eventId}`)
-        .then((response) => {
-          this.event = response.data
-          if (!this.event.name) {
-            this.event = {}
-            this.event.name = 'No Event Found'
-          }
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Event Name')
-        )
-    },
-
-    fileRead: function (file) {
-      this.file = file
-    },
-
-    uploadFile: function () {
-      // Send data to the server
-      this.$store.dispatch('createMessage', 'Upload Data Sent')
-      return axios
-        .post('/api/upload', {
-          eventId: this.eventId,
-          uploadKey: this.uploadKey,
-          file: this.file,
-          overwrite: this.overwrite,
-          results: this.event.results,
-          winsplits: this.event.winsplits,
-          routegadget: this.event.routegadget,
-        })
-        .then(() => {
-          this.$store.dispatch('createMessage', 'Results Uploaded Successfully')
-          this.$router.push(`/events/${this.eventId}/results`)
-        })
-        .catch((error) =>
-          this.$store.dispatch('createMessage', error.response.data.message)
-        )
-    },
-  },
 }
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+
+import { toSingleString } from '../scripts/typeHelpers'
+
+import $router from '../router/index'
+const { currentRoute: $route } = $router
+
+import { UploadFile, uploadFile as apiUploadFile } from '../api/upload'
+import { Event, getEvent } from '../api/events'
+
+const uploadConfig = ref<UploadFile>({
+  eventId: '',
+  uploadKey: '',
+  file: '',
+  overwrite: false,
+  results: '',
+  routegadget: '',
+  winsplits: '',
+})
+const event = ref<Event | null>(null)
+const eventId = computed(() => uploadConfig.value.eventId)
+
+const getURLEventId = () => {
+  if ($route.value.params.id)
+    uploadConfig.value.eventId = toSingleString($route.value.params.id)
+}
+const findEvent = async () => {
+  event.value = await getEvent(uploadConfig.value.eventId)
+  uploadConfig.value.results = event.value.results
+  uploadConfig.value.winsplits = event.value.winsplits
+  uploadConfig.value.routegadget = event.value.routegadget
+}
+const fileRead = (file: string) => {
+  uploadConfig.value.file = file
+}
+const uploadFile = () =>
+  apiUploadFile(uploadConfig.value)
+    .then(() => $router.push(`/events/${eventId.value}/results`))
+    .catch(() => false)
+
+watch($route, getURLEventId, { immediate: true })
+watch(eventId, findEvent, { immediate: true })
+
+export { uploadConfig, event, fileRead, uploadFile }
 </script>
