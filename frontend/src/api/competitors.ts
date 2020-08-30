@@ -1,4 +1,5 @@
-import { getData, deleteData } from './requests'
+import { getData, postData, putData } from './requests'
+import { ServerMessage } from './RequestConfigs'
 
 export interface Competitor {
   id: number
@@ -27,4 +28,26 @@ export const getLeagueCompetitors = (
   getData<Competitor[]>({
     apiLocation: `/api/leagues/${league}/competitors`,
     customErrorMessage: 'Problem Fetching Competitors',
+  })
+
+export const createCompetitor = (
+  data: Competitor
+): Promise<ServerMessage | null> =>
+  postData<ServerMessage>({
+    apiLocation: `/api/competitors`,
+    data,
+    customErrorMessage: 'Problem Creating Competitor',
+    customSuccessMessage: `Competitor \`${data.name}\` Created`,
+    customErrorHandler: true,
+  })
+
+export const updateCompetitor = (
+  data: Competitor
+): Promise<ServerMessage | null> =>
+  putData<ServerMessage>({
+    apiLocation: `/api/competitors/${data.name}`,
+    data,
+    customErrorMessage: 'Problem Updating Competitor',
+    customSuccessMessage: `Competitor \`${data.name}\` Updated`,
+    customErrorHandler: true,
   })
