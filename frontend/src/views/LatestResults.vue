@@ -39,7 +39,7 @@ export default {
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 
-import { Event, getLatestResults } from '/@/api/events'
+import { Event, getLatestResults } from '../api/events'
 
 export const events = ref<Event[]>([])
 

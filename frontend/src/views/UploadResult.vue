@@ -61,15 +61,15 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 
-import { toSingleString } from '/@/scripts/typeHelpers'
+import { toSingleString } from '../scripts/typeHelpers'
 
-import $store from '/@/store/index'
-import $router from '/@/router/index'
+import $store from '../store/index'
+import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeagues } from '/@/api/leagues'
-import { Event, getEvents } from '/@/api/events'
-import { UploadResult, uploadResult as apiUploadResult } from '/@/api/upload'
+import { League, getLeagues } from '../api/leagues'
+import { Event, getEvents } from '../api/events'
+import { UploadResult, uploadResult as apiUploadResult } from '../api/upload'
 
 const loading = ref(true)
 const leagues = ref<League[]>([])

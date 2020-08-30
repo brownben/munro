@@ -246,23 +246,23 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
 
-import { toSingleString } from '/@/scripts/typeHelpers'
-import { elapsedTime } from '/@/scripts/time'
-import { leagueResultWithAgeGender as resultWithAgeGender } from '/@/scripts/ageClassSplit'
-import { filterResults } from '/@/scripts/filter'
-import { sortLeagueResults as sortResults } from '/@/scripts/sort'
+import { toSingleString } from '../scripts/typeHelpers'
+import { elapsedTime } from '../scripts/time'
+import { leagueResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
+import { filterResults } from '../scripts/filter'
+import { sortLeagueResults as sortResults } from '../scripts/sort'
 
-import $router from '/@/router/index'
+import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeague } from '/@/api/leagues'
-import { Event, getLeagueEvents } from '/@/api/events'
-import { LeagueResult, getLeagueResults } from '/@/api/results'
+import { League, getLeague } from '../api/leagues'
+import { Event, getLeagueEvents } from '../api/events'
+import { LeagueResult, getLeagueResults } from '../api/results'
 import {
   FilterPreferences,
   SortPreferencesLeague as SortPreferences,
   SortablePropetiesLeague as SortablePropeties,
-} from '/@/scripts/FilterSort.d'
+} from '../scripts/FilterSort.d'
 
 /* Get Data */
 const loading = ref(true)

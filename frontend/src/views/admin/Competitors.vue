@@ -154,18 +154,17 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
 
-import { toSingleString } from '/@/scripts/typeHelpers'
-import { sortCompetitors } from '/@/scripts/sort'
+import { toSingleString } from '../../scripts/typeHelpers'
+import { sortCompetitors } from '../../scripts/sort'
 
-import $router from '/@/router/index'
+import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
-import { Competitor, getLeagueCompetitors } from '/@/api/competitors'
-
+import { Competitor, getLeagueCompetitors } from '../../api/competitors'
 import {
   SortPreferencesCompetitor as SortPreferences,
   SortablePropetiesCompetitor as SortablePropeties,
-} from '/@/scripts/FilterSort.d'
+} from '../../scripts/FilterSort.d'
 
 /* Get Data */
 const loading = ref(true)

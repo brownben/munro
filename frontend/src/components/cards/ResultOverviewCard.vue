@@ -112,13 +112,12 @@ export default {
 }
 </script>
 <script lang="ts" setup="props, { emit }">
-import { elapsedTime } from '/@/scripts/time'
+import { elapsedTime } from '../../scripts/time'
 import {
   EventResult,
   hideResult as apiHideResult,
   incompleteResult as apiIncompleteResult,
-} from '/@/api/results'
-import axios from 'axios'
+} from '../../api/results'
 
 const positionSuperscript = (position: number) => {
   if (position % 10 === 1 && position % 100 !== 11) return 'st'

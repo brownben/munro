@@ -169,22 +169,22 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
 
-import { toSingleString } from '/@/scripts/typeHelpers'
-import { elapsedTime } from '/@/scripts/time'
-import { eventResultWithAgeGender as resultWithAgeGender } from '/@/scripts/ageClassSplit'
-import { filterResults } from '/@/scripts/filter'
-import { sortEventResults as sortResults } from '/@/scripts/sort'
+import { toSingleString } from '../scripts/typeHelpers'
+import { elapsedTime } from '../scripts/time'
+import { eventResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
+import { filterResults } from '../scripts/filter'
+import { sortEventResults as sortResults } from '../scripts/sort'
 
-import $router from '/@/router/index'
+import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { Event, getEvent } from '/@/api/events'
-import { EventResult, getEventResults } from '/@/api/results'
+import { Event, getEvent } from '../api/events'
+import { EventResult, getEventResults } from '../api/results'
 import {
   FilterPreferences,
   SortPreferencesEvent as SortPreferences,
   SortablePropetiesEvent as SortablePropeties,
-} from '/@/scripts/FilterSort.d'
+} from '../scripts/FilterSort.d'
 
 /* Get Data */
 const loading = ref(true)

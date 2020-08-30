@@ -173,14 +173,14 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 
-import { toSingleString } from '/@/scripts/typeHelpers'
+import { toSingleString } from '../scripts/typeHelpers'
 
-import $store from '/@/store/index'
-import $router from '/@/router/index'
+import $store from '../store/index'
+import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeague, deleteLeague } from '/@/api/leagues'
-import { Event, getLeagueEvents } from '/@/api/events'
+import { League, getLeague, deleteLeague } from '../api/leagues'
+import { Event, getLeagueEvents } from '../api/events'
 
 /* Get Data */
 const loading = ref(true)

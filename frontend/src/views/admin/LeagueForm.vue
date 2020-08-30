@@ -124,10 +124,10 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 
-import { toSingleString } from '/@/scripts/typeHelpers'
+import { toSingleString } from '../../scripts/typeHelpers'
 
-import $store from '/@/store/index'
-import $router from '/@/router/index'
+import $store from '../../store/index'
+import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
 import {
@@ -136,14 +136,16 @@ import {
   getLeague,
   createLeague as apiCreateLeague,
   updateLeague as apiUpdateLeague,
-} from '/@/api/leagues'
+} from '../../api/leagues'
 
 const loading = ref(true)
 const league = ref<LeagueForm>({
+  courses: '',
   coordinator: '',
   description: '',
   dynamicEventResults: true,
   moreInformation: '',
+  oldName: '',
   name: '',
   numberOfCountingEvents: 1,
   scoringMethod: '',
