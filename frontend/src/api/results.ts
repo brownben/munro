@@ -1,4 +1,4 @@
-import { getData, putData } from './requests'
+import { getData, postData, putData } from './requests'
 import { ServerMessage } from './RequestConfigs'
 
 export interface EventResult {
@@ -41,6 +41,12 @@ export interface EventResultWithAgeGender extends EventResult {
 export interface LeagueResultWithAgeGender extends LeagueResult {
   age: number
   gender: string
+}
+
+export interface ManualResult {
+  competitor: number
+  event: string
+  points: number
 }
 
 export const getEventResults = (
@@ -100,4 +106,15 @@ export const incompleteResult = (
       ? 'Result Marked as Incomplete'
       : 'Result Marked as Complete',
     customErrorMessage: 'Problem Updating Result',
+  })
+
+export const createManualResult = (
+  data: ManualResult
+): Promise<ServerMessage | null> =>
+  postData<ServerMessage>({
+    apiLocation: `/api/results/manual`,
+    data,
+    customErrorMessage: 'Problem Creating Result',
+    customSuccessMessage: `Result Created`,
+    customErrorHandler: true,
   })

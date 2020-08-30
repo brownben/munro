@@ -104,10 +104,21 @@ const courses = computed(
       ?.courses ?? []
 )
 
-const validateForm = () =>
-  competitor.value.name !== '' &&
-  competitor.value.league !== '' &&
-  competitor.value.course !== ''
+const validateForm = () => {
+  if (
+    competitor.value.name !== '' &&
+    competitor.value.league !== '' &&
+    competitor.value.course !== ''
+  )
+    return true
+  else {
+    $store.dispatch(
+      'createMessage',
+      'Please Ensure Name, League and Course Fields are not Blank'
+    )
+    return false
+  }
+}
 
 const createCompetitor = () => {
   if (validateForm())
