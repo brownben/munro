@@ -26,7 +26,7 @@ class Test_assignPoints:
     def test_normalResultsDouble(self):
         results = [{"position": i + 1, "incomplete": False} for i in range(5)]
         output = [
-            {"position": i + 1, "points": 200 - (2 * i), "incomplete": False,}
+            {"position": i + 1, "points": 200 - (2 * i), "incomplete": False}
             for i in range(5)
         ]
         assert assignPoints(results, "Double") == output
@@ -34,7 +34,7 @@ class Test_assignPoints:
     def test_normalResults50Double(self):
         results = [{"position": i + 1, "incomplete": False} for i in range(5)]
         output = [
-            {"position": i + 1, "points": 100 - (2 * i), "incomplete": False,}
+            {"position": i + 1, "points": 100 - (2 * i), "incomplete": False}
             for i in range(5)
         ]
         assert assignPoints(results, "50Double") == output

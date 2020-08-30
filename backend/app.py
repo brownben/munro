@@ -45,10 +45,12 @@ api.add_resource(leagues.Leagues, "/api/leagues")
 api.add_resource(leagues.League, "/api/leagues/<name>")
 api.add_resource(leagueEvents.LeagueEvents, "/api/leagues/<name>/events")
 api.add_resource(
-    leagueEvents.LeagueEventsWithUploadKey, "/api/leagues/<name>/events/uploadKey",
+    leagueEvents.LeagueEventsWithUploadKey,
+    "/api/leagues/<name>/events/uploadKey",
 )
 api.add_resource(
-    leagueResults.ResultsForCourse, "/api/leagues/<name>/results/<course>",
+    leagueResults.ResultsForCourse,
+    "/api/leagues/<name>/results/<course>",
 )
 
 api.add_resource(events.Events, "/api/events")
@@ -60,7 +62,8 @@ api.add_resource(
     "/api/events/<eventId>/results/recalculate",
 )
 api.add_resource(
-    eventsLatestResults.EventsLatestWithResults, "/api/events/latest-results",
+    eventsLatestResults.EventsLatestWithResults,
+    "/api/events/latest-results",
 )
 
 api.add_resource(competitors.Competitors, "/api/competitors")
@@ -74,7 +77,8 @@ api.add_resource(resultsTransfer.TransferResult, "/api/results/transfer")
 api.add_resource(results.Result, "/api/results/<resultId>")
 api.add_resource(eventResults.ResultsForEvent, "/api/events/<eventId>/results")
 api.add_resource(
-    competitorResults.ResultsForCompetitor, "/api/competitors/<competitorId>/results",
+    competitorResults.ResultsForCompetitor,
+    "/api/competitors/<competitorId>/results",
 )
 
 api.add_resource(uploadFile.Upload, "/api/upload")

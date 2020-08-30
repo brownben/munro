@@ -67,9 +67,7 @@ class Event(Resource):
             )
 
         try:
-            events.updateEvent(
-                {"eventId": eventId, **data,}
-            )
+            events.updateEvent({"eventId": eventId, **data})
             return returnMessage("Event - {} was Updated".format(name))
         except:
             return returnError("Error: Problem Updating Event - Please Try Again")
