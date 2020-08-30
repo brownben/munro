@@ -23,6 +23,18 @@ export const sendRequest = <T>(
     .then((data: T) => showSuccessMessage<T>(data, responseConfig))
     .catch((error: Error) => handleError(error, responseConfig))
 
+export const sendRequestText = (
+  apiLocation: string,
+  fetchConfig: FetchConfig,
+  responseConfig: RequestConfig
+): Promise<string | null> =>
+  Fetch<string>(apiLocation, fetchConfig)
+    .then((response: TypedResponse<string>) => {
+      if (!response.ok) throw Error(response.statusText)
+      return response.text()
+    })
+    .catch((error: Error) => handleError(error, responseConfig))
+
 const addMessage = (text: string) => store.dispatch('createMessage', text)
 
 const showSuccessMessage = <T>(data: T, config: RequestConfig): T => {

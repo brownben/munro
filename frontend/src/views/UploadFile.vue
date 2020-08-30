@@ -28,13 +28,9 @@
     </div>
 
     <div class="col-span-2">
-      <TextInput
-        v-model.lazy="uploadConfig.eventId"
-        label="Event ID:"
-        @input="findEvent"
-      />
+      <TextInput v-model.lazy="uploadConfig.eventId" label="Event ID:" />
 
-      <p v-show="event?.name" class="mt-4 mb-4">
+      <p v-if="uploadConfig.eventId" class="my-4">
         <b class="mr-2 text-main-800">Event Name:</b>
         {{ event?.name }}
       </p>
