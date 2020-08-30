@@ -10,18 +10,18 @@
     />
 
     <div class="col-span-2">
-      <TextInput
-        v-model.trim.lazy="eventId"
-        label="Event ID:"
-        @input="findEvent"
-      />
+      <TextInput v-model.lazy="uploadConfig.eventId" label="Event ID:" />
 
-      <p v-show="event.name" class="mt-4 mb-4">
+      <p v-if="event?.name" class="my-4">
         <b class="mr-2 text-main-800">Event Name:</b>
         {{ event.name }}
       </p>
 
-      <TextInput v-model.trim="uploadKey" label="Upload Key:" class="mt-4" />
+      <TextInput
+        v-model.trim="uploadConfig.uploadKey"
+        label="Upload Key:"
+        class="mt-4"
+      />
       <TextInput
         v-model.trim="maprunId"
         label="MapRun Event Id:"
@@ -29,15 +29,17 @@
       />
 
       <DropdownInput
-        v-model="course"
+        v-model="uploadConfig.course"
         label="Course:"
-        :list="league.courses"
+        :list="courses"
         class="mt-4"
       />
 
       <!-- Only show upload once all fields have been filled -->
       <button
-        v-if="eventId && uploadKey && course"
+        v-if="
+          uploadConfig.eventId && uploadConfig.uploadKey && uploadConfig.course
+        "
         class="mt-6 button-lg"
         @click="uploadFile"
       >
@@ -46,12 +48,8 @@
     </div>
   </Layout>
 </template>
-
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
-
 import TextInput from '/@/components/inputs/TextInput.vue'
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
@@ -61,102 +59,80 @@ export default {
     TextInput,
     DropdownInput,
   },
-
-  data: function () {
-    return {
-      eventId: '',
-      uploadKey: '',
-      event: {},
-      league: {},
-      maprunId: '',
-      course: '',
-    }
-  },
-
-  methods: {
-    findEvent: function () {
-      // Fetch event details so name of event can be checked and if results are uploaded
-      return axios
-        .get(`/api/events/${this.eventId}`)
-        .then((response) => {
-          this.event = response.data
-          if (!this.event.name) {
-            this.event = {}
-            this.league = {}
-            this.event.name = 'No Event Found'
-          } else return axios.get(`/api/leagues/${this.event.league}`)
-        })
-        .then((response) => {
-          if (response) this.league = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Event Name')
-        )
-    },
-
-    uploadFile: function () {
-      return this.getMaprunData()
-        .then((file) => {
-          if (!file || file.split('\n').length < 1)
-            throw new Error('Error: No MapRun Event Found With That Id')
-
-          this.$store.dispatch('createMessage', 'Upload Data Sent')
-          return file
-        })
-        .then((file) =>
-          axios.post('/api/upload/stream', {
-            eventId: this.eventId,
-            uploadKey: this.uploadKey,
-            file: file,
-            course: this.course,
-          })
-        )
-        .then(() => {
-          this.$store.dispatch('createMessage', 'Results Uploaded Successfully')
-          this.$router.push(`/events/${this.eventId}/results`)
-        })
-        .catch((error) =>
-          this.$store.dispatch(
-            'createMessage',
-            error?.response?.data?.message ?? error?.message
-          )
-        )
-    },
-
-    maprunHTMLtoCSV: function (html) {
-      return html
-        .replace(/\n/g, '')
-        .replace(/<\/.*?>/g, '')
-        .replace(/'>Track/g, '')
-        .replace(/<a href='reitti.cgi.*?pID=/g, '')
-        .replace(/<a.*?>/g, '')
-        .replace(/\(Rev[0-9]+\)/g, '')
-        .split('<tr>')
-        .filter((row) => !row.includes('DOCTYPE') && !row.includes('<th'))
-        .map((row) =>
-          row
-            .split(/<td.*?>/g)
-            .slice(2, 6)
-            .map((string) => string.trim())
-            .join()
-        )
-        .join('\n')
-    },
-
-    getMaprunData: function () {
-      return axios
-        .get(
-          `https://www.p.fne.com.au/rg/cgi-bin/SelectResultFileForSplitsBrowserFiltered.cgi?act=fileToSplitsBrowser&eventName=CombinedResults_${this.maprunId}.csv`
-        )
-        .then((response) => response.data)
-        .then((data) => this.maprunHTMLtoCSV(data))
-        .catch((error) =>
-          this.$store.dispatch(
-            'createMessage',
-            'Error: Problem Connecting to MapRun Server'
-          )
-        )
-    },
-  },
 }
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+
+import { toSingleString } from '../scripts/typeHelpers'
+
+import $store from '../store/index'
+import $router from '../router/index'
+const { currentRoute: $route } = $router
+
+import { getText } from '../api/requests'
+import { UploadStream, uploadStream } from '../api/upload'
+import { Event, getEvent } from '../api/events'
+import { League, getLeague } from '../api/leagues'
+
+const maprunId = ref('')
+const uploadConfig = ref<UploadStream>({
+  eventId: '',
+  uploadKey: '',
+  file: '',
+  course: '',
+})
+const event = ref<Event | null>(null)
+const courses = ref<string[]>([])
+const eventId = computed(() => uploadConfig.value.eventId)
+
+const getCourses = async () => {
+  event.value = await getEvent(uploadConfig.value.eventId)
+  const league: League = await getLeague(event.value?.league ?? '')
+
+  courses.value = league?.courses ?? []
+}
+watch(eventId, getCourses, { immediate: true })
+
+const maprunHTMLtoCSV = (html: string): string =>
+  html
+    .replace(/\n/g, '')
+    .replace(/<\/.*?>/g, '')
+    .replace(/'>Track/g, '')
+    .replace(/<a href='reitti.cgi.*?pID=/g, '')
+    .replace(/<a.*?>/g, '')
+    .replace(/\(Rev[0-9]+\)/g, '')
+    .split('<tr>')
+    .filter((row) => !row.includes('DOCTYPE') && !row.includes('<th'))
+    .map((row) =>
+      row
+        .split(/<td.*?>/g)
+        .slice(2, 6)
+        .map((string) => string.trim())
+        .join()
+    )
+    .join('\n')
+const getMaprunData = () =>
+  getText({
+    apiLocation: `https://www.p.fne.com.au/rg/cgi-bin/SelectResultFileForSplitsBrowserFiltered.cgi?act=fileToSplitsBrowser&eventName=CombinedResults_${maprunId.value}.csv`,
+    customErrorMessage: 'Problem Fetching Results From MapRun',
+    customErrorHandler: true,
+  })
+    .then(maprunHTMLtoCSV)
+    .then((file: string) => {
+      if (!file || file.split('\n').length < 1) {
+        $store.dispatch(
+          'createMessage',
+          'Error: No MapRun Event Found With That Id'
+        )
+        throw new Error()
+      } else $store.dispatch('createMessage', 'Upload Data Sent')
+    })
+const uploadFile = () =>
+  getMaprunData()
+    .then((file) => uploadStream(uploadConfig.value))
+    .then(() => $router.push(`/events/${this.eventId}/results`))
+    .catch(() => false)
+
+export { maprunId, uploadConfig, event, courses, uploadFile }
 </script>
