@@ -154,7 +154,7 @@ export default {
 }
 </script>
 <script lang="ts" setup="props, { emit }">
-import { Event, deleteEvent as apiDeleteEvent } from '/@/api/events'
+import { Event, deleteEvent as apiDeleteEvent } from '../../api/events'
 
 export const deleteEvent = (event: Event) => {
   if (
