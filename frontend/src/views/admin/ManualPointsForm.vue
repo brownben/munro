@@ -119,7 +119,11 @@ const eventsInLeague = computed(() =>
 )
 const competitorsInLeague = computed(() =>
   competitors.value
-    ?.filter((competitor) => competitor.league === choices.value.league)
+    ?.filter(
+      (competitor) =>
+        competitor.league === choices.value.league &&
+        competitor.course === choices.value.course
+    )
     ?.sort((a, b) => (a.name > b.name ? -1 : 1))
 )
 
