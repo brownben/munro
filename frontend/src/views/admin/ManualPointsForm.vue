@@ -84,6 +84,8 @@ import { ref, watch, onMounted, computed } from 'vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import $store from '../../store/index'
+import $router from '../../router/index'
+const { currentRoute: $route } = $router
 
 import { League, getLeagues } from '../../api/leagues'
 import { Event, getEvents } from '../../api/events'
@@ -118,7 +120,7 @@ const eventsInLeague = computed(() =>
 const competitorsInLeague = computed(() =>
   competitors.value
     ?.filter((competitor) => competitor.league === choices.value.league)
-    ?.sort((a, b) => (a.name > b.name) - (a.name < b.name))
+    ?.sort((a, b) => (a.name > b.name ? -1 : 1))
 )
 
 const competitorToText = (competitor: Competitor) => {
@@ -135,8 +137,7 @@ const validateForm = () => {
   if (
     choices.value.event !== '' &&
     choices.value.course !== '' &&
-    choices.value.competitor !== '' &&
-    choices.value.competitor !== 0
+    choices.value.competitor !== ''
   )
     return true
   else {

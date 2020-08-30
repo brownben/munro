@@ -300,7 +300,7 @@ def getAllResults():
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
-            AND results.type <> 'hidden'
+            AND COALESCE(results.type,'') <> 'hidden'
     """
     )
     return list(map(fullResultToJSON, result))

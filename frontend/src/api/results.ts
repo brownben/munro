@@ -44,10 +44,21 @@ export interface LeagueResultWithAgeGender extends LeagueResult {
 }
 
 export interface ManualResult {
-  competitor: number
+  competitor: string
   event: string
   points: number
 }
+
+export interface TransferResult {
+  competitor: string
+  result: string
+}
+
+export const getResults = (): Promise<EventResult[] | null> =>
+  getData<EventResult[]>({
+    apiLocation: `/api/results`,
+    customErrorMessage: 'Problem Fetching Results',
+  })
 
 export const getEventResults = (
   eventId: string
@@ -116,5 +127,16 @@ export const createManualResult = (
     data,
     customErrorMessage: 'Problem Creating Result',
     customSuccessMessage: `Result Created`,
+    customErrorHandler: true,
+  })
+
+export const transferResult = (
+  data: TransferResult
+): Promise<ServerMessage | null> =>
+  postData<ServerMessage>({
+    apiLocation: `/api/results/transfer`,
+    data,
+    customErrorMessage: 'Problem Transfering Result',
+    customSuccessMessage: `Result Transfered`,
     customErrorHandler: true,
   })
