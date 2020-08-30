@@ -132,7 +132,7 @@ def courseResultToJSON(result, league, eventsList):
     totalPoints = pointsHelpers.calculateTotal(largestPoints, points)
 
     pointsInformation = [
-        {"score": point, "counting": i in largestPoints, "type": types[i],}
+        {"score": point, "counting": i in largestPoints, "type": types[i]}
         for i, point in enumerate(points)
     ]
     # Change to object rather than tuple
@@ -201,7 +201,7 @@ def updateResultIncomplete(data):
         SET incomplete=%s
         WHERE rowid=%s
     """,
-        (data["incomplete"] == "True", data["rowid"],),
+        (data["incomplete"] == "True", data["rowid"]),
     )
 
 
