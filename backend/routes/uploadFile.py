@@ -91,7 +91,7 @@ def saveUpload(data, eventData, dataWithPoints):
         )
 
     events.setResultsUploadedAndURLs(
-        True, eventData["id"], data["results"], data["winsplits"], data["routegadget"],
+        True, eventData["id"], data["results"], data["winsplits"], data["routegadget"]
     )
 
     dynamicPoints.calculate(eventData["league"])

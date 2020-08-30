@@ -20,7 +20,7 @@ class Test_assignPoints:
                 "points": 0,
             },
         ]
-        assert assignPoints(results, "timeAverage",) == output
+        assert assignPoints(results, "timeAverage") == output
 
     def test_oneResult(self):
         results = [
@@ -35,7 +35,7 @@ class Test_assignPoints:
                 "points": 1000,
             },
         ]
-        assert assignPoints(results, "timeAverage",) == output
+        assert assignPoints(results, "timeAverage") == output
 
     def test_oneResult100Base(self):
         results = [
@@ -50,7 +50,7 @@ class Test_assignPoints:
                 "points": 100,
             },
         ]
-        assert assignPoints(results, "timeAverage100",) == output
+        assert assignPoints(results, "timeAverage100") == output
 
     def test_threeResults(self):
         results = [
@@ -81,14 +81,14 @@ class Test_assignPoints:
                 "points": 800,
             },
         ]
-        assert assignPoints(results, "timeAverage",) == output
+        assert assignPoints(results, "timeAverage") == output
 
     def test_negativeResult(self):
         results = [
             {"course": "red", "time": 2, "incomplete": False, "position": 1}
         ] * 50
         results.append(
-            {"course": "red", "time": 12, "incomplete": False, "position": 4,},
+            {"course": "red", "time": 12, "incomplete": False, "position": 4},
         )
         output = [
             {
@@ -108,4 +108,4 @@ class Test_assignPoints:
                 "points": 0,
             },
         )
-        assert assignPoints(results, "timeAverage",) == output
+        assert assignPoints(results, "timeAverage") == output

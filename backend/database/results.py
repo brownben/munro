@@ -213,7 +213,7 @@ def updateResultHidden(data):
         SET type=%s
         WHERE rowid=%s
     """,
-        (hidden, data["rowid"],),
+        (hidden, data["rowid"]),
     )
 
 

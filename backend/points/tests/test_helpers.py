@@ -143,8 +143,8 @@ class Test_calculateCourseAverage:
 
     def test_twoResults(self):
         results = [
-            {"course": "red", "time": 4, "incomplete": False, "position": 1,},
-            {"course": "red", "time": 8, "incomplete": False, "position": 1,},
+            {"course": "red", "time": 4, "incomplete": False, "position": 1},
+            {"course": "red", "time": 8, "incomplete": False, "position": 1},
         ]
         assert calculateCourseAverage(results)["red"]["average"] == 6
         assert round(calculateCourseAverage(results)["red"]["standardDeviation"]) == 3
