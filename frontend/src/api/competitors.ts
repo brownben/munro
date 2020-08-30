@@ -10,6 +10,11 @@ export interface Competitor {
   league: string
 }
 
+export interface MergeCompetitors {
+  competitorKeep: string
+  competitorMerge: string
+}
+
 export const getCompetitor = (name: string): Promise<Competitor | null> =>
   getData<Competitor | null>({
     apiLocation: `/api/competitors/${name}`,
@@ -49,5 +54,16 @@ export const updateCompetitor = (
     data,
     customErrorMessage: 'Problem Updating Competitor',
     customSuccessMessage: `Competitor \`${data.name}\` Updated`,
+    customErrorHandler: true,
+  })
+
+export const mergeCompetitors = (
+  data: MergeCompetitors
+): Promise<ServerMessage | null> =>
+  postData<ServerMessage>({
+    apiLocation: `/api/competitors/merge`,
+    data,
+    customErrorMessage: 'Problem Merging Competitor',
+    customSuccessMessage: `Competitors Merged`,
     customErrorHandler: true,
   })

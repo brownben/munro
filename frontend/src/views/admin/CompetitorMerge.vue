@@ -14,28 +14,29 @@
       description
     />
 
-    <form class="col-span-2" @submit.prevent="merge">
+    <form class="col-span-2" @submit.prevent="mergeCompetitors">
       <DropdownInput
-        v-model="league"
+        v-model="choices.league"
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
       />
       <DropdownInput
-        v-model="course"
-        :list="coursesInLeague"
+        v-model="choices.course"
+        :list="courses"
         :include-blank="true"
-        label="Course:"
+        label="Course"
         class="mt-4"
       />
       <DropdownInput
         v-model="competitorKeep"
         :list="
-          competitorsForLeague.map(
-            (competitor) =>
-              `${competitor.id} - ${competitor.name} - ${competitor.ageClass} - ${competitor.club}`
-          )
+          competitorsInLeague.map((competitor) => ({
+            value: competitor.id.toString(),
+            text: competitorToText(competitor),
+          }))
         "
+        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor to Keep:"
         class="mt-4"
@@ -43,11 +44,12 @@
       <DropdownInput
         v-model="competitorMerge"
         :list="
-          competitorsForLeague.map(
-            (competitor) =>
-              `${competitor.id} - ${competitor.name} - ${competitor.ageClass} - ${competitor.club}`
-          )
+          competitorsInLeague.map((competitor) => ({
+            value: competitor.id.toString(),
+            text: competitorToText(competitor),
+          }))
         "
+        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor to be Merged:"
         class="mt-4"
@@ -56,10 +58,7 @@
     </form>
   </Layout>
 </template>
-
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
@@ -68,107 +67,93 @@ export default {
     Layout,
     DropdownInput,
   },
+}
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
 
-  data: () => ({
-    competitors: [],
-    leagues: [],
-    league: '',
-    competitorMerge: '',
-    competitorKeep: '',
-    course: '',
-  }),
+import { toSingleString } from '../../scripts/typeHelpers'
+import $store from '../../store/index'
+import $router from '../../router/index'
+const { currentRoute: $route } = $router
 
-  computed: {
-    competitorsForLeague: function () {
-      const filtered = this.competitors.filter(
-        (competitor) =>
-          competitor.league === this.league && competitor.course === this.course
-      )
+import { League, getLeagues } from '../../api/leagues'
+import {
+  Competitor,
+  getCompetitors,
+  mergeCompetitors as apiMergeCompetitors,
+} from '../../api/competitors'
 
-      return filtered.sort((a, b) => (a.name > b.name) - (a.name < b.name))
-    },
+const leagues = ref<League[]>([])
+const competitors = ref<Competitor[]>([])
 
-    coursesInLeague: function () {
-      const selectedLeague = this.leagues.filter(
-        (league) => league.name === this.league
-      )
-      if (selectedLeague.length > 0) return selectedLeague[0].courses
-      else return []
-    },
-  },
+const choices = ref({
+  league: '',
+  competitorMerge: '',
+  competitorKeep: '',
+  course: '',
+})
 
-  mounted: function () {
-    this.getCompetitors()
-    this.getLeagues()
-  },
+onMounted(async () => {
+  leagues.value = await getLeagues()
+  competitors.value = await getCompetitors()
+})
 
-  methods: {
-    getCompetitors: function () {
-      return axios
-        .get('/api/competitors')
-        .then((response) => {
-          this.competitors = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Competitors')
-        )
-    },
+const courses = computed(
+  () =>
+    leagues.value?.find((league) => league.name === choices.value.league)
+      ?.courses ?? []
+)
+const competitorsInLeague = computed(() =>
+  competitors.value
+    ?.filter(
+      (competitor) =>
+        competitor.league === choices.value.league &&
+        competitor.course === choices.value.course
+    )
+    ?.sort((a, b) => (a.name > b.name ? 1 : -1))
+)
 
-    getLeagues: function () {
-      return axios
-        .get('/api/leagues')
-        .then((response) => {
-          this.leagues = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch(
-            'createMessage',
-            'Problem Fetching League Details'
-          )
-        )
-    },
+const competitorToText = (competitor: Competitor) => {
+  if (competitor.club && competitor.ageClass)
+    return `${competitor.name} (${competitor.ageClass}, ${competitor.club}) [${competitor.id}]`
+  else if (competitor.club)
+    return `${competitor.name} (${competitor.club}) [${competitor.id}]`
+  else if (competitor.ageClass)
+    return `${competitor.name} (${competitor.ageClass}) [${competitor.id}]`
+  else return `${competitor.name} [${competitor.id}]`
+}
 
-    validateForm: function () {
-      return (
-        this.competitorMerge !== this.competitorKeep &&
-        this.competitorMerge !== '' &&
-        this.competitorKeep !== ''
-      )
-    },
+const validateForm = () => {
+  if (
+    choices.value.competitorMerge !== choices.value.competitorKeep &&
+    choices.value.competitorMerge !== '' &&
+    choices.value.competitorKeep !== ''
+  )
+    return true
+  else {
+    $store.dispatch(
+      'createMessage',
+      'Please Ensure Competitors Are Not The Same'
+    )
+    return false
+  }
+}
 
-    merge: function () {
-      if (this.validateForm()) {
-        return axios
-          .post('/api/competitors/merge', {
-            competitorKeep: this.competitorKeep.split(' -')[0],
-            competitorMerge: this.competitorMerge.split(' -')[0],
-          })
-          .then((response) => this.returnToCompetitorsPage(response))
-          .catch((error) =>
-            this.$store.dispatch('createMessage', error.response.data.message)
-          )
-      } else
-        this.$store.dispatch(
-          'createMessage',
-          'The Competitors Selected are the Same'
-        )
-    },
+const mergeCompetitors = () =>
+  apiMergeCompetitors({
+    competitorMerge: choices.value.competitorMerge,
+    competitorKeep: choices.value.competitorKeep,
+  })
+    .then(() => $router.push(`/results/${choices.value.competitorKeep}`))
+    .catch(() => false)
 
-    returnToCompetitorsPage: function (response) {
-      // Go to league page after successful update/ creation
-      this.$store.dispatch('createMessage', response.data.message)
-      this.$router.push(`/leagues/${this.league}/competitors`)
-    },
-
-    competitorTransformForSelect: function (competitor) {
-      if (competitor.club && competitor.ageClass)
-        return `${competitor.name} (${competitor.ageClass}, ${competitor.club}) [${competitor.id}]`
-      else if (competitor.club)
-        return `${competitor.name} (${competitor.club}) [${competitor.id}]`
-      else if (competitor.ageClass)
-        return `${competitor.name} (${competitor.ageClass}) [${competitor.id}]`
-      else return `${competitor.name} [${competitor.id}]`
-    },
-  },
+export {
+  choices,
+  leagues,
+  courses,
+  competitorsInLeague,
+  competitorToText,
+  mergeCompetitors,
 }
 </script>
