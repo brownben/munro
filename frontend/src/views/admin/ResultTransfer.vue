@@ -14,47 +14,57 @@
       description
     />
 
-    <form class="col-span-2" @submit.prevent="transfer">
+    <form class="col-span-2" @submit.prevent="transferResult">
       <DropdownInput
-        v-model="league"
+        v-model="choices.league"
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
       />
       <DropdownInput
-        v-model="event"
-        :list="eventsInLeague.map((event) => event.name + ' - ' + event.date)"
+        v-model="choices.event"
+        :list="
+          eventsInLeague.map((event) => ({
+            value: event.id,
+            text: `${event.name} (${event.date})`,
+          }))
+        "
+        :option-text-different-to-value="true"
         :include-blank="true"
         label="Event:"
         class="mt-4"
       />
       <DropdownInput
-        v-model="course"
-        :list="coursesInLeague"
+        v-model="choices.course"
+        :list="courses"
         :include-blank="true"
         label="Course"
         class="mt-4"
       />
       <DropdownInput
-        v-model="result"
+        v-model="choices.result"
         :list="
-          resultsForEvent.map(
-            (result) =>
-              result.position +
-              ' - ' +
-              elapsedTime(result.time) +
-              ' (' +
-              result.name +
-              ')'
-          )
+          resultsInEvent?.map((result) => ({
+            text: `${result.position} - ${elapsedTime(result.time)} (${
+              result.name
+            })`,
+            value: result.id.toString(),
+          })) ?? []
         "
+        :option-text-different-to-value="true"
         :include-blank="true"
         label="Result:"
         class="mt-4"
       />
       <DropdownInput
-        v-model="competitor"
-        :list="competitorsForLeague.map(competitorTransformForSelect)"
+        v-model="choices.competitor"
+        :list="
+          competitorsInLeague.map((competitor) => ({
+            value: competitor.id.toString(),
+            text: competitorToText(competitor),
+          }))
+        "
+        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor:"
         class="mt-4"
@@ -65,9 +75,7 @@
   </Layout>
 </template>
 
-<script>
-import axios from 'axios'
-
+<script lang="ts">
 import Layout from '/@/components/Layout.vue'
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
@@ -76,190 +84,121 @@ export default {
     Layout,
     DropdownInput,
   },
+}
+</script>
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
 
-  data: () => ({
-    competitors: [],
-    leagues: [],
-    events: [],
-    results: [],
-    league: '',
-    event: '',
-    course: '',
-    competitor: '',
-    result: '',
-  }),
+import { toSingleString } from '../../scripts/typeHelpers'
+import $store from '../../store/index'
+import $router from '../../router/index'
+const { currentRoute: $route } = $router
 
-  computed: {
-    competitorsForLeague: function () {
-      const filtered = this.competitors.filter(
-        (competitor) =>
-          competitor.league === this.league && competitor.course === this.course
-      )
-      return filtered.sort((a, b) => (a.name > b.name) - (a.name < b.name))
-    },
+import { League, getLeagues } from '../../api/leagues'
+import { Event, getEvents } from '../../api/events'
+import { Competitor, getCompetitors } from '../../api/competitors'
+import {
+  EventResult,
+  getResults,
+  createManualResult,
+  transferResult as apiTransferResult,
+} from '../../api/results'
 
-    coursesInLeague: function () {
-      const selectedLeague = this.leagues.filter(
-        (league) => league.name === this.league
-      )
-      if (selectedLeague.length > 0) return selectedLeague[0].courses
-      else return []
-    },
+import { sortEventResults } from '../../scripts/sort'
+import { SortablePropetiesEvent } from '../../scripts/FilterSort.d'
+import { elapsedTime } from '../../scripts/time'
 
-    eventsInLeague: function () {
-      return this.events.filter((event) => event.league === this.league)
-    },
+const leagues = ref<League[]>([])
+const events = ref<Event[]>([])
+const competitors = ref<Competitor[]>([])
+const results = ref<EventResult[]>([])
+const choices = ref({
+  league: '',
+  event: '',
+  course: '',
+  competitor: '',
+  result: '',
+})
 
-    resultsForEvent: function () {
-      let event = ''
-      const selectedEvent = this.events.filter(
-        (event) =>
-          event.name === this.event.split(' - ')[0] &&
-          event.date === this.event.split(' - ')[1]
-      )
-      if (selectedEvent.length > 0) event = selectedEvent[0].id
-      return this.results
-        .filter(
-          (result) => result.event === event && result.course === this.course
-        )
-        .sort((a, b) => {
-          if (parseInt(a.position, 10) === parseInt(b.position, 10)) return 0
-          else if (a.position === null || a.position === undefined) return 1
-          else if (b.position === null || b.position === undefined) return -1
-          else if (parseInt(a.position, 10) > parseInt(b.position, 10)) return 1
-          else return -1
-        })
-    },
-  },
+onMounted(async () => {
+  leagues.value = await getLeagues()
+  events.value = await getEvents()
+  results.value = await getResults()
+  competitors.value = await getCompetitors()
+})
 
-  created: function () {
-    this.getCompetitors()
-    this.getLeagues()
-    this.getEvents()
-    this.getResults()
-  },
+const courses = computed(
+  () =>
+    leagues.value?.find((league) => league.name === choices.value.league)
+      ?.courses ?? []
+)
+const eventsInLeague = computed(() =>
+  events.value?.filter((event) => event.league === choices.value.league)
+)
+const competitorsInLeague = computed(() =>
+  competitors.value
+    ?.filter((competitor) => competitor.league === choices.value.league)
+    ?.sort((a, b) => (a.name > b.name ? 1 : -1))
+)
+const resultsInEvent = computed(() =>
+  results.value
+    .filter(
+      (result) =>
+        result.event === choices.value.event &&
+        result.course === choices.value.course
+    )
+    .sort(
+      sortEventResults({
+        ascending: false,
+        by: SortablePropetiesEvent.position,
+      })
+    )
+)
 
-  methods: {
-    getCompetitors: function () {
-      return axios
-        .get('/api/competitors')
-        .then((response) => {
-          this.competitors = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Competitors')
-        )
-    },
+const competitorToText = (competitor: Competitor) => {
+  if (competitor.club && competitor.ageClass)
+    return `${competitor.name} (${competitor.ageClass}, ${competitor.club}) [${competitor.id}]`
+  else if (competitor.club)
+    return `${competitor.name} (${competitor.club}) [${competitor.id}]`
+  else if (competitor.ageClass)
+    return `${competitor.name} (${competitor.ageClass}) [${competitor.id}]`
+  else return `${competitor.name} [${competitor.id}]`
+}
 
-    getLeagues: function () {
-      return axios
-        .get('/api/leagues')
-        .then((response) => {
-          this.leagues = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Leagues')
-        )
-    },
+const validateForm = () => {
+  if (
+    choices.value.event !== '' &&
+    choices.value.course !== '' &&
+    choices.value.result !== '' &&
+    choices.value.competitor !== ''
+  )
+    return true
+  else {
+    $store.dispatch(
+      'createMessage',
+      'Please Ensure Result and Competitor Fields are not Blank'
+    )
+    return false
+  }
+}
 
-    getEvents: function () {
-      return axios
-        .get('/api/events')
-        .then((response) => {
-          this.events = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Events')
-        )
-    },
+const transferResult = () =>
+  apiTransferResult({
+    competitor: choices.value.competitor,
+    result: choices.value.result,
+  })
+    .then(() => $router.push(`/results/${choices.value.result}`))
+    .catch(() => false)
 
-    getResults: function () {
-      return axios
-        .get('/api/results')
-        .then((response) => {
-          this.results = response.data
-        })
-        .catch(() =>
-          this.$store.dispatch('createMessage', 'Problem Fetching Results')
-        )
-    },
-
-    validateForm: function () {
-      return (
-        this.event !== '' &&
-        this.course !== '' &&
-        this.result !== '' &&
-        this.competitor !== ''
-      )
-    },
-
-    twoDigits: function (number) {
-      if (number.toString().length < 2) return `0${number.toString()}`
-      else return number
-    },
-
-    elapsedTime: function (totalTimeInSeconds) {
-      const timeInMinutes = Math.floor(totalTimeInSeconds / 60)
-      const timeInSeconds = Math.abs(totalTimeInSeconds % 60)
-      return `${this.twoDigits(timeInMinutes)}:${this.twoDigits(timeInSeconds)}`
-    },
-
-    elapsedTimeToSeconds: function (time) {
-      return (
-        parseInt(time.split(':')[0], 10) * 60 + parseInt(time.split(':')[1], 10)
-      )
-    },
-
-    competitorTransformForSelect: function (competitor) {
-      if (competitor.club && competitor.ageClass)
-        return `${competitor.name} (${competitor.ageClass}, ${competitor.club}) [${competitor.id}]`
-      else if (competitor.club)
-        return `${competitor.name} (${competitor.club}) [${competitor.id}]`
-      else if (competitor.ageClass)
-        return `${competitor.name} (${competitor.ageClass}) [${competitor.id}]`
-      else return `${competitor.name} [${competitor.id}]`
-    },
-
-    transfer: function () {
-      if (this.validateForm()) {
-        let event = ''
-        const selectedEvent = this.events.find(
-          (event) =>
-            event.name === this.event.split(' - ')[0] &&
-            event.date === this.event.split(' - ')[1]
-        )
-        if (selectedEvent) event = selectedEvent.id
-        const competitor = this.competitor.replace(/.*\[|\]/g, '')
-        const result = this.results.find(
-          (result) =>
-            result.course === this.course &&
-            result.event === event &&
-            result.time ===
-              this.elapsedTimeToSeconds(
-                this.result.match(/-.*\(/)[0].slice(2, -2)
-              )
-        )
-        return axios
-          .post('/api/results/transfer', {
-            competitor: competitor,
-            result: result.id,
-          })
-          .then((response) => this.returnToCompetitorsPage(response))
-          .catch((error) =>
-            this.$store.dispatch('createMessage', error.response.data.message)
-          )
-      } else
-        this.$store.dispatch(
-          'createMessage',
-          'Please Select a Result and a Competitor'
-        )
-    },
-
-    returnToCompetitorsPage: function (response) {
-      // Go to league page after successful update/ creation
-      this.$store.dispatch('createMessage', response.data.message)
-      this.$router.push(`/leagues/${this.league}/competitors`)
-    },
-  },
+export {
+  choices,
+  leagues,
+  courses,
+  eventsInLeague,
+  competitorsInLeague,
+  resultsInEvent,
+  competitorToText,
+  elapsedTime,
+  transferResult,
 }
 </script>
