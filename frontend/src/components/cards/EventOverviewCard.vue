@@ -113,7 +113,7 @@
           >
             Event ID:
           </b>
-          {{ event.id }}
+          <span class="select-all">{{ event.id }}</span>
         </p>
         <p v-if="event.uploadKey">
           <b
@@ -121,7 +121,7 @@
           >
             Event Upload Key:
           </b>
-          {{ event.uploadKey }}
+          <span class="select-all">{{ event.uploadKey }}</span>
         </p>
       </div>
 
