@@ -137,14 +137,25 @@ def courseResultToJSON(result, league, eventsList):
     ]
     # Change to object rather than tuple
 
-    return {
-        "id": result[6],
-        "name": result[0],
-        "ageClass": result[1],
-        "club": result[2],
-        "totalPoints": totalPoints,
-        "points": pointsInformation,
-    }
+    if len(result[7:]) >= 1:
+        return {
+            "id": result[6],
+            "name": result[0],
+            "ageClass": result[1],
+            "club": result[2],
+            "course": result[7],
+            "totalPoints": totalPoints,
+            "points": pointsInformation,
+        }
+    else:
+        return {
+            "id": result[6],
+            "name": result[0],
+            "ageClass": result[1],
+            "club": result[2],
+            "totalPoints": totalPoints,
+            "points": pointsInformation,
+        }
 
 
 # Competitor Database Functions
@@ -385,6 +396,32 @@ def getResultsForCourse(league, course):
         GROUP BY competitors.rowid
         """,
         (course, league),
+    )
+    resultsList = []
+
+    leagueDetails = leagues.findLeague(league)
+    eventsList = events.getEventsOfLeague(league)
+
+    for result in list(results):
+        resultsList.append(courseResultToJSON(result, leagueDetails, eventsList))
+
+    # Return results sorted with positions assigned
+    sortedResults = sorted(resultsList, key=lambda x: x["totalPoints"], reverse=True)
+    return assignPosition(sortedResults)
+
+
+def getResultsForLeague(league):
+    results = queryWithResults(
+        """
+        SELECT competitors.name, competitors.ageClass, competitors.club, array_agg(results.event),
+         array_agg(results.points), array_agg(results.type), competitors.rowid, competitors.course
+        FROM competitors, results
+        WHERE results.competitor=competitors.rowid
+            AND competitors.league=%s
+            AND COALESCE(results.type,'') <> 'hidden'
+        GROUP BY competitors.rowid
+        """,
+        (league,),
     )
     resultsList = []
 

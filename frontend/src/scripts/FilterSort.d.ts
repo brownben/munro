@@ -39,6 +39,7 @@ export enum SortablePropetiesLeague {
   club = 'club',
   totalPoints = 'totalPoints',
   points = 'points',
+  course = 'course',
 }
 
 export enum SortablePropetiesCompetitor {

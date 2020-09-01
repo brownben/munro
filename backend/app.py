@@ -49,6 +49,10 @@ api.add_resource(
     "/api/leagues/<name>/events/uploadKey",
 )
 api.add_resource(
+    leagueResults.ResultsForLeague,
+    "/api/leagues/<name>/results/Overall",
+)
+api.add_resource(
     leagueResults.ResultsForCourse,
     "/api/leagues/<name>/results/<course>",
 )
