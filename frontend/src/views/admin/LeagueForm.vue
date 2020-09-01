@@ -81,6 +81,17 @@
         label="Scoring Method:"
         class="mt-4"
       />
+      <DropdownInput
+        v-model="league.leagueScoring"
+        :list="[
+          { value: 'course', text: 'Per Course' },
+          { value: 'overall', text: 'Overall' },
+        ]"
+        :shift="false"
+        :option-text-different-to-value="true"
+        label="League Results:"
+        class="mt-4"
+      />
       <number-input
         v-model.number="league.numberOfCountingEvents"
         :min="1"
@@ -151,6 +162,7 @@ const league = ref<LeagueForm>({
   scoringMethod: '',
   website: '',
   year: 2000,
+  leagueScoring: 'course',
 })
 
 const refreshDetails = async () => {
@@ -165,6 +177,7 @@ const refreshDetails = async () => {
         oldName: data?.name ?? '',
         moreInformation: data?.moreInformation?.replace(/\|\s*/g, '\n') ?? '',
         dynamicEventResults: data.dynamicEventResults ?? true,
+        leagueScoring: data.leagueScoring ?? 'course',
       } as LeagueForm
     })
   loading.value = false
