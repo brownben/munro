@@ -20,6 +20,7 @@ export interface LeagueResult {
   name: string
   ageClass: string
   club: string
+  course?: string
 
   totalPoints: number
   position: number | ''

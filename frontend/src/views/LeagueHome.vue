@@ -118,14 +118,25 @@
         class="col-span-2 pt-5 pb-6 text-center text-white bg-main-500"
       >
         <h2 class="text-2xl font-bold font-heading">League Results</h2>
-        <div class="w-full px-6 mx-auto sm:mt-2">
+        <div
+          v-if="league.leagueScoring === 'course'"
+          class="w-full px-6 mx-auto sm:mt-2"
+        >
           <router-link
             v-for="course of league.courses"
             :key="course"
-            :to="$route.path + '/results/' + course"
+            :to="`${$route.path}/results/${course}`"
             class="button button-white"
           >
             {{ course }}
+          </router-link>
+        </div>
+        <div v-else class="w-full px-6 mx-auto sm:mt-2">
+          <router-link
+            :to="`${$route.path}/results/Overall`"
+            class="button button-white"
+          >
+            Overall Results
           </router-link>
         </div>
       </section>
@@ -219,7 +230,9 @@ const deleteLeagueConfirmation = () => {
       .catch(() => false)
 }
 const leagueCourses = computed(() => {
-  const array = league.value?.courses
+  const array = league.value?.courses.filter(
+    (course: string) => course !== 'Overall'
+  )
   if (array.length <= 1) return array.join(', ')
   else return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
 })

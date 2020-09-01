@@ -46,7 +46,9 @@
         v-show="results && results.length > 0"
         class="w-full col-span-2 px-6 mx-auto md:px-8"
         :class="{
-          'max-w-screen-xl': eventsWithResults.length <= 10,
+          'max-w-screen-xl':
+            eventsWithResults.length <= 10 ||
+            (eventsWithResults.length < 8 && results?.[0]?.course),
         }"
       >
         <table class="w-full border-collapse">
@@ -72,6 +74,17 @@
                 <up-down-arrow
                   :ascending="sortPreferences.ascending"
                   :active="sortPreferences.by === SortablePropeties.name"
+                />
+              </th>
+              <th
+                v-if="results?.[0]?.course"
+                class="course"
+                @click="changeSortPreference(SortablePropeties.course)"
+              >
+                Course
+                <up-down-arrow
+                  :ascending="sortPreferences.ascending"
+                  :active="sortPreferences.by === SortablePropeties.course"
                 />
               </th>
               <th
@@ -140,11 +153,17 @@
                   {{ result.name }}
                 </span>
                 <span class="block text-xs sm:hidden">
-                  <span v-if="result.ageClass" class="mr-4">{{
-                    result.ageClass
-                  }}</span>
+                  <span v-if="result?.course" class="mr-4">
+                    {{ result.course }}
+                  </span>
+                  <span v-if="result.ageClass" class="mr-4">
+                    {{ result.ageClass }}
+                  </span>
                   <span>{{ result.club }}</span>
                 </span>
+              </td>
+              <td v-if="result.course" class="course">
+                {{ result.course }}
               </td>
               <td class="ageClass">
                 {{ result.ageClass }}
@@ -205,7 +224,12 @@
     </transition>
 
     <div
-      v-if="!loading && rawResults.length > 0 && otherCourses.length > 0"
+      v-if="
+        !loading &&
+        league.leagueScoring === 'course' &&
+        rawResults.length > 0 &&
+        otherCourses.length > 0
+      "
       class="col-span-2 mt-6 card"
     >
       <h2 class="text-2xl font-bold font-heading">Results for Other Courses</h2>
@@ -390,6 +414,7 @@ table th {
     @apply text-left pl-6;
   }
 
+  &.course,
   &.club,
   &.ageClass {
     @apply hidden;
@@ -400,6 +425,7 @@ table th {
   }
 
   @screen sm {
+    &.course,
     &.club,
     &.ageClass {
       @apply table-cell;
