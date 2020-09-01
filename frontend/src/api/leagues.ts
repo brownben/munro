@@ -12,6 +12,7 @@ interface LeagueBase {
   scoringMethod: string
   website: string
   year: number
+  leagueScoring?: string
 }
 
 export interface League extends LeagueBase {
