@@ -148,3 +148,51 @@ class Test_calculateCourseAverage:
         ]
         assert calculateCourseAverage(results)["red"]["average"] == 6
         assert round(calculateCourseAverage(results)["red"]["standardDeviation"]) == 3
+
+
+class Test_calculateCourseTop3Average:
+    def test_noData(self):
+        assert calculateCourseTop3Average([]) == {}
+
+    def test_oneResult(self):
+        assert (
+            calculateCourseTop3Average(
+                [{"course": "red", "time": 5, "incomplete": False, "position": 1}]
+            )["red"]
+            == 5
+        )
+
+    def test_twoResults(self):
+        results = [
+            {"course": "red", "time": 4, "incomplete": False, "position": 1},
+            {"course": "red", "time": 8, "incomplete": False, "position": 1},
+        ]
+        assert calculateCourseTop3Average(results)["red"] == 6
+
+    def test_threeResults(self):
+        results = [
+            {"course": "red", "time": 4, "incomplete": False, "position": 1},
+            {"course": "red", "time": 8, "incomplete": False, "position": 1},
+            {"course": "red", "time": 12, "incomplete": False, "position": 1},
+        ]
+        assert calculateCourseTop3Average(results)["red"] == 8
+
+    def test_fiveResults(self):
+        results = [
+            {"course": "red", "time": 4, "incomplete": False, "position": 1},
+            {"course": "red", "time": 8, "incomplete": False, "position": 1},
+            {"course": "red", "time": 12, "incomplete": False, "position": 1},
+            {"course": "red", "time": 65, "incomplete": False, "position": 1},
+            {"course": "red", "time": 155, "incomplete": False, "position": 1},
+        ]
+        assert calculateCourseTop3Average(results)["red"] == 8
+
+    def test_fiveResultsRandomOrder(self):
+        results = [
+            {"course": "red", "time": 12, "incomplete": False, "position": 1},
+            {"course": "red", "time": 8, "incomplete": False, "position": 1},
+            {"course": "red", "time": 155, "incomplete": False, "position": 1},
+            {"course": "red", "time": 4, "incomplete": False, "position": 1},
+            {"course": "red", "time": 65, "incomplete": False, "position": 1},
+        ]
+        assert calculateCourseTop3Average(results)["red"] == 8

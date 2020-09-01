@@ -14,7 +14,7 @@ def timeFromTop3(data, averagePoints=1000, standardDeviationPoints=200):
     return [
         {
             **result,
-            "points": timeFromAverageCalculatePoints(
+            "points": timeFromTop3CalculatePoints(
                 result,
                 courseStats.get(result["course"], 0),
             ),
@@ -25,8 +25,5 @@ def timeFromTop3(data, averagePoints=1000, standardDeviationPoints=200):
 
 def timeFromTop3CalculatePoints(result, average):
     points = (average / result["time"]) * 1000
-
-    if points < 0:
-        points = 0
 
     return round(points)
