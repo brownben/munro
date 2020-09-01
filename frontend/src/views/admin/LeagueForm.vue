@@ -74,6 +74,7 @@
             value: 'timeAverage100',
             text: 'Relative to Average Time (100 Average)',
           },
+          { value: 'timeTop3', text: 'Relative to Top 3 Times' },
           { value: 'file', text: 'From Upload File' },
         ]"
         :shift="false"

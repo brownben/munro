@@ -4,6 +4,7 @@ from .positionBased import (
 )
 from .timeFromAverageBased import assignPoints as assignPointsTimeAverage
 from .fileBased import assignPoints as assignPointsFile
+from .timeFromTop import assignPoints as assignPointsTimeTop
 
 
 def assignPoints(data, leagueScoringMethod):
@@ -14,6 +15,8 @@ def assignPoints(data, leagueScoringMethod):
         return assignPointsPosition(data, leagueScoringMethod)
     elif "timeAverage" in leagueScoringMethod:
         return assignPointsTimeAverage(data, leagueScoringMethod)
+    elif "timeTop" in leagueScoringMethod:
+        return assignPointsTimeTop(data, leagueScoringMethod)
     elif "file" in leagueScoringMethod:
         return assignPointsFile(data)
     else:

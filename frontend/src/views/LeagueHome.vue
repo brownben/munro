@@ -46,7 +46,7 @@
           coordinates the league.
         </p>
         <p v-if="league.scoringMethod" class="w-full leading-6 text-gray-600">
-          The scoring for the league is calculated using a
+          The scoring for the league is calculated using
           <span class="text-gray-900 md:text-lg font-heading">{{
             scoringMethodShorthandToFull(league.scoringMethod)
           }}</span>
@@ -237,20 +237,22 @@ const leagueCourses = computed(() => {
   else return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
 })
 const scoringMethodShorthandToFull = (value: string): string => {
-  if (value === 'position') return 'Position Based System (100 Max)'
-  else if (value === 'position50') return 'Position Based System (50 Max)'
-  else if (value === 'position99') return 'Position Based System (99 Max)'
+  if (value === 'position') return 'a Position Based System (100 Max)'
+  else if (value === 'position50') return 'a Position Based System (50 Max)'
+  else if (value === 'position99') return 'a Position Based System (99 Max)'
   else if (value === 'position99average')
-    return 'Position Based System (99 Max, Reduced in a Draw)'
+    return 'a Position Based System (99 Max, Reduced in a Draw)'
   else if (value === 'positionDouble')
-    return 'Position Based System (100 Max, Double Points)'
+    return 'a Position Based System (100 Max, Double Points)'
   else if (value === 'position50Double')
-    return 'Position Based System (50 Max, Double Points)'
+    return 'a Position Based System (50 Max, Double Points)'
   else if (value === 'timeAverage')
-    return 'Time Relative to Average System (1000 Average)'
+    return 'a Time Relative to Average System (1000 Average)'
   else if (value === 'timeAverage100')
-    return 'Time Relative to Average System (100 Average)'
-  else if (value === 'file') return 'from the points uploaded'
+    return 'a Time Relative to Average System (100 Average)'
+  else if (value === 'timeTop3')
+    return 'the Time Relative to the Average Time of the Top 3'
+  else if (value === 'file') return 'the points uploaded'
   else return ''
 }
 

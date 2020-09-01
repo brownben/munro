@@ -61,3 +61,18 @@ def calculateCourseAverage(data):
         }
 
     return courseStats
+
+
+def calculateCourseTop3Average(data):
+    courseTimes = defaultdict(list)
+    for result in data:
+        if validResult(result):
+            courseTimes[result["course"]].append(result["time"])
+
+    courseStats = {}
+
+    for course, timesList in courseTimes.items():
+        top3 = sorted(timesList)[:3]
+        courseStats[course] = statistics.mean(top3)
+
+    return courseStats
