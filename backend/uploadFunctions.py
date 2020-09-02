@@ -59,8 +59,11 @@ def matchCompetitor(competitorList, result):
     return False
 
 
-def removeExtraCourses(results, courses):
+def removeExtraCourses(results, courses, leagueScoring):
     # Remove competitors with courses that are not configured for the league
+    if leagueScoring == "overall":
+        return results
+
     upperCourses = [course.upper() for course in courses]
     resultsWithCoursesRemoved = []
     for result in results:

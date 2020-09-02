@@ -59,7 +59,7 @@ def processUpload(data, eventData, leagueOfEvent):
 
     parsedData = csv.parseToObjects(splitData, headerLocations)
     parsedDataNoExtraCourses = upload.removeExtraCourses(
-        parsedData, leagueOfEvent["courses"]
+        parsedData, leagueOfEvent["courses"], leagueOfEvent["leagueScoring"]
     )
     parsedDataSorted = sorted(
         parsedDataNoExtraCourses, key=lambda x: x["time"], reverse=True
