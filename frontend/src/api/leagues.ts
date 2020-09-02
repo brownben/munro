@@ -13,6 +13,7 @@ interface LeagueBase {
   website: string
   year: number
   leagueScoring?: string
+  clubRestriction?: string
 }
 
 export interface League extends LeagueBase {

@@ -35,7 +35,12 @@ class UploadStream(Resource):
             resultsWithCompetitors = upload.getCompetitorData(eventData, resultsToAdd)
 
             for result in resultsWithCompetitors:
-                results.createResult(result)
+                results.createResult(
+                    {
+                        **result,
+                        "type": upload.filterClubRestriction(result, leagueOfEvent),
+                    }
+                )
 
             upload.recalculateResults(data["eventId"], leagueOfEvent["scoringMethod"])
             dynamicPoints.calculate(eventData["league"])

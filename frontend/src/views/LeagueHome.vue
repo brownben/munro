@@ -39,12 +39,14 @@
             {{ leagueCourses }}
           </span>
         </p>
+
         <p v-if="league.coordinator" class="w-full leading-6 text-gray-600">
           <span class="text-gray-900 md:text-lg font-heading">{{
             league.coordinator
           }}</span>
           coordinates the league.
         </p>
+
         <p v-if="league.scoringMethod" class="w-full leading-6 text-gray-600">
           The scoring for the league is calculated using
           <span class="text-gray-900 md:text-lg font-heading">{{
@@ -63,6 +65,14 @@
             {{ league.numberOfEvents }}
             events, count towards your score.
           </span>
+        </p>
+
+        <p
+          v-if="league?.clubRestriction"
+          class="w-full leading-6 text-gray-600"
+        >
+          This is a club league for {{ league.clubRestriction }}, only
+          {{ league.clubRestriction }} members are included in the results.
         </p>
 
         <p

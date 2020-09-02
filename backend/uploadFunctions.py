@@ -142,3 +142,10 @@ def getEventLeagueData(eventId):
             "error",
             returnError("Problem Getting Information from the Database"),
         )
+
+
+def filterClubRestriction(result, league):
+    if league["clubRestriction"] and result["club"] != league["clubRestriction"]:
+        return "hidden"
+    else:
+        return result.get("type", None)

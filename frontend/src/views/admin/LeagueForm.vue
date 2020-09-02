@@ -93,6 +93,11 @@
         label="League Results:"
         class="mt-4"
       />
+      <TextInput
+        v-model.trim="league.clubRestriction"
+        label="Only Include Results from Club:"
+        class="mt-4"
+      />
       <number-input
         v-model.number="league.numberOfCountingEvents"
         :min="1"
@@ -164,6 +169,7 @@ const league = ref<LeagueForm>({
   website: '',
   year: 2000,
   leagueScoring: 'course',
+  clubRestriction: '',
 })
 
 const refreshDetails = async () => {
