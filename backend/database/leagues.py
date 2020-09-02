@@ -85,7 +85,8 @@ queryMultiple(
         points INT NOT NULL,
         incomplete TEXT,
         event TEXT NOT NULL,
-        competitor INT  NOT NULL,
+        competitor INT NOT NULL,
+        course TEXT,
         FOREIGN KEY(event) REFERENCES events(id)
         ON UPDATE CASCADE ON DELETE CASCADE
     )""",
