@@ -77,7 +77,9 @@
                 />
               </th>
               <th
-                v-if="results?.[0]?.course"
+                v-if="
+                  results?.[0]?.course && league?.leagueScoring === 'course'
+                "
                 class="course"
                 @click="changeSortPreference(SortablePropeties.course)"
               >
@@ -162,7 +164,10 @@
                   <span>{{ result.club }}</span>
                 </span>
               </td>
-              <td v-if="result.course" class="course">
+              <td
+                v-if="result.course && league?.leagueScoring === 'course'"
+                class="course"
+              >
                 {{ result.course }}
               </td>
               <td class="ageClass">
