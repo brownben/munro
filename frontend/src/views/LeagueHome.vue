@@ -262,6 +262,8 @@ const scoringMethodShorthandToFull = (value: string): string => {
     return 'a Time Relative to Average System (100 Average)'
   else if (value === 'timeTop3')
     return 'the Time Relative to the Average Time of the Top 3'
+  else if (value === 'timeTop3Adjusted')
+    return 'the Time Relative to the Average Time of the Top 3 (Adjusted by Course/Age Class)'
   else if (value === 'file') return 'the points uploaded'
   else return ''
 }

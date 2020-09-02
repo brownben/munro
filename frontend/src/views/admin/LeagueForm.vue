@@ -75,6 +75,10 @@
             text: 'Relative to Average Time (100 Average)',
           },
           { value: 'timeTop3', text: 'Relative to Top 3 Times' },
+          {
+            value: 'timeTop3Adjusted',
+            text: 'Relative to Top 3 Times (Adjusted)',
+          },
           { value: 'file', text: 'From Upload File' },
         ]"
         :shift="false"
