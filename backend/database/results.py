@@ -20,6 +20,7 @@ def partResultToJSON(result):
             "incomplete": result[3] == "true",
             "event": result[4],
             "type": result[5],
+            "course": result[6],
         }
     else:
         return False
@@ -38,9 +39,9 @@ def resultToJSONwithEventName(result):
     if resultJSON:
         return {
             **resultJSON,
-            "competitor": result[6],
-            "id": result[7],
-            "eventName": result[8],
+            "competitor": result[7],
+            "id": result[8],
+            "eventName": result[9],
         }
     else:
         return False
@@ -51,11 +52,11 @@ def fullResultToJSON(result):
     if resultJSON:
         return {
             **resultJSON,
-            "name": result[6],
-            "ageClass": result[7],
-            "club": result[8],
-            "course": result[9],
-            "id": result[10],
+            "name": result[7],
+            "ageClass": result[8],
+            "club": result[9],
+            "course": resultJSON.get("course") or result[10],
+            "id": result[11],
         }
     else:
         return False
@@ -66,7 +67,7 @@ def recalcResultToJSON(result):
         "rowid": result[0],
         "time": result[1],
         "incomplete": result[2] == "true",
-        "course": result[3],
+        "course": result[5] or result[3],
         "type": result[4],
     }
 
@@ -167,7 +168,7 @@ def createResult(data):
 
     query(
         """
-        INSERT INTO results (time, position, points, incomplete, event, competitor, type)
+        INSERT INTO results (time, position, points, incomplete, event, competitor, type, course)
         VALUES (%s,%s,%s,%s,%s,%s,%s)
     """,
         (
@@ -178,6 +179,7 @@ def createResult(data):
             data["event"],
             data["competitor"],
             data.get("type", None),
+            data.get("course", None),
         ),
     )
 
@@ -189,7 +191,7 @@ def updateResult(data):
     query(
         """
         UPDATE results
-        SET time=%s, position=%s, points=%s, incomplete=%s, event=%s, competitor=%s, type=%s
+        SET time=%s, position=%s, points=%s, incomplete=%s, event=%s, competitor=%s, type=%s, course=%s
         WHERE rowid=%s
     """,
         (
@@ -200,6 +202,7 @@ def updateResult(data):
             data["event"],
             data["competitor"],
             data["type"],
+            data.get("course", None),
             data["rowid"],
         ),
     )
@@ -295,7 +298,7 @@ def deleteResultsByCompetitor(competitor):
 def getResult(rowid):
     result = queryWithOneResult(
         """
-        SELECT time, position, points, incomplete, event, type, competitor, id
+        SELECT time, position, points, incomplete, event, type, course, competitor, id
         FROM results
         WHERE rowid=%s
     """,
@@ -307,7 +310,7 @@ def getResult(rowid):
 def getAllResults():
     result = queryWithResults(
         """
-        SELECT results.time, results.position, results.points, results.incomplete, results.event, results.type,
+        SELECT results.time, results.position, results.points, results.incomplete, results.event, results.type, results.course,
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
@@ -320,7 +323,7 @@ def getAllResults():
 def getResultsByCompetitor(competitor):
     result = queryWithResults(
         """
-        SELECT time, position, points, incomplete, event, type, competitor, rowid, events.name
+        SELECT time, position, points, incomplete, event, type, course, competitor, rowid, events.name
         FROM results, events
         WHERE competitor=%s
             AND results.event=events.id
@@ -352,7 +355,7 @@ def getResultsForCompetitorNonDynamic(competitor):
 def getResultsByEvent(event):
     result = queryWithResults(
         """
-        SELECT results.time, results.position, results.points, results.incomplete, results.event, results.type,
+        SELECT results.time, results.position, results.points, results.incomplete, results.event, results.type, results.course,
         competitors.name, competitors.ageClass, competitors.club, competitors.course, results.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
@@ -368,7 +371,7 @@ def getResultsByEvent(event):
 def getResultsByEventForRecalc(event):
     result = queryWithResults(
         """
-        SELECT results.rowid, results.time,  results.incomplete, competitors.course, results.type
+        SELECT results.rowid, results.time, results.incomplete, competitors.course, results.type, results.course
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
             AND event=%s
@@ -390,12 +393,12 @@ def getResultsForCourse(league, course):
          array_agg(results.points), array_agg(results.type), competitors.rowid
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
-            AND competitors.course=%s
             AND competitors.league=%s
+            AND (competitors.course=%s OR results.course=%s)
             AND COALESCE(results.type,'') <> 'hidden'
         GROUP BY competitors.rowid
         """,
-        (course, league),
+        (league, course, course),
     )
     resultsList = []
 

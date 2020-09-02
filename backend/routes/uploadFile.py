@@ -64,6 +64,9 @@ def processUpload(data, eventData, leagueOfEvent):
     parsedDataSorted = sorted(
         parsedDataNoExtraCourses, key=lambda x: x["time"], reverse=True
     )
+    dataWithCompetitors = upload.getCompetitorData(
+        eventData, parsedDataSorted, leagueOfEvent["leagueScoring"]
+    )
     dataWithPoints = assignPoints.assignPoints(
         parsedDataSorted, leagueOfEvent["scoringMethod"]
     )
@@ -76,9 +79,8 @@ def processUpload(data, eventData, leagueOfEvent):
 
 def saveUpload(data, eventData, league, dataWithPoints):
     # Get all competitors and match the competitor to assign the result to competitor by saving competitor id in the result
-    dataWithCompetitors = upload.getCompetitorData(eventData, dataWithPoints)
     # Write all results to the database
-    for result in dataWithCompetitors:
+    for result in dataWithPoints:
         results.createResult(
             {
                 "time": result["time"],
@@ -88,6 +90,7 @@ def saveUpload(data, eventData, league, dataWithPoints):
                 "event": eventData["id"],
                 "competitor": result["competitor"],
                 "type": upload.filterClubRestriction(result, league),
+                "results": result["course"],
             }
         )
 

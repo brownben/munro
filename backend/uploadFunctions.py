@@ -30,10 +30,13 @@ def compareProperties(obj1, obj2, comparison):
     return obj1[comparison] == obj2[comparison]
 
 
-def competitorNonMatchingNameCheck(competitor, result):
+def competitorNonMatchingNameCheck(competitor, result, leagueScroing):
     return (
         nameToInitialCheck(competitor, result)
-        and compareProperties(competitor, result, "course")
+        and (
+            compareProperties(competitor, result, "course")
+            or leagueScoring == "overall"
+        )
         and (
             compareProperties(competitor, result, "ageClass")
             or compareProperties(competitor, result, "club")
@@ -41,19 +44,19 @@ def competitorNonMatchingNameCheck(competitor, result):
     )
 
 
-def competitorMatchingNameCheck(competitor, result):
-    return compareProperties(competitor, result, "name") and compareProperties(
-        competitor, result, "course"
+def competitorMatchingNameCheck(competitor, result, leagueScoring):
+    return compareProperties(competitor, result, "name") and (
+        compareProperties(competitor, result, "course") or leagueScoring == "overall"
     )
 
 
-def matchCompetitor(competitorList, result):
+def matchCompetitor(competitorList, result, leagueScoring):
     for competitor in competitorList:
-        if competitorMatchingNameCheck(competitor, result):
+        if competitorMatchingNameCheck(competitor, result, leagueScoring):
             return competitor
 
     for competitor in competitorList:
-        if competitorNonMatchingNameCheck(competitor, result):
+        if competitorNonMatchingNameCheck(competitor, result, leagueScoring):
             return competitor
 
     return False
@@ -84,15 +87,18 @@ def recalculateResults(eventId, leagueScoring):
         results.recalcUpdateResult(result)
 
 
-def getCompetitorData(eventData, dataWithPoints):
+def getCompetitorData(eventData, dataWithPoints, leagueScoring):
     allCompetitors = competitors.getCompetitorsByLeague(eventData["league"])
 
     dataWithCompetitors = []
 
     for result in dataWithPoints:
-        competitor = matchCompetitor(allCompetitors, result)
+        competitor = matchCompetitor(allCompetitors, result, leagueScoring)
         if competitor:
             result["competitor"] = competitor["id"]
+
+            if not result["ageClass"]:
+                result["ageClass"] = competitor["ageClass"]
         else:
             # If no match create competitor and save id as that in the result
             result["competitor"] = competitors.createCompetitor(
