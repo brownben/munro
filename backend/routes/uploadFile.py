@@ -69,12 +69,12 @@ def processUpload(data, eventData, leagueOfEvent):
     )
 
     try:
-        return saveUpload(data, eventData, dataWithPoints)
+        return saveUpload(data, eventData, leagueOfEvent, dataWithPoints)
     except:
         return returnError("Problem Saving Results to Database")
 
 
-def saveUpload(data, eventData, dataWithPoints):
+def saveUpload(data, eventData, league, dataWithPoints):
     # Get all competitors and match the competitor to assign the result to competitor by saving competitor id in the result
     dataWithCompetitors = upload.getCompetitorData(eventData, dataWithPoints)
     # Write all results to the database
@@ -87,6 +87,7 @@ def saveUpload(data, eventData, dataWithPoints):
                 "incomplete": result["incomplete"],
                 "event": eventData["id"],
                 "competitor": result["competitor"],
+                "type": upload.filterClubRestriction(result, league),
             }
         )
 

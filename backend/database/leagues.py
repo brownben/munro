@@ -21,7 +21,8 @@ def leagueToJSON(league):
             "dynamicEventResults": league[8],
             "moreInformation": league[9],
             "leagueScoring": league[10] or "course",
-            "numberOfEvents": league[11],
+            "clubRestriction": league[11] or "",
+            "numberOfEvents": league[12],
         }
     else:
         return False
@@ -44,6 +45,7 @@ queryMultiple(
         year INTEGER,
         dynamicEventResults BOOLEAN,
         leagueScoring TEXT,
+        clubRestriction TEXT,
         UNIQUE (name))""",
         """
     CREATE TABLE IF NOT EXISTS events (
@@ -104,8 +106,8 @@ def createLeague(data):
     query(
         """
         INSERT INTO leagues (name,website,coordinator,scoringMethod,numberOfCountingEvents, courses,
-        description, year, dynamicEventResults, moreInformation, leagueScoring)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        description, year, dynamicEventResults, moreInformation, leagueScoring, clubRestriction)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """,
         (
             data["name"],
@@ -119,6 +121,7 @@ def createLeague(data):
             data["dynamicEventResults"],
             data["moreInformation"],
             data["leagueScoring"],
+            data["clubRestriction"],
         ),
     )
 
@@ -127,7 +130,7 @@ def updateLeague(data):
     query(
         """
         UPDATE leagues
-        SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,description=%s, year=%s, dynamicEventResults=%s, moreInformation=%s, leagueScoring=%s
+        SET name=%s,website=%s,coordinator=%s,scoringMethod=%s,numberOfCountingEvents=%s, courses=%s,description=%s, year=%s, dynamicEventResults=%s, moreInformation=%s, leagueScoring=%s, clubRestriction=%s
         WHERE name=%s""",
         (
             data["name"],
@@ -141,6 +144,7 @@ def updateLeague(data):
             data["dynamicEventResults"],
             data["moreInformation"],
             data["leagueScoring"],
+            data["clubRestriction"],
             data["oldName"],
         ),
     )
@@ -154,7 +158,7 @@ def findLeague(name):
     return leagueToJSON(
         queryWithOneResult(
             """
-        SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, leagues.leagueScoring, COUNT(events.id)
+        SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, leagues.leagueScoring, clubRestriction, COUNT(events.id)
         FROM leagues
         LEFT JOIN events ON leagues.name=events.league
         WHERE leagues.name=%s
@@ -169,7 +173,7 @@ def findLeague(name):
 def getAllLeagues():
     result = queryWithResults(
         """
-        SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, leagues.leagueScoring, COUNT(events.id)
+        SELECT leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, leagues.leagueScoring, clubRestriction, COUNT(events.id)
         FROM leagues
         LEFT JOIN events ON leagues.name=events.league
         GROUP BY leagues.name
