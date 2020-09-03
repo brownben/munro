@@ -103,6 +103,7 @@ import { ref, watch, onMounted, computed } from 'vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
+import $store from '../store/index'
 import $router from '../router/index'
 const { currentRoute: $route } = $router
 
@@ -134,10 +135,12 @@ const findEvent = async () => {
 const fileRead = (file: string) => {
   uploadConfig.value.file = file
 }
-const uploadFile = () =>
-  apiUploadFile(uploadConfig.value)
+const uploadFile = () => {
+  $store.dispatch('createMessage', 'Upload Data Sent')
+  return apiUploadFile(uploadConfig.value)
     .then(() => $router.push(`/events/${eventId.value}/results`))
     .catch(() => false)
+}
 
 watch($route, getURLEventId, { immediate: true })
 watch(eventId, findEvent, { immediate: true })

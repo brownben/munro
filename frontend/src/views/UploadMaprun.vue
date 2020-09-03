@@ -126,7 +126,10 @@ const getMaprunData = () =>
           'Error: No MapRun Event Found With That Id'
         )
         throw new Error()
-      } else $store.dispatch('createMessage', 'Upload Data Sent')
+      } else {
+        uploadConfig.value.file = file
+        $store.dispatch('createMessage', 'Upload Data Sent')
+      }
     })
 const uploadFile = () =>
   getMaprunData()
