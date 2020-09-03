@@ -35,7 +35,7 @@ def assignPositionsMultipleCourses(results):
             lastPosition += numberTied
             numberTied = 0
 
-        if not result["incomplete"]:
+        if not result["incomplete"] and result["type"] != "hidden":
             numberTied += 1
             result["position"] = lastPosition
 

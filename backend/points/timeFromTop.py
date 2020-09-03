@@ -54,7 +54,7 @@ def timeFromTop3CalculatePointsAdjusted(result, average):
     multiplier = getMultiplier(result["ageClass"], result["course"])
 
     if result["time"]:
-        points = (average / result["time"]) * multiplier
+        points = round(average / result["time"], 2) * multiplier
     else:
         return 0
 

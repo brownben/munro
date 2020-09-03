@@ -43,8 +43,8 @@
 
       <!-- If Event already have results, confirm they want to overwrite -->
       <CheckboxInput
-        v-if="uploadConfig.resultUploaded"
-        v-model="overwrite"
+        v-if="event.resultUploaded"
+        v-model="uploadConfig.overwrite"
         label="Overwrite Existing Results"
         class="my-6 text-left"
       />

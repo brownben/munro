@@ -98,6 +98,7 @@ def saveUpload(data, eventData, league, dataWithPoints):
         True, eventData["id"], data["results"], data["winsplits"], data["routegadget"]
     )
 
+    upload.recalculateResults(data["eventId"], league["scoringMethod"])
     dynamicPoints.calculate(eventData["league"])
 
     return returnMessage(str(len(dataWithPoints)) + " Results Saved")
