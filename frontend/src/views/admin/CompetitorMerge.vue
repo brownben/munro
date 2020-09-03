@@ -29,7 +29,7 @@
         class="mt-4"
       />
       <DropdownInput
-        v-model="competitorKeep"
+        v-model="choices.competitorKeep"
         :list="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
@@ -42,7 +42,7 @@
         class="mt-4"
       />
       <DropdownInput
-        v-model="competitorMerge"
+        v-model="choices.competitorMerge"
         :list="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
@@ -145,7 +145,7 @@ const mergeCompetitors = () =>
     competitorMerge: choices.value.competitorMerge,
     competitorKeep: choices.value.competitorKeep,
   })
-    .then(() => $router.push(`/results/${choices.value.competitorKeep}`))
+    .then(() => $router.push(`/competitors/${choices.value.competitorKeep}`))
     .catch(() => false)
 
 export {
