@@ -15,6 +15,7 @@ resultParser.add_argument("points")
 resultParser.add_argument("incomplete")
 resultParser.add_argument("type")
 resultParser.add_argument("action")
+resultParser.add_argument("course")
 
 
 class Results(Resource):

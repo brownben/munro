@@ -207,8 +207,12 @@ def getStandardCourseForAgeClass(age, gender):
 
 def getMultiplier(ageClass, courseRan):
     # Only works for standard orienteering age classes
-    gender = ageClass[0]
-    age = toAge(ageClass[1:])
+    if len(ageClass) > 1:
+        gender = ageClass[0]
+        age = toAge(ageClass[1:])
+    else:
+        gender = "M"
+        age = 21
 
     standardCourse = getStandardCourseForAgeClass(age, gender)
 

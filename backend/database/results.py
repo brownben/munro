@@ -169,7 +169,7 @@ def createResult(data):
     query(
         """
         INSERT INTO results (time, position, points, incomplete, event, competitor, type, course)
-        VALUES (%s,%s,%s,%s,%s,%s,%s)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
     """,
         (
             data["time"],

@@ -30,7 +30,7 @@ def compareProperties(obj1, obj2, comparison):
     return obj1[comparison] == obj2[comparison]
 
 
-def competitorNonMatchingNameCheck(competitor, result, leagueScroing):
+def competitorNonMatchingNameCheck(competitor, result, leagueScoring):
     return (
         nameToInitialCheck(competitor, result)
         and (
