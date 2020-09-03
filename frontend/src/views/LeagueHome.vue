@@ -155,7 +155,6 @@
     </template>
 
     <div
-      v-if="events?.length > 0"
       class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
     >
       <h2

@@ -78,10 +78,10 @@ def removeExtraCourses(results, courses, leagueScoring):
     return resultsWithCoursesRemoved
 
 
-def recalculateResults(eventId, leagueScoring):
+def recalculateResults(eventId, scoringMethod):
     exisitingResults = results.getResultsByEventForRecalc(eventId)
     resultsWithPositions = assignPositionsMultipleCourses(exisitingResults)
-    resultsWithPoints = assignPoints(resultsWithPositions, leagueScoring)
+    resultsWithPoints = assignPoints(resultsWithPositions, scoringMethod)
 
     for result in resultsWithPoints:
         results.recalcUpdateResult(result)

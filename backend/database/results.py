@@ -69,6 +69,7 @@ def recalcResultToJSON(result):
         "incomplete": result[2] == "true",
         "course": result[5] or result[3],
         "type": result[4],
+        "ageClass": result[6],
     }
 
 
@@ -371,14 +372,13 @@ def getResultsByEvent(event):
 def getResultsByEventForRecalc(event):
     result = queryWithResults(
         """
-        SELECT results.rowid, results.time, results.incomplete, competitors.course, results.type, results.course
+        SELECT results.rowid, results.time, results.incomplete, competitors.course, results.type, results.course, competitors.ageClass
         FROM competitors, results
         WHERE results.competitor=competitors.rowid
             AND event=%s
             AND COALESCE(type, '') <> 'manual'
             AND COALESCE(type, '') <> 'max'
             AND COALESCE(type, '') <> 'average'
-            AND COALESCE(type, '') <> 'hidden'
         ORDER BY competitors.course ASC, results.time ASC
     """,
         (event,),
