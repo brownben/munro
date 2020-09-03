@@ -100,4 +100,4 @@ def saveUpload(data, eventData, league, dataWithPoints):
 
     dynamicPoints.calculate(eventData["league"])
 
-    return returnMessage(str(len(dataWithCompetitors)) + " Results Saved")
+    return returnMessage(str(len(dataWithPoints)) + " Results Saved")

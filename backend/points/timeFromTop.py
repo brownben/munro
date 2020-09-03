@@ -42,13 +42,20 @@ def timeFromTop3Adjusted(data, averagePoints=1000, standardDeviationPoints=200):
 
 
 def timeFromTop3CalculatePoints(result, average):
-    points = (average / result["time"]) * 1000
+    if result["time"]:
+        points = (average / result["time"]) * 1000
+    else:
+        return 0
 
     return round(points)
 
 
 def timeFromTop3CalculatePointsAdjusted(result, average):
     multiplier = getMultiplier(result["ageClass"], result["course"])
-    points = (average / result["time"]) * multiplier
+
+    if result["time"]:
+        points = (average / result["time"]) * multiplier
+    else:
+        return 0
 
     return round(points)

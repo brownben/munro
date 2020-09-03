@@ -30,9 +30,12 @@ class UploadStream(Resource):
             resultsList = [
                 upload.streamResultToDict(result, data["eventId"], data["course"])
                 for result in streamData
+                if len(result.split(",")) > 3
             ]
             resultsToAdd = upload.newResults(existingResults, resultsList)
-            resultsWithCompetitors = upload.getCompetitorData(eventData, resultsToAdd)
+            resultsWithCompetitors = upload.getCompetitorData(
+                eventData, resultsToAdd, leagueOfEvent["leagueScoring"]
+            )
 
             for result in resultsWithCompetitors:
                 results.createResult(
