@@ -70,22 +70,34 @@ class Test_assignPositionsMultipleCourses:
         assert assignPositionsMultipleCourses([]) == []
 
     def test_incompleteResult(self):
-        results = [{"incomplete": True, "time": -1, "course": False} for _ in range(5)]
+        results = [
+            {"incomplete": True, "time": -1, "course": False, "type": None}
+            for _ in range(5)
+        ]
         for result in assignPositionsMultipleCourses(results):
             assert result["position"] == -1
 
     def test_normalResults(self):
-        results = [{"incomplete": False, "time": i, "course": False} for i in range(5)]
+        results = [
+            {"incomplete": False, "time": i, "course": False, "type": None}
+            for i in range(5)
+        ]
         for position, result in enumerate(assignPositionsMultipleCourses(results)):
             assert result["position"] == position + 1
 
     def test_drawnResults(self):
-        results = [{"incomplete": False, "time": 2, "course": False} for _ in range(5)]
+        results = [
+            {"incomplete": False, "time": 2, "course": False, "type": None}
+            for _ in range(5)
+        ]
         for result in assignPositionsMultipleCourses(results):
             assert result["position"] == 1
 
     def test_changeCourse(self):
-        results = [{"incomplete": False, "time": i, "course": i > 2} for i in range(6)]
+        results = [
+            {"incomplete": False, "time": i, "course": i > 2, "type": None}
+            for i in range(6)
+        ]
         assert [
             result["position"] for result in assignPositionsMultipleCourses(results)
         ] == [1, 2, 3, 1, 2, 3]
