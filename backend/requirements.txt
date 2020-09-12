@@ -1,7 +1,7 @@
 aniso8601==8.0.0
 appdirs==1.4.4
 atomicwrites==1.4.0
-attrs==20.1.0
+attrs==20.2.0
 black==20.8b1
 Brotli==1.0.9
 cachetools==4.1.1
@@ -27,7 +27,7 @@ more-itertools==8.5.0
 packaging==20.4
 pathspec==0.8.0
 pluggy==0.13.1
-psycopg2==2.8.5
+psycopg2==2.8.6
 py==1.9.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
