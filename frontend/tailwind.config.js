@@ -69,26 +69,62 @@ module.exports = {
     typography: (theme) => ({
       default: {
         css: {
+          color: theme('colors.gray.700'),
+          '[class~="lead"]': {
+            color: theme('colors.gray.700'),
+          },
           a: {
             color: theme('colors.main.700'),
           },
           h1: {
             fontFamily: '"Josefin Sans", sans-serif',
+            color: theme('colors.main.900'),
           },
           h2: {
             fontFamily: '"Josefin Sans", sans-serif',
+            color: theme('colors.main.900'),
           },
           h3: {
             fontFamily: '"Josefin Sans", sans-serif',
+            color: theme('colors.main.900'),
           },
           h4: {
             fontFamily: '"Josefin Sans", sans-serif',
+            color: theme('colors.main.900'),
           },
           strong: {
             fontFamily: '"Josefin Sans", sans-serif',
+            color: theme('colors.gray.900'),
           },
           blockquote: {
-            borderLeftColor: '#F8DDFD',
+            borderLeftColor: theme('colors.main.100'),
+            color: theme('colors.main.900'),
+          },
+          'ol > li::before': {
+            color: theme('colors.gray.600'),
+          },
+          'ul > li::before': {
+            color: theme('colors.gray.400'),
+          },
+          hr: {
+            borderColor: theme('colors.gray.300'),
+          },
+          'figure figcaption': {
+            color: theme('colors.gray.600'),
+          },
+          code: {
+            color: theme('colors.gray.900'),
+          },
+          pre: {
+            color: theme('colors.gray.200'),
+            backgroundColor: theme('colors.gray.800'),
+          },
+          thead: {
+            color: theme('colors.gray.900'),
+            borderBottomColor: theme('colors.gray.400'),
+          },
+          'tbody tr': {
+            borderBottomColor: theme('colors.gray.300'),
           },
         },
       },
