@@ -1,6 +1,15 @@
 .h-7\/2 {
   height: 0.875rem;
 }
+
 .last\:mb-4:last-child {
   @apply mb-4;
+}
+
+.max-h-56 {
+  max-height: 14rem;
+}
+
+details[open] .open\:rotate-180 {
+  transform: rotate(180deg);
 }

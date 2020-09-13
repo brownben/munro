@@ -93,9 +93,3 @@ export default {
   }),
 }
 </script>
-
-<style lang="postcss">
-option {
-  @apply bg-white;
-}
-</style>

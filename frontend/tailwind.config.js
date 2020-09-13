@@ -75,6 +75,21 @@ module.exports = {
           h1: {
             fontFamily: '"Josefin Sans", sans-serif',
           },
+          h2: {
+            fontFamily: '"Josefin Sans", sans-serif',
+          },
+          h3: {
+            fontFamily: '"Josefin Sans", sans-serif',
+          },
+          h4: {
+            fontFamily: '"Josefin Sans", sans-serif',
+          },
+          strong: {
+            fontFamily: '"Josefin Sans", sans-serif',
+          },
+          blockquote: {
+            borderLeftColor: '#F8DDFD',
+          },
         },
       },
     }),

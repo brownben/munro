@@ -19,7 +19,7 @@
         {{ title }}
       </h2>
       <svg
-        class="float-right h-12 p-2 mt-1 mr-2 transition-all duration-300 ease-in-out fill-current rotate text-main-600"
+        class="float-right h-12 p-2 mt-1 mr-2 transition-all duration-300 ease-in-out fill-current transform rotate-0 open:rotate-180 text-main-600"
         viewBox="0 0 24 24"
       >
         <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z" />
@@ -42,20 +42,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.rotate {
-  transform: rotate(0deg);
-}
-
-details[open] .rotate {
-  transform: rotate(180deg);
-}
-
-details > summary {
-  list-style: none;
-}
-details > summary::-webkit-details-marker {
-  display: none;
-}
-</style>
