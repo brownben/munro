@@ -29,8 +29,3 @@ export default {
   },
 }
 </script>
-<style lang="postcss" scoped>
-img {
-  max-height: 14rem;
-}
-</style>
