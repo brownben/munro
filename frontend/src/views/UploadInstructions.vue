@@ -17,21 +17,21 @@
       <h1>Upload Instructions</h1>
       <ol>
         <li>
-          <strong
-            >Go to
+          <strong>
+            Go to
             <router-link to="/upload/file" class="link text-main-700">
               https://munro-leagues.herokuapp.com/upload/file
-            </router-link></strong
-          >
+            </router-link>
+          </strong>
           <img
             src="/@/assets/images/UploadInstructions-Blank.png"
             alt="Empty Upload Form"
           />
         </li>
         <li>
-          <strong
-            >Enter the Event ID and the 20 digit Upload Key Provided</strong
-          >
+          <strong>
+            Enter the Event ID and the 20 digit Upload Key Provided
+          </strong>
           <p>The event name should now be displayed.</p>
           <p>
             The Event ID will be the the form LeagueNameEventNameYYYY-MM-DD with
