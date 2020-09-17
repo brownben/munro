@@ -28,7 +28,7 @@
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.11.5",
     "@tailwindcss/typography": "^0.2.0",
-    "@types/jest": "^26.0.13",
+    "@types/jest": "^26.0.14",
     "@vue/compiler-sfc": "^3.0.0-rc.10",
     "@vue/test-utils": "^2.0.0-beta.3",
     "babel-jest": "^26.3.0",
