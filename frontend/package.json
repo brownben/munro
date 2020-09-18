@@ -20,7 +20,7 @@
   "dependencies": {
     "headful": "^1.0.3",
     "register-service-worker": "^1.7.1",
-    "vue": "^3.0.0-rc.10",
+    "vue": "^3.0.0-rc.13",
     "vue-router": "^4.0.0-beta.9",
     "vuex": "^4.0.0-beta.4"
   },
@@ -29,7 +29,7 @@
     "@babel/preset-env": "^7.11.5",
     "@tailwindcss/typography": "^0.2.0",
     "@types/jest": "^26.0.13",
-    "@vue/compiler-sfc": "^3.0.0-rc.10",
+    "@vue/compiler-sfc": "^3.0.0-rc.13",
     "@vue/test-utils": "^2.0.0-beta.3",
     "babel-jest": "^26.3.0",
     "cssnano": "^4.1.10",
