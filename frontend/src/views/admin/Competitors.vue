@@ -56,98 +56,87 @@
         <tr
           class="transition duration-300 bg-white border-b border-collapse border-main-300 hover:bg-main-200"
         >
-          <th @click="changeSortPreference(SortablePropeties.id)">
-            <p>Id</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.id"
-            />
-          </th>
-          <th
-            class="text-left"
+          <Heading
+            text="Id"
+            :ascending="sortPreferences.id"
+            :active="sortPreferences.by === SortablePropeties.id"
+            @click="changeSortPreference(SortablePropeties.id)"
+          />
+          <Heading
+            text="Name"
+            :ascending="sortPreferences.name"
+            :active="sortPreferences.by === SortablePropeties.name"
+            :leftOnMobile="true"
             @click="changeSortPreference(SortablePropeties.name)"
-          >
-            <p>Name</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.name"
-            />
-          </th>
-          <th
-            class="club"
+          />
+          <Heading
+            text="Club"
+            :ascending="sortPreferences.club"
+            :active="sortPreferences.by === SortablePropeties.club"
+            hideOnMobile="true"
             @click="changeSortPreference(SortablePropeties.club)"
-          >
-            <p>Club</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.club"
-            />
-          </th>
-          <th
-            class="ageClass"
+          />
+          <Heading
+            text="Class"
+            :ascending="sortPreferences.ageClass"
+            :active="sortPreferences.by === SortablePropeties.ageClass"
+            hideOnMobile="true"
             @click="changeSortPreference(SortablePropeties.ageClass)"
-          >
-            <p>Class</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.ageClass"
-            />
-          </th>
-          <th @click="changeSortPreference(SortablePropeties.course)">
-            <p>Course</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.course"
-            />
-          </th>
+          />
+          <Heading
+            text="Course"
+            :ascending="sortPreferences.course"
+            :active="sortPreferences.by === SortablePropeties.course"
+            @click="changeSortPreference(SortablePropeties.course)"
+          />
         </tr>
       </thead>
-      <transition-group name="list" tag="tbody">
-        <tr
-          v-for="competitor of competitors"
+      <transition-group name="list">
+        <TableRow
+          v-for="(competitor, i) of competitors"
           :key="competitor.id"
-          class="transition duration-300 bg-white border-collapse hover:bg-main-200"
-          :class="{
-            'bg-main-50': competitors.indexOf(competitor) % 2 === 0,
-          }"
+          :striped="i % 2 === 0"
+          :expanding="false"
           @click="$router.push(`/competitors/${competitor.id}`)"
         >
-          <td class="text-center">
+          <Cell>
             {{ competitor.id }}
-          </td>
-          <td>
-            <span class="block font-normal text-left md:font-light">
-              {{ competitor.name }}
-            </span>
-            <span class="block text-xs md:hidden">
+          </Cell>
+          <Cell show-secondary-until="sm" class="text-left pl-6">
+            {{ competitor.name }}
+            <template #secondary>
               <span v-if="competitor.ageClass" class="mr-4">
                 {{ competitor.ageClass }}
               </span>
               <span>{{ competitor.club }}</span>
-            </span>
-          </td>
-          <td class="hidden text-center md:table-cell">
+            </template>
+          </Cell>
+          <Cell show-after="sm">
             {{ competitor.club }}
-          </td>
-          <td class="hidden text-center md:table-cell">
+          </Cell>
+          <Cell show-after="sm">
             {{ competitor.ageClass }}
-          </td>
-          <td class="text-center">
+          </Cell>
+          <Cell>
             {{ competitor.course }}
-          </td>
-        </tr>
+          </Cell>
+        </TableRow>
       </transition-group>
     </table>
   </Layout>
 </template>
 <script lang="ts">
 import Layout from '/@/components/Layout.vue'
-import UpDownArrow from '/@/components/UpDownArrows.vue'
+import Cell from '/@/components/TableCell.vue'
+import Heading from '/@/components/TableHeading.vue'
+import TableRow from '/@/components/ExpandingTableRow.vue'
 
 export default {
   components: {
     Layout,
-    UpDownArrow,
+    Cell,
+    Heading,
+    TableRow,
   },
 }
 </script>
@@ -200,24 +189,3 @@ const changeSortPreference = (property: SortablePropeties) => {
 
 export { sortPreferences, SortablePropeties, changeSortPreference }
 </script>
-
-<style lang="postcss" scoped>
-table {
-  & td {
-    @apply py-2 px-1 font-sans font-light;
-  }
-
-  & th {
-    white-space: nowrap;
-    @apply font-heading select-none font-normal py-2;
-
-    & p {
-      @apply inline-block;
-    }
-
-    & div {
-      @apply inline-block ml-1;
-    }
-  }
-}
-</style>

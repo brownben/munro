@@ -53,90 +53,78 @@
         <tr
           class="transition duration-300 bg-white border-b border-collapse border-main-300 hover:bg-main-200"
         >
-          <th @click="changeSortPreference(SortablePropeties.position)">
-            <p>Pos.</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.position"
-            />
-          </th>
-          <th
-            class="name"
+          <Heading
+            text="Pos."
+            :ascending="sortPreferences.position"
+            :active="sortPreferences.by === SortablePropeties.position"
+            @click="changeSortPreference(SortablePropeties.position)"
+          />
+          <Heading
+            text="Name"
+            :ascending="sortPreferences.name"
+            :active="sortPreferences.by === SortablePropeties.name"
+            :leftOnMobile="true"
             @click="changeSortPreference(SortablePropeties.name)"
-          >
-            <p>Name</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.name"
-            />
-          </th>
-          <th
-            class="ageClass"
+          />
+          <Heading
+            text="Class"
+            :ascending="sortPreferences.age"
+            :active="sortPreferences.by === SortablePropeties.age"
+            hideOnMobile="true"
             @click="changeSortPreference(SortablePropeties.age)"
-          >
-            <p>Class</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.age"
-            />
-          </th>
-          <th
-            class="club"
+          />
+          <Heading
+            text="Club"
+            :ascending="sortPreferences.club"
+            :active="sortPreferences.by === SortablePropeties.club"
+            hideOnMobile="true"
             @click="changeSortPreference(SortablePropeties.club)"
-          >
-            <p>Club</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.club"
-            />
-          </th>
-          <th @click="changeSortPreference(SortablePropeties.time)">
-            <p>Time</p>
-            <up-down-arrow
-              :ascending="sortPreferences.ascending"
-              :active="sortPreferences.by === SortablePropeties.time"
-            />
-          </th>
+          />
+          <Heading
+            text="Time"
+            :ascending="sortPreferences.time"
+            :active="sortPreferences.by === SortablePropeties.time"
+            @click="changeSortPreference(SortablePropeties.time)"
+          />
         </tr>
       </thead>
-      <transition-group tag="tbody" name="fade">
-        <tr
-          v-for="result in results"
+      <transition-group name="list">
+        <TableRow
+          v-for="(result, i) in results"
           :key="result.id"
-          class="transition duration-300 bg-white border-collapse hover:bg-main-200"
-          :class="{ 'bg-main-50': results.indexOf(result) % 2 === 0 }"
+          :striped="i % 2 === 0"
+          :expanding="false"
         >
-          <td
-            v-if="['max', 'average', 'manual'].includes(result.type)"
-            class="position"
-          >
-            *
-          </td>
-          <td v-else-if="result.incomplete" class="position">-</td>
-          <td v-else class="position">
-            {{ result.position || '' }}
-          </td>
-          <td class="name">
-            <span class="block font-normal sm:font-light">
-              {{ result.name }}
-            </span>
-            <span class="block text-xs sm:hidden">
-              <span v-if="result.ageClass" class="mr-4">{{
-                result.ageClass
-              }}</span>
+          <Cell>
+            <template v-if="['max', 'average', 'manual'].includes(result.type)"
+              >*</template
+            >
+            <template v-else-if="result.incomplete">-</template>
+            <template v-else>
+              {{ result.position || '' }}
+            </template>
+          </Cell>
+
+          <Cell show-secondary-until="sm" class="text-left pl-6">
+            {{ result.name }}
+            <template #secondary>
+              <span v-if="result.ageClass" class="mr-4">
+                {{ result.ageClass }}
+              </span>
               <span>{{ result.club }}</span>
-            </span>
-          </td>
-          <td class="ageClass">
+            </template>
+          </Cell>
+
+          <Cell show-after="sm">
             {{ result.ageClass }}
-          </td>
-          <td class="club">
+          </Cell>
+          <Cell show-after="sm">
             {{ result.club }}
-          </td>
-          <td class="time">
+          </Cell>
+          <Cell>
             {{ elapsedTime(result.time) }}
-          </td>
-        </tr>
+          </Cell>
+        </TableRow>
       </transition-group>
     </table>
     <Transition name="fade">
@@ -152,7 +140,9 @@ import { defineAsyncComponent } from 'vue'
 
 import Layout from '/@/components/Layout.vue'
 import FilterMenu from '/@/components/FilterMenu.vue'
-import UpDownArrow from '/@/components/UpDownArrows.vue'
+import Cell from '/@/components/TableCell.vue'
+import Heading from '/@/components/TableHeading.vue'
+import TableRow from '/@/components/ExpandingTableRow.vue'
 const NoResultsCard = defineAsyncComponent(
   () => import('/@/components/cards/NoResultsCard.vue')
 )
@@ -161,7 +151,9 @@ export default {
   components: {
     Layout,
     FilterMenu,
-    UpDownArrow,
+    Cell,
+    Heading,
+    TableRow,
     NoResultsCard,
   },
 }
@@ -258,62 +250,3 @@ export {
   changeSortPreference,
 }
 </script>
-
-<style lang="postcss" scoped>
-table {
-  & td {
-    @apply py-2 text-center px-1 font-sans font-light;
-
-    &.name {
-      @apply py-1;
-    }
-  }
-
-  & th {
-    white-space: nowrap;
-    @apply font-heading select-none text-center font-normal py-2;
-
-    & p {
-      @apply inline-block;
-    }
-
-    & div {
-      @apply inline-block ml-1;
-    }
-  }
-}
-
-table td {
-  &.time,
-  &.position {
-    @apply font-normal;
-
-    @screen sm {
-      @apply font-light;
-    }
-  }
-}
-
-table td,
-table th {
-  &.name {
-    @apply text-left pl-6;
-
-    @screen lg {
-      @apply pl-10;
-    }
-  }
-
-  &.club,
-  &.ageClass {
-    @apply hidden;
-  }
-
-  @screen sm {
-    &.club,
-    &.ageClass {
-      @apply table-cell;
-    }
-  }
-}
-</style>
