@@ -132,8 +132,9 @@ module.exports = {
   },
 
   variants: {
-    border: ['responsive', 'hover', 'focus', 'checked'],
-    backgroundColor: ['responsive', 'hover', 'focus', 'checked', 'group-hover'],
+    border: ({ after }) => after(['checked']),
+    backgroundColor: ({ after }) => after(['checked', 'group-hover']),
+    opacity: ({ after }) => after(['group-hover']),
   },
 
   plugins: [require('@tailwindcss/typography')],

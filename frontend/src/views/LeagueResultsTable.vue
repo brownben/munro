@@ -56,105 +56,77 @@
             <tr
               class="transition duration-300 bg-white border-b border-collapse border-main-300"
             >
-              <th
-                class="position"
+              <Heading
+                text="Pos."
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortablePropeties.position"
                 @click="changeSortPreference(SortablePropeties.position)"
-              >
-                <p>Pos.</p>
-                <up-down-arrow
-                  :ascending="sortPreferences.ascending"
-                  :active="sortPreferences.by === SortablePropeties.position"
-                />
-              </th>
-              <th
-                class="name"
+              />
+
+              <Heading
+                text="Name"
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortablePropeties.name"
+                :leftOnMobile="true"
                 @click="changeSortPreference(SortablePropeties.name)"
-              >
-                <p>Name</p>
-                <up-down-arrow
-                  :ascending="sortPreferences.ascending"
-                  :active="sortPreferences.by === SortablePropeties.name"
-                />
-              </th>
-              <th
+              />
+              <Heading
                 v-if="
                   results?.[0]?.course && league?.leagueScoring === 'course'
                 "
-                class="course"
+                text="Course"
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortablePropeties.course"
                 @click="changeSortPreference(SortablePropeties.course)"
-              >
-                Course
-                <up-down-arrow
-                  :ascending="sortPreferences.ascending"
-                  :active="sortPreferences.by === SortablePropeties.course"
-                />
-              </th>
-              <th
-                class="ageClass"
+              />
+              <Heading
+                text="Class"
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortablePropeties.age"
+                :hideOnMobile="true"
                 @click="changeSortPreference(SortablePropeties.age)"
-              >
-                Class
-                <up-down-arrow
-                  :ascending="sortPreferences.ascending"
-                  :active="sortPreferences.by === SortablePropeties.age"
-                />
-              </th>
-              <th
-                class="club"
+              />
+              <Heading
+                text="Club"
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortablePropeties.club"
+                :hideOnMobile="true"
                 @click="changeSortPreference(SortablePropeties.club)"
-              >
-                <p>Club</p>
-                <up-down-arrow
-                  :ascending="sortPreferences.ascending"
-                  :active="sortPreferences.by === SortablePropeties.club"
-                />
-              </th>
-              <th
-                class="totalPoints"
+              />
+              <Heading
+                text="Points"
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortablePropeties.totalPoints"
                 @click="changeSortPreference(SortablePropeties.totalPoints)"
-              >
-                <p>Points</p>
-                <up-down-arrow
-                  :ascending="sortPreferences.ascending"
-                  :active="sortPreferences.by === SortablePropeties.totalPoints"
-                />
-              </th>
+              />
 
-              <th
+              <Heading
                 v-for="(event, i) of eventsWithResults"
                 :key="event.id"
-                class="relative hidden points md:table-cell"
+                :text="`${i + 1}`"
+                :tooltip="event.name"
+                :ascending="sortPreferences.ascending"
+                :active="
+                  sortPreferences.by === SortablePropeties.points &&
+                  sortPreferences.event === i
+                "
+                :compressed="true"
                 @click="changeSortPreference(SortablePropeties.points, i)"
-              >
-                <p>{{ i + 1 }}</p>
-                <span>{{ event.name }}</span>
-                <up-down-arrow
-                  :ascending="sortPreferences.ascending"
-                  :active="
-                    sortPreferences.by === SortablePropeties.points &&
-                    sortPreferences.event === i
-                  "
-                  class="points-arrow"
-                />
-              </th>
+              />
 
-              <td class="table-cell md:hidden" />
+              <th class="table-cell md:hidden" />
             </tr>
           </thead>
           <transition-group name="list">
-            <ExpandingTableRow
+            <TableRow
               v-for="(result, i) of results"
               :key="result.id"
               :striped="i % 2 === 0"
             >
-              <td class="position">
-                {{ result.position }}
-              </td>
-              <td class="name">
-                <span class="block font-normal sm:font-light">
-                  {{ result.name }}
-                </span>
-                <span class="block text-xs sm:hidden">
+              <Cell>{{ result.position }}</Cell>
+              <Cell show-secondary-until="sm" class="text-left pl-6">
+                {{ result.name }}
+                <template #secondary>
                   <span v-if="result?.course" class="mr-4">
                     {{ result.course }}
                   </span>
@@ -162,27 +134,22 @@
                     {{ result.ageClass }}
                   </span>
                   <span>{{ result.club }}</span>
-                </span>
-              </td>
-              <td
+                </template>
+              </Cell>
+              <Cell
                 v-if="result.course && league?.leagueScoring === 'course'"
-                class="course"
+                show-after="sm"
               >
                 {{ result.course }}
-              </td>
-              <td class="ageClass">
-                {{ result.ageClass }}
-              </td>
-              <td class="club">
-                {{ result.club }}
-              </td>
-              <td class="totalPoints">
-                {{ result.totalPoints }}
-              </td>
-              <td
+              </Cell>
+              <Cell show-after="sm">{{ result.ageClass }}</Cell>
+              <Cell show-after="sm">{{ result.club }}</Cell>
+              <Cell>{{ result.totalPoints }}</Cell>
+
+              <Cell
                 v-for="point of result.points"
                 :key="point.event"
-                class="hidden points md:table-cell"
+                show-after="md"
                 :class="{
                   'line-through': !point.counting,
                   'font-normal italic': ['manual', 'max', 'average'].includes(
@@ -191,15 +158,15 @@
                 }"
               >
                 {{ point.score }}
-              </td>
+              </Cell>
 
               <template #expansion>
                 <p
                   v-for="(point, j) of result.points"
                   :key="j"
-                  class="mr-4 text-right"
+                  class="mr-3 text-right font-light"
                 >
-                  {{ eventsWithResults[j].name }}:
+                  {{ eventsWithResults[j]?.name }}:
                   <span
                     class="inline-block w-4 pl-2 pr-4"
                     :class="{
@@ -215,7 +182,7 @@
                   </span>
                 </p>
               </template>
-            </ExpandingTableRow>
+            </TableRow>
           </transition-group>
         </table>
       </div>
@@ -237,7 +204,9 @@
       "
       class="col-span-2 mt-6 card"
     >
-      <h2 class="text-2xl font-bold font-heading">Results for Other Courses</h2>
+      <h2 class="text-2xl font-bold font-heading leading-tight">
+        Results for Other Courses
+      </h2>
       <div class="w-full">
         <router-link
           v-for="course in otherCourses"
@@ -256,8 +225,9 @@ import { defineAsyncComponent } from 'vue'
 
 import Layout from '/@/components/Layout.vue'
 import FilterMenu from '/@/components/FilterMenu.vue'
-import UpDownArrow from '/@/components/UpDownArrows.vue'
-import ExpandingTableRow from '/@/components/ExpandingTableRow.vue'
+import Cell from '/@/components/TableCell.vue'
+import Heading from '/@/components/TableHeading.vue'
+import TableRow from '/@/components/ExpandingTableRow.vue'
 const NoResultsCard = defineAsyncComponent(
   () => import('/@/components/cards/NoResultsCard.vue')
 )
@@ -266,8 +236,9 @@ export default {
   components: {
     Layout,
     FilterMenu,
-    UpDownArrow,
-    ExpandingTableRow,
+    Cell,
+    Heading,
+    TableRow,
     NoResultsCard,
   },
 }
@@ -373,107 +344,3 @@ export {
   changeSortPreference,
 }
 </script>
-
-<style lang="postcss">
-table {
-  & td {
-    @apply py-2 text-center px-1 font-sans font-light;
-
-    &.name {
-      @apply py-1;
-    }
-  }
-
-  & th {
-    white-space: nowrap;
-    @apply font-heading select-none text-center font-normal py-2;
-
-    & p {
-      @apply inline-block;
-    }
-
-    & div {
-      @apply inline-block ml-1;
-    }
-
-    & span {
-      width: calc(100% + 3.5rem);
-      left: -1.75rem;
-
-      @apply absolute block z-40;
-      @apply opacity-0 transition duration-300;
-      @apply py-2 px-2;
-      @apply font-sans text-sm leading-tight text-center break-words whitespace-normal;
-      @apply shadow bg-white rounded-shape;
-    }
-
-    &:hover > span {
-      @apply opacity-100;
-    }
-  }
-}
-
-table td,
-table th {
-  &.name {
-    @apply text-left pl-6;
-  }
-
-  &.course,
-  &.club,
-  &.ageClass {
-    @apply hidden;
-  }
-
-  &.points {
-    @apply pl-0 pr-0 px-0;
-  }
-
-  @screen sm {
-    &.course,
-    &.club,
-    &.ageClass {
-      @apply table-cell;
-    }
-  }
-}
-
-table td {
-  &.totalPoints,
-  &.position {
-    @apply font-normal;
-  }
-
-  &.points {
-    padding: 0 0.1rem;
-    @apply text-sm;
-  }
-
-  @screen sm {
-    &.totalPoints,
-    &.position {
-      @apply font-light;
-    }
-  }
-
-  @screen md {
-    &.points {
-      @apply px-1;
-    }
-  }
-
-  @screen xl {
-    &.points {
-      @apply px-2 text-base;
-    }
-  }
-}
-
-table th .points-arrow.up-down-arrow {
-  @apply hidden;
-
-  @screen xl {
-    @apply inline-block;
-  }
-}
-</style>
