@@ -34,7 +34,7 @@ pyasn1-modules==0.2.8
 pyparsing==2.4.7
 pytest==6.0.2
 pytz==2020.1
-regex==2020.7.14
+regex==2020.9.27
 requests==2.24.0
 rsa==4.6
 six==1.15.0
