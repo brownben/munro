@@ -55,34 +55,34 @@
         >
           <Heading
             text="Pos."
-            :ascending="sortPreferences.position"
+            :ascending="sortPreferences.ascending"
             :active="sortPreferences.by === SortablePropeties.position"
             @click="changeSortPreference(SortablePropeties.position)"
           />
           <Heading
             text="Name"
-            :ascending="sortPreferences.name"
+            :ascending="sortPreferences.ascending"
             :active="sortPreferences.by === SortablePropeties.name"
             :leftOnMobile="true"
             @click="changeSortPreference(SortablePropeties.name)"
           />
           <Heading
             text="Class"
-            :ascending="sortPreferences.age"
+            :ascending="sortPreferences.ascending"
             :active="sortPreferences.by === SortablePropeties.age"
             hideOnMobile="true"
             @click="changeSortPreference(SortablePropeties.age)"
           />
           <Heading
             text="Club"
-            :ascending="sortPreferences.club"
+            :ascending="sortPreferences.ascending"
             :active="sortPreferences.by === SortablePropeties.club"
             hideOnMobile="true"
             @click="changeSortPreference(SortablePropeties.club)"
           />
           <Heading
             text="Time"
-            :ascending="sortPreferences.time"
+            :ascending="sortPreferences.ascending"
             :active="sortPreferences.by === SortablePropeties.time"
             @click="changeSortPreference(SortablePropeties.time)"
           />
