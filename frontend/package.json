@@ -45,7 +45,7 @@
     "postcss-url": "^9.0.0",
     "prettier": "^2.1.2",
     "rollup-plugin-workbox": "^5.2.1",
-    "tailwindcss": "^1.9.1",
+    "tailwindcss": "^1.9.2",
     "ts-jest": "^26.4.1",
     "ts-loader": "^8.0.5",
     "typescript": "^4.0.3",
