@@ -22,7 +22,7 @@
     />
 
     <template #title>
-      <h1 class="text-3xl font-bold leading-tight font-heading">
+      <h1 class="text-3xl font-bold leading-tight font-heading truncate">
         {{ league?.name || $route.params.name }}
       </h1>
       <h2 v-if="league && league.description" class="mt-2 text-lg font-heading">
