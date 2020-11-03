@@ -33,7 +33,7 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pyparsing==2.4.7
 pytest==6.1.1
-pytz==2020.1
+pytz==2020.4
 regex==2020.10.23
 requests==2.24.0
 rsa==4.6
