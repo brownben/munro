@@ -11,7 +11,7 @@ click==7.1.2
 colorama==0.4.4
 coverage==5.3.0
 Flask==1.1.2
-Flask-Compress==1.7.0
+Flask-Compress==1.8.0
 Flask-Cors==3.0.9
 Flask-RESTful==0.3.8
 flask-talisman==0.7.0
