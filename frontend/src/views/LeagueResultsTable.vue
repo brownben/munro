@@ -67,7 +67,7 @@
                 text="Name"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortablePropeties.name"
-                :leftOnMobile="true"
+                :left-on-mobile="true"
                 @click="changeSortPreference(SortablePropeties.name)"
               />
               <Heading
@@ -83,14 +83,14 @@
                 text="Class"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortablePropeties.age"
-                :hideOnMobile="true"
+                :hide-on-mobile="true"
                 @click="changeSortPreference(SortablePropeties.age)"
               />
               <Heading
                 text="Club"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortablePropeties.club"
-                :hideOnMobile="true"
+                :hide-on-mobile="true"
                 @click="changeSortPreference(SortablePropeties.club)"
               />
               <Heading

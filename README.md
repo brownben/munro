@@ -71,7 +71,7 @@ set DATABASE_URL=<database-url>
 flask run --host=0.0.0.0
 
 # lint with black
-black .
+black . --check --line-length 88
 
 # run tests and generate coverage
 coverage run -m pytest && coverage report -m && coverage html -d tests/coverage
