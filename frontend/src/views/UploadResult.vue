@@ -61,15 +61,15 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../scripts/typeHelpers'
-
-import $store from '../store/index'
 
 import { getLeagues } from '../api/leagues'
 import { getEvents } from '../api/events'
 import { uploadResult as apiUploadResult } from '../api/upload'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -94,7 +94,7 @@ const refreshDetails = async () => {
       events.value = data.filter((event) => event.userSubmittedResults)
 
       if (events.value.length < 1)
-        $store.dispatch(
+        store.dispatch(
           'createMessage',
           'Sorry, No Events Found to Submit Results'
         )

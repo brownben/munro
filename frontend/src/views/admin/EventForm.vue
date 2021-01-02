@@ -105,10 +105,9 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../../scripts/typeHelpers'
-
-import $store from '../../store/index'
 
 import { getLeagues } from '../../api/leagues'
 import {
@@ -117,6 +116,7 @@ import {
   updateEvent as apiUpdateEvent,
 } from '../../api/events'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -155,7 +155,7 @@ const refreshDetails = async () => {
 
 const validateForm = () => {
   if (event.value.name === '' || event.value.league === '') {
-    $store.dispatch(
+    store.dispatch(
       'createMessage',
       'Please Ensure Name and League Fields are not Blank'
     )
@@ -164,7 +164,7 @@ const validateForm = () => {
     event.value.name.includes('/') ||
     event.value.name.includes('\\')
   ) {
-    $store.dispatch(
+    store.dispatch(
       'createMessage',
       "Please Ensure Name doesn't Include any Slashes"
     )

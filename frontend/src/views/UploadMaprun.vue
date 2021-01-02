@@ -64,16 +64,16 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../scripts/typeHelpers'
-
-import $store from '../store/index'
 
 import { getText } from '../api/requests'
 import { uploadStream } from '../api/upload'
 import { getEvent } from '../api/events'
 import { getLeague } from '../api/leagues'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -123,14 +123,14 @@ const getMaprunData = () =>
     .then(maprunHTMLtoCSV)
     .then((file: string) => {
       if (!file || file.split('\n').length < 1) {
-        $store.dispatch(
+        store.dispatch(
           'createMessage',
           'Error: No MapRun Event Found With That Id'
         )
         throw new Error()
       } else {
         uploadConfig.value.file = file
-        $store.dispatch('createMessage', 'Upload Data Sent')
+        store.dispatch('createMessage', 'Upload Data Sent')
       }
     })
 const uploadFile = () =>

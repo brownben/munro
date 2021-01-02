@@ -61,10 +61,9 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../../scripts/typeHelpers'
-
-import $store from '../../store/index'
 
 import {
   getCompetitor,
@@ -73,6 +72,7 @@ import {
 } from '../../api/competitors'
 import { getLeagues } from '../../api/leagues'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -113,7 +113,7 @@ const validateForm = () => {
   )
     return true
   else {
-    $store.dispatch(
+    store.dispatch(
       'createMessage',
       'Please Ensure Name, League and Course Fields are not Blank'
     )

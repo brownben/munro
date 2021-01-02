@@ -89,9 +89,9 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../../scripts/typeHelpers'
-import $store from '../../store/index'
 
 import { getLeagues } from '../../api/leagues'
 import { getEvents } from '../../api/events'
@@ -105,6 +105,7 @@ import {
 import { sortEventResults, SortablePropertiesEvent } from '../../scripts/sort'
 import { elapsedTime } from '../../scripts/time'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -178,7 +179,7 @@ const validateForm = () => {
   )
     return true
   else {
-    $store.dispatch(
+    store.dispatch(
       'createMessage',
       'Please Ensure Result and Competitor Fields are not Blank'
     )

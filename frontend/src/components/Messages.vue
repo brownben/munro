@@ -27,12 +27,10 @@
   </transition>
 </template>
 
-<script>
-export default {
-  methods: {
-    clear: function (id) {
-      this.$store.commit('removeMessage', id)
-    },
-  },
-}
+<script setup lang="ts">
+import { useStore } from 'vuex'
+
+const store = useStore()
+
+const clear = (id: number) => store.commit('removeMessage', id)
 </script>

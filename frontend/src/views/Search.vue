@@ -117,8 +117,6 @@ import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
-import $store from '../store/index'
-
 import { getQuery } from '../api/search'
 
 const router = useRouter()

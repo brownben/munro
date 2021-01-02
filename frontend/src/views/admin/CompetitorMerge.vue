@@ -72,9 +72,9 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../../scripts/typeHelpers'
-import $store from '../../store/index'
 
 import { getLeagues } from '../../api/leagues'
 import {
@@ -82,6 +82,7 @@ import {
   mergeCompetitors as apiMergeCompetitors,
 } from '../../api/competitors'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -133,7 +134,7 @@ const validateForm = () => {
   )
     return true
   else {
-    $store.dispatch(
+    store.dispatch(
       'createMessage',
       'Please Ensure Competitors Are Not The Same'
     )

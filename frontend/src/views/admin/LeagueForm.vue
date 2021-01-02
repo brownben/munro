@@ -145,10 +145,9 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../../scripts/typeHelpers'
-
-import $store from '../../store/index'
 
 import {
   LeagueForm,
@@ -157,6 +156,7 @@ import {
   updateLeague as apiUpdateLeague,
 } from '../../api/leagues'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -197,7 +197,7 @@ const refreshDetails = async () => {
 
 const validateForm = () => {
   if (league.value.name === '' || league.value.scoringMethod === '') {
-    $store.dispatch(
+    store.dispatch(
       'createMessage',
       'Please Ensure Name and Scoring Method Fields are not Blank'
     )
@@ -206,7 +206,7 @@ const validateForm = () => {
     league.value.name.includes('/') ||
     league.value.name.includes('\\')
   ) {
-    $store.dispatch(
+    store.dispatch(
       'createMessage',
       "Please Ensure Name doesn't Include any Slashes"
     )

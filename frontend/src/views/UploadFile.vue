@@ -43,7 +43,7 @@
 
       <!-- If Event already have results, confirm they want to overwrite -->
       <CheckboxInput
-        v-if="event.resultUploaded"
+        v-if="event?.resultUploaded"
         v-model="uploadConfig.overwrite"
         label="Overwrite Existing Results"
         class="my-6 text-left"
@@ -101,14 +101,14 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../scripts/typeHelpers'
-
-import $store from '../store/index'
 
 import { uploadFile as apiUploadFile } from '../api/upload'
 import { getEvent } from '../api/events'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -138,7 +138,7 @@ const fileRead = (file: string) => {
   uploadConfig.value.file = file
 }
 const uploadFile = () => {
-  $store.dispatch('createMessage', 'Upload Data Sent')
+  store.dispatch('createMessage', 'Upload Data Sent')
   return apiUploadFile(uploadConfig.value)
     .then(() => router.push(`/events/${eventId.value}/results`))
     .catch(() => false)

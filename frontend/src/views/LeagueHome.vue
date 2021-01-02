@@ -195,14 +195,14 @@ export default {
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import { toSingleString } from '../scripts/typeHelpers'
-
-import $store from '../store/index'
 
 import { getLeague, deleteLeague } from '../api/leagues'
 import { getLeagueEvents } from '../api/events'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -214,7 +214,7 @@ const refreshDetails = async () => {
   const routeParamsName = toSingleString(route.params.name)
   loading.value = true
   await Promise.all([
-    getLeagueEvents(routeParamsName, $store.getters.loggedIn).then(
+    getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
       (eventDetails) => {
         events.value = eventDetails
       }

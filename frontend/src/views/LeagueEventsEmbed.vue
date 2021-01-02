@@ -37,11 +37,10 @@ import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
-import $store from '../store/index'
-
 import { getLeague } from '../api/leagues'
 import { getLeagueEvents } from '../api/events'
 
+const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
@@ -54,7 +53,7 @@ const refreshDetails = async () => {
   loading.value = true
 
   await Promise.all([
-    getLeagueEvents(routeParamsName, $store.getters.loggedIn).then(
+    getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
       (eventDetails) => {
         events.value = eventDetails
       }
