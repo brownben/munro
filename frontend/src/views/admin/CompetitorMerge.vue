@@ -77,9 +77,8 @@ import $store from '../../store/index'
 import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeagues } from '../../api/leagues'
+import { getLeagues } from '../../api/leagues'
 import {
-  Competitor,
   getCompetitors,
   mergeCompetitors as apiMergeCompetitors,
 } from '../../api/competitors'

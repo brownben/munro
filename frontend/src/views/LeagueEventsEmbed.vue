@@ -40,8 +40,8 @@ import $store from '../store/index'
 import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeague } from '../api/leagues'
-import { Event, getLeagueEvents } from '../api/events'
+import { getLeague } from '../api/leagues'
+import { getLeagueEvents } from '../api/events'
 
 const loading = ref(true)
 const league = ref<League | null>(null)

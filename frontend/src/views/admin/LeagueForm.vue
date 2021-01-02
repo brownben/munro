@@ -152,7 +152,6 @@ import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
 import {
-  League,
   LeagueForm,
   getLeague,
   createLeague as apiCreateLeague,

@@ -87,9 +87,9 @@ import $store from '../../store/index'
 import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeagues } from '../../api/leagues'
-import { Event, getEvents } from '../../api/events'
-import { Competitor, getCompetitors } from '../../api/competitors'
+import { getLeagues } from '../../api/leagues'
+import { getEvents } from '../../api/events'
+import { getCompetitors } from '../../api/competitors'
 import { createManualResult } from '../../api/results'
 
 const leagues = ref<League[]>([])

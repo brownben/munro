@@ -1,29 +1,4 @@
 import { getData, postData, putData, deleteData } from './requests'
-import { ServerMessage } from './RequestConfigs'
-
-interface LeagueBase {
-  coordinator: string
-  description: string
-  dynamicEventResults: boolean
-  moreInformation: string
-  name: string
-  numberOfCountingEvents: number
-  numberOfEvents?: number
-  scoringMethod: string
-  website: string
-  year: number
-  leagueScoring?: string
-  clubRestriction?: string
-}
-
-export interface League extends LeagueBase {
-  courses: string[]
-}
-
-export interface LeagueForm extends LeagueBase {
-  courses: string
-  oldName: string
-}
 
 export const getLeague = (name: string): Promise<League | null> =>
   getData<League | null>({

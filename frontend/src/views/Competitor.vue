@@ -87,9 +87,9 @@ import { toSingleString } from '../scripts/typeHelpers'
 import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeague } from '../api/leagues'
-import { Competitor, getCompetitor } from '../api/competitors'
-import { EventResult, getCompetitorResults } from '../api/results'
+import { getLeague } from '../api/leagues'
+import { getCompetitor } from '../api/competitors'
+import { getCompetitorResults } from '../api/results'
 
 /* Get Data */
 const loading = ref(true)

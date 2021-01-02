@@ -1,7 +1,3 @@
-import {
-  EventResultWithAgeGender,
-  LeagueResultWithAgeGender,
-} from '/@/api/results'
 import { FilterPreferences } from './FilterSort.d'
 
 const resultMatchesGender = (

@@ -114,7 +114,6 @@ export default {
 <script lang="ts" setup="props, { emit }">
 import { elapsedTime } from '../../scripts/time'
 import {
-  EventResult,
   hideResult as apiHideResult,
   incompleteResult as apiIncompleteResult,
 } from '../../api/results'

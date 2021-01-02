@@ -71,9 +71,9 @@ import $router from '../router/index'
 const { currentRoute: $route } = $router
 
 import { getText } from '../api/requests'
-import { UploadStream, uploadStream } from '../api/upload'
-import { Event, getEvent } from '../api/events'
-import { League, getLeague } from '../api/leagues'
+import { uploadStream } from '../api/upload'
+import { getEvent } from '../api/events'
+import { getLeague } from '../api/leagues'
 
 const maprunId = ref('')
 const uploadConfig = ref<UploadStream>({

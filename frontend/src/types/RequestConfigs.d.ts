@@ -1,4 +1,4 @@
-export interface RequestConfig {
+interface RequestConfig {
   apiLocation: string
   data?: object
   useServerErrorMessage?: boolean
@@ -7,7 +7,7 @@ export interface RequestConfig {
   customErrorHandler?: boolean
 }
 
-export interface FetchConfig {
+interface FetchConfig {
   method: string
   headers?: {
     'Content-Type'?: string
@@ -15,6 +15,6 @@ export interface FetchConfig {
   body?: string
 }
 
-export interface ServerMessage {
+interface ServerMessage {
   message: string
 }

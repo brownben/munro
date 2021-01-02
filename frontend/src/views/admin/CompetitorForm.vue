@@ -68,7 +68,6 @@ import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
 import {
-  Competitor,
   getCompetitor,
   createCompetitor as apiCreateCompetitor,
   updateCompetitor as apiUpdateCompetitor,

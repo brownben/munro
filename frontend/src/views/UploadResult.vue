@@ -67,9 +67,9 @@ import $store from '../store/index'
 import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeagues } from '../api/leagues'
-import { Event, getEvents } from '../api/events'
-import { UploadResult, uploadResult as apiUploadResult } from '../api/upload'
+import { getLeagues } from '../api/leagues'
+import { getEvents } from '../api/events'
+import { uploadResult as apiUploadResult } from '../api/upload'
 
 const loading = ref(true)
 const leagues = ref<League[]>([])

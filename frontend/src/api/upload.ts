@@ -1,29 +1,4 @@
 import { postData } from './requests'
-import { ServerMessage } from './RequestConfigs'
-
-export interface UploadFile {
-  eventId: string
-  uploadKey: string
-  file: string
-  overwrite: boolean
-  results: string
-  winsplits: string
-  routegadget: string
-}
-
-export interface UploadResult {
-  eventId: string
-  name: string
-  course: string
-  time: string
-}
-
-export interface UploadStream {
-  eventId: string
-  uploadKey: string
-  file: string
-  course: string
-}
 
 export const uploadFile = (data: UploadFile): Promise<ServerMessage | null> =>
   postData<ServerMessage>({

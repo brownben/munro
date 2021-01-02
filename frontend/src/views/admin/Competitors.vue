@@ -149,11 +149,7 @@ import { sortCompetitors } from '../../scripts/sort'
 import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
-import { Competitor, getLeagueCompetitors } from '../../api/competitors'
-import {
-  SortPreferencesCompetitor as SortPreferences,
-  SortablePropetiesCompetitor as SortablePropeties,
-} from '../../scripts/FilterSort.d'
+import { getLeagueCompetitors } from '../../api/competitors'
 
 /* Get Data */
 const loading = ref(true)

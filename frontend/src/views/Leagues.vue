@@ -37,7 +37,7 @@ export default {
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 
-import { League, getLeagues } from '../api/leagues'
+import { getLeagues } from '../api/leagues'
 
 export const leagues = ref<League[]>([])
 

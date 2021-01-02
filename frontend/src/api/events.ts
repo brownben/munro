@@ -1,20 +1,4 @@
 import { getData, postData, putData, deleteData } from './requests'
-import { ServerMessage } from './RequestConfigs'
-
-export interface Event {
-  id: string
-  name: string
-  date: string
-  resultUploaded: boolean
-  organiser: string
-  moreInformation: string
-  website: string
-  results: string
-  winsplits: string
-  routegadget: string
-  userSubmittedResults: boolean
-  league: string
-}
 
 export const getEvent = (id: string): Promise<Event | null> =>
   getData<Event>({

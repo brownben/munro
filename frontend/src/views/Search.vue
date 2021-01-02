@@ -120,7 +120,6 @@ import $store from '../store/index'
 import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { League, Event, Competitor } from '../api/types'
 import { getQuery } from '../api/search'
 
 const loading = ref(true)

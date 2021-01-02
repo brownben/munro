@@ -107,8 +107,8 @@ import $store from '../store/index'
 import $router from '../router/index'
 const { currentRoute: $route } = $router
 
-import { UploadFile, uploadFile as apiUploadFile } from '../api/upload'
-import { Event, getEvent } from '../api/events'
+import { uploadFile as apiUploadFile } from '../api/upload'
+import { getEvent } from '../api/events'
 
 const uploadConfig = ref<UploadFile>({
   eventId: '',

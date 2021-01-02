@@ -111,9 +111,8 @@ import $store from '../../store/index'
 import $router from '../../router/index'
 const { currentRoute: $route } = $router
 
-import { League, getLeagues } from '../../api/leagues'
+import { getLeagues } from '../../api/leagues'
 import {
-  Event,
   getEvent,
   createEvent as apiCreateEvent,
   updateEvent as apiUpdateEvent,

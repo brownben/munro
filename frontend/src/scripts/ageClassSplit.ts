@@ -1,10 +1,3 @@
-import {
-  EventResult,
-  EventResultWithAgeGender,
-  LeagueResult,
-  LeagueResultWithAgeGender,
-} from '/@/api/results'
-
 const getAgeGenderFromAgeClass = (ageClass: string | undefined) => {
   let gender = ''
   let age = 0

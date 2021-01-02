@@ -1,5 +1,4 @@
 import store from '/@/store/index'
-import { RequestConfig, FetchConfig } from './RequestConfigs'
 
 export interface TypedResponse<T = any> extends Response {
   json: <P = T>() => Promise<P>

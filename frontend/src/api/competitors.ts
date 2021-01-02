@@ -1,19 +1,4 @@
 import { getData, postData, putData } from './requests'
-import { ServerMessage } from './RequestConfigs'
-
-export interface Competitor {
-  id: number
-  name: string
-  ageClass: string
-  club: string
-  course: string
-  league: string
-}
-
-export interface MergeCompetitors {
-  competitorKeep: string
-  competitorMerge: string
-}
 
 export const getCompetitor = (name: string): Promise<Competitor | null> =>
   getData<Competitor | null>({
