@@ -28,18 +28,11 @@
     </div>
   </section>
 </template>
-<script lang="ts">
-import EventCard from '/@/components/cards/EventCardSmall.vue'
 
-export default {
-  components: {
-    EventCard,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getLatestResults } from '../../api/events'
+import EventCard from '/@/components/cards/EventCardSmall.vue'
 
 const events = ref<Event[]>([])
 

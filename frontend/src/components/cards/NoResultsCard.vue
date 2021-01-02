@@ -21,11 +21,11 @@
     </h2>
   </section>
 </template>
-<script>
-export default {
-  props: {
-    text: { type: String, default: "Sorry, I Couldn't Find Any Results" },
-    secondaryText: { type: String, default: '' },
-  },
-}
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  text: { type: String, default: "Sorry, I Couldn't Find Any Results" },
+  secondaryText: { type: String, default: '' },
+})
 </script>

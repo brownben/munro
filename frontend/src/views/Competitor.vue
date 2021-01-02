@@ -68,20 +68,12 @@
   </Layout>
 </template>
 
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import ResultOverviewCard from '/@/components/cards/ResultOverviewCard.vue'
-
-export default {
-  components: {
-    Layout,
-    ResultOverviewCard,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+
+import Layout from '/@/components/Layout.vue'
+import ResultOverviewCard from '/@/components/cards/ResultOverviewCard.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

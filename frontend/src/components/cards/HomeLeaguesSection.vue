@@ -44,12 +44,7 @@
     </div>
   </section>
 </template>
-<script>
-import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 
-export default {
-  components: {
-    LeagueOverviewCard,
-  },
-}
+<script setup lang="ts">
+import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 </script>

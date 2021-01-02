@@ -44,10 +44,10 @@
   </section>
 </template>
 
-<script>
-export default {
-  props: {
-    event: { type: Object, default: () => ({}) },
-  },
-}
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  event: { type: Object, default: () => ({}) },
+})
 </script>

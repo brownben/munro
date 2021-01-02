@@ -125,24 +125,15 @@
     </table>
   </Layout>
 </template>
-<script lang="ts">
+
+<script lang="ts" setup>
+import { ref, watch, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+
 import Layout from '/@/components/Layout.vue'
 import Cell from '/@/components/TableCell.vue'
 import Heading from '/@/components/TableHeading.vue'
 import TableRow from '/@/components/ExpandingTableRow.vue'
-
-export default {
-  components: {
-    Layout,
-    Cell,
-    Heading,
-    TableRow,
-  },
-}
-</script>
-<script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import { sortCompetitors } from '../../scripts/sort'

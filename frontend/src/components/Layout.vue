@@ -51,24 +51,17 @@
     <AppFooter v-if="footer && !notFound" />
   </div>
 </template>
-<script>
-import { defineAsyncComponent } from 'vue'
+<script setup lang="ts">
+import { defineAsyncComponent, defineProps } from 'vue'
 
 import AppFooter from '/@/components/Footer.vue'
 const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
 
-export default {
-  components: {
-    AppFooter,
-    NotFound,
-  },
-
-  props: {
-    title: { type: String, default: '' },
-    hasMobileSubTitle: { type: Boolean, default: false },
-    gray: { type: Boolean, default: false },
-    notFound: { type: Boolean, default: false },
-    footer: { type: Boolean, default: false },
-  },
-}
+const props = defineProps({
+  title: { type: String, default: '' },
+  hasMobileSubTitle: { type: Boolean, default: false },
+  gray: { type: Boolean, default: false },
+  notFound: { type: Boolean, default: false },
+  footer: { type: Boolean, default: false },
+})
 </script>

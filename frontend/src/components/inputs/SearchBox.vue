@@ -39,19 +39,17 @@
   </form>
 </template>
 
-<script>
-export default {
-  data: function () {
-    return {
-      searchFocused: false,
-      query: this.$route.params.query,
-    }
-  },
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
-  methods: {
-    go: function (location) {
-      if (location !== this.$route.path) this.$router.push(location)
-    },
-  },
+const router = useRouter()
+const route = useRoute()
+
+const searchFocused = ref(false)
+const query = ref(route.params.query)
+
+const go = (location: string) => {
+  if (location !== route.path) router.push(location)
 }
 </script>

@@ -33,21 +33,17 @@
   </tbody>
 </template>
 
-<script>
-export default {
-  props: {
-    striped: { type: Boolean, default: false },
-    expanding: { type: Boolean, default: true },
-  },
+<script setup lang="ts">
+import { ref, defineProps } from 'vue'
 
-  data: () => ({
-    open: false,
-  }),
+const props = defineProps({
+  striped: { type: Boolean, default: false },
+  expanding: { type: Boolean, default: true },
+})
 
-  methods: {
-    toggle: function () {
-      this.open = !this.open
-    },
-  },
+const open = ref(false)
+
+const toggle = () => {
+  open.value = !open.value
 }
 </script>

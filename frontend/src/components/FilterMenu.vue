@@ -51,42 +51,30 @@
   </AccordionDropdown>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref, defineEmit } from 'vue'
+
 import AccordionDropdown from '/@/components/inputs/AccordionDropdown.vue'
 import TextInput from '/@/components/inputs/TextInput.vue'
 import NumberInput from '/@/components/inputs/NumberInput.vue'
 import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
 
-export default {
-  components: {
-    AccordionDropdown,
-    TextInput,
-    NumberInput,
-    CheckboxInput,
-  },
+const emit = defineEmit(['changed'])
 
-  emits: ['changed'],
+const name = ref('')
+const club = ref('')
+const minAge = ref(0)
+const maxAge = ref(100)
+const male = ref(true)
+const female = ref(true)
 
-  data: () => ({
-    name: '',
-    club: '',
-    minAge: 0,
-    maxAge: 100,
-    male: true,
-    female: true,
-  }),
-
-  methods: {
-    onChange: function () {
-      this.$emit('changed', {
-        name: this.name,
-        club: this.club,
-        minAge: this.minAge || 0,
-        maxAge: this.maxAge || 100,
-        male: this.male,
-        female: this.female,
-      })
-    },
-  },
-}
+const onChange = () =>
+  emit('changed', {
+    name: name.value,
+    club: club.value,
+    minAge: minAge.value || 0,
+    maxAge: maxAge.value || 100,
+    male: male.value,
+    female: female.value,
+  })
 </script>

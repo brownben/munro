@@ -39,71 +39,63 @@
   </Layout>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
+
 import Layout from '/@/components/Layout.vue'
 import TextInput from '/@/components/inputs/TextInput.vue'
 
-export default {
-  components: {
-    Layout,
-    TextInput,
-  },
+const store = useStore()
+const router = useRouter()
+const route = useRoute()
 
-  data() {
-    return {
-      username: '',
-      password: '',
-    }
-  },
+const username = ref('')
+const password = ref('')
 
-  mounted: function () {
-    if (this.$store.getters.loggedIn) {
-      this.$store.dispatch('createMessage', 'You Are Already Logged In')
-      this.$router.push('/')
-    }
-    this.blankFields()
-    if (this.$route.query.redirect)
-      this.$store.dispatch('createMessage', 'Please Login to Access that Page')
-  },
-
-  methods: {
-    blankFields: function () {
-      this.username = ''
-      this.password = ''
-    },
-
-    validateLogin: function () {
-      return this.username !== '' && this.password !== ''
-    },
-
-    sendLoginRequest: function () {
-      if (this.validateLogin()) {
-        return this.$store
-          .dispatch('login', {
-            username: this.username,
-            password: this.password,
-          })
-          .then((response) => {
-            if (response)
-              this.$router.replace(this.$route.query.redirect || '/')
-            this.$store.dispatch(
-              'createMessage',
-              `Hello ${this.$store.getters.userName || 'Admin'}`
-            )
-            this.blankFields()
-          })
-          .catch(() =>
-            this.$store.dispatch(
-              'createMessage',
-              'Error: Problem Logging In - Please Try Again'
-            )
-          )
-      } else
-        this.$store.dispatch(
-          'createMessage',
-          'Problem: Username or Password were left Blank'
-        )
-    },
-  },
+const blankFields = () => {
+  username.value = ''
+  password.value = ''
 }
+
+const validateLogin = () => username.value !== '' && password.value !== ''
+
+const sendLoginRequest = () => {
+  if (validateLogin())
+    return store
+      .dispatch('login', {
+        username: username.value,
+        password: password.value,
+      })
+      .then((response) => {
+        if (response) router.replace(route.query.redirect || '/')
+        store.dispatch(
+          'createMessage',
+          `Hello ${store.getters.userName || 'Admin'}`
+        )
+        blankFields()
+      })
+      .catch(() =>
+        store.dispatch(
+          'createMessage',
+          'Error: Problem Logging In - Please Try Again'
+        )
+      )
+  else
+    store.dispatch(
+      'createMessage',
+      'Problem: Username or Password were left Blank'
+    )
+}
+
+onMounted(() => {
+  if (store.getters.loggedIn) {
+    store.dispatch('createMessage', 'You Are Already Logged In')
+    router.push('/')
+  }
+  blankFields()
+  if (route.query.redirect)
+    store.dispatch('createMessage', 'Please Login to Access that Page')
+})
 </script>

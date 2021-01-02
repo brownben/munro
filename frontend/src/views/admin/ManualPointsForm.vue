@@ -66,23 +66,15 @@
     </form>
   </Layout>
 </template>
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
-import NumberInput from '/@/components/inputs/NumberInput.vue'
 
-export default {
-  components: {
-    Layout,
-    DropdownInput,
-    NumberInput,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+
+import Layout from '/@/components/Layout.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
+import NumberInput from '/@/components/inputs/NumberInput.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 

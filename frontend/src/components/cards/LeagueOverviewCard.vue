@@ -38,15 +38,15 @@
   </section>
 </template>
 
-<script>
-export default {
-  props: {
-    title: { type: String, default: '' },
-    description: { type: String, default: '' },
-    website: { type: String, default: '' },
-    alternativeLink: { type: String, default: '' },
-    buttonText: { type: String, default: 'View League →' },
-    smaller: { type: Boolean, default: false },
-  },
-}
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  title: { type: String, default: '' },
+  description: { type: String, default: '' },
+  website: { type: String, default: '' },
+  alternativeLink: { type: String, default: '' },
+  buttonText: { type: String, default: 'View League →' },
+  smaller: { type: Boolean, default: false },
+})
 </script>

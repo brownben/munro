@@ -16,14 +16,7 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import AppMenu from '/@/components/Menu.vue'
 import Messages from '/@/components/Messages.vue'
-
-export default {
-  components: {
-    AppMenu,
-    Messages,
-  },
-}
 </script>

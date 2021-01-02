@@ -83,25 +83,16 @@
     </div>
   </Layout>
 </template>
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import FileInput from '/@/components/inputs/FileInput.vue'
-import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
 
-export default {
-  components: {
-    Layout,
-    TextInput,
-    FileInput,
-    CheckboxInput,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+
+import Layout from '/@/components/Layout.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import FileInput from '/@/components/inputs/FileInput.vue'
+import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

@@ -21,33 +21,16 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'NumberInput',
+<script setup lang="ts">
+import { ref, defineEmit, defineProps } from 'vue'
 
-  props: {
-    modelValue: {
-      type: Number,
-      default: 0,
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    min: {
-      type: Number,
-      default: 0,
-    },
-    max: {
-      type: Number,
-      default: 100,
-    },
-  },
+const props = defineProps({
+  modelValue: { type: Number, default: 0 },
+  label: { type: String, default: '' },
+  min: { type: Number, default: 0 },
+  max: { type: Number, default: 100 },
+})
+const emits = defineEmit(['update:modelValue'])
 
-  emits: ['update:modelValue'],
-
-  data: () => ({
-    focus: false,
-  }),
-}
+const focus = ref(false)
 </script>

@@ -27,22 +27,17 @@
   </th>
 </template>
 
-<script>
+<script setup lang="ts">
+import { defineProps } from 'vue'
 import UpDownArrow from '/@/components/UpDownArrows.vue'
 
-export default {
-  components: {
-    UpDownArrow,
-  },
-
-  props: {
-    text: { type: String, default: '' },
-    tooltip: { type: String, default: '' },
-    compressed: { type: Boolean, default: false },
-    ascending: { type: Boolean, default: false },
-    active: { type: Boolean, default: false },
-    leftOnMobile: { type: Boolean, default: false },
-    hideOnMobile: { type: Boolean, default: false },
-  },
-}
+const props = defineProps({
+  text: { type: String, default: '' },
+  tooltip: { type: String, default: '' },
+  compressed: { type: Boolean, default: false },
+  ascending: { type: Boolean, default: false },
+  active: { type: Boolean, default: false },
+  leftOnMobile: { type: Boolean, default: false },
+  hideOnMobile: { type: Boolean, default: false },
+})
 </script>

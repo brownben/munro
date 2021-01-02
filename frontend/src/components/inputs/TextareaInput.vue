@@ -18,23 +18,14 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    modelValue: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-  },
+<script setup lang="ts">
+import { ref, defineEmit, defineProps } from 'vue'
 
-  emits: ['update:modelValue'],
+const props = defineProps({
+  modelValue: { type: String, default: '' },
+  label: { type: String, default: '' },
+})
+const emits = defineEmit(['update:modelValue'])
 
-  data: () => ({
-    focus: false,
-  }),
-}
+const focus = ref(false)
 </script>

@@ -25,21 +25,12 @@
     />
   </Layout>
 </template>
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 
-export default {
-  components: {
-    Layout,
-    EventOverviewCard,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-
 import { getLatestResults } from '../api/events'
+import Layout from '/@/components/Layout.vue'
+import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 
 const events = ref<Event[]>([])
 

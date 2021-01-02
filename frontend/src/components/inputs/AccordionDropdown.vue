@@ -32,13 +32,10 @@
   </details>
 </template>
 
-<script>
-export default {
-  props: {
-    title: {
-      type: String,
-      default: 'Title',
-    },
-  },
-}
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  title: { type: String, default: 'Title' },
+})
 </script>

@@ -87,25 +87,15 @@
   </Layout>
 </template>
 
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
-
-export default {
-  components: {
-    Layout,
-    DropdownInput,
-    TextInput,
-    CheckboxInput,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+
+import Layout from '/@/components/Layout.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 

@@ -87,8 +87,9 @@
   </Layout>
 </template>
 
-<script lang="ts">
-import { defineAsyncComponent } from 'vue'
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed, defineAsyncComponent } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import Layout from '/@/components/Layout.vue'
 import SearchBox from '/@/components/inputs/SearchBox.vue'
@@ -99,21 +100,6 @@ import CompetitorOverviewCard from '/@/components/cards/CompetitorOverviewCard.v
 const NoResults = defineAsyncComponent(
   () => import('/@/components/cards/NoResultsCard.vue')
 )
-
-export default {
-  components: {
-    Layout,
-    SearchBox,
-    LeagueOverviewCard,
-    EventOverviewCard,
-    CompetitorOverviewCard,
-    NoResults,
-  },
-}
-</script>
-<script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

@@ -107,12 +107,6 @@
   </Layout>
 </template>
 
-<script>
+<script setup lang="ts">
 import Layout from '/@/components/Layout.vue'
-
-export default {
-  components: {
-    Layout,
-  },
-}
 </script>

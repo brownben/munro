@@ -158,16 +158,13 @@
   </nav>
 </template>
 
-<script>
-export default {
-  data: () => ({
-    menuOpen: false,
+<script setup lang="ts">
+import { ref } from 'vue'
 
-    links: [
-      { text: 'Leagues', location: '/leagues' },
-      { text: 'Latest Results', location: '/latest-results' },
-      { text: 'Upload Results', location: '/upload' },
-    ],
-  }),
-}
+const menuOpen = ref(false)
+const links = ref([
+  { text: 'Leagues', location: '/leagues' },
+  { text: 'Latest Results', location: '/latest-results' },
+  { text: 'Upload Results', location: '/upload' },
+])
 </script>

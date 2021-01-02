@@ -181,21 +181,14 @@
     />
   </Layout>
 </template>
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 
-export default {
-  components: {
-    Layout,
-    EventOverviewCard,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+
+import Layout from '/@/components/Layout.vue'
+import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

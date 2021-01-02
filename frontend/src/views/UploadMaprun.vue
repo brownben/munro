@@ -48,23 +48,15 @@
     </div>
   </Layout>
 </template>
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
-export default {
-  components: {
-    Layout,
-    TextInput,
-    DropdownInput,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+
+import Layout from '/@/components/Layout.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
@@ -94,6 +86,7 @@ const getCourses = async () => {
 
   courses.value = league?.courses ?? []
 }
+
 watch(eventId, getCourses, { immediate: true })
 
 const maprunHTMLtoCSV = (html: string): string =>
@@ -114,6 +107,7 @@ const maprunHTMLtoCSV = (html: string): string =>
         .join()
     )
     .join('\n')
+
 const getMaprunData = () =>
   getText({
     apiLocation: `https://www.p.fne.com.au/rg/cgi-bin/SelectResultFileForSplitsBrowserFiltered.cgi?act=fileToSplitsBrowser&eventName=CombinedResults_${maprunId.value}.csv`,
@@ -133,9 +127,10 @@ const getMaprunData = () =>
         store.dispatch('createMessage', 'Upload Data Sent')
       }
     })
+
 const uploadFile = () =>
   getMaprunData()
     .then((file) => uploadStream(uploadConfig.value))
-    .then(() => router.push(`/events/${this.eventId}/results`))
+    .then(() => router.push(`/events/${eventId.value}/results`))
     .catch(() => false)
 </script>

@@ -135,8 +135,9 @@
     </Transition>
   </Layout>
 </template>
-<script lang="ts">
-import { defineAsyncComponent } from 'vue'
+<script lang="ts" setup>
+import { ref, watch, computed, defineAsyncComponent } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import Layout from '/@/components/Layout.vue'
 import FilterMenu from '/@/components/FilterMenu.vue'
@@ -146,21 +147,6 @@ import TableRow from '/@/components/ExpandingTableRow.vue'
 const NoResultsCard = defineAsyncComponent(
   () => import('/@/components/cards/NoResultsCard.vue')
 )
-
-export default {
-  components: {
-    Layout,
-    FilterMenu,
-    Cell,
-    Heading,
-    TableRow,
-    NoResultsCard,
-  },
-}
-</script>
-<script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 import { elapsedTime } from '../scripts/time'

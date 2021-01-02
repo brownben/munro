@@ -37,12 +37,6 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import SearchBox from '/@/components/inputs/SearchBox.vue'
-
-export default {
-  components: {
-    SearchBox,
-  },
-}
 </script>

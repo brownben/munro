@@ -49,20 +49,11 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'UpDownArrows',
+<script setup lang="ts">
+import { defineProps } from 'vue'
 
-  props: {
-    active: {
-      type: Boolean,
-      default: false,
-    },
-
-    ascending: {
-      type: Boolean,
-      default: false,
-    },
-  },
-}
+const props = defineProps({
+  active: { type: Boolean, default: false },
+  ascending: { type: Boolean, default: false },
+})
 </script>

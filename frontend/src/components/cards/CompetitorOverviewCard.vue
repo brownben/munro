@@ -39,10 +39,10 @@
   </section>
 </template>
 
-<script>
-export default {
-  props: {
-    competitor: { type: Object, default: () => ({}) },
-  },
-}
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  competitor: { type: Object, default: () => ({}) },
+})
 </script>

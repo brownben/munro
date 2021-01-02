@@ -23,20 +23,12 @@
     />
   </Layout>
 </template>
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 
-export default {
-  components: {
-    Layout,
-    LeagueOverviewCard,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getLeagues } from '../api/leagues'
+import Layout from '/@/components/Layout.vue'
+import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
 
 const leagues = ref<League[]>([])
 

@@ -33,21 +33,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'CheckboxInput',
+<script setup lang="ts">
+import { defineEmit, defineProps } from 'vue'
 
-  props: {
-    modelValue: {
-      type: Boolean,
-      default: false,
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-  },
-
-  emits: ['update:modelValue'],
-}
+const props = defineProps({
+  modelValue: { type: Boolean, default: false },
+  label: { type: String, default: '' },
+})
+const emit = defineEmit(['update:modelValue'])
 </script>

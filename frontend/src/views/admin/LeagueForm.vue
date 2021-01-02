@@ -125,27 +125,17 @@
     </form>
   </Layout>
 </template>
-<script lang="ts">
+
+<script lang="ts" setup>
+import { ref, watch, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
 import Layout from '/@/components/Layout.vue'
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 import TextInput from '/@/components/inputs/TextInput.vue'
 import TextareaInput from '/@/components/inputs/TextareaInput.vue'
 import NumberInput from '/@/components/inputs/NumberInput.vue'
-
-export default {
-  components: {
-    Layout,
-    DropdownInput,
-    TextInput,
-    TextareaInput,
-    NumberInput,
-  },
-}
-</script>
-<script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 

@@ -19,29 +19,23 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'TextInput',
+<script setup lang="ts">
+import { ref, defineEmit, defineProps } from 'vue'
 
-  props: {
-    modelValue: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-    type: {
-      type: String,
-      default: 'text',
-    },
+const props = defineProps({
+  modelValue: {
+    type: String,
+    default: '',
   },
-
-  emits: ['update:modelValue'],
-
-  data: () => ({
-    focus: false,
-  }),
-}
+  label: {
+    type: String,
+    default: '',
+  },
+  type: {
+    type: String,
+    default: 'text',
+  },
+})
+const emit = defineEmit(['update:modelValue'])
+const focus = ref(false)
 </script>

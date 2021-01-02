@@ -27,12 +27,12 @@
   </td>
 </template>
 
-<script>
-export default {
-  props: {
-    showAfter: { type: String, default: '' },
-    showSecondaryUntil: { type: String, default: '' },
-    compressed: { type: Boolean, default: false },
-  },
-}
+<script setup lang="ts">
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  showAfter: { type: String, default: '' },
+  showSecondaryUntil: { type: String, default: '' },
+  compressed: { type: Boolean, default: false },
+})
 </script>

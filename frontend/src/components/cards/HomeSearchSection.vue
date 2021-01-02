@@ -51,11 +51,10 @@
     </div>
   </section>
 </template>
-<script>
-export default {
-  data: () => ({
-    searchFocused: false,
-    searchQuery: '',
-  }),
-}
+
+<script setup lang="ts">
+import { ref } from 'vue'
+
+const searchFocused = ref(false)
+const searchQuery = ref('')
 </script>

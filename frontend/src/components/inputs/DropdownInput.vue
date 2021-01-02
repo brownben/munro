@@ -59,37 +59,17 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'DropdownInput',
+<script setup lang="ts">
+import { ref, defineEmit, defineProps } from 'vue'
 
-  props: {
-    label: {
-      type: String,
-      default: '',
-    },
-    modelValue: {
-      type: String,
-      default: '',
-    },
-    list: {
-      type: Array,
-      default: () => [],
-    },
-    shift: {
-      type: Boolean,
-      default: true,
-    },
-    optionTextDifferentToValue: {
-      type: Boolean,
-      default: false,
-    },
-  },
+const props = defineProps({
+  label: { type: String, default: '' },
+  modelValue: { type: String, default: '' },
+  list: { type: Array, default: () => [] },
+  shift: { type: Boolean, default: true },
+  optionTextDifferentToValue: { type: Boolean, default: false },
+})
+const emit = defineEmit(['update:modelValue'])
 
-  emits: ['update:modelValue'],
-
-  data: () => ({
-    focus: false,
-  }),
-}
+const focus = ref(false)
 </script>

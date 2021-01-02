@@ -45,23 +45,15 @@
     </div>
   </Layout>
 </template>
-<script lang="ts">
-import Layout from '/@/components/Layout.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
-export default {
-  components: {
-    Layout,
-    TextInput,
-    DropdownInput,
-  },
-}
-</script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
+
+import Layout from '/@/components/Layout.vue'
+import TextInput from '/@/components/inputs/TextInput.vue'
+import DropdownInput from '/@/components/inputs/DropdownInput.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

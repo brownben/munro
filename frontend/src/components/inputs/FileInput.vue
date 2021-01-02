@@ -1,8 +1,8 @@
 <template>
   <div>
-    <label class="block pb-1 text-gray-600 select-none font-heading">{{
-      label
-    }}</label>
+    <label class="block pb-1 text-gray-600 select-none font-heading">
+      {{ label }}
+    </label>
     <p
       class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
     >
@@ -34,47 +34,32 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'FileInput',
+<script setup>
+import { ref, defineEmit, defineProps } from 'vue'
 
-  props: {
-    value: {
-      type: String,
-      default: '',
-    },
-    label: {
-      type: String,
-      default: '',
-    },
-  },
+const props = defineProps({
+  value: { type: String, default: '' },
+  label: { type: String, default: '' },
+})
+const emit = defineEmit(['file'])
 
-  emits: ['file'],
+const fileName = ref('')
 
-  data: () => ({
-    fileName: 'Select a File',
-  }),
-
-  methods: {
-    fileChange: function (event) {
-      // When the file selected has been changed
-      const storage = event.target || event.dataTransfer
-      const files = storage.files
-      if (!files || !files.length) return false
-      this.fileName = files[0].name
-      this.readFile(files[0])
-    },
-
-    readFile: function (file) {
-      // read file using FileReader and save in data
-      const reader = new FileReader()
-      reader.onload = this.readFileResult
-      reader.readAsText(file)
-    },
-
-    readFileResult: function (result) {
-      this.$emit('file', result.target.result)
-    },
-  },
+const fileChange = (event) => {
+  // When the file selected has been changed
+  const storage = event.target || event.dataTransfer
+  const files = storage.files
+  if (!files || !files.length) return false
+  fileName.value = files[0].name
+  readFile(files[0])
 }
+
+const readFile = (file) => {
+  // read file using FileReader and save in data
+  const reader = new FileReader()
+  reader.onload = readFileResult
+  reader.readAsText(file)
+}
+
+const readFileResult = (result) => emit('file', result.target.result)
 </script>
