@@ -22,10 +22,7 @@
         <h2 class="text-5xl font-bold text-main-500 sm:text-6xl lg:text-7xl">
           Sorted.
         </h2>
-        <router-link
-          to="/leagues"
-          class="mx-0 mt-2 md:mt-4 button no-expansion"
-        >
+        <router-link to="/leagues" class="w-auto mx-0 mt-3 md:mt-4 button">
           View All Leagues
         </router-link>
       </div>

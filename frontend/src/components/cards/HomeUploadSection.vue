@@ -13,10 +13,7 @@
         <h3 class="mb-2 text-2xl leading-8 text-gray-500 md:mb-3 font-heading">
           No Fuss. No Hassle. Results Created with Ease
         </h3>
-        <router-link
-          to="/upload/instructions"
-          class="mx-0 mt-2 button no-expansion"
-        >
+        <router-link to="/upload/instructions" class="w-auto mx-0 mt-2 button">
           View Instructions
         </router-link>
       </div>

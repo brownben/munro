@@ -8,11 +8,6 @@
   @apply outline-none appearance-none select-none;
   @apply rounded-shape;
 
-  &.no-expansion {
-    /* Home Page - Don't Take Up Full Width */
-    @apply w-auto mx-0 mt-2;
-  }
-
   @screen sm {
     @apply w-auto mx-2 mt-2;
   }

@@ -16,7 +16,7 @@
         <h3 class="mb-2 text-2xl leading-8 text-gray-500 md:mb-3 font-heading">
           or Build Your Own Way to View Results
         </h3>
-        <router-link to="/developers" class="mx-0 mt-2 button no-expansion">
+        <router-link to="/developers" class="w-auto mx-0 mt-2 button">
           View API Docs
         </router-link>
       </div>
