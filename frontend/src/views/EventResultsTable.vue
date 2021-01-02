@@ -160,6 +160,7 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 import { elapsedTime } from '../scripts/time'
@@ -170,18 +171,18 @@ import {
   SortablePropertiesEvent as SortableProperties,
 } from '../scripts/sort'
 
-import $router from '../router/index'
-const { currentRoute: $route } = $router
-
 import { getEvent } from '../api/events'
 import { getEventResults } from '../api/results'
+
+const router = useRouter()
+const route = useRoute()
 
 /* Get Data */
 const loading = ref(true)
 const event = ref<Event | null>(null)
 const rawResults = ref<EventResult[]>([])
 const getData = async () => {
-  const routeParamsEvent = toSingleString($route.value.params.event)
+  const routeParamsEvent = toSingleString(route.params.event)
   loading.value = true
 
   await Promise.all([
@@ -195,7 +196,7 @@ const getData = async () => {
 
   loading.value = false
 }
-watch($route, getData, { immediate: true })
+watch(route, getData, { immediate: true })
 
 /* Results */
 const results = computed(() =>
@@ -209,10 +210,7 @@ const coursesInResults = computed(() => [
   ...new Set(rawResults.value?.map((result) => result.course)),
 ])
 const currentCourse = computed(
-  () =>
-    toSingleString($route.value.params.course) ??
-    coursesInResults.value?.[0] ??
-    ''
+  () => toSingleString(route.params.course) ?? coursesInResults.value?.[0] ?? ''
 )
 
 /* Sort + Filter Preferences */

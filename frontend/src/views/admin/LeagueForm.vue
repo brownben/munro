@@ -144,12 +144,11 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
 import $store from '../../store/index'
-import $router from '../../router/index'
-const { currentRoute: $route } = $router
 
 import {
   LeagueForm,
@@ -157,6 +156,9 @@ import {
   createLeague as apiCreateLeague,
   updateLeague as apiUpdateLeague,
 } from '../../api/leagues'
+
+const router = useRouter()
+const route = useRoute()
 
 const loading = ref(true)
 const league = ref<LeagueForm>({
@@ -176,7 +178,7 @@ const league = ref<LeagueForm>({
 })
 
 const refreshDetails = async () => {
-  const routeParamsName = toSingleString($route.value.params.name)
+  const routeParamsName = toSingleString(route.params.name)
 
   loading.value = true
   if (routeParamsName)
@@ -217,7 +219,7 @@ const createLeague = () => {
       ...league.value,
       moreInformation: league.value?.moreInformation?.replace(/\n/g, '|') ?? '',
     })
-      .then(() => $router.push(`/leagues/${league.value.name}`))
+      .then(() => router.push(`/leagues/${league.value.name}`))
       .catch(() => false)
 }
 const updateLeague = () => {
@@ -226,15 +228,15 @@ const updateLeague = () => {
       ...league.value,
       moreInformation: league.value?.moreInformation?.replace(/\n/g, '|') ?? '',
     })
-      .then(() => $router.push(`/leagues/${league.value.name}`))
+      .then(() => router.push(`/leagues/${league.value.name}`))
       .catch(() => false)
 }
 const submit = () =>
-  $route.value.path.includes('/edit') ? updateLeague() : createLeague()
+  route.path.includes('/edit') ? updateLeague() : createLeague()
 
 const title = computed(() =>
-  $route.value.path.includes('/edit') ? 'Edit League' : 'Create League'
+  route.path.includes('/edit') ? 'Edit League' : 'Create League'
 )
 
-watch($route, refreshDetails, { immediate: true })
+watch(route, refreshDetails, { immediate: true })
 </script>

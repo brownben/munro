@@ -60,16 +60,18 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
 import $store from '../store/index'
-import $router from '../router/index'
-const { currentRoute: $route } = $router
 
 import { getLeagues } from '../api/leagues'
 import { getEvents } from '../api/events'
 import { uploadResult as apiUploadResult } from '../api/upload'
+
+const router = useRouter()
+const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
@@ -82,7 +84,7 @@ const result = ref<UploadResult>({
 })
 
 const refreshDetails = async () => {
-  const routeParamsName = toSingleString($route.value.params.name)
+  const routeParamsName = toSingleString(route.params.name)
   loading.value = true
   await Promise.all([
     getLeagues().then((data) => {
@@ -101,7 +103,7 @@ const refreshDetails = async () => {
   loading.value = false
 }
 
-watch($route, refreshDetails, { immediate: true })
+watch(route, refreshDetails, { immediate: true })
 
 const courses = computed(() => {
   const eventSelected = events.value.find(
@@ -116,6 +118,6 @@ const courses = computed(() => {
 
 const uploadResult = () =>
   apiUploadResult(result.value)
-    .then(() => $router.push(`/events/${result.value.eventId}/results`))
+    .then(() => router.push(`/events/${result.value.eventId}/results`))
     .catch(() => false)
 </script>

@@ -63,17 +63,19 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
 import $store from '../store/index'
-import $router from '../router/index'
-const { currentRoute: $route } = $router
 
 import { getText } from '../api/requests'
 import { uploadStream } from '../api/upload'
 import { getEvent } from '../api/events'
 import { getLeague } from '../api/leagues'
+
+const router = useRouter()
+const route = useRoute()
 
 const maprunId = ref('')
 const uploadConfig = ref<UploadStream>({
@@ -134,6 +136,6 @@ const getMaprunData = () =>
 const uploadFile = () =>
   getMaprunData()
     .then((file) => uploadStream(uploadConfig.value))
-    .then(() => $router.push(`/events/${this.eventId}/results`))
+    .then(() => router.push(`/events/${this.eventId}/results`))
     .catch(() => false)
 </script>

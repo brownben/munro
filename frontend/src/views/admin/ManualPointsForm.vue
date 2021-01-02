@@ -81,16 +81,18 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import $store from '../../store/index'
-import $router from '../../router/index'
-const { currentRoute: $route } = $router
 
 import { getLeagues } from '../../api/leagues'
 import { getEvents } from '../../api/events'
 import { getCompetitors } from '../../api/competitors'
 import { createManualResult } from '../../api/results'
+
+const router = useRouter()
+const route = useRoute()
 
 const leagues = ref<League[]>([])
 const events = ref<Event[]>([])
@@ -159,6 +161,6 @@ const addResult = () =>
     event: choices.value.event,
     points: choices.value.points,
   })
-    .then(() => $router.push(`/leagues/${choices.value.league}/competitors`))
+    .then(() => router.push(`/leagues/${choices.value.league}/competitors`))
     .catch(() => false)
 </script>

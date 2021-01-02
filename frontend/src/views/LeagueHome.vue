@@ -194,22 +194,24 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
 import $store from '../store/index'
-import $router from '../router/index'
-const { currentRoute: $route } = $router
 
 import { getLeague, deleteLeague } from '../api/leagues'
 import { getLeagueEvents } from '../api/events'
+
+const router = useRouter()
+const route = useRoute()
 
 /* Get Data */
 const loading = ref(true)
 const league = ref<League | null>(null)
 const events = ref<Event[]>([])
 const refreshDetails = async () => {
-  const routeParamsName = toSingleString($route.value.params.name)
+  const routeParamsName = toSingleString(route.params.name)
   loading.value = true
   await Promise.all([
     getLeagueEvents(routeParamsName, $store.getters.loggedIn).then(
@@ -223,11 +225,11 @@ const refreshDetails = async () => {
   ])
   loading.value = false
 }
-watch($route, refreshDetails, { immediate: true })
+watch(route, refreshDetails, { immediate: true })
 
 /* Template Methods */
 const deleteLeagueConfirmation = () => {
-  const routeParamsName = toSingleString($route.value.params.name)
+  const routeParamsName = toSingleString(route.params.name)
 
   if (
     confirm(
@@ -235,7 +237,7 @@ const deleteLeagueConfirmation = () => {
     )
   )
     deleteLeague(routeParamsName)
-      .then(() => $router.push('/'))
+      .then(() => router.push('/'))
       .catch(() => false)
 }
 const leagueCourses = computed(() => {

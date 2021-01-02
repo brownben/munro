@@ -71,17 +71,19 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import $store from '../../store/index'
-import $router from '../../router/index'
-const { currentRoute: $route } = $router
 
 import { getLeagues } from '../../api/leagues'
 import {
   getCompetitors,
   mergeCompetitors as apiMergeCompetitors,
 } from '../../api/competitors'
+
+const router = useRouter()
+const route = useRoute()
 
 const leagues = ref<League[]>([])
 const competitors = ref<Competitor[]>([])
@@ -144,6 +146,6 @@ const mergeCompetitors = () =>
     competitorMerge: choices.value.competitorMerge,
     competitorKeep: choices.value.competitorKeep,
   })
-    .then(() => $router.push(`/competitors/${choices.value.competitorKeep}`))
+    .then(() => router.push(`/competitors/${choices.value.competitorKeep}`))
     .catch(() => false)
 </script>

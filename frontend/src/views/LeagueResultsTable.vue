@@ -245,6 +245,7 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 import { elapsedTime } from '../scripts/time'
@@ -255,12 +256,12 @@ import {
   SortablePropertiesLeague as SortableProperties,
 } from '../scripts/sort'
 
-import $router from '../router/index'
-const { currentRoute: $route } = $router
-
 import { getLeague } from '../api/leagues'
 import { getLeagueEvents } from '../api/events'
 import { getLeagueResults } from '../api/results'
+
+const router = useRouter()
+const route = useRoute()
 
 /* Get Data */
 const loading = ref(true)
@@ -268,8 +269,8 @@ const league = ref<League | null>(null)
 const eventsWithResults = ref<Event[]>([])
 const rawResults = ref<LeagueResult[]>([])
 const getData = async () => {
-  const routeParamsLeague = toSingleString($route.value.params.league)
-  const routeParamsCourse = toSingleString($route.value.params.course)
+  const routeParamsLeague = toSingleString(route.params.league)
+  const routeParamsCourse = toSingleString(route.params.course)
   loading.value = true
 
   await Promise.all([
@@ -290,7 +291,7 @@ const getData = async () => {
 
   loading.value = false
 }
-watch($route, getData, { immediate: true })
+watch(route, getData, { immediate: true })
 
 /* Results */
 const results = computed(() =>
@@ -302,7 +303,7 @@ const results = computed(() =>
 const otherCourses = computed(
   () =>
     league.value?.courses?.filter(
-      (course: string) => course !== toSingleString($route.value.params.course)
+      (course: string) => course !== toSingleString(route.params.course)
     ) ?? []
 )
 

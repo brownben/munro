@@ -142,12 +142,13 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import { sortCompetitors } from '../../scripts/sort'
 
-import $router from '../../router/index'
-const { currentRoute: $route } = $router
+const router = useRouter()
+const route = useRoute()
 
 import { getLeagueCompetitors } from '../../api/competitors'
 
@@ -156,7 +157,7 @@ const loading = ref(true)
 const rawCompetitors = ref<Competitor[]>([])
 
 const getData = async () => {
-  const routeParamsLeague = toSingleString($route.value.params.league)
+  const routeParamsLeague = toSingleString(route.params.league)
 
   loading.value = true
   rawCompetitors.value = await getLeagueCompetitors(routeParamsLeague)
@@ -167,7 +168,7 @@ const competitors = computed(() =>
   rawCompetitors.value.sort(sortCompetitors(sortPreferences.value))
 )
 
-watch($route, getData, { immediate: true })
+watch(route, getData, { immediate: true })
 
 /* Sorting */
 const sortPreferences = ref<SortPreferences>({

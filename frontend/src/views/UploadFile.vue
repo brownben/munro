@@ -100,15 +100,17 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
 import $store from '../store/index'
-import $router from '../router/index'
-const { currentRoute: $route } = $router
 
 import { uploadFile as apiUploadFile } from '../api/upload'
 import { getEvent } from '../api/events'
+
+const router = useRouter()
+const route = useRoute()
 
 const uploadConfig = ref<UploadFile>({
   eventId: '',
@@ -123,8 +125,8 @@ const event = ref<Event | null>(null)
 const eventId = computed(() => uploadConfig.value.eventId)
 
 const getURLEventId = () => {
-  if ($route.value.params.id)
-    uploadConfig.value.eventId = toSingleString($route.value.params.id)
+  if (route.params.id)
+    uploadConfig.value.eventId = toSingleString(route.params.id)
 }
 const findEvent = async () => {
   event.value = await getEvent(uploadConfig.value.eventId)
@@ -138,10 +140,10 @@ const fileRead = (file: string) => {
 const uploadFile = () => {
   $store.dispatch('createMessage', 'Upload Data Sent')
   return apiUploadFile(uploadConfig.value)
-    .then(() => $router.push(`/events/${eventId.value}/results`))
+    .then(() => router.push(`/events/${eventId.value}/results`))
     .catch(() => false)
 }
 
-watch($route, getURLEventId, { immediate: true })
+watch(route, getURLEventId, { immediate: true })
 watch(eventId, findEvent, { immediate: true })
 </script>

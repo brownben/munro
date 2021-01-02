@@ -104,12 +104,11 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
 import $store from '../../store/index'
-import $router from '../../router/index'
-const { currentRoute: $route } = $router
 
 import { getLeagues } from '../../api/leagues'
 import {
@@ -117,6 +116,9 @@ import {
   createEvent as apiCreateEvent,
   updateEvent as apiUpdateEvent,
 } from '../../api/events'
+
+const router = useRouter()
+const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
@@ -136,7 +138,7 @@ const event = ref<Event>({
 })
 
 const refreshDetails = async () => {
-  const routeParamsId = toSingleString($route.value.params.id)
+  const routeParamsId = toSingleString(route.params.id)
 
   getLeagues().then((data) => {
     leagues.value = data
@@ -172,21 +174,21 @@ const validateForm = () => {
 const createEvent = () => {
   if (validateForm())
     return apiCreateEvent(event.value)
-      .then(() => $router.push(`/leagues/${event.value.league}`))
+      .then(() => router.push(`/leagues/${event.value.league}`))
       .catch(() => false)
 }
 const updateEvent = () => {
   if (validateForm())
     return apiUpdateEvent(event.value)
-      .then(() => $router.push(`/leagues/${event.value.league}`))
+      .then(() => router.push(`/leagues/${event.value.league}`))
       .catch(() => false)
 }
 const submit = () =>
-  $route.value.path.includes('/edit') ? updateEvent() : createEvent()
+  route.path.includes('/edit') ? updateEvent() : createEvent()
 
 const title = computed(() =>
-  $route.value.path.includes('/edit') ? 'Edit Event' : 'Create Event'
+  route.path.includes('/edit') ? 'Edit Event' : 'Create Event'
 )
 
-watch($route, refreshDetails, { immediate: true })
+watch(route, refreshDetails, { immediate: true })
 </script>

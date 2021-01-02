@@ -88,11 +88,10 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import $store from '../../store/index'
-import $router from '../../router/index'
-const { currentRoute: $route } = $router
 
 import { getLeagues } from '../../api/leagues'
 import { getEvents } from '../../api/events'
@@ -105,6 +104,9 @@ import {
 
 import { sortEventResults, SortablePropertiesEvent } from '../../scripts/sort'
 import { elapsedTime } from '../../scripts/time'
+
+const router = useRouter()
+const route = useRoute()
 
 const leagues = ref<League[]>([])
 const events = ref<Event[]>([])
@@ -189,6 +191,6 @@ const transferResult = () =>
     competitor: choices.value.competitor,
     result: choices.value.result,
   })
-    .then(() => $router.push(`/results/${choices.value.result}`))
+    .then(() => router.push(`/results/${choices.value.result}`))
     .catch(() => false)
 </script>

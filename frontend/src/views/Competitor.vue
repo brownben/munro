@@ -81,15 +81,16 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
-
-import $router from '../router/index'
-const { currentRoute: $route } = $router
 
 import { getLeague } from '../api/leagues'
 import { getCompetitor } from '../api/competitors'
 import { getCompetitorResults } from '../api/results'
+
+const router = useRouter()
+const route = useRoute()
 
 /* Get Data */
 const loading = ref(true)
@@ -98,7 +99,7 @@ const competitor = ref<Competitor | null>(null)
 const results = ref<EventResult[]>([])
 
 const refreshDetails = async () => {
-  const routeParamsId = toSingleString($route.value.params.id)
+  const routeParamsId = toSingleString(route.params.id)
   loading.value = true
 
   await Promise.all([
@@ -117,5 +118,5 @@ const refreshDetails = async () => {
 
   loading.value = false
 }
-watch($route, refreshDetails, { immediate: true })
+watch(route, refreshDetails, { immediate: true })
 </script>

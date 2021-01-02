@@ -113,14 +113,16 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
 import $store from '../store/index'
-import $router from '../router/index'
-const { currentRoute: $route } = $router
 
 import { getQuery } from '../api/search'
+
+const router = useRouter()
+const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
@@ -129,7 +131,7 @@ const competitors = ref<Competitor[]>([])
 
 const getDetails = async () => {
   loading.value = true
-  const routeParamsQuery = toSingleString($route.value.params.query || '')
+  const routeParamsQuery = toSingleString(route.params.query || '')
   const queryResult = await getQuery(routeParamsQuery)
 
   leagues.value = queryResult.leagues
@@ -138,5 +140,5 @@ const getDetails = async () => {
   loading.value = false
 }
 
-watch($route, getDetails, { immediate: true })
+watch(route, getDetails, { immediate: true })
 </script>

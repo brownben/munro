@@ -60,19 +60,21 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, watch, onMounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
 import $store from '../../store/index'
-import $router from '../../router/index'
-const { currentRoute: $route } = $router
 
 import {
   getCompetitor,
   createCompetitor as apiCreateCompetitor,
   updateCompetitor as apiUpdateCompetitor,
 } from '../../api/competitors'
-import { League, getLeagues } from '../../api/leagues'
+import { getLeagues } from '../../api/leagues'
+
+const router = useRouter()
+const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
@@ -85,7 +87,7 @@ const competitor = ref<Competitor>({
 })
 
 const refreshDetails = async () => {
-  const routeParamsId = toSingleString($route.value.params.id)
+  const routeParamsId = toSingleString(route.params.id)
 
   getLeagues().then((data) => (leagues.value = data))
 
@@ -123,22 +125,22 @@ const createCompetitor = () => {
   if (validateForm())
     return apiCreateCompetitor(competitor.value)
       .then(() =>
-        $router.push(`/leagues/${competitor.value.league}/competitors`)
+        router.push(`/leagues/${competitor.value.league}/competitors`)
       )
       .catch(() => false)
 }
 const updateCompetitor = () => {
   if (validateForm())
     return apiUpdateCompetitor(competitor.value)
-      .then(() => $router.push(`/competitors/${competitor.value.id}`))
+      .then(() => router.push(`/competitors/${competitor.value.id}`))
       .catch(() => false)
 }
 const submit = () =>
-  $route.value.path.includes('/edit') ? updateCompetitor() : createCompetitor()
+  route.path.includes('/edit') ? updateCompetitor() : createCompetitor()
 
 const title = computed(() =>
-  $route.value.path.includes('/edit') ? 'Edit Competitor' : 'Create Competitor'
+  route.path.includes('/edit') ? 'Edit Competitor' : 'Create Competitor'
 )
 
-watch($route, refreshDetails, { immediate: true })
+watch(route, refreshDetails, { immediate: true })
 </script>
