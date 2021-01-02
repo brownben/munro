@@ -141,22 +141,19 @@
   </section>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    showLeagueName: { type: Boolean, default: false },
-    event: { type: Object, default: () => ({}) },
-    league: { type: Object, default: () => ({}) },
-    showFullDetails: { type: Boolean, default: true },
-  },
-
-  emits: ['event-changed'],
-}
-</script>
-<script lang="ts" setup="props, { emit }">
+<script lang="ts" setup>
+import { defineEmit, defineProps } from 'vue'
 import { deleteEvent as apiDeleteEvent } from '../../api/events'
 
-export const deleteEvent = (event: Event) => {
+const props = defineProps({
+  showLeagueName: { type: Boolean, default: false },
+  event: { type: Object, default: () => ({}) },
+  league: { type: Object, default: () => ({}) },
+  showFullDetails: { type: Boolean, default: true },
+})
+const emit = defineEmit(['event-changed'])
+
+const deleteEvent = (event: Event) => {
   if (
     confirm(
       `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`

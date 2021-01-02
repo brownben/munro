@@ -103,7 +103,7 @@ import {
   transferResult as apiTransferResult,
 } from '../../api/results'
 
-import { sortEventResults } from '../../scripts/sort'
+import { sortEventResults, SortablePropertiesEvent } from '../../scripts/sort'
 import { elapsedTime } from '../../scripts/time'
 
 const leagues = ref<League[]>([])
@@ -152,7 +152,7 @@ const resultsInEvent = computed(() =>
     .sort(
       sortEventResults({
         ascending: false,
-        by: SortablePropetiesEvent.position,
+        by: SortablePropertiesEvent.position,
       })
     )
 )
@@ -191,16 +191,4 @@ const transferResult = () =>
   })
     .then(() => $router.push(`/results/${choices.value.result}`))
     .catch(() => false)
-
-export {
-  choices,
-  leagues,
-  courses,
-  eventsInLeague,
-  competitorsInLeague,
-  resultsInEvent,
-  competitorToText,
-  elapsedTime,
-  transferResult,
-}
 </script>

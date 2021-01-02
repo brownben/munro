@@ -39,10 +39,9 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-
 import { getLatestResults } from '../../api/events'
 
-export const events = ref<Event[]>([])
+const events = ref<Event[]>([])
 
 onMounted(async () => {
   events.value = await getLatestResults()

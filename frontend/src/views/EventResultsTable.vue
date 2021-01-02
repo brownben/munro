@@ -55,38 +55,36 @@
         >
           <Heading
             text="Pos."
-            :ascending="SortPreferencesEvent.ascending"
-            :active="
-              SortPreferencesEvent.by === SortablePropetiesEvent.position
-            "
-            @click="changeSortPreference(SortablePropetiesEvent.position)"
+            :ascending="sortPreferences.ascending"
+            :active="sortPreferences.by === SortableProperties.position"
+            @click="changeSortPreference(SortableProperties.position)"
           />
           <Heading
             text="Name"
-            :ascending="SortPreferencesEvent.ascending"
-            :active="SortPreferencesEvent.by === SortablePropetiesEvent.name"
+            :ascending="sortPreferences.ascending"
+            :active="sortPreferences.by === SortableProperties.name"
             :left-on-mobile="true"
-            @click="changeSortPreference(SortablePropetiesEvent.name)"
+            @click="changeSortPreference(SortableProperties.name)"
           />
           <Heading
             text="Class"
-            :ascending="SortPreferencesEvent.ascending"
-            :active="SortPreferencesEvent.by === SortablePropetiesEvent.age"
-            hide-on-mobile="true"
-            @click="changeSortPreference(SortablePropetiesEvent.age)"
+            :ascending="sortPreferences.ascending"
+            :active="sortPreferences.by === SortableProperties.age"
+            :hide-on-mobile="true"
+            @click="changeSortPreference(SortableProperties.age)"
           />
           <Heading
             text="Club"
-            :ascending="SortPreferencesEvent.ascending"
-            :active="SortPreferencesEvent.by === SortablePropetiesEvent.club"
-            hide-on-mobile="true"
-            @click="changeSortPreference(SortablePropetiesEvent.club)"
+            :ascending="sortPreferences.ascending"
+            :active="sortPreferences.by === SortableProperties.club"
+            :hide-on-mobile="true"
+            @click="changeSortPreference(SortableProperties.club)"
           />
           <Heading
             text="Time"
-            :ascending="SortPreferencesEvent.ascending"
-            :active="SortPreferencesEvent.by === SortablePropetiesEvent.time"
-            @click="changeSortPreference(SortablePropetiesEvent.time)"
+            :ascending="sortPreferences.ascending"
+            :active="sortPreferences.by === SortableProperties.time"
+            @click="changeSortPreference(SortableProperties.time)"
           />
         </tr>
       </thead>
@@ -167,7 +165,10 @@ import { toSingleString } from '../scripts/typeHelpers'
 import { elapsedTime } from '../scripts/time'
 import { eventResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
 import { filterResults } from '../scripts/filter'
-import { sortEventResults as sortResults } from '../scripts/sort'
+import {
+  sortEventResults as sortResults,
+  SortablePropertiesEvent as SortableProperties,
+} from '../scripts/sort'
 
 import $router from '../router/index'
 const { currentRoute: $route } = $router
@@ -196,15 +197,13 @@ const getData = async () => {
 }
 watch($route, getData, { immediate: true })
 
-export { loading, event, elapsedTime }
-
 /* Results */
 const results = computed(() =>
   rawResults.value
     .filter((result) => result.course === currentCourse.value)
     .map(resultWithAgeGender)
     .filter((result) => filterResults(result, filterPreferences.value))
-    .sort(sortResults(SortPreferencesEvent.value))
+    .sort(sortResults(sortPreferences.value))
 )
 const coursesInResults = computed(() => [
   ...new Set(rawResults.value?.map((result) => result.course)),
@@ -216,8 +215,6 @@ const currentCourse = computed(
     ''
 )
 
-export { results, currentCourse, coursesInResults }
-
 /* Sort + Filter Preferences */
 const filterPreferences = ref<FilterPreferences>({
   name: '',
@@ -227,24 +224,17 @@ const filterPreferences = ref<FilterPreferences>({
   male: true,
   female: true,
 })
-const SortPreferencesEvent = ref<SortPreferencesEvent>({
+const sortPreferences = ref<SortPreferencesEvent>({
   ascending: false,
-  by: SortablePropetiesEvent.position,
+  by: SortableProperties.position,
 })
 const filterChanged = (preferences: FilterPreferences) => {
   filterPreferences.value = preferences
 }
-const changeSortPreference = (property: SortablePropetiesEvent) => {
-  if (property !== SortPreferencesEvent.value.by)
-    SortPreferencesEvent.value.ascending = false
-  else
-    SortPreferencesEvent.value.ascending = !SortPreferencesEvent.value.ascending
-  SortPreferencesEvent.value.by = property
-}
-export {
-  SortPreferencesEvent,
-  SortablePropetiesEvent,
-  filterChanged,
-  changeSortPreference,
+const changeSortPreference = (property: SortableProperties) => {
+  if (property !== sortPreferences.value.by)
+    sortPreferences.value.ascending = false
+  else sortPreferences.value.ascending = !sortPreferences.value.ascending
+  sortPreferences.value.by = property
 }
 </script>

@@ -146,13 +146,4 @@ const mergeCompetitors = () =>
   })
     .then(() => $router.push(`/competitors/${choices.value.competitorKeep}`))
     .catch(() => false)
-
-export {
-  choices,
-  leagues,
-  courses,
-  competitorsInLeague,
-  competitorToText,
-  mergeCompetitors,
-}
 </script>

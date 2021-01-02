@@ -136,6 +136,4 @@ const uploadFile = () =>
     .then((file) => uploadStream(uploadConfig.value))
     .then(() => $router.push(`/events/${this.eventId}/results`))
     .catch(() => false)
-
-export { maprunId, uploadConfig, event, courses, uploadFile }
 </script>

@@ -1,9 +1,9 @@
 import {
+  SortablePropertiesLeague,
+  SortPreferencesCompetitor,
   SortPreferencesEvent,
   SortPreferencesLeague,
-  SortPreferencesCompetitor,
-  SortablePropetiesLeague,
-} from './FilterSort.d'
+} from './FilterSort'
 
 const sortComparison = (ascending: boolean, a: any, b: any): 0 | 1 | -1 => {
   const aIsLess = ascending ? -1 : 1
@@ -56,10 +56,16 @@ export const sortCompetitors = (sortPreferences: SortPreferencesCompetitor) => (
   )
 
 export const sortLeagueResults = (sortPreferences: SortPreferencesLeague) => {
-  if (sortPreferences.by === SortablePropetiesLeague.points)
+  if (sortPreferences.by === SortablePropertiesLeague.points)
     return sortLeagueResultsByPoints(sortPreferences)
   else return sortLeagueResultsByProperty(sortPreferences)
 }
 
 export const sortEventResults = (sortPreferences: SortPreferencesEvent) =>
   sortEventResultsByProperty(sortPreferences)
+
+export {
+  SortablePropertiesLeague,
+  SortablePropertiesCompetitor,
+  SortablePropertiesEvent,
+} from './FilterSort'

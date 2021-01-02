@@ -1,0 +1,51 @@
+export enum SortablePropertiesEvent {
+  name = 'name',
+  age = 'age',
+  position = 'position',
+  club = 'club',
+  time = 'time',
+  points = 'points',
+}
+
+export enum SortablePropertiesLeague {
+  name = 'name',
+  age = 'age',
+  position = 'position',
+  club = 'club',
+  totalPoints = 'totalPoints',
+  points = 'points',
+  course = 'course',
+}
+
+export enum SortablePropertiesCompetitor {
+  name = 'name',
+  ageClass = 'ageClass',
+  club = 'club',
+  id = 'id',
+  course = 'course',
+}
+
+export interface FilterPreferences {
+  name: string
+  club: string
+  minAge: number
+  maxAge: number
+  male: boolean
+  female: boolean
+}
+
+export interface SortPreferencesEvent {
+  ascending: boolean
+  by: SortablePropertiesEvent
+}
+
+export interface SortPreferencesLeague {
+  ascending: boolean
+  by: SortablePropertiesLeague
+  event?: number
+}
+
+export interface SortPreferencesCompetitor {
+  ascending: boolean
+  by: SortablePropertiesCompetitor
+}

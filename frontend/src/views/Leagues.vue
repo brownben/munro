@@ -36,10 +36,9 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-
 import { getLeagues } from '../api/leagues'
 
-export const leagues = ref<League[]>([])
+const leagues = ref<League[]>([])
 
 onMounted(async () => {
   leagues.value = await getLeagues()

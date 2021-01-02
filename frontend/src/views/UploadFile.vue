@@ -144,6 +144,4 @@ const uploadFile = () => {
 
 watch($route, getURLEventId, { immediate: true })
 watch(eventId, findEvent, { immediate: true })
-
-export { uploadConfig, event, fileRead, uploadFile }
 </script>

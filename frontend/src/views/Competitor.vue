@@ -118,6 +118,4 @@ const refreshDetails = async () => {
   loading.value = false
 }
 watch($route, refreshDetails, { immediate: true })
-
-export { loading, league, competitor, results, refreshDetails }
 </script>

@@ -189,6 +189,4 @@ const title = computed(() =>
 )
 
 watch($route, refreshDetails, { immediate: true })
-
-export { loading, leagues, event, submit, title }
 </script>

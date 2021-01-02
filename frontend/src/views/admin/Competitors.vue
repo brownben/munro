@@ -59,35 +59,35 @@
           <Heading
             text="Id"
             :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortablePropeties.id"
-            @click="changeSortPreference(SortablePropeties.id)"
+            :active="sortPreferences.by === SortableProperties.id"
+            @click="changeSortPreference(SortableProperties.id)"
           />
           <Heading
             text="Name"
             :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortablePropeties.name"
+            :active="sortPreferences.by === SortableProperties.name"
             :left-on-mobile="true"
-            @click="changeSortPreference(SortablePropeties.name)"
+            @click="changeSortPreference(SortableProperties.name)"
           />
           <Heading
             text="Club"
             :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortablePropeties.club"
-            hide-on-mobile="true"
-            @click="changeSortPreference(SortablePropeties.club)"
+            :active="sortPreferences.by === SortableProperties.club"
+            :hide-on-mobile="true"
+            @click="changeSortPreference(SortableProperties.club)"
           />
           <Heading
             text="Class"
             :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortablePropeties.ageClass"
-            hide-on-mobile="true"
-            @click="changeSortPreference(SortablePropeties.ageClass)"
+            :active="sortPreferences.by === SortableProperties.ageClass"
+            :hide-on-mobile="true"
+            @click="changeSortPreference(SortableProperties.ageClass)"
           />
           <Heading
             text="Course"
             ::ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortablePropeties.course"
-            @click="changeSortPreference(SortablePropeties.course)"
+            :active="sortPreferences.by === SortableProperties.course"
+            @click="changeSortPreference(SortableProperties.course)"
           />
         </tr>
       </thead>
@@ -169,19 +169,15 @@ const competitors = computed(() =>
 
 watch($route, getData, { immediate: true })
 
-export { loading, competitors }
-
 /* Sorting */
 const sortPreferences = ref<SortPreferences>({
   ascending: false,
-  by: SortablePropeties.name,
+  by: SortableProperties.name,
 })
-const changeSortPreference = (property: SortablePropeties) => {
+const changeSortPreference = (property: SortableProperties) => {
   if (property !== sortPreferences.value.by)
     sortPreferences.value.ascending = false
   else sortPreferences.value.ascending = !sortPreferences.value.ascending
   sortPreferences.value.by = property
 }
-
-export { sortPreferences, SortablePropeties, changeSortPreference }
 </script>

@@ -139,6 +139,4 @@ const getDetails = async () => {
 }
 
 watch($route, getDetails, { immediate: true })
-
-export { loading, leagues, events, competitors }
 </script>

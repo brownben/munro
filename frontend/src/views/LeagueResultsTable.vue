@@ -58,61 +58,46 @@
             >
               <Heading
                 text="Pos."
-                :ascending="SortPreferencesLeague.ascending"
-                :active="
-                  SortPreferencesLeague.by === SortablePropetiesLeague.position
-                "
-                @click="changeSortPreference(SortablePropetiesLeague.position)"
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortableProperties.position"
+                @click="changeSortPreference(SortableProperties.position)"
               />
 
               <Heading
                 text="Name"
-                :ascending="SortPreferencesLeague.ascending"
-                :active="
-                  SortPreferencesLeague.by === SortablePropetiesLeague.name
-                "
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortableProperties.name"
                 :left-on-mobile="true"
-                @click="changeSortPreference(SortablePropetiesLeague.name)"
+                @click="changeSortPreference(SortableProperties.name)"
               />
               <Heading
                 v-if="
                   results?.[0]?.course && league?.leagueScoring === 'course'
                 "
                 text="Course"
-                :ascending="SortPreferencesLeague.ascending"
-                :active="
-                  SortPreferencesLeague.by === SortablePropetiesLeague.course
-                "
-                @click="changeSortPreference(SortablePropetiesLeague.course)"
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortableProperties.course"
+                @click="changeSortPreference(SortableProperties.course)"
               />
               <Heading
                 text="Class"
-                :ascending="SortPreferencesLeague.ascending"
-                :active="
-                  SortPreferencesLeague.by === SortablePropetiesLeague.age
-                "
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortableProperties.age"
                 :hide-on-mobile="true"
-                @click="changeSortPreference(SortablePropetiesLeague.age)"
+                @click="changeSortPreference(SortableProperties.age)"
               />
               <Heading
                 text="Club"
-                :ascending="SortPreferencesLeague.ascending"
-                :active="
-                  SortPreferencesLeague.by === SortablePropetiesLeague.club
-                "
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortableProperties.club"
                 :hide-on-mobile="true"
-                @click="changeSortPreference(SortablePropetiesLeague.club)"
+                @click="changeSortPreference(SortableProperties.club)"
               />
               <Heading
                 text="Points"
-                :ascending="SortPreferencesLeague.ascending"
-                :active="
-                  SortPreferencesLeague.by ===
-                  SortablePropetiesLeague.totalPoints
-                "
-                @click="
-                  changeSortPreference(SortablePropetiesLeague.totalPoints)
-                "
+                :ascending="sortPreferences.ascending"
+                :active="sortPreferences.by === SortableProperties.totalPoints"
+                @click="changeSortPreference(SortableProperties.totalPoints)"
               />
 
               <Heading
@@ -120,13 +105,13 @@
                 :key="event.id"
                 :text="`${i + 1}`"
                 :tooltip="event.name"
-                :ascending="SortPreferencesLeague.ascending"
+                :ascending="sortPreferences.ascending"
                 :active="
-                  SortPreferencesLeague.by === SortablePropetiesLeague.points &&
-                  SortPreferencesLeague.event === i
+                  sortPreferences.by === SortableProperties.points &&
+                  sortPreferences.event === i
                 "
                 :compressed="true"
-                @click="changeSortPreference(SortablePropetiesLeague.points, i)"
+                @click="changeSortPreference(SortableProperties.points, i)"
               />
 
               <th class="table-cell md:hidden" />
@@ -265,7 +250,10 @@ import { toSingleString } from '../scripts/typeHelpers'
 import { elapsedTime } from '../scripts/time'
 import { leagueResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
 import { filterResults } from '../scripts/filter'
-import { sortLeagueResults as sortResults } from '../scripts/sort'
+import {
+  sortLeagueResults as sortResults,
+  SortablePropertiesLeague as SortableProperties,
+} from '../scripts/sort'
 
 import $router from '../router/index'
 const { currentRoute: $route } = $router
@@ -304,14 +292,12 @@ const getData = async () => {
 }
 watch($route, getData, { immediate: true })
 
-export { loading, league, eventsWithResults, rawResults }
-
 /* Results */
 const results = computed(() =>
   rawResults.value
     .map(resultWithAgeGender)
     .filter((result) => filterResults(result, filterPreferences.value))
-    .sort(sortResults(SortPreferencesLeague.value))
+    .sort(sortResults(sortPreferences.value))
 )
 const otherCourses = computed(
   () =>
@@ -319,8 +305,6 @@ const otherCourses = computed(
       (course: string) => course !== toSingleString($route.value.params.course)
     ) ?? []
 )
-
-export { results, otherCourses }
 
 /* Sort + Filter Preferences */
 const filterPreferences = ref<FilterPreferences>({
@@ -331,34 +315,20 @@ const filterPreferences = ref<FilterPreferences>({
   male: true,
   female: true,
 })
-const SortPreferencesLeague = ref<SortPreferencesLeague>({
+const sortPreferences = ref<SortPreferencesLeague>({
   ascending: false,
-  by: SortablePropetiesLeague.position,
+  by: SortableProperties.position,
 })
 const filterChanged = (preferences: FilterPreferences) => {
   filterPreferences.value = preferences
 }
-const changeSortPreference = (
-  property: SortablePropetiesLeague,
-  event?: number
-) => {
-  if (property !== SortPreferencesLeague.value.by)
-    SortPreferencesLeague.value.ascending = false
-  else if (
-    typeof event === 'number' &&
-    event !== SortPreferencesLeague.value.event
-  )
-    SortPreferencesLeague.value.ascending = true
-  else
-    SortPreferencesLeague.value.ascending = !SortPreferencesLeague.value
-      .ascending
-  SortPreferencesLeague.value.by = property
-  if (typeof event === 'number') SortPreferencesLeague.value.event = event
-}
-export {
-  SortPreferencesLeague,
-  SortablePropetiesLeague,
-  filterChanged,
-  changeSortPreference,
+const changeSortPreference = (property: SortableProperties, event?: number) => {
+  if (property !== sortPreferences.value.by)
+    sortPreferences.value.ascending = false
+  else if (typeof event === 'number' && event !== sortPreferences.value.event)
+    sortPreferences.value.ascending = true
+  else sortPreferences.value.ascending = !sortPreferences.value.ascending
+  sortPreferences.value.by = property
+  if (typeof event === 'number') sortPreferences.value.event = event
 }
 </script>

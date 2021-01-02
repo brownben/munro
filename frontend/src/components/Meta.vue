@@ -4,10 +4,10 @@
 <script>
 import headful from 'headful'
 
-const handler = (props) => headful.default(getPassedProps(props))
+const handler = (props) => headful(getPassedProps(props))
 
 export default {
-  props: Object.keys(headful.default.props || {}),
+  props: Object.keys(headful.props || {}),
   watch: {
     $props: {
       handler,

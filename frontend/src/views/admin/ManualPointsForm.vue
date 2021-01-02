@@ -161,14 +161,4 @@ const addResult = () =>
   })
     .then(() => $router.push(`/leagues/${choices.value.league}/competitors`))
     .catch(() => false)
-
-export {
-  choices,
-  leagues,
-  courses,
-  eventsInLeague,
-  competitorsInLeague,
-  competitorToText,
-  addResult,
-}
 </script>

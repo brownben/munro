@@ -141,6 +141,4 @@ const title = computed(() =>
 )
 
 watch($route, refreshDetails, { immediate: true })
-
-export { loading, competitor, leagues, courses, submit, title }
 </script>

@@ -95,28 +95,26 @@
     </div>
   </section>
 </template>
-<script lang="ts">
-export default {
-  props: {
-    result: {
-      type: Object,
-      default: () => {},
-    },
-    showTime: {
-      type: Boolean,
-      default: false,
-    },
-  },
 
-  emits: ['result-changed'],
-}
-</script>
-<script lang="ts" setup="props, { emit }">
+<script lang="ts" setup>
+import { defineEmit, defineProps } from 'vue'
 import { elapsedTime } from '../../scripts/time'
 import {
   hideResult as apiHideResult,
   incompleteResult as apiIncompleteResult,
 } from '../../api/results'
+
+const props = defineProps({
+  result: {
+    type: Object,
+    default: () => {},
+  },
+  showTime: {
+    type: Boolean,
+    default: false,
+  },
+})
+const emit = defineEmit(['result-changed'])
 
 const positionSuperscript = (position: number) => {
   if (position % 10 === 1 && position % 100 !== 11) return 'st'
@@ -134,6 +132,4 @@ const incompleteResult = (result: EventResult) =>
   apiIncompleteResult(result.id, result.event, !result.incomplete).then(() =>
     emit('result-changed')
   )
-
-export { elapsedTime, positionSuperscript, hideResult, incompleteResult }
 </script>

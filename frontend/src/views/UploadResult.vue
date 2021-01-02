@@ -118,6 +118,4 @@ const uploadResult = () =>
   apiUploadResult(result.value)
     .then(() => $router.push(`/events/${result.value.eventId}/results`))
     .catch(() => false)
-
-export { loading, events, courses, result, uploadResult, refreshDetails }
 </script>

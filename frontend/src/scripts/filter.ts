@@ -1,4 +1,4 @@
-import { FilterPreferences } from './FilterSort.d'
+import { FilterPreferences } from './FilterSort'
 
 const resultMatchesGender = (
   result: EventResultWithAgeGender | LeagueResultWithAgeGender,

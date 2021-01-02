@@ -225,8 +225,6 @@ const refreshDetails = async () => {
 }
 watch($route, refreshDetails, { immediate: true })
 
-export { loading, league, events, refreshDetails }
-
 /* Template Methods */
 const deleteLeagueConfirmation = () => {
   const routeParamsName = toSingleString($route.value.params.name)
@@ -268,6 +266,4 @@ const scoringMethodShorthandToFull = (value: string): string => {
   else if (value === 'file') return 'the points uploaded'
   else return ''
 }
-
-export { deleteLeagueConfirmation, leagueCourses, scoringMethodShorthandToFull }
 </script>
