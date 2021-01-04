@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '../store'
+import { useStore } from 'vuex'
 
 const store = useStore()
 

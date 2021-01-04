@@ -34,7 +34,7 @@
       class="inline-block w-auto px-3 py-2 mt-2 text-base leading-tight whitespace-no-wrap transition duration-300 ease-in-out select-none text-main-700 font-heading rounded-shape hover:text-main-800 focus:text-main-800 sm:my-0 hover:bg-main-100 focus:bg-main-100 sm:mr-0 sm:ml-4"
       :to="`/competitors/${competitor.id}`"
     >
-      View Results →
+      View Results &rarr;
     </router-link>
   </section>
 </template>

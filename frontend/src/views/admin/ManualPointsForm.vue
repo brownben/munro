@@ -70,7 +70,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from '../../store'
+import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import DropdownInput from '../../components/inputs/DropdownInput.vue'

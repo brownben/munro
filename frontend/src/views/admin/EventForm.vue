@@ -90,7 +90,7 @@
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from '../../store'
+import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import DropdownInput from '../../components/inputs/DropdownInput.vue'

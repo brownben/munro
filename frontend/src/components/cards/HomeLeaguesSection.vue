@@ -11,7 +11,7 @@
           to="/leagues"
           class="inline-block px-4 pt-2 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
         >
-          View All Leagues →
+          View All Leagues &rarr;
         </router-link>
       </div>
 

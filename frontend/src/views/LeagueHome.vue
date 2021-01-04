@@ -185,7 +185,7 @@
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useStore } from '../store'
+import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
 import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
@@ -222,12 +222,12 @@ watch(route, refreshDetails, { immediate: true })
 
 /* Template Methods */
 const deleteLeagueConfirmation = () => {
-  const routeParamsName = toSingleString(route.params.name ?? '')
+  const routeParamsName = toSingleString(route.params.name)
 
   if (
     confirm(
       `Are you Sure you Want to Delete League - ${
-        league.value.name ?? '?'
+        league.value?.name ?? ''
       }? \nThis Action Can't Be Recovered`
     )
   )

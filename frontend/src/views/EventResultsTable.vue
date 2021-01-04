@@ -196,7 +196,7 @@ const coursesInResults = computed(() => [
   ...new Set(rawResults.value?.map((result) => result.course)),
 ])
 const currentCourse = computed(
-  () => toSingleString(route.params.course) ?? coursesInResults.value?.[0] ?? ''
+  () => toSingleString(route.params.course) || coursesInResults.value?.[0] || ''
 )
 
 /* Sort + Filter Preferences */

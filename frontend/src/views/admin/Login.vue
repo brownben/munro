@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useStore } from '../../store'
+import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import TextInput from '../../components/inputs/TextInput.vue'

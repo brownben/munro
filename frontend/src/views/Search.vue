@@ -32,7 +32,7 @@
         to="/leagues"
         class="inline-block px-4 pt-2 text-xs leading-6 tracking-wider text-right uppercase transition duration-300 select-none text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
       >
-        View All Leagues →
+        View All Leagues &rarr;
       </router-link>
     </div>
 

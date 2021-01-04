@@ -52,7 +52,7 @@
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from '../store'
+import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
 import TextInput from '../components/inputs/TextInput.vue'
@@ -103,7 +103,7 @@ const maprunHTMLtoCSV = (html: string | null): string =>
         .map((string) => string.trim())
         .join()
     )
-    .join('\n') ?? ''
+    .join('\n')
 
 const getMaprunData = () =>
   getText({

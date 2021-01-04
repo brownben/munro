@@ -33,7 +33,7 @@
       "
       :to="alternativeLink || `/leagues/${title}`"
     >
-      {{ buttonText }}
+      View League &rarr;
     </router-link>
   </section>
 </template>
@@ -46,7 +46,6 @@ const props = defineProps({
   description: { type: String, default: '' },
   website: { type: String, default: '' },
   alternativeLink: { type: String, default: '' },
-  buttonText: { type: String, default: 'View League →' },
   smaller: { type: Boolean, default: false },
 })
 </script>
