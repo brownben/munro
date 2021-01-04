@@ -5,25 +5,27 @@ from .events import eventToJSON
 from .competitors import competitorToJSON
 
 
-def leaguesSearch(term):
+def leaguesSearch(term: str):
     results = query(
         """
         SELECT
-          name, website, coordinator, scoringMethod, numberOfCountingEvents, courses, description, year, dynamicEventResults, moreInformation
+        leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, leagues.leagueScoring, clubRestriction, COUNT(events.id)
         FROM leagues
-        WHERE %s %% ANY(STRING_TO_ARRAY(name, ' '))
-            OR %s %% ANY(STRING_TO_ARRAY(description, ' '))
-            OR CAST(year AS TEXT) = %s
-            OR CAST(year AS TEXT) LIKE %s
-        ORDER BY SIMILARITY(name, %s) DESC
+        LEFT JOIN events ON leagues.name=events.league
+        WHERE %s %% ANY(STRING_TO_ARRAY(leagues.name, ' '))
+            OR %s %% ANY(STRING_TO_ARRAY(leagues.description, ' '))
+            OR CAST(leagues.year AS TEXT) = %s
+            OR CAST(leagues.year AS TEXT) LIKE %s
+        GROUP BY leagues.name
+        ORDER BY SIMILARITY(leagues.name, %s) DESC
         """,
         [term, term, f"__{term}", term, term],
     )
 
-    return list(map(leagueToJSON, results))
+    return [leagueToJSON(result) for result in results]
 
 
-def eventsSearch(term):
+def eventsSearch(term: str):
     results = query(
         """
         SELECT
@@ -36,10 +38,10 @@ def eventsSearch(term):
         [term, f"%term%", term],
     )
 
-    return list(map(eventToJSON, results))
+    return [eventToJSON(result) for result in results]
 
 
-def competitorSearch(term):
+def competitorSearch(term: str):
     results = query(
         """
         SELECT
@@ -51,4 +53,4 @@ def competitorSearch(term):
         [term] * 2,
     )
 
-    return list(map(competitorToJSON, results))
+    return [competitorToJSON(result) for result in results]

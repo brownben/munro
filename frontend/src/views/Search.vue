@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed, defineAsyncComponent } from 'vue'
+import { ref, watch, defineAsyncComponent } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
@@ -115,7 +115,7 @@ const competitors = ref<Competitor[]>([])
 
 const getDetails = async () => {
   loading.value = true
-  const routeParamsQuery = toSingleString(route.params.query || '')
+  const routeParamsQuery = toSingleString(route.params.query)
   const queryResult = await getQuery(routeParamsQuery)
   if (queryResult) {
     leagues.value = queryResult.leagues
