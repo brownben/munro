@@ -25,7 +25,7 @@
 
       <img
         class="h-64 md:h-56 lg:h-64"
-        src="/@/assets/images/UnDrawOFlagWhite.svg"
+        src="../../assets/images/UnDrawOFlagWhite.svg"
         alt="Orienteering Flag in Front of Trees and Hills"
         loading="lazy"
       />

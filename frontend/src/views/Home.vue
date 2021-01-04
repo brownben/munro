@@ -44,12 +44,12 @@
 </template>
 
 <script setup lang="ts">
-import Hero from '/@/components/Hero.vue'
-import LeaguesSection from '/@/components/cards/HomeLeaguesSection.vue'
-import AboutCard from '/@/components/cards/AboutCard.vue'
-import EventsSection from '/@/components/cards/HomeEventsSection.vue'
-import UploadSection from '/@/components/cards/HomeUploadSection.vue'
-import SearchSection from '/@/components/cards/HomeSearchSection.vue'
-import DeveloperSection from '/@/components/cards/HomeDeveloperSection.vue'
-import AppFooter from '/@/components/Footer.vue'
+import Hero from '../components/Hero.vue'
+import LeaguesSection from '../components/cards/HomeLeaguesSection.vue'
+import AboutCard from '../components/cards/AboutCard.vue'
+import EventsSection from '../components/cards/HomeEventsSection.vue'
+import UploadSection from '../components/cards/HomeUploadSection.vue'
+import SearchSection from '../components/cards/HomeSearchSection.vue'
+import DeveloperSection from '../components/cards/HomeDeveloperSection.vue'
+import AppFooter from '../components/Footer.vue'
 </script>

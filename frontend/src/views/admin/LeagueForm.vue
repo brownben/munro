@@ -131,16 +131,15 @@ import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '../../store'
 
-import Layout from '/@/components/Layout.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import TextareaInput from '/@/components/inputs/TextareaInput.vue'
-import NumberInput from '/@/components/inputs/NumberInput.vue'
+import Layout from '../../components/Layout.vue'
+import DropdownInput from '../../components/inputs/DropdownInput.vue'
+import TextInput from '../../components/inputs/TextInput.vue'
+import TextareaInput from '../../components/inputs/TextareaInput.vue'
+import NumberInput from '../../components/inputs/NumberInput.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
 import {
-  LeagueForm,
   getLeague,
   createLeague as apiCreateLeague,
   updateLeague as apiUpdateLeague,

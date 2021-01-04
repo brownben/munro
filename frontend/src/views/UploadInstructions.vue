@@ -24,7 +24,7 @@
             </router-link>
           </strong>
           <img
-            src="/@/assets/images/UploadInstructions-Blank.png"
+            src="../assets/images/UploadInstructions-Blank.png"
             alt="Empty Upload Form"
           />
         </li>
@@ -42,7 +42,7 @@
             or by emailing munro.leagues@gmail.com
           </p>
           <img
-            src="/@/assets/images/UploadInstructions-EventDetails.png"
+            src="../assets/images/UploadInstructions-EventDetails.png"
             alt="Upload Form with Event ID and Upload Key Included"
           />
         </li>
@@ -73,7 +73,7 @@
             league admin or munro.leagues@gmail.com who can update them
           </p>
           <img
-            src="/@/assets/images/UploadInstructions-Complete.png"
+            src="../assets/images/UploadInstructions-Complete.png"
             alt="Upload Form with Completeted with Upload Button Showing"
           />
         </li>
@@ -105,5 +105,5 @@
 </template>
 
 <script setup lang="ts">
-import Layout from '/@/components/Layout.vue'
+import Layout from '../components/Layout.vue'
 </script>

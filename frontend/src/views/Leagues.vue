@@ -27,12 +27,12 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getLeagues } from '../api/leagues'
-import Layout from '/@/components/Layout.vue'
-import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
+import Layout from '../components/Layout.vue'
+import LeagueOverviewCard from '../components/cards/LeagueOverviewCard.vue'
 
 const leagues = ref<League[]>([])
 
 onMounted(async () => {
-  leagues.value = await getLeagues()
+  leagues.value = (await getLeagues()) ?? []
 })
 </script>

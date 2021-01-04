@@ -85,14 +85,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '../store'
 
-import Layout from '/@/components/Layout.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import FileInput from '/@/components/inputs/FileInput.vue'
-import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
+import Layout from '../components/Layout.vue'
+import TextInput from '../components/inputs/TextInput.vue'
+import FileInput from '../components/inputs/FileInput.vue'
+import CheckboxInput from '../components/inputs/CheckboxInput.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
@@ -120,10 +120,13 @@ const getURLEventId = () => {
     uploadConfig.value.eventId = toSingleString(route.params.id)
 }
 const findEvent = async () => {
-  event.value = await getEvent(uploadConfig.value.eventId)
-  uploadConfig.value.results = event.value.results
-  uploadConfig.value.winsplits = event.value.winsplits
-  uploadConfig.value.routegadget = event.value.routegadget
+  const result = await getEvent(uploadConfig.value.eventId)
+  event.value = result
+  if (result) {
+    uploadConfig.value.results = result.results
+    uploadConfig.value.winsplits = result.winsplits
+    uploadConfig.value.routegadget = result.routegadget
+  }
 }
 const fileRead = (file: string) => {
   uploadConfig.value.file = file

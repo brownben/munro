@@ -72,8 +72,8 @@
 import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
-import Layout from '/@/components/Layout.vue'
-import ResultOverviewCard from '/@/components/cards/ResultOverviewCard.vue'
+import Layout from '../components/Layout.vue'
+import ResultOverviewCard from '../components/cards/ResultOverviewCard.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

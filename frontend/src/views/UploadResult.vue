@@ -47,13 +47,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '../store'
 
-import Layout from '/@/components/Layout.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
+import Layout from '../components/Layout.vue'
+import TextInput from '../components/inputs/TextInput.vue'
+import DropdownInput from '../components/inputs/DropdownInput.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
@@ -80,10 +80,11 @@ const refreshDetails = async () => {
   loading.value = true
   await Promise.all([
     getLeagues().then((data) => {
-      leagues.value = data
+      leagues.value = data ?? []
     }),
     getEvents().then((data) => {
-      events.value = data.filter((event) => event.userSubmittedResults)
+      events.value =
+        data?.filter((event: Event) => event.userSubmittedResults) ?? []
 
       if (events.value.length < 1)
         store.dispatch(

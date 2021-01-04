@@ -130,13 +130,16 @@
 import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
-import Layout from '/@/components/Layout.vue'
-import Cell from '/@/components/TableCell.vue'
-import Heading from '/@/components/TableHeading.vue'
-import TableRow from '/@/components/ExpandingTableRow.vue'
+import Layout from '../../components/Layout.vue'
+import Cell from '../../components/TableCell.vue'
+import Heading from '../../components/TableHeading.vue'
+import TableRow from '../../components/ExpandingTableRow.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
-import { sortCompetitors } from '../../scripts/sort'
+import {
+  sortCompetitors,
+  SortablePropertiesCompetitor as SortableProperties,
+} from '../../scripts/sort'
 
 const router = useRouter()
 const route = useRoute()
@@ -151,7 +154,7 @@ const getData = async () => {
   const routeParamsLeague = toSingleString(route.params.league)
 
   loading.value = true
-  rawCompetitors.value = await getLeagueCompetitors(routeParamsLeague)
+  rawCompetitors.value = (await getLeagueCompetitors(routeParamsLeague)) ?? []
   loading.value = false
 }
 

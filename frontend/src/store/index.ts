@@ -27,6 +27,6 @@ export default createStore({
 })
 
 // define your own `useStore` composition function
-export function useStore() {
+export function useStore(): Store<State> {
   return baseUseStore(key)
 }

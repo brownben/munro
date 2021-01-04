@@ -39,7 +39,7 @@
 
       <figure>
         <img
-          src="/@/assets/images/MunroOriginalDesign.png"
+          src="../assets/images/MunroOriginalDesign.png"
           alt="Original Deisgn for Munro"
         />
         <figcaption>
@@ -77,7 +77,7 @@
 
       <figure>
         <img
-          src="/@/assets/images/MunroLaterDesign.png"
+          src="../assets/images/MunroLaterDesign.png"
           alt="Later Design of Munro Displayed on Laptop and Mobile"
         />
         <figcaption>
@@ -109,7 +109,7 @@
 
       <figure>
         <img
-          src="/@/assets/images/MunroLatestDesign.png"
+          src="../assets/images/MunroLatestDesign.png"
           alt="Latest Design of Munro Displayed on Laptop and Mobile"
         />
         <figcaption>The Current Design</figcaption>
@@ -133,5 +133,5 @@
   </Layout>
 </template>
 <script setup lang="ts">
-import Layout from '/@/components/Layout.vue'
+import Layout from '../components/Layout.vue'
 </script>

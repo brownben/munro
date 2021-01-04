@@ -46,5 +46,5 @@
 </template>
 
 <script setup lang="ts">
-import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
+import LeagueOverviewCard from './LeagueOverviewCard.vue'
 </script>

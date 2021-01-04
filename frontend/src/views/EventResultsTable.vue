@@ -139,13 +139,13 @@
 import { ref, watch, computed, defineAsyncComponent } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
-import Layout from '/@/components/Layout.vue'
-import FilterMenu from '/@/components/FilterMenu.vue'
-import Cell from '/@/components/TableCell.vue'
-import Heading from '/@/components/TableHeading.vue'
-import TableRow from '/@/components/ExpandingTableRow.vue'
+import Layout from '../components/Layout.vue'
+import FilterMenu from '../components/FilterMenu.vue'
+import Cell from '../components/TableCell.vue'
+import Heading from '../components/TableHeading.vue'
+import TableRow from '../components/ExpandingTableRow.vue'
 const NoResultsCard = defineAsyncComponent(
-  () => import('/@/components/cards/NoResultsCard.vue')
+  () => import('../components/cards/NoResultsCard.vue')
 )
 
 import { toSingleString } from '../scripts/typeHelpers'
@@ -168,7 +168,7 @@ const loading = ref(true)
 const event = ref<Event | null>(null)
 const rawResults = ref<EventResult[]>([])
 const getData = async () => {
-  const routeParamsEvent = toSingleString(route.params.event)
+  const routeParamsEvent: string = toSingleString(route.params.event) ?? ''
   loading.value = true
 
   await Promise.all([
@@ -176,7 +176,7 @@ const getData = async () => {
       event.value = eventDetails
     }),
     getEventResults(routeParamsEvent).then((resultDetails) => {
-      rawResults.value = resultDetails
+      rawResults.value = resultDetails ?? []
     }),
   ])
 

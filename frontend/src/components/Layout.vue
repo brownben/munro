@@ -54,8 +54,8 @@
 <script setup lang="ts">
 import { defineAsyncComponent, defineProps } from 'vue'
 
-import AppFooter from '/@/components/Footer.vue'
-const NotFound = defineAsyncComponent(() => import('/@/views/NotFound.vue'))
+import AppFooter from './Footer.vue'
+const NotFound = defineAsyncComponent(() => import('../views/NotFound.vue'))
 
 const props = defineProps({
   title: { type: String, default: '' },

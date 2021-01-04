@@ -54,10 +54,10 @@
 <script setup lang="ts">
 import { ref, defineEmit } from 'vue'
 
-import AccordionDropdown from '/@/components/inputs/AccordionDropdown.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import NumberInput from '/@/components/inputs/NumberInput.vue'
-import CheckboxInput from '/@/components/inputs/CheckboxInput.vue'
+import AccordionDropdown from './inputs/AccordionDropdown.vue'
+import TextInput from './inputs/TextInput.vue'
+import NumberInput from './inputs/NumberInput.vue'
+import CheckboxInput from './inputs/CheckboxInput.vue'
 
 const emit = defineEmit(['changed'])
 

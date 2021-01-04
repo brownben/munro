@@ -64,8 +64,8 @@ import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '../../store'
 
-import Layout from '/@/components/Layout.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
+import Layout from '../../components/Layout.vue'
+import DropdownInput from '../../components/inputs/DropdownInput.vue'
 
 import { getLeagues } from '../../api/leagues'
 import {
@@ -87,8 +87,8 @@ const choices = ref({
 })
 
 onMounted(async () => {
-  leagues.value = await getLeagues()
-  competitors.value = await getCompetitors()
+  leagues.value = (await getLeagues()) ?? []
+  competitors.value = (await getCompetitors()) ?? []
 })
 
 const courses = computed(

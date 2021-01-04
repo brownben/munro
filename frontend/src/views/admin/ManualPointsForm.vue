@@ -68,13 +68,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { ref, onMounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from '../../store'
 
-import Layout from '/@/components/Layout.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
-import NumberInput from '/@/components/inputs/NumberInput.vue'
+import Layout from '../../components/Layout.vue'
+import DropdownInput from '../../components/inputs/DropdownInput.vue'
+import NumberInput from '../../components/inputs/NumberInput.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
@@ -85,7 +85,6 @@ import { createManualResult } from '../../api/results'
 
 const store = useStore()
 const router = useRouter()
-const route = useRoute()
 
 const leagues = ref<League[]>([])
 const events = ref<Event[]>([])
@@ -99,9 +98,9 @@ const choices = ref({
 })
 
 onMounted(async () => {
-  leagues.value = await getLeagues()
-  events.value = await getEvents()
-  competitors.value = await getCompetitors()
+  leagues.value = (await getLeagues()) ?? []
+  events.value = (await getEvents()) ?? []
+  competitors.value = (await getCompetitors()) ?? []
 })
 
 const courses = computed(

@@ -187,8 +187,8 @@ import { ref, watch, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '../store'
 
-import Layout from '/@/components/Layout.vue'
-import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
+import Layout from '../components/Layout.vue'
+import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

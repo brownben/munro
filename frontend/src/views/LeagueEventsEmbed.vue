@@ -22,11 +22,12 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { useStore } from '../store'
 
-import Layout from '/@/components/Layout.vue'
-import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
+import Layout from '../components/Layout.vue'
+import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
@@ -48,7 +49,7 @@ const refreshDetails = async () => {
   await Promise.all([
     getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
       (eventDetails) => {
-        events.value = eventDetails
+        events.value = eventDetails ?? []
       }
     ),
     getLeague(routeParamsName).then((leagueDetails) => {

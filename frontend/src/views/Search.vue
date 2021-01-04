@@ -91,14 +91,14 @@
 import { ref, watch, onMounted, computed, defineAsyncComponent } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
-import Layout from '/@/components/Layout.vue'
-import SearchBox from '/@/components/inputs/SearchBox.vue'
-import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
-import LeagueOverviewCard from '/@/components/cards/LeagueOverviewCard.vue'
-import CompetitorOverviewCard from '/@/components/cards/CompetitorOverviewCard.vue'
+import Layout from '../components/Layout.vue'
+import SearchBox from '../components/inputs/SearchBox.vue'
+import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
+import LeagueOverviewCard from '../components/cards/LeagueOverviewCard.vue'
+import CompetitorOverviewCard from '../components/cards/CompetitorOverviewCard.vue'
 
 const NoResults = defineAsyncComponent(
-  () => import('/@/components/cards/NoResultsCard.vue')
+  () => import('../components/cards/NoResultsCard.vue')
 )
 
 import { toSingleString } from '../scripts/typeHelpers'
@@ -117,10 +117,11 @@ const getDetails = async () => {
   loading.value = true
   const routeParamsQuery = toSingleString(route.params.query || '')
   const queryResult = await getQuery(routeParamsQuery)
-
-  leagues.value = queryResult.leagues
-  events.value = queryResult.events
-  competitors.value = queryResult.competitors
+  if (queryResult) {
+    leagues.value = queryResult.leagues
+    events.value = queryResult.events
+    competitors.value = queryResult.competitors
+  }
   loading.value = false
 }
 

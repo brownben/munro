@@ -29,12 +29,12 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { getLatestResults } from '../api/events'
-import Layout from '/@/components/Layout.vue'
-import EventOverviewCard from '/@/components/cards/EventOverviewCard.vue'
+import Layout from '../components/Layout.vue'
+import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
 
 const events = ref<Event[]>([])
 
 onMounted(async () => {
-  events.value = await getLatestResults()
+  events.value = (await getLatestResults()) ?? []
 })
 </script>

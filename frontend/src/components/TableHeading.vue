@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import UpDownArrow from '/@/components/UpDownArrows.vue'
+import UpDownArrow from './UpDownArrows.vue'
 
 const props = defineProps({
   text: { type: String, default: '' },

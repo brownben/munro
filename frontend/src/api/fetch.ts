@@ -1,4 +1,4 @@
-import store from '/@/store/index'
+import store from '../store'
 
 export interface TypedResponse<T = any> extends Response {
   json: <P = T>() => Promise<P>

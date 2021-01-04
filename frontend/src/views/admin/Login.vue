@@ -44,8 +44,10 @@ import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '../../store'
 
-import Layout from '/@/components/Layout.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
+import Layout from '../../components/Layout.vue'
+import TextInput from '../../components/inputs/TextInput.vue'
+
+import { toSingleString } from '../../scripts/typeHelpers'
 
 const store = useStore()
 const router = useRouter()
@@ -69,7 +71,8 @@ const sendLoginRequest = () => {
         password: password.value,
       })
       .then((response) => {
-        if (response) router.replace(route.query.redirect || '/')
+        if (response)
+          router.replace(toSingleString(route.query.redirect || '/'))
         store.dispatch(
           'createMessage',
           `Hello ${store.getters.userName || 'Admin'}`

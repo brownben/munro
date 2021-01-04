@@ -54,9 +54,9 @@ import { ref, watch, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '../store'
 
-import Layout from '/@/components/Layout.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
+import Layout from '../components/Layout.vue'
+import TextInput from '../components/inputs/TextInput.vue'
+import DropdownInput from '../components/inputs/DropdownInput.vue'
 
 import { getText } from '../api/requests'
 import { uploadStream } from '../api/upload'

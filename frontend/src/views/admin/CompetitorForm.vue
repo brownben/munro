@@ -51,9 +51,9 @@ import { ref, watch, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from '../../store'
 
-import Layout from '/@/components/Layout.vue'
-import DropdownInput from '/@/components/inputs/DropdownInput.vue'
-import TextInput from '/@/components/inputs/TextInput.vue'
+import Layout from '../../components/Layout.vue'
+import DropdownInput from '../../components/inputs/DropdownInput.vue'
+import TextInput from '../../components/inputs/TextInput.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
@@ -70,7 +70,7 @@ const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
-const competitor = ref<Competitor>({
+const competitor = ref<Competitor | null>({
   id: 0,
   name: '',
   club: '',
@@ -81,7 +81,9 @@ const competitor = ref<Competitor>({
 const refreshDetails = async () => {
   const routeParamsId = toSingleString(route.params.id)
 
-  getLeagues().then((data) => (leagues.value = data))
+  getLeagues().then((data) => {
+    leagues.value = data ?? []
+  })
 
   loading.value = true
   if (routeParamsId)
@@ -93,15 +95,15 @@ const refreshDetails = async () => {
 
 const courses = computed(
   () =>
-    leagues.value?.find((league) => league.name === competitor.value.league)
+    leagues.value?.find((league) => league.name === competitor.value?.league)
       ?.courses ?? []
 )
 
 const validateForm = () => {
   if (
-    competitor.value.name !== '' &&
-    competitor.value.league !== '' &&
-    competitor.value.course !== ''
+    competitor.value?.name !== '' &&
+    competitor.value?.league !== '' &&
+    competitor.value?.course !== ''
   )
     return true
   else {
@@ -114,7 +116,7 @@ const validateForm = () => {
 }
 
 const createCompetitor = () => {
-  if (validateForm())
+  if (competitor.value && validateForm())
     return apiCreateCompetitor(competitor.value)
       .then(() =>
         router.push(`/leagues/${competitor.value.league}/competitors`)
@@ -122,7 +124,7 @@ const createCompetitor = () => {
       .catch(() => false)
 }
 const updateCompetitor = () => {
-  if (validateForm())
+  if (competitor.value && validateForm())
     return apiUpdateCompetitor(competitor.value)
       .then(() => router.push(`/competitors/${competitor.value.id}`))
       .catch(() => false)

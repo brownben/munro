@@ -225,13 +225,13 @@
 import { ref, watch, computed, defineAsyncComponent } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
-import Layout from '/@/components/Layout.vue'
-import FilterMenu from '/@/components/FilterMenu.vue'
-import Cell from '/@/components/TableCell.vue'
-import Heading from '/@/components/TableHeading.vue'
-import TableRow from '/@/components/ExpandingTableRow.vue'
+import Layout from '../components/Layout.vue'
+import FilterMenu from '../components/FilterMenu.vue'
+import Cell from '../components/TableCell.vue'
+import Heading from '../components/TableHeading.vue'
+import TableRow from '../components/ExpandingTableRow.vue'
 const NoResultsCard = defineAsyncComponent(
-  () => import('/@/components/cards/NoResultsCard.vue')
+  () => import('../components/cards/NoResultsCard.vue')
 )
 
 import { toSingleString } from '../scripts/typeHelpers'
@@ -263,16 +263,15 @@ const getData = async () => {
   await Promise.all([
     getLeagueResults(routeParamsLeague, routeParamsCourse).then(
       (resultDetails) => {
-        rawResults.value = resultDetails
+        rawResults.value = resultDetails ?? []
       }
     ),
     getLeague(routeParamsLeague).then((leagueDetails) => {
       league.value = leagueDetails
     }),
     getLeagueEvents(routeParamsLeague).then((eventDetails) => {
-      eventsWithResults.value = eventDetails.filter(
-        (event) => event.resultUploaded
-      )
+      eventsWithResults.value =
+        eventDetails?.filter((event: Event) => event.resultUploaded) ?? []
     }),
   ])
 
