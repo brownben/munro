@@ -6,11 +6,11 @@ interface user {
   displayName?: string
 }
 
-class State {
+class AuthState {
   user: user = {}
 }
 
-const mutations = <MutationTree<State>>{
+const mutations = <MutationTree<AuthState>>{
   setUser: (state, user: user) => {
     state.user = user
   },
@@ -20,7 +20,7 @@ const mutations = <MutationTree<State>>{
   },
 }
 
-const actions = <ActionTree<State, string>>{
+const actions = <ActionTree<AuthState, string>>{
   login: (context, { username, password }) =>
     postData<user>({
       apiLocation:
@@ -46,13 +46,13 @@ const actions = <ActionTree<State, string>>{
   },
 }
 
-const getters = <GetterTree<State, any>>{
+const getters = <GetterTree<AuthState, string>>{
   loggedIn: (state) => !!state.user?.idToken,
   userName: (state) => state.user?.displayName,
 }
 
 export default {
-  state: new State(),
+  state: new AuthState(),
   mutations,
   actions,
   getters,

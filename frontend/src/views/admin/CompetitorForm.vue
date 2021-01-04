@@ -47,9 +47,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+import { useStore } from '../../store'
 
 import Layout from '/@/components/Layout.vue'
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'

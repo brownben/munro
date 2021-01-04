@@ -50,15 +50,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+import { ref, watch, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from '../store'
 
 import Layout from '/@/components/Layout.vue'
 import TextInput from '/@/components/inputs/TextInput.vue'
 import DropdownInput from '/@/components/inputs/DropdownInput.vue'
-
-import { toSingleString } from '../scripts/typeHelpers'
 
 import { getText } from '../api/requests'
 import { uploadStream } from '../api/upload'
@@ -67,7 +65,6 @@ import { getLeague } from '../api/leagues'
 
 const store = useStore()
 const router = useRouter()
-const route = useRoute()
 
 const maprunId = ref('')
 const uploadConfig = ref<UploadStream>({
@@ -82,16 +79,16 @@ const eventId = computed(() => uploadConfig.value.eventId)
 
 const getCourses = async () => {
   event.value = await getEvent(uploadConfig.value.eventId)
-  const league: League = await getLeague(event.value?.league ?? '')
+  const league: League | null = await getLeague(event.value?.league ?? '')
 
   courses.value = league?.courses ?? []
 }
 
 watch(eventId, getCourses, { immediate: true })
 
-const maprunHTMLtoCSV = (html: string): string =>
+const maprunHTMLtoCSV = (html: string | null): string =>
   html
-    .replace(/\n/g, '')
+    ?.replace(/\n/g, '')
     .replace(/<\/.*?>/g, '')
     .replace(/'>Track/g, '')
     .replace(/<a href='reitti.cgi.*?pID=/g, '')
@@ -106,7 +103,7 @@ const maprunHTMLtoCSV = (html: string): string =>
         .map((string) => string.trim())
         .join()
     )
-    .join('\n')
+    .join('\n') ?? ''
 
 const getMaprunData = () =>
   getText({
@@ -130,7 +127,7 @@ const getMaprunData = () =>
 
 const uploadFile = () =>
   getMaprunData()
-    .then((file) => uploadStream(uploadConfig.value))
+    .then(() => uploadStream(uploadConfig.value))
     .then(() => router.push(`/events/${eventId.value}/results`))
     .catch(() => false)
 </script>

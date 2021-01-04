@@ -17,6 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import AppMenu from '/@/components/Menu.vue'
-import Messages from '/@/components/Messages.vue'
+import AppMenu from './components/Menu.vue'
+import Messages from './components/Messages.vue'
 </script>

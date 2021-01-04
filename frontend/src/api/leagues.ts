@@ -1,7 +1,7 @@
 import { getData, postData, putData, deleteData } from './requests'
 
 export const getLeague = (name: string): Promise<League | null> =>
-  getData<League | null>({
+  getData<League>({
     apiLocation: `/api/leagues/${name}`,
     customErrorMessage: 'Problem Fetching League Details',
   })
