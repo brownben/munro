@@ -1,7 +1,8 @@
-import store from '/@/store/index.ts'
+import { RouteRecordRaw } from 'vue-router'
+import store from '/@/store/index'
 import requireAuthentication from './requireAuthentication'
 
-const homeRoutes = [
+const homeRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('/@/views/Home.vue'),
@@ -11,7 +12,7 @@ const homeRoutes = [
     component: () => import('/@/views/About.vue'),
   },
 ]
-const searchRoutes = [
+const searchRoutes: RouteRecordRaw[] = [
   {
     path: '/search',
     component: () => import('/@/views/Search.vue'),
@@ -21,31 +22,28 @@ const searchRoutes = [
     component: () => import('/@/views/Search.vue'),
   },
 ]
-const loginRoutes = [
-  {
-    path: '/login',
-    component: () => import('/@/views/admin/Login.vue'),
-  },
-  {
-    path: '/logout',
-    beforeEnter: function (to, from, next) {
-      // Logout then redirect to the home page
-      next('/')
-      store
-        .dispatch('logout')
-        .then(() =>
-          store.dispatch('createMessage', 'Goodbye - Logged Out Successfully')
+const login: RouteRecordRaw = {
+  path: '/login',
+  component: () => import('/@/views/admin/Login.vue'),
+}
+const logout: RouteRecordRaw = {
+  path: '/logout',
+  redirect: () => {
+    store
+      .dispatch('logout')
+      .then(() =>
+        store.dispatch('createMessage', 'Goodbye - Logged Out Successfully')
+      )
+      .catch(() =>
+        store.dispatch(
+          'createMessage',
+          'Problem Logging Out - Please Try Again'
         )
-        .catch(() =>
-          store.dispatch(
-            'createMessage',
-            'Problem Logging Out - Please Try Again'
-          )
-        )
-    },
+      )
+    return '/'
   },
-]
-const competitorRoutes = [
+}
+const competitorRoutes: RouteRecordRaw[] = [
   {
     path: '/leagues/:league/competitors',
     component: () => import('/@/views/admin/Competitors.vue'),
@@ -71,7 +69,7 @@ const competitorRoutes = [
     beforeEnter: requireAuthentication,
   },
 ]
-const leagueRoutes = [
+const leagueRoutes: RouteRecordRaw[] = [
   {
     path: '/leagues',
     component: () => import('/@/views/Leagues.vue'),
@@ -91,7 +89,7 @@ const leagueRoutes = [
     beforeEnter: requireAuthentication,
   },
 ]
-const eventRoutes = [
+const eventRoutes: RouteRecordRaw[] = [
   {
     path: '/events/create',
     component: () => import('/@/views/admin/EventForm.vue'),
@@ -111,7 +109,7 @@ const eventRoutes = [
     component: () => import('/@/views/LatestResults.vue'),
   },
 ]
-const resultRoutes = [
+const resultRoutes: RouteRecordRaw[] = [
   {
     path: '/events/:event/results',
     component: () => import('/@/views/EventResultsTable.vue'),
@@ -138,7 +136,7 @@ const resultRoutes = [
     component: () => import('/@/views/admin/ManualPointsForm.vue'),
   },
 ]
-const uploadRoutes = [
+const uploadRoutes: RouteRecordRaw[] = [
   {
     path: '/upload',
     component: () => import('/@/views/Upload.vue'),
@@ -168,21 +166,20 @@ const uploadRoutes = [
     component: () => import('/@/views/Developers.vue'),
   },
 ]
-const notFoundRoutes = [
-  {
-    path: '/:catchAll(.*)',
-    component: () => import('/@/views/NotFound.vue'),
-  },
-]
+const notFound: RouteRecordRaw = {
+  path: '/:catchAll(.*)',
+  component: () => import('/@/views/NotFound.vue'),
+}
 
 export default [
   ...homeRoutes,
   ...searchRoutes,
-  ...loginRoutes,
   ...competitorRoutes,
   ...leagueRoutes,
   ...eventRoutes,
   ...resultRoutes,
   ...uploadRoutes,
-  ...notFoundRoutes,
+  login,
+  logout,
+  notFound,
 ]
