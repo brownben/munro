@@ -23,8 +23,8 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useStore } from '../store'
+import { useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
 import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
@@ -35,7 +35,6 @@ import { getLeague } from '../api/leagues'
 import { getLeagueEvents } from '../api/events'
 
 const store = useStore()
-const router = useRouter()
 const route = useRoute()
 
 const loading = ref(true)

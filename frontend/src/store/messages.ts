@@ -1,6 +1,6 @@
 import { GetterTree, MutationTree, ActionTree } from 'vuex'
 
-interface message {
+export interface message {
   id: number
   text: string
 }

@@ -1,7 +1,7 @@
 import { GetterTree, MutationTree, ActionTree } from 'vuex'
 import { postData } from '../api/requests'
 
-interface user {
+export interface user {
   idToken?: string
   displayName?: string
 }

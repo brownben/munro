@@ -103,7 +103,7 @@ const maprunHTMLtoCSV = (html: string | null): string =>
         .map((string) => string.trim())
         .join()
     )
-    .join('\n')
+    .join('\n') ?? ''
 
 const getMaprunData = () =>
   getText({
