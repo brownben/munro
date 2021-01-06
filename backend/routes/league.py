@@ -1,9 +1,9 @@
-from flask_restx import Namespace, Resource, fields
+from flask_restx import Namespace, Resource
 
 from ..database import League
 from .requireAuthentication import requireAuthentication
 from ..models.league import leagueModel
-from ..models.messages import createMessage, messageModel, errorMessageModel
+from ..models.messages import createMessage, messageModel
 
 
 api = Namespace("Leagues", description="View and Manage Leagues")
@@ -24,8 +24,10 @@ class LeaguesRoute(Resource):
     @api.expect(leagueModel, validate=True)
     @api.marshal_with(messageModel)
     @api.response(201, "Success")
+    @api.response(401, "Permission Denied - You are not Logged In")
     @api.response(403, "A League with that Name Already Exists")
     @api.response(500, "Problem Connecting to the Database")
+    @requireAuthentication
     def post(self):
         try:
             league = League(api.payload)
@@ -55,6 +57,7 @@ class LeagueRoute(Resource):
     @api.expect(leagueModel, validate=True)
     @api.marshal_with(messageModel)
     @api.response(201, "Success")
+    @api.response(401, "Permission Denied - You are not Logged In")
     @api.response(403, "A League with that Name Already Exists")
     @api.response(500, "Problem Connecting to the Database")
     @requireAuthentication
@@ -71,9 +74,9 @@ class LeagueRoute(Resource):
         except:
             return createMessage(f"Problem Connecting to Database", 500)
 
-    @api.expect(leagueModel, validate=True)
     @api.marshal_with(messageModel)
     @api.response(200, "Success")
+    @api.response(401, "Permission Denied - You are not Logged In")
     @api.response(500, "Problem Connecting to the Database")
     @requireAuthentication
     def delete(self, name):
