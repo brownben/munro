@@ -66,7 +66,7 @@ class League:
             "numberOfEvents": self.numberOfEvents,
         }
 
-    def createLeague(self):
+    def create(self):
         query(
             """
             INSERT INTO leagues (
@@ -100,7 +100,7 @@ class League:
             ),
         )
 
-    def updateLeague(self, oldName: str):
+    def update(self, oldName: str):
         query(
             """
             UPDATE leagues SET

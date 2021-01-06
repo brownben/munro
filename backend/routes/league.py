@@ -35,7 +35,7 @@ class LeaguesRoute(Resource):
             if League.exists(league.name):
                 return createMessage(f"League - {league.name} already Exists", 403)
 
-            league.createLeague()
+            league.create()
             return createMessage(f"League - {league.name} was Created", 201)
 
         except:
@@ -68,7 +68,7 @@ class LeagueRoute(Resource):
             if league.name != oldName and League.exists(league.name):
                 return createMessage(f"League - {league.name} already Exists", 403)
 
-            league.updateLeague()
+            league.update()
             return createMessage(f"League - {league.name} was Updated", 201)
 
         except:
@@ -81,7 +81,7 @@ class LeagueRoute(Resource):
     @requireAuthentication
     def delete(self, name):
         try:
-            League.deleteLeague(name)
+            League.deleteByName(name)
             return createMessage(f"League - {name} was Deleted")
         except:
             return createMessage("Problem Connecting to the Database", 500)
