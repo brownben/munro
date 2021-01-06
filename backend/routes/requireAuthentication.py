@@ -4,8 +4,6 @@ from flask import request
 from google.auth.transport import requests
 import google.oauth2.id_token
 
-from routes.returnMessages import returnUnauthorised
-
 firebase_request_adapter = requests.Request()
 
 
@@ -20,9 +18,9 @@ def requireAuthentication(func):
                     id_token, firebase_request_adapter
                 )
             except:
-                return returnUnauthorised("Permission Denied - You are not Logged In")
+                return {"message": "Permission Denied - You are not Logged In"}, 401
         else:
-            return returnUnauthorised("Permission Denied - You are not Logged In")
+            return {"message": "Permission Denied - You are not Logged In"}, 401
         return func(*args, **kwargs)
 
     return decorator

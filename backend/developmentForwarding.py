@@ -2,7 +2,12 @@ from flask import Response, request
 import requests
 
 
-def forwardToVue(path):
+def forwardToVite(path):
+    """
+    forward requests in development to the vite server
+    fixes the mime type to ensure they match the file format
+    """
+
     port = "8080"
     mimeType = "text/html"
     requestType = request.args.get("type")

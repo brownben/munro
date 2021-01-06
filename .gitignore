@@ -206,3 +206,6 @@ test coverage/
 # Vue Build
 frontend/dist/**
 backend/dist/**
+
+# Rewrite Backend
+old-backend/**
