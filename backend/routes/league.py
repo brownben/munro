@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource
 
-from ..database import League
+from ..database import League, Event
 from .requireAuthentication import requireAuthentication
 from ..models.league import leagueModel
 from ..models.messages import createMessage, messageModel
@@ -85,3 +85,31 @@ class LeagueRoute(Resource):
             return createMessage(f"League - {name} was Deleted")
         except:
             return createMessage("Problem Connecting to the Database", 500)
+
+
+@api.route("/<name>/events")
+@api.param("name", "League Name")
+class LeagueEventsRoute(Resource):
+    @api.response(200, "Success - List of all Events in a League")
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self, name):
+        try:
+            return [event.toDictionary() for event in Event.getByLeague(name)]
+        except:
+            return [], 500
+
+
+@api.route("/<name>/events/uploadKey")
+@api.param("name", "League Name")
+class LeagueEventsRouteWithUploadKey(Resource):
+    @api.response(200, "Success - List of all Events in a League (with Upload Key)")
+    @api.response(401, "Permission Denied - You are not Logged In")
+    @api.response(500, "Problem Connecting to the Database")
+    @requireAuthentication
+    def get(self, name):
+        try:
+            return [
+                event.toDictionaryWithUploadKey() for event in Event.getByLeague(name)
+            ]
+        except:
+            return [], 500
