@@ -2,13 +2,14 @@ interface Event {
   id: string
   name: string
   date: string
-  resultUploaded: boolean
+  website: string
   organiser: string
   moreInformation: string
-  website: string
+  league: string
+
+  resultUploaded: boolean
   results: string
   winsplits: string
   routegadget: string
   userSubmittedResults: boolean
-  league: string
 }

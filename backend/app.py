@@ -11,7 +11,7 @@ from flask_talisman import Talisman
 from flask_restx import Api
 
 from .routes.league import api as leagueRoutes
-
+from .routes.event import api as eventRoutes
 
 # Set up Flask with plugins
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
@@ -44,6 +44,7 @@ else:
 
 
 api.add_namespace(leagueRoutes, path="/leagues")
+api.add_namespace(eventRoutes, path="/events")
 
 # Serve app files
 @app.route("/", defaults={"path": ""})
