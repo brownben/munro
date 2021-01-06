@@ -12,6 +12,8 @@ from flask_restx import Api
 
 from .routes.league import api as leagueRoutes
 from .routes.event import api as eventRoutes
+from .routes.competitor import api as competitorRoutes
+
 
 # Set up Flask with plugins
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
@@ -45,6 +47,8 @@ else:
 
 api.add_namespace(leagueRoutes, path="/leagues")
 api.add_namespace(eventRoutes, path="/events")
+api.add_namespace(competitorRoutes, path="/competitors")
+
 
 # Serve app files
 @app.route("/", defaults={"path": ""})

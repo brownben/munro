@@ -46,7 +46,7 @@ eventModel = Model(
 )
 
 eventModelWithUploadKey = Model(
-    "EventWithUploadKey",
+    "Event With Upload Key",
     {
         **eventModelBody,
         "uploadKey": fields.String(
