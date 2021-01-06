@@ -1,3 +1,4 @@
+from backend.database.competitor import Competitor
 from flask_restx import Namespace, Resource
 
 from ..database import League, Event
@@ -111,5 +112,17 @@ class LeagueEventsRouteWithUploadKey(Resource):
             return [
                 event.toDictionaryWithUploadKey() for event in Event.getByLeague(name)
             ]
+        except:
+            return [], 500
+
+
+@api.route("/<name>/competitors")
+@api.param("name", "League Name")
+class LeagueEventsRoute(Resource):
+    @api.response(200, "Success - List of all Competitors in a League")
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self, name):
+        try:
+            return [event.toDictionary() for event in Competitor.getByLeague(name)]
         except:
             return [], 500
