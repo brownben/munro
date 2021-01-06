@@ -10,7 +10,7 @@ from flask_cors import CORS
 from flask_talisman import Talisman
 from flask_restx import Api
 
-from routes import *
+from .routes.league import api as leagueRoutes
 
 
 # Set up Flask with plugins
@@ -43,13 +43,12 @@ else:
     from .developmentForwarding import forwardToVite
 
 
-api.add_resource(search.Search, "/api/search")
+api.add_namespace(leagueRoutes, path="/leagues")
 
 # Serve app files
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
-    # If in debug access files from VueJS Development Server
     if app.debug:
         return forwardToVite(path)
 

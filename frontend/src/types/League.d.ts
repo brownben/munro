@@ -1,20 +1,19 @@
-interface LeagueBase {
-  coordinator: string
-  description: string
-  dynamicEventResults: boolean
-  moreInformation: string
+interface League {
   name: string
-  numberOfCountingEvents: number
-  numberOfEvents?: number
-  scoringMethod: string
-  website: string
   year: number
-  leagueScoring?: string
-  clubRestriction?: string
-}
+  description: string
+  moreInformation: string
+  coordinator: string
+  website: string
 
-interface League extends LeagueBase {
   courses: string[]
+  leagueScoring?: string
+  scoringMethod: string
+  numberOfCountingEvents: number
+  dynamicEventResults: boolean
+  clubRestriction?: string
+
+  numberOfEvents?: number
 }
 
 interface LeagueForm extends LeagueBase {
