@@ -1,8 +1,8 @@
 import { getData, postData, putData } from './requests'
 
-export const getCompetitor = (name: string): Promise<Competitor | null> =>
+export const getCompetitor = (id: string): Promise<Competitor | null> =>
   getData<Competitor | null>({
-    apiLocation: `/api/competitors/${name}`,
+    apiLocation: `/api/competitors/${id}`,
     customErrorMessage: 'Problem Fetching Competitor Details',
   })
 
@@ -35,7 +35,7 @@ export const updateCompetitor = (
   data: Competitor
 ): Promise<ServerMessage | null> =>
   putData<ServerMessage>({
-    apiLocation: `/api/competitors/${data.name}`,
+    apiLocation: `/api/competitors/${data.id}`,
     data,
     customErrorMessage: 'Problem Updating Competitor',
     customSuccessMessage: `Competitor \`${data.name}\` Updated`,

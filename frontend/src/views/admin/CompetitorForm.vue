@@ -74,6 +74,7 @@ const competitor = ref<Competitor | null>({
   id: 0,
   name: '',
   club: '',
+  ageClass: '',
   course: '',
   league: '',
 })

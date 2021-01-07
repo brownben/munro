@@ -1,6 +1,11 @@
 from flask_restx import Model, fields
 
 eventModelBody = {
+    "id": fields.String(
+        description="Event ID - League, Event, and Date of Event Concatenated with Spaces Removed",
+        readonly=True,
+        example="TestLeagueCarse2000-01-01",
+    ),
     "name": fields.String(
         description="Event Name", required=True, example="Blackford Hill"
     ),
