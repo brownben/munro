@@ -14,6 +14,7 @@ api.models[messageModel.name] = messageModel
 
 @api.route("/")
 class EventsRoute(Resource):
+    @api.marshal_with(eventModel, as_list=True)
     @api.response(200, "Success - List of all Events")
     @api.response(500, "Problem Connecting to the Database")
     def get(self):
@@ -96,6 +97,7 @@ class EventRoute(Resource):
 
 @api.route("/uploadKey")
 class EventsRouteWithUploadKey(Resource):
+    @api.marshal_with(eventModelWithUploadKey, as_list=True)
     @api.response(200, "Success - List of all Events (with Upload Key)")
     @api.response(401, "Permission Denied - You are not Logged In")
     @api.response(500, "Problem Connecting to the Database")

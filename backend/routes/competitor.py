@@ -13,14 +13,14 @@ api.models[messageModel.name] = messageModel
 
 @api.route("/")
 class CompetitorsRoute(Resource):
+    @api.marshal_with(competitorModel, as_list=True)
     @api.response(200, "Success - List of all Competitors")
     @api.response(500, "Problem Connecting to the Database")
     def get(self):
-        return [competitor.toDictionary() for competitor in Competitor.getAll()]
-        # try:
-        #     return [competitor.toDictionary() for competitor in Competitor.getAll()]
-        # except:
-        #     return [], 500
+        try:
+            return [competitor.toDictionary() for competitor in Competitor.getAll()]
+        except:
+            return [], 500
 
     @api.expect(competitorModel, validate=True)
     @api.marshal_with(messageModel)

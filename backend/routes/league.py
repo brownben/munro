@@ -4,6 +4,8 @@ from flask_restx import Namespace, Resource
 from ..database import League, Event
 from .requireAuthentication import requireAuthentication
 from ..models.league import leagueModel
+from ..models.event import eventModel, eventModelWithUploadKey
+from ..models.competitor import competitorModel
 from ..models.messages import createMessage, messageModel
 
 
@@ -14,6 +16,7 @@ api.models[messageModel.name] = messageModel
 
 @api.route("/")
 class LeaguesRoute(Resource):
+    @api.marshal_with(leagueModel, as_list=True)
     @api.response(200, "Success - List of all the Leagues")
     @api.response(500, "Problem Connecting to the Database")
     def get(self):
@@ -91,6 +94,7 @@ class LeagueRoute(Resource):
 @api.route("/<name>/events")
 @api.param("name", "League Name")
 class LeagueEventsRoute(Resource):
+    @api.marshal_with(eventModel, as_list=True)
     @api.response(200, "Success - List of all Events in a League")
     @api.response(500, "Problem Connecting to the Database")
     def get(self, name):
@@ -103,6 +107,7 @@ class LeagueEventsRoute(Resource):
 @api.route("/<name>/events/uploadKey")
 @api.param("name", "League Name")
 class LeagueEventsRouteWithUploadKey(Resource):
+    @api.marshal_with(eventModelWithUploadKey, as_list=True)
     @api.response(200, "Success - List of all Events in a League (with Upload Key)")
     @api.response(401, "Permission Denied - You are not Logged In")
     @api.response(500, "Problem Connecting to the Database")
@@ -119,6 +124,7 @@ class LeagueEventsRouteWithUploadKey(Resource):
 @api.route("/<name>/competitors")
 @api.param("name", "League Name")
 class LeagueEventsRoute(Resource):
+    @api.marshal_with(competitorModel, as_list=True)
     @api.response(200, "Success - List of all Competitors in a League")
     @api.response(500, "Problem Connecting to the Database")
     def get(self, name):
