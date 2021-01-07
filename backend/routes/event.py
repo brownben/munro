@@ -122,3 +122,17 @@ class EventRouteWithUploadKey(Resource):
             return Event.getById(eventId).toDictionaryWithUploadKey()
         except:
             return None, 500
+
+
+@api.route("/latest-results")
+class LatestEventsWithResultsRoute(Resource):
+    @api.marshal_with(eventModel, as_list=True)
+    @api.response(
+        200, "Success - List of the 12 Events with Results Uploaded Most Recently"
+    )
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self):
+        try:
+            return [event.toDictionary() for event in Event.getLatestWithResults()]
+        except:
+            return [], 500
