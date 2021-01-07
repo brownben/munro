@@ -207,5 +207,5 @@ test coverage/
 frontend/dist/**
 backend/dist/**
 
-# Rewrite Backend
+# Old Files from Backend Rewrite
 old-backend/**
