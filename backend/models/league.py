@@ -55,4 +55,3 @@ leagueModel = Model(
         ),
     },
 )
-

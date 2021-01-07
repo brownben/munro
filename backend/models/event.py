@@ -53,7 +53,6 @@ eventModel = Model(
 eventModelWithUploadKey = eventModel.inherit(
     "Event With Upload Key",
     {
-
         "uploadKey": fields.String(
             description="Secret required to upload the results for the event",
             example="abcdefghijk122",
