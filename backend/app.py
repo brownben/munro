@@ -10,6 +10,8 @@ from flask_cors import CORS
 from flask_talisman import Talisman
 from flask_restx import Api
 
+from .database import setup as initializeDatabase
+
 from .routes.league import api as leagueRoutes
 from .routes.event import api as eventRoutes
 from .routes.competitor import api as competitorRoutes
@@ -45,7 +47,8 @@ if not app.debug:
 else:
     from .developmentForwarding import forwardToVite
 
-
+# Register Routes + Initilize Database
+initializeDatabase()
 api.add_namespace(leagueRoutes, path="/leagues")
 api.add_namespace(eventRoutes, path="/events")
 api.add_namespace(competitorRoutes, path="/competitors")

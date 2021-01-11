@@ -1,6 +1,6 @@
 import os
 import base64
-from typing import List, Union
+from typing import Union
 
 from .database import query, queryWithResult, queryWithResults
 from .league import League

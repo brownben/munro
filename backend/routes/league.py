@@ -1,7 +1,6 @@
-from backend.database.competitor import Competitor
 from flask_restx import Namespace, Resource
 
-from ..database import League, Event
+from ..database import League, Event, Competitor
 from .requireAuthentication import requireAuthentication
 from ..models.league import leagueModel
 from ..models.event import eventModel, eventModelWithUploadKey
