@@ -3,6 +3,7 @@ from flask_restx import Namespace, Resource
 from ..database import Competitor
 from .requireAuthentication import requireAuthentication
 from ..models.competitor import competitorModel
+from ..models.result import eventResultModel
 from ..models.messages import createMessage, messageModel
 
 
@@ -76,3 +77,18 @@ class CompetitorRoute(Resource):
             return createMessage(f"Competitor was Deleted")
         except:
             return createMessage("Problem Connecting to the Database", 500)
+
+
+@api.route("/<competitorId>/results")
+@api.param("competitorId", "Competitor ID")
+class EventResultsRoute(Resource):
+    @api.marshal_with(eventResultModel, as_list=True)
+    @api.response(200, "Success - Results of the Competitor")
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self, competitorID):
+        try:
+            return [
+                result.toDictionary() for result in Result.getByCompetitor(competitorID)
+            ]
+        except:
+            return None, 500
