@@ -1,3 +1,4 @@
+from backend.routes import result
 from typing import Optional, Union
 
 from .database import query, queryWithResult, queryWithResults
@@ -209,6 +210,7 @@ class Result:
         )
         return [Result(result) for result in databaseResult]
 
+    @staticmethod
     def deleteByEvent(eventId: str):
         query(
             """

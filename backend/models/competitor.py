@@ -28,3 +28,16 @@ competitorModel = Model(
         ),
     },
 )
+
+competitorMergeModel = Model(
+    "Competitor Merge",
+    {
+        "competitorKeep": fields.Integer(
+            description="The ID of the Competitor to Keep and Transfer Result TO",
+            example=7,
+        ),
+        "competitorMerge": fields.Integer(
+            description="The ID of the Competitior to Delete", example=9
+        ),
+    },
+)

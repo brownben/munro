@@ -114,6 +114,24 @@ class Competitor:
         return [Competitor(result) for result in databaseResult]
 
     @staticmethod
+    def merge(competitorKeep: int, competitorMerge: int):
+        query(
+            """
+            UPDATE results
+            SET competitor=%s
+            WHERE competitor=%s
+        """,
+            (competitorKeep, competitorMerge),
+        )
+        query(
+            """
+            DELETE FROM competitors
+            WHERE rowid=%s
+        """,
+            (competitorMerge,),
+        )
+
+    @staticmethod
     def deleteById(id: str):
         query(
             """

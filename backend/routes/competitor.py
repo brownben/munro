@@ -2,13 +2,14 @@ from flask_restx import Namespace, Resource
 
 from ..database import Competitor
 from .requireAuthentication import requireAuthentication
-from ..models.competitor import competitorModel
+from ..models.competitor import competitorModel, competitorMergeModel
 from ..models.result import eventResultModel
 from ..models.messages import createMessage, messageModel
 
 
 api = Namespace("Competitors", description="View and Manage Competitors")
 api.models[competitorModel.name] = competitorModel
+api.models[competitorMergeModel.name] = competitorMergeModel
 api.models[messageModel.name] = messageModel
 
 
@@ -92,3 +93,20 @@ class EventResultsRoute(Resource):
             ]
         except:
             return None, 500
+
+
+@api.route("/merge")
+class CompetitorMergeRoute(Resource):
+    @api.expect(competitorMergeModel, validate=True)
+    @api.marshal_with(messageModel)
+    @api.response(200, "Success - Competitors Merged")
+    @api.response(401, "Permission Denied - You are not Logged In")
+    @api.response(500, "Problem Connecting to the Database")
+    @requireAuthentication
+    def post(self):
+        try:
+            request = api.payload
+            Competitor.merge(request.competitorKeep, request.competitorMerge)
+            return createMessage("Competitors Merged Successfully", 200)
+        except:
+            return createMessage("Problem Merging Competitors", 500)
