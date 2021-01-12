@@ -16,7 +16,7 @@ interface League {
   numberOfEvents?: number
 }
 
-interface LeagueForm extends LeagueBase {
+interface LeagueForm extends League {
   courses: string
   oldName: string
 }
