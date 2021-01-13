@@ -45,8 +45,6 @@ if not app.debug:
             "connect-src": "'self' identitytoolkit.googleapis.com https://www.p.fne.com.au/",
         },
     )
-else:
-    from .developmentForwarding import forwardToVite
 
 # Register Routes + Initilize Database
 initializeDatabase()
@@ -61,9 +59,6 @@ api.add_namespace(searchRoutes, path="/search")
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path):
-    if app.debug:
-        return forwardToVite(path)
-
     return render_template("index.html")
 
 
