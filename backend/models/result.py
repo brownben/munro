@@ -9,7 +9,8 @@ eventResultModel = Model(
         ),
         "time": fields.Integer(description="Result Time in Seconds", example=202052),
         "position": fields.Raw(
-            description="The Position of the Result (1st, etc), blank string if not in results (incomplete)", example=1
+            description="The Position of the Result (1st, etc), blank string if not in results (incomplete)",
+            example=1,
         ),
         "points": fields.Integer(
             description="Points Assigned to the Result", example=99
@@ -29,6 +30,20 @@ eventResultModel = Model(
         ),
         "club": fields.String(
             description="Club of the Competitor", example="INT", default=""
+        ),
+    },
+)
+
+transferResultModel = Model(
+    "Transfer Result",
+    {
+        "result": fields.Integer(
+            description="The ID of the Result to transfer",
+            example=7,
+        ),
+        "competitor": fields.Integer(
+            description="The ID of the Competitior to associate the result to",
+            example=9,
         ),
     },
 )

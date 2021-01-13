@@ -33,7 +33,7 @@ competitorMergeModel = Model(
     "Competitor Merge",
     {
         "competitorKeep": fields.Integer(
-            description="The ID of the Competitor to Keep and Transfer Result TO",
+            description="The ID of the Competitor to Keep and Transfer Result To",
             example=7,
         ),
         "competitorMerge": fields.Integer(

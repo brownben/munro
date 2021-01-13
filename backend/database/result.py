@@ -1,4 +1,3 @@
-from backend.routes import result
 from typing import Optional, Union
 
 from .database import query, queryWithResult, queryWithResults
@@ -209,6 +208,17 @@ class Result:
         """
         )
         return [Result(result) for result in databaseResult]
+
+    @staticmethod
+    def transfer(competitor: int, result: int):
+        query(
+            """
+            UPDATE results
+            SET competitor=%s
+            WHERE rowid=%s
+            """,
+            (competitor, result),
+        )
 
     @staticmethod
     def deleteByEvent(eventId: str):
