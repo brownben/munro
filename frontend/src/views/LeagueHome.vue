@@ -209,7 +209,7 @@ const refreshDetails = async () => {
   await Promise.all([
     getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
       (eventDetails) => {
-        events.value = eventDetails
+        events.value = eventDetails ?? []
       }
     ),
     getLeague(routeParamsName).then((leagueDetails) => {
@@ -236,9 +236,8 @@ const deleteLeagueConfirmation = () => {
       .catch(() => false)
 }
 const leagueCourses = computed(() => {
-  const array = league.value?.courses.filter(
-    (course: string) => course !== 'Overall'
-  )
+  const array =
+    league.value?.courses.filter((course: string) => course !== 'Overall') ?? []
   if (array.length <= 1) return array.join(', ')
   else return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
 })
