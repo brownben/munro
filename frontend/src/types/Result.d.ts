@@ -22,13 +22,14 @@ interface LeagueResult {
   totalPoints: number
   position: number | ''
 
-  points: EventPoints[]
+  points: (EventPoints | null)[]
 }
 
 interface EventPoints {
   score: number | ''
   counting: boolean
   type: string
+  event: string
 }
 
 interface EventResultWithAgeGender extends EventResult {

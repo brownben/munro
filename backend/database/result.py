@@ -35,13 +35,13 @@ class Result:
     ageClass: Optional[str]
     club: Optional[str]
 
-    def __init__(self, event: Union[dict, list]):
-        if type(event) == dict:
-            for key in event:
-                self.setattr(key, event[key])
+    def __init__(self, result: Union[dict, list]):
+        if type(result) == dict:
+            for key in result:
+                self.setattr(key, result[key])
 
         else:
-            for (index, value) in enumerate(event):
+            for (index, value) in enumerate(result):
                 key = properties[index]
 
                 if not (hasattr(self, key) and getattr(self, key)):

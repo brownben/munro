@@ -1,15 +1,22 @@
 from flask_restx import Namespace, Resource
 
-from ..database import League, Event, Competitor
 from .requireAuthentication import requireAuthentication
+from ..database import League, Event, Competitor, LeagueResult
 from ..models.league import leagueModel
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.competitor import competitorModel
+from ..models.leagueResult import leagueResultModel, leagueResultModelWithCourse
 from ..models.messages import createMessage, messageModel
+from ..utils.helpers import sortByTotalPoints
+from ..utils.processResults import assignPosition
 
 
 api = Namespace("Leagues", description="View and Manage Leagues")
 api.models[leagueModel.name] = leagueModel
+api.models[eventModel.name] = eventModel
+api.models[eventModelWithUploadKey.name] = eventModelWithUploadKey
+api.models[competitorModel.name] = competitorModel
+api.models[eventModel.name] = eventModel
 api.models[messageModel.name] = messageModel
 
 
@@ -99,6 +106,47 @@ class LeagueEventsRoute(Resource):
     def get(self, name):
         try:
             return [event.toDictionary() for event in Event.getByLeague(name)]
+        except:
+            return [], 500
+
+
+@api.route("/<name>/results/Overall")
+@api.param("name", "League Name")
+class LeagueOverallResultsRoute(Resource):
+    @api.marshal_with(leagueResultModelWithCourse, as_list=True)
+    @api.response(200, "Success - List of Overall Results for the League")
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self, name):
+        try:
+            league = League.getByName(name)
+            events = Event.getByLeagueWithResults(name)
+            results = [
+                result.toDictionary(league, events)
+                for result in LeagueResult.getByLeague(name)
+            ]
+            sortedResults = sortByTotalPoints(results)
+            return assignPosition(sortedResults)
+        except:
+            return [], 500
+
+
+@api.route("/<name>/results/<course>")
+@api.param("name", "League Name")
+@api.param("course", "Course Name")
+class LeagueCourseResultsRoute(Resource):
+    @api.marshal_with(leagueResultModel, as_list=True)
+    @api.response(200, "Success - List of all Results for the Course")
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self, name, course):
+        try:
+            league = League.getByName(name)
+            events = Event.getByLeagueWithResults(name)
+            results = [
+                result.toDictionary(league, events)
+                for result in LeagueResult.getByCourse(name, course)
+            ]
+            sortedResults = sortByTotalPoints(results)
+            return assignPosition(sortedResults)
         except:
             return [], 500
 

@@ -70,9 +70,7 @@
                 @click="changeSortPreference(SortableProperties.name)"
               />
               <Heading
-                v-if="
-                  results?.[0]?.course && league?.leagueScoring === 'course'
-                "
+                v-if="results?.[0]?.course"
                 text="Course"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.course"
@@ -135,10 +133,7 @@
                   <span>{{ result.club }}</span>
                 </template>
               </Cell>
-              <Cell
-                v-if="result.course && league?.leagueScoring === 'course'"
-                show-after="sm"
-              >
+              <Cell v-if="result.course" show-after="sm">
                 {{ result.course }}
               </Cell>
               <Cell show-after="sm">{{ result.ageClass }}</Cell>
@@ -146,17 +141,17 @@
               <Cell>{{ result.totalPoints }}</Cell>
 
               <Cell
-                v-for="point of result.points"
-                :key="point.event"
+                v-for="(point, j) of result.points"
+                :key="j"
                 show-after="md"
                 :class="{
-                  'line-through': !point.counting,
+                  'line-through': !point?.counting,
                   'font-normal italic': ['manual', 'max', 'average'].includes(
-                    point.type
+                    point?.type
                   ),
                 }"
               >
-                {{ point.score }}
+                {{ point?.score }}
               </Cell>
 
               <template #expansion>
@@ -169,15 +164,15 @@
                   <span
                     class="inline-block w-4 pl-2 pr-4"
                     :class="{
-                      'line-through': !point.counting,
+                      'line-through': !point?.counting,
                       'font-normal italic': [
                         'manual',
                         'max',
                         'average',
-                      ].includes(point.type),
+                      ].includes(point?.type),
                     }"
                   >
-                    {{ point.score }}
+                    {{ point?.score }}
                   </span>
                 </p>
               </template>
