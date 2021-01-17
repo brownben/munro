@@ -48,7 +48,7 @@
         </div>
       </div>
     </main>
-    <AppFooter v-if="footer && !notFound" />
+    <AppFooter />
   </div>
 </template>
 <script setup lang="ts">
@@ -62,6 +62,5 @@ const props = defineProps({
   hasMobileSubTitle: { type: Boolean, default: false },
   gray: { type: Boolean, default: false },
   notFound: { type: Boolean, default: false },
-  footer: { type: Boolean, default: false },
 })
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Layout footer>
+  <Layout>
     <article
       class="col-span-2 pb-2 mx-auto mt-4 mb-auto prose lg:pb-4 lg:prose-lg"
     >

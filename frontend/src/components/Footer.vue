@@ -45,7 +45,7 @@
       <p class="block text-base text-gray-600 font-heading">
         Created By
         <a
-          href="https://brownben.github.io"
+          href="https://benbrown.dev"
           class="font-bold transition duration-300 text-main-600 hover:text-main-800 focus:text-main-800"
         >
           Ben Brown

@@ -271,8 +271,35 @@ class Event:
                 uploadKey
             FROM events
             WHERE league=%s
+            ORDER BY date ASC
             """,
             (league,),
+        )
+        return [Event(result) for result in databaseResult]
+
+    @staticmethod
+    def getByLeagueWithResults(league: str):
+        databaseResult = queryWithResults(
+            """
+            SELECT
+                id,
+                name,
+                date,
+                website,
+                organiser,
+                moreInformation,
+                league,
+                resultUploaded,
+                results,
+                winsplits,
+                routegadget,
+                userSubmittedResults,
+                uploadKey
+            FROM events
+            WHERE league=%s AND resultUploaded=%s
+            ORDER BY date ASC
+            """,
+            (league, True),
         )
         return [Event(result) for result in databaseResult]
 

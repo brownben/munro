@@ -5,7 +5,7 @@
 -->
 
 <template>
-  <Layout title="Latest Results" :footer="events && events.length > 0">
+  <Layout title="Latest Results">
     <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },

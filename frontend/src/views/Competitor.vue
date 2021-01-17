@@ -1,10 +1,5 @@
 <template>
-  <Layout
-    has-mobile-sub-title
-    gray
-    :not-found="!loading && !competitor?.name"
-    footer
-  >
+  <Layout has-mobile-sub-title gray :not-found="!loading && !competitor?.name">
     <Meta
       :title="`Munro - ${competitor?.name ?? ''} - Competitor`"
       :description="`Results for ${competitor?.name ?? ''} in the ${
