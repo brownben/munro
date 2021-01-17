@@ -3,7 +3,9 @@ from typing import Any, List
 from ..database import League, Competitor
 
 
-def matchResultsToCompetitors(results: List[dict], league: League) -> List[dict[str, Any]]:
+def matchResultsToCompetitors(
+    results: List[dict], league: League
+) -> List[dict[str, Any]]:
     competitors = Competitor.getByLeague(league.name)
 
     return [
