@@ -12,15 +12,14 @@
     />
 
     <template #title>
-      <h1 class="text-3xl font-bold leading-tight font-heading">
+      <h1 class="text-3xl font-bold leading-tight font-heading -mt-2">
         <router-link
           :to="'/leagues/' + event?.league"
-          class="text-xl md:text-3xl text-main-700"
+          class="text-xl text-main-700"
         >
           {{ event?.league || '' }}
         </router-link>
-        <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-        <span class="block text-4xl md:text-3xl md:inline-block">
+        <span class="block text-4xl">
           {{ event?.name || '' }}
         </span>
       </h1>
