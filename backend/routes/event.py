@@ -1,3 +1,4 @@
+from backend.utils.calculateResults import recalculateResults
 from flask_restx import Namespace, Resource
 
 from .requireAuthentication import requireAuthentication
@@ -137,6 +138,25 @@ class EventResultsRoute(Resource):
             return [result.toDictionary() for result in Result.getByEvent(eventId)]
         except:
             return None, 500
+
+
+@api.route("/<eventId>/results/recalculate")
+@api.param("eventId", "Event ID")
+class EventResultsRoute(Resource):
+    @api.marshal_with(messageModel)
+    @api.response(200, "Success - Results of Event Recalculated")
+    @api.response(401, "Permission Denied - You are not Logged In")
+    @api.response(500, "Problem Connecting to the Database")
+    @requireAuthentication
+    def post(self, eventId):
+        try:
+            event = Event.getById(eventId)
+            league = event.getLeague()
+            recalculateResults(event.id, league.scoringMethod)
+        except:
+            return createMessage(
+                "Error: Problem Recalculating Results - Please Try Again", 500
+            )
 
 
 @api.route("/latest-results")
