@@ -16,6 +16,7 @@ properties = [
     "ageClass",
     "club",
     "course",
+    "eventName",
 ]
 
 
@@ -53,6 +54,9 @@ class Result:
         if self.position == -1:
             self.position = ""
 
+        if not hasattr(self, "eventName"):
+            self.eventName = None
+
     def toDictionary(self):
         return {
             "id": self.id,
@@ -67,6 +71,7 @@ class Result:
             "name": self.name,
             "ageClass": self.ageClass,
             "club": self.club,
+            "eventName": self.eventName,
         }
 
     def createResult(self):
@@ -171,10 +176,12 @@ class Result:
                 competitors.name,
                 competitors.ageClass,
                 competitors.club,
-                competitors.course
-            FROM competitors, results
+                competitors.course,
+                events.name
+            FROM competitors, results, events
             WHERE
                 results.competitor=competitors.rowid
+                AND results.event=events.id
                 AND competitor=%s
                 AND COALESCE(results.type, '') <> 'hidden'
             ORDER BY events.date ASC

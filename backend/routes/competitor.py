@@ -5,11 +5,13 @@ from .requireAuthentication import requireAuthentication
 from ..models.competitor import competitorModel, competitorMergeModel
 from ..models.result import eventResultModel
 from ..models.messages import createMessage, messageModel
+from ..utils.helpers import toInt
 
 
 api = Namespace("Competitors", description="View and Manage Competitors")
 api.models[competitorModel.name] = competitorModel
 api.models[competitorMergeModel.name] = competitorMergeModel
+api.models[eventResultModel.name] = eventResultModel
 api.models[messageModel.name] = messageModel
 
 
@@ -48,7 +50,7 @@ class CompetitorRoute(Resource):
     @api.response(500, "Problem Connecting to the Database")
     def get(self, competitorId):
         try:
-            return Competitor.getById(competitorId).toDictionary()
+            return Competitor.getById(toInt(competitorId)).toDictionary()
         except:
             return None, 500
 
@@ -74,7 +76,7 @@ class CompetitorRoute(Resource):
     @requireAuthentication
     def delete(self, competitorId):
         try:
-            Competitor.deleteById(competitorId)
+            Competitor.deleteById(toInt(competitorId))
             return createMessage(f"Competitor was Deleted")
         except:
             return createMessage("Problem Connecting to the Database", 500)
@@ -86,10 +88,11 @@ class EventResultsRoute(Resource):
     @api.marshal_with(eventResultModel, as_list=True)
     @api.response(200, "Success - Results of the Competitor")
     @api.response(500, "Problem Connecting to the Database")
-    def get(self, competitorID):
+    def get(self, competitorId):
         try:
             return [
-                result.toDictionary() for result in Result.getByCompetitor(competitorID)
+                result.toDictionary()
+                for result in Result.getByCompetitor(toInt(competitorId))
             ]
         except:
             return None, 500

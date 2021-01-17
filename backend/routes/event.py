@@ -129,7 +129,7 @@ class EventRouteWithUploadKey(Resource):
 @api.route("/<eventId>/results")
 @api.param("eventId", "Event ID")
 class EventResultsRoute(Resource):
-    @api.marshal_with(eventResultModel, as_list=True)
+    @api.marshal_with(eventResultModel, as_list=True, skip_none=True)
     @api.response(200, "Success - Results of the Event")
     @api.response(500, "Problem Connecting to the Database")
     def get(self, eventId):

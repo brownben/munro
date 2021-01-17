@@ -20,6 +20,9 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Run Build
+        run: npm run build
+
   backend:
     name: Backend - Lint + Unit Tests
     runs-on: ubuntu-latest
@@ -43,7 +46,3 @@ jobs:
       - name: Lint
         run: black . --check --line-length 88
 
-      - name: Test
-        run: |
-          coverage run -m pytest
-          coverage report

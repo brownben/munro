@@ -63,7 +63,7 @@ def catch_all(path):
 
 
 @app.route("/api/<path:path>")
-def api_catch_all():
+def api_catch_all(path):
     return {}
 
 
