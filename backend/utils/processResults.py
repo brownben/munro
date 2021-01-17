@@ -1,6 +1,12 @@
 from heapq import nlargest
 from typing import List
 
+from ..database import league
+
+
+def getIndexOfLargestNPoints(points: List[int], number: int):
+    return nlargest(number, range(len(points)), points.__getitem__)
+
 
 def assignPosition(results: List[dict]):
     """ Assign 1st, 2nd, 3rd, etc based off total points """
@@ -23,5 +29,62 @@ def assignPosition(results: List[dict]):
     return results
 
 
-def getIndexOfLargestNPoints(points: List[int], number: int):
-    return nlargest(number, range(len(points)), points.__getitem__)
+def assignPositionMultipleCourses(results: List[dict]):
+    lastCourse = False
+    lastPosition = 0
+    lastTime = -1
+    numberTied = 1
+
+    for result in results:
+        if result["course"] != lastCourse:
+            lastPosition = 0
+            lastCourse = result["course"]
+            lastTime = -1
+            numberTied = 1
+
+        if result["time"] != lastTime:
+            lastTime = result["time"]
+            lastPosition += numberTied
+            numberTied = 0
+
+        if not result["incomplete"] and result["type"] != "hidden":
+            numberTied += 1
+            result["position"] = lastPosition
+
+        else:
+            result["position"] = -1
+
+    return results
+
+
+def getMatchingResults(results: List[dict], league: league) -> List[dict]:
+    return [
+        result
+        for result in results
+        if matchesClubRestriction(result["club"], league.clubRestriction)
+        and (matchesCourse(result, league.courses) or league.leagueScoring == "overall")
+    ]
+
+
+def matchesClubRestriction(result: dict, allowedClub: str) -> bool:
+    if allowedClub:
+        return result["club"] == allowedClub
+    else:
+        return True
+
+
+def matchesCourse(result: dict, courses: List[str]) -> bool:
+    upperCourses = [course.upper() for course in courses]
+    return result["course"].upper() in upperCourses
+
+
+def normaliseCourses(results: List[dict], courses: List[str]) -> List[dict]:
+    upperCourses = [course.upper() for course in courses]
+    resultsWithCoursesFixed = []
+
+    for result in results:
+        indexOfCourse = upperCourses.index(result["course"].upper())
+        result["course"] = courses[indexOfCourse]
+        resultsWithCoursesFixed.append(result)
+
+    return resultsWithCoursesFixed

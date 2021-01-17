@@ -202,6 +202,20 @@ class Event:
             ),
         )
 
+    def setResultUploaded(results: str, winsplits: str, routegadget: str):
+        query(
+            """
+            UPDATE events
+            SET
+                resultUploaded=%s,
+                results=%s,
+                winsplits=%s,
+                routegadget=%s
+            WHERE id=%s
+            """,
+            (True, results, winsplits, routegadget, self.id),
+        )
+
     @staticmethod
     def getAll():
         databaseResult = queryWithResults(

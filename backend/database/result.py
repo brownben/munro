@@ -74,7 +74,7 @@ class Result:
             "eventName": self.eventName,
         }
 
-    def createResult(self):
+    def create(self):
         if self.position == "":
             self.position = -1
 
@@ -101,6 +101,16 @@ class Result:
                 self.type,
                 self.course,
             ),
+        )
+
+    def updatePoints(self, points: int):
+        query(
+            """
+            UPDATE results
+            SET points=%s
+            WHERE rowid=%s
+            """,
+            (points, self.id),
         )
 
     @staticmethod
@@ -160,6 +170,36 @@ class Result:
         return [Result(result) for result in databaseResult]
 
     @staticmethod
+    def getDynamicResultsByLeague(league: str):
+        databaseResult = queryWithResults(
+            """
+            SELECT
+                results.time,
+                results.position,
+                results.points,
+                results.incomplete,
+                results.event,
+                results.competitor,
+                results.type,
+                results.course,
+                results.rowid,
+                competitors.name,
+                competitors.ageClass,
+                competitors.club,
+                competitors.course
+            FROM competitors, results
+            WHERE
+                results.competitor=competitors.rowid
+                AND competitor.league=%s
+                AND COALESCE(results.type, '') <> 'hidden'
+                AND results.type IS NOT NULL
+            ORDER BY competitors.course ASC, results.position ASC
+        """,
+            (league,),
+        )
+        return [Result(result) for result in databaseResult]
+
+    @staticmethod
     def getByCompetitor(competitor: int):
         databaseResult = queryWithResults(
             """
@@ -191,6 +231,25 @@ class Result:
         return [Result(result) for result in databaseResult]
 
     @staticmethod
+    def getNonDynamicPointsByCompetitor(competitor: int):
+        result = queryWithResult(
+            """
+            SELECT string_agg(results.points::text,';')
+            FROM results, competitors
+            WHERE
+                results.competitor=competitors.rowid
+                AND COALESCE(type,'') <> 'max'
+                AND COALESCE(type,'') <> 'average'
+                AND COALESCE(type,'') <> 'manual'
+                AND COALESCE(type,'') <> 'hidden'
+                AND competitors.rowid=%s
+            GROUP BY competitors.rowid
+            """,
+            (competitor,),
+        )
+        return [int(result) for result in result[0].split(";")]
+
+    @staticmethod
     def getAll():
         databaseResult = queryWithResults(
             """
@@ -215,6 +274,57 @@ class Result:
         """
         )
         return [Result(result) for result in databaseResult]
+
+    @staticmethod
+    def getByEventForRecalc(eventId: str):
+        databaseResult = queryWithResults(
+            """
+            SELECT
+                results.time,
+                results.position,
+                results.points,
+                results.incomplete,
+                results.event,
+                results.competitor,
+                results.type,
+                results.course,
+                results.rowid,
+                competitors.name,
+                competitors.ageClass,
+                competitors.club,
+                competitors.course
+            FROM competitors, results
+            WHERE
+                results.competitor=competitors.rowid
+                AND event=%s
+                AND COALESCE(type, '') <> 'manual'
+                AND COALESCE(type, '') <> 'max'
+                AND COALESCE(type, '') <> 'average'
+            ORDER BY competitors.course ASC, results.time ASC
+            """,
+            (eventId,),
+        )
+        return [Result(result).toDictionary() for result in databaseResult]
+
+    def updateFromRecalc(data: dict):
+        query(
+            """
+            UPDATE results
+            SET
+                time=%s,
+                position=%s,
+                points=%s,
+                incomplete=%s
+            WHERE rowid=%s
+            """,
+            (
+                data["time"],
+                data["position"],
+                data["points"],
+                data["incomplete"],
+                data["rowid"],
+            ),
+        )
 
     @staticmethod
     def transfer(competitor: int, result: int):
