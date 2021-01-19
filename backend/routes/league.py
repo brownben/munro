@@ -77,14 +77,14 @@ class LeagueRoute(Resource):
     @api.response(403, "A League with that Name Already Exists")
     @api.response(500, "Problem Connecting to the Database")
     @requireAuthentication
-    def put(self, oldName):
+    def put(self, name):
         try:
             league = League(api.payload)
 
-            if league.name != oldName and League.exists(league.name):
+            if league.name != name and League.exists(league.name):
                 return createMessage(f"League - {league.name} already Exists", 403)
 
-            league.update()
+            league.update(name)
             return createMessage(f"League - {league.name} was Updated", 201)
 
         except:

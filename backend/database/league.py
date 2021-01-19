@@ -8,7 +8,7 @@ properties = [
     "moreInformation",
     "coordinator",
     "website",
-    "courses",
+    "coursesTemp",
     "leagueScoring",
     "scoringMethod",
     "numberOfCountingEvents",
@@ -28,6 +28,7 @@ class League:
     website: str
 
     # Scoring Options
+    coursesTemp: str
     courses: List[str]
     leagueScoring: str
     scoringMethod: str
@@ -46,6 +47,9 @@ class League:
         else:
             for (index, key) in enumerate(properties):
                 setattr(self, key, league[index])
+
+        if hasattr(self, "coursesTemp"):
+            self.courses = self.coursesTemp.split(",")
 
     def toDictionary(self):
         return {
@@ -89,7 +93,7 @@ class League:
                 self.moreInformation,
                 self.coordinator,
                 self.website,
-                self.courses,
+                ",".join(self.courses),
                 self.leagueScoring,
                 self.scoringMethod,
                 self.numberOfCountingEvents,
@@ -122,7 +126,7 @@ class League:
                 self.moreInformation,
                 self.coordinator,
                 self.website,
-                self.courses,
+                ",".join(self.courses),
                 self.leagueScoring,
                 self.scoringMethod,
                 self.numberOfCountingEvents,
