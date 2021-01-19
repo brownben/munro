@@ -1,8 +1,7 @@
 from collections import defaultdict
 import statistics
 
-from typing import List, Literal, Union
-from typing_extensions import TypedDict
+from typing import Dict, List, Literal, Union, TypedDict
 
 
 def isValidResult(result: dict) -> bool:
@@ -29,7 +28,7 @@ CourseStatistics = TypedDict(
 )
 
 
-def calculateCourseStatistics(results: List[dict]) -> dict[str, CourseStatistics]:
+def calculateCourseStatistics(results: List[dict]) -> Dict[str, CourseStatistics]:
     courseTimes = defaultdict(list)
 
     for result in results:
@@ -45,7 +44,7 @@ def calculateCourseStatistics(results: List[dict]) -> dict[str, CourseStatistics
     }
 
 
-def calculateCourseTop3Average(data) -> dict[str, float]:
+def calculateCourseTop3Average(data) -> Dict[str, float]:
     courseTimes = defaultdict(list)
 
     for result in data:
@@ -60,7 +59,7 @@ def calculateCourseTop3Average(data) -> dict[str, float]:
 
 # Course/ Age Class Multipliers
 
-multipliers: dict[str, dict[str, int]] = {
+multipliers: Dict[str, Dict[str, int]] = {
     "WHITE": {
         "WHITE": 1000,
         "YELLOW": 1200,
@@ -216,7 +215,7 @@ def toAge(num: str) -> int:
         return 21
 
 
-def getStandardCourseForAgeClass(age: int, gender: Union[Literal["W"], Literal["M"]]):
+def getStandardCourseForAgeClass(age: int, gender: str):
     def maleAgeClasses(age: int):
         if age <= 10:
             return "YELLOW"
@@ -278,4 +277,6 @@ def getMultiplier(ageClass: str, courseRan: str) -> int:
 
     standardCourse = getStandardCourseForAgeClass(age, gender)
 
-    return multipliers.get(standardCourse, "BROWN").get(courseRan.upper(), 1000)
+    return multipliers.get(standardCourse, multipliers["BROWN"]).get(
+        courseRan.upper(), 1000
+    )

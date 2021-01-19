@@ -1,5 +1,6 @@
-from typing import Optional, Union
+from typing import Literal, Optional, Union
 
+from .event import Event
 from .database import query, queryWithResult, queryWithResults
 
 properties = [
@@ -21,8 +22,9 @@ properties = [
 
 
 class Result:
+    id: int
     time: int
-    position: int
+    position: Union[int, Literal[""]]
     points: int
     incomplete: bool
     type: str
@@ -39,7 +41,7 @@ class Result:
     def __init__(self, result: Union[dict, list]):
         if type(result) == dict:
             for key in result:
-                self.setattr(key, result[key])
+                setattr(self, key, result[key])
 
         else:
             for (index, value) in enumerate(result):
@@ -103,14 +105,17 @@ class Result:
             ),
         )
 
-    def updatePoints(self, points: int):
+    @staticmethod
+    def updatePoints(resultId: int, points: int):
         query(
             """
             UPDATE results
             SET points=%s
             WHERE rowid=%s
             """,
-            (points, self.id),
+            (points, resultId),
+        )
+
         )
 
     @staticmethod
@@ -306,6 +311,7 @@ class Result:
         )
         return [Result(result).toDictionary() for result in databaseResult]
 
+    @staticmethod
     def updateFromRecalc(data: dict):
         query(
             """

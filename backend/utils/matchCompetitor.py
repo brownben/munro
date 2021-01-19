@@ -1,15 +1,15 @@
-from typing import Any, List
+from typing import Any, List, Dict
 
 from ..database import League, Competitor
 
 
 def matchResultsToCompetitors(
     results: List[dict], league: League
-) -> List[dict[str, Any]]:
+) -> List[Dict[str, Any]]:
     competitors = Competitor.getByLeague(league.name)
 
     return [
-        {**result, "competitor": matchResultToCompetitor(result, competitors)}
+        {**result, "competitor": matchResultToCompetitor(result, competitors, league)}
         for result in results
     ]
 
@@ -39,24 +39,21 @@ def nameToInitial(name: str) -> str:
 
 
 def match(resultProperty: str, competitorProperty: str) -> bool:
-    return resultProperty.strip().upper() == competitorProperty.strip.upper()
+    return resultProperty.strip().upper() == competitorProperty.strip().upper()
 
 
 def primaryMatch(result: dict, competitor: Competitor, league: League) -> bool:
     return match(result["name"], competitor.name) and (
-        competitor.course == competitor["course"] or league.leagueScoring == "overall"
+        competitor.course == result["course"] or league.leagueScoring == "overall"
     )
 
 
 def secondaryMatch(result: dict, competitor: Competitor, league: League) -> bool:
     return (
         match(nameToInitial(competitor.name), nameToInitial(result["name"]))
+        and (competitor.course == result["course"] or league.leagueScoring == "overall")
         and (
-            competitor.course == competitor["course"]
-            or league.leagueScoring == "overall"
-        )
-        and (
-            match(competitor.ageClass, competitor["ageClass"])
-            or match(competitor.club, competitor["club"])
+            match(competitor.ageClass, result["ageClass"])
+            or match(competitor.club, result["club"])
         )
     )

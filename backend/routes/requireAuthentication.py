@@ -9,7 +9,7 @@ from ..models.messages import createMessage
 
 
 def requireAuthentication(func):
-    # Check login before allowing user to access API
+    'Check login before allowing user to access API'
     @wraps(func)
     def decorator(*args, **kwargs):
         id_token = request.cookies.get("token")

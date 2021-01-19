@@ -1,4 +1,4 @@
-from typing import Any, Callable, List
+from typing import Any, Callable, List, Dict, Optional
 
 from .scoringHelpers import (
     occuracesOfPosition,
@@ -102,10 +102,10 @@ def getScoringMethod(
     elif "file" in leagueScoringMethod:
         return lambda result: result.get("file_points") or 0
     else:
-        return lambda: 0
+        return lambda result: 0
 
 
-def assignPoints(results: List[dict], leagueScoringMethod: str) -> List[dict[str, Any]]:
-    getScore = getScoringMethod(leagueScoringMethod)
+def assignPoints(results: List[dict], leagueScoringMethod: str) -> List[Dict[str, Any]]:
+    getScore = getScoringMethod(leagueScoringMethod, results)
 
     return [{**result, "points": getScore(result)} for result in results]

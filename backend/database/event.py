@@ -1,6 +1,6 @@
 import os
 import base64
-from typing import Union
+from typing import Optional, Union
 
 from .database import query, queryWithResult, queryWithResults
 from .league import League
@@ -37,6 +37,7 @@ class Event:
     website: str
     organiser: str
     moreInformation: str
+    league: Optional[str]  # from initilization
     leagueName: str
 
     # results
@@ -51,11 +52,14 @@ class Event:
     def __init__(self, event: Union[dict, list]):
         if type(event) == dict:
             for key in event:
-                self.setattr(key, event[key])
+                setattr(self, key, event[key])
 
         else:
             for (index, key) in enumerate(properties):
                 setattr(self, key, event[index])
+
+        if hasattr(self, "league") and self.league:
+            self.leagueName = self.league
 
     def toDictionary(self):
         return {
@@ -91,7 +95,7 @@ class Event:
         }
 
     def getEventId(self):
-        return (self.league + self.name + self.date).replace(" ", "")
+        return (self.leagueName + self.name + self.date).replace(" ", "")
 
     def getLeague(self):
         return League.getByName(self.leagueName)
@@ -114,41 +118,6 @@ class Event:
                 userSubmittedResults,
                 uploadKey
             ) VALUES ()
-            """,
-            (
-                self.getEventId(),
-                self.name,
-                self.date,
-                self.website,
-                self.organiser,
-                self.moreInformation,
-                self.league,
-                self.resultUploaded,
-                self.results,
-                self.winsplits,
-                self.routegadget,
-                self.userSubmittedResults,
-                generateUploadKey(),
-            ),
-        )
-
-    def create(self):
-        query(
-            """
-            INSERT INTO events (
-                id,
-                name,
-                date,
-                website,
-                organiser,
-                moreInformation,
-                league,
-                resultUploaded,
-                results,
-                winsplits,
-                routegadget,
-                userSubmittedResults,
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 self.getEventId(),
@@ -192,7 +161,7 @@ class Event:
                 self.website,
                 self.organiser,
                 self.moreInformation,
-                self.league,
+                self.leagueName,
                 self.resultUploaded,
                 self.results,
                 self.winsplits,
@@ -202,7 +171,7 @@ class Event:
             ),
         )
 
-    def setResultUploaded(results: str, winsplits: str, routegadget: str):
+    def setResultUploaded(self, results: str, winsplits: str, routegadget: str):
         query(
             """
             UPDATE events

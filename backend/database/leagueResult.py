@@ -1,4 +1,4 @@
-from typing import List, Tuple, Union
+from typing import List, Optional, Union
 
 from .event import Event
 from .league import League
@@ -18,7 +18,7 @@ class LeagueResult:
     events: List[str]
     points: List[int]
     types: List[str]
-    course: str
+    course: Optional[str]
 
     def __init__(self, result: Union[dict, list]):
         for (index, value) in enumerate(result):

@@ -5,7 +5,11 @@ from ..database import League, Event, Competitor, LeagueResult
 from ..models.league import leagueModel
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.competitor import competitorModel
-from ..models.leagueResult import leagueResultModel, leagueResultModelWithCourse
+from ..models.leagueResult import (
+    leagueResultModel,
+    leagueResultModelWithCourse,
+    pointsModel,
+)
 from ..models.messages import createMessage, messageModel
 from ..utils.helpers import sortByTotalPoints
 from ..utils.processResults import assignPosition
@@ -16,7 +20,9 @@ api.models[leagueModel.name] = leagueModel
 api.models[eventModel.name] = eventModel
 api.models[eventModelWithUploadKey.name] = eventModelWithUploadKey
 api.models[competitorModel.name] = competitorModel
-api.models[eventModel.name] = eventModel
+api.models[pointsModel.name] = pointsModel
+api.models[leagueResultModel.name] = leagueResultModel
+api.models[leagueResultModelWithCourse.name] = leagueResultModelWithCourse
 api.models[messageModel.name] = messageModel
 
 
@@ -170,7 +176,7 @@ class LeagueEventsRouteWithUploadKey(Resource):
 
 @api.route("/<name>/competitors")
 @api.param("name", "League Name")
-class LeagueEventsRoute(Resource):
+class LeagueCompetitorsRoute(Resource):
     @api.marshal_with(competitorModel, as_list=True)
     @api.response(200, "Success - List of all Competitors in a League")
     @api.response(500, "Problem Connecting to the Database")

@@ -142,7 +142,7 @@ class EventResultsRoute(Resource):
 
 @api.route("/<eventId>/results/recalculate")
 @api.param("eventId", "Event ID")
-class EventResultsRoute(Resource):
+class EventResultsRecalculateRoute(Resource):
     @api.marshal_with(messageModel)
     @api.response(200, "Success - Results of Event Recalculated")
     @api.response(401, "Permission Denied - You are not Logged In")

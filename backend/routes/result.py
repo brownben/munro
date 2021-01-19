@@ -1,13 +1,15 @@
 from flask_restx import Namespace, Resource
 
-from ..database import Result
 from .requireAuthentication import requireAuthentication
-from ..models.result import eventResultModel, transferResultModel
+from ..database import Result
+from ..models.result import eventResultModel, transferResultModel, updateResultModel
 from ..models.messages import createMessage, messageModel
+from ..utils.helpers import toInt
 
 api = Namespace("Results", description="View and Manage Results")
 api.models[eventResultModel.name] = eventResultModel
 api.models[transferResultModel.name] = transferResultModel
+api.models[updateResultModel.name] = updateResultModel
 api.models[messageModel.name] = messageModel
 
 
@@ -40,7 +42,7 @@ class ResultRoute(Resource):
 class TransferResultRoute(Resource):
     @api.expect(transferResultModel, validate=True)
     @api.marshal_with(messageModel)
-    @api.response(200, "Success - Competitors Merged")
+    @api.response(200, "Success - Result Transfered")
     @api.response(401, "Permission Denied - You are not Logged In")
     @api.response(500, "Problem Connecting to the Database")
     @requireAuthentication

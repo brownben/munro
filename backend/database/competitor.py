@@ -15,7 +15,7 @@ class Competitor:
     def __init__(self, league: Union[dict, list]):
         if type(league) == dict:
             for key in league:
-                self.setattr(key, league[key])
+                setattr(self, key, league[key])
 
         else:
             for (index, key) in enumerate(properties):
@@ -47,7 +47,7 @@ class Competitor:
         )
         return databaseResult[0]
 
-    def update(self) -> int:
+    def update(self):
         query(
             """
             UPDATE competitors SET

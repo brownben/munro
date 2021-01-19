@@ -1,7 +1,7 @@
 from typing import List
 
 
-def toInt(integer):
+def toInt(integer: str) -> int:
     if integer == "":
         return 0
     return int(integer)

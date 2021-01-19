@@ -41,13 +41,11 @@ class League:
     def __init__(self, league: Union[dict, list]):
         if type(league) == dict:
             for key in league:
-                self.setattr(key, league[key])
+                setattr(self, key, league[key])
 
         else:
             for (index, key) in enumerate(properties):
                 setattr(self, key, league[index])
-
-        self.courses = self.courses.split(",")
 
     def toDictionary(self):
         return {

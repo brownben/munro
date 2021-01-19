@@ -1,7 +1,7 @@
 from heapq import nlargest
 from typing import List
 
-from ..database import league
+from ..database import League
 
 
 def getIndexOfLargestNPoints(points: List[int], number: int):
@@ -30,34 +30,33 @@ def assignPosition(results: List[dict]):
 
 
 def assignPositionMultipleCourses(results: List[dict]):
-    lastCourse = False
+    position = 0
     lastPosition = 0
+    lastCourse = False
     lastTime = -1
-    numberTied = 1
 
     for result in results:
         if result["course"] != lastCourse:
+            position = 0
             lastPosition = 0
-            lastCourse = result["course"]
             lastTime = -1
-            numberTied = 1
+            lastCourse = result["course"]
 
-        if result["time"] != lastTime:
-            lastTime = result["time"]
-            lastPosition += numberTied
-            numberTied = 0
-
-        if not result["incomplete"] and result["type"] != "hidden":
-            numberTied += 1
-            result["position"] = lastPosition
-
-        else:
+        if result["incomplete"] or result["type"] == "hidden":
             result["position"] = -1
+        elif result["time"] == lastTime:
+            result["position"] = lastPosition
+            position += 1
+        else:
+            position += 1
+            lastPosition = position
+            result["position"] = position
+            lastTime = result["time"]
 
     return results
 
 
-def getMatchingResults(results: List[dict], league: league) -> List[dict]:
+def getMatchingResults(results: List[dict], league: League) -> List[dict]:
     return [
         result
         for result in results
