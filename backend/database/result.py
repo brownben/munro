@@ -116,7 +116,29 @@ class Result:
             (points, resultId),
         )
 
+    @staticmethod
+    def updateIncomplete(resultId: int, incomplete: bool):
+        query(
+            """
+            UPDATE results
+            SET incomplete=%s
+            WHERE rowid=%s
+            """,
+            (incomplete, resultId),
         )
+
+    def updateType(self, type: str):
+        query(
+            """
+            UPDATE results
+            SET type=%s
+            WHERE rowid=%s
+            """,
+            (type, self.id),
+        )
+
+    def getEvent(self):
+        return Event.getById(self.event)
 
     @staticmethod
     def getById(rowid: int):

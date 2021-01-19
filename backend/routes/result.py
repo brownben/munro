@@ -4,6 +4,7 @@ from .requireAuthentication import requireAuthentication
 from ..database import Result
 from ..models.result import eventResultModel, transferResultModel, updateResultModel
 from ..models.messages import createMessage, messageModel
+from ..utils.calculateResults import recalculateResults
 from ..utils.helpers import toInt
 
 api = Namespace("Results", description="View and Manage Results")
@@ -33,9 +34,33 @@ class ResultRoute(Resource):
     @api.response(500, "Problem Connecting to the Database")
     def get(self, resultId):
         try:
-            return Result.getById(resultId).toDictionary()
+            return Result.getById(toInt(resultId)).toDictionary()
         except:
             return None, 500
+
+    @api.expect(transferResultModel, validate=True)
+    @api.marshal_with(messageModel)
+    @api.response(200, "Success - Result Updated")
+    @api.response(401, "Permission Denied - You are not Logged In")
+    @api.response(500, "Problem Connecting to the Database")
+    @requireAuthentication
+    def put(self, resultId):
+        try:
+            request = api.payload
+
+            result = Result.getById(toInt(resultId))
+            event = result.getEvent()
+            league = event.getLeague()
+
+            if request["type"]:
+                result.updateType(request["type"])
+            else:
+                result.updateIncomplete(request["incomplete"])
+
+            recalculateResults(event.id, league.scoringMethod)
+            return createMessage("Result Updated", 200)
+        except:
+            return createMessage("Problem Updating Result", 500)
 
 
 @api.route("/transfer")

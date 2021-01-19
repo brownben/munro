@@ -51,3 +51,15 @@ transferResultModel = Model(
         ),
     },
 )
+
+
+updateResultModel = Model(
+    "Update Result",
+    {
+        "incomplete": fields.Boolean(
+            description="Result is Non-Competitive, Mispunched or Disqualified",
+            example=False,
+        ),
+        "type": fields.String(description="The Type of Result", default=None),
+    },
+)
