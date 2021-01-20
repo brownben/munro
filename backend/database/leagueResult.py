@@ -3,7 +3,6 @@ from typing import List, Optional, Union
 from .event import Event
 from .league import League
 from .database import queryWithResults
-from ..utils.helpers import toInt
 from ..utils.processResults import getIndexOfLargestNPoints
 
 
@@ -29,7 +28,7 @@ class LeagueResult:
     def toDictionary(self, league: League, events: List[Event]):
         numberOfCountingEvents = league.numberOfCountingEvents
         largestPoints = getIndexOfLargestNPoints(self.points, numberOfCountingEvents)
-        pointsTotal = sum([toInt(self.points[point]) for point in largestPoints])
+        pointsTotal = sum([self.points[point] for point in largestPoints])
 
         results = [
             (

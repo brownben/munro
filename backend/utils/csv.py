@@ -38,6 +38,8 @@ def checkHeader(value: str) -> Union[str, None]:
         if value.upper() in expectedValues:
             return mappedValue
 
+    return None
+
 
 def getHeaderLocations(firstRow: List[str]) -> Dict[str, int]:
     locations = {}

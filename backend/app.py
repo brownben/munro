@@ -1,4 +1,4 @@
-from typing import Text
+from typing import Dict, Text
 from flask import (
     Flask,
     Blueprint,
@@ -60,12 +60,12 @@ api.add_namespace(searchRoutes, path="/search")
 # Serve app files
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def catch_all(path) -> Text:
+def catch_all(path: str) -> Text:
     return render_template("index.html")
 
 
 @app.route("/api/<path:path>")
-def api_catch_all(path) -> dict:
+def api_catch_all(path: str) -> Dict:
     return {}
 
 

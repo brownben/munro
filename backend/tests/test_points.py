@@ -1,4 +1,4 @@
-from typing import List
+from typing import Dict, List
 from ..utils.points import assignPoints
 
 
@@ -88,16 +88,19 @@ class Test_PositionBasedPoints99WithDraw:
         assert assignPoints(results, "position99average") == output
 
 
+def listToRecord(l: List[int]) -> List[Dict[str, int]]:
+    return [{"file_point": item} for item in l]
+
+
+def listToRecordWithPoints(l: List[int]) -> List[Dict[str, int]]:
+    return [{"file_point": item, "points": 0} for item in l]
+
+
 class Test_FileBasedPoints:
     def test_emptyDataSet(self) -> None:
         assert assignFileBasedPoints([]) == []
 
     def test_noFilePoints(self) -> None:
-        listToRecord = lambda l: [{"file_point": item} for item in l]
-        listToRecordWithPoints = lambda l: [
-            {"file_point": item, "points": 0} for item in l
-        ]
-
         assert assignFileBasedPoints(listToRecord([0])) == listToRecordWithPoints([0])
         assert assignFileBasedPoints(listToRecord([1])) == listToRecordWithPoints([1])
         assert assignFileBasedPoints(listToRecord([77])) == listToRecordWithPoints([77])
@@ -106,11 +109,6 @@ class Test_FileBasedPoints:
         )
 
     def test_withFilePoints(self) -> None:
-        listToRecord = lambda l: [{"file_points": item} for item in l]
-        listToRecordWithPoints = lambda l: [
-            {"file_points": item, "points": item} for item in l
-        ]
-
         assert assignFileBasedPoints(listToRecord([0])) == listToRecordWithPoints([0])
         assert assignFileBasedPoints(listToRecord([1])) == listToRecordWithPoints([1])
         assert assignFileBasedPoints(listToRecord([77])) == listToRecordWithPoints([77])
