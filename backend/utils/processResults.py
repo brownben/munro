@@ -1,7 +1,7 @@
 from heapq import nlargest
 from typing import List
 
-from ..database import League
+from ..database.league import League
 
 
 def getIndexOfLargestNPoints(points: List[int], number: int):

@@ -10,7 +10,7 @@ from flask_cors import CORS
 from flask_talisman import Talisman
 from flask_restx import Api
 
-from .database import setup as initializeDatabase
+from .database.initialize import setup as initializeDatabase
 
 from .routes.league import api as leagueRoutes
 from .routes.event import api as eventRoutes

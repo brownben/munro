@@ -1,7 +1,10 @@
 from flask_restx import Namespace, Resource
 
 from .requireAuthentication import requireAuthentication
-from ..database import League, Event, Competitor, LeagueResult
+from ..database.league import League
+from ..database.event import Event
+from ..database.competitor import Competitor
+from ..database.leagueResult import LeagueResult
 from ..models.league import leagueModel
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.competitor import competitorModel

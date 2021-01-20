@@ -1,7 +1,8 @@
 from flask_restx import Namespace, Resource
 
-from ..database import Competitor, Result
 from .requireAuthentication import requireAuthentication
+from ..database.result import Result
+from ..database.competitor import Competitor
 from ..models.competitor import competitorModel, competitorMergeModel
 from ..models.result import eventResultModel
 from ..models.messages import createMessage, messageModel

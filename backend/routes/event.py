@@ -2,7 +2,8 @@ from backend.utils.calculateResults import recalculateResults
 from flask_restx import Namespace, Resource
 
 from .requireAuthentication import requireAuthentication
-from ..database import Event, Result
+from ..database.event import Event
+from ..database.result import Result
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.result import eventResultModel
 from ..models.messages import createMessage, messageModel

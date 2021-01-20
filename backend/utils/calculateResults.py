@@ -1,6 +1,7 @@
 from .processResults import assignPositionMultipleCourses
 from .points import assignPoints
-from ..database import League, Result
+from ..database.league import League
+from ..database.result import Result
 
 
 def calculateDynamicPoints(league: League):

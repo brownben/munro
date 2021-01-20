@@ -1,6 +1,8 @@
 from flask_restx import Namespace, Resource
 
-from ..database import Event, League, Result
+from ..database.league import League
+from ..database.event import Event
+from ..database.result import Result
 from ..models.upload import uploadFileModel
 from ..models.messages import createMessage, messageModel
 from ..utils.csv import (
@@ -11,6 +13,7 @@ from ..utils.csv import (
 )
 from ..utils.processResults import getMatchingResults, normaliseCourses
 from ..utils.matchCompetitor import matchResultsToCompetitors
+from ..utils.calculateResults import calculateDynamicPoints
 from ..utils.points import assignPoints
 from ..utils.helpers import sortByTime
 

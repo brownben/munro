@@ -1,6 +1,7 @@
 from typing import Any, List, Dict
 
-from ..database import League, Competitor
+from ..database.league import League
+from ..database.competitor import Competitor
 
 
 def matchResultsToCompetitors(

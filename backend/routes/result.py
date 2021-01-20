@@ -1,7 +1,7 @@
 from flask_restx import Namespace, Resource
 
 from .requireAuthentication import requireAuthentication
-from ..database import Result
+from ..database.result import Result
 from ..models.result import eventResultModel, transferResultModel, updateResultModel
 from ..models.messages import createMessage, messageModel
 from ..utils.calculateResults import recalculateResults

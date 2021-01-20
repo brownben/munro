@@ -1,7 +1,7 @@
-from typing import Any, Callable, List, Tuple, Union
+from typing import Any, Callable, List, Tuple
 
 from .helpers import toSeconds
-from ..database import League
+from ..database.league import League
 
 
 expectedHeaders: List[Tuple[List[str], str]] = [

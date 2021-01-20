@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource
 
-from ..database import Search
+from ..database.search import Search
 from ..models.search import searchModel
 
 
