@@ -1,5 +1,6 @@
-from typing import List
+from typing import List, Dict, Any
 
+Result = Dict[str, Any]
 
 def toInt(integer: str) -> int:
     if integer == "":
@@ -7,11 +8,11 @@ def toInt(integer: str) -> int:
     return int(integer)
 
 
-def sortByTime(results: List[dict]) -> List[dict]:
+def sortByTime(results: List[Result]) -> List[Result]:
     return sorted(results, key=lambda x: x["time"], reverse=True)
 
 
-def sortByTotalPoints(results: List[dict]) -> List[dict]:
+def sortByTotalPoints(results: List[Result]) -> List[Result]:
     return sorted(results, key=lambda x: x["totalPoints"], reverse=True)
 
 

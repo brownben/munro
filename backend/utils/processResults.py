@@ -1,14 +1,16 @@
 from heapq import nlargest
-from typing import List
+from typing import Any, List, Dict
 
 from ..database.league import League
 
+Result = Dict[str, Any]
 
-def getIndexOfLargestNPoints(points: List[int], number: int):
+
+def getIndexOfLargestNPoints(points: List[int], number: int) -> List[int]:
     return nlargest(number, range(len(points)), points.__getitem__)
 
 
-def assignPosition(results: List[dict]):
+def assignPosition(results: List[Result]) -> List[Result]:
     """ Assign 1st, 2nd, 3rd, etc based off total points """
 
     lastPosition = 0
@@ -29,7 +31,7 @@ def assignPosition(results: List[dict]):
     return results
 
 
-def assignPositionMultipleCourses(results: List[dict]):
+def assignPositionMultipleCourses(results: List[Result]) -> List[Result]:
     position = 0
     lastPosition = 0
     lastCourse = False
@@ -56,7 +58,7 @@ def assignPositionMultipleCourses(results: List[dict]):
     return results
 
 
-def getMatchingResults(results: List[dict], league: League) -> List[dict]:
+def getMatchingResults(results: List[Result], league: League) -> List[Result]:
     return [
         result
         for result in results
@@ -65,19 +67,19 @@ def getMatchingResults(results: List[dict], league: League) -> List[dict]:
     ]
 
 
-def matchesClubRestriction(result: dict, allowedClub: str) -> bool:
+def matchesClubRestriction(result: Result, allowedClub: str) -> bool:
     if allowedClub:
         return result["club"] == allowedClub
     else:
         return True
 
 
-def matchesCourse(result: dict, courses: List[str]) -> bool:
+def matchesCourse(result: Result, courses: List[str]) -> bool:
     upperCourses = [course.upper() for course in courses]
     return result["course"].upper() in upperCourses
 
 
-def normaliseCourses(results: List[dict], courses: List[str]) -> List[dict]:
+def normaliseCourses(results: List[Result], courses: List[str]) -> List[Result]:
     upperCourses = [course.upper() for course in courses]
     resultsWithCoursesFixed = []
 

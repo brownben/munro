@@ -1,9 +1,11 @@
+from typing import Text
 from flask import (
     Flask,
     Blueprint,
     request,
     render_template,
     send_from_directory,
+    wrappers,
 )
 from flask_compress import Compress
 from flask_cors import CORS
@@ -58,19 +60,19 @@ api.add_namespace(searchRoutes, path="/search")
 # Serve app files
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def catch_all(path):
+def catch_all(path) -> Text:
     return render_template("index.html")
 
 
 @app.route("/api/<path:path>")
-def api_catch_all(path):
+def api_catch_all(path) -> dict:
     return {}
 
 
 @app.route("/robots.txt")
 @app.route("/manifest.json")
 @app.route("/service-worker.js")
-def static_from_root():
+def static_from_root() -> wrappers.Response:
     return send_from_directory(app.static_folder, request.path[1:], cache_timeout=0)
 
 

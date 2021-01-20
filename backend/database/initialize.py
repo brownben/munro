@@ -72,7 +72,7 @@ setupTRGMExtension = "CREATE EXTENSION IF NOT EXISTS pg_trgm"
 setupFuzzyExtension = "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch "
 
 
-def setup():
+def setup() -> None:
     query(setupLeagues)
     query(setupEvents)
     query(setupCompetitors)

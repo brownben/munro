@@ -1,4 +1,4 @@
-from typing import Any, Callable, List, Tuple
+from typing import Any, Callable, Dict, List, Tuple, Union
 
 from .helpers import toSeconds
 from ..database.league import League
@@ -33,13 +33,13 @@ def splitFile(rawFile: str) -> List[List[str]]:
     return [row.split(separator) for row in rows]
 
 
-def checkHeader(value: str):
+def checkHeader(value: str) -> Union[str, None]:
     for expectedValues, mappedValue in expectedHeaders:
         if value.upper() in expectedValues:
             return mappedValue
 
 
-def getHeaderLocations(firstRow: List[str]):
+def getHeaderLocations(firstRow: List[str]) -> Dict[str, int]:
     locations = {}
 
     for index, value in enumerate(firstRow):
@@ -50,7 +50,7 @@ def getHeaderLocations(firstRow: List[str]):
     return locations
 
 
-def allHeadersArePresent(locations):
+def allHeadersArePresent(locations) -> bool:
     hasNameAndSurname = "firstName" in locations and "surname" in locations
     hasName = "name" in locations
     hasOtherRequiredHeaders = all(
@@ -63,8 +63,8 @@ def allHeadersArePresent(locations):
         return False
 
 
-def createGetValue(headerLocations: dict) -> Callable[[List[str], str], Any]:
-    def getValue(row: List[str], item: str):
+def createGetValue(headerLocations: Dict[str, int]) -> Callable[[List[str], str], Any]:
+    def getValue(row: List[str], item: str) -> str:
         itemPosition = headerLocations.get(item, False)
 
         if itemPosition:
@@ -79,8 +79,8 @@ def createGetValue(headerLocations: dict) -> Callable[[List[str], str], Any]:
 
 
 def parseFileToDictionaries(
-    data: List[List[str]], headerLocations: dict, league: League
-):
+    data: List[List[str]], headerLocations: Dict[str, int], league: League
+) -> List[Dict[str, Any]]:
     getValue = createGetValue(headerLocations)
 
     return [
@@ -99,7 +99,7 @@ def parseFileToDictionaries(
     ]
 
 
-def getName(row, headerLocations) -> str:
+def getName(row: List[str], headerLocations: Dict[str, int]) -> str:
     if "firstName" in headerLocations:
         return row[headerLocations["firstName"]] + " " + row[headerLocations["surname"]]
 

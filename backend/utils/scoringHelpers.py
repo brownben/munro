@@ -1,10 +1,10 @@
 from collections import defaultdict
 import statistics
 
-from typing import Dict, List, Literal, Union, TypedDict
+from typing import Any, Dict, List, TypedDict
 
 
-def isValidResult(result: dict) -> bool:
+def isValidResult(result: Dict[str, Any]) -> bool:
     return (
         type(result["position"]) == int
         and result["position"] > 0
@@ -12,7 +12,7 @@ def isValidResult(result: dict) -> bool:
     )
 
 
-def occuracesOfPosition(results: List[dict], position: int) -> int:
+def occuracesOfPosition(results: List[Dict[str, Any]], position: int) -> int:
     return len([1 for row in results if row["position"] == position])
 
 
@@ -28,7 +28,9 @@ CourseStatistics = TypedDict(
 )
 
 
-def calculateCourseStatistics(results: List[dict]) -> Dict[str, CourseStatistics]:
+def calculateCourseStatistics(
+    results: List[Dict[str, Any]]
+) -> Dict[str, CourseStatistics]:
     courseTimes = defaultdict(list)
 
     for result in results:
@@ -44,7 +46,7 @@ def calculateCourseStatistics(results: List[dict]) -> Dict[str, CourseStatistics
     }
 
 
-def calculateCourseTop3Average(data) -> Dict[str, float]:
+def calculateCourseTop3Average(data: List[Dict[str, Any]]) -> Dict[str, float]:
     courseTimes = defaultdict(list)
 
     for result in data:
@@ -215,8 +217,10 @@ def toAge(num: str) -> int:
         return 21
 
 
-def getStandardCourseForAgeClass(age: int, gender: str):
-    def maleAgeClasses(age: int):
+def getStandardCourseForAgeClass(
+    age: int, gender: str
+) -> str:
+    def maleAgeClasses(age: int) -> str:
         if age <= 10:
             return "YELLOW"
         elif age <= 12:
@@ -238,7 +242,7 @@ def getStandardCourseForAgeClass(age: int, gender: str):
         else:
             return "BROWN"
 
-    def femaleAgeClasses(age: int):
+    def femaleAgeClasses(age: int) -> str:
         if age <= 10:
             return "YELLOW"
         elif age <= 12:

@@ -1,14 +1,18 @@
-from typing import Any, Callable, List, Dict, Optional
+from typing import Any, Callable, List, Dict
 
 from .scoringHelpers import (
+    isValidResult,
     occuracesOfPosition,
     calculateCourseStatistics,
     calculateCourseTop3Average,
     getMultiplier,
 )
 
+Result = Dict[str, Any]
+GetScoreFunction = Callable[[Result], int]
 
-def positionBasedPoints(leagueScoringMethod: str):
+
+def positionBasedPoints(leagueScoringMethod: str) -> GetScoreFunction:
     multiplier = 1
     startValue = 101
 
@@ -19,16 +23,23 @@ def positionBasedPoints(leagueScoringMethod: str):
     elif "99" in leagueScoringMethod:
         startValue = 100
 
-    def calculator(result: dict) -> int:
+    def calculator(result: Result) -> int:
+        if not isValidResult(result):
+            return 0
+
         return (startValue * multiplier) - (result["position"] * multiplier)
 
     return calculator
 
 
-def positionBasedPointsWithDraw(results: List[dict]):
-    def calculator(result: dict) -> int:
+def positionBasedPointsWithDraw(results: List[Result]) -> GetScoreFunction:
+    def calculator(result: Result) -> int:
+        if not isValidResult(result):
+            return 0
+
         positionOccurances = occuracesOfPosition(results, result["position"])
         points = 100 - result["position"]
+
         return (points + (points - positionOccurances) + 1) / 2
 
     return calculator
@@ -36,8 +47,8 @@ def positionBasedPointsWithDraw(results: List[dict]):
 
 def timeRelativeToAverageBasedPoints(
     leagueScoringMethod: str,
-    results: List[dict],
-):
+    results: List[Result],
+) -> GetScoreFunction:
     averagePoints = 1000
     standardDeviationPoints = 200
 
@@ -45,9 +56,14 @@ def timeRelativeToAverageBasedPoints(
         averagePoints = 100
         standardDeviationPoints = 20
 
-    courseStats = calculateCourseStatistics(results)
+    statsForCourses = calculateCourseStatistics(results)
 
-    def calculate(result: dict) -> int:
+    def calculate(result: Result) -> int:
+        if not isValidResult(result):
+            return 0
+
+        courseStats = statsForCourses[result["course"]]
+
         average = courseStats.get("average", 0)
         standardDeviation = courseStats.get("standardDeviation", 0)
 
@@ -67,30 +83,32 @@ def timeRelativeToAverageBasedPoints(
 
 def timeRelativeToTopBasedPoints(
     leagueScoringMethod: str,
-    results: List[dict],
-):
+    results: List[Result],
+) -> GetScoreFunction:
     courseStats = calculateCourseTop3Average(results)
 
-    def calculate(result: dict):
-        average = courseStats.get(result["course"], 0)
+    def calculate(result: Result) -> int:
+        if not isValidResult(result):
+            return 0
 
+        average = courseStats.get(result["course"], 0)
         multiplier = (
             getMultiplier(result["ageClass"], result["course"])
             if "Adjusted" in leagueScoringMethod
-            else 1
+            else 1000
         )
 
         if not result["time"]:
             return 0
 
-        return round((average / result["time"]) * 1000, 2) * multiplier
+        return round((average / result["time"]) * multiplier)
 
     return calculate
 
 
 def getScoringMethod(
-    leagueScoringMethod: str, results: List[dict]
-) -> Callable[[dict], int]:
+    leagueScoringMethod: str, results: List[Result]
+) -> GetScoreFunction:
     if "position99average" in leagueScoringMethod:
         return positionBasedPointsWithDraw(results)
     elif "position" in leagueScoringMethod:
@@ -105,7 +123,7 @@ def getScoringMethod(
         return lambda result: 0
 
 
-def assignPoints(results: List[dict], leagueScoringMethod: str) -> List[Dict[str, Any]]:
+def assignPoints(results: List[Result], leagueScoringMethod: str) -> List[Result]:
     getScore = getScoringMethod(leagueScoringMethod, results)
 
     return [{**result, "points": getScore(result)} for result in results]

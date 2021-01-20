@@ -4,7 +4,7 @@ from ..database.league import League
 from ..database.result import Result
 
 
-def calculateDynamicPoints(league: League):
+def calculateDynamicPoints(league: League) -> None:
     dynamicResults = Result.getDynamicResultsByLeague(league.name)
 
     for result in dynamicResults:
@@ -17,7 +17,7 @@ def calculateDynamicPoints(league: League):
             Result.updatePoints(result.id, average)
 
 
-def recalculateResults(eventId: str, scoringMethod: str):
+def recalculateResults(eventId: str, scoringMethod: str) -> None:
     exisitingResults = Result.getByEventForRecalc(eventId)
     resultsWithPositions = assignPositionMultipleCourses(exisitingResults)
     resultsWithPoints = assignPoints(resultsWithPositions, scoringMethod)

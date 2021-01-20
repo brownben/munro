@@ -52,3 +52,7 @@ jobs:
       - name: Lint
         run: black . --check --line-length 88
 
+      - name: Test
+        run: |
+          coverage run -m pytest
+          coverage report

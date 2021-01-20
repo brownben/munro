@@ -3,10 +3,10 @@ from typing import Any, List, Dict
 from ..database.league import League
 from ..database.competitor import Competitor
 
+Result = Dict[str, Any]
 
-def matchResultsToCompetitors(
-    results: List[dict], league: League
-) -> List[Dict[str, Any]]:
+
+def matchResultsToCompetitors(results: List[Result], league: League) -> List[Result]:
     competitors = Competitor.getByLeague(league.name)
 
     return [
@@ -16,7 +16,7 @@ def matchResultsToCompetitors(
 
 
 def matchResultToCompetitor(
-    result: dict, competitors: List[Competitor], league: League
+    result: Result, competitors: List[Competitor], league: League
 ) -> int:
     for competitor in competitors:
         if primaryMatch(result, competitor, league):
@@ -43,13 +43,13 @@ def match(resultProperty: str, competitorProperty: str) -> bool:
     return resultProperty.strip().upper() == competitorProperty.strip().upper()
 
 
-def primaryMatch(result: dict, competitor: Competitor, league: League) -> bool:
+def primaryMatch(result: Result, competitor: Competitor, league: League) -> bool:
     return match(result["name"], competitor.name) and (
         competitor.course == result["course"] or league.leagueScoring == "overall"
     )
 
 
-def secondaryMatch(result: dict, competitor: Competitor, league: League) -> bool:
+def secondaryMatch(result: Result, competitor: Competitor, league: League) -> bool:
     return (
         match(nameToInitial(competitor.name), nameToInitial(result["name"]))
         and (competitor.course == result["course"] or league.leagueScoring == "overall")
