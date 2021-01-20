@@ -2,6 +2,7 @@ from typing import List, Dict, Any
 
 Result = Dict[str, Any]
 
+
 def toInt(integer: str) -> int:
     if integer == "":
         return 0

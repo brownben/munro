@@ -217,9 +217,7 @@ def toAge(num: str) -> int:
         return 21
 
 
-def getStandardCourseForAgeClass(
-    age: int, gender: str
-) -> str:
+def getStandardCourseForAgeClass(age: int, gender: str) -> str:
     def maleAgeClasses(age: int) -> str:
         if age <= 10:
             return "YELLOW"
