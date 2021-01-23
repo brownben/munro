@@ -1,10 +1,11 @@
+from flask.globals import request
 from flask_restx import Namespace, Resource
 
 from ..database.league import League
-from ..database.competitor import Competitor
 from ..database.event import Event
+from ..database.competitor import Competitor
 from ..database.result import Result
-from ..models.upload import uploadFileModel, uploadResultModel
+from ..models.upload import uploadFileModel, uploadResultModel, uploadSimpleModel
 from ..models.messages import createMessage, messageModel
 from ..utils.csv import (
     splitFile,
@@ -16,11 +17,12 @@ from ..utils.processResults import getMatchingResults, normaliseCourses
 from ..utils.matchCompetitor import matchResultsToCompetitors
 from ..utils.calculateResults import calculateDynamicPoints, recalculateResults
 from ..utils.points import assignPoints
-from ..utils.helpers import sortByTime, toSeconds
+from ..utils.helpers import sortByTime, toSeconds, processSimpleResult
 
 api = Namespace("Upload", description="Upload Results into the System")
 api.models[uploadFileModel.name] = uploadFileModel
 api.models[uploadResultModel.name] = uploadResultModel
+api.models[uploadSimpleModel.name] = uploadSimpleModel
 api.models[messageModel.name] = messageModel
 
 
@@ -67,7 +69,7 @@ class UploadRoute(Resource):
             Result(result).create()
 
         calculateDynamicPoints(league)
-        event.setResultUploaded(
+        event.setResultUploadedWithURLs(
             requestData["results"], requestData["winsplits"], requestData["routegadget"]
         )
 
@@ -137,3 +139,51 @@ class UploadResultRoute(Resource):
             return createMessage(
                 "Error: Problem Uploading Result - Please Try Again", 500
             )
+
+
+@api.route("/simple")
+class UploadSimpleRoute(Resource):
+    @api.expect(uploadSimpleModel, validate=True)
+    @api.marshal_with(messageModel)
+    @api.response(201, "Success")
+    @api.response(401, "Permission Denied - Upload Key Incorrect")
+    @api.response(404, "Event Doesn't Exist")
+    @api.response(403, "Results Already Exist and Overwrite is not Specified")
+    @api.response(500, "Problem Processing the Uploaded Results")
+    def post(self):
+        requestData = api.payload
+        event = Event.getById(requestData["eventId"])
+
+        if not event:
+            return createMessage("Problem Uploading Results - Event Doesn't Exist", 404)
+        elif event.uploadKey != requestData["uploadKey"]:
+            return createMessage("Permission Denied - Upload Key Incorrect", 401)
+
+        try:
+            league = event.getLeague()
+            existingResultsIDs = [
+                result["type"] for result in Result.getByEventForRecalc(event.id)
+            ]
+            streamData = requestData["file"].split("\n")
+            results = [
+                processSimpleResult(result, event, requestData["course"])
+                for result in streamData
+                if len(result.split(",")) > 3
+            ]
+            newResults = [
+                result for result in results if result["type"] not in existingResultsIDs
+            ]
+            createdResults = [
+                Result(result).create()
+                for result in newResults
+                if league.clubRestriction == result["club"]
+            ]
+
+            recalculateResults(event.getEventId(), league.scoringMethod)
+            calculateDynamicPoints(league)
+
+            event.setResultUploaded()
+
+            return createMessage(f"{len(createdResults)} Results Imported")
+        except:
+            return createMessage("Problem Processing Uploaded Data", 500)

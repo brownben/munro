@@ -171,7 +171,17 @@ class Event:
             ),
         )
 
-    def setResultUploaded(self, results: str, winsplits: str, routegadget: str):
+    def setResultUploaded(self):
+        query(
+            """
+            UPDATE events
+            SET resultUploaded=%s,
+            WHERE id=%s
+            """,
+            (True,),
+        )
+
+    def setResultUploadedWithURLs(self, results: str, winsplits: str, routegadget: str):
         query(
             """
             UPDATE events

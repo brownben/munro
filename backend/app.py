@@ -19,7 +19,7 @@ from .routes.event import api as eventRoutes
 from .routes.competitor import api as competitorRoutes
 from .routes.result import api as resultRoutes
 from .routes.search import api as searchRoutes
-
+from .routes.upload import api as uploadRoutes
 
 # Set up Flask with plugins
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
@@ -55,7 +55,7 @@ api.add_namespace(eventRoutes, path="/events")
 api.add_namespace(competitorRoutes, path="/competitors")
 api.add_namespace(resultRoutes, path="/results")
 api.add_namespace(searchRoutes, path="/search")
-
+api.add_namespace(uploadRoutes, path="/upload")
 
 # Serve app files
 @app.route("/", defaults={"path": ""})

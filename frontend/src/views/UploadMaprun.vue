@@ -59,7 +59,7 @@ import TextInput from '../components/inputs/TextInput.vue'
 import DropdownInput from '../components/inputs/DropdownInput.vue'
 
 import { getText } from '../api/requests'
-import { uploadStream } from '../api/upload'
+import { uploadSimple } from '../api/upload'
 import { getEvent } from '../api/events'
 import { getLeague } from '../api/leagues'
 
@@ -67,7 +67,7 @@ const store = useStore()
 const router = useRouter()
 
 const maprunId = ref('')
-const uploadConfig = ref<UploadStream>({
+const uploadConfig = ref<UploadSimple>({
   eventId: '',
   uploadKey: '',
   file: '',
@@ -127,7 +127,7 @@ const getMaprunData = () =>
 
 const uploadFile = () =>
   getMaprunData()
-    .then(() => uploadStream(uploadConfig.value))
+    .then(() => uploadSimple(uploadConfig.value))
     .then(() => router.push(`/events/${eventId.value}/results`))
     .catch(() => false)
 </script>

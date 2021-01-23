@@ -15,7 +15,7 @@ interface UploadResult {
   time: string
 }
 
-interface UploadStream {
+interface UploadSimple {
   eventId: string
   uploadKey: string
   file: string

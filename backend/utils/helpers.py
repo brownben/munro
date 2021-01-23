@@ -1,4 +1,5 @@
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
+from ..database.event import Event
 
 Result = Dict[str, Any]
 
@@ -33,3 +34,21 @@ def toSeconds(time: str) -> int:
         seconds = int(splitTime[2])
 
     return (hours * 3600) + (minutes * 60) + seconds
+
+
+def processSimpleResult(
+    result: str, event: Event, course: str
+) -> Dict[str, Union[str, bool, int]]:
+    splitResult = result.split(",")
+    return {
+        "type": course + splitResult[1],
+        "name": splitResult[0],
+        "time": toSeconds(splitResult[2]),
+        "incomplete": splitResult[3] != "OK",
+        "ageClass": "",
+        "club": "",
+        "position": "",
+        "points": 0,
+        "course": course,
+        "event": event.id,
+    }

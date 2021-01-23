@@ -51,3 +51,29 @@ uploadResultModel = Model(
         "course": fields.String(description="Course of the Competitor", example="Long"),
     },
 )
+
+
+uploadSimpleModel = Model(
+    "Simple Upload",
+    {
+        "eventId": fields.String(
+            description="Event ID - League, Event, and Date of Event Concatenated with Spaces Removed",
+            required=True,
+            example="TestLeagueCarse2000-01-01",
+        ),
+        "uploadKey": fields.String(
+            description="Secret required to upload the results for the event",
+            example="abcdefghijk122",
+            required=True,
+        ),
+        "file": fields.String(
+            description="The results file to process",
+            required=True,
+        ),
+        "course": fields.String(
+            description="The Course of All the Results",
+            example="Long",
+            required=True,
+        ),
+    },
+)
