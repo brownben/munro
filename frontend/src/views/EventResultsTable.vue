@@ -25,21 +25,35 @@
       </h1>
     </template>
 
-    <div v-if="coursesInResults.length > 0" class="block col-span-2 card">
-      <h2
-        class="text-2xl font-bold tracking-tight text-gray-900 leadiing-6 font-heading"
-      >
-        Courses
-      </h2>
-      <router-link
-        v-for="course in coursesInResults"
-        :key="course"
-        :class="{ 'bg-main-200 text-main-800': currentCourse === course }"
-        class="button"
-        :to="`/events/${$route.params.event}/results/${course}`"
-      >
-        {{ course }}
-      </router-link>
+    <div v-if="coursesInResults.length > 0" class="col-span-2 -mt-2 flex">
+      <div class="hidden sm:flex w-full items-center">
+        <h2 class="text-lg tracking-tight text-gray-600 mr-2 font-heading">
+          Courses:
+        </h2>
+        <router-link
+          v-for="course in coursesInResults"
+          :key="course"
+          :class="
+            currentCourse === course
+              ? 'text-main-600 bg-main-100'
+              : 'hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 text-gray-500'
+          "
+          class="px-3 py-2 ml-2 font-heading leading-5 transition duration-150 ease-in-out rounded-shape focus:outline-none text-lg"
+          :to="`/events/${$route.params.event}/results/${course}`"
+        >
+          {{ course }}
+        </router-link>
+      </div>
+      <DropdownInput
+        v-model="currentCourse"
+        label="Course:"
+        class="block sm:hidden w-full"
+        :list="coursesInResults"
+        :shift="false"
+        @update:modelValue="
+          $router.push(`/events/${$route.params.event}/results/${$event}`)
+        "
+      />
     </div>
 
     <FilterMenu class="col-span-2 my-0" @changed="filterChanged" />
@@ -143,6 +157,9 @@ import FilterMenu from '../components/FilterMenu.vue'
 import Cell from '../components/TableCell.vue'
 import Heading from '../components/TableHeading.vue'
 import TableRow from '../components/ExpandingTableRow.vue'
+const DropdownInput = defineAsyncComponent(
+  () => import('../components/inputs/DropdownInput.vue')
+)
 const NoResultsCard = defineAsyncComponent(
   () => import('../components/cards/NoResultsCard.vue')
 )
