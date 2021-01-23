@@ -1,9 +1,3 @@
-<!--
-  Upload Page
-
-  Upload results to database.
--->
-
 <template>
   <Layout title="Upload Results File">
     <Meta

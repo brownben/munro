@@ -1,11 +1,3 @@
-<!--
-  League Home Page
-
-  Shows all league details as well as all details for each event in the league, including
-  the upload key and event id needed for event upload if logged in. If logged in it also diaplays
-  options to edit/ update/ delete the events/ league. Also has links to results for each course
--->
-
 <template>
   <Layout gray :not-found="!league && !loading">
     <Meta
@@ -203,14 +195,14 @@ const refreshDetails = async () => {
   const routeParamsName = toSingleString(route.params.name)
   loading.value = true
   await Promise.all([
+    getLeague(routeParamsName).then((leagueDetails) => {
+      league.value = leagueDetails
+    }),
     getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
       (eventDetails) => {
         events.value = eventDetails ?? []
       }
     ),
-    getLeague(routeParamsName).then((leagueDetails) => {
-      league.value = leagueDetails
-    }),
   ])
   loading.value = false
 }

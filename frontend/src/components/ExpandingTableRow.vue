@@ -25,7 +25,7 @@
         class="text-right transition duration-300 bg-white border-collapse md:hidden group-hover:bg-main-200"
         :class="{ 'bg-main-50': striped }"
       >
-        <td colspan="100%" class="pb-2">
+        <td class="pb-2">
           <slot name="expansion" />
         </td>
       </tr>

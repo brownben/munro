@@ -1,9 +1,3 @@
-<!--
-  Result Transfer
-
-  Change the competitor the result is credited to
--->
-
 <template>
   <Layout title="Transfer Result">
     <Meta

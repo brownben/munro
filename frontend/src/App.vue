@@ -1,8 +1,3 @@
-<!--
-  App.vue
-
-  The main app file containing the base structure of the app, and base styling
--->
 <template>
   <AppMenu v-show="!$route.path.includes('/embed/')" />
 

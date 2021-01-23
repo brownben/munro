@@ -1,21 +1,7 @@
-<!--
-  League Form
-
-  The form for Creating/ Updating Leagues
-
-  On Create:
-    - Show form
-
-  On Edit:
-    - Show Form
-    - Fetch league data and display it (League Name from URL)
--->
-
 <template>
-  <!--  -->
   <Layout
     :title="title"
-    :not-found="!loading && !league?.oldName && $route.path.includes('/edit')"
+    :not-found="!loading && !league?.name && $route.path.includes('/edit')"
   >
     <Meta
       :head="{
@@ -26,7 +12,7 @@
     />
     <form class="col-span-2" @submit.prevent="submit">
       <TextInput v-model.trim="league.name" label="Name:" />
-      <number-input
+      <NumberInput
         v-model.number="league.year"
         label="Year:"
         :max="2050"
@@ -102,7 +88,7 @@
         label="Only Include Results from Club:"
         class="mt-4"
       />
-      <number-input
+      <NumberInput
         v-model.number="league.numberOfCountingEvents"
         :min="1"
         label="Number of Events to Count:"
@@ -156,7 +142,6 @@ const league = ref<LeagueForm>({
   description: '',
   dynamicEventResults: true,
   moreInformation: '',
-  oldName: '',
   name: '',
   numberOfCountingEvents: 1,
   scoringMethod: '',
@@ -175,10 +160,9 @@ const refreshDetails = async () => {
       league.value = {
         ...data,
         courses: data?.courses?.join(',') ?? '',
-        oldName: data?.name ?? '',
         moreInformation: data?.moreInformation?.replace(/\|\s*/g, '\n') ?? '',
-        dynamicEventResults: data.dynamicEventResults ?? true,
-        leagueScoring: data.leagueScoring ?? 'course',
+        dynamicEventResults: data?.dynamicEventResults ?? true,
+        leagueScoring: data?.leagueScoring ?? 'course',
       } as LeagueForm
     })
   loading.value = false
@@ -206,6 +190,7 @@ const createLeague = () => {
   if (validateForm())
     return apiCreateLeague({
       ...league.value,
+      courses: league.value?.courses?.split(',') ?? [],
       moreInformation: league.value?.moreInformation?.replace(/\n/g, '|') ?? '',
     })
       .then(() => router.push(`/leagues/${league.value.name}`))
@@ -215,6 +200,7 @@ const updateLeague = () => {
   if (validateForm())
     return apiUpdateLeague({
       ...league.value,
+      courses: league.value?.courses?.split(',') ?? [],
       moreInformation: league.value?.moreInformation?.replace(/\n/g, '|') ?? '',
     })
       .then(() => router.push(`/leagues/${league.value.name}`))

@@ -1,9 +1,3 @@
-<!--
-  Merge Competitors
-
-  Allows to merge two comopetitors together (when a duplicate)
--->
-
 <template>
   <Layout title="Merge Competitors">
     <Meta

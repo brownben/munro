@@ -1,11 +1,3 @@
-<!--
-  Accordion Dropdown
-
-  Collapsable section to hold content. Originally made for the accordion menu.
-  When clicked the content is revealed or hidden. The arrow indicates current status
-    and spins between open and closed states
--->
-
 <template>
   <details
     class="transition-all duration-300 bg-white shadow-md outline-none appearance-none select-none rounded-shape-xl focus:shadow-lg"

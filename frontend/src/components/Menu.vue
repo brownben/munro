@@ -1,10 +1,3 @@
-<!--
-  Navigation Menu
-
-  The main navigation menu for the site. Deals with resize by monitoring window size and displaying appropriate menu style
-  If logged in display logout instead of login.
--->
-
 <template>
   <nav class="bg-white font-heading">
     <div class="max-w-screen-xl px-2 mx-auto sm:px-6 lg:px-8">
@@ -162,9 +155,9 @@
 import { ref } from 'vue'
 
 const menuOpen = ref(false)
-const links = ref([
+const links = [
   { text: 'Leagues', location: '/leagues' },
   { text: 'Latest Results', location: '/latest-results' },
   { text: 'Upload Results', location: '/upload' },
-])
+]
 </script>

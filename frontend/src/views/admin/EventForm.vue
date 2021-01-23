@@ -1,19 +1,3 @@
-<!--
-  Event Form
-
-  The form for Creating/ Updating Events
-
-  On Create:
-    - Show form
-  - Fetch Leagues
-  - Autofill league if passed in the URL
-
-  On Edit:
-    - Show Form
-    - Fetch leagues
-    - Fetch event data and display it (Event ID from URL)
--->
-
 <template>
   <Layout
     :title="title"

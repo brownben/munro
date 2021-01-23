@@ -1,9 +1,3 @@
-<!--
-  Filter Menu
-
-  Holds all the input for the filter menu for the results table. Emits an event with the full selection criteria when a field is changed. No props are used as data only needs to come from it, no data needs passed to the component
--->
-
 <template>
   <AccordionDropdown title="Filter Results">
     <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">

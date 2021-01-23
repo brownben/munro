@@ -1,7 +1,3 @@
-<!--
-  League Events Page for Embedding
--->
-
 <template>
   <Layout v-if="league && league.name" :not-found="!league && !loading">
     <Meta

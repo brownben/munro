@@ -12,7 +12,7 @@ export const getLeagues = (): Promise<League[] | null> =>
     customErrorMessage: 'Problem Fetching Leagues',
   })
 
-export const createLeague = (data: LeagueForm): Promise<ServerMessage | null> =>
+export const createLeague = (data: League): Promise<ServerMessage | null> =>
   postData<ServerMessage>({
     apiLocation: `/api/leagues`,
     data,
@@ -21,7 +21,7 @@ export const createLeague = (data: LeagueForm): Promise<ServerMessage | null> =>
     customErrorHandler: true,
   })
 
-export const updateLeague = (data: LeagueForm): Promise<ServerMessage | null> =>
+export const updateLeague = (data: League): Promise<ServerMessage | null> =>
   putData<ServerMessage>({
     apiLocation: `/api/leagues/${data.name}`,
     data,

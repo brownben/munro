@@ -1,11 +1,4 @@
-<!--
-  League Results for Course
 
-  Display results for course in dynamic table with searching and sorting. Click on the relevent cell in the header
-  to sort/ change sort direction/ preference
-  On mobile show overview with name, class, total points and when clicked reveal points for each event.
-  Points not included in total are strikethrough style
--->
 
 <template>
   <Layout

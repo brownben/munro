@@ -1,9 +1,3 @@
-<!--
-  Latest Results
-
-  List of events with the latest results
--->
-
 <template>
   <Layout title="Latest Results">
     <Meta

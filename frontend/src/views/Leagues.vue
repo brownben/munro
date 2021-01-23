@@ -1,9 +1,3 @@
-<!--
-  Leagues
-
-  List of leagues
--->
-
 <template>
   <Layout title="Leagues">
     <Meta

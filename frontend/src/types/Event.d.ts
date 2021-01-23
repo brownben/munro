@@ -12,4 +12,5 @@ interface Event {
   winsplits: string
   routegadget: string
   userSubmittedResults: boolean
+  uploadKey?: string
 }

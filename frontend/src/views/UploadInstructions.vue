@@ -1,6 +1,3 @@
-<!--
-  Instructions for Uploading results
--->
 <template>
   <Layout>
     <Meta

@@ -18,5 +18,4 @@ interface League {
 
 interface LeagueForm extends League {
   courses: string
-  oldName: string
 }
