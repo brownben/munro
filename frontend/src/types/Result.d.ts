@@ -43,7 +43,7 @@ interface LeagueResultWithAgeGender extends LeagueResult {
 }
 
 interface ManualResult {
-  competitor: string
+  competitor: number
   event: string
   points: number
 }

@@ -2,7 +2,12 @@ from flask_restx import Namespace, Resource
 
 from .requireAuthentication import requireAuthentication
 from ..database.result import Result
-from ..models.result import eventResultModel, transferResultModel, updateResultModel
+from ..models.result import (
+    eventResultModel,
+    transferResultModel,
+    updateResultModel,
+    manualResultModel,
+)
 from ..models.messages import createMessage, messageModel
 from ..utils.calculateResults import recalculateResults
 from ..utils.helpers import toInt
@@ -11,6 +16,7 @@ api = Namespace("Results", description="View and Manage Results")
 api.models[eventResultModel.name] = eventResultModel
 api.models[transferResultModel.name] = transferResultModel
 api.models[updateResultModel.name] = updateResultModel
+api.models[manualResultModel.name] = manualResultModel
 api.models[messageModel.name] = messageModel
 
 
@@ -75,6 +81,34 @@ class TransferResultRoute(Resource):
         try:
             request = api.payload
             Result.transfer(request.result, request.competitor)
-            return createMessage("Result Transfered", 200)
+            return createMessage("Result Transfered")
         except:
             return createMessage("Problem Transferring Result", 500)
+
+
+@api.route("/manual")
+class ManualResultRoute(Resource):
+    @api.expect(manualResultModel, validate=True)
+    @api.marshal_with(messageModel)
+    @api.response(200, "Success - Points Given")
+    @api.response(401, "Permission Denied - You are not Logged In")
+    @api.response(500, "Problem Connecting to the Database")
+    @requireAuthentication
+    def post(self):
+        try:
+            data = api.payload
+            result = Result(
+                {
+                    "time": 0,
+                    "position": "",
+                    "points": data["points"],
+                    "incomplete": False,
+                    "event": data["event"],
+                    "competitor": data["competitor"],
+                    "type": "manual",
+                }
+            )
+            result.create()
+            return createMessage("Points Assigned")
+        except:
+            return createMessage("Problem Assigning Points", 500)

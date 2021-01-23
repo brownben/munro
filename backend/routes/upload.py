@@ -74,7 +74,7 @@ class UploadRoute(Resource):
         return createMessage(f"{len(resultsWithPoints)} Results Saved")
 
 
-@api.route("/")
+@api.route("/result")
 class UploadResultRoute(Resource):
     @api.expect(uploadResultModel, validate=True)
     @api.marshal_with(messageModel)

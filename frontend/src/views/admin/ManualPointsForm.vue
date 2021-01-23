@@ -143,7 +143,7 @@ const validateForm = () => {
 
 const addResult = () =>
   createManualResult({
-    competitor: choices.value.competitor,
+    competitor: Number(choices.value.competitor),
     event: choices.value.event,
     points: choices.value.points,
   })
