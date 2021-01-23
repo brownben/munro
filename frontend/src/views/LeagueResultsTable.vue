@@ -1,5 +1,3 @@
-
-
 <template>
   <Layout
     class="w-full"

@@ -1,7 +1,7 @@
 from flask_restx import Model, fields
 
 uploadFileModel = Model(
-    "Upload",
+    "Upload File",
     {
         "eventId": fields.String(
             description="Event ID - League, Event, and Date of Event Concatenated with Spaces Removed",
@@ -32,5 +32,22 @@ uploadFileModel = Model(
             description="Link to a Routegadget page for the event",
             example="https://example.com",
         ),
+    },
+)
+
+uploadResultModel = Model(
+    "Upload Result",
+    {
+        "eventId": fields.String(
+            description="Event ID - League, Event, and Date of Event Concatenated with Spaces Removed",
+            required=True,
+            example="TestLeagueCarse2000-01-01",
+        ),
+        "time": fields.Integer(description="Result Time in Seconds", example=202052),
+        "name": fields.String(
+            description="Name of the Competitor",
+            example="Fred Jones",
+        ),
+        "course": fields.String(description="Course of the Competitor", example="Long"),
     },
 )

@@ -1,9 +1,10 @@
 from flask_restx import Namespace, Resource
 
 from ..database.league import League
+from ..database.competitor import Competitor
 from ..database.event import Event
 from ..database.result import Result
-from ..models.upload import uploadFileModel
+from ..models.upload import uploadFileModel, uploadResultModel
 from ..models.messages import createMessage, messageModel
 from ..utils.csv import (
     splitFile,
@@ -13,12 +14,13 @@ from ..utils.csv import (
 )
 from ..utils.processResults import getMatchingResults, normaliseCourses
 from ..utils.matchCompetitor import matchResultsToCompetitors
-from ..utils.calculateResults import calculateDynamicPoints
+from ..utils.calculateResults import calculateDynamicPoints, recalculateResults
 from ..utils.points import assignPoints
-from ..utils.helpers import sortByTime
+from ..utils.helpers import sortByTime, toSeconds
 
 api = Namespace("Upload", description="Upload Results into the System")
 api.models[uploadFileModel.name] = uploadFileModel
+api.models[uploadResultModel.name] = uploadResultModel
 api.models[messageModel.name] = messageModel
 
 
@@ -49,7 +51,7 @@ class UploadRoute(Resource):
 
         splitData = splitFile(requestData["file"])
         headerLocations = getHeaderLocations(splitData)
-        league: League = event.getLeague()
+        league = event.getLeague()
 
         if not allHeadersArePresent(headerLocations):
             return createMessage("Data is in Missing Headers", 500)
@@ -70,3 +72,68 @@ class UploadRoute(Resource):
         )
 
         return createMessage(f"{len(resultsWithPoints)} Results Saved")
+
+
+@api.route("/")
+class UploadResultRoute(Resource):
+    @api.expect(uploadResultModel, validate=True)
+    @api.marshal_with(messageModel)
+    @api.response(201, "Success")
+    @api.response(
+        401, "Permission Denied - Event Doesn't Accept User Submitted Results"
+    )
+    @api.response(404, "Event Doesn't Exist")
+    @api.response(500, "Problem Processing the Uploaded Results")
+    def post(self):
+        data = api.payload
+        event = Event.getById(data["event"])
+
+        if not event:
+            return createMessage("Problem Uploading Results - Event Doesn't Exist", 404)
+        elif not event.userSubmittedResults:
+            return createMessage(
+                "Error: Event Doesn't Accept User Submitted Results", 401
+            )
+
+        league = event.getLeague()
+
+        try:
+            competitor = Competitor.getByNameCourseAndLeague(
+                data["name"], data["course"], league.name
+            )
+            if not competitor:
+                competitor = Competitor(
+                    {
+                        "name": data["name"],
+                        "ageClass": "",
+                        "club": "",
+                        "course": data["course"],
+                        "league": league.name,
+                    }
+                )
+                competitorID = competitor.create()
+            else:
+                competitorID = competitor.id
+
+            result = Result(
+                {
+                    "time": toSeconds(data["time"]),
+                    "position": "",
+                    "points": 0,
+                    "incomplete": False,
+                    "event": data["eventId"],
+                    "competitor": competitorID,
+                    "type": "userUpload",
+                }
+            )
+            result.create()
+
+            recalculateResults(event.getEventId(), league.scoringMethod)
+            calculateDynamicPoints(league)
+
+            return createMessage("Result Uploaded")
+
+        except:
+            return createMessage(
+                "Error: Problem Uploading Result - Please Try Again", 500
+            )

@@ -114,6 +114,27 @@ class Competitor:
         return [Competitor(result) for result in databaseResult]
 
     @staticmethod
+    def getByNameCourseAndLeague(name: str, course: str, league: str):
+        databaseResult = queryWithResult(
+            """
+            SELECT
+                rowid,
+                name,
+                ageClass,
+                club,
+                course,
+                league
+            FROM competitors
+            WHERE
+                name=%s
+                AND course=%s
+                AND league=%s
+            """,
+            (name, course, league),
+        )
+        return Competitor(databaseResult)
+
+    @staticmethod
     def merge(competitorKeep: int, competitorMerge: int):
         query(
             """
