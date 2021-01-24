@@ -215,16 +215,15 @@ const rawResults = ref<EventResult[]>([])
 const getData = async () => {
   const routeParamsEvent: string = toSingleString(route.params.event) ?? ''
   loading.value = true
-
-  await Promise.all([
-    getEvent(routeParamsEvent).then((eventDetails) => {
-      event.value = eventDetails
-    }),
-    getEventResults(routeParamsEvent).then((resultDetails) => {
-      rawResults.value = resultDetails ?? []
-    }),
-  ])
-
+  if (routeParamsEvent)
+    await Promise.all([
+      getEvent(routeParamsEvent).then((eventDetails) => {
+        event.value = eventDetails
+      }),
+      getEventResults(routeParamsEvent).then((resultDetails) => {
+        rawResults.value = resultDetails ?? []
+      }),
+    ])
   loading.value = false
 }
 watch(route, getData, { immediate: true })

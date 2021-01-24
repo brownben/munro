@@ -194,16 +194,17 @@ const events = ref<LeagueEvent[]>([])
 const refreshDetails = async () => {
   const routeParamsName = toSingleString(route.params.name)
   loading.value = true
-  await Promise.all([
-    getLeague(routeParamsName).then((leagueDetails) => {
-      league.value = leagueDetails
-    }),
-    getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
-      (eventDetails) => {
-        events.value = eventDetails ?? []
-      }
-    ),
-  ])
+  if (routeParamsName)
+    await Promise.all([
+      getLeague(routeParamsName).then((leagueDetails) => {
+        league.value = leagueDetails
+      }),
+      getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
+        (eventDetails) => {
+          events.value = eventDetails ?? []
+        }
+      ),
+    ])
   loading.value = false
 }
 watch(route, refreshDetails, { immediate: true })

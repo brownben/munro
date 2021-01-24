@@ -270,20 +270,22 @@ const getData = async () => {
   const routeParamsCourse = toSingleString(route.params.course)
   loading.value = true
 
-  await Promise.all([
-    getLeagueResults(routeParamsLeague, routeParamsCourse).then(
-      (resultDetails) => {
-        rawResults.value = resultDetails ?? []
-      }
-    ),
-    getLeague(routeParamsLeague).then((leagueDetails) => {
-      league.value = leagueDetails
-    }),
-    getLeagueEvents(routeParamsLeague).then((eventDetails) => {
-      eventsWithResults.value =
-        eventDetails?.filter((event: LeagueEvent) => event.resultUploaded) ?? []
-    }),
-  ])
+  if (routeParamsLeague)
+    await Promise.all([
+      getLeagueResults(routeParamsLeague, routeParamsCourse).then(
+        (resultDetails) => {
+          rawResults.value = resultDetails ?? []
+        }
+      ),
+      getLeague(routeParamsLeague).then((leagueDetails) => {
+        league.value = leagueDetails
+      }),
+      getLeagueEvents(routeParamsLeague).then((eventDetails) => {
+        eventsWithResults.value =
+          eventDetails?.filter((event: LeagueEvent) => event.resultUploaded) ??
+          []
+      }),
+    ])
 
   loading.value = false
 }
