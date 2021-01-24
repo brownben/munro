@@ -20,5 +20,6 @@ export default defineConfig({
     assetsDir: './',
     emptyOutDir: true,
     sourcemap: true,
+    polyfillDynamicImport: false,
   },
 })
