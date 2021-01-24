@@ -9,12 +9,12 @@
     "baseUrl": ".",
     "noEmit": true,
     "lib": ["esnext", "dom"],
-    "types": ["node","vite/client"],
+    "types": ["node", "vite/client"],
     "plugins": [{ "name": "@vuedx/typescript-plugin-vue" }],
     "typeRoots": ["./types", "../node_modules/@types"],
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
