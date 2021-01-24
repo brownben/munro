@@ -1,5 +1,3 @@
-import { FilterPreferences } from './FilterSort'
-
 const resultMatchesGender = (
   result: EventResultWithAgeGender | LeagueResultWithAgeGender,
   filterPreferences: FilterPreferences

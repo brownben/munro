@@ -26,7 +26,7 @@ import { getLatestResults } from '../api/events'
 import Layout from '../components/Layout.vue'
 import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
 
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 
 onMounted(async () => {
   events.value = (await getLatestResults()) ?? []

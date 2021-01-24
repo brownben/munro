@@ -31,6 +31,7 @@ class Result:
     course: str
 
     event: str
+    eventName: Optional[str]
     competitor: int
 
     # competitor data

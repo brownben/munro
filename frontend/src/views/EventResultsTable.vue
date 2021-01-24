@@ -210,7 +210,7 @@ const route = useRoute()
 
 /* Get Data */
 const loading = ref(true)
-const event = ref<Event | null>(null)
+const event = ref<LeagueEvent | null>(null)
 const rawResults = ref<EventResult[]>([])
 const getData = async () => {
   const routeParamsEvent: string = toSingleString(route.params.event) ?? ''

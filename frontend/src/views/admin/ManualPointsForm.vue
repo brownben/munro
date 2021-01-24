@@ -79,7 +79,7 @@ const store = useStore()
 const router = useRouter()
 
 const leagues = ref<League[]>([])
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const competitors = ref<Competitor[]>([])
 const choices = ref({
   league: '',

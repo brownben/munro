@@ -73,7 +73,7 @@ const uploadConfig = ref<UploadSimple>({
   file: '',
   course: '',
 })
-const event = ref<Event | null>(null)
+const event = ref<LeagueEvent | null>(null)
 const courses = ref<string[]>([])
 const eventId = computed(() => uploadConfig.value.eventId)
 

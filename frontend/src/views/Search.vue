@@ -109,7 +109,7 @@ const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const competitors = ref<Competitor[]>([])
 
 const getDetails = async () => {

@@ -96,7 +96,7 @@ const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
-const event = ref<Event>({
+const event = ref<LeagueEvent>({
   id: '',
   name: '',
   date: '',

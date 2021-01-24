@@ -190,7 +190,7 @@ const route = useRoute()
 /* Get Data */
 const loading = ref(true)
 const league = ref<League | null>(null)
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const refreshDetails = async () => {
   const routeParamsName = toSingleString(route.params.name)
   loading.value = true

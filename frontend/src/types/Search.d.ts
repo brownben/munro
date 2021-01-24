@@ -1,5 +1,5 @@
 interface SearchResult {
   leagues: League[]
-  events: Event[]
+  events: LeagueEvent[]
   competitors: Competitor[]
 }

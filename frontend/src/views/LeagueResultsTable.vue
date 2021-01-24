@@ -246,7 +246,6 @@ const NoResultsCard = defineAsyncComponent(
 )
 
 import { toSingleString } from '../scripts/typeHelpers'
-import { elapsedTime } from '../scripts/time'
 import { leagueResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
 import { filterResults } from '../scripts/filter'
 import {
@@ -264,7 +263,7 @@ const route = useRoute()
 /* Get Data */
 const loading = ref(true)
 const league = ref<League | null>(null)
-const eventsWithResults = ref<Event[]>([])
+const eventsWithResults = ref<LeagueEvent[]>([])
 const rawResults = ref<LeagueResult[]>([])
 const getData = async () => {
   const routeParamsLeague = toSingleString(route.params.league)
@@ -282,7 +281,7 @@ const getData = async () => {
     }),
     getLeagueEvents(routeParamsLeague).then((eventDetails) => {
       eventsWithResults.value =
-        eventDetails?.filter((event: Event) => event.resultUploaded) ?? []
+        eventDetails?.filter((event: LeagueEvent) => event.resultUploaded) ?? []
     }),
   ])
 

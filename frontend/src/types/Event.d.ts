@@ -1,4 +1,4 @@
-interface Event {
+interface LeagueEvent {
   id: string
   name: string
   date: string

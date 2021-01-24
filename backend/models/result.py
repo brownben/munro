@@ -31,7 +31,7 @@ eventResultModel = Model(
         "club": fields.String(
             description="Club of the Competitor", example="INT", default=""
         ),
-        "eventName ": fields.String(
+        "eventName": fields.String(
             description="Event Name the Result Belongs To",
             example="Blackford Hill",
         ),

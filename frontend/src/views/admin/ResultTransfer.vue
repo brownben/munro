@@ -90,7 +90,7 @@ const router = useRouter()
 const route = useRoute()
 
 const leagues = ref<League[]>([])
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const competitors = ref<Competitor[]>([])
 const results = ref<EventResult[]>([])
 const choices = ref({
@@ -167,11 +167,13 @@ const validateForm = () => {
   }
 }
 
-const transferResult = () =>
-  apiTransferResult({
-    competitor: choices.value.competitor,
-    result: choices.value.result,
-  })
-    .then(() => router.push(`/results/${choices.value.result}`))
-    .catch(() => false)
+const transferResult = () => {
+  if (validateForm())
+    apiTransferResult({
+      competitor: choices.value.competitor,
+      result: choices.value.result,
+    })
+      .then(() => router.push(`/results/${choices.value.result}`))
+      .catch(() => false)
+}
 </script>
