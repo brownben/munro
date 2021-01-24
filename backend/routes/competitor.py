@@ -110,7 +110,7 @@ class CompetitorMergeRoute(Resource):
     def post(self):
         try:
             request = api.payload
-            Competitor.merge(request.competitorKeep, request.competitorMerge)
+            Competitor.merge(request["competitorKeep"], request["competitorMerge"])
             return createMessage("Competitors Merged Successfully", 200)
         except:
             return createMessage("Problem Merging Competitors", 500)

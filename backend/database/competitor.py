@@ -12,14 +12,14 @@ class Competitor:
     course: str
     league: str
 
-    def __init__(self, league: Union[dict, list]):
-        if type(league) == dict:
-            for key in league:
-                setattr(self, key, league[key])
+    def __init__(self, competitor: Union[dict, list]):
+        if type(competitor) == dict:
+            for key in competitor:
+                setattr(self, key, competitor[key])
 
         else:
             for (index, key) in enumerate(properties):
-                setattr(self, key, league[index])
+                setattr(self, key, competitor[index])
 
     def toDictionary(self):
         return {
@@ -132,6 +132,8 @@ class Competitor:
             """,
             (name, course, league),
         )
+        if not databaseResult:
+            return None
         return Competitor(databaseResult)
 
     @staticmethod

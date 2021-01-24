@@ -2,6 +2,7 @@ from typing import Any, Callable, Dict, List, Tuple, Union
 
 from .helpers import toSeconds
 from ..database.league import League
+from ..database.event import Event
 
 
 expectedHeaders: List[Tuple[List[str], str]] = [
@@ -81,7 +82,7 @@ def createGetValue(headerLocations: Dict[str, int]) -> Callable[[List[str], str]
 
 
 def parseFileToDictionaries(
-    data: List[List[str]], headerLocations: Dict[str, int], league: League
+    data: List[List[str]], headerLocations: Dict[str, int], league: League, event: Event
 ) -> List[Dict[str, Any]]:
     getValue = createGetValue(headerLocations)
 
@@ -96,6 +97,8 @@ def parseFileToDictionaries(
             "incomplete": isResultIncomplete(row, getValue),
             "file_points": getFilePoints(row, getValue),
             "league": league.name,
+            "event": event.id,
+            "type": "",
         }
         for row in data[1:]
     ]

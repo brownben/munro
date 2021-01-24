@@ -10,9 +10,9 @@ def calculateDynamicPoints(league: League) -> None:
     for result in dynamicResults:
         points = Result.getNonDynamicPointsByCompetitor(result.competitor)
 
-        if result["type"] == "max":
+        if result.type == "max":
             Result.updatePoints(result.id, max(points))
-        elif result["type"] == "average":
+        elif result.type == "average":
             average = round(sum(points) / len(points))
             Result.updatePoints(result.id, average)
 

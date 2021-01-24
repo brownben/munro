@@ -117,7 +117,7 @@ class Event:
                 routegadget,
                 userSubmittedResults,
                 uploadKey
-            ) VALUES ()
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 self.getEventId(),
@@ -151,7 +151,7 @@ class Event:
                 results=%s,
                 winsplits=%s,
                 routegadget=%s,
-                userSubmittedResults=%s,
+                userSubmittedResults=%s
             WHERE id=%s
             """,
             (
@@ -242,6 +242,10 @@ class Event:
             """,
             (eventId,),
         )
+
+        if not databaseResult:
+            return None
+
         return Event(databaseResult)
 
     @staticmethod

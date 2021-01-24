@@ -8,13 +8,13 @@ export const getLeague = (name: string): Promise<League | null> =>
 
 export const getLeagues = (): Promise<League[] | null> =>
   getData<League[]>({
-    apiLocation: '/api/leagues',
+    apiLocation: '/api/leagues/',
     customErrorMessage: 'Problem Fetching Leagues',
   })
 
 export const createLeague = (data: League): Promise<ServerMessage | null> =>
   postData<ServerMessage>({
-    apiLocation: `/api/leagues`,
+    apiLocation: `/api/leagues/`,
     data,
     customErrorMessage: 'Problem Creating League',
     customSuccessMessage: `League \`${data.name}\` Created`,

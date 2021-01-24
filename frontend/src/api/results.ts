@@ -2,7 +2,7 @@ import { getData, postData, putData } from './requests'
 
 export const getResults = (): Promise<EventResult[] | null> =>
   getData<EventResult[]>({
-    apiLocation: `/api/results`,
+    apiLocation: `/api/results/`,
     customErrorMessage: 'Problem Fetching Results',
   })
 

@@ -1,4 +1,4 @@
-from typing import Literal, Optional, Union
+from typing import Any, Dict, Literal, Optional, Union
 
 from .event import Event
 from .database import query, queryWithResult, queryWithResults
@@ -219,7 +219,7 @@ class Result:
             FROM competitors, results
             WHERE
                 results.competitor=competitors.rowid
-                AND competitor.league=%s
+                AND competitors.league=%s
                 AND COALESCE(results.type, '') <> 'hidden'
                 AND results.type IS NOT NULL
             ORDER BY competitors.course ASC, results.position ASC
@@ -336,7 +336,7 @@ class Result:
         return [Result(result).toDictionary() for result in databaseResult]
 
     @staticmethod
-    def updateFromRecalc(data: dict):
+    def updateFromRecalc(data: Dict[str, Any]):
         query(
             """
             UPDATE results
@@ -352,7 +352,7 @@ class Result:
                 data["position"],
                 data["points"],
                 data["incomplete"],
-                data["rowid"],
+                data["id"],
             ),
         )
 

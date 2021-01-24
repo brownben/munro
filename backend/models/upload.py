@@ -43,7 +43,7 @@ uploadResultModel = Model(
             required=True,
             example="TestLeagueCarse2000-01-01",
         ),
-        "time": fields.Integer(description="Result Time in Seconds", example=202052),
+        "time": fields.String(description="Result Time", example="43:12"),
         "name": fields.String(
             description="Name of the Competitor",
             example="Fred Jones",

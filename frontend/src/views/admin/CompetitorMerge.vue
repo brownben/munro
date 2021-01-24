@@ -126,8 +126,8 @@ const validateForm = () => {
 
 const mergeCompetitors = () =>
   apiMergeCompetitors({
-    competitorMerge: choices.value.competitorMerge,
-    competitorKeep: choices.value.competitorKeep,
+    competitorMerge: Number(choices.value.competitorMerge),
+    competitorKeep: Number(choices.value.competitorKeep),
   })
     .then(() => router.push(`/competitors/${choices.value.competitorKeep}`))
     .catch(() => false)

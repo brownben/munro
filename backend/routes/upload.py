@@ -37,7 +37,7 @@ class UploadRoute(Resource):
     @api.response(500, "Problem Processing the Uploaded Results")
     def post(self):
         requestData = api.payload
-        event = Event.getById(requestData["event"])
+        event = Event.getById(requestData["eventId"])
 
         if not event:
             return createMessage("Problem Uploading Results - Event Doesn't Exist", 404)
@@ -52,13 +52,13 @@ class UploadRoute(Resource):
             Result.deleteByEvent(event.id)
 
         splitData = splitFile(requestData["file"])
-        headerLocations = getHeaderLocations(splitData)
+        headerLocations = getHeaderLocations(splitData[0])
         league = event.getLeague()
 
         if not allHeadersArePresent(headerLocations):
             return createMessage("Data is in Missing Headers", 500)
 
-        parsedData = parseFileToDictionaries(splitData, headerLocations, league)
+        parsedData = parseFileToDictionaries(splitData, headerLocations, league, event)
         matchingResults = getMatchingResults(parsedData, league)
         normalisedResults = normaliseCourses(matchingResults, league.courses)
         sortedResults = sortByTime(normalisedResults)
@@ -88,7 +88,7 @@ class UploadResultRoute(Resource):
     @api.response(500, "Problem Processing the Uploaded Results")
     def post(self):
         data = api.payload
-        event = Event.getById(data["event"])
+        event = Event.getById(data["eventId"])
 
         if not event:
             return createMessage("Problem Uploading Results - Event Doesn't Exist", 404)
@@ -126,6 +126,7 @@ class UploadResultRoute(Resource):
                     "event": data["eventId"],
                     "competitor": competitorID,
                     "type": "userUpload",
+                    "course": data["course"],
                 }
             )
             result.create()

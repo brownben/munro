@@ -94,12 +94,12 @@ const refreshDetails = async () => {
       .then((competitorDetails) => {
         competitor.value = competitorDetails
       })
-      .then(() => getLeague(competitor.value.league))
+      .then(() => getLeague(competitor.value?.league ?? ''))
       .then((leagueDetails) => {
         league.value = leagueDetails
       }),
     getCompetitorResults(routeParamsId).then((resultDetails) => {
-      results.value = resultDetails
+      results.value = resultDetails ?? []
     }),
   ])
 

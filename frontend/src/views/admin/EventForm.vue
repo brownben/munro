@@ -121,7 +121,7 @@ const refreshDetails = async () => {
   if (routeParamsId) {
     loading.value = true
     await getEvent(routeParamsId).then((data) => {
-      event.value = data ?? []
+      if (data) event.value = data
     })
     loading.value = false
   }

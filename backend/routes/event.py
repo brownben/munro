@@ -70,8 +70,9 @@ class EventRoute(Resource):
     @api.response(403, "An Event with that ID Already Exists")
     @api.response(500, "Problem Connecting to the Database")
     @requireAuthentication
-    def put(self, oldEventId):
+    def put(self, eventId):
         try:
+            oldEventId = eventId
             event = Event(api.payload)
 
             if event.getEventId() != oldEventId and Event.exists(event.getEventId()):
@@ -80,7 +81,7 @@ class EventRoute(Resource):
                     403,
                 )
 
-            event.update()
+            event.update(oldEventId)
             return createMessage(f"Event - '{event.name}' was Updated", 201)
 
         except:

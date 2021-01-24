@@ -67,9 +67,9 @@ def getMatchingResults(results: List[Result], league: League) -> List[Result]:
     ]
 
 
-def matchesClubRestriction(result: Result, allowedClub: str) -> bool:
+def matchesClubRestriction(club: str, allowedClub: str) -> bool:
     if allowedClub:
-        return result["club"] == allowedClub
+        return club == allowedClub
     else:
         return True
 

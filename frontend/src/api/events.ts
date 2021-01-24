@@ -8,7 +8,7 @@ export const getEvent = (id: string): Promise<LeagueEvent | null> =>
 
 export const getEvents = (): Promise<LeagueEvent[] | null> =>
   getData<LeagueEvent[]>({
-    apiLocation: '/api/events',
+    apiLocation: '/api/events/',
     customErrorMessage: 'Problem Fetching Events',
   })
 
@@ -34,7 +34,7 @@ export const getLatestResults = (): Promise<LeagueEvent[] | null> =>
 
 export const createEvent = (data: LeagueEvent): Promise<ServerMessage | null> =>
   postData<ServerMessage>({
-    apiLocation: `/api/events`,
+    apiLocation: `/api/events/`,
     data,
     customErrorMessage: 'Problem Creating Event',
     customSuccessMessage: `Event \`${data.name}\` Created`,
