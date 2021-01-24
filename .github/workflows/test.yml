@@ -29,9 +29,6 @@ jobs:
   backend:
     name: Backend - Lint + Unit Tests
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
 
     steps:
       - name: Checkout
@@ -47,12 +44,15 @@ jobs:
           pip install -r requirements.txt
 
       - name: Typecheck
+        working-directory: backend
         run: mypy ../backend
 
       - name: Lint
+        working-directory: backend
         run: black . --check --line-length 88
 
       - name: Test
+        working-directory: backend
         run: |
           coverage run -m pytest
           coverage report
