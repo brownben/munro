@@ -1,5 +1,2 @@
 [run]
-omit = .venv/*,**virtualenv**,*tests*,*__init__*
-
-[report]
-omit = .venv/*,*/virtualenv/*,*tests*,*__init__*
+omit = .venv/*, tests/*

@@ -1,8 +1,3 @@
-<!--
-  App.vue
-
-  The main app file containing the base structure of the app, and base styling
--->
 <template>
   <AppMenu v-show="!$route.path.includes('/embed/')" />
 
@@ -20,3 +15,16 @@
 import AppMenu from './components/Menu.vue'
 import Messages from './components/Messages.vue'
 </script>
+
+<style>
+@import 'tailwindcss/base';
+@import './assets/styles/base.css';
+@import './assets/styles/transitions.css';
+
+@import 'tailwindcss/components';
+@import './assets/styles/buttons.css';
+@import './assets/styles/cards.css';
+
+@import 'tailwindcss/utilities';
+@import './assets/styles/utilities.css';
+</style>

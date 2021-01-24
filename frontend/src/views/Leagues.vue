@@ -1,11 +1,5 @@
-<!--
-  Leagues
-
-  List of leagues
--->
-
 <template>
-  <Layout title="Leagues" :footer="leagues && leagues.length > 0">
+  <Layout title="Leagues">
     <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },

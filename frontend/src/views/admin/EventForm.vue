@@ -1,19 +1,3 @@
-<!--
-  Event Form
-
-  The form for Creating/ Updating Events
-
-  On Create:
-    - Show form
-  - Fetch Leagues
-  - Autofill league if passed in the URL
-
-  On Edit:
-    - Show Form
-    - Fetch leagues
-    - Fetch event data and display it (Event ID from URL)
--->
-
 <template>
   <Layout
     :title="title"
@@ -112,7 +96,7 @@ const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
-const event = ref<Event>({
+const event = ref<LeagueEvent>({
   id: '',
   name: '',
   date: '',
@@ -137,7 +121,7 @@ const refreshDetails = async () => {
   if (routeParamsId) {
     loading.value = true
     await getEvent(routeParamsId).then((data) => {
-      event.value = data ?? []
+      if (data) event.value = data
     })
     loading.value = false
   }

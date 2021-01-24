@@ -8,20 +8,20 @@ export const getLeague = (name: string): Promise<League | null> =>
 
 export const getLeagues = (): Promise<League[] | null> =>
   getData<League[]>({
-    apiLocation: '/api/leagues',
+    apiLocation: '/api/leagues/',
     customErrorMessage: 'Problem Fetching Leagues',
   })
 
-export const createLeague = (data: LeagueForm): Promise<ServerMessage | null> =>
+export const createLeague = (data: League): Promise<ServerMessage | null> =>
   postData<ServerMessage>({
-    apiLocation: `/api/leagues`,
+    apiLocation: `/api/leagues/`,
     data,
     customErrorMessage: 'Problem Creating League',
     customSuccessMessage: `League \`${data.name}\` Created`,
     customErrorHandler: true,
   })
 
-export const updateLeague = (data: LeagueForm): Promise<ServerMessage | null> =>
+export const updateLeague = (data: League): Promise<ServerMessage | null> =>
   putData<ServerMessage>({
     apiLocation: `/api/leagues/${data.name}`,
     data,

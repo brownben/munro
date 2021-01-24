@@ -8,6 +8,6 @@ interface Competitor {
 }
 
 interface MergeCompetitors {
-  competitorKeep: string
-  competitorMerge: string
+  competitorKeep: number
+  competitorMerge: number
 }

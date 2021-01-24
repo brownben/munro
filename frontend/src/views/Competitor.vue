@@ -1,10 +1,5 @@
 <template>
-  <Layout
-    has-mobile-sub-title
-    gray
-    :not-found="!loading && !competitor?.name"
-    footer
-  >
+  <Layout has-mobile-sub-title gray :not-found="!loading && !competitor?.name">
     <Meta
       :title="`Munro - ${competitor?.name ?? ''} - Competitor`"
       :description="`Results for ${competitor?.name ?? ''} in the ${
@@ -99,12 +94,12 @@ const refreshDetails = async () => {
       .then((competitorDetails) => {
         competitor.value = competitorDetails
       })
-      .then(() => getLeague(competitor.value.league))
+      .then(() => getLeague(competitor.value?.league ?? ''))
       .then((leagueDetails) => {
         league.value = leagueDetails
       }),
     getCompetitorResults(routeParamsId).then((resultDetails) => {
-      results.value = resultDetails
+      results.value = resultDetails ?? []
     }),
   ])
 

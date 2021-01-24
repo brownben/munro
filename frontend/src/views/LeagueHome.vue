@@ -1,17 +1,5 @@
-<!--
-  League Home Page
-
-  Shows all league details as well as all details for each event in the league, including
-  the upload key and event id needed for event upload if logged in. If logged in it also diaplays
-  options to edit/ update/ delete the events/ league. Also has links to results for each course
--->
-
 <template>
-  <Layout
-    gray
-    :not-found="!league && !loading"
-    :footer="league && league.name && events && events.length > 0"
-  >
+  <Layout gray :not-found="!league && !loading">
     <Meta
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -105,7 +93,7 @@
     <template v-if="league" #fullWidth>
       <section
         v-if="$store.getters.loggedIn && league.name"
-        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
+        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-700"
       >
         <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
         <div class="w-10/12 mx-auto sm:mt-2">
@@ -127,7 +115,7 @@
         v-if="
           league?.courses?.length > 0 || league?.leagueScoring === 'overall'
         "
-        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-500"
+        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
       >
         <h2 class="text-2xl font-bold font-heading">League Results</h2>
         <div
@@ -202,19 +190,19 @@ const route = useRoute()
 /* Get Data */
 const loading = ref(true)
 const league = ref<League | null>(null)
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const refreshDetails = async () => {
   const routeParamsName = toSingleString(route.params.name)
   loading.value = true
   await Promise.all([
-    getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
-      (eventDetails) => {
-        events.value = eventDetails
-      }
-    ),
     getLeague(routeParamsName).then((leagueDetails) => {
       league.value = leagueDetails
     }),
+    getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
+      (eventDetails) => {
+        events.value = eventDetails ?? []
+      }
+    ),
   ])
   loading.value = false
 }
@@ -236,9 +224,8 @@ const deleteLeagueConfirmation = () => {
       .catch(() => false)
 }
 const leagueCourses = computed(() => {
-  const array = league.value?.courses.filter(
-    (course: string) => course !== 'Overall'
-  )
+  const array =
+    league.value?.courses.filter((course: string) => course !== 'Overall') ?? []
   if (array.length <= 1) return array.join(', ')
   else return `${array.slice(0, -1).join(', ')} and ${array[array.length - 1]}`
 })

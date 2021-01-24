@@ -1,9 +1,3 @@
-<!--
-  Upload Page
-
-  Upload results to database.
--->
-
 <template>
   <Layout title="Upload Results File">
     <Meta
@@ -112,7 +106,7 @@ const uploadConfig = ref<UploadFile>({
   routegadget: '',
   winsplits: '',
 })
-const event = ref<Event | null>(null)
+const event = ref<LeagueEvent | null>(null)
 const eventId = computed(() => uploadConfig.value.eventId)
 
 const getURLEventId = () => {

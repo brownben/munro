@@ -1,9 +1,3 @@
-<!--
-  Merge Competitors
-
-  Allows to merge two comopetitors together (when a duplicate)
--->
-
 <template>
   <Layout title="Merge Competitors">
     <Meta
@@ -30,26 +24,24 @@
       />
       <DropdownInput
         v-model="choices.competitorKeep"
-        :list="
+        :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),
           }))
         "
-        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor to Keep:"
         class="mt-4"
       />
       <DropdownInput
         v-model="choices.competitorMerge"
-        :list="
+        :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),
           }))
         "
-        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor to be Merged:"
         class="mt-4"
@@ -134,8 +126,8 @@ const validateForm = () => {
 
 const mergeCompetitors = () =>
   apiMergeCompetitors({
-    competitorMerge: choices.value.competitorMerge,
-    competitorKeep: choices.value.competitorKeep,
+    competitorMerge: Number(choices.value.competitorMerge),
+    competitorKeep: Number(choices.value.competitorKeep),
   })
     .then(() => router.push(`/competitors/${choices.value.competitorKeep}`))
     .catch(() => false)

@@ -1,11 +1,5 @@
-<!--
-  Latest Results
-
-  List of events with the latest results
--->
-
 <template>
-  <Layout title="Latest Results" :footer="events && events.length > 0">
+  <Layout title="Latest Results">
     <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },
@@ -32,7 +26,7 @@ import { getLatestResults } from '../api/events'
 import Layout from '../components/Layout.vue'
 import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
 
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 
 onMounted(async () => {
   events.value = (await getLatestResults()) ?? []

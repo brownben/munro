@@ -6,13 +6,13 @@
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
       <div class="flex flex-row flex-wrap justify-between px-6 mx-auto mb-4">
         <h2
-          class="inline-block py-2 text-lg leading-6 tracking-wide uppercase font-heading text-main-600"
+          class="inline-block py-2 text-lg leading-6 tracking-wide uppercase font-heading text-main-700"
         >
           Latest Results
         </h2>
         <router-link
           to="/latest-results"
-          class="inline-block px-4 pt-2 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
+          class="inline-block px-4 pt-2 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-700 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
         >
           View More &rarr;
         </router-link>
@@ -34,7 +34,7 @@ import { ref, onMounted } from 'vue'
 import { getLatestResults } from '../../api/events'
 import EventCard from './EventCardSmall.vue'
 
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 
 onMounted(async () => {
   events.value = (await getLatestResults()) ?? []

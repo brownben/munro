@@ -1,9 +1,3 @@
-<!--
-  Result Transfer
-
-  Change the competitor the result is credited to
--->
-
 <template>
   <Layout title="Transfer Result">
     <Meta
@@ -23,13 +17,12 @@
       />
       <DropdownInput
         v-model="choices.event"
-        :list="
+        :listWithDifferentValue="
           eventsInLeague.map((event) => ({
             value: event.id,
             text: `${event.name} (${event.date})`,
           }))
         "
-        :option-text-different-to-value="true"
         :include-blank="true"
         label="Event:"
         class="mt-4"
@@ -43,7 +36,7 @@
       />
       <DropdownInput
         v-model="choices.result"
-        :list="
+        :listWithDifferentValue="
           resultsInEvent?.map((result) => ({
             text: `${result.position} - ${elapsedTime(result.time)} (${
               result.name
@@ -51,20 +44,18 @@
             value: result.id.toString(),
           })) ?? []
         "
-        :option-text-different-to-value="true"
         :include-blank="true"
         label="Result:"
         class="mt-4"
       />
       <DropdownInput
         v-model="choices.competitor"
-        :list="
+        :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),
           }))
         "
-        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor:"
         class="mt-4"
@@ -99,7 +90,7 @@ const router = useRouter()
 const route = useRoute()
 
 const leagues = ref<League[]>([])
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const competitors = ref<Competitor[]>([])
 const results = ref<EventResult[]>([])
 const choices = ref({
@@ -176,11 +167,13 @@ const validateForm = () => {
   }
 }
 
-const transferResult = () =>
-  apiTransferResult({
-    competitor: choices.value.competitor,
-    result: choices.value.result,
-  })
-    .then(() => router.push(`/results/${choices.value.result}`))
-    .catch(() => false)
+const transferResult = () => {
+  if (validateForm())
+    apiTransferResult({
+      competitor: choices.value.competitor,
+      result: choices.value.result,
+    })
+      .then(() => router.push(`/results/${choices.value.result}`))
+      .catch(() => false)
+}
 </script>

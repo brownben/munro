@@ -1,10 +1,3 @@
-<!--
-  Messages
-
-  Messages are displayed at the bottom of the screen. On enter and exit they slide and fade in. It monitors the
-    message store and displays the messages
--->
-
 <template>
   <transition name="fade">
     <transition-group

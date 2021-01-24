@@ -2,7 +2,7 @@ import { getData, postData, putData } from './requests'
 
 export const getResults = (): Promise<EventResult[] | null> =>
   getData<EventResult[]>({
-    apiLocation: `/api/results`,
+    apiLocation: `/api/results/`,
     customErrorMessage: 'Problem Fetching Results',
   })
 
@@ -33,14 +33,11 @@ export const getCompetitorResults = (
 
 export const hideResult = (
   id: number,
-  event: string,
   hide: boolean
 ): Promise<ServerMessage | null> =>
   putData<ServerMessage>({
     apiLocation: `/api/results/${id}`,
     data: {
-      action: 'hide',
-      event: event,
       type: hide ? 'hidden' : null,
     },
     customSuccessMessage: hide ? 'Result Hidden' : 'Result Included',
@@ -49,14 +46,11 @@ export const hideResult = (
 
 export const incompleteResult = (
   id: number,
-  event: string,
   incomplete: boolean
 ): Promise<ServerMessage | null> =>
   putData<ServerMessage>({
     apiLocation: `/api/results/${id}`,
     data: {
-      action: 'incomplete',
-      event: event,
       incomplete,
     },
     customSuccessMessage: incomplete

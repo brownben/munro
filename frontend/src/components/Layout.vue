@@ -24,6 +24,28 @@
           </div>
         </div>
       </div>
+
+      <transition
+        enter-active-class="origin-top transition ease-out duration-150"
+        enter-from-class="transform opacity-0 scale-y-95"
+        enter-to-class="transform opacity-100 scale-y-100"
+        leave-active-class="origon-top transition ease-in duration-100"
+        leave-from-class="transform opacity-100 scale-y-100"
+        leave-to-class="transform opacity-0 scale-y-95"
+      >
+        <div
+          v-if="$slots.expansion"
+          v-show="showExpansion"
+          class="origin-top border-t border-b border-main-100 bg-gray-50 py-6 mb-8 -mt-2"
+        >
+          <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
+            <div class="px-6 sm:px-0">
+              <slot name="expansion" />
+            </div>
+          </div>
+        </div>
+      </transition>
+
       <div v-if="$slots.fullWidth && !notFound" class="w-full">
         <slot name="fullWidth" />
       </div>
@@ -48,7 +70,7 @@
         </div>
       </div>
     </main>
-    <AppFooter v-if="footer && !notFound" />
+    <AppFooter />
   </div>
 </template>
 <script setup lang="ts">
@@ -62,6 +84,6 @@ const props = defineProps({
   hasMobileSubTitle: { type: Boolean, default: false },
   gray: { type: Boolean, default: false },
   notFound: { type: Boolean, default: false },
-  footer: { type: Boolean, default: false },
+  showExpansion: { type: Boolean, default: false },
 })
 </script>

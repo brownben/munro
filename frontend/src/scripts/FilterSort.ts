@@ -24,28 +24,3 @@ export enum SortablePropertiesCompetitor {
   id = 'id',
   course = 'course',
 }
-
-export interface FilterPreferences {
-  name: string
-  club: string
-  minAge: number
-  maxAge: number
-  male: boolean
-  female: boolean
-}
-
-export interface SortPreferencesEvent {
-  ascending: boolean
-  by: SortablePropertiesEvent
-}
-
-export interface SortPreferencesLeague {
-  ascending: boolean
-  by: SortablePropertiesLeague
-  event?: number
-}
-
-export interface SortPreferencesCompetitor {
-  ascending: boolean
-  by: SortablePropertiesCompetitor
-}

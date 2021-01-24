@@ -1,9 +1,3 @@
-<!--
-  Not Found
-
-  Displayed when page is not found by the router, or data is not found from API
--->
-
 <template>
   <div class="w-full col-span-2 px-6 text-center">
     <Meta

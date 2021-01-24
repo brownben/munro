@@ -1,24 +1,21 @@
-from flask_restful import Resource, reqparse
+from flask_restx import Namespace, Resource
 
-from database.search import leaguesSearch, eventsSearch, competitorSearch
-from .returnMessages import returnMessage, returnError
-
-
-parser = reqparse.RequestParser()
-parser.add_argument("query", help="Please Enter a Search Query", required=True)
+from ..database.search import Search
+from ..models.search import searchModel
 
 
-class Search(Resource):
-    def get(self):
-        data = parser.parse_args()
-        term = data["query"]
+api = Namespace("Search", description="Search for Leagues, Events and Competitors")
+api.models[searchModel.name] = searchModel
 
+
+@api.route("/<query>")
+@api.param("query", "Search Term")
+class SearchRoute(Resource):
+    @api.marshal_with(searchModel)
+    @api.response(200, "Success - Results of Search")
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self, query):
         try:
-            return {
-                "leagues": leaguesSearch(term),
-                "events": eventsSearch(term),
-                "competitors": competitorSearch(term),
-            }
-
+            return Search(query).toDictionary()
         except:
-            return returnError("Problem Searching Database")
+            return None, 500

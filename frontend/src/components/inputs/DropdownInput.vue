@@ -1,10 +1,3 @@
-<!--
-  Dropdown Form Input
-
-  Dropdown input for forms wrapper for the select element.
-  'Emits' a value when changed
--->
-
 <template>
   <div>
     <label
@@ -43,14 +36,19 @@
         @focus="focus = true"
         @blur="focus = false"
       >
-        <option v-if="shift" />
-        <template v-if="!optionTextDifferentToValue">
+        <option v-if="includeBlank" />
+
+        <template v-if="list">
           <option v-for="item in list" :key="item" :value="item">
             {{ item }}
           </option>
         </template>
-        <template v-else>
-          <option v-for="item in list" :key="item.text" :value="item.value">
+        <template v-if="listWithDifferentValue">
+          <option
+            v-for="item in listWithDifferentValue"
+            :key="item.text"
+            :value="item.value"
+          >
             {{ item.text }}
           </option>
         </template>
@@ -59,15 +57,15 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { ref, defineEmit, defineProps } from 'vue'
 
 const props = defineProps({
-  label: { type: String, default: '' },
+  label: { type: String, required: true },
   modelValue: { type: String, default: '' },
   list: { type: Array, default: () => [] },
-  shift: { type: Boolean, default: true },
-  optionTextDifferentToValue: { type: Boolean, default: false },
+  listWithDifferentValue: { type: Array, default: () => [] },
+  includeBlank: { type: Boolean, default: true },
 })
 const emit = defineEmit(['update:modelValue'])
 

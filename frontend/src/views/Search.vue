@@ -89,7 +89,7 @@
 
 <script lang="ts" setup>
 import { ref, watch, defineAsyncComponent } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
 import SearchBox from '../components/inputs/SearchBox.vue'
@@ -105,12 +105,11 @@ import { toSingleString } from '../scripts/typeHelpers'
 
 import { getQuery } from '../api/search'
 
-const router = useRouter()
 const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const competitors = ref<Competitor[]>([])
 
 const getDetails = async () => {

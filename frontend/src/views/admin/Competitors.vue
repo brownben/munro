@@ -1,9 +1,3 @@
-<!--
-  Competitors
-
-  Displays list of competitors
--->
-
 <template>
   <Layout has-mobile-sub-title>
     <Meta

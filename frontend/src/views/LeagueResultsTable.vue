@@ -1,18 +1,10 @@
-<!--
-  League Results for Course
-
-  Display results for course in dynamic table with searching and sorting. Click on the relevent cell in the header
-  to sort/ change sort direction/ preference
-  On mobile show overview with name, class, total points and when clicked reveal points for each event.
-  Points not included in total are strikethrough style
--->
-
 <template>
   <Layout
     class="w-full"
     wide
     has-mobile-sub-title
     :not-found="!loading && !league?.name"
+    :show-expansion="filterOpen"
   >
     <Meta
       :title="`Munro - ${$route.params.league} - ${$route.params.course} Results`"
@@ -23,22 +15,46 @@
       }"
     />
     <template #title>
-      <h1 class="text-3xl font-bold leading-tight font-heading">
-        <router-link
-          :to="'/leagues/' + $route.params.league"
-          class="text-xl text-main-700 md:text-3xl"
+      <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-bold leading-tight font-heading">
+          <router-link
+            :to="'/leagues/' + $route.params.league"
+            class="text-xl text-main-700"
+          >
+            {{ $route.params?.league.trim() }}
+          </router-link>
+          <span class="block text-3xl">
+            {{ $route.params.course }}
+          </span>
+        </h1>
+
+        <button
+          title="Toggle Filter Menu"
+          class="p-2 text-gray-500 transition rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
+          :class="{ 'text-main-600 bg-main-50': filterOpen }"
+          @click="filterOpen = !filterOpen"
         >
-          {{ $route.params?.league.trim() }}
-        </router-link>
-        <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-        <span class="block text-3xl md:inline-block">
-          {{ $route.params.course }}
-        </span>
-      </h1>
+          <span class="sr-only">Toggle Filter Menu</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+            />
+          </svg>
+        </button>
+      </div>
     </template>
 
-    <template #white>
-      <FilterMenu class="col-span-2" @changed="filterChanged" />
+    <template #expansion>
+      <FilterMenu @changed="filterChanged" />
     </template>
 
     <template #fullWidth>
@@ -54,7 +70,7 @@
         <table class="w-full border-collapse">
           <thead>
             <tr
-              class="transition duration-300 bg-white border-b border-collapse border-main-300"
+              class="transition duration-300 bg-white border-b border-collapse border-main-200"
             >
               <Heading
                 text="Pos."
@@ -71,9 +87,7 @@
                 @click="changeSortPreference(SortableProperties.name)"
               />
               <Heading
-                v-if="
-                  results?.[0]?.course && league?.leagueScoring === 'course'
-                "
+                v-if="results?.[0]?.course"
                 text="Course"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.course"
@@ -136,10 +150,7 @@
                   <span>{{ result.club }}</span>
                 </template>
               </Cell>
-              <Cell
-                v-if="result.course && league?.leagueScoring === 'course'"
-                show-after="sm"
-              >
+              <Cell v-if="result.course" show-after="sm">
                 {{ result.course }}
               </Cell>
               <Cell show-after="sm">{{ result.ageClass }}</Cell>
@@ -147,17 +158,17 @@
               <Cell>{{ result.totalPoints }}</Cell>
 
               <Cell
-                v-for="point of result.points"
-                :key="point.event"
+                v-for="(point, j) of result.points"
+                :key="j"
                 show-after="md"
                 :class="{
-                  'line-through': !point.counting,
+                  'line-through': !point?.counting,
                   'font-normal italic': ['manual', 'max', 'average'].includes(
-                    point.type
+                    point?.type
                   ),
                 }"
               >
-                {{ point.score }}
+                {{ point?.score }}
               </Cell>
 
               <template #expansion>
@@ -170,15 +181,15 @@
                   <span
                     class="inline-block w-4 pl-2 pr-4"
                     :class="{
-                      'line-through': !point.counting,
+                      'line-through': !point?.counting,
                       'font-normal italic': [
                         'manual',
                         'max',
                         'average',
-                      ].includes(point.type),
+                      ].includes(point?.type),
                     }"
                   >
-                    {{ point.score }}
+                    {{ point?.score }}
                   </span>
                 </p>
               </template>
@@ -235,7 +246,6 @@ const NoResultsCard = defineAsyncComponent(
 )
 
 import { toSingleString } from '../scripts/typeHelpers'
-import { elapsedTime } from '../scripts/time'
 import { leagueResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
 import { filterResults } from '../scripts/filter'
 import {
@@ -253,7 +263,7 @@ const route = useRoute()
 /* Get Data */
 const loading = ref(true)
 const league = ref<League | null>(null)
-const eventsWithResults = ref<Event[]>([])
+const eventsWithResults = ref<LeagueEvent[]>([])
 const rawResults = ref<LeagueResult[]>([])
 const getData = async () => {
   const routeParamsLeague = toSingleString(route.params.league)
@@ -271,7 +281,7 @@ const getData = async () => {
     }),
     getLeagueEvents(routeParamsLeague).then((eventDetails) => {
       eventsWithResults.value =
-        eventDetails?.filter((event: Event) => event.resultUploaded) ?? []
+        eventDetails?.filter((event: LeagueEvent) => event.resultUploaded) ?? []
     }),
   ])
 
@@ -294,6 +304,7 @@ const otherCourses = computed(
 )
 
 /* Sort + Filter Preferences */
+const filterOpen = ref<boolean>(false)
 const filterPreferences = ref<FilterPreferences>({
   name: '',
   club: '',

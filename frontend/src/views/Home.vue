@@ -1,9 +1,3 @@
-<!--
-  Home
-
-  Home page of app, displaying summary of all the leagues
--->
-
 <template>
   <div>
     <Meta

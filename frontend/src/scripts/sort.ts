@@ -1,10 +1,3 @@
-import {
-  SortablePropertiesLeague,
-  SortPreferencesCompetitor,
-  SortPreferencesEvent,
-  SortPreferencesLeague,
-} from './FilterSort'
-
 const sortComparison = (ascending: boolean, a: any, b: any): 0 | 1 | -1 => {
   const aIsLess = ascending ? -1 : 1
   const bIsLess = ascending ? 1 : -1
@@ -64,8 +57,29 @@ export const sortLeagueResults = (sortPreferences: SortPreferencesLeague) => {
 export const sortEventResults = (sortPreferences: SortPreferencesEvent) =>
   sortEventResultsByProperty(sortPreferences)
 
-export {
-  SortablePropertiesLeague,
-  SortablePropertiesCompetitor,
-  SortablePropertiesEvent,
-} from './FilterSort'
+export enum SortablePropertiesEvent {
+  name = 'name',
+  age = 'age',
+  position = 'position',
+  club = 'club',
+  time = 'time',
+  points = 'points',
+}
+
+export enum SortablePropertiesLeague {
+  name = 'name',
+  age = 'age',
+  position = 'position',
+  club = 'club',
+  totalPoints = 'totalPoints',
+  points = 'points',
+  course = 'course',
+}
+
+export enum SortablePropertiesCompetitor {
+  name = 'name',
+  ageClass = 'ageClass',
+  club = 'club',
+  id = 'id',
+  course = 'course',
+}

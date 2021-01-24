@@ -13,8 +13,7 @@
       <DropdownInput
         v-model="result.eventId"
         label="Event:"
-        :option-text-different-to-value="true"
-        :list="
+        :listWithDifferentValue="
           events.map((event) => ({
             text: `${event.league} - ${event.name}`,
             value: event.id,
@@ -67,7 +66,7 @@ const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
-const events = ref<Event[]>([])
+const events = ref<LeagueEvent[]>([])
 const result = ref<UploadResult>({
   name: '',
   eventId: '',
@@ -84,7 +83,7 @@ const refreshDetails = async () => {
     }),
     getEvents().then((data) => {
       events.value =
-        data?.filter((event: Event) => event.userSubmittedResults) ?? []
+        data?.filter((event: LeagueEvent) => event.userSubmittedResults) ?? []
 
       if (events.value.length < 1)
         store.dispatch(

@@ -1,18 +1,36 @@
-from flask import Flask, render_template, request, send_from_directory
+from typing import Dict, Text
+from flask import (
+    Flask,
+    Blueprint,
+    request,
+    render_template,
+    send_from_directory,
+    wrappers,
+)
 from flask_compress import Compress
 from flask_cors import CORS
-from flask_restful import Api
 from flask_talisman import Talisman
-import os
-import json
+from flask_restx import Api
 
-from routes import *
+from .database.initialize import setup as initializeDatabase
 
+from .routes.league import api as leagueRoutes
+from .routes.event import api as eventRoutes
+from .routes.competitor import api as competitorRoutes
+from .routes.result import api as resultRoutes
+from .routes.search import api as searchRoutes
+from .routes.upload import api as uploadRoutes
 
 # Set up Flask with plugins
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
-api = Api(app)
-
+blueprint = Blueprint("api", __name__, url_prefix="/api")
+api = Api(
+    blueprint,
+    title="Munro API",
+    description="Get League, Event, Competitor and Results from Munro",
+    validate=True,
+)
+app.register_blueprint(blueprint)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 Compress(app)
 
@@ -29,88 +47,32 @@ if not app.debug:
             "connect-src": "'self' identitytoolkit.googleapis.com https://www.p.fne.com.au/",
         },
     )
-else:
-    from developmentForwarding import forwardToVue
 
-
-@api.representation("application/json")
-def output_json(data, code, headers):
-    resp = app.make_response((json.dumps(data), code))
-    resp.headers.extend({"X-Robots-Tag": "noindex", "max-age": 0})
-    return resp
-
-
-# Bind all logic with the routes
-api.add_resource(leagues.Leagues, "/api/leagues")
-api.add_resource(leagues.League, "/api/leagues/<name>")
-api.add_resource(leagueEvents.LeagueEvents, "/api/leagues/<name>/events")
-api.add_resource(
-    leagueEvents.LeagueEventsWithUploadKey,
-    "/api/leagues/<name>/events/uploadKey",
-)
-api.add_resource(
-    leagueResults.ResultsForLeague,
-    "/api/leagues/<name>/results/Overall",
-)
-api.add_resource(
-    leagueResults.ResultsForCourse,
-    "/api/leagues/<name>/results/<course>",
-)
-
-api.add_resource(events.Events, "/api/events")
-api.add_resource(events.EventsWithUploadKey, "/api/events/uploadKey")
-api.add_resource(events.Event, "/api/events/<eventId>")
-api.add_resource(events.EventWithUploadKey, "/api/events/<eventId>/uploadKey")
-api.add_resource(
-    resultsRecalculate.EventRecalculateResults,
-    "/api/events/<eventId>/results/recalculate",
-)
-api.add_resource(
-    eventsLatestResults.EventsLatestWithResults,
-    "/api/events/latest-results",
-)
-
-api.add_resource(competitors.Competitors, "/api/competitors")
-api.add_resource(competitorMerge.CompetitorMerge, "/api/competitors/merge")
-api.add_resource(competitors.Competitor, "/api/competitors/<competitorId>")
-api.add_resource(leagueCompetitors.LeagueCompetitors, "/api/leagues/<name>/competitors")
-
-api.add_resource(results.Results, "/api/results")
-api.add_resource(resultsManual.ManualResult, "/api/results/manual")
-api.add_resource(resultsTransfer.TransferResult, "/api/results/transfer")
-api.add_resource(results.Result, "/api/results/<resultId>")
-api.add_resource(eventResults.ResultsForEvent, "/api/events/<eventId>/results")
-api.add_resource(
-    competitorResults.ResultsForCompetitor,
-    "/api/competitors/<competitorId>/results",
-)
-
-api.add_resource(uploadFile.Upload, "/api/upload")
-api.add_resource(uploadStream.UploadStream, "/api/upload/stream")
-api.add_resource(uploadResult.UploadResult, "/api/upload/result")
-
-api.add_resource(search.Search, "/api/search")
+# Register Routes + Initilize Database
+initializeDatabase()
+api.add_namespace(leagueRoutes, path="/leagues")
+api.add_namespace(eventRoutes, path="/events")
+api.add_namespace(competitorRoutes, path="/competitors")
+api.add_namespace(resultRoutes, path="/results")
+api.add_namespace(searchRoutes, path="/search")
+api.add_namespace(uploadRoutes, path="/upload")
 
 # Serve app files
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def catch_all(path):
-    # If in debug access files from VueJS Development Server
-    if app.debug:
-        return forwardToVue(path)
-
+def catch_all(path: str) -> Text:
     return render_template("index.html")
 
 
 @app.route("/api/<path:path>")
-def api_catch_all(path):
+def api_catch_all(path: str) -> Dict:
     return {}
 
 
 @app.route("/robots.txt")
 @app.route("/manifest.json")
 @app.route("/service-worker.js")
-def static_from_root():
+def static_from_root() -> wrappers.Response:
     return send_from_directory(app.static_folder, request.path[1:], cache_timeout=0)
 
 

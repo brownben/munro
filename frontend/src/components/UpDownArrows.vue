@@ -1,9 +1,3 @@
-<!--
-  Up and Down Arrows for Table
-
-  The arrows for the table indicating sort preference and direction. The data is passed through props and watched for changes.
--->
-
 <template>
   <div class="up-down-arrow">
     <svg

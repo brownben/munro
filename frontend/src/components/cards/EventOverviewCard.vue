@@ -153,7 +153,7 @@ const props = defineProps({
 })
 const emit = defineEmit(['event-changed'])
 
-const deleteEvent = (event: Event) => {
+const deleteEvent = (event: LeagueEvent) => {
   if (
     confirm(
       `Are you Sure you Want to Delete Event - ${event.name}? \nThis Action Can't Be Recovered`

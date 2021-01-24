@@ -1,9 +1,3 @@
-<!--
-  Login
-
-  The login page to gain access to admin functions
--->
-
 <template>
   <Layout title="Admin Login">
     <Meta

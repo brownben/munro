@@ -17,7 +17,7 @@
         {{ fileName }}
       </span>
       <label
-        tabindex="0"
+        :tabindex="0"
         for="file"
         class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
       >
@@ -34,7 +34,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, defineEmit, defineProps } from 'vue'
 
 const props = defineProps({

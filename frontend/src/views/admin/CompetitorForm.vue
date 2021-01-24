@@ -1,9 +1,3 @@
-<!--
-  Competitor Form
-
-  The form for Creating/ Updating Competitor
--->
-
 <template>
   <Layout
     :title="title"
@@ -16,7 +10,7 @@
       :title="`Munro - ${title}`"
       description
     />
-    <!-- @submit on submit via enter key in the last field, .prevent prevents page reload -->
+
     <form class="col-span-2" @submit.prevent="submit">
       <TextInput v-model.trim="competitor.name" label="Name:" />
       <TextInput v-model.trim="competitor.club" label="Club:" class="mt-4" />
@@ -74,6 +68,7 @@ const competitor = ref<Competitor | null>({
   id: 0,
   name: '',
   club: '',
+  ageClass: '',
   course: '',
   league: '',
 })

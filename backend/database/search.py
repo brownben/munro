@@ -1,56 +1,109 @@
-from .sqlQuery import queryWithResults as query
+from typing import List
 
-from .leagues import leagueToJSON
-from .events import eventToJSON
-from .competitors import competitorToJSON
-
-
-def leaguesSearch(term: str):
-    results = query(
-        """
-        SELECT
-        leagues.name, leagues.website, leagues.coordinator, leagues.scoringMethod, leagues.numberOfCountingEvents, leagues.courses, leagues.description, leagues.year, leagues.dynamicEventResults, leagues.moreInformation, leagues.leagueScoring, clubRestriction, COUNT(events.id)
-        FROM leagues
-        LEFT JOIN events ON leagues.name=events.league
-        WHERE %s %% ANY(STRING_TO_ARRAY(leagues.name, ' '))
-            OR %s %% ANY(STRING_TO_ARRAY(leagues.description, ' '))
-            OR CAST(leagues.year AS TEXT) = %s
-            OR CAST(leagues.year AS TEXT) LIKE %s
-        GROUP BY leagues.name
-        ORDER BY SIMILARITY(leagues.name, %s) DESC
-        """,
-        [term, term, f"__{term}", term, term],
-    )
-
-    return [leagueToJSON(result) for result in results]
+from .database import DatabaseConnection
+from .league import League
+from .event import Event
+from .competitor import Competitor
 
 
-def eventsSearch(term: str):
-    results = query(
-        """
-        SELECT
-          id, name, date, resultUploaded, organiser, moreInformation, website, results, winsplits, routegadget, userSubmittedResults, league
-        FROM events
-        WHERE  %s %% ANY(STRING_TO_ARRAY(name, ' '))
-            OR id LIKE %s
-        ORDER BY SIMILARITY(id, %s) DESC
-        """,
-        [term, f"%term%", term],
-    )
+class Search:
+    leagues: List[League]
+    events: List[Event]
+    competitors: List[Competitor]
 
-    return [eventToJSON(result) for result in results]
+    def __init__(self, searchTerm: str):
+        self.databaseConnection = DatabaseConnection()
+        self.leagues = self.searchLeagues(searchTerm)
+        self.events = self.searchEvents(searchTerm)
+        self.competitors = self.searchCompetitors(searchTerm)
+        self.databaseConnection.close()
 
+    def toDictionary(self):
+        return {
+            "leagues": [league.toDictionary() for league in self.leagues],
+            "events": [event.toDictionary() for event in self.events],
+            "competitors": [
+                competitor.toDictionary() for competitor in self.competitors
+            ],
+        }
 
-def competitorSearch(term: str):
-    results = query(
-        """
-        SELECT
-          rowid, name, ageClass, club, course, league
-        FROM competitors
-        WHERE %s %% ANY(STRING_TO_ARRAY(name, ' '))
-        ORDER BY SIMILARITY(name, %s) DESC
-        """,
-        [term] * 2,
-    )
+    def searchLeagues(self, searchTerm: str):
+        self.databaseConnection.execute(
+            """
+            SELECT
+                leagues.name,
+                leagues.year,
+                leagues.description,
+                leagues.moreInformation,
+                leagues.coordinator,
+                leagues.website,
+                leagues.courses,
+                leagues.leagueScoring,
+                leagues.scoringMethod,
+                leagues.numberOfCountingEvents,
+                leagues.dynamicEventResults,
+                leagues.clubRestriction,
+                COUNT(events.id)
+            FROM leagues
+            LEFT JOIN events ON leagues.name=events.league
+            WHERE
+                %s %% ANY(STRING_TO_ARRAY(leagues.name, ' '))
+                OR %s %% ANY(STRING_TO_ARRAY(leagues.description, ' '))
+                OR CAST(leagues.year AS TEXT) = %s
+                OR CAST(leagues.year AS TEXT) LIKE %s
+            GROUP BY leagues.name
+            ORDER BY SIMILARITY(leagues.name, %s) DESC
+            """,
+            (searchTerm, searchTerm, f"__{searchTerm}", searchTerm, searchTerm),
+        )
+        databaseResults = self.databaseConnection.getResults() or []
+        return [League(result) for result in databaseResults]
 
-    return [competitorToJSON(result) for result in results]
+    def searchEvents(self, searchTerm: str):
+        self.databaseConnection.execute(
+            """
+            SELECT
+                id,
+                name,
+                date,
+                website,
+                organiser,
+                moreInformation,
+                league,
+                resultUploaded,
+                results,
+                winsplits,
+                routegadget,
+                userSubmittedResults,
+                uploadKey
+            FROM events
+            WHERE
+                %s %% ANY(STRING_TO_ARRAY(name, ' '))
+                OR id LIKE %s
+            ORDER BY SIMILARITY(id, %s) DESC
+            """,
+            (searchTerm, f"%term%", searchTerm),
+        )
+
+        databaseResults = self.databaseConnection.getResults() or []
+        return [Event(result) for result in databaseResults]
+
+    def searchCompetitors(self, searchTerm: str):
+        self.databaseConnection.execute(
+            """
+            SELECT
+                rowid,
+                name,
+                ageClass,
+                club,
+                course,
+                league
+            FROM competitors
+            WHERE %s %% ANY(STRING_TO_ARRAY(name, ' '))
+            ORDER BY SIMILARITY(name, %s) DESC
+            """,
+            (searchTerm, searchTerm),
+        )
+
+        databaseResults = self.databaseConnection.getResults() or []
+        return [Competitor(result) for result in databaseResults]

@@ -13,7 +13,7 @@
 
     <div class="flex flex-row flex-wrap justify-around w-full">
       <div
-        class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
+        class="inline-block mx-8 mb-2 text-gray-900 whitespace-nowrap font-heading"
       >
         <p class="text-5xl font-bold">
           <template v-if="result.position && !result.incomplete">
@@ -30,7 +30,7 @@
       </div>
       <div
         v-if="showTime"
-        class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
+        class="inline-block mx-8 mb-2 text-gray-900 whitespace-nowrap font-heading"
       >
         <p class="text-5xl font-bold">
           <template v-if="result.time">
@@ -41,7 +41,7 @@
         <p class="inline-block text-sm text-gray-500 uppercase">Time</p>
       </div>
       <div
-        class="inline-block mx-8 mb-2 text-gray-900 whitespace-no-wrap font-heading"
+        class="inline-block mx-8 mb-2 text-gray-900 whitespace-nowrap font-heading"
       >
         <p class="text-5xl font-bold">
           {{ result.points }}
@@ -124,12 +124,12 @@ const positionSuperscript = (position: number) => {
 }
 
 const hideResult = (result: EventResult) =>
-  apiHideResult(result.id, result.event, result.type !== 'hidden').then(() =>
+  apiHideResult(result.id, result.type !== 'hidden').then(() =>
     emit('result-changed')
   )
 
 const incompleteResult = (result: EventResult) =>
-  apiIncompleteResult(result.id, result.event, !result.incomplete).then(() =>
+  apiIncompleteResult(result.id, !result.incomplete).then(() =>
     emit('result-changed')
   )
 </script>

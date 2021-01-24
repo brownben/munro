@@ -1,5 +1,5 @@
 <template>
-  <Layout footer>
+  <Layout>
     <Meta
       :head="{
         meta: { name: 'robots', content: 'all' },

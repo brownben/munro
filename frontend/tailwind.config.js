@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   purge: ['./src/**/*.html', './src/**/*.vue'],
   dark: false,
@@ -49,20 +51,7 @@ module.exports = {
           900: 'hsl(290, 35.3%, 13.3%)',
         },
 
-        main: {
-          DEFAULT: '#B80BDA',
-          1: '#FEFAFF',
-          50: '#FAE7FE',
-          100: '#F8DDFD',
-          200: '#F2C0FC',
-          300: '#E489F5',
-          400: '#D53DF5',
-          500: '#B80BDA',
-          600: '#A202C4',
-          700: '#8502A1',
-          800: '#5A046C',
-          900: '#380B41',
-        },
+        main: colors.fuchsia,
       },
 
       typography: {

@@ -2,7 +2,7 @@
   <tbody v-bind="$attrs" class="group">
     <tr
       class="transition duration-300 ease-in-out bg-white border-collapse group-hover:bg-main-200"
-      :class="{ 'bg-main-50': striped }"
+      :class="{ 'bg-main-100': striped }"
       @click="toggle"
     >
       <slot />
@@ -23,9 +23,9 @@
       <tr
         v-show="open"
         class="text-right transition duration-300 bg-white border-collapse md:hidden group-hover:bg-main-200"
-        :class="{ 'bg-main-50': striped }"
+        :class="{ 'bg-main-100': striped }"
       >
-        <td colspan="100%" class="pb-2">
+        <td class="pb-2" :colspan="100">
           <slot name="expansion" />
         </td>
       </tr>
