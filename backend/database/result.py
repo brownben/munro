@@ -74,6 +74,7 @@ class Result:
             "ageClass": self.ageClass,
             "club": self.club,
             "eventName": self.eventName,
+            "eventId": self.event,
         }
 
     def create(self):
