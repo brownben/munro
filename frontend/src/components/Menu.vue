@@ -31,9 +31,9 @@
                 />
               </svg>
               <h1
-                class="hidden ml-1 -mb-4 text-3xl leading-7 md:inline-block font-heading text-main-500"
+                class="hidden ml-1 -mb-4 text-3xl leading-7 md:inline-block font-heading text-main-600"
               >
-                unro
+                <span class="sr-only">M</span>unro
               </h1>
             </router-link>
           </div>
@@ -46,8 +46,8 @@
                 class="px-3 py-2 ml-4 font-medium leading-5 transition duration-150 ease-in-out rounded-shape focus:outline-none"
                 :class="
                   $route.path === link.location
-                    ? 'text-main-600 bg-main-100'
-                    : 'hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 text-gray-500'
+                    ? 'text-main-700 bg-main-100'
+                    : 'hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 text-gray-500'
                 "
               >
                 {{ link.text }}
@@ -55,7 +55,7 @@
               <router-link
                 v-if="$store.getters.loggedIn"
                 to="/logout"
-                class="px-3 py-2 ml-4 font-medium leading-5 text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
+                class="px-3 py-2 ml-4 font-medium leading-5 text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
               >
                 Logout
               </router-link>
@@ -65,7 +65,7 @@
         <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
           <button
-            class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-shape hover:text-main-600 hover:bg-main-100 focus:outline-none focus:bg-main-100 focus:text-main-600"
+            class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-shape hover:text-main-700 hover:bg-main-100 focus:outline-none focus:bg-main-100 focus:text-main-700"
             aria-label="Main menu"
             :aria-expanded="menuOpen"
             @click="menuOpen = !menuOpen"
@@ -129,7 +129,7 @@
             v-for="link of links"
             :key="link.location"
             :to="link.location"
-            class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
+            class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
             :class="
               $route.path === link.location ? 'text-main-600 bg-main-100' : null
             "
@@ -140,7 +140,7 @@
           <router-link
             v-if="$store.getters.loggedIn"
             to="/logout"
-            class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
+            class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
             @click="menuOpen = false"
           >
             Logout

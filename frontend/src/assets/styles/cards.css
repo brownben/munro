@@ -5,10 +5,10 @@
   @apply shadow-md rounded-shape-xl;
 
   &.card-color {
-    @apply text-white bg-main-500;
+    @apply text-white bg-main-600;
   }
 
   &.card-color-dark {
-    @apply text-white bg-main-700;
+    @apply text-white bg-main-800;
   }
 }

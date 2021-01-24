@@ -15,3 +15,16 @@
 import AppMenu from './components/Menu.vue'
 import Messages from './components/Messages.vue'
 </script>
+
+<style>
+@import 'tailwindcss/base';
+@import './assets/styles/base.css';
+@import './assets/styles/transitions.css';
+
+@import 'tailwindcss/components';
+@import './assets/styles/buttons.css';
+@import './assets/styles/cards.css';
+
+@import 'tailwindcss/utilities';
+@import './assets/styles/utilities.css';
+</style>

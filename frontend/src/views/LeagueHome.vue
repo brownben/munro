@@ -93,7 +93,7 @@
     <template v-if="league" #fullWidth>
       <section
         v-if="$store.getters.loggedIn && league.name"
-        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
+        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-700"
       >
         <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
         <div class="w-10/12 mx-auto sm:mt-2">
@@ -115,7 +115,7 @@
         v-if="
           league?.courses?.length > 0 || league?.leagueScoring === 'overall'
         "
-        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-500"
+        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
       >
         <h2 class="text-2xl font-bold font-heading">League Results</h2>
         <div

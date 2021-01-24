@@ -13,7 +13,7 @@
       </svg>
       <input
         type="checkbox"
-        class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-400 checked:border-main-400"
+        class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-500 checked:border-main-400"
         :checked="modelValue"
         @change="$emit('update:modelValue', $event?.target.checked)"
       />

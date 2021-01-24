@@ -23,7 +23,7 @@
       <tr
         v-show="open"
         class="text-right transition duration-300 bg-white border-collapse md:hidden group-hover:bg-main-200"
-        :class="{ 'bg-main-50': striped }"
+        :class="{ 'bg-main-100': striped }"
       >
         <td class="pb-2" :colspan="100">
           <slot name="expansion" />

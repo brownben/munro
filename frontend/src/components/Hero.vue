@@ -19,7 +19,7 @@
         >
           League Results.
         </h2>
-        <h2 class="text-5xl font-bold text-main-500 sm:text-6xl lg:text-7xl">
+        <h2 class="text-5xl font-bold text-main-600 sm:text-6xl lg:text-7xl">
           Sorted.
         </h2>
         <router-link to="/leagues" class="w-auto mx-0 mt-3 md:mt-4 button">

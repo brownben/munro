@@ -46,7 +46,7 @@
         Created By
         <a
           href="https://benbrown.dev"
-          class="font-bold transition duration-300 text-main-600 hover:text-main-800 focus:text-main-800"
+          class="font-bold transition duration-300 text-main-700 hover:text-main-800 focus:text-main-800"
         >
           Ben Brown
         </a>
@@ -55,21 +55,21 @@
       <router-link
         v-if="!$store.getters.loggedIn"
         to="/login"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"
       >
         Admin Login
       </router-link>
       <router-link
         v-else
         to="/logout"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"
       >
         Logout
       </router-link>
       <p class="inline-block text-sm text-gray-400 font-heading">&bull;</p>
       <a
         href="mailto:munro.leagues@gmail.com"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-500 focus:text-main-500 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"
       >
         Contact
       </a>
