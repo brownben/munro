@@ -1,5 +1,5 @@
 <template>
-  <Layout v-if="event" has-mobile-sub-title>
+  <Layout v-if="event" has-mobile-sub-title :show-expansion="filterOpen">
     <Meta
       :title="`Munro - ${event?.name || ''} Event Results`"
       :description="`Results from the ${event?.name || ''} event of the ${
@@ -12,51 +12,80 @@
     />
 
     <template #title>
-      <h1 class="text-3xl font-bold leading-tight font-heading -mt-2">
-        <router-link
-          :to="'/leagues/' + event?.league"
-          class="text-xl text-main-700"
+      <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-bold leading-tight font-heading -mt-2">
+          <router-link
+            :to="'/leagues/' + event?.league"
+            class="text-xl text-main-700"
+          >
+            {{ event?.league || '' }}
+          </router-link>
+          <span class="block text-4xl">
+            {{ event?.name || '' }}
+          </span>
+        </h1>
+
+        <button
+          title="Toggle Filter Menu"
+          class="p-2 text-gray-500 transition rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
+          :class="{ 'text-main-600 bg-main-50': filterOpen }"
+          @click="filterOpen = !filterOpen"
         >
-          {{ event?.league || '' }}
-        </router-link>
-        <span class="block text-4xl">
-          {{ event?.name || '' }}
-        </span>
-      </h1>
+          <span class="sr-only">Toggle Filter Menu</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            class="h-6 w-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+            />
+          </svg>
+        </button>
+      </div>
     </template>
 
-    <div v-if="coursesInResults.length > 0" class="col-span-2 -mt-2 flex">
-      <div class="hidden sm:flex w-full items-center">
-        <h2 class="text-lg tracking-tight text-gray-600 mr-2 font-heading">
-          Courses:
-        </h2>
-        <router-link
-          v-for="course in coursesInResults"
-          :key="course"
-          :class="
-            currentCourse === course
-              ? 'text-main-600 bg-main-100'
-              : 'hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 text-gray-500'
+    <template #white>
+      <div v-if="coursesInResults.length > 0" class="col-span-2 -mt-2 flex">
+        <div class="hidden sm:flex w-full items-center">
+          <h2 class="text-lg tracking-tight text-gray-600 mr-2 font-heading">
+            Courses:
+          </h2>
+          <router-link
+            v-for="course in coursesInResults"
+            :key="course"
+            :class="
+              currentCourse === course
+                ? 'text-main-600 bg-main-100'
+                : 'hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 text-gray-500'
+            "
+            class="px-3 py-2 ml-2 font-heading leading-5 transition duration-150 ease-in-out rounded-shape focus:outline-none text-lg"
+            :to="`/events/${$route.params.event}/results/${course}`"
+          >
+            {{ course }}
+          </router-link>
+        </div>
+        <DropdownInput
+          v-model="currentCourse"
+          label="Course:"
+          class="block sm:hidden w-full"
+          :list="coursesInResults"
+          :shift="false"
+          @update:modelValue="
+            $router.push(`/events/${$route.params.event}/results/${$event}`)
           "
-          class="px-3 py-2 ml-2 font-heading leading-5 transition duration-150 ease-in-out rounded-shape focus:outline-none text-lg"
-          :to="`/events/${$route.params.event}/results/${course}`"
-        >
-          {{ course }}
-        </router-link>
+        />
       </div>
-      <DropdownInput
-        v-model="currentCourse"
-        label="Course:"
-        class="block sm:hidden w-full"
-        :list="coursesInResults"
-        :shift="false"
-        @update:modelValue="
-          $router.push(`/events/${$route.params.event}/results/${$event}`)
-        "
-      />
-    </div>
+    </template>
 
-    <FilterMenu class="col-span-2 my-0" @changed="filterChanged" />
+    <template #expansion>
+      <FilterMenu @changed="filterChanged" />
+    </template>
 
     <table
       v-if="results.length > 0"
@@ -64,7 +93,7 @@
     >
       <thead>
         <tr
-          class="transition duration-300 bg-white border-b border-collapse border-main-300 hover:bg-main-200"
+          class="transition duration-300 bg-white border-b border-collapse border-main-200 hover:bg-main-200"
         >
           <Heading
             text="Pos."
@@ -216,6 +245,7 @@ const currentCourse = computed(
 )
 
 /* Sort + Filter Preferences */
+const filterOpen = ref<boolean>(false)
 const filterPreferences = ref<FilterPreferences>({
   name: '',
   club: '',

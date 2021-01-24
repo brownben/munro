@@ -1,6 +1,6 @@
 <template>
   <section
-    class="flex flex-col items-center justify-around col-span-2 px-4 pt-4 pb-3 text-center bg-white shadow-md lg:col-span-1 rounded-shape-xl sm:px-6 sm:flex-row sm:justify-between sm:text-left lg:px-6"
+    class="flex flex-col items-center justify-around col-span-2 px-6 pt-4 pb-4 text-center bg-white shadow-md lg:col-span-1 rounded-shape-xl sm:px-6 sm:flex-row sm:justify-between sm:text-left lg:px-6"
   >
     <div class="flex-shrink text-center sm:text-left">
       <router-link
