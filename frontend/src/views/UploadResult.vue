@@ -13,8 +13,7 @@
       <DropdownInput
         v-model="result.eventId"
         label="Event:"
-        :option-text-different-to-value="true"
-        :list="
+        :listWithDifferentValue="
           events.map((event) => ({
             text: `${event.league} - ${event.name}`,
             value: event.id,

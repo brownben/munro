@@ -61,7 +61,7 @@
             :key="course"
             :class="
               currentCourse === course
-                ? 'text-main-600 bg-main-100'
+                ? 'text-main-700 bg-main-100'
                 : 'hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 text-gray-500'
             "
             class="px-3 py-2 ml-2 font-heading leading-5 transition duration-150 ease-in-out rounded-shape focus:outline-none text-lg"
@@ -75,7 +75,7 @@
           label="Course:"
           class="block sm:hidden w-full"
           :list="coursesInResults"
-          :shift="false"
+          :include-blank="false"
           @update:modelValue="
             $router.push(`/events/${$route.params.event}/results/${$event}`)
           "

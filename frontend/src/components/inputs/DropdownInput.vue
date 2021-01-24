@@ -36,7 +36,7 @@
         @focus="focus = true"
         @blur="focus = false"
       >
-        <option v-if="shift" />
+        <option v-if="includeBlank" />
 
         <template v-if="list">
           <option v-for="item in list" :key="item" :value="item">
@@ -65,7 +65,7 @@ const props = defineProps({
   modelValue: { type: String, default: '' },
   list: { type: Array, default: () => [] },
   listWithDifferentValue: { type: Array, default: () => [] },
-  shift: { type: Boolean, default: true },
+  includeBlank: { type: Boolean, default: true },
 })
 const emit = defineEmit(['update:modelValue'])
 

@@ -24,26 +24,24 @@
       />
       <DropdownInput
         v-model="choices.competitorKeep"
-        :list="
+        :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),
           }))
         "
-        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor to Keep:"
         class="mt-4"
       />
       <DropdownInput
         v-model="choices.competitorMerge"
-        :list="
+        :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),
           }))
         "
-        :option-text-different-to-value="true"
         :include-blank="true"
         label="Competitor to be Merged:"
         class="mt-4"

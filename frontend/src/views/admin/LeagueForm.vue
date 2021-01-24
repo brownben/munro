@@ -36,7 +36,7 @@
       />
       <DropdownInput
         v-model="league.scoringMethod"
-        :list="[
+        :listWithDifferentValue="[
           { value: 'position', text: 'Position Based (100 Max)' },
           { value: 'position50', text: 'Position Based (50 Max)' },
           { value: 'position99', text: 'Position Based (99 Max)' },
@@ -67,19 +67,17 @@
           },
           { value: 'file', text: 'From Upload File' },
         ]"
-        :shift="false"
-        :option-text-different-to-value="true"
+        :include-blank="false"
         label="Scoring Method:"
         class="mt-4"
       />
       <DropdownInput
         v-model="league.leagueScoring"
-        :list="[
+        :listWithDifferentValue="[
           { value: 'course', text: 'Per Course' },
           { value: 'overall', text: 'Overall' },
         ]"
-        :shift="false"
-        :option-text-different-to-value="true"
+        :include-blank="false"
         label="League Results:"
         class="mt-4"
       />
