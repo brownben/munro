@@ -29,8 +29,8 @@
           class="absolute top-0 right-0 px-4 py-2 transition duration-300 outline-none font-heading rounded-shape"
           :class="
             searchFocused
-              ? 'bg-white text-main-600 hover:bg-main-200 focus:bg-main-200'
-              : 'bg-main-100 text-main-600 hover:bg-white focus:bg-white'
+              ? 'bg-white text-main-700 hover:bg-main-200 focus:bg-main-200'
+              : 'bg-white text-main-700 hover:bg-white focus:bg-white'
           "
         >
           Search
