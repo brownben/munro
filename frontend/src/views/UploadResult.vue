@@ -29,7 +29,7 @@
       <TextInput v-model.trim="result.name" label="Your Name:" class="mt-4" />
       <TextInput
         v-model.trim="result.time"
-        label="Your Time: (HH:MM:SS)"
+        label="Your Time: (MM:SS)"
         class="mt-4"
       />
 
