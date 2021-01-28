@@ -1,5 +1,6 @@
 from typing import List, Dict, Any, Union
 from ..database.event import Event
+from ..database.league import League
 
 ResultDict = Dict[str, Any]
 
@@ -36,7 +37,9 @@ def toSeconds(time: str) -> int:
     return (hours * 3600) + (minutes * 60) + seconds
 
 
-def processSimpleResult(result: str, event: Event, course: str) -> Dict[str, Any]:
+def processSimpleResult(
+    result: str, event: Event, course: str, league: League
+) -> Dict[str, Any]:
     splitResult = result.split(",")
     return {
         "type": course + splitResult[1],
@@ -49,4 +52,5 @@ def processSimpleResult(result: str, event: Event, course: str) -> Dict[str, Any
         "points": 0,
         "course": course,
         "event": event.id,
+        "league": league.name,
     }

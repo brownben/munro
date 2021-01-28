@@ -176,10 +176,10 @@ class Event:
         query(
             """
             UPDATE events
-            SET resultUploaded=%s,
+            SET resultUploaded=%s
             WHERE id=%s
             """,
-            (True,),
+            (True, self.getEventId()),
         )
 
     def setResultUploadedWithURLs(

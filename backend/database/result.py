@@ -119,15 +119,14 @@ class Result:
             (points, resultId),
         )
 
-    @staticmethod
-    def updateIncomplete(resultId: int, incomplete: bool) -> None:
+    def updateIncomplete(self, incomplete: bool) -> None:
         query(
             """
             UPDATE results
             SET incomplete=%s
             WHERE rowid=%s
             """,
-            (incomplete, resultId),
+            (incomplete, self.id),
         )
 
     def updateType(self, type: str) -> None:

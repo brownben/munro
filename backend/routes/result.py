@@ -58,10 +58,10 @@ class ResultRoute(Resource):
             event = result.getEvent()
             league = event.getLeague()
 
-            if request["type"]:
-                result.updateType(request["type"])
-            else:
-                result.updateIncomplete(request["incomplete"])
+            if request.get("type") != None:
+                result.updateType(request.get("type"))
+            elif request.get("incomplete") != None:
+                result.updateIncomplete(request.get("incomplete"))
 
             recalculateResults(event.id, league.scoringMethod)
             return createMessage("Result Updated", 200)

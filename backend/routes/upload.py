@@ -171,16 +171,17 @@ class UploadSimpleRoute(Resource):
             ]
             streamData = requestData["file"].split("\n")
             results = [
-                processSimpleResult(result, event, requestData["course"])
+                processSimpleResult(result, event, requestData["course"], league)
                 for result in streamData
                 if len(result.split(",")) > 3
             ]
             newResults = [
                 result for result in results if result["type"] not in existingResultsIDs
             ]
+            resultsWithCompetitors = matchResultsToCompetitors(newResults, league)
             createdResults = [
                 Result(result).create() or 1
-                for result in newResults
+                for result in resultsWithCompetitors
                 if matchesClubRestriction(result["club"], league.clubRestriction)
             ]
 
