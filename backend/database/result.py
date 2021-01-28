@@ -1,4 +1,5 @@
-from typing import Any, Dict, Literal, Optional, Union
+from __future__ import annotations
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from .event import Event
 from .database import query, queryWithResult, queryWithResults
@@ -39,7 +40,7 @@ class Result:
     ageClass: Optional[str]
     club: Optional[str]
 
-    def __init__(self, result: Union[dict, list]):
+    def __init__(self, result):
         if type(result) == dict:
             for key in result:
                 setattr(self, key, result[key])
@@ -60,7 +61,7 @@ class Result:
         if not hasattr(self, "eventName"):
             self.eventName = None
 
-    def toDictionary(self):
+    def toDictionary(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "time": self.time,
@@ -78,7 +79,7 @@ class Result:
             "eventId": self.event,
         }
 
-    def create(self):
+    def create(self) -> None:
         if self.position == "":
             self.position = -1
 
@@ -108,7 +109,7 @@ class Result:
         )
 
     @staticmethod
-    def updatePoints(resultId: int, points: int):
+    def updatePoints(resultId: int, points: int) -> None:
         query(
             """
             UPDATE results
@@ -119,7 +120,7 @@ class Result:
         )
 
     @staticmethod
-    def updateIncomplete(resultId: int, incomplete: bool):
+    def updateIncomplete(resultId: int, incomplete: bool) -> None:
         query(
             """
             UPDATE results
@@ -129,7 +130,7 @@ class Result:
             (incomplete, resultId),
         )
 
-    def updateType(self, type: str):
+    def updateType(self, type: str) -> None:
         query(
             """
             UPDATE results
@@ -139,11 +140,14 @@ class Result:
             (type, self.id),
         )
 
-    def getEvent(self):
-        return Event.getById(self.event)
+    def getEvent(self) -> Optional[Event]:
+        if event := Event.getById(self.event):
+            return event
+
+        return None
 
     @staticmethod
-    def getById(rowid: int):
+    def getById(rowid: int) -> Result:
         databaseResult = queryWithResult(
             """
             SELECT
@@ -170,7 +174,7 @@ class Result:
         return Result(databaseResult)
 
     @staticmethod
-    def getByEvent(eventId: str):
+    def getByEvent(eventId: str) -> List[Result]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -199,7 +203,7 @@ class Result:
         return [Result(result) for result in databaseResult]
 
     @staticmethod
-    def getDynamicResultsByLeague(league: str):
+    def getDynamicResultsByLeague(league: str) -> List[Result]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -229,7 +233,7 @@ class Result:
         return [Result(result) for result in databaseResult]
 
     @staticmethod
-    def getByCompetitor(competitor: int):
+    def getByCompetitor(competitor: int) -> List[Result]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -260,7 +264,7 @@ class Result:
         return [Result(result) for result in databaseResult]
 
     @staticmethod
-    def getNonDynamicPointsByCompetitor(competitor: int):
+    def getNonDynamicPointsByCompetitor(competitor: int) -> List[int]:
         result = queryWithResult(
             """
             SELECT string_agg(results.points::text,';')
@@ -279,7 +283,7 @@ class Result:
         return [int(result) for result in result[0].split(";")]
 
     @staticmethod
-    def getAll():
+    def getAll() -> List[Result]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -305,7 +309,7 @@ class Result:
         return [Result(result) for result in databaseResult]
 
     @staticmethod
-    def getByEventForRecalc(eventId: str):
+    def getByEventForRecalc(eventId: str) -> List[Dict[str, Any]]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -336,7 +340,7 @@ class Result:
         return [Result(result).toDictionary() for result in databaseResult]
 
     @staticmethod
-    def updateFromRecalc(data: Dict[str, Any]):
+    def updateFromRecalc(data: Dict[str, Any]) -> None:
         query(
             """
             UPDATE results
@@ -357,7 +361,7 @@ class Result:
         )
 
     @staticmethod
-    def transfer(competitor: int, result: int):
+    def transfer(competitor: int, result: int) -> None:
         query(
             """
             UPDATE results
@@ -368,7 +372,7 @@ class Result:
         )
 
     @staticmethod
-    def deleteByEvent(eventId: str):
+    def deleteByEvent(eventId: str) -> None:
         query(
             """
             DELETE FROM results

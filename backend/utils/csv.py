@@ -53,12 +53,12 @@ def getHeaderLocations(firstRow: List[str]) -> Dict[str, int]:
     return locations
 
 
-def allHeadersArePresent(locations) -> bool:
+def allHeadersArePresent(locations: Dict[str, int]) -> bool:
     hasNameAndSurname = "firstName" in locations and "surname" in locations
     hasName = "name" in locations
-    hasOtherRequiredHeaders = all(
-        [header in locations for header in ["course", "time"]]
-    )
+
+    otherHeaders = ["course", "time"]
+    hasOtherRequiredHeaders = all([header in locations for header in otherHeaders])
 
     if (hasName or hasNameAndSurname) and hasOtherRequiredHeaders:
         return True

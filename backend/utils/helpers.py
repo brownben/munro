@@ -1,7 +1,7 @@
 from typing import List, Dict, Any, Union
 from ..database.event import Event
 
-Result = Dict[str, Any]
+ResultDict = Dict[str, Any]
 
 
 def toInt(integer: str) -> int:
@@ -10,11 +10,11 @@ def toInt(integer: str) -> int:
     return int(integer)
 
 
-def sortByTime(results: List[Result]) -> List[Result]:
+def sortByTime(results: List[ResultDict]) -> List[ResultDict]:
     return sorted(results, key=lambda x: x["time"], reverse=True)
 
 
-def sortByTotalPoints(results: List[Result]) -> List[Result]:
+def sortByTotalPoints(results: List[ResultDict]) -> List[ResultDict]:
     return sorted(results, key=lambda x: x["totalPoints"], reverse=True)
 
 
@@ -36,9 +36,7 @@ def toSeconds(time: str) -> int:
     return (hours * 3600) + (minutes * 60) + seconds
 
 
-def processSimpleResult(
-    result: str, event: Event, course: str
-) -> Dict[str, Union[str, bool, int]]:
+def processSimpleResult(result: str, event: Event, course: str) -> Dict[str, Any]:
     splitResult = result.split(",")
     return {
         "type": course + splitResult[1],

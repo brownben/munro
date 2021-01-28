@@ -1,6 +1,7 @@
+from __future__ import annotations
 import os
 import base64
-from typing import Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from .database import query, queryWithResult, queryWithResults
 from .league import League
@@ -22,7 +23,7 @@ properties = [
 ]
 
 
-def generateUploadKey():
+def generateUploadKey() -> str:
     # Generate Random Upload Key
     random = os.urandom(15)
     string = str(base64.b64encode(random))
@@ -49,7 +50,7 @@ class Event:
 
     uploadKey: str
 
-    def __init__(self, event: Union[dict, list]):
+    def __init__(self, event):
         if type(event) == dict:
             for key in event:
                 setattr(self, key, event[key])
@@ -61,7 +62,7 @@ class Event:
         if hasattr(self, "league") and self.league:
             self.leagueName = self.league
 
-    def toDictionary(self):
+    def toDictionary(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "name": self.name,
@@ -77,7 +78,7 @@ class Event:
             "userSubmittedResults": self.userSubmittedResults,
         }
 
-    def toDictionaryWithUploadKey(self):
+    def toDictionaryWithUploadKey(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "name": self.name,
@@ -94,13 +95,13 @@ class Event:
             "uploadKey": self.uploadKey,
         }
 
-    def getEventId(self):
+    def getEventId(self) -> str:
         return (self.leagueName + self.name + self.date).replace(" ", "")
 
-    def getLeague(self):
+    def getLeague(self) -> League:
         return League.getByName(self.leagueName)
 
-    def create(self):
+    def create(self) -> None:
         query(
             """
             INSERT INTO events (
@@ -136,7 +137,7 @@ class Event:
             ),
         )
 
-    def update(self, oldEventId: str):
+    def update(self, oldEventId: str) -> None:
         query(
             """
             UPDATE events SET
@@ -171,7 +172,7 @@ class Event:
             ),
         )
 
-    def setResultUploaded(self):
+    def setResultUploaded(self) -> None:
         query(
             """
             UPDATE events
@@ -181,7 +182,9 @@ class Event:
             (True,),
         )
 
-    def setResultUploadedWithURLs(self, results: str, winsplits: str, routegadget: str):
+    def setResultUploadedWithURLs(
+        self, results: str, winsplits: str, routegadget: str
+    ) -> None:
         query(
             """
             UPDATE events
@@ -196,7 +199,7 @@ class Event:
         )
 
     @staticmethod
-    def getAll():
+    def getAll() -> List[Event]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -220,7 +223,7 @@ class Event:
         return [Event(result) for result in databaseResult]
 
     @staticmethod
-    def getById(eventId: str):
+    def getById(eventId: str) -> Optional[Event]:
         databaseResult = queryWithResult(
             """
             SELECT
@@ -249,7 +252,7 @@ class Event:
         return Event(databaseResult)
 
     @staticmethod
-    def getByLeague(league: str):
+    def getByLeague(league: str) -> List[Event]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -275,7 +278,7 @@ class Event:
         return [Event(result) for result in databaseResult]
 
     @staticmethod
-    def getByLeagueWithResults(league: str):
+    def getByLeagueWithResults(league: str) -> List[Event]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -301,7 +304,7 @@ class Event:
         return [Event(result) for result in databaseResult]
 
     @staticmethod
-    def getLatestWithResults():
+    def getLatestWithResults() -> List[Event]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -331,7 +334,7 @@ class Event:
         return bool(Event.getById(eventId))
 
     @staticmethod
-    def deleteById(eventId: str):
+    def deleteById(eventId: str) -> None:
         query(
             """
             DELETE FROM events
@@ -341,5 +344,5 @@ class Event:
         )
 
     @staticmethod
-    def deleteAll():
+    def deleteAll() -> None:
         query("DELETE FROM events")

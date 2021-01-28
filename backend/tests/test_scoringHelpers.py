@@ -1,4 +1,9 @@
+from typing import List, Dict
 from ..utils.scoringHelpers import *
+
+
+def listToResult(l: List[int]) -> List[Dict[str, int]]:
+    return [{"position": item} for item in l]
 
 
 class Test_countOccurancesOfPosition:
@@ -9,15 +14,11 @@ class Test_countOccurancesOfPosition:
         assert occuracesOfPosition([], 55) == 0
 
     def test_noOccurances(self) -> None:
-        listToResult = lambda l: [{"position": item} for item in l]
-
         assert occuracesOfPosition(listToResult([5, 4, 3, 2]), 1) == 0
         assert occuracesOfPosition(listToResult([55, 66]), 1) == 0
         assert occuracesOfPosition(listToResult([8, 9, 3, 7, 3]), 1) == 0
 
     def test_occursInList(self) -> None:
-        listToResult = lambda l: [{"position": item} for item in l]
-
         assert occuracesOfPosition(listToResult([5, 4, 3, 2, 1]), 1) == 1
         assert occuracesOfPosition(listToResult([1, 2, 3, 5, 1]), 1) == 2
         assert occuracesOfPosition(listToResult([1, 1, 2, 1, 2]), 1) == 3

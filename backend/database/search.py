@@ -1,4 +1,5 @@
-from typing import List
+from __future__ import annotations
+from typing import Any, Dict, List
 
 from .database import DatabaseConnection
 from .league import League
@@ -18,7 +19,7 @@ class Search:
         self.competitors = self.searchCompetitors(searchTerm)
         self.databaseConnection.close()
 
-    def toDictionary(self):
+    def toDictionary(self) -> Dict[str, List[Dict[str, Any]]]:
         return {
             "leagues": [league.toDictionary() for league in self.leagues],
             "events": [event.toDictionary() for event in self.events],
@@ -27,7 +28,7 @@ class Search:
             ],
         }
 
-    def searchLeagues(self, searchTerm: str):
+    def searchLeagues(self, searchTerm: str) -> List[League]:
         self.databaseConnection.execute(
             """
             SELECT
@@ -59,7 +60,7 @@ class Search:
         databaseResults = self.databaseConnection.getResults() or []
         return [League(result) for result in databaseResults]
 
-    def searchEvents(self, searchTerm: str):
+    def searchEvents(self, searchTerm: str) -> List[Event]:
         self.databaseConnection.execute(
             """
             SELECT
@@ -88,7 +89,7 @@ class Search:
         databaseResults = self.databaseConnection.getResults() or []
         return [Event(result) for result in databaseResults]
 
-    def searchCompetitors(self, searchTerm: str):
+    def searchCompetitors(self, searchTerm: str) -> List[Competitor]:
         self.databaseConnection.execute(
             """
             SELECT

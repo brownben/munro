@@ -1,4 +1,4 @@
-from typing import Dict, Text
+from typing import Any, Dict, Text
 from flask import (
     Flask,
     Blueprint,
@@ -65,7 +65,7 @@ def catch_all(path: str) -> Text:
 
 
 @app.route("/api/<path:path>")
-def api_catch_all(path: str) -> Dict:
+def api_catch_all(path: str) -> Dict[str, Any]:
     return {}
 
 

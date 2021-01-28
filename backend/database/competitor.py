@@ -1,5 +1,7 @@
-from typing import List, Union
-from .database import DatabaseConnection, query, queryWithResult, queryWithResults
+from __future__ import annotations
+from typing import Any, Dict, List, Optional, Union
+
+from .database import query, queryWithResult, queryWithResults
 
 properties = ["id", "name", "ageClass", "club", "course", "league"]
 
@@ -12,7 +14,7 @@ class Competitor:
     course: str
     league: str
 
-    def __init__(self, competitor: Union[dict, list]):
+    def __init__(self, competitor):
         if type(competitor) == dict:
             for key in competitor:
                 setattr(self, key, competitor[key])
@@ -21,7 +23,7 @@ class Competitor:
             for (index, key) in enumerate(properties):
                 setattr(self, key, competitor[index])
 
-    def toDictionary(self):
+    def toDictionary(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "name": self.name,
@@ -47,7 +49,7 @@ class Competitor:
         )
         return databaseResult[0]
 
-    def update(self):
+    def update(self) -> None:
         query(
             """
             UPDATE competitors SET
@@ -62,7 +64,7 @@ class Competitor:
         )
 
     @staticmethod
-    def getAll():
+    def getAll() -> List[Competitor]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -78,7 +80,7 @@ class Competitor:
         return [Competitor(result) for result in databaseResult]
 
     @staticmethod
-    def getById(eventId: str):
+    def getById(eventId: str) -> Competitor:
         databaseResult = queryWithResult(
             """
             SELECT
@@ -96,7 +98,7 @@ class Competitor:
         return Competitor(databaseResult)
 
     @staticmethod
-    def getByLeague(league: str):
+    def getByLeague(league: str) -> List[Competitor]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -114,7 +116,9 @@ class Competitor:
         return [Competitor(result) for result in databaseResult]
 
     @staticmethod
-    def getByNameCourseAndLeague(name: str, course: str, league: str):
+    def getByNameCourseAndLeague(
+        name: str, course: str, league: str
+    ) -> Optional[Competitor]:
         databaseResult = queryWithResult(
             """
             SELECT
@@ -137,7 +141,7 @@ class Competitor:
         return Competitor(databaseResult)
 
     @staticmethod
-    def merge(competitorKeep: int, competitorMerge: int):
+    def merge(competitorKeep: int, competitorMerge: int) -> None:
         query(
             """
             UPDATE results
@@ -155,7 +159,7 @@ class Competitor:
         )
 
     @staticmethod
-    def deleteById(id: str):
+    def deleteById(id: int) -> None:
         query(
             """
             DELETE FROM competitors
@@ -165,5 +169,5 @@ class Competitor:
         )
 
     @staticmethod
-    def deleteAll():
+    def deleteAll() -> None:
         query("DELETE FROM competitors")

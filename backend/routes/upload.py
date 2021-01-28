@@ -13,7 +13,11 @@ from ..utils.csv import (
     allHeadersArePresent,
     parseFileToDictionaries,
 )
-from ..utils.processResults import getMatchingResults, normaliseCourses
+from ..utils.processResults import (
+    getMatchingResults,
+    matchesClubRestriction,
+    normaliseCourses,
+)
 from ..utils.matchCompetitor import matchResultsToCompetitors
 from ..utils.calculateResults import calculateDynamicPoints, recalculateResults
 from ..utils.points import assignPoints
@@ -175,9 +179,9 @@ class UploadSimpleRoute(Resource):
                 result for result in results if result["type"] not in existingResultsIDs
             ]
             createdResults = [
-                Result(result).create()
+                Result(result).create() or 1
                 for result in newResults
-                if league.clubRestriction == result["club"]
+                if matchesClubRestriction(result["club"], league.clubRestriction)
             ]
 
             recalculateResults(event.getEventId(), league.scoringMethod)

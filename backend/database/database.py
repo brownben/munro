@@ -10,16 +10,16 @@ class DatabaseConnection:
         self.connection = psycopg2.connect(DATABASE_URL, sslmode="require")
         self.cursor = self.connection.cursor()
 
-    def execute(self, string: str, values=tuple()):
+    def execute(self, string: str, values=tuple()) -> None:
         self.cursor.execute(string, values)
 
-    def getResult(self):
+    def getResult(self) -> Any:
         return self.cursor.fetchone()
 
-    def getResults(self):
+    def getResults(self) -> Tuple[Any]:
         return self.cursor.fetchall()
 
-    def close(self):
+    def close(self) -> None:
         self.connection.commit()
         self.connection.close()
 

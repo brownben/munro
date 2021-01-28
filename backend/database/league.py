@@ -1,4 +1,6 @@
-from typing import List, Union
+from __future__ import annotations
+from typing import Any, Dict, List, Union
+
 from .database import query, queryWithResult, queryWithResults
 
 properties = [
@@ -39,7 +41,7 @@ class League:
     # Dynamic Properties
     numberOfEvents: int
 
-    def __init__(self, league: Union[dict, list]):
+    def __init__(self, league):
         if type(league) == dict:
             for key in league:
                 setattr(self, key, league[key])
@@ -51,7 +53,7 @@ class League:
         if hasattr(self, "coursesTemp"):
             self.courses = self.coursesTemp.split(",")
 
-    def toDictionary(self):
+    def toDictionary(self) -> Dict[str, Any]:
         return {
             "name": self.name,
             "year": self.year,
@@ -68,7 +70,7 @@ class League:
             "numberOfEvents": self.numberOfEvents,
         }
 
-    def create(self):
+    def create(self) -> None:
         query(
             """
             INSERT INTO leagues (
@@ -102,7 +104,7 @@ class League:
             ),
         )
 
-    def update(self, oldName: str):
+    def update(self, oldName: str) -> None:
         query(
             """
             UPDATE leagues SET
@@ -137,7 +139,7 @@ class League:
         )
 
     @staticmethod
-    def getAll():
+    def getAll() -> List[League]:
         databaseResult = queryWithResults(
             """
             SELECT
@@ -163,7 +165,7 @@ class League:
         return [League(result) for result in databaseResult]
 
     @staticmethod
-    def getByName(name: str):
+    def getByName(name: str) -> League:
         databaseResult = queryWithResult(
             """
             SELECT
@@ -195,7 +197,7 @@ class League:
         return bool(League.getByName(name))
 
     @staticmethod
-    def deleteByName(name: str):
+    def deleteByName(name: str) -> None:
         query(
             """
             DELETE FROM leagues
@@ -205,5 +207,5 @@ class League:
         )
 
     @staticmethod
-    def deleteAll():
+    def deleteAll() -> None:
         query("DELETE FROM leagues")

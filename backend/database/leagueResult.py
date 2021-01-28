@@ -1,4 +1,5 @@
-from typing import List, Optional, Union
+from __future__ import annotations
+from typing import Any, Dict, List, Optional, Union
 
 from .event import Event
 from .league import League
@@ -19,13 +20,13 @@ class LeagueResult:
     types: List[str]
     course: Optional[str]
 
-    def __init__(self, result: Union[dict, list]):
+    def __init__(self, result: List[Any]):
         for (index, value) in enumerate(result):
             setattr(self, properties[index], value)
         if not hasattr(self, "course"):
             self.course = None
 
-    def toDictionary(self, league: League, events: List[Event]):
+    def toDictionary(self, league: League, events: List[Event]) -> Dict[str, Any]:
         numberOfCountingEvents = league.numberOfCountingEvents
         largestPoints = getIndexOfLargestNPoints(self.points, numberOfCountingEvents)
         pointsTotal = sum([self.points[point] for point in largestPoints])
@@ -55,7 +56,7 @@ class LeagueResult:
         }
 
     @staticmethod
-    def getByLeague(leagueName: str):
+    def getByLeague(leagueName: str) -> List[LeagueResult]:
         databaseResults = queryWithResults(
             """
             SELECT
@@ -80,7 +81,7 @@ class LeagueResult:
         return [LeagueResult(result) for result in databaseResults]
 
     @staticmethod
-    def getByCourse(leagueName: str, course: str):
+    def getByCourse(leagueName: str, course: str) -> List[LeagueResult]:
         databaseResults = queryWithResults(
             """
             SELECT
