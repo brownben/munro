@@ -7,7 +7,7 @@
   "scripts": {
     "serve": "vite",
     "prettier:check": "prettier --check **",
-    "prettier:fix": "prettier --write ** ",
+    "prettier:fix": "prettier --write **",
     "typescript:check": "tsc && vuedx-typecheck .",
     "lint": "npm run typescript:check && npm run prettier:fix",
     "check": "tsc && npm run prettier:check",
