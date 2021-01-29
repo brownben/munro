@@ -7,7 +7,7 @@
       <router-link
         v-if="showLeagueName"
         :to="`/leagues/${event.league}`"
-        class="text-xs font-bold leading-tight tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700"
+        class="text-xs font-bold tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700 leading-none"
       >
         {{ event.league }}
       </router-link>
@@ -109,19 +109,19 @@
       <div class="mb-2">
         <p class="mx-2">
           <b
-            class="block mr-1 leading-tight select-none text-main-800 sm:inline-block"
+            class="block mr-1 leading-tight select-none text-main-900 sm:inline-block"
           >
             Event ID:
           </b>
           <span class="select-all">{{ event.id }}</span>
         </p>
-        <p v-if="event.uploadKey">
+        <p v-if="event.uploadKey" class="leading-tight mt-3 sm:my-2">
           <b
-            class="block mt-3 mr-1 leading-tight select-none text-main-800 sm:inline-block sm:my-2"
+            class="block mr-1 leading-tight select-none text-main-900 sm:inline-block"
           >
             Event Upload Key:
           </b>
-          <span class="select-all">{{ event.uploadKey }}</span>
+          <span class="select-all leading-tight">{{ event.uploadKey }}</span>
         </p>
       </div>
 
