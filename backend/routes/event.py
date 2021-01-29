@@ -155,6 +155,7 @@ class EventResultsRecalculateRoute(Resource):
             event = Event.getById(eventId)
             league = event.getLeague()
             recalculateResults(event.id, league.scoringMethod)
+            return createMessage("Results Recalculated")
         except:
             return createMessage(
                 "Error: Problem Recalculating Results - Please Try Again", 500
