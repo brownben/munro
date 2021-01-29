@@ -12,14 +12,11 @@
       <h1 class="text-3xl font-bold leading-tight font-heading">
         <router-link
           :to="'/leagues/' + $route.params.league"
-          class="text-xl text-main-700 md:text-3xl"
+          class="text-xl text-main-700"
         >
           {{ $route.params.league }}
         </router-link>
-        <span class="hidden ml-2 mr-3 md:inline-block">-</span>
-        <span class="block text-4xl md:text-3xl md:inline-block">
-          Competitors
-        </span>
+        <span class="block text-4xl"> Competitors </span>
       </h1>
     </template>
 

@@ -14,7 +14,7 @@
             : 'text-gray-900'
         "
       >
-        {{ fileName }}
+        {{ fileName || 'Select a File' }}
       </span>
       <label
         :tabindex="0"

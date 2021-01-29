@@ -21,7 +21,7 @@
             :to="'/leagues/' + $route.params.league"
             class="text-xl text-main-700"
           >
-            {{ $route.params?.league.trim() }}
+            {{ toSingleString($route.params.league).trim() }}
           </router-link>
           <span class="block text-3xl">
             {{ $route.params.course }}
@@ -164,7 +164,7 @@
                 :class="{
                   'line-through': !point?.counting,
                   'font-normal italic': ['manual', 'max', 'average'].includes(
-                    point?.type
+                    point?.type ?? ''
                   ),
                 }"
               >
@@ -186,7 +186,7 @@
                         'manual',
                         'max',
                         'average',
-                      ].includes(point?.type),
+                      ].includes(point?.type ?? ''),
                     }"
                   >
                     {{ point?.score }}
@@ -209,7 +209,7 @@
     <div
       v-if="
         !loading &&
-        league.leagueScoring === 'course' &&
+        league?.leagueScoring === 'course' &&
         rawResults.length > 0 &&
         otherCourses.length > 0
       "

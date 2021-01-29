@@ -10,10 +10,15 @@
     />
 
     <template #title>
-      <h1 class="text-3xl font-bold leading-tight font-heading truncate">
+      <h1
+        class="text-3xl lg:text-4xl font-bold leading-none font-heading tracking-tight"
+      >
         {{ league?.name || $route.params.name }}
       </h1>
-      <h2 v-if="league && league.description" class="mt-2 text-lg font-heading">
+      <h2
+        v-if="league && league.description"
+        class="mt-2 md:text-lg lg:text-xl font-heading leading-tight tracking-tight text-gray-600"
+      >
         {{ league.description }}
       </h2>
     </template>
@@ -93,7 +98,7 @@
     <template v-if="league" #fullWidth>
       <section
         v-if="$store.getters.loggedIn && league.name"
-        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-700"
+        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-800"
       >
         <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
         <div class="w-10/12 mx-auto sm:mt-2">
@@ -112,32 +117,33 @@
         </div>
       </section>
       <section
-        v-if="
-          league?.courses?.length > 0 || league?.leagueScoring === 'overall'
-        "
-        class="col-span-2 pt-5 pb-6 text-center text-white bg-main-600"
+        v-if="league.courses.length > 0 || league?.leagueScoring === 'overall'"
+        class="col-span-2 py-6 sm:py-8 text-center text-white bg-gradient-to-r from-main-600 to-main-500"
       >
-        <h2 class="text-2xl font-bold font-heading">League Results</h2>
         <div
-          v-if="league.leagueScoring === 'course'"
-          class="w-full px-6 mx-auto sm:mt-2"
+          class="max-w-screen-xl mx-auto px-6 lg:px-8 sm:flex justify-between items-center"
         >
-          <router-link
-            v-for="course of league.courses"
-            :key="course"
-            :to="`${$route.path}/results/${course}`"
-            class="button button-white"
-          >
-            {{ course }}
-          </router-link>
-        </div>
-        <div v-else class="w-full px-6 mx-auto sm:mt-2">
-          <router-link
-            :to="`${$route.path}/results/Overall`"
-            class="button button-white"
-          >
-            Overall Results
-          </router-link>
+          <h2 class="mb-2 text-2xl font-bold font-heading sm:mb-0">
+            League Results
+          </h2>
+          <div v-if="league.leagueScoring === 'course'">
+            <router-link
+              v-for="course of league.courses"
+              :key="course"
+              :to="`${$route.path}/results/${course}`"
+              class="inline-block w-full mx-0 mt-3 py-2 px-4 text-lg font-heading leading-tight bg-main-100 bg-opacity-0 text-white outline-none appearance-none select-none rounded-shape transition duration-300 ease-in-out border border-white border-opacity-50 sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
+            >
+              {{ course }}
+            </router-link>
+          </div>
+          <div v-else class="w-full mx-auto">
+            <router-link
+              :to="`${$route.path}/results/Overall`"
+              class="button button-white mt-0 sm:mt-0"
+            >
+              Overall Results
+            </router-link>
+          </div>
         </div>
       </section>
     </template>

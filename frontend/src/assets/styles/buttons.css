@@ -33,11 +33,7 @@
     @apply bg-purple-100 bg-opacity-0;
     @apply text-white leading-tight;
     @apply border border-white border-opacity-50;
-    @apply w-full mx-0 mt-3 py-2  px-4;
-
-    @screen sm {
-      @apply w-auto mx-2 mt-2;
-    }
+    @apply py-2;
 
     &:hover,
     &:focus {
