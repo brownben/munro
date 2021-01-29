@@ -7,6 +7,7 @@
         href="https://twitter.com/MunroLeagues"
         target="_blank"
         rel="noopener noreferrer"
+        title="Twitter"
       >
         <svg
           class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
@@ -28,6 +29,7 @@
         href="https://github.com/brownben/munro"
         target="_blank"
         rel="noopener noreferrer"
+        title="GitHub"
       >
         <svg
           class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"

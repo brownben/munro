@@ -1,10 +1,10 @@
 <template>
-  <section class="w-full py-14 text-white bg-main-600">
+  <section class="w-full py-8 md:py-10 lg:py-14 text-white bg-main-600">
     <div
       class="flex flex-col items-center max-w-screen-xl px-6 mx-auto text-center sm:px-12 lg:px-8"
     >
       <h2
-        class="mb-2 text-4xl leading-tight tracking-tighter md:text-5xl font-heading"
+        class="md:mb-2 text-4xl leading-tight tracking-tighter md:text-5xl font-heading"
       >
         Find <span class="font-bold tracking-normal">Everything</span> You Need
       </h2>
