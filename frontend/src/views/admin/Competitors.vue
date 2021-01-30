@@ -132,7 +132,6 @@ import {
   SortablePropertiesCompetitor as SortableProperties,
 } from '../../scripts/sort'
 
-const router = useRouter()
 const route = useRoute()
 
 import { getLeagueCompetitors } from '../../api/competitors'
@@ -144,9 +143,11 @@ const rawCompetitors = ref<Competitor[]>([])
 const getData = async () => {
   const routeParamsLeague = toSingleString(route.params.league)
 
-  loading.value = true
-  rawCompetitors.value = (await getLeagueCompetitors(routeParamsLeague)) ?? []
-  loading.value = false
+  if (routeParamsLeague) {
+    loading.value = true
+    rawCompetitors.value = (await getLeagueCompetitors(routeParamsLeague)) ?? []
+    loading.value = false
+  }
 }
 
 const competitors = computed(() =>
@@ -156,7 +157,7 @@ const competitors = computed(() =>
 watch(route, getData, { immediate: true })
 
 /* Sorting */
-const sortPreferences = ref<SortPreferences>({
+const sortPreferences = ref<SortPreferencesCompetitor>({
   ascending: false,
   by: SortableProperties.name,
 })
