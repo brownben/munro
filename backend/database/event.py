@@ -283,7 +283,7 @@ class Event:
                 secondaryLeague,
                 uploadKey
             FROM events
-            WHERE league=%s or secondaryLeague=%s
+            WHERE league=%s OR secondaryLeague=%s
             ORDER BY date ASC
             """,
             (league, league),
@@ -310,10 +310,12 @@ class Event:
                 secondaryLeague,
                 uploadKey
             FROM events
-            WHERE league=%s AND resultUploaded=%s
+            WHERE
+                (league=%s OR secondaryLeague=%s)
+                AND resultUploaded=%s
             ORDER BY date ASC
             """,
-            (league, True),
+            (league, league, True),
         )
         return [Event(result) for result in databaseResult]
 
