@@ -102,10 +102,11 @@ class UploadResultRoute(Resource):
             )
 
         league = event.getLeague()
+        leagueOfCompetitors = league.getLeagueOfCompetitors()
 
         try:
             competitor = Competitor.getByNameCourseAndLeague(
-                data["name"], data["course"], league.name
+                data["name"], data["course"], leagueOfCompetitors
             )
             if not competitor:
                 competitor = Competitor(
@@ -114,7 +115,7 @@ class UploadResultRoute(Resource):
                         "ageClass": "",
                         "club": "",
                         "course": data["course"],
-                        "league": league.name,
+                        "league": leagueOfCompetitors,
                     }
                 )
                 competitorID = competitor.create()

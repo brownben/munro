@@ -147,6 +147,11 @@ class League:
             ),
         )
 
+    def getLeagueOfCompetitors(self) -> str:
+        if self.subLeagueOf:
+            return self.subLeagueOf
+        return self.name
+
     @staticmethod
     def getAll() -> List[League]:
         databaseResult = queryWithResults(

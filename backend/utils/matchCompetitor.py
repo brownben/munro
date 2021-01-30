@@ -9,7 +9,8 @@ ResultDict = Dict[str, Any]
 def matchResultsToCompetitors(
     results: List[ResultDict], league: League
 ) -> List[ResultDict]:
-    competitors = Competitor.getByLeague(league.name)
+    leagueOfCompetitors = league.getLeagueOfCompetitors()
+    competitors = Competitor.getByLeague(leagueOfCompetitors)
 
     return [
         {**result, "competitor": matchResultToCompetitor(result, competitors, league)}
