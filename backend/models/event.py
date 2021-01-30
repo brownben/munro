@@ -46,6 +46,11 @@ eventModel = Model(
         "userSubmittedResults": fields.Boolean(
             description="Allow Users to Submit Results", default=False
         ),
+        "secondaryLeague": fields.String(
+            description="Name of a Second League the Results Are to Be Used In",
+            default=None,
+            example="Sprintelope",
+        ),
     },
 )
 
