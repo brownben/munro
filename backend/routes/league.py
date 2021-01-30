@@ -186,6 +186,10 @@ class LeagueCompetitorsRoute(Resource):
     @api.response(500, "Problem Connecting to the Database")
     def get(self, name):
         try:
-            return [event.toDictionary() for event in Competitor.getByLeague(name)]
+            league = League.getByName(name)
+            leagueOfCompetitors = league.getLeagueOfCompetitors()
+            competitors = Competitor.getByLeague(leagueOfCompetitors)
+
+            return [event.toDictionary() for event in competitors]
         except:
             return [], 500
