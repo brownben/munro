@@ -15,8 +15,9 @@
       <TextInput v-model.trim="event.name" label="Name:" />
       <TextInput
         v-model.trim="event.date"
-        label="Date: (YYYY-MM-DD)"
+        label="Date:"
         class="mt-4"
+        type="date"
       />
       <TextInput
         v-model.trim="event.organiser"
