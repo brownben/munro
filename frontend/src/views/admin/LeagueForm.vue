@@ -97,6 +97,13 @@
         label="Courses: (Comma Separated)"
         class="mt-4"
       />
+      <DropdownInput
+        v-model="league.subLeagueOf"
+        :list="leaguesSuitableForSubLeague"
+        :include-blank="true"
+        label="Sub League Of:"
+        class="mt-4"
+      />
       <TextareaInput
         v-model.trim="league.moreInformation"
         label="More Information:"
@@ -125,6 +132,7 @@ import { toSingleString } from '../../scripts/typeHelpers'
 
 import {
   getLeague,
+  getLeagues,
   createLeague as apiCreateLeague,
   updateLeague as apiUpdateLeague,
 } from '../../api/leagues'
@@ -134,6 +142,7 @@ const router = useRouter()
 const route = useRoute()
 
 const loading = ref(true)
+const leagues = ref<League[]>([])
 const league = ref<LeagueForm>({
   courses: '',
   coordinator: '',
@@ -147,10 +156,15 @@ const league = ref<LeagueForm>({
   year: 2000,
   leagueScoring: 'course',
   clubRestriction: '',
+  subLeagueOf: '',
 })
 
 const refreshDetails = async () => {
   const routeParamsName = toSingleString(route.params.name)
+
+  getLeagues().then((data) => {
+    leagues.value = data ?? []
+  })
 
   loading.value = true
   if (routeParamsName)
@@ -209,6 +223,12 @@ const submit = () =>
 
 const title = computed(() =>
   route.path.includes('/edit') ? 'Edit League' : 'Create League'
+)
+
+const leaguesSuitableForSubLeague = computed(() =>
+  leagues.value
+    .filter((l) => l.scoringMethod === league.value.scoringMethod)
+    .map((league) => league.name)
 )
 
 watch(route, refreshDetails, { immediate: true })

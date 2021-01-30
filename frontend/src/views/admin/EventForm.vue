@@ -59,6 +59,13 @@
         label="More Information:"
         class="mt-4"
       />
+      <DropdownInput
+        v-model="event.secondaryLeague"
+        :list="subLeagues"
+        :include-blank="true"
+        label="Secondary League:"
+        class="mt-4"
+      />
       <CheckboxInput
         v-model="event.userSubmittedResults"
         label="Allow Users to Submit Results"
@@ -110,6 +117,7 @@ const event = ref<LeagueEvent>({
   routegadget: '',
   userSubmittedResults: false,
   league: '',
+  secondaryLeague: '',
 })
 
 const refreshDetails = async () => {
@@ -123,6 +131,7 @@ const refreshDetails = async () => {
     loading.value = true
     await getEvent(routeParamsId).then((data) => {
       if (data) event.value = data
+      if (!data?.secondaryLeague) event.value.secondaryLeague = ''
     })
     loading.value = false
   }
@@ -163,6 +172,12 @@ const submit = () =>
 
 const title = computed(() =>
   route.path.includes('/edit') ? 'Edit Event' : 'Create Event'
+)
+
+const subLeagues = computed(() =>
+  leagues.value
+    .filter((league) => league.subLeagueOf === event.value.league)
+    .map((league) => league.name)
 )
 
 watch(route, refreshDetails, { immediate: true })
