@@ -14,6 +14,7 @@ setupLeagues = """
         dynamicEventResults BOOLEAN,
         leagueScoring TEXT,
         clubRestriction TEXT,
+        subLeagueOf TEXT,
         UNIQUE (name)
     )
 """
@@ -33,6 +34,7 @@ setupEvents = """
         userSubmittedResults BOOLEAN,
         league TEXT NOT NULL,
         uploadKey TEXT,
+        secondaryLeague TEXT,
         UNIQUE (id),
         FOREIGN KEY(league) REFERENCES leagues(name)
         ON UPDATE CASCADE ON DELETE CASCADE

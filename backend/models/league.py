@@ -53,5 +53,10 @@ leagueModel = Model(
         "numberOfEvents": fields.Integer(
             description="Number of Events in the League", readonly=True, example=7
         ),
+        "subLeagueOf": fields.String(
+            description="League which can inherit events from, must have the same Scoring System and Courses",
+            default=None,
+            example="Sprintelope",
+        ),
     },
 )
