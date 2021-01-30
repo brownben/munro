@@ -6,6 +6,7 @@ interface LeagueBase {
   coordinator: string
   website: string
 
+  subLeagueOf?: string
   courses: string[] | string
   leagueScoring?: string
   scoringMethod: string

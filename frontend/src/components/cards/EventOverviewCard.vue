@@ -37,14 +37,26 @@
       </h3>
 
       <div
-        v-if="showFullDetails && (event.moreInformation || event.website)"
+        v-if="
+          showFullDetails &&
+          (event.moreInformation ||
+            event.website ||
+            event?.league !== league?.name)
+        "
         class="mt-2 mb-4 text-base leading-snug"
       >
-        <p v-if="event.moreInformation" class="mb-1 text-gray-500 break-words">
+        <p
+          v-if="event?.league !== league?.name"
+          class="mb-1 text-gray-600 break-words"
+        >
+          This event is also in the {{ event.league }} league.
+        </p>
+
+        <p v-if="event.moreInformation" class="mb-1 text-gray-600 break-words">
           {{ event.moreInformation }}
         </p>
 
-        <p v-if="event.website" class="text-gray-500">
+        <p v-if="event.website" class="text-gray-600">
           More Information can be found on the
           <a
             :href="event.website"

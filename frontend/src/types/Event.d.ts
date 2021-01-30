@@ -13,4 +13,6 @@ interface LeagueEvent {
   routegadget: string
   userSubmittedResults: boolean
   uploadKey?: string
+
+  secondaryLeague?: string
 }
