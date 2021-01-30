@@ -56,7 +56,7 @@ class LeagueResult:
         }
 
     @staticmethod
-    def getByLeague(leagueName: str) -> List[LeagueResult]:
+    def getByLeague(leagueName: str, subLeagueOf: str) -> List[LeagueResult]:
         databaseResults = queryWithResults(
             """
             SELECT
@@ -68,20 +68,24 @@ class LeagueResult:
                 array_agg(results.points),
                 array_agg(results.type),
                 competitors.course
-            FROM competitors, results
+            FROM competitors, results, events
             WHERE
                 results.competitor=competitors.rowid
-                AND competitors.league=%s
+                AND (competitors.league=%s OR competitors.league=%s)
                 AND COALESCE(results.type, '') <> 'hidden'
+                AND results.event=events.id
+                AND (events.league=%s OR events.secondaryLeague=%s)
             GROUP BY competitors.rowid
             """,
-            (leagueName,),
+            (leagueName, subLeagueOf, leagueName, leagueName),
         )
 
         return [LeagueResult(result) for result in databaseResults]
 
     @staticmethod
-    def getByCourse(leagueName: str, course: str) -> List[LeagueResult]:
+    def getByCourse(
+        leagueName: str, masterLeague: str, course: str
+    ) -> List[LeagueResult]:
         databaseResults = queryWithResults(
             """
             SELECT
@@ -92,15 +96,17 @@ class LeagueResult:
                 array_agg(results.event),
                 array_agg(results.points),
                 array_agg(results.type)
-            FROM competitors, results
+            FROM competitors, results, events
             WHERE
                 results.competitor=competitors.rowid
-                AND competitors.league=%s
+                AND (competitors.league=%s OR competitors.league=%s)
                 AND (competitors.course=%s OR results.course=%s)
                 AND COALESCE(results.type, '') <> 'hidden'
+                AND results.event=events.id
+                AND (events.league=%s OR events.secondaryLeague=%s)
             GROUP BY competitors.rowid
             """,
-            (leagueName, course, course),
+            (leagueName, masterLeague, course, course, leagueName, leagueName),
         )
 
         return [LeagueResult(result) for result in databaseResults]

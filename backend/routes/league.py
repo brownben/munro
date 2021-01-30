@@ -131,7 +131,7 @@ class LeagueOverallResultsRoute(Resource):
             events = Event.getByLeagueWithResults(name)
             results = [
                 result.toDictionary(league, events)
-                for result in LeagueResult.getByLeague(name)
+                for result in LeagueResult.getByLeague(name, league.subLeagueOf)
             ]
             sortedResults = sortByTotalPoints(results)
             return assignPosition(sortedResults)
@@ -150,9 +150,10 @@ class LeagueCourseResultsRoute(Resource):
         try:
             league = League.getByName(name)
             events = Event.getByLeagueWithResults(name)
+            print([event.name for event in events])
             results = [
                 result.toDictionary(league, events)
-                for result in LeagueResult.getByCourse(name, course)
+                for result in LeagueResult.getByCourse(name, league.subLeagueOf, course)
             ]
             sortedResults = sortByTotalPoints(results)
             return assignPosition(sortedResults)
