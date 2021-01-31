@@ -22,10 +22,18 @@
 
       <h2>API</h2>
       <p>
-        All methods use a standard HTTP GET request. The event id is made by
-        combining the league name, event name and date and removing all spaces,
-        it is avaliable for the league admin to view. Dates are in the form
-        YYYY-MM-DD
+        All leagues, events, and results are able to be accessed through Munro's
+        API to allow you to create your own applications/ statistics based on
+        the data in Munro. Full Swagger documentation is avaliable
+        <a href="https://munro-leagues.herokuapp.com/api/">to view here</a>.
+        (You may need to do a hard refresh to view the page)
+      </p>
+      <p>Alternatively a summary of the main API routes are available below.</p>
+      <h3>Basic Overview of API Methods</h3>
+      <p>
+        The event id is made by combining the league name, event name and date
+        and removing all spaces, it is avaliable for the league admin to view.
+        Dates are in the form YYYY-MM-DD
       </p>
       <ul>
         <li>
