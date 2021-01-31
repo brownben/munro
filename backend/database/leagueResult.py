@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional, Union
 from .event import Event
 from .league import League
 from .database import queryWithResults
-from ..utils.processResults import getIndexOfLargestNPoints
+from ..utils.processResults import getCountingPoints
 
 
 properties = ["id", "name", "ageClass", "club", "events", "points", "types", "course"]
@@ -28,8 +28,10 @@ class LeagueResult:
 
     def toDictionary(self, league: League, events: List[Event]) -> Dict[str, Any]:
         numberOfCountingEvents = league.numberOfCountingEvents
-        largestPoints = getIndexOfLargestNPoints(self.points, numberOfCountingEvents)
-        pointsTotal = sum([self.points[point] for point in largestPoints])
+        countingPoints = getCountingPoints(
+            self.points, numberOfCountingEvents, self.events, events
+        )
+        pointsTotal = sum([self.points[point] for point in countingPoints])
 
         results = [
             (
@@ -37,7 +39,7 @@ class LeagueResult:
                     "event": event.id,
                     "score": float(self.points[self.events.index(event.id)]),
                     "type": self.types[self.events.index(event.id)],
-                    "counting": self.events.index(event.id) in largestPoints,
+                    "counting": self.events.index(event.id) in countingPoints,
                 }
                 if event.id in self.events
                 else None

@@ -2,12 +2,32 @@ from heapq import nlargest
 from typing import Any, List, Dict
 
 from ..database.league import League
+from ..database.event import Event
 
 ResultDict = Dict[str, Any]
 
 
 def getIndexOfLargestNPoints(points: List[int], number: int) -> List[int]:
     return nlargest(number, range(len(points)), points.__getitem__)
+
+
+def getCountingPoints(
+    points: List[int],
+    numberCounting: int,
+    events: List[str],
+    databaseEvents: List[Event],
+) -> List[int]:
+    requiredEvents = [event for event in databaseEvents if event.requiredInTotal]
+    requiredPoints = [events.index(event.id) for event in requiredEvents]
+    largestPoints = getIndexOfLargestNPoints(points, numberCounting)
+    missingRequiredPoints = [
+        index for index in requiredPoints if index not in largestPoints
+    ]
+
+    if len(requiredPoints) == 0 or len(missingRequiredPoints) == 0:
+        return largestPoints
+
+    return largestPoints[: -len(missingRequiredPoints)] + missingRequiredPoints
 
 
 def assignPosition(results: List[ResultDict]) -> List[ResultDict]:
