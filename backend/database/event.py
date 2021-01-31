@@ -20,6 +20,7 @@ properties = [
     "routegadget",
     "userSubmittedResults",
     "secondaryLeague",
+    "requiredInTotal",
     "uploadKey",
 ]
 
@@ -51,6 +52,7 @@ class Event:
     winsplits: str
     routegadget: str
     userSubmittedResults: bool
+    requiredInTotal: bool
 
     uploadKey: str
 
@@ -81,6 +83,7 @@ class Event:
             "routegadget": self.routegadget,
             "userSubmittedResults": self.userSubmittedResults,
             "secondaryLeague": self.secondaryLeague,
+            "requiredInTotal": self.requiredInTotal,
         }
 
     def toDictionaryWithUploadKey(self) -> Dict[str, Any]:
@@ -98,6 +101,7 @@ class Event:
             "routegadget": self.routegadget,
             "userSubmittedResults": self.userSubmittedResults,
             "secondaryLeague": self.secondaryLeague,
+            "requiredInTotal": self.requiredInTotal,
             "uploadKey": self.uploadKey,
         }
 
@@ -124,8 +128,9 @@ class Event:
                 routegadget,
                 userSubmittedResults,
                 secondaryLeague,
+                requiredInTotal,
                 uploadKey
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 self.getEventId(),
@@ -141,6 +146,7 @@ class Event:
                 self.routegadget,
                 self.userSubmittedResults,
                 self.secondaryLeague,
+                self.requiredInTotal,
                 generateUploadKey(),
             ),
         )
@@ -161,7 +167,8 @@ class Event:
                 winsplits=%s,
                 routegadget=%s,
                 userSubmittedResults=%s,
-                secondaryLeague=%s
+                secondaryLeague=%s,
+                requiredInTotal=%s
             WHERE id=%s
             """,
             (
@@ -178,6 +185,7 @@ class Event:
                 self.routegadget,
                 self.userSubmittedResults,
                 self.secondaryLeague,
+                self.requiredInTotal,
                 oldEventId,
             ),
         )
@@ -226,6 +234,7 @@ class Event:
                 routegadget,
                 userSubmittedResults,
                 secondaryLeague,
+                requiredInTotal,
                 uploadKey
             FROM events
             ORDER BY date ASC
@@ -251,6 +260,7 @@ class Event:
                 routegadget,
                 userSubmittedResults,
                 secondaryLeague,
+                requiredInTotal,
                 uploadKey
             FROM events
             WHERE id=%s
@@ -281,6 +291,7 @@ class Event:
                 routegadget,
                 userSubmittedResults,
                 secondaryLeague,
+                requiredInTotal,
                 uploadKey
             FROM events
             WHERE league=%s OR secondaryLeague=%s
@@ -308,6 +319,7 @@ class Event:
                 routegadget,
                 userSubmittedResults,
                 secondaryLeague,
+                requiredInTotal,
                 uploadKey
             FROM events
             WHERE
@@ -337,6 +349,7 @@ class Event:
                 routegadget,
                 userSubmittedResults,
                 secondaryLeague,
+                requiredInTotal,
                 uploadKey
             FROM events
             WHERE resultUploaded = true

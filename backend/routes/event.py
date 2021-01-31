@@ -22,10 +22,10 @@ class EventsRoute(Resource):
     @api.response(200, "Success - List of all Events")
     @api.response(500, "Problem Connecting to the Database")
     def get(self):
-        try:
-            return [event.toDictionary() for event in Event.getAll()]
-        except:
-            return [], 500
+        # try:
+        return [event.toDictionary() for event in Event.getAll()]
+        # except:
+        #     return [], 500
 
     @api.expect(eventModel, validate=True)
     @api.marshal_with(messageModel)

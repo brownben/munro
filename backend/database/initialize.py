@@ -35,6 +35,7 @@ setupEvents = """
         league TEXT NOT NULL,
         uploadKey TEXT,
         secondaryLeague TEXT,
+        requiredInTotal BOOLEAN,
         UNIQUE (id),
         FOREIGN KEY(league) REFERENCES leagues(name)
         ON UPDATE CASCADE ON DELETE CASCADE

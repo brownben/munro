@@ -51,6 +51,11 @@ eventModel = Model(
             default=None,
             example="Sprintelope",
         ),
+        "requiredInTotal": fields.Boolean(
+            description="Is this Event Always Included in the Total Points?",
+            default=False,
+            example=False,
+        ),
     },
 )
 
