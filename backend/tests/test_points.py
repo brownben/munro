@@ -88,6 +88,25 @@ class Test_PositionBasedPoints99WithDraw:
         assert assignPoints(results, "position99average") == output
 
 
+class Test_PositionBasedStaggeredPoints:
+    def test_normalResults(self) -> None:
+        results = [{"position": i, "incomplete": False} for i in range(1, 7)]
+        output = [
+            {"position": 1, "points": 60, "incomplete": False},
+            {"position": 2, "points": 55, "incomplete": False},
+            {"position": 3, "points": 51, "incomplete": False},
+            {"position": 4, "points": 48, "incomplete": False},
+            {"position": 5, "points": 46, "incomplete": False},
+            {"position": 6, "points": 45, "incomplete": False},
+        ]
+        assert assignPoints(results, "positionStaggered") == output
+
+    def test_invalidResults(self) -> None:
+        results = [{"position": i, "incomplete": True} for i in range(1, 5)]
+        output = [{"position": i, "points": 0, "incomplete": True} for i in range(1, 5)]
+        assert assignPoints(results, "positionStaggered") == output
+
+
 def listToRecord(l: List[int]) -> List[Dict[str, int]]:
     return [{"file_point": item} for item in l]
 
