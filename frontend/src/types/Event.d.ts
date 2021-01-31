@@ -12,6 +12,7 @@ interface LeagueEvent {
   winsplits: string
   routegadget: string
   userSubmittedResults: boolean
+  requiredInTotal: boolean
   uploadKey?: string
 
   secondaryLeague?: string

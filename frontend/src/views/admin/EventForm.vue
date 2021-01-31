@@ -71,6 +71,11 @@
         label="Allow Users to Submit Results"
         class="mt-6 text-left"
       />
+      <InputCheckbox
+        v-model="event.requiredInTotal"
+        label="Event Always Included in Total Points"
+        class="mt-6 text-left"
+      />
       <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
         Update Event
       </button>
@@ -118,6 +123,7 @@ const event = ref<LeagueEvent>({
   userSubmittedResults: false,
   league: '',
   secondaryLeague: '',
+  requiredInTotal: false,
 })
 
 const refreshDetails = async () => {
