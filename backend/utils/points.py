@@ -27,7 +27,26 @@ def positionBasedPoints(leagueScoringMethod: str) -> GetScoreFunction:
         if not isValidResult(result):
             return 0
 
-        return (startValue * multiplier) - (result["position"] * multiplier)
+        points = (startValue * multiplier) - (result["position"] * multiplier)
+        return points if points >= 0 else 0
+
+    return calculator
+
+
+def positionBasedPointsStaggered() -> GetScoreFunction:
+    initalPointsValues = {
+        1: 60,
+        2: 55,
+        3: 51,
+        4: 48,
+    }
+
+    def calculator(result: ResultDict) -> int:
+        if not isValidResult(result):
+            return 0
+
+        points = initalPointsValues.get(result["position"], 51 - result["position"])
+        return points if points >= 0 else 0
 
     return calculator
 
@@ -111,6 +130,8 @@ def getScoringMethod(
 ) -> GetScoreFunction:
     if "position99average" in leagueScoringMethod:
         return positionBasedPointsWithDraw(results)
+    elif "positionStaggered" in leagueScoringMethod:
+        return positionBasedPointsStaggered()
     elif "position" in leagueScoringMethod:
         return positionBasedPoints(leagueScoringMethod)
     elif "timeAverage" in leagueScoringMethod:
