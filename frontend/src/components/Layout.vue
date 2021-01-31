@@ -76,7 +76,7 @@
 <script setup lang="ts">
 import { defineAsyncComponent, defineProps } from 'vue'
 
-import AppFooter from './Footer.vue'
+import AppFooter from './AppFooter.vue'
 const NotFound = defineAsyncComponent(() => import('../views/NotFound.vue'))
 
 const props = defineProps({

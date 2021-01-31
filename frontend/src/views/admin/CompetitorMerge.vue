@@ -9,20 +9,20 @@
     />
 
     <form class="col-span-2" @submit.prevent="mergeCompetitors">
-      <DropdownInput
+      <InputDropdown
         v-model="choices.league"
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="choices.course"
         :list="courses"
         :include-blank="true"
         label="Course"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="choices.competitorKeep"
         :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
@@ -34,7 +34,7 @@
         label="Competitor to Keep:"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="choices.competitorMerge"
         :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
@@ -57,7 +57,7 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
-import DropdownInput from '../../components/inputs/DropdownInput.vue'
+import InputDropdown from '../../components/InputDropdown.vue'
 
 import { getLeagues } from '../../api/leagues'
 import {

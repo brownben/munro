@@ -19,7 +19,7 @@
       </div>
 
       <div class="grid grid-cols-2 gap-8 px-6 mx-auto md:grid-cols-3">
-        <EventCard
+        <CardEvent
           v-for="event of events.slice(0, 3)"
           :key="event.key"
           :event="event"
@@ -31,8 +31,8 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { getLatestResults } from '../../api/events'
-import EventCard from './EventCardSmall.vue'
+import { getLatestResults } from '../api/events'
+import CardEvent from './CardEventSmall.vue'
 
 const events = ref<LeagueEvent[]>([])
 

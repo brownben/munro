@@ -23,7 +23,7 @@
       <div class="mt-12 md:mt-0">
         <img
           class="w-2/3 mx-auto xl:w-7/12"
-          src="../../assets/images/Crane.svg"
+          src="../assets/images/Crane.svg"
           alt="Crane Building Website"
           loading="lazy"
         />

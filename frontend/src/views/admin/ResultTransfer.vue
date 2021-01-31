@@ -72,7 +72,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
-import DropdownInput from '../../components/inputs/DropdownInput.vue'
+import DropdownInput from '../../components/InputDropdown.vue'
 
 import { getLeagues } from '../../api/leagues'
 import { getEvents } from '../../api/events'
@@ -87,7 +87,6 @@ import { elapsedTime } from '../../scripts/time'
 
 const store = useStore()
 const router = useRouter()
-const route = useRoute()
 
 const leagues = ref<League[]>([])
 const events = ref<LeagueEvent[]>([])

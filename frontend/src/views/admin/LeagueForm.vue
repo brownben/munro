@@ -11,30 +11,30 @@
       description
     />
     <form class="col-span-2" @submit.prevent="submit">
-      <TextInput v-model.trim="league.name" label="Name:" />
-      <NumberInput
+      <InputText v-model.trim="league.name" label="Name:" />
+      <InputNumber
         v-model.number="league.year"
         label="Year:"
         :max="2050"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="league.description"
         label="Description:"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="league.website"
         label="Website: (URL)"
         type="url"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="league.coordinator"
         label="Coordinator:"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="league.scoringMethod"
         :listWithDifferentValue="[
           { value: 'position', text: 'Position Based (100 Max)' },
@@ -71,7 +71,7 @@
         label="Scoring Method:"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="league.leagueScoring"
         :listWithDifferentValue="[
           { value: 'course', text: 'Per Course' },
@@ -81,30 +81,30 @@
         label="League Results:"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="league.clubRestriction"
         label="Only Include Results from Club:"
         class="mt-4"
       />
-      <NumberInput
+      <InputNumber
         v-model.number="league.numberOfCountingEvents"
         :min="1"
         label="Number of Events to Count:"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="league.courses"
         label="Courses: (Comma Separated)"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="league.subLeagueOf"
         :list="leaguesSuitableForSubLeague"
         :include-blank="true"
         label="Sub League Of:"
         class="mt-4"
       />
-      <TextareaInput
+      <InputTextarea
         v-model.trim="league.moreInformation"
         label="More Information:"
         class="mt-4"
@@ -123,10 +123,10 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
-import DropdownInput from '../../components/inputs/DropdownInput.vue'
-import TextInput from '../../components/inputs/TextInput.vue'
-import TextareaInput from '../../components/inputs/TextareaInput.vue'
-import NumberInput from '../../components/inputs/NumberInput.vue'
+import InputDropdown from '../../components/InputDropdown.vue'
+import InputText from '../../components/InputText.vue'
+import InputTextarea from '../../components/InputTextarea.vue'
+import InputNumber from '../../components/InputNumber.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 

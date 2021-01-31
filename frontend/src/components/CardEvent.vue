@@ -155,7 +155,7 @@
 
 <script lang="ts" setup>
 import { defineEmit, defineProps } from 'vue'
-import { deleteEvent as apiDeleteEvent } from '../../api/events'
+import { deleteEvent as apiDeleteEvent } from '../api/events'
 
 const props = defineProps({
   showLeagueName: { type: Boolean, default: false },

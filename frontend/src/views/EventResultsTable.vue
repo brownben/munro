@@ -70,7 +70,7 @@
             {{ course }}
           </router-link>
         </div>
-        <DropdownInput
+        <InputDropdown
           v-model="currentCourse"
           label="Course:"
           class="block sm:hidden w-full"
@@ -170,7 +170,7 @@
       </transition-group>
     </table>
     <Transition name="fade">
-      <NoResultsCard
+      <CardNoResults
         v-if="!loading && results.length === 0"
         class="col-span-2"
       />
@@ -179,18 +179,18 @@
 </template>
 <script lang="ts" setup>
 import { ref, watch, computed, defineAsyncComponent } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
 import FilterMenu from '../components/FilterMenu.vue'
 import Cell from '../components/TableCell.vue'
 import Heading from '../components/TableHeading.vue'
-import TableRow from '../components/ExpandingTableRow.vue'
-const DropdownInput = defineAsyncComponent(
-  () => import('../components/inputs/DropdownInput.vue')
+import TableRow from '../components/TableRow.vue'
+const InputDropdown = defineAsyncComponent(
+  () => import('../components/InputDropdown.vue')
 )
-const NoResultsCard = defineAsyncComponent(
-  () => import('../components/cards/NoResultsCard.vue')
+const CardNoResults = defineAsyncComponent(
+  () => import('../components/CardNoResults.vue')
 )
 
 import { toSingleString } from '../scripts/typeHelpers'
@@ -205,7 +205,6 @@ import {
 import { getEvent } from '../api/events'
 import { getEventResults } from '../api/results'
 
-const router = useRouter()
 const route = useRoute()
 
 /* Get Data */

@@ -9,13 +9,13 @@
     />
 
     <form class="col-span-2" @submit.prevent="addResult">
-      <DropdownInput
+      <InputDropdown
         v-model="choices.league"
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="choices.event"
         :listWithDifferentValue="
           eventsInLeague.map((event) => ({
@@ -27,14 +27,14 @@
         label="Event:"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="choices.course"
         :list="courses"
         :include-blank="true"
         label="Course"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="choices.competitor"
         :listWithDifferentValue="
           competitorsInLeague.map((competitor) => ({
@@ -46,7 +46,7 @@
         label="Competitor:"
         class="mt-4"
       />
-      <NumberInput
+      <InputNumber
         v-model.number="choices.points"
         label="Points:"
         class="mt-4"
@@ -65,10 +65,8 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
-import DropdownInput from '../../components/inputs/DropdownInput.vue'
-import NumberInput from '../../components/inputs/NumberInput.vue'
-
-import { toSingleString } from '../../scripts/typeHelpers'
+import InputDropdown from '../../components/InputDropdown.vue'
+import InputNumber from '../../components/InputNumber.vue'
 
 import { getLeagues } from '../../api/leagues'
 import { getEvents } from '../../api/events'

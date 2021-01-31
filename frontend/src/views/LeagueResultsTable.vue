@@ -200,7 +200,7 @@
     </template>
 
     <transition name="fade">
-      <NoResultsCard
+      <CardNoResults
         v-if="!loading && results.length === 0"
         class="col-span-2 -mt-2 -mb-6 md:-mt-8"
       />
@@ -241,9 +241,9 @@ import Layout from '../components/Layout.vue'
 import FilterMenu from '../components/FilterMenu.vue'
 import Cell from '../components/TableCell.vue'
 import Heading from '../components/TableHeading.vue'
-import TableRow from '../components/ExpandingTableRow.vue'
-const NoResultsCard = defineAsyncComponent(
-  () => import('../components/cards/NoResultsCard.vue')
+import TableRow from '../components/TableRow.vue'
+const CardNoResults = defineAsyncComponent(
+  () => import('../components/CardNoResults.vue')
 )
 
 import { toSingleString } from '../scripts/typeHelpers'

@@ -124,7 +124,7 @@ import { useRoute, useRouter } from 'vue-router'
 import Layout from '../../components/Layout.vue'
 import Cell from '../../components/TableCell.vue'
 import Heading from '../../components/TableHeading.vue'
-import TableRow from '../../components/ExpandingTableRow.vue'
+import TableRow from '../../components/TableRow.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import {

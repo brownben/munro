@@ -10,25 +10,25 @@
     />
 
     <div class="col-span-2">
-      <TextInput v-model.lazy="uploadConfig.eventId" label="Event ID:" />
+      <InputText v-model.lazy="uploadConfig.eventId" label="Event ID:" />
 
       <p v-if="event?.name" class="my-4">
         <b class="mr-2 text-main-800">Event Name:</b>
         {{ event.name }}
       </p>
 
-      <TextInput
+      <InputText
         v-model.trim="uploadConfig.uploadKey"
         label="Upload Key:"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="maprunId"
         label="MapRun Event Id:"
         class="mt-4"
       />
 
-      <DropdownInput
+      <InputDropdown
         v-model="uploadConfig.course"
         label="Course:"
         :list="courses"
@@ -55,8 +55,8 @@ import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
-import TextInput from '../components/inputs/TextInput.vue'
-import DropdownInput from '../components/inputs/DropdownInput.vue'
+import InputText from '../components/InputText.vue'
+import InputDropdown from '../components/InputDropdown.vue'
 
 import { getText } from '../api/requests'
 import { uploadSimple } from '../api/upload'

@@ -53,7 +53,8 @@
         </router-link>
       </div>
     </div>
-    <ResultOverviewCard
+
+    <CardResult
       v-for="result of results"
       :key="result.id"
       :result="result"
@@ -68,7 +69,7 @@ import { ref, watch, onMounted, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
-import ResultOverviewCard from '../components/cards/ResultOverviewCard.vue'
+import CardResult from '../components/CardResult.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

@@ -9,7 +9,7 @@
       url="https://munro-leagues.herokuapp.com/latest-results"
     />
 
-    <EventOverviewCard
+    <CardEvent
       v-for="event of events"
       :key="event.id"
       :event="event"
@@ -24,7 +24,7 @@
 import { ref, onMounted } from 'vue'
 import { getLatestResults } from '../api/events'
 import Layout from '../components/Layout.vue'
-import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
+import CardEvent from '../components/CardEvent.vue'
 
 const events = ref<LeagueEvent[]>([])
 

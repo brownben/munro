@@ -8,7 +8,7 @@
       }"
     />
 
-    <EventOverviewCard
+    <CardEvent
       v-for="event of events"
       :key="event.name"
       :event="event"
@@ -23,7 +23,7 @@ import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
-import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
+import CardEvent from '../components/CardEvent.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

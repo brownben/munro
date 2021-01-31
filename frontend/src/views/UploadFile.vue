@@ -22,42 +22,42 @@
     </div>
 
     <div class="col-span-2">
-      <TextInput v-model.lazy="uploadConfig.eventId" label="Event ID:" />
+      <InputText v-model.lazy="uploadConfig.eventId" label="Event ID:" />
 
       <p v-if="uploadConfig.eventId" class="my-4">
         <b class="mr-2 text-main-800">Event Name:</b>
         {{ event?.name }}
       </p>
 
-      <TextInput
+      <InputText
         v-model.trim="uploadConfig.uploadKey"
         label="Upload Key:"
         class="mt-4"
       />
 
       <!-- If Event already have results, confirm they want to overwrite -->
-      <CheckboxInput
+      <InputCheckbox
         v-if="event?.resultUploaded"
         v-model="uploadConfig.overwrite"
         label="Overwrite Existing Results"
         class="my-6 text-left"
       />
 
-      <FileInput label="Results File:" class="mt-4" @file="fileRead" />
+      <InputFile label="Results File:" class="mt-4" @file="fileRead" />
 
-      <TextInput
+      <InputText
         v-model.trim="uploadConfig.results"
         label="Results (URL):"
         type="url"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="uploadConfig.routegadget"
         label="Routegadget (URL):"
         type="url"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="uploadConfig.winsplits"
         label="Winsplits: (URL):"
         type="url"
@@ -84,9 +84,9 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
-import TextInput from '../components/inputs/TextInput.vue'
-import FileInput from '../components/inputs/FileInput.vue'
-import CheckboxInput from '../components/inputs/CheckboxInput.vue'
+import InputText from '../components/InputText.vue'
+import InputFile from '../components/InputFile.vue'
+import InputCheckbox from '../components/InputCheckbox.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

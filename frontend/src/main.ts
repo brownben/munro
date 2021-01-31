@@ -3,7 +3,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Meta from './components/Meta.vue'
+import Meta from './components/AppMeta.vue'
 
 import './registerServiceWorker.js'
 import './assets/styles/index.css'

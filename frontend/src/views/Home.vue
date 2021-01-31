@@ -9,7 +9,7 @@
       url="https://munro-leagues.herokuapp.com/"
     />
 
-    <Hero />
+    <HeroSection />
     <section
       v-if="$store.getters.loggedIn"
       class="w-full py-8 text-center text-white actions bg-main-600"
@@ -38,12 +38,12 @@
 </template>
 
 <script setup lang="ts">
-import Hero from '../components/Hero.vue'
-import LeaguesSection from '../components/cards/HomeLeaguesSection.vue'
-import SearchSection from '../components/cards/HomeSearchSection.vue'
-import EventsSection from '../components/cards/HomeEventsSection.vue'
-import UploadSection from '../components/cards/HomeUploadSection.vue'
-import AboutSection from '../components/cards/HomeAboutSection.vue'
-import DeveloperSection from '../components/cards/HomeDeveloperSection.vue'
-import AppFooter from '../components/Footer.vue'
+import HeroSection from '../components/HomeSectionHero.vue'
+import LeaguesSection from '../components/HomeSectionLeagues.vue'
+import SearchSection from '../components/HomeSectionSearch.vue'
+import EventsSection from '../components/HomeSectionEvents.vue'
+import UploadSection from '../components/HomeSectionUpload.vue'
+import AboutSection from '../components/HomeSectionAbout.vue'
+import DeveloperSection from '../components/HomeSectionDeveloper.vue'
+import AppFooter from '../components/AppFooter.vue'
 </script>

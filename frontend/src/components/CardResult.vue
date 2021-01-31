@@ -98,11 +98,11 @@
 
 <script lang="ts" setup>
 import { defineEmit, defineProps } from 'vue'
-import { elapsedTime } from '../../scripts/time'
+import { elapsedTime } from '../scripts/time'
 import {
   hideResult as apiHideResult,
   incompleteResult as apiIncompleteResult,
-} from '../../api/results'
+} from '../api/results'
 
 const props = defineProps({
   result: {

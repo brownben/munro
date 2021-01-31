@@ -10,7 +10,7 @@
     />
 
     <div class="col-span-2">
-      <DropdownInput
+      <InputDropdown
         v-model="result.eventId"
         label="Event:"
         :listWithDifferentValue="
@@ -20,14 +20,14 @@
           }))
         "
       />
-      <DropdownInput
+      <InputDropdown
         v-model="result.course"
         label="Your Course:"
         :list="courses"
         class="mt-4"
       />
-      <TextInput v-model.trim="result.name" label="Your Name:" class="mt-4" />
-      <TextInput
+      <InputText v-model.trim="result.name" label="Your Name:" class="mt-4" />
+      <InputText
         v-model.trim="result.time"
         label="Your Time: (MM:SS)"
         class="mt-4"
@@ -51,8 +51,8 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
-import TextInput from '../components/inputs/TextInput.vue'
-import DropdownInput from '../components/inputs/DropdownInput.vue'
+import InputText from '../components/InputText.vue'
+import InputDropdown from '../components/InputDropdown.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

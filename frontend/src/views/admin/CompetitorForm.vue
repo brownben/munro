@@ -12,20 +12,20 @@
     />
 
     <form class="col-span-2" @submit.prevent="submit">
-      <TextInput v-model.trim="competitor.name" label="Name:" />
-      <TextInput v-model.trim="competitor.club" label="Club:" class="mt-4" />
-      <TextInput
+      <InputText v-model.trim="competitor.name" label="Name:" />
+      <InputText v-model.trim="competitor.club" label="Club:" class="mt-4" />
+      <InputText
         v-model.trim="competitor.ageClass"
         label="Age Class:"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="competitor.league"
         :list="leagues.map((league) => league.name)"
         label="League:"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="competitor.course"
         :list="courses"
         label="Course:"
@@ -46,8 +46,8 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
-import DropdownInput from '../../components/inputs/DropdownInput.vue'
-import TextInput from '../../components/inputs/TextInput.vue'
+import InputDropdown from '../../components/InputDropdown.vue'
+import InputText from '../../components/InputText.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 

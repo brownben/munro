@@ -36,7 +36,7 @@
       </router-link>
     </div>
 
-    <LeagueOverviewCard
+    <CardLeague
       v-for="league of leagues"
       :key="league.name"
       :title="league.name"
@@ -50,7 +50,7 @@
       Events
     </h2>
 
-    <EventOverviewCard
+    <CardEvent
       v-for="event of events"
       :key="event.id"
       :event="event"
@@ -66,7 +66,7 @@
       Competitors
     </h2>
 
-    <CompetitorOverviewCard
+    <CardCompetitor
       v-for="competitor of competitors"
       :key="competitor.id"
       :competitor="competitor"
@@ -92,13 +92,13 @@ import { ref, watch, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
-import SearchBox from '../components/inputs/SearchBox.vue'
-import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
-import LeagueOverviewCard from '../components/cards/LeagueOverviewCard.vue'
-import CompetitorOverviewCard from '../components/cards/CompetitorOverviewCard.vue'
+import SearchBox from '../components/SearchBox.vue'
+import CardEvent from '../components/CardEvent.vue'
+import CardLeague from '../components/CardLeague.vue'
+import CardCompetitor from '../components/CardCompetitor.vue'
 
 const NoResults = defineAsyncComponent(
-  () => import('../components/cards/NoResultsCard.vue')
+  () => import('../components/CardNoResults.vue')
 )
 
 import { toSingleString } from '../scripts/typeHelpers'

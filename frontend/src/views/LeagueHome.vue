@@ -165,7 +165,7 @@
         <span class="mr-1 text-xl">+</span> Add Event
       </router-link>
     </div>
-    <EventOverviewCard
+    <CardEvent
       v-for="event of events"
       :key="event.name"
       :event="event"
@@ -182,7 +182,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
-import EventOverviewCard from '../components/cards/EventOverviewCard.vue'
+import CardEvent from '../components/CardEvent.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 

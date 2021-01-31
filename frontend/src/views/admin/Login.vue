@@ -8,8 +8,8 @@
       description
     />
     <form class="col-span-2" @submit.prevent="sendLoginRequest">
-      <TextInput v-model="username" label="Email Address:" type="email" />
-      <TextInput
+      <InputText v-model="username" label="Email Address:" type="email" />
+      <InputText
         v-model="password"
         label="Password:"
         type="password"
@@ -39,7 +39,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
-import TextInput from '../../components/inputs/TextInput.vue'
+import InputText from '../../components/InputText.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 

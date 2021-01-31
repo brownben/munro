@@ -16,7 +16,7 @@
       </div>
 
       <div class="grid grid-cols-2 gap-6 px-6 sm:gap-8 md:grid-cols-3">
-        <LeagueOverviewCard
+        <CardLeague
           title="(Not) Sprintelope"
           description=" Socially Distant Sprint/ Urban Orienteering Around Edinburgh"
           website="https://en-gb.facebook.com/sprintelope/"
@@ -24,7 +24,7 @@
           :larger="false"
           smaller
         />
-        <LeagueOverviewCard
+        <CardLeague
           title="Fight with the Night"
           description="Thursday Night Orienteering Events Around Edinburgh"
           website="https://euoc.wordpress.com/"
@@ -32,7 +32,7 @@
           :larger="false"
           smaller
         />
-        <LeagueOverviewCard
+        <CardLeague
           title="Northern Night Cup"
           description="Night Orienteering Events in the North of Scotland"
           website="https://www.orienteering.scot/northern-night-cup/"
@@ -46,5 +46,5 @@
 </template>
 
 <script setup lang="ts">
-import LeagueOverviewCard from './LeagueOverviewCard.vue'
+import CardLeague from './CardLeague.vue'
 </script>

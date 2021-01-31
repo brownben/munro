@@ -12,61 +12,61 @@
     />
 
     <form class="col-span-2" @submit.prevent="submit">
-      <TextInput v-model.trim="event.name" label="Name:" />
-      <TextInput
+      <InputText v-model.trim="event.name" label="Name:" />
+      <InputText
         v-model.trim="event.date"
         label="Date:"
         class="mt-4"
         type="date"
       />
-      <TextInput
+      <InputText
         v-model.trim="event.organiser"
         label="Club/ Organiser:"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="event.website"
         label="Website: (URL)"
         type="url"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="event.results"
         label="Results: (URL)"
         type="url"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="event.winsplits"
         label="Winsplits: (URL)"
         type="url"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="event.routegadget"
         label="Routegadget: (URL)"
         type="url"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="event.league"
         :list="leagues.map((league) => league.name)"
         label="League:"
         class="mt-4"
       />
-      <TextInput
+      <InputText
         v-model.trim="event.moreInformation"
         label="More Information:"
         class="mt-4"
       />
-      <DropdownInput
+      <InputDropdown
         v-model="event.secondaryLeague"
         :list="subLeagues"
         :include-blank="true"
         label="Secondary League:"
         class="mt-4"
       />
-      <CheckboxInput
+      <InputCheckbox
         v-model="event.userSubmittedResults"
         label="Allow Users to Submit Results"
         class="mt-6 text-left"
@@ -85,9 +85,9 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
-import DropdownInput from '../../components/inputs/DropdownInput.vue'
-import TextInput from '../../components/inputs/TextInput.vue'
-import CheckboxInput from '../../components/inputs/CheckboxInput.vue'
+import InputDropdown from '../../components/InputDropdown.vue'
+import InputText from '../../components/InputText.vue'
+import InputCheckbox from '../../components/InputCheckbox.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
