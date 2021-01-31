@@ -208,6 +208,7 @@
 
     <div
       v-if="
+        !$route.path.includes('/embed/') &&
         !loading &&
         league?.leagueScoring === 'course' &&
         rawResults.length > 0 &&

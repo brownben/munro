@@ -1,5 +1,5 @@
 <template>
-  <AppMenu v-show="!$route.path.includes('/embed/')" />
+  <AppMenu v-if="!$route.path.includes('/embed/')" />
 
   <div id="content" class="flex flex-col flex-grow">
     <Messages />
