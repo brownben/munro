@@ -52,5 +52,5 @@ def processSimpleResult(
         "points": 0,
         "course": course,
         "event": event.id,
-        "league": league.name,
+        "league": league.getLeagueOfCompetitors(),
     }

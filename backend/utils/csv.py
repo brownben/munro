@@ -96,7 +96,7 @@ def parseFileToDictionaries(
             "position": getPosition(row, getValue),
             "incomplete": isResultIncomplete(row, getValue),
             "file_points": getFilePoints(row, getValue),
-            "league": league.name,
+            "league": league.getLeagueOfCompetitors(),
             "event": event.id,
             "type": "",
         }
