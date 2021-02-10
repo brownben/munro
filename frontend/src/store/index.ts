@@ -16,7 +16,7 @@ export interface State {
 }
 
 export default createStore({
-  strict: process.env.NODE_ENV !== 'production',
+  strict: import.meta.env.PROD,
   modules: {
     messages,
     auth,
