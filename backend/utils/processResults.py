@@ -15,6 +15,26 @@ def getCountingPoints(
     points: List[int],
     numberCounting: int,
     events: List[str],
+    leagueEvents: List[Event],
+) -> List[int]:
+    leagueEventIds = [event.id for event in leagueEvents]
+    indexOfLargestPoints = getLargestRequiredPoints(
+        points,
+        numberCounting,
+        events,
+        leagueEvents,
+    )
+    return [
+        pointsIndex
+        for pointsIndex in indexOfLargestPoints
+        if events[pointsIndex] in leagueEventIds
+    ]
+
+
+def getLargestRequiredPoints(
+    points: List[int],
+    numberCounting: int,
+    events: List[str],
     databaseEvents: List[Event],
 ) -> List[int]:
     requiredEvents = [event for event in databaseEvents if event.requiredInTotal]
