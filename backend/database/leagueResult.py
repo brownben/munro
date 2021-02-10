@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from .event import Event
 from .league import League
@@ -26,25 +26,27 @@ class LeagueResult:
         if not hasattr(self, "course"):
             self.course = None
 
-    def toDictionary(self, league: League, events: List[Event]) -> Dict[str, Any]:
+    def toDictionary(self, league: League, leagueEvents: List[Event]) -> Dict[str, Any]:
         numberOfCountingEvents = league.numberOfCountingEvents
+        leagueEventIds = [event.id for event in leagueEvents]
         countingPoints = getCountingPoints(
-            self.points, numberOfCountingEvents, self.events, events
+            self.points, numberOfCountingEvents, self.events, leagueEvents
         )
+
         pointsTotal = sum([self.points[point] for point in countingPoints])
 
         results = [
             (
                 {
-                    "event": event.id,
-                    "score": float(self.points[self.events.index(event.id)]),
-                    "type": self.types[self.events.index(event.id)],
-                    "counting": self.events.index(event.id) in countingPoints,
+                    "event": event,
+                    "score": float(self.points[self.events.index(event)]),
+                    "type": self.types[self.events.index(event)],
+                    "counting": self.events.index(event) in countingPoints,
                 }
-                if event.id in self.events
+                if event in self.events
                 else None
             )
-            for event in events
+            for event in leagueEventIds
         ]
 
         return {

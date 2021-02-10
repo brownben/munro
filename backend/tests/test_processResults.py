@@ -30,6 +30,15 @@ def createEvent(id: str, required: bool) -> Event:
     return Event({"id": id, "requiredInTotal": required})
 
 
+mockEventsNoRequired = [
+    createEvent("a", False),
+    createEvent("b", False),
+    createEvent("c", False),
+    createEvent("d", False),
+    createEvent("e", False),
+    createEvent("f", False),
+]
+
 mockEvents = [
     createEvent("a", False),
     createEvent("b", True),
@@ -54,9 +63,19 @@ events = ["a", "b", "c", "d", "e", "f"]
 
 class Test_GetCountingPoints:
     def test_noRequiredEvents(self) -> None:
-        assert getCountingPoints([1, 2, 3], 3, [], []) == [2, 1, 0]
-        assert getCountingPoints([10, 8, 5, 1, 7], 3, [], []) == [0, 1, 4]
-        assert getCountingPoints([0, 10, 8, 5, 1, 7], 2, [], []) == [1, 2]
+        assert getCountingPoints([1, 2, 3], 3, events, mockEventsNoRequired) == [
+            2,
+            1,
+            0,
+        ]
+        assert getCountingPoints([10, 8, 5, 1, 7], 3, events, mockEventsNoRequired) == [
+            0,
+            1,
+            4,
+        ]
+        assert getCountingPoints(
+            [0, 10, 8, 5, 1, 7], 2, events, mockEventsNoRequired
+        ) == [1, 2]
 
     def test_requiredEventInLargestPoints(self) -> None:
         assert getCountingPoints(points, 2, events, mockEvents) == [
@@ -70,7 +89,9 @@ class Test_GetCountingPoints:
         ]
 
     def test_requiredEventNotInLargestPoints(self) -> None:
-        assert getCountingPoints([0, 10, 8, 5, 1, 7], 2, ["b"], mockEvents) == [1, 0]
+        assert getCountingPoints(
+            [0, 10, 8, 5, 1, 7], 2, ["b", "a", "c", "d", "e", "f"], mockEvents
+        ) == [1, 0]
 
     def test_multipleRequiredEventsNotInLargestPoints(self) -> None:
         assert getCountingPoints(points, 2, events, mockEventsMultipleRequired) == [
