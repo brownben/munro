@@ -12,7 +12,7 @@
       :class="{
         'h-2 -mt-2': !ascending && active,
         'h-5 -mt-1': ascending && active,
-        'h-7/2 -mt-1 text-opacity-75': !active,
+        'h-7/2 -mt-1 opacity-75': !active,
       }"
     >
       <path stroke="none" d="M0 0h24v24H0z" />
@@ -32,7 +32,7 @@
       :class="{
         'h-2 mt-2': ascending && active,
         'h-5 -mt-1': !ascending && active,
-        'h-7/2 -mt-1 text-opacity-75': !active,
+        'h-7/2 -mt-1 opacity-75': !active,
       }"
     >
       <path stroke="none" d="M0 0h24v24H0z" />

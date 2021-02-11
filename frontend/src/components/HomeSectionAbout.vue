@@ -1,5 +1,7 @@
 <template>
-  <section class="w-full pt-10 pb-8 text-white bg-main-50 md:py-12">
+  <section
+    class="w-full pt-10 pb-8 text-white bg-main-50 md:py-12 border-t border-main-100"
+  >
     <div
       class="flex flex-col-reverse items-center justify-around w-11/12 mx-auto md:flex-row md:w-10/12 xl:max-w-screen-xl"
     >
@@ -19,7 +21,7 @@
         </h2>
         <router-link
           to="/about"
-          class="inline-block w-auto px-4 py-1 mx-0 mt-1 text-main-800 transition duration-300 ease-in-out outline-none appearance-none select-none md:mt-2 md:text-lg bg-main-200 font-heading rounded-shape hover:bg-main-300 focus:bg-main-300"
+          class="inline-block w-auto px-4 py-1 mx-0 mt-1 text-main-700 transition duration-300 ease-in-out outline-none appearance-none select-none md:mt-2 md:text-lg bg-main-100 font-heading rounded-shape hover:bg-main-200 focus:bg-main-200"
         >
           Introducing Munro Leagues
         </router-link>

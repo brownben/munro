@@ -19,18 +19,18 @@
 
   &.button-dark {
     /* On Light Pink Card Background */
-    @apply bg-main-200 bg-opacity-50;
+    @apply bg-main-100;
     @apply text-main-800;
 
     &:hover,
     &:focus {
-      @apply bg-opacity-100 text-main-800;
+      @apply bg-main-200 text-main-800;
     }
   }
 
   &.button-white {
     /* On Dark Purple Background */
-    @apply bg-purple-100 bg-opacity-0;
+    @apply bg-white bg-opacity-0;
     @apply text-white leading-tight;
     @apply border border-white border-opacity-50;
     @apply py-2;
