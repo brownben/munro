@@ -3,7 +3,7 @@ import routes from './routes'
 
 export default createRouter({
   routes,
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/'),
 
   scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) return savedPosition
