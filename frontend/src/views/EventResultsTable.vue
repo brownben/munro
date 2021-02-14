@@ -138,7 +138,9 @@
           :expanding="false"
         >
           <Cell>
-            <template v-if="['max', 'average', 'manual'].includes(result.type)">
+            <template
+              v-if="['max', 'average', 'manual'].includes(result.type ?? '')"
+            >
               *
             </template>
             <template v-else-if="result.incomplete">-</template>

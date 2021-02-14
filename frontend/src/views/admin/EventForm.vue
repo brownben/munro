@@ -76,6 +76,12 @@
         label="Event Always Included in Total Points"
         class="mt-6 text-left"
       />
+
+      <InputTextarea
+        v-model="event.additionalSettings"
+        label="Additional Settings: (Advanced Use Only)"
+        class="mt-6 text-left"
+      />
       <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
         Update Event
       </button>
@@ -93,6 +99,7 @@ import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 import InputText from '../../components/InputText.vue'
 import InputCheckbox from '../../components/InputCheckbox.vue'
+import InputTextarea from '../../components/InputTextarea.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
@@ -124,6 +131,7 @@ const event = ref<LeagueEvent>({
   league: '',
   secondaryLeague: '',
   requiredInTotal: false,
+  additionalSettings: '',
 })
 
 const refreshDetails = async () => {
