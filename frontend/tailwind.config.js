@@ -10,7 +10,7 @@ module.exports = {
       },
 
       boxShadow: {
-        outline: '0 0 0 3px rgba(213, 61, 245, 0.5)',
+        outline: '0 0 0 3px var(--main-300, #f0abfc)',
         'outline-white': '0 0 0 3px rgba(255, 255, 255, 0.65)',
       },
 
