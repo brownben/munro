@@ -17,6 +17,7 @@ properties = [
     "dynamicEventResults",
     "clubRestriction",
     "subLeagueOf",
+    "additionalSettings",
     "numberOfEvents",
 ]
 
@@ -38,6 +39,7 @@ class League:
     numberOfCountingEvents: int
     dynamicEventResults: bool
     clubRestriction: str
+    additionalSettings: str
 
     # contain events from a separate league
     subLeagueOf: Optional[str]
@@ -73,6 +75,7 @@ class League:
             "clubRestriction": self.clubRestriction,
             "numberOfEvents": self.numberOfEvents,
             "subLeagueOf": self.subLeagueOf,
+            "additionalSettings": self.additionalSettings,
         }
 
     def create(self) -> None:
@@ -91,8 +94,9 @@ class League:
                 numberOfCountingEvents,
                 dynamicEventResults,
                 clubRestriction,
-                subLeagueOf
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                subLeagueOf,
+                additionalSettings
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 self.name,
@@ -108,6 +112,7 @@ class League:
                 self.dynamicEventResults,
                 self.clubRestriction,
                 self.subLeagueOf,
+                self.additionalSettings,
             ),
         )
 
@@ -127,7 +132,8 @@ class League:
                 numberOfCountingEvents=%s,
                 dynamicEventResults=%s,
                 clubRestriction=%s,
-                subLeagueOf=%s
+                subLeagueOf=%s,
+                additioalSettings=%s
             WHERE name=%s""",
             (
                 self.name,
@@ -143,6 +149,7 @@ class League:
                 self.dynamicEventResults,
                 self.clubRestriction,
                 self.subLeagueOf,
+                self.additionalSettings,
                 oldName,
             ),
         )
@@ -170,6 +177,7 @@ class League:
                 leagues.dynamicEventResults,
                 leagues.clubRestriction,
                 leagues.subLeagueOf,
+                leagues.additionalSettings,
                 COUNT(events.id)
             FROM leagues
             LEFT JOIN events ON leagues.name=events.league
@@ -197,6 +205,7 @@ class League:
                 leagues.dynamicEventResults,
                 leagues.clubRestriction,
                 leagues.subLeagueOf,
+                leagues.additionalSettings,
                 COUNT(events.id)
             FROM leagues
             LEFT JOIN events ON leagues.name=events.league
