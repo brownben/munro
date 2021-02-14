@@ -57,8 +57,7 @@ eventModel = Model(
             example=False,
         ),
         "additionalSettings": fields.String(
-            description="Extra Settings for the Event",
-            default=''
+            description="Extra Settings for the Event", default=""
         ),
     },
 )

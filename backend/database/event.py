@@ -85,7 +85,7 @@ class Event:
             "routegadget": self.routegadget,
             "userSubmittedResults": self.userSubmittedResults,
             "secondaryLeague": self.secondaryLeague,
-            "additionalSettings":self.additionalSettings,
+            "additionalSettings": self.additionalSettings,
             "requiredInTotal": self.requiredInTotal,
         }
 
