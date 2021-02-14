@@ -1,4 +1,3 @@
-from backend.utils.calculateResults import recalculateResults
 from flask_restx import Namespace, Resource
 
 from .requireAuthentication import requireAuthentication
@@ -7,6 +6,7 @@ from ..database.result import Result
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.result import eventResultModel
 from ..models.messages import createMessage, messageModel
+from ..utils.calculateResults import recalculateResults
 
 
 api = Namespace("Events", description="View and Manage Events")
@@ -22,10 +22,10 @@ class EventsRoute(Resource):
     @api.response(200, "Success - List of all Events")
     @api.response(500, "Problem Connecting to the Database")
     def get(self):
-        # try:
-        return [event.toDictionary() for event in Event.getAll()]
-        # except:
-        #     return [], 500
+        try:
+            return [event.toDictionary() for event in Event.getAll()]
+        except:
+            return [], 500
 
     @api.expect(eventModel, validate=True)
     @api.marshal_with(messageModel)

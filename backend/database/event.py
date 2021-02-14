@@ -21,6 +21,7 @@ properties = [
     "userSubmittedResults",
     "secondaryLeague",
     "requiredInTotal",
+    "additionalSettings",
     "uploadKey",
 ]
 
@@ -53,6 +54,7 @@ class Event:
     routegadget: str
     userSubmittedResults: bool
     requiredInTotal: bool
+    additionalSettings: str
 
     uploadKey: str
 
@@ -83,25 +85,13 @@ class Event:
             "routegadget": self.routegadget,
             "userSubmittedResults": self.userSubmittedResults,
             "secondaryLeague": self.secondaryLeague,
+            "additionalSettings":self.additionalSettings,
             "requiredInTotal": self.requiredInTotal,
         }
 
     def toDictionaryWithUploadKey(self) -> Dict[str, Any]:
         return {
-            "id": self.id,
-            "name": self.name,
-            "date": self.date,
-            "website": self.website,
-            "organiser": self.organiser,
-            "moreInformation": self.moreInformation,
-            "league": self.leagueName,
-            "resultUploaded": self.resultUploaded,
-            "results": self.results,
-            "winsplits": self.winsplits,
-            "routegadget": self.routegadget,
-            "userSubmittedResults": self.userSubmittedResults,
-            "secondaryLeague": self.secondaryLeague,
-            "requiredInTotal": self.requiredInTotal,
+            **self.toDictionary(),
             "uploadKey": self.uploadKey,
         }
 
@@ -129,8 +119,9 @@ class Event:
                 userSubmittedResults,
                 secondaryLeague,
                 requiredInTotal,
+                additionalSettings,
                 uploadKey
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """,
             (
                 self.getEventId(),
@@ -147,6 +138,7 @@ class Event:
                 self.userSubmittedResults,
                 self.secondaryLeague,
                 self.requiredInTotal,
+                self.additionalSettings,
                 generateUploadKey(),
             ),
         )
@@ -168,7 +160,8 @@ class Event:
                 routegadget=%s,
                 userSubmittedResults=%s,
                 secondaryLeague=%s,
-                requiredInTotal=%s
+                requiredInTotal=%s,
+                additionalSettings=%s
             WHERE id=%s
             """,
             (
@@ -186,6 +179,7 @@ class Event:
                 self.userSubmittedResults,
                 self.secondaryLeague,
                 self.requiredInTotal,
+                self.additionalSettings,
                 oldEventId,
             ),
         )
@@ -235,6 +229,7 @@ class Event:
                 userSubmittedResults,
                 secondaryLeague,
                 requiredInTotal,
+                additionalSettings,
                 uploadKey
             FROM events
             ORDER BY date ASC
@@ -261,6 +256,7 @@ class Event:
                 userSubmittedResults,
                 secondaryLeague,
                 requiredInTotal,
+                additionalSettings,
                 uploadKey
             FROM events
             WHERE id=%s
@@ -292,6 +288,7 @@ class Event:
                 userSubmittedResults,
                 secondaryLeague,
                 requiredInTotal,
+                additionalSettings,
                 uploadKey
             FROM events
             WHERE league=%s OR secondaryLeague=%s
@@ -320,6 +317,7 @@ class Event:
                 userSubmittedResults,
                 secondaryLeague,
                 requiredInTotal,
+                additionalSettings,
                 uploadKey
             FROM events
             WHERE
@@ -350,6 +348,7 @@ class Event:
                 userSubmittedResults,
                 secondaryLeague,
                 requiredInTotal,
+                additionalSettings,
                 uploadKey
             FROM events
             WHERE resultUploaded = true
