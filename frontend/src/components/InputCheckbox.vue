@@ -17,9 +17,9 @@
         :checked="modelValue"
         @change="$emit('update:modelValue', $event?.target.checked)"
       />
-      <span class="ml-3 leading-tight text-gray-600 font-heading">{{
-        label
-      }}</span>
+      <span class="ml-3 leading-tight text-gray-600 font-heading">
+        {{ label }}
+      </span>
     </label>
   </div>
 </template>

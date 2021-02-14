@@ -10,6 +10,7 @@ interface EventResult {
   ageClass: string
   club: string
   course: string
+  eventName?: string
 }
 
 interface LeagueResult {
