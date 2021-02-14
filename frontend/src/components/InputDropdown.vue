@@ -59,12 +59,21 @@
 
 <script lang="ts" setup>
 import { ref, defineEmit, defineProps } from 'vue'
+import type { PropType } from 'vue'
+
+interface DropdownOption {
+  value: string
+  text: string
+}
 
 const props = defineProps({
   label: { type: String, required: true },
   modelValue: { type: String, default: '' },
-  list: { type: Array, default: () => [] },
-  listWithDifferentValue: { type: Array, default: () => [] },
+  list: { type: Array as PropType<string[]>, default: () => [] },
+  listWithDifferentValue: {
+    type: Array as PropType<DropdownOption[]>,
+    default: () => [],
+  },
   includeBlank: { type: Boolean, default: true },
 })
 const emit = defineEmit(['update:modelValue'])

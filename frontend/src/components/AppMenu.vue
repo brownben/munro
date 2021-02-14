@@ -154,8 +154,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+interface Link {
+  text: string
+  location: string
+}
+
 const menuOpen = ref(false)
-const links = [
+const links: Link[] = [
   { text: 'Leagues', location: '/leagues' },
   { text: 'Latest Results', location: '/latest-results' },
   { text: 'Upload Results', location: '/upload' },

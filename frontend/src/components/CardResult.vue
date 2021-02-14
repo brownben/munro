@@ -98,6 +98,7 @@
 
 <script lang="ts" setup>
 import { defineEmit, defineProps } from 'vue'
+import type { PropType } from 'vue'
 import { elapsedTime } from '../scripts/time'
 import {
   hideResult as apiHideResult,
@@ -106,7 +107,7 @@ import {
 
 const props = defineProps({
   result: {
-    type: Object,
+    type: Object as PropType<EventResult>,
     default: () => {},
   },
   showTime: {
