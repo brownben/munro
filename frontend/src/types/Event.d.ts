@@ -14,6 +14,7 @@ interface LeagueEvent {
   userSubmittedResults: boolean
   requiredInTotal: boolean
   uploadKey?: string
+  additionalSettings?: string
 
   secondaryLeague?: string
 }
