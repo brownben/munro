@@ -56,6 +56,10 @@ eventModel = Model(
             default=False,
             example=False,
         ),
+        "additionalSettings": fields.String(
+            description="Extra Settings for the Event",
+            default=''
+        ),
     },
 )
 
