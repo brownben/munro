@@ -103,6 +103,25 @@
           <p>Contains the league standings for that course</p>
         </li>
       </ul>
+
+      <h3>Themes</h3>
+      <p>
+        The colour theme of the embed can be changed to match your sites colour
+        theme, by adding a theme parameter to the URL.
+      </p>
+      <p>The following themes are available:</p>
+      <ul>
+        <li>default</li>
+        <li>purple</li>
+        <li>blue</li>
+        <li>green</li>
+        <li>red</li>
+        <li>orange</li>
+        <li>cyan</li>
+        <li>pink</li>
+      </ul>
+      <p>For example to view a red theme:</p>
+      <pre><code>&lt;iframe src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope 2018/events?theme=red&quot;&gt;&lt;/iframe&gt;</code></pre>
     </article>
   </Layout>
 </template>
