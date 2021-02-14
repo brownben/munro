@@ -58,5 +58,8 @@ leagueModel = Model(
             default=None,
             example="Sprintelope",
         ),
+        "additionalSettings": fields.String(
+            description="Extra Settings for the League", default=""
+        ),
     },
 )

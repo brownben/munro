@@ -13,6 +13,7 @@ interface LeagueBase {
   numberOfCountingEvents: number
   dynamicEventResults: boolean
   clubRestriction?: string
+  additionalSettings?: string
 
   numberOfEvents?: number
 }

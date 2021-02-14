@@ -36,37 +36,7 @@
       />
       <InputDropdown
         v-model="league.scoringMethod"
-        :listWithDifferentValue="[
-          { value: 'position', text: 'Position Based (100 Max)' },
-          { value: 'position50', text: 'Position Based (50 Max)' },
-          { value: 'position99', text: 'Position Based (99 Max)' },
-          {
-            value: 'position99average',
-            text: 'Position Based (99 Max, Reduced in a Draw)',
-          },
-          {
-            value: 'positionDouble',
-            text: 'Position Based (100 Max, Double Points',
-          },
-          {
-            value: 'position50Double',
-            text: 'Position Based (50 Max, Double Points)',
-          },
-          {
-            value: 'timeAverage',
-            text: 'Relative to Average Time (1000 Average)',
-          },
-          {
-            value: 'timeAverage100',
-            text: 'Relative to Average Time (100 Average)',
-          },
-          { value: 'timeTop3', text: 'Relative to Top 3 Times' },
-          {
-            value: 'timeTop3Adjusted',
-            text: 'Relative to Top 3 Times (Adjusted)',
-          },
-          { value: 'file', text: 'From Upload File' },
-        ]"
+        :listWithDifferentValue="scoringMethodOptions"
         :include-blank="false"
         label="Scoring Method:"
         class="mt-4"
@@ -108,6 +78,11 @@
         v-model.trim="league.moreInformation"
         label="More Information:"
         class="mt-4"
+      />
+      <InputTextarea
+        v-model="league.additionalSettings"
+        label="Additional Settings: (Advanced Use Only)"
+        class="mt-6 text-left"
       />
       <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
         Update League
@@ -157,6 +132,7 @@ const league = ref<LeagueForm>({
   leagueScoring: 'course',
   clubRestriction: '',
   subLeagueOf: '',
+  additionalSettings: '',
 })
 
 const refreshDetails = async () => {
@@ -232,4 +208,36 @@ const leaguesSuitableForSubLeague = computed(() =>
 )
 
 watch(route, refreshDetails, { immediate: true })
+
+const scoringMethodOptions = [
+  { value: 'position', text: 'Position Based (100 Max)' },
+  { value: 'position50', text: 'Position Based (50 Max)' },
+  { value: 'position99', text: 'Position Based (99 Max)' },
+  {
+    value: 'position99average',
+    text: 'Position Based (99 Max, Reduced in a Draw)',
+  },
+  {
+    value: 'positionDouble',
+    text: 'Position Based (100 Max, Double Points',
+  },
+  {
+    value: 'position50Double',
+    text: 'Position Based (50 Max, Double Points)',
+  },
+  {
+    value: 'timeAverage',
+    text: 'Relative to Average Time (1000 Average)',
+  },
+  {
+    value: 'timeAverage100',
+    text: 'Relative to Average Time (100 Average)',
+  },
+  { value: 'timeTop3', text: 'Relative to Top 3 Times' },
+  {
+    value: 'timeTop3Adjusted',
+    text: 'Relative to Top 3 Times (Adjusted)',
+  },
+  { value: 'file', text: 'From Upload File' },
+]
 </script>

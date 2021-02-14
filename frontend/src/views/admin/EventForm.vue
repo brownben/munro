@@ -76,7 +76,6 @@
         label="Event Always Included in Total Points"
         class="mt-6 text-left"
       />
-
       <InputTextarea
         v-model="event.additionalSettings"
         label="Additional Settings: (Advanced Use Only)"
