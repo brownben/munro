@@ -11,7 +11,7 @@
 
     <CardEvent
       v-for="event of events"
-      :key="event.id"
+      :key="event?.id ?? 0"
       :event="event"
       :league="{ dynamicEventResults: true }"
       :show-league-name="true"

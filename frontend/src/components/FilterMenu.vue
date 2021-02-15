@@ -50,7 +50,7 @@ import InputText from './InputText.vue'
 import InputNumber from './InputNumber.vue'
 import InputCheckbox from './InputCheckbox.vue'
 
-const emit = defineEmit(['changed'])
+const emit = defineEmit({ changed: (_filterData: FilterPreferences) => {} })
 
 const name = ref('')
 const club = ref('')

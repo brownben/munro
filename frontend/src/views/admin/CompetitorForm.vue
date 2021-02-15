@@ -64,7 +64,7 @@ const route = useRoute()
 
 const loading = ref(true)
 const leagues = ref<League[]>([])
-const competitor = ref<Competitor | null>({
+const competitor = ref<Competitor>({
   id: 0,
   name: '',
   club: '',
@@ -83,7 +83,7 @@ const refreshDetails = async () => {
   loading.value = true
   if (routeParamsId)
     await getCompetitor(routeParamsId).then((data) => {
-      competitor.value = data
+      if (data) competitor.value = data
     })
   loading.value = false
 }

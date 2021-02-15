@@ -56,7 +56,7 @@
 
     <CardResult
       v-for="result of results"
-      :key="result.id"
+      :key="result?.id ?? 0"
       :result="result"
       :show-time="league?.dynamicEventResults"
       @result-changed="refreshDetails"
@@ -65,7 +65,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, onMounted, computed } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
@@ -77,7 +77,6 @@ import { getLeague } from '../api/leagues'
 import { getCompetitor } from '../api/competitors'
 import { getCompetitorResults } from '../api/results'
 
-const router = useRouter()
 const route = useRoute()
 
 /* Get Data */
