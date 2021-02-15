@@ -3,14 +3,7 @@
     :title="title"
     :not-found="!loading && !competitor?.id && $route.path.includes('/edit')"
   >
-    <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      :title="`Munro - ${title}`"
-      description
-    />
-
+    <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
       <InputText v-model.trim="competitor.name" label="Name:" />
       <InputText v-model.trim="competitor.club" label="Club:" class="mt-4" />

@@ -1,5 +1,11 @@
 <template>
   <Layout>
+    <Meta
+      title="Munro - Introducing Munro Leagues"
+      description="Why I created Munro and what it does to make league result calculation easy - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+      url="https://munro-leagues.herokuapp.com/developers"
+      :block-robots="false"
+    />
     <article
       class="col-span-2 pb-2 mx-auto mt-4 mb-auto prose lg:pb-4 lg:prose-lg"
     >

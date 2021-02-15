@@ -1,13 +1,10 @@
 <template>
   <Layout title="Transfer Result">
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
       title="Munro - Transfer Results"
-      description
+      description=""
+      :block-robots="true"
     />
-
     <form class="col-span-2" @submit.prevent="transferResult">
       <DropdownInput
         v-model="choices.league"

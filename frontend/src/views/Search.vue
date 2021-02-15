@@ -1,14 +1,15 @@
 <template>
   <Layout has-mobile-sub-title gray>
-    <template #title>
-      <Meta
-        :head="{ meta: { name: 'robots', content: 'all' } }"
-        :title="`Munro - &quot;${$route.params.query || ''}&quot;`"
-        description="Munro - League Results.
+    <Meta
+      :title="`Munro - &quot;${$route.params.query || ''}&quot;`"
+      description="Munro - League Results.
     Sorted. Sports League Results Calculated Quick and Easily, with Results
     Sorting and Filtering Options"
-        url="https://munro-leagues.herokuapp.com/search"
-      />
+      url="https://munro-leagues.herokuapp.com/search"
+      :block-robots="false"
+    />
+
+    <template #title>
       <div
         class="flex flex-col items-start justify-between sm:items-center sm:flex-row"
       >

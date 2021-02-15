@@ -6,9 +6,7 @@
         competitor?.league ?? ''
       } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/competitors/${$route.params.id}`"
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
+      :block-robots="false"
     />
     <template #title>
       <router-link

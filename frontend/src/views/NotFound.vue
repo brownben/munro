@@ -1,13 +1,11 @@
 <template>
-  <div class="w-full col-span-2 px-6 text-center">
-    <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      title="Munro - I'm Lost"
-      description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-    />
+  <Meta
+    title="Munro - I'm Lost"
+    description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+    :block-robots="true"
+  />
 
+  <div class="w-full col-span-2 px-6 text-center">
     <div class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12">
       <img
         src="../assets/images/UndrawLost.svg"

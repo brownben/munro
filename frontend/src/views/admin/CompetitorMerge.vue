@@ -1,13 +1,10 @@
 <template>
   <Layout title="Merge Competitors">
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
       title="Munro - Merge Competitors"
-      description
+      description=""
+      :block-robots="true"
     />
-
     <form class="col-span-2" @submit.prevent="mergeCompetitors">
       <InputDropdown
         v-model="choices.league"

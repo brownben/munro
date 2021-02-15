@@ -3,13 +3,7 @@
     :title="title"
     :not-found="!loading && !league?.name && $route.path.includes('/edit')"
   >
-    <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      :title="`Munro - ${title}`"
-      description
-    />
+    <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
       <InputText v-model.trim="league.name" label="Name:" />
       <InputNumber

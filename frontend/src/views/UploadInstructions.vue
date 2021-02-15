@@ -1,12 +1,10 @@
 <template>
   <Layout>
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
       title="Munro - Upload Instructions"
       description="Instructions for how to Upload Results to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/upload/instructions"
+      :block-robots="false"
     />
     <article
       class="col-span-2 pb-4 w-full mx-auto mt-4 mb-auto prose lg:pb-8 lg:prose-lg"
