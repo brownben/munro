@@ -167,7 +167,7 @@
     </div>
     <CardEvent
       v-for="event of events"
-      :key="event.name"
+      :key="event?.name ?? 0"
       :event="event"
       :league="league"
       class="col-span-2"

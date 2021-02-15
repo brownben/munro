@@ -41,25 +41,28 @@ const props = defineProps({
   value: { type: String, default: '' },
   label: { type: String, default: '' },
 })
-const emit = defineEmit(['file'])
+const emit = defineEmit({ file: (_fileContents: string) => {} })
 
 const fileName = ref('')
 
-const fileChange = (event) => {
+const fileChange = (event: Event) => {
   // When the file selected has been changed
-  const storage = event.target || event.dataTransfer
-  const files = storage.files
-  if (!files || !files.length) return false
-  fileName.value = files[0].name
-  readFile(files[0])
+  const target = event.target as HTMLInputElement
+  const files = target.files
+  const file = files?.item(0)
+
+  if (!file) return
+  fileName.value = file.name
+  readFile(file)
 }
 
-const readFile = (file) => {
+const readFile = (file: Blob) => {
   // read file using FileReader and save in data
   const reader = new FileReader()
   reader.onload = readFileResult
   reader.readAsText(file)
 }
 
-const readFileResult = (result) => emit('file', result.target.result)
+const readFileResult = (result: ProgressEvent<FileReader>) =>
+  emit('file', result.target?.result?.toString() ?? '')
 </script>

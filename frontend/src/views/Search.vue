@@ -38,9 +38,9 @@
 
     <CardLeague
       v-for="league of leagues"
-      :key="league.name"
-      :title="league.name"
-      :description="league.description"
+      :key="league?.name"
+      :title="league?.name"
+      :description="league?.description"
     />
 
     <h2
@@ -52,7 +52,7 @@
 
     <CardEvent
       v-for="event of events"
-      :key="event.id"
+      :key="event?.id ?? 0"
       :event="event"
       :league="{ dynamicEventResults: true }"
       :show-league-name="true"
@@ -68,7 +68,7 @@
 
     <CardCompetitor
       v-for="competitor of competitors"
-      :key="competitor.id"
+      :key="competitor?.id"
       :competitor="competitor"
     />
     <NoResults

@@ -15,7 +15,6 @@
         type="password"
         class="mt-4"
       />
-
       <button class="mt-6 button-lg">Login</button>
     </form>
 

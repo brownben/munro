@@ -115,7 +115,7 @@ const props = defineProps({
     default: false,
   },
 })
-const emit = defineEmit(['result-changed'])
+const emit = defineEmit({ 'result-changed': () => {} })
 
 const positionSuperscript = (position: number) => {
   if (position % 10 === 1 && position % 100 !== 11) return 'st'

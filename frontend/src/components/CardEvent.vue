@@ -155,15 +155,19 @@
 
 <script lang="ts" setup>
 import { defineEmit, defineProps } from 'vue'
+import type { PropType } from 'vue'
 import { deleteEvent as apiDeleteEvent } from '../api/events'
 
 const props = defineProps({
   showLeagueName: { type: Boolean, default: false },
-  event: { type: Object, default: () => ({}) },
-  league: { type: Object, default: () => ({}) },
+  event: { type: Object as PropType<LeagueEvent>, default: () => ({}) },
+  league: {
+    type: Object as PropType<Partial<League> | null>,
+    default: () => ({}),
+  },
   showFullDetails: { type: Boolean, default: true },
 })
-const emit = defineEmit(['event-changed'])
+const emit = defineEmit({ 'event-changed': () => {} })
 
 const deleteEvent = (event: LeagueEvent) => {
   if (
