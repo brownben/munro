@@ -1,12 +1,10 @@
 <template>
-  <div>
+  <main>
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
       title="Munro"
       description="League Results. Sorted with Munro. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/"
+      :block-robots="false"
     />
 
     <HeroSection />
@@ -34,7 +32,7 @@
     <AboutSection />
     <DeveloperSection />
     <AppFooter />
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">

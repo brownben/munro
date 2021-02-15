@@ -10,9 +10,7 @@
       :title="`Munro - ${$route.params.league} - ${$route.params.course} Results`"
       :description="`Results from the ${$route.params.course} course of the ${$route.params.league} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.league}/results/${$route.params.course}`"
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
+      :block-robots="false"
     />
     <template #title>
       <div class="flex justify-between items-center">

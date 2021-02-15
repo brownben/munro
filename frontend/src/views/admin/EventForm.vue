@@ -3,14 +3,7 @@
     :title="title"
     :not-found="$route.path.includes('/edit') && !loading && !event.id"
   >
-    <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      :title="`Munro - ${title}`"
-      description
-    />
-
+    <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
       <InputText v-model.trim="event.name" label="Name:" />
       <InputText

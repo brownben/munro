@@ -1,19 +1,16 @@
 <template>
   <Layout title="Leagues">
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
       title="Munro - Leagues"
       description="League Results on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/leagues"
+      :block-robots="false"
     />
-
     <CardLeague
       v-for="league of leagues"
-      :key="league.name"
-      :title="league.name"
-      :description="league.description"
+      :key="league?.name ?? ''"
+      :title="league?.name ?? ''"
+      :description="league?.description ?? ''"
     />
   </Layout>
 </template>

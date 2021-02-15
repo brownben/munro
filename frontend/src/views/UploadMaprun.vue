@@ -1,14 +1,11 @@
 <template>
   <Layout title="Import MapRun Results">
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
       title="Munro - Import MapRun Results"
       description="Import results from MapRun to to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/upload/maprun"
+      :block-robots="false"
     />
-
     <div class="col-span-2">
       <InputText v-model.lazy="uploadConfig.eventId" label="Event ID:" />
 

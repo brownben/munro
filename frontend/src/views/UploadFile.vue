@@ -1,14 +1,11 @@
 <template>
   <Layout title="Upload Results File">
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
       title="Munro - Upload Results File"
       description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/upload/file"
+      :block-robots="false"
     />
-
     <div class="col-span-2 card card-color">
       <p>
         For instructions on how to upload results please visit

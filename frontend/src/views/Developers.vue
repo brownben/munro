@@ -1,14 +1,11 @@
 <template>
   <Layout>
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
       title="Munro - Developers"
       description="Developer information about the API and embed pages of Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/developers"
+      :block-robots="false"
     />
-
     <article class="col-span-2 w-full mx-auto mt-4 mb-auto prose lg:prose-lg">
       <h1>Developers</h1>
       <blockquote>

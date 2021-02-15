@@ -1,12 +1,6 @@
 <template>
   <Layout title="Admin Login">
-    <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      title="Munro - Login"
-      description
-    />
+    <Meta title="Munro - Login" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="sendLoginRequest">
       <InputText v-model="username" label="Email Address:" type="email" />
       <InputText

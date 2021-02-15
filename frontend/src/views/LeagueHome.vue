@@ -4,11 +4,8 @@
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}`"
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
+      :block-robots="false"
     />
-
     <template #title>
       <h1
         class="text-3xl lg:text-4xl font-bold leading-none font-heading tracking-tight"

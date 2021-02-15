@@ -1,13 +1,6 @@
 <template>
   <Layout has-mobile-sub-title>
-    <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      title="Munro - Competitors"
-      description
-    />
-
+    <Meta title="Munro - Competitors" description="" :block-robots="true" />
     <template #title>
       <h1 class="text-3xl font-bold leading-tight font-heading">
         <router-link

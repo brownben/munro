@@ -1,14 +1,11 @@
 <template>
   <Layout title="Upload Results">
     <Meta
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
       title="Munro - Upload Results"
       description="Upload Results to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munro-leagues.herokuapp.com/upload"
+      :block-robots="false"
     />
-
     <router-link
       class="flex flex-col items-center justify-around col-span-2 px-4 py-6 text-center transition duration-300 bg-white shadow-md md:px-3 xl:px-4 hover:shadow-lg rounded-shape-xl"
       to="/upload/file"

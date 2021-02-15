@@ -6,11 +6,8 @@
         event?.league || ''
       } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munro-leagues.herokuapp.com/events/${$route.params.event}`"
-      :head="{
-        meta: { name: 'robots', content: 'all' },
-      }"
+      :block-robots="false"
     />
-
     <template #title>
       <div class="flex justify-between items-center">
         <h1 class="text-3xl font-bold leading-tight font-heading -mt-2">

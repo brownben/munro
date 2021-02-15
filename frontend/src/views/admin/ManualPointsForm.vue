@@ -1,13 +1,6 @@
 <template>
   <Layout title="Manual Points">
-    <Meta
-      :head="{
-        meta: { name: 'robots', content: 'noindex' },
-      }"
-      title="Munro - Manual Points"
-      description
-    />
-
+    <Meta title="Munro - Manual Points" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="addResult">
       <InputDropdown
         v-model="choices.league"
