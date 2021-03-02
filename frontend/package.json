@@ -17,7 +17,7 @@
   "dependencies": {
     "headful": "^1.0.3",
     "register-service-worker": "^1.7.2",
-    "vue": "^3.0.5",
+    "vue": "^3.0.7",
     "vue-router": "^4.0.4",
     "vuex": "^4.0.0"
   },
@@ -25,7 +25,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "@types/node": "^14.14.25",
     "@vitejs/plugin-vue": "^1.1.4",
-    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/compiler-sfc": "^3.0.7",
     "@vuedx/typecheck": "^0.6.3",
     "@vuedx/typescript-plugin-vue": "^0.6.3",
     "autoprefixer": "^10.2.4",
