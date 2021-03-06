@@ -15,6 +15,7 @@ setupLeagues = """
         leagueScoring TEXT,
         clubRestriction TEXT,
         subLeagueOf TEXT,
+        additionalSettings TEXT,
         UNIQUE (name)
     )
 """
@@ -36,6 +37,7 @@ setupEvents = """
         uploadKey TEXT,
         secondaryLeague TEXT,
         requiredInTotal BOOLEAN,
+        additionalSettings TEXT,
         UNIQUE (id),
         FOREIGN KEY(league) REFERENCES leagues(name)
         ON UPDATE CASCADE ON DELETE CASCADE

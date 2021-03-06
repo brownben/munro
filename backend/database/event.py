@@ -1,10 +1,21 @@
 from __future__ import annotations
 import os
 import base64
+import json
 from typing import Any, Dict, List, Optional, Union
 
 from .database import query, queryWithResult, queryWithResults
 from .league import League
+
+
+def getJSON(data: str) -> Dict[str, Any]:
+    if data:
+        try:
+            return json.loads(data)
+        except:
+            return {}
+    return {}
+
 
 properties = [
     "id",
@@ -100,6 +111,9 @@ class Event:
 
     def getLeague(self) -> League:
         return League.getByName(self.leagueName)
+
+    def getAdditionalSettingsAsJSON(self) -> Dict[str, Any]:
+        return getJSON(self.additionalSettings)
 
     def create(self) -> None:
         query(
