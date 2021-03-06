@@ -130,7 +130,7 @@
       <transition-group name="list">
         <TableRow
           v-for="(result, i) in results"
-          :key="result.id"
+          :key="`${result.course}-${result.id}`"
           :striped="i % 2 === 0"
           :expanding="false"
         >

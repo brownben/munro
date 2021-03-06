@@ -89,6 +89,7 @@
                 text="Course"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.course"
+                :hide-on-mobile="true"
                 @click="changeSortPreference(SortableProperties.course)"
               />
               <Heading
@@ -132,7 +133,7 @@
           <transition-group name="list">
             <TableRow
               v-for="(result, i) of results"
-              :key="result.id"
+              :key="`${$route.params.course}-${result.id}`"
               :striped="i % 2 === 0"
             >
               <Cell>{{ result.position }}</Cell>
