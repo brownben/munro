@@ -103,7 +103,7 @@ def getMatchingResults(results: List[ResultDict], league: League) -> List[Result
         result
         for result in results
         if matchesClubRestriction(result["club"], league.clubRestriction)
-        and (matchesCourse(result, league.courses) or league.leagueScoring == "overall")
+        and (matchesCourse(result, league.courses) or league.leagueScoring != "course")
     ]
 
 
@@ -119,13 +119,17 @@ def matchesCourse(result: ResultDict, courses: List[str]) -> bool:
     return result["course"].upper() in upperCourses
 
 
-def normaliseCourses(results: List[ResultDict], courses: List[str]) -> List[ResultDict]:
-    upperCourses = [course.upper() for course in courses]
+def normaliseCourses(results: List[ResultDict], league: League) -> List[ResultDict]:
+    upperCourses = [course.upper() for course in league.courses]
     resultsWithCoursesFixed = []
+
+    if league.leagueScoring != "course":
+        return results
 
     for result in results:
         indexOfCourse = upperCourses.index(result["course"].upper())
-        result["course"] = courses[indexOfCourse]
+        result["course"] = league.courses[indexOfCourse]
+
         resultsWithCoursesFixed.append(result)
 
     return resultsWithCoursesFixed
