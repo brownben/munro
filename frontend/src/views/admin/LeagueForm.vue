@@ -40,6 +40,7 @@
         :listWithDifferentValue="[
           { value: 'course', text: 'Per Course' },
           { value: 'overall', text: 'Overall' },
+          { value: 'ageClass', text: 'Age Class' },
         ]"
         :include-blank="false"
         label="League Results:"
@@ -218,6 +219,10 @@ const scoringMethodOptions = [
   {
     value: 'position50Double',
     text: 'Position Based (50 Max, Double Points)',
+  },
+  {
+    value: 'positionStaggered',
+    text: 'Position Based (Staggered, 100 Max)'
   },
   {
     value: 'timeAverage',
