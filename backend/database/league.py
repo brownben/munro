@@ -1,7 +1,18 @@
 from __future__ import annotations
 from typing import Any, Dict, List, Optional
+import json
 
 from .database import query, queryWithResult, queryWithResults
+
+
+def getJSON(data: str) -> Dict[str, Any]:
+    if data:
+        try:
+            return json.loads(data)
+        except:
+            return {}
+    return {}
+
 
 properties = [
     "name",
@@ -133,7 +144,7 @@ class League:
                 dynamicEventResults=%s,
                 clubRestriction=%s,
                 subLeagueOf=%s,
-                additioalSettings=%s
+                additionalSettings=%s
             WHERE name=%s""",
             (
                 self.name,
@@ -159,6 +170,9 @@ class League:
             return self.subLeagueOf
         return self.name
 
+    def getAdditionalSettingsAsJSON(self) -> Dict[str, Any]:
+        return getJSON(self.additionalSettings)
+
     @staticmethod
     def getAll() -> List[League]:
         databaseResult = queryWithResults(
@@ -180,7 +194,9 @@ class League:
                 leagues.additionalSettings,
                 COUNT(events.id)
             FROM leagues
-            LEFT JOIN events ON leagues.name=events.league
+            LEFT JOIN events ON
+			    leagues.name=events.league
+			    OR leagues.name=events.secondaryLeague
             GROUP BY leagues.name
             ORDER BY year DESC, name ASC
             """
@@ -208,7 +224,9 @@ class League:
                 leagues.additionalSettings,
                 COUNT(events.id)
             FROM leagues
-            LEFT JOIN events ON leagues.name=events.league
+            LEFT JOIN events ON
+			    leagues.name=events.league
+			    OR leagues.name=events.secondaryLeague
             WHERE leagues.name=%s
             GROUP BY leagues.name
             ORDER BY leagues.year DESC, leagues.name ASC
