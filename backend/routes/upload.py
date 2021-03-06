@@ -64,7 +64,7 @@ class UploadRoute(Resource):
 
         parsedData = parseFileToDictionaries(splitData, headerLocations, league, event)
         matchingResults = getMatchingResults(parsedData, league)
-        normalisedResults = normaliseCourses(matchingResults, league.courses)
+        normalisedResults = normaliseCourses(matchingResults, league)
         sortedResults = sortByTime(normalisedResults)
         resultsWithCompetitors = matchResultsToCompetitors(sortedResults, league)
         resultsWithPoints = assignPoints(resultsWithCompetitors, league.scoringMethod)

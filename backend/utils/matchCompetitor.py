@@ -48,14 +48,14 @@ def match(resultProperty: str, competitorProperty: str) -> bool:
 
 def primaryMatch(result: ResultDict, competitor: Competitor, league: League) -> bool:
     return match(result["name"], competitor.name) and (
-        competitor.course == result["course"] or league.leagueScoring == "overall"
+        competitor.course == result["course"] or league.leagueScoring != "course"
     )
 
 
 def secondaryMatch(result: ResultDict, competitor: Competitor, league: League) -> bool:
     return (
         match(nameToInitial(competitor.name), nameToInitial(result["name"]))
-        and (competitor.course == result["course"] or league.leagueScoring == "overall")
+        and (competitor.course == result["course"] or league.leagueScoring != "course")
         and (
             match(competitor.ageClass, result["ageClass"])
             or match(competitor.club, result["club"])
