@@ -44,6 +44,8 @@ class Search:
                 leagues.numberOfCountingEvents,
                 leagues.dynamicEventResults,
                 leagues.clubRestriction,
+                leagues.subLeagueOf,
+                leagues.additionalSettings,
                 COUNT(events.id)
             FROM leagues
             LEFT JOIN events ON leagues.name=events.league
@@ -76,6 +78,9 @@ class Search:
                 winsplits,
                 routegadget,
                 userSubmittedResults,
+                secondaryLeague,
+                requiredInTotal,
+                additionalSettings,
                 uploadKey
             FROM events
             WHERE
