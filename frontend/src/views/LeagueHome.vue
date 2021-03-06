@@ -31,9 +31,9 @@
         </p>
 
         <p v-if="league.coordinator" class="w-full leading-6 text-gray-600">
-          <span class="text-gray-900 md:text-lg font-heading">{{
-            league.coordinator
-          }}</span>
+          <span class="text-gray-900 md:text-lg font-heading">
+            {{ league.coordinator }}
+          </span>
           coordinates the league.
         </p>
 
