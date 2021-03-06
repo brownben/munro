@@ -2,12 +2,12 @@ const getAgeGenderFromAgeClass = (ageClass: string | undefined) => {
   let gender = ''
   let age = 0
   if (ageClass) {
-    const regexMatch = ageClass.match(/([MWmwfFDH])[^0-9]*([0-9]*)/)
+    const regexMatch = ageClass.match(/([MWmwfFDH]?)(U?)([0-9]*)/)
     if (['M', 'H'].includes(regexMatch?.[1]?.toUpperCase() ?? '')) gender = 'M'
     else if (['W', 'F', 'D'].includes(regexMatch?.[1]?.toUpperCase() ?? ''))
       gender = 'W'
     else gender = ''
-    age = parseInt(regexMatch?.[2] ?? '0', 10)
+    age = parseInt(regexMatch?.[3] ?? '0', 10)
   }
   return { age, gender }
 }
