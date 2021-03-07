@@ -43,7 +43,7 @@ class LeagueResult:
             self.course = None
 
     def toDictionary(
-        self, league: League, leagueEvents: List[Event], ageClass: Optional[str]
+        self, league: League, leagueEvents: List[Event], ageClass: str = ''
     ) -> Dict[str, Any]:
         if ageClass:
             results = [
