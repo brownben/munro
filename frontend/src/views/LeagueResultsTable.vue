@@ -115,9 +115,9 @@
 
               <Heading
                 v-for="(event, i) of eventsWithResults"
-                :key="event.id"
+                :key="event?.id"
                 :text="`${i + 1}`"
-                :tooltip="event.name"
+                :tooltip="event?.name"
                 :ascending="sortPreferences.ascending"
                 :active="
                   sortPreferences.by === SortableProperties.points &&
@@ -133,7 +133,7 @@
           <transition-group name="list">
             <TableRow
               v-for="(result, i) of results"
-              :key="`${$route.params.course}-${result.id}`"
+              :key="`${$route.params.course}-${result?.id}`"
               :striped="i % 2 === 0"
             >
               <template v-if="result">
@@ -171,8 +171,9 @@
                   {{ point?.score }}
                 </Cell>
               </template>
-              <template v-if="result" #expansion>
+              <template #expansion>
                 <p
+                  v-if="result"
                   v-for="(point, j) of result.points"
                   :key="j"
                   class="mr-3 text-right font-light"
