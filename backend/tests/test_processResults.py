@@ -1,4 +1,6 @@
+from typing import List
 from ..utils.processResults import (
+    PointsResult,
     getCountingPoints,
     getIndexOfLargestNPoints as biggestPoints,
 )
@@ -61,51 +63,68 @@ points = [0, 10, 8, 5, 1, 7]
 events = ["a", "b", "c", "d", "e", "f"]
 
 
+def generateResult(points:List[int], events:List[str], counting:List[int]=[]):
+    return [
+        PointsResult(event=events[index], score=point, type="", counting=index in counting)
+        for index, point in enumerate(points)
+    ]
+
 class Test_GetCountingPoints:
     def test_noRequiredEvents(self) -> None:
-        assert getCountingPoints([1, 2, 3], 3, events, mockEventsNoRequired) == [
+        assert getCountingPoints(
+            generateResult([1, 2, 3], events), 3, mockEventsNoRequired
+        ) == generateResult([1, 2, 3], events,[
             2,
             1,
             0,
-        ]
-        assert getCountingPoints([10, 8, 5, 1, 7], 3, events, mockEventsNoRequired) == [
+        ])
+        assert getCountingPoints(
+            generateResult([10, 8, 5, 1, 7], events), 3, mockEventsNoRequired
+        ) == generateResult([10, 8, 5, 1, 7], events,[
             0,
             1,
             4,
-        ]
+        ])
         assert getCountingPoints(
-            [0, 10, 8, 5, 1, 7], 2, events, mockEventsNoRequired
-        ) == [1, 2]
+            generateResult([0, 10, 8, 5, 1, 7], events), 2, mockEventsNoRequired
+        ) == generateResult([0, 10, 8, 5, 1, 7], events,[1, 2])
 
     def test_requiredEventInLargestPoints(self) -> None:
-        assert getCountingPoints(points, 2, events, mockEvents) == [
+        assert getCountingPoints(generateResult(points, events), 2, mockEvents) == generateResult(points, events,[
             1,
             2,
-        ]
-        assert getCountingPoints(points, 3, events, mockEvents) == [
+        ])
+        assert getCountingPoints(generateResult(points, events), 3, mockEvents) == generateResult(points, events,[
             1,
             2,
             5,
-        ]
+        ])
 
     def test_requiredEventNotInLargestPoints(self) -> None:
         assert getCountingPoints(
-            [0, 10, 8, 5, 1, 7], 2, ["b", "a", "c", "d", "e", "f"], mockEvents
-        ) == [1, 0]
+            generateResult([0, 10, 8, 5, 1, 7], ["b", "a", "c", "d", "e", "f"])
+            , 2, mockEvents
+        ) ==  generateResult([0, 10, 8, 5, 1, 7], ["b", "a", "c", "d", "e", "f"],[1, 0])
 
     def test_multipleRequiredEventsNotInLargestPoints(self) -> None:
-        assert getCountingPoints(points, 2, events, mockEventsMultipleRequired) == [
+        assert getCountingPoints(
+            generateResult(points, events), 2, mockEventsMultipleRequired
+        ) == generateResult(points, events,[
             1,
             4,
-        ]
-        assert getCountingPoints(points, 3, events, mockEventsMultipleRequired) == [
+        ])
+        assert getCountingPoints(
+            generateResult(points, events), 3, mockEventsMultipleRequired
+        ) == generateResult(points, events,[
             1,
             2,
             4,
-        ]
-        assert getCountingPoints(points, 4, events, mockEventsMultipleRequired) == [
+        ])
+        assert getCountingPoints(
+            generateResult(points, events), 4, mockEventsMultipleRequired
+        ) == generateResult(points, events,[
             1,
             2,
             5,
             4,
-        ]
+        ])

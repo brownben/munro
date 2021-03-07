@@ -150,10 +150,21 @@ class LeagueCourseResultsRoute(Resource):
         try:
             league = League.getByName(name)
             events = Event.getByLeagueWithResults(name)
-            results = [
-                result.toDictionary(league, events)
-                for result in LeagueResult.getByCourse(name, league.subLeagueOf, course)
-            ]
+
+            if league.leagueScoring == "ageClass":
+                results = [
+                    result.toDictionaryAgeClass(league, events, course)
+                    for result in LeagueResult.getByCourse(
+                        name, league.subLeagueOf, course
+                    )
+                ]
+            else:
+                results = [
+                    result.toDictionary(league, events)
+                    for result in LeagueResult.getByCourse(
+                        name, league.subLeagueOf, course
+                    )
+                ]
             sortedResults = sortByTotalPoints(results)
             return assignPosition(sortedResults)
         except:
