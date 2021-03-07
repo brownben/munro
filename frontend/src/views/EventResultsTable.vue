@@ -130,41 +130,43 @@
       <transition-group name="list">
         <TableRow
           v-for="(result, i) in results"
-          :key="`${result.course}-${result.id}`"
+          :key="`${result?.course}-${result?.id}`"
           :striped="i % 2 === 0"
           :expanding="false"
         >
-          <Cell>
-            <template
-              v-if="['max', 'average', 'manual'].includes(result.type ?? '')"
-            >
-              *
-            </template>
-            <template v-else-if="result.incomplete">-</template>
-            <template v-else>
-              {{ result.position || '' }}
-            </template>
-          </Cell>
+          <template v-if="result">
+            <Cell>
+              <template
+                v-if="['max', 'average', 'manual'].includes(result.type ?? '')"
+              >
+                *
+              </template>
+              <template v-else-if="result.incomplete">-</template>
+              <template v-else>
+                {{ result.position || '' }}
+              </template>
+            </Cell>
 
-          <Cell show-secondary-until="sm" class="text-left pl-6">
-            {{ result.name }}
-            <template #secondary>
-              <span v-if="result.ageClass" class="mr-4">
-                {{ result.ageClass }}
-              </span>
-              <span>{{ result.club }}</span>
-            </template>
-          </Cell>
+            <Cell show-secondary-until="sm" class="text-left pl-6">
+              {{ result.name }}
+              <template #secondary>
+                <span v-if="result.ageClass" class="mr-4">
+                  {{ result.ageClass }}
+                </span>
+                <span>{{ result.club }}</span>
+              </template>
+            </Cell>
 
-          <Cell show-after="sm">
-            {{ result.ageClass }}
-          </Cell>
-          <Cell show-after="sm">
-            {{ result.club }}
-          </Cell>
-          <Cell>
-            {{ elapsedTime(result.time) }}
-          </Cell>
+            <Cell show-after="sm">
+              {{ result.ageClass }}
+            </Cell>
+            <Cell show-after="sm">
+              {{ result.club }}
+            </Cell>
+            <Cell>
+              {{ elapsedTime(result.time) }}
+            </Cell>
+          </template>
         </TableRow>
       </transition-group>
     </table>

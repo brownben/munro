@@ -136,61 +136,63 @@
               :key="`${$route.params.course}-${result.id}`"
               :striped="i % 2 === 0"
             >
-              <Cell>{{ result.position }}</Cell>
-              <Cell show-secondary-until="sm" class="text-left pl-6">
-                {{ result.name }}
-                <template #secondary>
-                  <span v-if="result?.course" class="mr-4">
-                    {{ result.course }}
-                  </span>
-                  <span v-if="result.ageClass" class="mr-4">
-                    {{ result.ageClass }}
-                  </span>
-                  <span>{{ result.club }}</span>
-                </template>
-              </Cell>
-              <Cell v-if="result.course" show-after="sm">
-                {{ result.course }}
-              </Cell>
-              <Cell show-after="sm">{{ result.ageClass }}</Cell>
-              <Cell show-after="sm">{{ result.club }}</Cell>
-              <Cell>{{ result.totalPoints }}</Cell>
+              <template v-if="result">
+                <Cell>{{ result.position }}</Cell>
+                <Cell show-secondary-until="sm" class="text-left pl-6">
+                  {{ result.name }}
+                  <template #secondary>
+                    <span v-if="result?.course" class="mr-4">
+                      {{ result.course }}
+                    </span>
+                    <span v-if="result.ageClass" class="mr-4">
+                      {{ result.ageClass }}
+                    </span>
+                    <span>{{ result.club }}</span>
+                  </template>
+                </Cell>
+                <Cell v-if="result.course" show-after="sm">
+                  {{ result.course }}
+                </Cell>
+                <Cell show-after="sm">{{ result.ageClass }}</Cell>
+                <Cell show-after="sm">{{ result.club }}</Cell>
+                <Cell>{{ result.totalPoints }}</Cell>
 
-              <Cell
-                v-for="(point, j) of result.points"
-                :key="j"
-                show-after="md"
-                :class="{
-                  'line-through': !point?.counting,
-                  'font-normal italic': ['manual', 'max', 'average'].includes(
-                    point?.type ?? ''
-                  ),
-                }"
-              >
-                {{ point?.score }}
-              </Cell>
-
-              <template #expansion>
-                <p
+                <Cell
                   v-for="(point, j) of result.points"
                   :key="j"
-                  class="mr-3 text-right font-light"
+                  show-after="md"
+                  :class="{
+                    'line-through': !point?.counting,
+                    'font-normal italic': ['manual', 'max', 'average'].includes(
+                      point?.type ?? ''
+                    ),
+                  }"
                 >
-                  {{ eventsWithResults[j]?.name }}:
-                  <span
-                    class="inline-block w-4 pl-2 pr-4"
-                    :class="{
-                      'line-through': !point?.counting,
-                      'font-normal italic': [
-                        'manual',
-                        'max',
-                        'average',
-                      ].includes(point?.type ?? ''),
-                    }"
+                  {{ point?.score }}
+                </Cell>
+
+                <template #expansion>
+                  <p
+                    v-for="(point, j) of result.points"
+                    :key="j"
+                    class="mr-3 text-right font-light"
                   >
-                    {{ point?.score }}
-                  </span>
-                </p>
+                    {{ eventsWithResults[j]?.name }}:
+                    <span
+                      class="inline-block w-4 pl-2 pr-4"
+                      :class="{
+                        'line-through': !point?.counting,
+                        'font-normal italic': [
+                          'manual',
+                          'max',
+                          'average',
+                        ].includes(point?.type ?? ''),
+                      }"
+                    >
+                      {{ point?.score }}
+                    </span>
+                  </p>
+                </template>
               </template>
             </TableRow>
           </transition-group>

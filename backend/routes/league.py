@@ -152,11 +152,9 @@ class LeagueCourseResultsRoute(Resource):
             events = Event.getByLeagueWithResults(name)
 
             if league.leagueScoring == "ageClass":
+                results = LeagueResult.getByLeague(name, league.subLeagueOf)
                 results = [
-                    result.toDictionaryAgeClass(league, events, course)
-                    for result in LeagueResult.getByCourse(
-                        name, league.subLeagueOf, course
-                    )
+                    result.toDictionary(league, events, course) for result in results
                 ]
             else:
                 results = [

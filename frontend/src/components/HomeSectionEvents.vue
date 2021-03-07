@@ -21,7 +21,7 @@
       <div class="grid grid-cols-2 gap-8 px-6 mx-auto md:grid-cols-3">
         <CardEvent
           v-for="event of events.slice(0, 3)"
-          :key="event.key"
+          :key="event?.id"
           :event="event"
         />
       </div>

@@ -41,16 +41,16 @@
             <div class="flex">
               <router-link
                 v-for="link of links"
-                :key="link.location"
-                :to="link.location"
+                :key="link?.location"
+                :to="link?.location"
                 class="px-3 py-2 ml-4 font-medium leading-5 transition duration-150 ease-in-out rounded-shape focus:outline-none"
                 :class="
-                  $route.path === link.location
+                  $route.path === link?.location
                     ? 'text-main-700 bg-main-100'
                     : 'hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 text-gray-500'
                 "
               >
-                {{ link.text }}
+                {{ link?.text }}
               </router-link>
               <router-link
                 v-if="$store.getters.loggedIn"
@@ -127,15 +127,17 @@
         <div class="px-2 pt-2 pb-3 text-left">
           <router-link
             v-for="link of links"
-            :key="link.location"
-            :to="link.location"
+            :key="link?.location"
+            :to="link?.location"
             class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
             :class="
-              $route.path === link.location ? 'text-main-600 bg-main-100' : null
+              $route.path === link?.location
+                ? 'text-main-600 bg-main-100'
+                : null
             "
             @click="menuOpen = false"
           >
-            {{ link.text }}
+            {{ link?.text }}
           </router-link>
           <router-link
             v-if="$store.getters.loggedIn"

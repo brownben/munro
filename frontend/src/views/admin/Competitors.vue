@@ -78,32 +78,34 @@
       <transition-group name="list">
         <TableRow
           v-for="(competitor, i) of competitors"
-          :key="competitor.id"
+          :key="competitor?.id"
           :striped="i % 2 === 0"
           :expanding="false"
-          @click="$router.push(`/competitors/${competitor.id}`)"
+          @click="$router.push(`/competitors/${competitor?.id}`)"
         >
-          <Cell>
-            {{ competitor.id }}
-          </Cell>
-          <Cell show-secondary-until="sm" class="text-left pl-6">
-            {{ competitor.name }}
-            <template #secondary>
-              <span v-if="competitor.ageClass" class="mr-4">
-                {{ competitor.ageClass }}
-              </span>
-              <span>{{ competitor.club }}</span>
-            </template>
-          </Cell>
-          <Cell show-after="sm">
-            {{ competitor.club }}
-          </Cell>
-          <Cell show-after="sm">
-            {{ competitor.ageClass }}
-          </Cell>
-          <Cell>
-            {{ competitor.course }}
-          </Cell>
+          <template v-if="competitor">
+            <Cell>
+              {{ competitor.id }}
+            </Cell>
+            <Cell show-secondary-until="sm" class="text-left pl-6">
+              {{ competitor.name }}
+              <template #secondary>
+                <span v-if="competitor.ageClass" class="mr-4">
+                  {{ competitor.ageClass }}
+                </span>
+                <span>{{ competitor.club }}</span>
+              </template>
+            </Cell>
+            <Cell show-after="sm">
+              {{ competitor.club }}
+            </Cell>
+            <Cell show-after="sm">
+              {{ competitor.ageClass }}
+            </Cell>
+            <Cell>
+              {{ competitor.course }}
+            </Cell>
+          </template>
         </TableRow>
       </transition-group>
     </table>
@@ -112,7 +114,7 @@
 
 <script lang="ts" setup>
 import { ref, watch, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import Layout from '../../components/Layout.vue'
 import Cell from '../../components/TableCell.vue'
