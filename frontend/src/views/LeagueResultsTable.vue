@@ -170,29 +170,28 @@
                 >
                   {{ point?.score }}
                 </Cell>
-
-                <template #expansion>
-                  <p
-                    v-for="(point, j) of result.points"
-                    :key="j"
-                    class="mr-3 text-right font-light"
+              </template>
+              <template v-if="result" #expansion>
+                <p
+                  v-for="(point, j) of result.points"
+                  :key="j"
+                  class="mr-3 text-right font-light"
+                >
+                  {{ eventsWithResults[j]?.name }}:
+                  <span
+                    class="inline-block w-4 pl-2 pr-4"
+                    :class="{
+                      'line-through': !point?.counting,
+                      'font-normal italic': [
+                        'manual',
+                        'max',
+                        'average',
+                      ].includes(point?.type ?? ''),
+                    }"
                   >
-                    {{ eventsWithResults[j]?.name }}:
-                    <span
-                      class="inline-block w-4 pl-2 pr-4"
-                      :class="{
-                        'line-through': !point?.counting,
-                        'font-normal italic': [
-                          'manual',
-                          'max',
-                          'average',
-                        ].includes(point?.type ?? ''),
-                      }"
-                    >
-                      {{ point?.score }}
-                    </span>
-                  </p>
-                </template>
+                    {{ point?.score }}
+                  </span>
+                </p>
               </template>
             </TableRow>
           </transition-group>
