@@ -1,7 +1,8 @@
 from collections import defaultdict
 import statistics
+import re
 
-from typing import Any, Dict, List, TypedDict
+from typing import Any, Dict, List, Tuple, TypedDict, Union
 
 
 def isValidResult(result: Dict[str, Any]) -> bool:
@@ -268,17 +269,52 @@ def getStandardCourseForAgeClass(age: int, gender: str) -> str:
         return maleAgeClasses(age)
 
 
-def getMultiplier(ageClass: str, courseRan: str) -> int:
+def parseAgeClass(ageClass: str) -> Tuple[str, int]:
     # Only works for standard orienteering age classes
     if len(ageClass) > 1:
-        gender = ageClass[0]
-        age = toAge(ageClass[1:])
+        numbersInAgeClass = re.findall(r"\d+", ageClass)
+        if len(numbersInAgeClass) >= 1:
+            age = toAge(numbersInAgeClass[0])
+        else:
+            age = 21
+
+        gender = ageClass[0].upper()
+
     else:
         gender = "M"
         age = 21
+
+    return (gender, age)
+
+
+def getMultiplier(ageClass: str, courseRan: str) -> int:
+    gender, age = parseAgeClass(ageClass)
 
     standardCourse = getStandardCourseForAgeClass(age, gender)
 
     return multipliers.get(standardCourse, multipliers["BROWN"]).get(
         courseRan.upper(), 1000
+    )
+
+
+def isAgeClassEligible(ageClass: str, competitorAgeClass: str) -> bool:
+    gender, age = parseAgeClass(ageClass)
+    specifiedGender, specifiedAge = parseAgeClass(competitorAgeClass)
+
+    def isAgeEligible(age: int, specifiedAge: int) -> bool:
+        if specifiedAge >= 21:
+            return age >= specifiedAge
+
+        return age <= specifiedAge
+
+    def isGenderEligible(gender: str, specifiedGender: str) -> bool:
+        if gender == specifiedGender:
+            return True
+        elif gender == "W":
+            return True
+
+        return False
+
+    return isAgeEligible(age, specifiedAge) and isGenderEligible(
+        gender, specifiedGender
     )

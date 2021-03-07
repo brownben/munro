@@ -1,5 +1,5 @@
 from heapq import nlargest
-from typing import Any, List, Dict
+from typing import Any, List, Dict, Optional, TypedDict, Union
 
 from ..database.league import League
 from ..database.event import Event
@@ -7,34 +7,43 @@ from ..database.event import Event
 ResultDict = Dict[str, Any]
 
 
+class PointsResult(TypedDict):
+    event: Optional[str]
+    score: Optional[int]
+    type: Optional[str]
+    counting: Optional[bool]
+
+
 def getIndexOfLargestNPoints(points: List[int], number: int) -> List[int]:
     return nlargest(number, range(len(points)), points.__getitem__)
 
 
 def getCountingPoints(
-    points: List[int],
-    numberCounting: int,
-    events: List[str],
+    results: List[PointsResult],
+    numberOfCountingEvents: int,
     leagueEvents: List[Event],
-) -> List[int]:
-    leagueEventIds = [event.id for event in leagueEvents]
+) -> List[PointsResult]:
     indexOfLargestPoints = getLargestRequiredPoints(
-        points,
-        numberCounting,
-        events,
+        [result.get("score") or 0 for result in results],
+        [result.get("event") or "" for result in results],
+        numberOfCountingEvents,
         leagueEvents,
     )
-    return [
-        pointsIndex
-        for pointsIndex in indexOfLargestPoints
-        if events[pointsIndex] in leagueEventIds
-    ]
+
+    for index, result in enumerate(results):
+        result["counting"] = index in indexOfLargestPoints
+
+    return results
+
+
+def calculatePointsTotal(results: List[PointsResult]) -> int:
+    return sum([result["score"] or 0 for result in results if result["counting"]])
 
 
 def getLargestRequiredPoints(
     points: List[int],
-    numberCounting: int,
     events: List[str],
+    numberCounting: int,
     databaseEvents: List[Event],
 ) -> List[int]:
     requiredEvents = [event for event in databaseEvents if event.requiredInTotal]
