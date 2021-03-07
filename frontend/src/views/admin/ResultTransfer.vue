@@ -33,14 +33,7 @@
       />
       <DropdownInput
         v-model="choices.result"
-        :listWithDifferentValue="
-          resultsInEvent?.map((result) => ({
-            text: `${result.position} - ${elapsedTime(result.time)} (${
-              result.name
-            })`,
-            value: result.id.toString(),
-          })) ?? []
-        "
+        :listWithDifferentValue="resultsInEvent"
         :include-blank="true"
         label="Result:"
         class="mt-4"
@@ -80,6 +73,7 @@ import {
 } from '../../api/results'
 
 import { sortEventResults, SortablePropertiesEvent } from '../../scripts/sort'
+import { eventResultWithAgeGender as resultWithAgeGender } from '../../scripts/ageClassSplit'
 import { elapsedTime } from '../../scripts/time'
 
 const store = useStore()
@@ -121,19 +115,27 @@ const competitorsInLeague = computed(() =>
     )
     ?.sort((a, b) => (a.name > b.name ? 1 : -1))
 )
-const resultsInEvent = computed(() =>
-  results.value
-    .filter(
-      (result) =>
-        result.event === choices.value.event &&
-        result.course === choices.value.course
-    )
-    .sort(
-      sortEventResults({
-        ascending: false,
-        by: SortablePropertiesEvent.position,
-      })
-    )
+const resultsInEvent = computed(
+  () =>
+    results.value
+      .filter(
+        (result: EventResult) =>
+          result.event === choices.value.event &&
+          result.course === choices.value.course
+      )
+      .map(resultWithAgeGender)
+      .sort(
+        sortEventResults({
+          ascending: false,
+          by: SortablePropertiesEvent.position,
+        })
+      )
+      .map((result: EventResultWithAgeGender) => ({
+        text: `${result.position} - ${elapsedTime(result.time)} (${
+          result.name
+        })`,
+        value: result.id.toString(),
+      })) ?? []
 )
 
 const competitorToText = (competitor: Competitor) => {

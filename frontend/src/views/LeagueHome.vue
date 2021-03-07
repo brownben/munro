@@ -22,7 +22,7 @@
 
     <template v-if="league" #white>
       <section class="w-full text-left bg-white">
-        <p v-if="league.courses" class="w-full leading-6 text-gray-600">
+        <p v-if="league?.courses" class="w-full leading-6 text-gray-600">
           There are normally
           {{ league.courses.length }} courses -
           <span class="text-gray-900 md:text-lg font-heading">
@@ -30,14 +30,14 @@
           </span>
         </p>
 
-        <p v-if="league.coordinator" class="w-full leading-6 text-gray-600">
+        <p v-if="league?.coordinator" class="w-full leading-6 text-gray-600">
           <span class="text-gray-900 md:text-lg font-heading">
             {{ league.coordinator }}
           </span>
           coordinates the league.
         </p>
 
-        <p v-if="league.scoringMethod" class="w-full leading-6 text-gray-600">
+        <p v-if="league?.scoringMethod" class="w-full leading-6 text-gray-600">
           The scoring for the league is calculated using
           <span class="text-gray-900 md:text-lg font-heading">{{
             scoringMethodShorthandToFull(league.scoringMethod)
@@ -66,7 +66,7 @@
         </p>
 
         <p
-          v-if="league.moreInformation"
+          v-if="league?.moreInformation"
           class="w-full my-2 leading-6 text-gray-600"
         >
           <span
@@ -78,7 +78,7 @@
           </span>
         </p>
 
-        <p v-if="league.website" class="w-full mt-2 leading-6 text-gray-600">
+        <p v-if="league?.website" class="w-full mt-2 leading-6 text-gray-600">
           More information can be found at:
           <a
             :href="league.website"
@@ -94,7 +94,7 @@
 
     <template v-if="league" #fullWidth>
       <section
-        v-if="$store.getters.loggedIn && league.name"
+        v-if="$store.getters.loggedIn && league?.name"
         class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-800"
       >
         <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
@@ -114,7 +114,10 @@
         </div>
       </section>
       <section
-        v-if="league.courses.length > 0 || league?.leagueScoring === 'overall'"
+        v-if="
+          (league?.courses && league.courses.length > 0) ||
+          league?.leagueScoring === 'overall'
+        "
         class="col-span-2 py-6 sm:py-8 text-center text-white bg-gradient-to-r from-main-600 to-main-500"
       >
         <div
@@ -123,7 +126,7 @@
           <h2 class="mb-2 text-2xl font-bold font-heading sm:mb-0">
             League Results
           </h2>
-          <div v-if="league.leagueScoring === 'course'">
+          <div v-if="league?.leagueScoring === 'course'">
             <router-link
               v-for="course of league.courses"
               :key="course"

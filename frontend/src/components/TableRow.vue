@@ -21,6 +21,7 @@
     </tr>
     <transition name="shrink">
       <tr
+        v-if="$slots.expansion"
         v-show="open"
         class="text-right transition duration-300 bg-white border-collapse md:hidden group-hover:bg-main-200"
         :class="{ 'bg-main-100': striped }"

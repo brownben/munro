@@ -64,7 +64,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
 import CardResult from '../components/CardResult.vue'
@@ -87,19 +87,20 @@ const refreshDetails = async () => {
   const routeParamsId = toSingleString(route.params.id)
   loading.value = true
 
-  await Promise.all([
-    getCompetitor(routeParamsId)
-      .then((competitorDetails) => {
-        competitor.value = competitorDetails
-      })
-      .then(() => getLeague(competitor.value?.league ?? ''))
-      .then((leagueDetails) => {
-        league.value = leagueDetails
+  if (routeParamsId)
+    await Promise.all([
+      getCompetitor(routeParamsId)
+        .then((competitorDetails) => {
+          competitor.value = competitorDetails
+        })
+        .then(() => getLeague(competitor.value?.league ?? ''))
+        .then((leagueDetails) => {
+          league.value = leagueDetails
+        }),
+      getCompetitorResults(routeParamsId).then((resultDetails) => {
+        results.value = resultDetails ?? []
       }),
-    getCompetitorResults(routeParamsId).then((resultDetails) => {
-      results.value = resultDetails ?? []
-    }),
-  ])
+    ])
 
   loading.value = false
 }

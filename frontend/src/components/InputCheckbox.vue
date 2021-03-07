@@ -15,7 +15,7 @@
         type="checkbox"
         class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-500 checked:border-main-400"
         :checked="modelValue"
-        @change="$emit('update:modelValue', $event?.target.checked)"
+        @change="handleEvent($event)"
       />
       <span class="ml-3 leading-tight text-gray-600 font-heading">
         {{ label }}
@@ -32,4 +32,7 @@ const props = defineProps({
   label: { type: String, default: '' },
 })
 const emit = defineEmit(['update:modelValue'])
+
+const handleEvent = (event: Event) =>
+  emit('update:modelValue', (event.target as HTMLInputElement).checked)
 </script>
