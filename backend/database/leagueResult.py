@@ -1,11 +1,15 @@
 from __future__ import annotations
-from backend.utils.scoringHelpers import isAgeClassEligible
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
-from .event import Event
-from .league import League
 from .database import queryWithResults
+from .league import League
+from .event import Event
+from .competitor import Competitor
+from .result import Result
+from ..utils.points import assignPoints
+from ..utils.scoringHelpers import isAgeClassEligible
 from ..utils.processResults import (
+    assignPosition,
     getCountingPoints,
     calculatePointsTotal,
     PointsResult,
@@ -42,16 +46,8 @@ class LeagueResult:
         if not hasattr(self, "course"):
             self.course = None
 
-    def toDictionary(
-        self, league: League, leagueEvents: List[Event], ageClass: str = ''
-    ) -> Dict[str, Any]:
-        if ageClass:
-            results = [
-                self.ageClassEventResult(event, ageClass) for event in leagueEvents
-            ]
-        else:
-            results = [self.eventResult(event.id) for event in leagueEvents]
-
+    def toDictionary(self, league: League, leagueEvents: List[Event]) -> Dict[str, Any]:
+        results = [self.eventResult(event.id) for event in leagueEvents]
         resultsWithCounting = getCountingPoints(
             results, league.numberOfCountingEvents, leagueEvents
         )
@@ -75,27 +71,6 @@ class LeagueResult:
                 type=self.types[eventIndex],
                 counting=None,
             )
-
-        return PointsResult(event=None, score=None, type=None, counting=None)
-
-    def ageClassEventResult(self, event: Event, ageClass: str) -> PointsResult:
-        if event.id in self.events:
-            eventIndex = self.events.index(event.id)
-            course = self.courses[eventIndex]
-            matchesAgeClass = isAgeClassEligible(ageClass, self.ageClass)
-            expectedCourse = (
-                event.getAdditionalSettingsAsJSON()
-                .get("ageClassMapping", {})
-                .get(ageClass)
-            )
-
-            if course == expectedCourse and matchesAgeClass:
-                return PointsResult(
-                    event=event.id,
-                    score=int(self.points[eventIndex]),
-                    type=self.types[eventIndex],
-                    counting=None,
-                )
 
         return PointsResult(event=None, score=None, type=None, counting=None)
 
@@ -156,3 +131,55 @@ class LeagueResult:
         )
 
         return [LeagueResult(result) for result in databaseResults]
+
+    @staticmethod
+    def getAgeClassResults(
+        league: League, events: List[Event], ageClass: str
+    ) -> Dict[int, Dict[str, Any]]:
+        competitors = {
+            competitor.id: {**competitor.toDictionary(), "points": [None] * len(events)}
+            for competitor in Competitor.getByLeague(league.getLeagueOfCompetitors())
+            if isAgeClassEligible(ageClass, competitor.ageClass)
+        }
+        for eventIndex, event in enumerate(events):
+            expectedCourse = (
+                event.getAdditionalSettingsAsJSON()
+                .get("ageClassMapping", {})
+                .get(ageClass)
+            )
+            results = [
+                result.toDictionary()
+                for result in Result.getByEvent(event.id)
+                if result.course == expectedCourse
+            ]
+            resultsWithPositions = assignPosition(results)
+            resultsWithPoints = assignPoints(resultsWithPositions, league.scoringMethod)
+
+            for result in resultsWithPoints:
+                competitor: Dict[str, Any] = competitors[result["competitor"]]
+                competitor["points"][eventIndex] = PointsResult(
+                    event=event.id,
+                    score=int(result["points"]),
+                    type=result["type"],
+                    counting=None,
+                )
+
+        return competitors
+
+    @staticmethod
+    def getByAgeClass(
+        league: League, events: List[Event], ageClass: str
+    ) -> List[Dict[str, Any]]:
+        competitorsList: List[Dict[str, Any]] = list(
+            LeagueResult.getAgeClassResults(league, events, ageClass).values()
+        )
+        competitors: List[Dict[str, Any]] = []
+
+        for competitor in competitorsList:
+            competitors.append(competitor)
+            competitor["points"] = getCountingPoints(
+                competitor["points"], league.numberOfCountingEvents, events
+            )
+            competitor["totalPoints"] = calculatePointsTotal(competitor["points"])
+
+        return competitors
