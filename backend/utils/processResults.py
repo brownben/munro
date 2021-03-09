@@ -1,5 +1,5 @@
 from heapq import nlargest
-from typing import Any, List, Dict, Optional, TypedDict, Union
+from typing import Any, List, Dict, Optional, Tuple, TypedDict
 
 from ..database.league import League
 from ..database.event import Event
@@ -14,49 +14,110 @@ class PointsResult(TypedDict):
     counting: Optional[bool]
 
 
-def getIndexOfLargestNPoints(points: List[int], number: int) -> List[int]:
-    return nlargest(number, range(len(points)), points.__getitem__)
+class PointsResultWithIndex(PointsResult):
+    index: int
+
+
+def getPointsResultScore(score: PointsResultWithIndex) -> int:
+    return score["score"] or 0
+
+
+def getPointsResultEvent(score: PointsResult) -> str:
+    return score["event"] or ""
 
 
 def getCountingPoints(
     results: List[PointsResult],
-    numberOfCountingEvents: int,
+    league: League,
     leagueEvents: List[Event],
 ) -> List[PointsResult]:
-    indexOfLargestPoints = getLargestRequiredPoints(
-        [result.get("score") or 0 for result in results],
-        [result.get("event") or "" for result in results],
-        numberOfCountingEvents,
-        leagueEvents,
-    )
+    numberOfCountingEvents = league.numberOfCountingEvents
+    events = [getPointsResultEvent(result) for result in results]
+    remainingScores = [
+        PointsResultWithIndex(
+            index=index,
+            event=result["event"],
+            score=result["score"],
+            type=result["type"],
+            counting=None,
+        )
+        for index, result in enumerate(results)
+    ]
+
+    countingScores = []
+
+    # Get Events Marked As Required
+    requiredEvents = getIndexesOfRequiredEvents(events, leagueEvents)
+    countingScores.extend(requiredEvents)
+    remainingScores = removeCountingScores(remainingScores, countingScores)
+
+    # Get Max Number and Min Number From a Group
+    includedScores, excludedScores = getIndexesOfGroupedEvents(league, remainingScores)
+    countingScores.extend(includedScores)
+    remainingScores = removeCountingScores(remainingScores, includedScores)
+    remainingScores = removeCountingScores(remainingScores, excludedScores)
+
+    # Get Largest Remaining Scores
+    numberRemaining = numberOfCountingEvents - len(countingScores)
+    if numberRemaining > 0:
+        largestScores = getIndexesOfLargestScores(numberRemaining, remainingScores)
+        countingScores.extend(largestScores)
 
     for index, result in enumerate(results):
-        result["counting"] = index in indexOfLargestPoints
+        result["counting"] = index in countingScores
 
     return results
 
 
+def getIndexesOfRequiredEvents(
+    events: List[str], leagueEvents: List[Event]
+) -> List[int]:
+    requiredEvents = [event for event in leagueEvents if event.requiredInTotal]
+    return [events.index(event.id) for event in requiredEvents]
+
+
+def removeCountingScores(
+    scores: List[PointsResultWithIndex], countingScores: List[int]
+) -> List[PointsResultWithIndex]:
+    return [score for score in scores if score["index"] not in countingScores]
+
+
+def getIndexesOfGroupedEvents(
+    league: League, scores: List[PointsResultWithIndex]
+) -> Tuple[List[int], List[int]]:
+    eventGroups = league.getAdditionalSettingsAsJSON().get("eventGroups", {})
+
+    includedScores = []
+    excludedScores = []
+
+    for eventGroup in eventGroups:
+        minimum = eventGroups[eventGroup].get("min", 0)
+        maximum = eventGroups[eventGroup].get("max", 0)
+
+        relevantScores = [
+            score for score in scores if eventGroup in getPointsResultEvent(score)
+        ]
+        sortedScores = sorted(relevantScores, key=getPointsResultScore)
+
+        includedScores.extend([score["index"] for score in sortedScores[:minimum]])
+        excludedScores.extend([score["index"] for score in sortedScores[maximum:]])
+
+    return includedScores, excludedScores
+
+
+def getIndexesOfLargestScores(
+    numberOfScoresRemaining: int, scores: List[PointsResultWithIndex]
+) -> List[int]:
+    largestRemaining = nlargest(
+        numberOfScoresRemaining,
+        iterable=scores,
+        key=lambda x: x["score"],
+    )
+    return [score["index"] for score in largestRemaining]
+
+
 def calculatePointsTotal(results: List[PointsResult]) -> int:
     return sum([result["score"] or 0 for result in results if result["counting"]])
-
-
-def getLargestRequiredPoints(
-    points: List[int],
-    events: List[str],
-    numberCounting: int,
-    databaseEvents: List[Event],
-) -> List[int]:
-    requiredEvents = [event for event in databaseEvents if event.requiredInTotal]
-    requiredPoints = [events.index(event.id) for event in requiredEvents]
-    largestPoints = getIndexOfLargestNPoints(points, numberCounting)
-    missingRequiredPoints = [
-        index for index in requiredPoints if index not in largestPoints
-    ]
-
-    if len(requiredPoints) == 0 or len(missingRequiredPoints) == 0:
-        return largestPoints
-
-    return largestPoints[: -len(missingRequiredPoints)] + missingRequiredPoints
 
 
 def assignPosition(results: List[ResultDict]) -> List[ResultDict]:
