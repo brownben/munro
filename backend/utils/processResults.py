@@ -111,7 +111,7 @@ def getIndexesOfLargestScores(
     largestRemaining = nlargest(
         numberOfScoresRemaining,
         iterable=scores,
-        key=lambda x: x["score"],
+        key=getPointsResultScore,
     )
     return [score["index"] for score in largestRemaining]
 
