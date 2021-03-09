@@ -2,34 +2,19 @@ from typing import List
 from ..utils.processResults import (
     PointsResult,
     getCountingPoints,
-    getIndexOfLargestNPoints as biggestPoints,
 )
+from ..database.league import League
 from ..database.event import Event
-
-
-class Test_BiggestPoints:
-    def test_noPoints(self) -> None:
-        assert biggestPoints([], 0) == []
-        assert biggestPoints([], 1) == []
-        assert biggestPoints([], 5) == []
-
-    def test_notEnoughPoints(self) -> None:
-        assert biggestPoints([1], 1) == [0]
-        assert biggestPoints([1], 2) == [0]
-        assert biggestPoints([1], 7) == [0]
-        assert biggestPoints([1, 2, 3], 3) == [2, 1, 0]
-        assert biggestPoints([1, 1], 2) == [0, 1]
-        assert biggestPoints([8, 9, 7, 8, 9, 8], 7) == [1, 4, 0, 3, 5, 2]
-
-    def test_enoughPoints(self) -> None:
-        assert biggestPoints([1, 2, 3], 1) == [2]
-        assert biggestPoints([1, 2, 3], 2) == [2, 1]
-        assert biggestPoints([1, 1, 1], 1) == [0]
-        assert biggestPoints([1, 1, 1], 2) == [0, 1]
 
 
 def createEvent(id: str, required: bool) -> Event:
     return Event({"id": id, "requiredInTotal": required})
+
+
+def createLeague(numberOfCountingEvents: int) -> League:
+    return League(
+        {"numberOfCountingEvents": numberOfCountingEvents, "additionalSettings": {}}
+    )
 
 
 mockEventsNoRequired = [
@@ -63,7 +48,9 @@ points = [0, 10, 8, 5, 1, 7]
 events = ["a", "b", "c", "d", "e", "f"]
 
 
-def generateResult(points: List[int], events: List[str], counting: List[int] = []):
+def generateResult(
+    points: List[int], events: List[str], counting: List[int] = []
+) -> List[PointsResult]:
     return [
         PointsResult(
             event=events[index], score=point, type="", counting=index in counting
@@ -72,11 +59,24 @@ def generateResult(points: List[int], events: List[str], counting: List[int] = [
     ]
 
 
+def generateBaseResults(counting: List[int]) -> List[PointsResult]:
+    return generateResult(points, events, counting)
+
+
+def countingPoints(number: int, required: bool) -> List[PointsResult]:
+    return getCountingPoints(
+        generateResult(points, events),
+        createLeague(number),
+        mockEventsMultipleRequired if required else mockEvents,
+    )
+
+
 class Test_GetCountingPoints:
     def test_noRequiredEvents(self) -> None:
-        assert getCountingPoints(
-            generateResult([1, 2, 3], events), 3, mockEventsNoRequired
-        ) == generateResult(
+        result = getCountingPoints(
+            generateResult([1, 2, 3], events), createLeague(3), mockEventsNoRequired
+        )
+        expectedResult = generateResult(
             [1, 2, 3],
             events,
             [
@@ -85,9 +85,14 @@ class Test_GetCountingPoints:
                 0,
             ],
         )
-        assert getCountingPoints(
-            generateResult([10, 8, 5, 1, 7], events), 3, mockEventsNoRequired
-        ) == generateResult(
+        assert result == expectedResult
+
+        result = getCountingPoints(
+            generateResult([10, 8, 5, 1, 7], events),
+            createLeague(3),
+            mockEventsNoRequired,
+        )
+        expectedResult = generateResult(
             [10, 8, 5, 1, 7],
             events,
             [
@@ -96,26 +101,24 @@ class Test_GetCountingPoints:
                 4,
             ],
         )
-        assert getCountingPoints(
-            generateResult([0, 10, 8, 5, 1, 7], events), 2, mockEventsNoRequired
-        ) == generateResult([0, 10, 8, 5, 1, 7], events, [1, 2])
+        assert result == expectedResult
+
+        result = getCountingPoints(
+            generateResult([0, 10, 8, 5, 1, 7], events),
+            createLeague(2),
+            mockEventsNoRequired,
+        )
+        expectedResult = generateResult([0, 10, 8, 5, 1, 7], events, [1, 2])
+        assert result == expectedResult
 
     def test_requiredEventInLargestPoints(self) -> None:
-        assert getCountingPoints(
-            generateResult(points, events), 2, mockEvents
-        ) == generateResult(
-            points,
-            events,
+        assert countingPoints(2, False) == generateBaseResults(
             [
                 1,
                 2,
-            ],
+            ]
         )
-        assert getCountingPoints(
-            generateResult(points, events), 3, mockEvents
-        ) == generateResult(
-            points,
-            events,
+        assert countingPoints(3, False) == generateBaseResults(
             [
                 1,
                 2,
@@ -127,7 +130,7 @@ class Test_GetCountingPoints:
         assert (
             getCountingPoints(
                 generateResult([0, 10, 8, 5, 1, 7], ["b", "a", "c", "d", "e", "f"]),
-                2,
+                createLeague(2),
                 mockEvents,
             )
             == generateResult(
@@ -137,7 +140,7 @@ class Test_GetCountingPoints:
         assert (
             getCountingPoints(
                 generateResult([0, 10, 8, 5, 1, 7], ["b", "a", "c", "d", "e", "f"]),
-                2,
+                createLeague(2),
                 mockEvents,
             )
             == generateResult(
@@ -146,36 +149,24 @@ class Test_GetCountingPoints:
         )
 
     def test_multipleRequiredEventsNotInLargestPoints(self) -> None:
-        assert getCountingPoints(
-            generateResult(points, events), 2, mockEventsMultipleRequired
-        ) == generateResult(
-            points,
-            events,
+        assert countingPoints(2, True) == generateBaseResults(
             [
                 1,
                 4,
-            ],
+            ]
         )
-        assert getCountingPoints(
-            generateResult(points, events), 3, mockEventsMultipleRequired
-        ) == generateResult(
-            points,
-            events,
+        assert countingPoints(3, True) == generateBaseResults(
             [
                 1,
                 2,
                 4,
-            ],
+            ]
         )
-        assert getCountingPoints(
-            generateResult(points, events), 4, mockEventsMultipleRequired
-        ) == generateResult(
-            points,
-            events,
+        assert countingPoints(4, True) == generateBaseResults(
             [
                 1,
                 2,
                 5,
                 4,
-            ],
+            ]
         )

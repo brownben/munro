@@ -48,9 +48,7 @@ class LeagueResult:
 
     def toDictionary(self, league: League, leagueEvents: List[Event]) -> Dict[str, Any]:
         results = [self.eventResult(event.id) for event in leagueEvents]
-        resultsWithCounting = getCountingPoints(
-            results, league.numberOfCountingEvents, leagueEvents
-        )
+        resultsWithCounting = getCountingPoints(results, league, leagueEvents)
 
         return {
             "id": self.id,
@@ -178,7 +176,7 @@ class LeagueResult:
         for competitor in competitorsList:
             competitors.append(competitor)
             competitor["points"] = getCountingPoints(
-                competitor["points"], league.numberOfCountingEvents, events
+                competitor["points"], league, events
             )
             competitor["totalPoints"] = calculatePointsTotal(competitor["points"])
 
