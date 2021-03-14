@@ -34,6 +34,12 @@
       <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
 
       <div>
+       <router-link
+          :to="`/leagues/${competitor?.league}/competitors`"
+          class="button button-white"
+        >
+          All Competitors
+        </router-link>
         <router-link
           :to="`/competitors/${$route.params.id}/edit`"
           class="button button-white"
