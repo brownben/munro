@@ -12,6 +12,7 @@ module.exports = {
       boxShadow: {
         outline: '0 0 0 3px var(--main-300, #f0abfc)',
         'outline-white': '0 0 0 3px rgba(255, 255, 255, 0.65)',
+        'outline-red': '0 0 0 3px rgba(248, 113, 113, 0.65)',
       },
 
       lineHeight: {
@@ -62,6 +63,11 @@ module.exports = {
           700: 'var(--main-700)',
           800: 'var(--main-800)',
           900: 'var(--main-900)',
+        },
+
+        red: {
+          500: '#EF4444',
+          600: '#DC2626',
         },
       },
 
