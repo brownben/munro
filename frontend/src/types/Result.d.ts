@@ -50,6 +50,6 @@ interface ManualResult {
 }
 
 interface TransferResult {
-  competitor: string
-  result: string
+  competitor: number
+  result: number
 }

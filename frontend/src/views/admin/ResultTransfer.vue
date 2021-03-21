@@ -168,10 +168,10 @@ const validateForm = () => {
 const transferResult = () => {
   if (validateForm())
     apiTransferResult({
-      competitor: choices.value.competitor,
-      result: choices.value.result,
+      competitor: Number(choices.value.competitor),
+      result: Number(choices.value.result),
     })
-      .then(() => router.push(`/results/${choices.value.result}`))
+      .then(() => router.push(`/competitors/${choices.value.competitor}`))
       .catch(() => false)
 }
 </script>

@@ -80,7 +80,7 @@ class TransferResultRoute(Resource):
     def post(self):
         try:
             request = api.payload
-            Result.transfer(request.result, request.competitor)
+            Result.transfer(request["competitor"], request["result"])
             return createMessage("Result Transfered")
         except:
             return createMessage("Problem Transferring Result", 500)
