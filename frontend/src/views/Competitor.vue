@@ -34,7 +34,7 @@
       <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
 
       <div>
-       <router-link
+        <router-link
           :to="`/leagues/${competitor?.league}/competitors`"
           class="button button-white"
         >
