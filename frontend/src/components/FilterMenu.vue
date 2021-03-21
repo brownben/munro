@@ -3,12 +3,14 @@
     <InputText
       v-model="name"
       label="Name:"
+      url-parameter="name"
       class="col-span-2"
       @update:modelValue="onChange"
     />
     <InputText
       v-model="club"
       label="Club:"
+      url-parameter="club"
       class="col-span-2"
       @update:modelValue="onChange"
     />
@@ -17,6 +19,7 @@
       :min="0"
       :max="120"
       label="Min Age:"
+      url-parameter="minAge"
       class="col-span-1"
       @update:modelValue="onChange"
     />
@@ -25,18 +28,21 @@
       :min="0"
       :max="120"
       label="Max Age:"
+      url-parameter="maxAge"
       class="col-span-1"
       @update:modelValue="onChange"
     />
     <InputCheckbox
       v-model="male"
-      class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 text-center md:pt-4 md:pb-0"
       label="Male"
+      url-parameter="male"
+      class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 text-center md:pt-4 md:pb-0"
       @update:modelValue="onChange"
     />
     <InputCheckbox
       v-model="female"
       label="Female"
+      url-parameter="female"
       class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 md:pt-4 md:pb-0text-center"
       @update:modelValue="onChange"
     />

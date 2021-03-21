@@ -158,10 +158,6 @@ const uploadRoutes: RouteRecordRaw[] = [
     component: () => import('../views/UploadResult.vue'),
   },
   {
-    path: '/upload/:id',
-    component: () => import('../views/UploadFile.vue'),
-  },
-  {
     path: '/developers',
     component: () => import('../views/Developers.vue'),
   },

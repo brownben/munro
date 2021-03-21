@@ -19,7 +19,11 @@
     </div>
 
     <div class="col-span-2">
-      <InputText v-model.lazy="uploadConfig.eventId" label="Event ID:" />
+      <InputText
+        v-model.lazy="uploadConfig.eventId"
+        label="Event ID:"
+        url-parameter="eventId"
+      />
 
       <p v-if="uploadConfig.eventId" class="my-4">
         <b class="mr-2 text-main-800">Event Name:</b>
@@ -30,6 +34,7 @@
         v-model.trim="uploadConfig.uploadKey"
         label="Upload Key:"
         class="mt-4"
+        url-parameter="uploadKey"
       />
 
       <!-- If Event already have results, confirm they want to overwrite -->
@@ -92,7 +97,6 @@ import { getEvent } from '../api/events'
 
 const store = useStore()
 const router = useRouter()
-const route = useRoute()
 
 const uploadConfig = ref<UploadFile>({
   eventId: '',
@@ -105,11 +109,10 @@ const uploadConfig = ref<UploadFile>({
 })
 const event = ref<LeagueEvent | null>(null)
 const eventId = computed(() => uploadConfig.value.eventId)
+watch(uploadConfig, () => console.log(uploadConfig.value.eventId), {
+  immediate: true,
+})
 
-const getURLEventId = () => {
-  if (route.params.id)
-    uploadConfig.value.eventId = toSingleString(route.params.id)
-}
 const findEvent = async () => {
   const result = await getEvent(uploadConfig.value.eventId)
   event.value = result
@@ -129,6 +132,5 @@ const uploadFile = () => {
     .catch(() => false)
 }
 
-watch(route, getURLEventId, { immediate: true })
 watch(eventId, findEvent, { immediate: true })
 </script>

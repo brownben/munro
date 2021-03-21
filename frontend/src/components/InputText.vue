@@ -20,20 +20,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineEmit, defineProps } from 'vue'
+import { ref, watch, defineEmit, defineProps } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const props = defineProps({
-  modelValue: {
-    type: String,
-    default: '',
-  },
-  label: {
-    type: String,
-    default: '',
-  },
-  type: {
-    type: String,
-    default: 'text',
+  modelValue: { type: String, default: '' },
+  label: { type: String, default: '', required: true },
+  type: { type: String, default: 'text' },
+  urlParameter: { type: String, default: '' },
   },
 })
 const emit = defineEmit(['update:modelValue'])
@@ -41,4 +36,14 @@ const focus = ref(false)
 
 const handleEvent = (event: Event) =>
   emit('update:modelValue', (event.target as HTMLInputElement).value)
+
+watch(
+  () => route.query,
+  () => {
+    if (props.urlParameter && route.query?.[props.urlParameter]) {
+      emit('update:modelValue', route.query?.[props.urlParameter])
+    }
+  },
+  { immediate: true }
+)
 </script>
