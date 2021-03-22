@@ -4,6 +4,7 @@ export const getResults = (): Promise<EventResult[] | null> =>
   getData<EventResult[]>({
     apiLocation: `/api/results/`,
     customErrorMessage: 'Problem Fetching Results',
+    noToken: true,
   })
 
 export const getEventResults = (
@@ -12,6 +13,7 @@ export const getEventResults = (
   getData<EventResult[]>({
     apiLocation: `/api/events/${eventId}/results`,
     customErrorMessage: 'Problem Fetching Results',
+    noToken: true,
   })
 
 export const getLeagueResults = (
@@ -21,6 +23,7 @@ export const getLeagueResults = (
   getData<LeagueResult[]>({
     apiLocation: `/api/leagues/${league}/results/${course}`,
     customErrorMessage: 'Problem Fetching Results',
+    noToken: true,
   })
 
 export const getCompetitorResults = (
@@ -29,6 +32,7 @@ export const getCompetitorResults = (
   getData<EventResult[]>({
     apiLocation: `/api/competitors/${competitor}/results`,
     customErrorMessage: 'Problem Fetching Results',
+    noToken: true,
   })
 
 export const hideResult = (

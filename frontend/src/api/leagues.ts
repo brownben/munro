@@ -4,12 +4,14 @@ export const getLeague = (name: string): Promise<League | null> =>
   getData<League | null>({
     apiLocation: `/api/leagues/${name}`,
     customErrorMessage: 'Problem Fetching League Details',
+    noToken: true,
   })
 
 export const getLeagues = (): Promise<League[] | null> =>
   getData<League[]>({
     apiLocation: '/api/leagues/',
     customErrorMessage: 'Problem Fetching Leagues',
+    noToken: true,
   })
 
 export const createLeague = (data: League): Promise<ServerMessage | null> =>

@@ -109,9 +109,6 @@ const uploadConfig = ref<UploadFile>({
 })
 const event = ref<LeagueEvent | null>(null)
 const eventId = computed(() => uploadConfig.value.eventId)
-watch(uploadConfig, () => console.log(uploadConfig.value.eventId), {
-  immediate: true,
-})
 
 const findEvent = async () => {
   const result = await getEvent(uploadConfig.value.eventId)

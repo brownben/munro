@@ -5,15 +5,10 @@ interface RequestConfig {
   customErrorMessage?: string
   customSuccessMessage?: string
   customErrorHandler?: boolean
+  noToken?: boolean
 }
 
-interface FetchConfig {
-  method: string
-  headers?: {
-    'Content-Type'?: string
-  }
-  body?: string
-}
+type FetchConfig = RequestInit
 
 interface ServerMessage {
   message: string

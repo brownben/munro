@@ -13,8 +13,11 @@ def requireAuthentication(func):
 
     @wraps(func)
     def decorator(*args, **kwargs):
-        id_token = request.cookies.get("token")
-        if id_token:
+        authorization_header = request.headers.get("Authorization")
+
+        if authorization_header:
+            id_token = authorization_header[7:]
+
             try:
                 google.oauth2.id_token.verify_firebase_token(
                     id_token, firebase_request_adapter
@@ -23,6 +26,7 @@ def requireAuthentication(func):
                 return createMessage("Permission Denied - You are not Logged In", 401)
         else:
             return createMessage("Permission Denied - You are not Logged In", 401)
+
         return func(*args, **kwargs)
 
     return decorator

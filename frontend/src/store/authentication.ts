@@ -32,21 +32,21 @@ const actions = <ActionTree<AuthState, string>>{
       },
       useServerErrorMessage: false,
       customErrorHandler: true,
+      noToken: true,
     }).then((user: user | null) => {
       if (user === null) throw new Error()
       context.commit('setUser', user)
-      document.cookie = `token=${user.idToken};secure;samesite=strict;path=/`
       return context.state.user
     }),
 
   logout: (context) => {
     context.commit('clearUser')
-    document.cookie = 'token=;secure;samesite=strict;path=/'
     return Promise.resolve(context.state.user)
   },
 }
 
 const getters = <GetterTree<AuthState, string>>{
+  userToken: (state) => state.user?.idToken,
   loggedIn: (state) => !!state.user?.idToken,
   userName: (state) => state.user?.displayName,
 }

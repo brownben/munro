@@ -4,6 +4,7 @@ export const getEvent = (id: string): Promise<LeagueEvent | null> =>
   getData<LeagueEvent>({
     apiLocation: `/api/events/${id}`,
     customErrorMessage: 'Problem Fetching Event Details',
+    noToken: true,
   })
 
 export const getEvents = (): Promise<LeagueEvent[] | null> =>

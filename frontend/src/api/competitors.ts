@@ -4,12 +4,14 @@ export const getCompetitor = (id: string): Promise<Competitor | null> =>
   getData<Competitor | null>({
     apiLocation: `/api/competitors/${id}`,
     customErrorMessage: 'Problem Fetching Competitor Details',
+    noToken: true,
   })
 
 export const getCompetitors = (): Promise<Competitor[] | null> =>
   getData<Competitor[]>({
     apiLocation: '/api/competitors/',
     customErrorMessage: 'Problem Fetching Competitors',
+    noToken: true,
   })
 
 export const getLeagueCompetitors = (
@@ -18,6 +20,7 @@ export const getLeagueCompetitors = (
   getData<Competitor[]>({
     apiLocation: `/api/leagues/${league}/competitors`,
     customErrorMessage: 'Problem Fetching Competitors',
+    noToken: true,
   })
 
 export const createCompetitor = (
