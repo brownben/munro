@@ -20,6 +20,7 @@ from .routes.competitor import api as competitorRoutes
 from .routes.result import api as resultRoutes
 from .routes.search import api as searchRoutes
 from .routes.upload import api as uploadRoutes
+from .routes.sitemap import generate_sitemap
 
 # Set up Flask with plugins
 app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
@@ -67,6 +68,11 @@ def catch_all(path: str) -> Text:
 @app.route("/api/<path:path>")
 def api_catch_all(path: str) -> Dict[str, Any]:
     return {}
+
+
+@app.route("/sitemap.txt")
+def sitemap() -> wrappers.Response:
+    return wrappers.Response(generate_sitemap(), mimetype="text/plain")
 
 
 @app.route("/robots.txt")
