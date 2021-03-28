@@ -33,7 +33,7 @@ class SitemapBuilder:
 
 
 def generate_sitemap() -> str:
-    sitemap = SitemapBuilder(url_base="https://munro-leagues.herokuapp.com")
+    sitemap = SitemapBuilder(url_base="https://munroleagues.com")
 
     for url in static_urls:
         sitemap.add_url(url)

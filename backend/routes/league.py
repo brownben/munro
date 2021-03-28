@@ -29,6 +29,7 @@ api.models[leagueResultModelWithCourse.name] = leagueResultModelWithCourse
 api.models[messageModel.name] = messageModel
 
 
+@api.route("")
 @api.route("/")
 class LeaguesRoute(Resource):
     @api.marshal_with(leagueModel, as_list=True)

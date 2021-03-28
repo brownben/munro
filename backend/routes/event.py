@@ -16,6 +16,7 @@ api.models[eventResultModel.name] = eventResultModel
 api.models[messageModel.name] = messageModel
 
 
+@api.route("")
 @api.route("/")
 class EventsRoute(Resource):
     @api.marshal_with(eventModel, as_list=True)

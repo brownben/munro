@@ -30,6 +30,7 @@ api.models[uploadSimpleModel.name] = uploadSimpleModel
 api.models[messageModel.name] = messageModel
 
 
+@api.route("")
 @api.route("/")
 class UploadRoute(Resource):
     @api.expect(uploadFileModel, validate=True)

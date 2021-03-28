@@ -2,7 +2,7 @@ import { postData } from './requests'
 
 export const uploadFile = (data: UploadFile): Promise<ServerMessage | null> =>
   postData<ServerMessage>({
-    apiLocation: `/api/upload/`,
+    apiLocation: `/api/upload`,
     data,
     useServerErrorMessage: true,
     customSuccessMessage: `Results Uploaded Successfully`,
