@@ -2,7 +2,7 @@
   <div class="hidden" />
 </template>
 <script setup lang="ts">
-import { defineProps, watch } from 'vue'
+import { defineProps, computed } from 'vue'
 import { useHead } from '@vueuse/head'
 
 const props = defineProps({
@@ -14,28 +14,26 @@ const props = defineProps({
   },
   url: {
     type: String,
-    default: 'https://munro-leagues.herokuapp.com',
+    default: 'https://munroleagues.com',
   },
   blockRobots: { type: Boolean, default: false },
 })
 
-watch(
-  props,
-  () =>
-    useHead({
-      title: props.title,
-      meta: [
-        { name: 'description', content: props.description },
-        { property: 'og:title', content: props.title },
-        { property: 'og:description', content: props.description },
-        { property: 'og:url', content: props.url },
-        { name: 'twitter:title', content: props.title },
-        { name: 'twitter:description', content: props.description },
-        { name: 'twitter:url', content: props.url },
-        { itemprop: 'description', content: props.description },
-        { name: 'robots', content: props.blockRobots ? 'noindex' : 'all' },
-      ],
-    }),
-  { immediate: true }
-)
+useHead({
+  title: computed(() => props.title),
+  meta: [
+    { name: 'description', content: computed(() => props.description) },
+    { property: 'og:title', content: computed(() => props.title) },
+    { property: 'og:description', content: computed(() => props.description) },
+    { property: 'og:url', content: computed(() => props.url) },
+    { name: 'twitter:title', content: computed(() => props.title) },
+    { name: 'twitter:description', content: computed(() => props.description) },
+    { name: 'twitter:url', content: computed(() => props.url) },
+    { itemprop: 'description', content: computed(() => props.description) },
+    {
+      name: 'robots',
+      content: computed(() => (props.blockRobots ? 'noindex' : 'all')),
+    },
+  ],
+})
 </script>
