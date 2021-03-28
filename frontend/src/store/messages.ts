@@ -3,6 +3,7 @@ import { GetterTree, MutationTree, ActionTree } from 'vuex'
 export interface message {
   id: number
   text: string
+  visible: boolean
 }
 
 class State {
@@ -11,28 +12,26 @@ class State {
 }
 
 const mutations = <MutationTree<State>>{
-  addMessage: (state, value: string) => {
-    state.currentMessageId += 1
-
+  addMessage: (state, { value, id }: { value: string; id: number }) =>
     state.messages.push({
-      id: state.currentMessageId,
+      id: id,
       text: value,
-    })
+      visible: true,
+    }),
 
-    return state.currentMessageId
-  },
-
-  removeMessage: (state, id: number) => {
-    const messageId = state.messages.map((message) => message.id).indexOf(id)
-    return state.messages.splice(messageId, 1)
-  },
+  removeMessage: (state, id: number) =>
+    state.messages.map((message) => {
+      if (message.id === id) message.visible = false
+      return message
+    }),
 
   clearAllMessages: (state) => state.messages.splice(0, state.messages.length),
 }
 
 const actions = <ActionTree<State, string>>{
   createMessage: (context, text: string) => {
-    const id = context.commit('addMessage', text)
+    const id = context.state.currentMessageId++
+    context.commit('addMessage', { value: text, id })
     setTimeout((id: number) => context.commit('removeMessage', id), 15000, id)
   },
 }

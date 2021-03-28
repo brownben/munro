@@ -8,14 +8,15 @@
       mode="out-in"
       class="fixed bottom-0 right-0 z-50 mx-4 my-4"
     >
-      <p
-        v-for="message of $store.getters.allMessages"
-        :key="message.id"
-        class="mt-4 text-lg select-none card card-color font-heading"
-        @click="clear(message.id)"
-      >
-        {{ message.text }}
-      </p>
+      <template v-for="message of $store.getters.allMessages" :key="message.id">
+        <p
+          v-if="message.visible"
+          class="mt-4 text-lg select-none card card-color font-heading"
+          @click="clear(message.id)"
+        >
+          {{ message.text }}
+        </p>
+      </template>
     </transition-group>
   </transition>
 </template>
