@@ -209,3 +209,6 @@ backend/dist/**
 
 # Old Files from Backend Rewrite
 old-backend/**
+
+# Vercel config
+**/.vercel/**

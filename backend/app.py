@@ -6,6 +6,7 @@ from flask import (
     render_template,
     send_from_directory,
     wrappers,
+    redirect,
 )
 from flask_compress import Compress
 from flask_cors import CORS
@@ -62,7 +63,7 @@ api.add_namespace(uploadRoutes, path="/upload")
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def catch_all(path: str) -> Text:
-    return render_template("index.html")
+    return redirect("https://munroleagues.com" + request.path, 301)
 
 
 @app.route("/api/<path:path>")

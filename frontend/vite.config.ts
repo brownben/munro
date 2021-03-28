@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [vue()],
-  base: process.env.NODE_ENV === 'production' ? '/static/' : '/',
+  base: '/',
 
   server: {
     port: 8080,
@@ -16,7 +16,7 @@ export default defineConfig({
   },
 
   build: {
-    outDir: '../backend/dist/static',
+    outDir: './dist',
     assetsDir: './',
     emptyOutDir: true,
     sourcemap: true,

@@ -1,8 +1,8 @@
 const { generateSW } = require('rollup-plugin-workbox')
 
 generateSW({
-  swDest: '../backend/dist/static/service-worker.js',
-  globDirectory: '../backend/dist',
+  swDest: './dist/service-worker.js',
+  globDirectory: './dist',
   globPatterns: ['**/*.{html,json,js,css,woff2,png,svg,txt}'],
 
   cacheId: 'munro-precache',
@@ -10,10 +10,12 @@ generateSW({
   inlineWorkboxRuntime: true,
   mode: 'production',
 
-  navigateFallback: '/static/index.html',
+  navigateFallback: '/index.html',
+  navigateFallbackDenylist: [/.*\/api\/.*/, /sitemap.txt/],
+
   runtimeCaching: [
     {
-      urlPattern: /^http:\/\/munro-leagues.herokuapp.com\/api\/.*/,
+      urlPattern: /^https:\/\/munroleagues.com\/api\/.*/,
       handler: 'NetworkFirst',
       options: {
         networkTimeoutSeconds: 5,
