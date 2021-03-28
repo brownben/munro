@@ -3,7 +3,7 @@
     <Meta
       title="Munro - Upload Instructions"
       description="Instructions for how to Upload Results to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/upload/instructions"
+      url="https://munroleagues.com/upload/instructions"
       :block-robots="false"
     />
     <article
@@ -15,7 +15,7 @@
           <strong>
             Go to
             <router-link to="/upload/file" class="link text-main-700">
-              https://munro-leagues.herokuapp.com/upload/file
+              https://munroleagues.com/upload/file
             </router-link>
           </strong>
           <img

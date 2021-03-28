@@ -3,7 +3,7 @@
     <Meta
       :title="`Munro - ${$route.params.name}`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
-      :url="`https://munro-leagues.herokuapp.com/leagues/${$route.params.name}`"
+      :url="`https://munroleagues.com/leagues/${$route.params.name}`"
       :block-robots="false"
     />
     <template #title>

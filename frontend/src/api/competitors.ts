@@ -9,7 +9,7 @@ export const getCompetitor = (id: string): Promise<Competitor | null> =>
 
 export const getCompetitors = (): Promise<Competitor[] | null> =>
   getData<Competitor[]>({
-    apiLocation: '/api/competitors/',
+    apiLocation: '/api/competitors',
     customErrorMessage: 'Problem Fetching Competitors',
     noToken: true,
   })
@@ -27,7 +27,7 @@ export const createCompetitor = (
   data: Competitor
 ): Promise<ServerMessage | null> =>
   postData<ServerMessage>({
-    apiLocation: `/api/competitors/`,
+    apiLocation: `/api/competitors`,
     data,
     customErrorMessage: 'Problem Creating Competitor',
     customSuccessMessage: `Competitor \`${data.name}\` Created`,

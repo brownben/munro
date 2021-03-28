@@ -3,7 +3,7 @@
     <Meta
       title="Munro - Submit Result"
       description="Manually Submit a Result to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/upload/result"
+      url="https://munroleagues.com/upload/result"
       :block-robots="false"
     />
     <div class="col-span-2">

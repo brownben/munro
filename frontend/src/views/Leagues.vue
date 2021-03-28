@@ -3,7 +3,7 @@
     <Meta
       title="Munro - Leagues"
       description="League Results on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/leagues"
+      url="https://munroleagues.com/leagues"
       :block-robots="false"
     />
     <CardLeague

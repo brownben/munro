@@ -3,7 +3,7 @@
     <Meta
       title="Munro - Latest Results"
       description="The latest results from events on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/latest-results"
+      url="https://munroleagues.com/latest-results"
       :block-robots="false"
     />
     <CardEvent

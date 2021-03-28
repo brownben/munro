@@ -5,7 +5,7 @@
       :description="`Results from the ${event?.name || ''} event of the ${
         event?.league || ''
       } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
-      :url="`https://munro-leagues.herokuapp.com/events/${$route.params.event}`"
+      :url="`https://munroleagues.com/events/${$route.params.event}`"
       :block-robots="false"
     />
     <template #title>

@@ -3,7 +3,7 @@
     <Meta
       title="Munro - Introducing Munro Leagues"
       description="Why I created Munro and what it does to make league result calculation easy - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/developers"
+      url="https://munroleagues.com/developers"
       :block-robots="false"
     />
     <article

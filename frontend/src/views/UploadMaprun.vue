@@ -3,7 +3,7 @@
     <Meta
       title="Munro - Import MapRun Results"
       description="Import results from MapRun to to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/upload/maprun"
+      url="https://munroleagues.com/upload/maprun"
       :block-robots="false"
     />
     <div class="col-span-2">

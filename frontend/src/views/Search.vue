@@ -5,7 +5,7 @@
       description="Munro - League Results.
     Sorted. Sports League Results Calculated Quick and Easily, with Results
     Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/search"
+      url="https://munroleagues.com/search"
       :block-robots="false"
     />
 

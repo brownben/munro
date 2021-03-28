@@ -5,7 +5,7 @@
       :description="`Results for ${competitor?.name ?? ''} in the ${
         competitor?.league ?? ''
       } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
-      :url="`https://munro-leagues.herokuapp.com/competitors/${$route.params.id}`"
+      :url="`https://munroleagues.com/competitors/${$route.params.id}`"
       :block-robots="false"
     />
     <template #title>

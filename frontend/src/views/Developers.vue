@@ -3,7 +3,7 @@
     <Meta
       title="Munro - Developers"
       description="Developer information about the API and embed pages of Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-      url="https://munro-leagues.herokuapp.com/developers"
+      url="https://munroleagues.com/developers"
       :block-robots="false"
     />
     <article class="col-span-2 w-full mx-auto mt-4 mb-auto prose lg:prose-lg">
@@ -87,7 +87,7 @@
         Currently there are two pages designed for embedding in Iframes. Place
         in an iFrame like:
       </p>
-      <pre><code>&lt;iframe src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope 2018/events&quot;&gt;&lt;/iframe&gt;</code></pre>
+      <pre><code>&lt;iframe src=&quot;https://munroleagues.com/embed/leagues/Sprintelope 2018/events&quot;&gt;&lt;/iframe&gt;</code></pre>
       <ul>
         <li>
           <strong>/embed/leagues/{ LEAGUE NAME }/events</strong>
@@ -118,7 +118,7 @@
         <li>pink</li>
       </ul>
       <p>For example to view a red theme:</p>
-      <pre><code>&lt;iframe src=&quot;https://munro-leagues.herokuapp.com/embed/leagues/Sprintelope 2018/events?theme=red&quot;&gt;&lt;/iframe&gt;</code></pre>
+      <pre><code>&lt;iframe src=&quot;https://munroleagues.com/embed/leagues/Sprintelope 2018/events?theme=red&quot;&gt;&lt;/iframe&gt;</code></pre>
     </article>
   </Layout>
 </template>
