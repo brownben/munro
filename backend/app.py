@@ -1,9 +1,8 @@
-from typing import Any, Dict, Text
+from typing import Any, Dict
 from flask import (
     Flask,
     Blueprint,
     request,
-    render_template,
     send_from_directory,
     wrappers,
     redirect,
@@ -62,7 +61,7 @@ api.add_namespace(uploadRoutes, path="/upload")
 # Serve app files
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
-def catch_all(path: str) -> Text:
+def catch_all(path: str):
     return redirect("https://munroleagues.com" + request.path, 301)
 
 
