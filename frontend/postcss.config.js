@@ -8,5 +8,8 @@ module.exports = {
       },
     }),
     require('autoprefixer'),
+    require('cssnano')({
+      preset: 'advanced',
+    }),
   ],
 }

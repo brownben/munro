@@ -80,10 +80,3 @@ option {
 ::-moz-selection {
   background: var(--main-100, #fae8ff);
 }
-
-details > summary {
-  list-style: none;
-}
-details > summary::-webkit-details-marker {
-  display: none;
-}
