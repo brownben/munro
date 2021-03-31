@@ -6,9 +6,11 @@
       <div
         class="w-full py-4 mx-auto mb-8 select-none md:m-0 sm:mb-10 sm:w-3/4 md:w-1/2"
       >
-        <div class="w-full">
-          <Image />
-        </div>
+        <img
+          src="../assets/images/RunnerLeagueTable.svg"
+          alt="Man Running In Front of Hills, with League Table In Front Of Him"
+          class="w-full"
+        />
       </div>
 
       <div>
@@ -27,6 +29,3 @@
     </section>
   </div>
 </template>
-<script lang="ts" setup>
-import Image from '../assets/images/RunnerLeagueTable.svg'
-</script>
