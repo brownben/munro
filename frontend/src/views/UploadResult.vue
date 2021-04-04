@@ -6,7 +6,7 @@
       url="https://munroleagues.com/upload/result"
       :block-robots="false"
     />
-    <div class="col-span-2">
+    <form class="col-span-2" @submit.prevent="uploadResult">
       <InputDropdown
         v-model="result.eventId"
         label="Event:"
@@ -16,29 +16,31 @@
             value: event.id,
           }))
         "
+        :validator="RequiredField('an event', true)"
       />
       <InputDropdown
         v-model="result.course"
         label="Your Course:"
         :list="courses"
         class="mt-4"
+        :validator="RequiredField('a course', true)"
       />
-      <InputText v-model.trim="result.name" label="Your Name:" class="mt-4" />
+      <InputText
+        v-model.trim="result.name"
+        label="Your Name:"
+        class="mt-4"
+        :validator="RequiredField('your name')"
+      />
       <InputText
         v-model.trim="result.time"
         label="Your Time: (MM:SS)"
         class="mt-4"
+        :validator="IsValidTime()"
       />
 
       <!-- Only show upload once all fields have been filled -->
-      <button
-        v-if="result.eventId && result.course && result.name && result.time"
-        class="mt-8 button-lg"
-        @click="uploadResult"
-      >
-        Submit Result
-      </button>
-    </div>
+      <button class="mt-8 button-lg">Submit Result</button>
+    </form>
   </Layout>
 </template>
 
@@ -51,7 +53,7 @@ import Layout from '../components/Layout.vue'
 import InputText from '../components/InputText.vue'
 import InputDropdown from '../components/InputDropdown.vue'
 
-import { toSingleString } from '../scripts/typeHelpers'
+import { RequiredField, IsValidTime } from '../scripts/inputValidation'
 
 import { getLeagues } from '../api/leagues'
 import { getEvents } from '../api/events'
@@ -72,7 +74,6 @@ const result = ref<UploadResult>({
 })
 
 const refreshDetails = async () => {
-  const routeParamsName = toSingleString(route.params.name)
   loading.value = true
   await Promise.all([
     getLeagues().then((data) => {

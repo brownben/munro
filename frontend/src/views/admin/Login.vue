@@ -2,12 +2,18 @@
   <Layout title="Admin Login">
     <Meta title="Munro - Login" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="sendLoginRequest">
-      <InputText v-model="username" label="Email Address:" type="email" />
+      <InputText
+        v-model="username"
+        label="Email Address:"
+        type="email"
+        :validator="IsValidEmail()"
+      />
       <InputText
         v-model="password"
         label="Password:"
         type="password"
         class="mt-4"
+        :validator="RequiredField('a password')"
       />
       <button class="mt-6 button-lg">Login</button>
     </form>
@@ -35,6 +41,7 @@ import Layout from '../../components/Layout.vue'
 import InputText from '../../components/InputText.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
+import { RequiredField, IsValidEmail } from '../../scripts/inputValidation'
 
 const store = useStore()
 const router = useRouter()
@@ -48,34 +55,25 @@ const blankFields = () => {
   password.value = ''
 }
 
-const validateLogin = () => username.value !== '' && password.value !== ''
-
 const sendLoginRequest = () => {
-  if (validateLogin())
-    return store
-      .dispatch('login', {
-        username: username.value,
-        password: password.value,
-      })
-      .then((response) => {
-        if (response)
-          router.replace(toSingleString(route.query.redirect || '/'))
-        store.dispatch(
-          'createMessage',
-          `Hello ${store.getters.userName || 'Admin'}`
-        )
-        blankFields()
-      })
-      .catch(() =>
-        store.dispatch(
-          'createMessage',
-          'Error: Problem Logging In - Please Try Again'
-        )
+  return store
+    .dispatch('login', {
+      username: username.value,
+      password: password.value,
+    })
+    .then((response) => {
+      if (response) router.replace(toSingleString(route.query.redirect || '/'))
+      store.dispatch(
+        'createMessage',
+        `Hello ${store.getters.userName || 'Admin'}`
       )
-  else
-    store.dispatch(
-      'createMessage',
-      'Problem: Username or Password were left Blank'
+      blankFields()
+    })
+    .catch(() =>
+      store.dispatch(
+        'createMessage',
+        'Error: Problem Logging In - Please Try Again'
+      )
     )
 }
 
