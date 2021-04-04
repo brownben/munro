@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from 'vue'
+import { watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 
 import { toSingleString } from './scripts/typeHelpers'
@@ -22,7 +22,7 @@ import Messages from './components/AppMessages.vue'
 
 const route = useRoute()
 
-watch(route, async () => {
+watchEffect(async () => {
   if (route.query.theme) {
     const setTheme = (await import('./setThemes')).default
     setTheme(toSingleString(route.query.theme))
