@@ -40,6 +40,7 @@
           fill="currentColor"
           class="absolute top-0 left-0 w-6 h-6 py-px my-2 ml-2"
           :class="searchFocused ? 'text-white' : 'text-main-100'"
+          role="img"
         >
           <path
             fill-rule="evenodd"

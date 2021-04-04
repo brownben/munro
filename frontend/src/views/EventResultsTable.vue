@@ -35,6 +35,7 @@
             viewBox="0 0 24 24"
             stroke="currentColor"
             class="h-6 w-6"
+            role="img"
           >
             <path
               stroke-linecap="round"
