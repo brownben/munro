@@ -6,6 +6,7 @@
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
         class="absolute left-0 w-5 h-5 text-white"
+        role="img"
       >
         <path
           d="M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z"
@@ -25,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, defineEmit, defineProps } from 'vue'
+import { watchEffect, defineEmit, defineProps } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -39,13 +40,8 @@ const emit = defineEmit(['update:modelValue'])
 const handleEvent = (event: Event) =>
   emit('update:modelValue', (event.target as HTMLInputElement).checked)
 
-watch(
-  () => route.query,
-  () => {
-    if (props.urlParameter && route.query?.[props.urlParameter]) {
-      emit('update:modelValue', route.query?.[props.urlParameter] !== 'false')
-    }
-  },
-  { immediate: true }
-)
+watchEffect(() => {
+  if (props.urlParameter && route.query?.[props.urlParameter])
+    emit('update:modelValue', route.query?.[props.urlParameter] !== 'false')
+})
 </script>

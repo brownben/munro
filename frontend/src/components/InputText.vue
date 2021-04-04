@@ -21,16 +21,44 @@
           state == 'invalid',
         'focus:border-main-400': state !== 'invalid',
       }"
+      v-bind="inputValidationProps"
       @input="handleEvent($event)"
       @focus="setFocused()"
       @blur="setBlur()"
     />
+    <p
+      v-if="state === 'invalid'"
+      :id="`${label}-error-message`"
+      class="font-heading text-red-600 flex items-center"
+      aria-live="assertive"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        class="h-4 w-4 text-red-600 inline-block"
+        role="img"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span class="py-1 px-2">
+        {{ validator.message }}
+      </span>
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineEmit, defineProps } from 'vue'
+import { ref, watchEffect, defineEmit, defineProps, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import type { PropType } from 'vue'
+import type { Validator } from '../scripts/inputValidation'
 
 type State = 'focused' | 'unfocused' | 'invalid'
 
@@ -40,6 +68,7 @@ const props = defineProps({
   label: { type: String, default: '', required: true },
   type: { type: String, default: 'text' },
   urlParameter: { type: String, default: '' },
+  validator: { type: Object as PropType<Validator>, default: null },
 })
 const emit = defineEmit(['update:modelValue'])
 const state = ref<State>('unfocused')
@@ -49,19 +78,27 @@ const handleEvent = (event: Event) => {
 }
 
 const setFocused = () => {
-  state.value = 'focused'
-}
-const setBlur = () => {
-  state.value = 'unfocused'
+  if (state.value !== 'invalid') state.value = 'focused'
 }
 
-watch(
-  () => route.query,
-  () => {
-    if (props.urlParameter && route.query?.[props.urlParameter]) {
-      emit('update:modelValue', route.query?.[props.urlParameter])
+const setBlur = () => {
+  if (props.validator && !props.validator.func(props.modelValue))
+    state.value = 'invalid'
+  else state.value = 'unfocused'
+}
+
+watchEffect(() => {
+  if (props.urlParameter && route.query?.[props.urlParameter])
+    emit('update:modelValue', route.query?.[props.urlParameter])
+})
+
+const inputValidationProps = computed(() => {
+  if (state.value === 'invalid')
+    return {
+      'aria-describedby': `${props.label}-error-message`,
+      'aria-invalid': true,
+      required: true,
     }
-  },
-  { immediate: true }
-)
+  else return {}
+})
 </script>

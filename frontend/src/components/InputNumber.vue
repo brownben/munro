@@ -2,7 +2,11 @@
   <div>
     <label
       class="block pb-1 select-none font-heading"
-      :class="focus ? 'text-main-600' : 'text-gray-600'"
+      :class="{
+        'text-main-600': state === 'focused',
+        'text-gray-600': state === 'unfocused',
+        'text-red-600': state === 'invalid',
+      }"
       :for="label"
     >
       {{ label }}
@@ -10,20 +14,55 @@
     <input
       :id="label"
       :value="modelValue"
+      type="number"
       :min="min"
       :max="max"
-      type="number"
-      class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
+      class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline"
+      :class="{
+        'border-red-500 focus:border-red-500 focus:shadow-outline-red':
+          state == 'invalid',
+        'focus:border-main-400': state !== 'invalid',
+      }"
+      v-bind="inputValidationProps"
       @input="handleEvent($event)"
-      @focus="focus = true"
-      @blur="focus = false"
+      @focus="setFocused()"
+      @blur="setBlur()"
     />
+    <p
+      v-if="state === 'invalid'"
+      :id="`${label}-error-message`"
+      class="font-heading text-red-600 flex items-center"
+      aria-live="assertive"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        class="h-4 w-4 text-red-600 inline-block"
+        role="img"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span class="py-1 px-2">
+        {{ validator.message }}
+      </span>
+    </p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, defineEmit, defineProps } from 'vue'
+import { ref, computed, watchEffect, defineEmit, defineProps } from 'vue'
 import { useRoute } from 'vue-router'
+import type { PropType } from 'vue'
+import type { Validator } from '../scripts/inputValidation'
+
+type State = 'focused' | 'unfocused' | 'invalid'
 
 const route = useRoute()
 const props = defineProps({
@@ -32,10 +71,10 @@ const props = defineProps({
   min: { type: Number, default: 0 },
   max: { type: Number, default: 100 },
   urlParameter: { type: String, default: '' },
+  validator: { type: Object as PropType<Validator>, default: null },
 })
 const emit = defineEmit(['update:modelValue'])
-
-const focus = ref(false)
+const state = ref<State>('unfocused')
 
 const handleEvent = (event: Event) =>
   emit(
@@ -43,13 +82,25 @@ const handleEvent = (event: Event) =>
     parseInt((event.target as HTMLInputElement).value, 10)
   )
 
-watch(
-  () => route.query,
-  () => {
-    if (props.urlParameter && route.query?.[props.urlParameter]) {
-      emit('update:modelValue', Number(route.query?.[props.urlParameter]))
+const setFocused = () => {
+  state.value = 'focused'
+}
+const setBlur = () => {
+  state.value = 'unfocused'
+}
+
+watchEffect(() => {
+  if (props.urlParameter && route.query?.[props.urlParameter])
+    emit('update:modelValue', Number(route.query?.[props.urlParameter]))
+})
+
+const inputValidationProps = computed(() => {
+  if (state.value === 'invalid')
+    return {
+      'aria-describedby': `${props.label}-error-message`,
+      'aria-invalid': true,
+      required: true,
     }
-  },
-  { immediate: true }
-)
+  else return {}
+})
 </script>
