@@ -171,6 +171,10 @@ const themes: Record<string, Theme> = {
 export default (themeName: string) => {
   const theme = themes[themeName] ?? purpleTheme
 
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', theme['--main-600'])
+
   for (const [name, value] of Object.entries(theme))
     document.body.style.setProperty(name, value)
 }
