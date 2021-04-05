@@ -75,8 +75,6 @@ def sitemap() -> wrappers.Response:
     return wrappers.Response(generate_sitemap(), mimetype="text/plain")
 
 
-@app.route("/robots.txt")
-@app.route("/manifest.json")
 @app.route("/service-worker.js")
 def static_from_root() -> wrappers.Response:
     return send_from_directory(app.static_folder, request.path[1:], cache_timeout=0)
