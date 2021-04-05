@@ -15,42 +15,21 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
 import CardEvent from '../components/CardEvent.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
-import { getLeague } from '../api/leagues'
-import { getLeagueEvents } from '../api/events'
+import { useLeague } from '../api/leagues'
+import { useLeagueEvents } from '../api/events'
 
-const store = useStore()
 const route = useRoute()
 
-const loading = ref(true)
-const league = ref<League | null>(null)
-const events = ref<LeagueEvent[]>([])
-
-const refreshDetails = async () => {
-  const routeParamsName = toSingleString(route.params.name)
-  loading.value = true
-
-  await Promise.all([
-    getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
-      (eventDetails) => {
-        events.value = eventDetails ?? []
-      }
-    ),
-    getLeague(routeParamsName).then((leagueDetails) => {
-      league.value = leagueDetails
-    }),
-  ])
-
-  loading.value = false
-}
-
-watch(route, refreshDetails, { immediate: true })
+const routeParamsName = computed(() => toSingleString(route.params.name))
+const [league, leagueLoading] = useLeague(routeParamsName)
+const [events, eventsLoading] = useLeagueEvents(routeParamsName)
+const loading = computed(() => leagueLoading.value || eventsLoading.value)
 </script>

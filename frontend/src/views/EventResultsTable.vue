@@ -180,7 +180,7 @@
   </Layout>
 </template>
 <script lang="ts" setup>
-import { ref, watch, computed, defineAsyncComponent } from 'vue'
+import { ref, computed, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
@@ -204,30 +204,18 @@ import {
   SortablePropertiesEvent as SortableProperties,
 } from '../scripts/sort'
 
-import { getEvent } from '../api/events'
-import { getEventResults } from '../api/results'
+import { useEvent } from '../api/events'
+import { useEventResults } from '../api/results'
 
 const route = useRoute()
 
 /* Get Data */
-const loading = ref(true)
-const event = ref<LeagueEvent | null>(null)
-const rawResults = ref<EventResult[]>([])
-const getData = async () => {
-  const routeParamsEvent: string = toSingleString(route.params.event) ?? ''
-  loading.value = true
-  if (routeParamsEvent)
-    await Promise.all([
-      getEvent(routeParamsEvent).then((eventDetails) => {
-        event.value = eventDetails
-      }),
-      getEventResults(routeParamsEvent).then((resultDetails) => {
-        rawResults.value = resultDetails ?? []
-      }),
-    ])
-  loading.value = false
-}
-watch(route, getData, { immediate: true })
+const routeParamsEvent = computed(
+  () => toSingleString(route.params.event) ?? ''
+)
+const [event, eventLoading] = useEvent(routeParamsEvent)
+const [rawResults, resultsLoading] = useEventResults(routeParamsEvent)
+const loading = computed(() => eventLoading.value && resultsLoading.value)
 
 /* Results */
 const results = computed(() =>

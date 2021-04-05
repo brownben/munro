@@ -83,7 +83,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -95,9 +95,9 @@ import InputTextarea from '../../components/InputTextarea.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 
-import { getLeagues } from '../../api/leagues'
+import { useLeagues } from '../../api/leagues'
 import {
-  getEvent,
+  useEvent,
   createEvent as apiCreateEvent,
   updateEvent as apiUpdateEvent,
 } from '../../api/events'
@@ -106,8 +106,10 @@ const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
-const loading = ref(true)
-const leagues = ref<League[]>([])
+const routeParamsId = computed(() => toSingleString(route.params.id))
+const [leagues] = useLeagues()
+const [eventRaw, loading] = useEvent(routeParamsId)
+
 const event = ref<LeagueEvent>({
   id: '',
   name: '',
@@ -126,22 +128,10 @@ const event = ref<LeagueEvent>({
   additionalSettings: '',
 })
 
-const refreshDetails = async () => {
-  const routeParamsId = toSingleString(route.params.id)
-
-  getLeagues().then((data) => {
-    leagues.value = data ?? []
-  })
-
-  if (routeParamsId) {
-    loading.value = true
-    await getEvent(routeParamsId).then((data) => {
-      if (data) event.value = data
-      if (!data?.secondaryLeague) event.value.secondaryLeague = ''
-    })
-    loading.value = false
-  }
-}
+watchEffect(() => {
+  if (eventRaw.value) event.value = eventRaw.value
+  if (!event.value?.secondaryLeague) event.value.secondaryLeague = ''
+})
 
 const validateForm = () => {
   if (event.value.name === '' || event.value.league === '') {
@@ -185,6 +175,4 @@ const subLeagues = computed(() =>
     .filter((league) => league.subLeagueOf === event.value.league)
     .map((league) => league.name)
 )
-
-watch(route, refreshDetails, { immediate: true })
 </script>

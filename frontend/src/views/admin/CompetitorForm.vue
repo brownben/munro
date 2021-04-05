@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -45,18 +45,20 @@ import InputText from '../../components/InputText.vue'
 import { toSingleString } from '../../scripts/typeHelpers'
 
 import {
-  getCompetitor,
+  useCompetitor,
   createCompetitor as apiCreateCompetitor,
   updateCompetitor as apiUpdateCompetitor,
 } from '../../api/competitors'
-import { getLeagues } from '../../api/leagues'
+import { useLeagues } from '../../api/leagues'
 
 const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
-const loading = ref(true)
-const leagues = ref<League[]>([])
+const routeParamsId = computed(() => toSingleString(route.params.id))
+const [leagues] = useLeagues()
+const [competitorRaw, loading] = useCompetitor(routeParamsId)
+
 const competitor = ref<Competitor>({
   id: 0,
   name: '',
@@ -66,20 +68,9 @@ const competitor = ref<Competitor>({
   league: '',
 })
 
-const refreshDetails = async () => {
-  const routeParamsId = toSingleString(route.params.id)
-
-  getLeagues().then((data) => {
-    leagues.value = data ?? []
-  })
-
-  loading.value = true
-  if (routeParamsId)
-    await getCompetitor(routeParamsId).then((data) => {
-      if (data) competitor.value = data
-    })
-  loading.value = false
-}
+watchEffect(() => {
+  if (competitorRaw.value) competitor.value = competitorRaw.value
+})
 
 const courses = computed(
   () =>
@@ -123,6 +114,4 @@ const submit = () =>
 const title = computed(() =>
   route.path.includes('/edit') ? 'Edit Competitor' : 'Create Competitor'
 )
-
-watch(route, refreshDetails, { immediate: true })
 </script>

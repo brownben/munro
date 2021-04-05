@@ -171,13 +171,13 @@
       :event="event"
       :league="league"
       class="col-span-2"
-      @event-changed="refreshDetails"
+      @event-changed="refreshEvents"
     />
   </Layout>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
+import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -186,34 +186,21 @@ import CardEvent from '../components/CardEvent.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
-import { getLeague, deleteLeague } from '../api/leagues'
-import { getLeagueEvents } from '../api/events'
+import { useLeague, deleteLeague } from '../api/leagues'
+import { useLeagueEvents } from '../api/events'
 
 const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
 /* Get Data */
-const loading = ref(true)
-const league = ref<League | null>(null)
-const events = ref<LeagueEvent[]>([])
-const refreshDetails = async () => {
-  const routeParamsName = toSingleString(route.params.name)
-  loading.value = true
-  if (routeParamsName)
-    await Promise.all([
-      getLeague(routeParamsName).then((leagueDetails) => {
-        league.value = leagueDetails
-      }),
-      getLeagueEvents(routeParamsName, store.getters.loggedIn).then(
-        (eventDetails) => {
-          events.value = eventDetails ?? []
-        }
-      ),
-    ])
-  loading.value = false
-}
-watch(route, refreshDetails, { immediate: true })
+const routeParamsName = computed(() => toSingleString(route.params.name))
+const [league, leagueLoading] = useLeague(routeParamsName)
+const [events, eventsLoading, refreshEvents] = useLeagueEvents(
+  routeParamsName,
+  store.getters.loggedIn
+)
+const loading = computed(() => leagueLoading.value || eventsLoading.value)
 
 /* Template Methods */
 const deleteLeagueConfirmation = () => {

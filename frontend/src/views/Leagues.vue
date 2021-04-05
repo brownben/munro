@@ -16,14 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { getLeagues } from '../api/leagues'
 import Layout from '../components/Layout.vue'
 import CardLeague from '../components/CardLeague.vue'
 
-const leagues = ref<League[]>([])
+import { useLeagues } from '../api/leagues'
 
-onMounted(async () => {
-  leagues.value = (await getLeagues()) ?? []
-})
+const [leagues] = useLeagues()
 </script>

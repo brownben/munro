@@ -225,7 +225,7 @@
         <router-link
           v-for="course in otherCourses"
           :key="course"
-          :to="'/leagues/' + $route.params.league + '/results/' + course"
+          :to="`/leagues/${$route.params.league}/results/${course}`"
           class="button"
         >
           {{ course }}
@@ -236,8 +236,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed, defineAsyncComponent } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, computed, defineAsyncComponent, unref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
 import FilterMenu from '../components/FilterMenu.vue'
@@ -256,56 +256,32 @@ import {
   SortablePropertiesLeague as SortableProperties,
 } from '../scripts/sort'
 
-import { getLeague } from '../api/leagues'
-import { getLeagueEvents } from '../api/events'
-import { getLeagueResults } from '../api/results'
+import { useLeague } from '../api/leagues'
+import { useLeagueEvents } from '../api/events'
+import { useLeagueResults } from '../api/results'
 
-const router = useRouter()
 const route = useRoute()
+const routeLeague = computed(() => toSingleString(route.params.league))
+const routeCourse = computed(() => toSingleString(route.params.course))
 
-/* Get Data */
-const loading = ref(true)
-const league = ref<League | null>(null)
-const eventsWithResults = ref<LeagueEvent[]>([])
-const rawResults = ref<LeagueResult[]>([])
-const getData = async () => {
-  const routeParamsLeague = toSingleString(route.params.league)
-  const routeParamsCourse = toSingleString(route.params.course)
-  loading.value = true
+const [rawResults, resultsLoading] = useLeagueResults(routeLeague, routeCourse)
+const [league, leagueLoading] = useLeague(routeLeague)
+const [eventsWithResults, eventsLoading] = useLeagueEvents(routeLeague)
+const loading = computed(
+  () => leagueLoading.value || eventsLoading.value || resultsLoading.value
+)
 
-  if (routeParamsLeague)
-    await Promise.all([
-      getLeagueResults(routeParamsLeague, routeParamsCourse).then(
-        (resultDetails) => {
-          rawResults.value = resultDetails ?? []
-        }
-      ),
-      getLeague(routeParamsLeague).then((leagueDetails) => {
-        league.value = leagueDetails
-      }),
-      getLeagueEvents(routeParamsLeague).then((eventDetails) => {
-        eventsWithResults.value =
-          eventDetails?.filter((event: LeagueEvent) => event.resultUploaded) ??
-          []
-      }),
-    ])
-
-  loading.value = false
-}
-watch(route, getData, { immediate: true })
-
-/* Results */
 const results = computed(() =>
   rawResults.value
     .map(resultWithAgeGender)
     .filter((result) => filterResults(result, filterPreferences.value))
     .sort(sortResults(sortPreferences.value))
 )
+
 const otherCourses = computed(
   () =>
-    league.value?.courses?.filter(
-      (course: string) => course !== toSingleString(route.params.course)
-    ) ?? []
+    league.value?.courses.filter((course) => course !== unref(routeCourse)) ??
+    []
 )
 
 /* Sort + Filter Preferences */

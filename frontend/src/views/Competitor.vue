@@ -63,13 +63,13 @@
       :key="result?.id ?? 0"
       :result="result"
       :show-time="league?.dynamicEventResults"
-      @result-changed="refreshDetails"
+      @result-changed="refreshResults"
     />
   </Layout>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
@@ -77,38 +77,22 @@ import CardResult from '../components/CardResult.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
-import { getLeague } from '../api/leagues'
-import { getCompetitor } from '../api/competitors'
-import { getCompetitorResults } from '../api/results'
+import { useLeague } from '../api/leagues'
+import { useCompetitor } from '../api/competitors'
+import { useCompetitorResults } from '../api/results'
 
 const route = useRoute()
 
 /* Get Data */
-const loading = ref(true)
-const league = ref<League | null>(null)
-const competitor = ref<Competitor | null>(null)
-const results = ref<EventResult[]>([])
 
-const refreshDetails = async () => {
-  const routeParamsId = toSingleString(route.params.id)
-  loading.value = true
-
-  if (routeParamsId)
-    await Promise.all([
-      getCompetitor(routeParamsId)
-        .then((competitorDetails) => {
-          competitor.value = competitorDetails
-        })
-        .then(() => getLeague(competitor.value?.league ?? ''))
-        .then((leagueDetails) => {
-          league.value = leagueDetails
-        }),
-      getCompetitorResults(routeParamsId).then((resultDetails) => {
-        results.value = resultDetails ?? []
-      }),
-    ])
-
-  loading.value = false
-}
-watch(route, refreshDetails, { immediate: true })
+const routeParamsId = computed(() => toSingleString(route.params.id))
+const [competitor, competitorLoading] = useCompetitor(routeParamsId)
+const competitorLeague = computed(() => competitor.value?.league ?? '')
+const [league, leagueLoading] = useLeague(competitorLeague)
+const [results, resultsLoading, refreshResults] = useCompetitorResults(
+  routeParamsId
+)
+const loading = computed(
+  () => competitorLoading.value || leagueLoading.value || resultsLoading.value
+)
 </script>
