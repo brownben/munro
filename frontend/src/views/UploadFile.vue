@@ -81,8 +81,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, watchEffect, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
@@ -90,10 +90,8 @@ import InputText from '../components/InputText.vue'
 import InputFile from '../components/InputFile.vue'
 import InputCheckbox from '../components/InputCheckbox.vue'
 
-import { toSingleString } from '../scripts/typeHelpers'
-
+import { useEvent } from '../api/events'
 import { uploadFile as apiUploadFile } from '../api/upload'
-import { getEvent } from '../api/events'
 
 const store = useStore()
 const router = useRouter()
@@ -107,18 +105,17 @@ const uploadConfig = ref<UploadFile>({
   routegadget: '',
   winsplits: '',
 })
-const event = ref<LeagueEvent | null>(null)
 const eventId = computed(() => uploadConfig.value.eventId)
+const [event] = useEvent(eventId)
 
-const findEvent = async () => {
-  const result = await getEvent(uploadConfig.value.eventId)
-  event.value = result
-  if (result) {
-    uploadConfig.value.results = result.results
-    uploadConfig.value.winsplits = result.winsplits
-    uploadConfig.value.routegadget = result.routegadget
+watchEffect(() => {
+  if (event.value) {
+    uploadConfig.value.results = event.value.results
+    uploadConfig.value.winsplits = event.value.winsplits
+    uploadConfig.value.routegadget = event.value.routegadget
   }
-}
+})
+
 const fileRead = (file: string) => {
   uploadConfig.value.file = file
 }
@@ -128,6 +125,4 @@ const uploadFile = () => {
     .then(() => router.push(`/events/${eventId.value}/results`))
     .catch(() => false)
 }
-
-watch(eventId, findEvent, { immediate: true })
 </script>

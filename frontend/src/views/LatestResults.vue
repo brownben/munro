@@ -18,14 +18,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { getLatestResults } from '../api/events'
 import Layout from '../components/Layout.vue'
 import CardEvent from '../components/CardEvent.vue'
 
-const events = ref<LeagueEvent[]>([])
+import { useLatestResults } from '../api/events'
 
-onMounted(async () => {
-  events.value = (await getLatestResults()) ?? []
-})
+const [events] = useLatestResults()
 </script>

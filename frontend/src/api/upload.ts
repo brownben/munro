@@ -1,6 +1,8 @@
 import { postData } from './requests'
 
-export const uploadFile = (data: UploadFile): Promise<ServerMessage | null> =>
+export const uploadFile = (
+  data: UploadFile
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/upload`,
     data,
@@ -11,7 +13,7 @@ export const uploadFile = (data: UploadFile): Promise<ServerMessage | null> =>
 
 export const uploadResult = (
   data: UploadResult
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/upload/result`,
     data,
@@ -22,7 +24,7 @@ export const uploadResult = (
 
 export const uploadSimple = (
   data: UploadSimple
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/upload/simple`,
     data,

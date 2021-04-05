@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -57,8 +57,8 @@ import InputDropdown from '../components/InputDropdown.vue'
 
 import { getText } from '../api/requests'
 import { uploadSimple } from '../api/upload'
-import { getEvent } from '../api/events'
-import { getLeague } from '../api/leagues'
+import { useEvent } from '../api/events'
+import { useLeague } from '../api/leagues'
 
 const store = useStore()
 const router = useRouter()
@@ -70,20 +70,12 @@ const uploadConfig = ref<UploadSimple>({
   file: '',
   course: '',
 })
-const event = ref<LeagueEvent | null>(null)
-const courses = ref<string[]>([])
 const eventId = computed(() => uploadConfig.value.eventId)
+const [event] = useEvent(eventId)
+const [league] = useLeague(computed(() => event.value?.league ?? ''))
+const courses = computed(() => league?.value?.courses ?? [])
 
-const getCourses = async () => {
-  event.value = await getEvent(uploadConfig.value.eventId)
-  const league: League | null = await getLeague(event.value?.league ?? '')
-
-  courses.value = league?.courses ?? []
-}
-
-watch(eventId, getCourses, { immediate: true })
-
-const maprunHTMLtoCSV = (html: string | null): string =>
+const maprunHTMLtoCSV = (html?: string): string =>
   html
     ?.replace(/\n/g, '')
     .replace(/<\/.*?>/g, '')

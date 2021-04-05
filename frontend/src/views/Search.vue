@@ -89,7 +89,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, defineAsyncComponent } from 'vue'
+import { computed, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
@@ -104,26 +104,13 @@ const NoResults = defineAsyncComponent(
 
 import { toSingleString } from '../scripts/typeHelpers'
 
-import { getQuery } from '../api/search'
+import { useQuery } from '../api/search'
 
 const route = useRoute()
 
-const loading = ref(true)
-const leagues = ref<League[]>([])
-const events = ref<LeagueEvent[]>([])
-const competitors = ref<Competitor[]>([])
-
-const getDetails = async () => {
-  loading.value = true
-  const routeParamsQuery = toSingleString(route.params.query)
-  const queryResult = await getQuery(routeParamsQuery)
-  if (queryResult) {
-    leagues.value = queryResult.leagues
-    events.value = queryResult.events
-    competitors.value = queryResult.competitors
-  }
-  loading.value = false
-}
-
-watch(route, getDetails, { immediate: true })
+const routeParamsQuery = computed(() => toSingleString(route.params.query))
+const [data, loading] = useQuery(routeParamsQuery)
+const leagues = computed(() => data.value?.leagues ?? [])
+const events = computed(() => data.value?.events ?? [])
+const competitors = computed(() => data.value?.competitors ?? [])
 </script>

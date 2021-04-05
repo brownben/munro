@@ -1,44 +1,58 @@
 import { getData, postData, putData } from './requests'
+import { useData, useDataList } from './useData'
 
-export const getResults = (): Promise<EventResult[] | null> =>
+const getResults = (): Promise<EventResult[] | undefined> =>
   getData<EventResult[]>({
     apiLocation: `/api/results`,
     customErrorMessage: 'Problem Fetching Results',
     noToken: true,
   })
 
-export const getEventResults = (
-  eventId: string
-): Promise<EventResult[] | null> =>
+const getEventResults = (eventId: string): Promise<EventResult[] | undefined> =>
   getData<EventResult[]>({
     apiLocation: `/api/events/${eventId}/results`,
     customErrorMessage: 'Problem Fetching Results',
     noToken: true,
   })
 
-export const getLeagueResults = (
+const getLeagueResults = (
   league: string,
   course: string
-): Promise<LeagueResult[] | null> =>
+): Promise<LeagueResult[] | undefined> =>
   getData<LeagueResult[]>({
     apiLocation: `/api/leagues/${league}/results/${course}`,
     customErrorMessage: 'Problem Fetching Results',
     noToken: true,
   })
 
-export const getCompetitorResults = (
+const getCompetitorResults = (
   competitor: string
-): Promise<EventResult[] | null> =>
+): Promise<EventResult[] | undefined> =>
   getData<EventResult[]>({
     apiLocation: `/api/competitors/${competitor}/results`,
     customErrorMessage: 'Problem Fetching Results',
     noToken: true,
   })
 
+export const useResults = useDataList<EventResult, typeof getResults>(
+  getResults
+)
+export const useEventResults = useDataList<EventResult, typeof getEventResults>(
+  getEventResults
+)
+export const useLeagueResults = useDataList<
+  LeagueResult,
+  typeof getLeagueResults
+>(getLeagueResults)
+export const useCompetitorResults = useDataList<
+  EventResult,
+  typeof getCompetitorResults
+>(getCompetitorResults)
+
 export const hideResult = (
   id: number,
   hide: boolean
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   putData<ServerMessage>({
     apiLocation: `/api/results/${id}`,
     data: {
@@ -51,7 +65,7 @@ export const hideResult = (
 export const incompleteResult = (
   id: number,
   incomplete: boolean
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   putData<ServerMessage>({
     apiLocation: `/api/results/${id}`,
     data: {
@@ -65,7 +79,7 @@ export const incompleteResult = (
 
 export const createManualResult = (
   data: ManualResult
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/results/manual`,
     data,
@@ -76,7 +90,7 @@ export const createManualResult = (
 
 export const transferResult = (
   data: TransferResult
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/results/transfer`,
     data,

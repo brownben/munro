@@ -30,13 +30,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
-import { getLatestResults } from '../api/events'
 import CardEvent from './CardEventSmall.vue'
 
-const events = ref<LeagueEvent[]>([])
+import { useLatestResults } from '../api/events'
 
-onMounted(async () => {
-  events.value = (await getLatestResults()) ?? []
-})
+const [events] = useLatestResults()
 </script>

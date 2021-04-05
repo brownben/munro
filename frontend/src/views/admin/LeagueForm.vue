@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -101,18 +101,19 @@ import InputNumber from '../../components/InputNumber.vue'
 import { toSingleString } from '../../scripts/typeHelpers'
 
 import {
-  getLeague,
-  getLeagues,
+  useLeagues,
   createLeague as apiCreateLeague,
   updateLeague as apiUpdateLeague,
+  useLeague,
 } from '../../api/leagues'
 
 const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
-const loading = ref(true)
-const leagues = ref<League[]>([])
+const routeParamsName = computed(() => toSingleString(route.params.name))
+const [leagues] = useLeagues()
+const [leagueRaw, loading] = useLeague(routeParamsName)
 const league = ref<LeagueForm>({
   courses: '',
   coordinator: '',
@@ -130,26 +131,17 @@ const league = ref<LeagueForm>({
   additionalSettings: '',
 })
 
-const refreshDetails = async () => {
-  const routeParamsName = toSingleString(route.params.name)
-
-  getLeagues().then((data) => {
-    leagues.value = data ?? []
-  })
-
-  loading.value = true
-  if (routeParamsName)
-    await getLeague(routeParamsName).then((data) => {
-      league.value = {
-        ...data,
-        courses: data?.courses?.join(',') ?? '',
-        moreInformation: data?.moreInformation?.replace(/\|\s*/g, '\n') ?? '',
-        dynamicEventResults: data?.dynamicEventResults ?? true,
-        leagueScoring: data?.leagueScoring ?? 'course',
-      } as LeagueForm
-    })
-  loading.value = false
-}
+watchEffect(() => {
+  if (leagueRaw.value)
+    league.value = {
+      ...leagueRaw.value,
+      courses: leagueRaw.value.courses?.join(',') ?? '',
+      moreInformation:
+        leagueRaw.value.moreInformation?.replace(/\|\s*/g, '\n') ?? '',
+      dynamicEventResults: leagueRaw.value.dynamicEventResults ?? true,
+      leagueScoring: leagueRaw.value.leagueScoring ?? 'course',
+    } as LeagueForm
+})
 
 const validateForm = () => {
   if (league.value.name === '' || league.value.scoringMethod === '') {
@@ -201,8 +193,6 @@ const leaguesSuitableForSubLeague = computed(() =>
     .filter((l) => l.scoringMethod === league.value.scoringMethod)
     .map((league) => league.name)
 )
-
-watch(route, refreshDetails, { immediate: true })
 
 const scoringMethodOptions = [
   { value: 'position', text: 'Position Based (100 Max)' },

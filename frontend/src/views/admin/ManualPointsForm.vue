@@ -53,7 +53,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -61,29 +61,23 @@ import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 import InputNumber from '../../components/InputNumber.vue'
 
-import { getLeagues } from '../../api/leagues'
-import { getEvents } from '../../api/events'
-import { getCompetitors } from '../../api/competitors'
+import { useLeagues } from '../../api/leagues'
+import { useEvents } from '../../api/events'
+import { useCompetitors } from '../../api/competitors'
 import { createManualResult } from '../../api/results'
 
 const store = useStore()
 const router = useRouter()
 
-const leagues = ref<League[]>([])
-const events = ref<LeagueEvent[]>([])
-const competitors = ref<Competitor[]>([])
+const [leagues] = useLeagues()
+const [events] = useEvents()
+const [competitors] = useCompetitors()
 const choices = ref({
   league: '',
   event: '',
   course: '',
   competitor: '',
   points: 0,
-})
-
-onMounted(async () => {
-  leagues.value = (await getLeagues()) ?? []
-  events.value = (await getEvents()) ?? []
-  competitors.value = (await getCompetitors()) ?? []
 })
 
 const courses = computed(
@@ -130,12 +124,14 @@ const validateForm = () => {
   }
 }
 
-const addResult = () =>
-  createManualResult({
-    competitor: Number(choices.value.competitor),
-    event: choices.value.event,
-    points: choices.value.points,
-  })
-    .then(() => router.push(`/leagues/${choices.value.league}/competitors`))
-    .catch(() => false)
+const addResult = () => {
+  if (validateForm())
+    createManualResult({
+      competitor: Number(choices.value.competitor),
+      event: choices.value.event,
+      points: choices.value.points,
+    })
+      .then(() => router.push(`/leagues/${choices.value.league}/competitors`))
+      .catch(() => false)
+}
 </script>

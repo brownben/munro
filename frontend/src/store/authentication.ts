@@ -33,8 +33,8 @@ const actions = <ActionTree<AuthState, string>>{
       useServerErrorMessage: false,
       customErrorHandler: true,
       noToken: true,
-    }).then((user: user | null) => {
-      if (user === null) throw new Error()
+    }).then((user?: user) => {
+      if (user === undefined) throw new Error()
       context.commit('setUser', user)
       return context.state.user
     }),

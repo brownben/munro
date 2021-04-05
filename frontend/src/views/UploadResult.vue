@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 
@@ -55,45 +55,25 @@ import InputDropdown from '../components/InputDropdown.vue'
 
 import { RequiredField, IsValidTime } from '../scripts/inputValidation'
 
-import { getLeagues } from '../api/leagues'
-import { getEvents } from '../api/events'
+import { useLeagues } from '../api/leagues'
+import { useEvents } from '../api/events'
 import { uploadResult as apiUploadResult } from '../api/upload'
 
 const store = useStore()
 const router = useRouter()
 const route = useRoute()
 
-const loading = ref(true)
-const leagues = ref<League[]>([])
-const events = ref<LeagueEvent[]>([])
+const [leagues] = useLeagues()
+const [rawEvents] = useEvents()
+const events = computed(() =>
+  rawEvents.value.filter((event) => event.userSubmittedResults)
+)
 const result = ref<UploadResult>({
   name: '',
   eventId: '',
   course: '',
   time: '',
 })
-
-const refreshDetails = async () => {
-  loading.value = true
-  await Promise.all([
-    getLeagues().then((data) => {
-      leagues.value = data ?? []
-    }),
-    getEvents().then((data) => {
-      events.value =
-        data?.filter((event: LeagueEvent) => event.userSubmittedResults) ?? []
-
-      if (events.value.length < 1)
-        store.dispatch(
-          'createMessage',
-          'Sorry, No Events Found to Submit Results'
-        )
-    }),
-  ])
-  loading.value = false
-}
-
-watch(route, refreshDetails, { immediate: true })
 
 const courses = computed(() => {
   const eventSelected = events.value.find(

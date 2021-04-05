@@ -1,22 +1,23 @@
 import { getData, postData, putData, deleteData } from './requests'
+import { useData, useDataList } from './useData'
 
-export const getEvent = (id: string): Promise<LeagueEvent | null> =>
+const getEvent = (id: string): Promise<LeagueEvent | undefined> =>
   getData<LeagueEvent>({
     apiLocation: `/api/events/${id}`,
     customErrorMessage: 'Problem Fetching Event Details',
     noToken: true,
   })
 
-export const getEvents = (): Promise<LeagueEvent[] | null> =>
+const getEvents = (): Promise<LeagueEvent[] | undefined> =>
   getData<LeagueEvent[]>({
     apiLocation: '/api/events',
     customErrorMessage: 'Problem Fetching Events',
   })
 
-export const getLeagueEvents = (
+const getLeagueEvents = (
   league: string,
   uploadKey?: boolean
-): Promise<LeagueEvent[] | null> => {
+): Promise<LeagueEvent[] | undefined> => {
   const apiLocation = uploadKey
     ? `/api/leagues/${league}/events/uploadKey`
     : `/api/leagues/${league}/events`
@@ -27,13 +28,25 @@ export const getLeagueEvents = (
   })
 }
 
-export const getLatestResults = (): Promise<LeagueEvent[] | null> =>
+const getLatestResults = (): Promise<LeagueEvent[] | undefined> =>
   getData<LeagueEvent[]>({
     apiLocation: '/api/events/latest-results',
     customErrorMessage: 'Problem Fetching Events',
   })
 
-export const createEvent = (data: LeagueEvent): Promise<ServerMessage | null> =>
+export const useEvent = useData<LeagueEvent, typeof getEvent>(getEvent)
+export const useEvents = useDataList<LeagueEvent, typeof getEvents>(getEvents)
+export const useLeagueEvents = useDataList<LeagueEvent, typeof getLeagueEvents>(
+  getLeagueEvents
+)
+export const useLatestResults = useDataList<
+  LeagueEvent,
+  typeof getLatestResults
+>(getLatestResults)
+
+export const createEvent = (
+  data: LeagueEvent
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/events`,
     data,
@@ -42,7 +55,9 @@ export const createEvent = (data: LeagueEvent): Promise<ServerMessage | null> =>
     customErrorHandler: true,
   })
 
-export const updateEvent = (data: LeagueEvent): Promise<ServerMessage | null> =>
+export const updateEvent = (
+  data: LeagueEvent
+): Promise<ServerMessage | undefined> =>
   putData<ServerMessage>({
     apiLocation: `/api/events/${data.id}`,
     data,
@@ -54,7 +69,7 @@ export const updateEvent = (data: LeagueEvent): Promise<ServerMessage | null> =>
 export const deleteEvent = (
   id: string,
   name: string
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   deleteData<ServerMessage>({
     apiLocation: `/api/events/${id}`,
     customErrorMessage: 'Problem Deleting Event',

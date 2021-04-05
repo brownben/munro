@@ -1,20 +1,26 @@
 import { getData, postData, putData, deleteData } from './requests'
+import { useData, useDataList } from './useData'
 
-export const getLeague = (name: string): Promise<League | null> =>
-  getData<League | null>({
+const getLeague = (name: string): Promise<League | undefined> =>
+  getData<League | undefined>({
     apiLocation: `/api/leagues/${name}`,
     customErrorMessage: 'Problem Fetching League Details',
     noToken: true,
   })
 
-export const getLeagues = (): Promise<League[] | null> =>
+const getLeagues = (): Promise<League[] | undefined> =>
   getData<League[]>({
     apiLocation: '/api/leagues',
     customErrorMessage: 'Problem Fetching Leagues',
     noToken: true,
   })
 
-export const createLeague = (data: League): Promise<ServerMessage | null> =>
+export const useLeague = useData<League, typeof getLeague>(getLeague)
+export const useLeagues = useDataList<League, typeof getLeagues>(getLeagues)
+
+export const createLeague = (
+  data: League
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/leagues`,
     data,
@@ -23,7 +29,9 @@ export const createLeague = (data: League): Promise<ServerMessage | null> =>
     customErrorHandler: true,
   })
 
-export const updateLeague = (data: League): Promise<ServerMessage | null> =>
+export const updateLeague = (
+  data: League
+): Promise<ServerMessage | undefined> =>
   putData<ServerMessage>({
     apiLocation: `/api/leagues/${data.name}`,
     data,
@@ -32,7 +40,9 @@ export const updateLeague = (data: League): Promise<ServerMessage | null> =>
     customErrorHandler: true,
   })
 
-export const deleteLeague = (name: string): Promise<ServerMessage | null> =>
+export const deleteLeague = (
+  name: string
+): Promise<ServerMessage | undefined> =>
   deleteData<ServerMessage>({
     apiLocation: `/api/leagues/${name}`,
     customErrorMessage: 'Problem Deleting League',

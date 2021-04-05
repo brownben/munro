@@ -57,18 +57,18 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import DropdownInput from '../../components/InputDropdown.vue'
 
-import { getLeagues } from '../../api/leagues'
-import { getEvents } from '../../api/events'
-import { getCompetitors } from '../../api/competitors'
+import { useLeagues } from '../../api/leagues'
+import { useEvents } from '../../api/events'
+import { useCompetitors } from '../../api/competitors'
 import {
-  getResults,
+  useResults,
   transferResult as apiTransferResult,
 } from '../../api/results'
 
@@ -79,23 +79,16 @@ import { elapsedTime } from '../../scripts/time'
 const store = useStore()
 const router = useRouter()
 
-const leagues = ref<League[]>([])
-const events = ref<LeagueEvent[]>([])
-const competitors = ref<Competitor[]>([])
-const results = ref<EventResult[]>([])
+const [leagues] = useLeagues()
+const [events] = useEvents()
+const [competitors] = useCompetitors()
+const [results] = useResults()
 const choices = ref({
   league: '',
   event: '',
   course: '',
   competitor: '',
   result: '',
-})
-
-onMounted(async () => {
-  leagues.value = (await getLeagues()) ?? []
-  events.value = (await getEvents()) ?? []
-  results.value = (await getResults()) ?? []
-  competitors.value = (await getCompetitors()) ?? []
 })
 
 const courses = computed(

@@ -56,28 +56,23 @@ import { useStore } from 'vuex'
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 
-import { getLeagues } from '../../api/leagues'
+import { useLeagues } from '../../api/leagues'
 import {
-  getCompetitors,
+  useCompetitors,
   mergeCompetitors as apiMergeCompetitors,
 } from '../../api/competitors'
 
 const store = useStore()
 const router = useRouter()
 
-const leagues = ref<League[]>([])
-const competitors = ref<Competitor[]>([])
+const [leagues] = useLeagues()
+const [competitors] = useCompetitors()
 
 const choices = ref({
   league: '',
   competitorMerge: '',
   competitorKeep: '',
   course: '',
-})
-
-onMounted(async () => {
-  leagues.value = (await getLeagues()) ?? []
-  competitors.value = (await getCompetitors()) ?? []
 })
 
 const courses = computed(
@@ -121,11 +116,13 @@ const validateForm = () => {
   }
 }
 
-const mergeCompetitors = () =>
-  apiMergeCompetitors({
-    competitorMerge: Number(choices.value.competitorMerge),
-    competitorKeep: Number(choices.value.competitorKeep),
-  })
-    .then(() => router.push(`/competitors/${choices.value.competitorKeep}`))
-    .catch(() => false)
+const mergeCompetitors = () => {
+  if (validateForm())
+    apiMergeCompetitors({
+      competitorMerge: Number(choices.value.competitorMerge),
+      competitorKeep: Number(choices.value.competitorKeep),
+    })
+      .then(() => router.push(`/competitors/${choices.value.competitorKeep}`))
+      .catch(() => false)
+}
 </script>
