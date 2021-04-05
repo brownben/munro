@@ -1,31 +1,43 @@
 import { getData, postData, putData } from './requests'
+import { useData, useDataList } from './useData'
 
-export const getCompetitor = (id: string): Promise<Competitor | null> =>
-  getData<Competitor | null>({
+const getCompetitor = (id: string): Promise<Competitor | undefined> =>
+  getData<Competitor | undefined>({
     apiLocation: `/api/competitors/${id}`,
     customErrorMessage: 'Problem Fetching Competitor Details',
     noToken: true,
   })
 
-export const getCompetitors = (): Promise<Competitor[] | null> =>
+const getCompetitors = (): Promise<Competitor[] | undefined> =>
   getData<Competitor[]>({
     apiLocation: '/api/competitors',
     customErrorMessage: 'Problem Fetching Competitors',
     noToken: true,
   })
 
-export const getLeagueCompetitors = (
+const getLeagueCompetitors = (
   league: string
-): Promise<Competitor[] | null> =>
+): Promise<Competitor[] | undefined> =>
   getData<Competitor[]>({
     apiLocation: `/api/leagues/${league}/competitors`,
     customErrorMessage: 'Problem Fetching Competitors',
     noToken: true,
   })
 
+export const useCompetitor = useData<Competitor, typeof getCompetitor>(
+  getCompetitor
+)
+export const useCompetitors = useDataList<Competitor, typeof getCompetitors>(
+  getCompetitors
+)
+export const useLeagueCompetitors = useDataList<
+  Competitor,
+  typeof getLeagueCompetitors
+>(getLeagueCompetitors)
+
 export const createCompetitor = (
   data: Competitor
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/competitors`,
     data,
@@ -36,7 +48,7 @@ export const createCompetitor = (
 
 export const updateCompetitor = (
   data: Competitor
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   putData<ServerMessage>({
     apiLocation: `/api/competitors/${data.id}`,
     data,
@@ -47,7 +59,7 @@ export const updateCompetitor = (
 
 export const mergeCompetitors = (
   data: MergeCompetitors
-): Promise<ServerMessage | null> =>
+): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
     apiLocation: `/api/competitors/merge`,
     data,

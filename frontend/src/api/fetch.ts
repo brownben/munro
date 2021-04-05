@@ -13,7 +13,7 @@ export const sendRequest = <T>(
   apiLocation: string,
   fetchConfig: FetchConfig,
   responseConfig: RequestConfig
-): Promise<T | null> =>
+): Promise<T | undefined> =>
   Fetch<T>(apiLocation, fetchConfig)
     .then((response: TypedResponse<T>) => {
       if (!response.ok) throw Error(response.statusText)
@@ -26,7 +26,7 @@ export const sendRequestText = (
   apiLocation: string,
   fetchConfig: FetchConfig,
   responseConfig: RequestConfig
-): Promise<string | null> =>
+): Promise<string | undefined> =>
   Fetch<string>(apiLocation, fetchConfig)
     .then((response: TypedResponse<string>) => {
       if (!response.ok) throw Error(response.statusText)
@@ -42,10 +42,10 @@ const showSuccessMessage = <T>(data: T, config: RequestConfig): T => {
   return data
 }
 
-const handleError = (error: Error, config: RequestConfig): null => {
+const handleError = (error: Error, config: RequestConfig): undefined => {
   if (config.useServerErrorMessage) addMessage(error.message)
   if (config.customErrorMessage) addMessage(config.customErrorMessage)
   if (config.customErrorHandler) throw error
 
-  return null
+  return
 }
