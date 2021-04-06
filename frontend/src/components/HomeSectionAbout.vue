@@ -26,13 +26,13 @@
           Introducing Munro Leagues
         </router-link>
       </div>
-
-      <img
-        class="h-64 md:h-56 lg:h-64"
-        src="../assets/images/UnDrawOFlagPurple.svg"
-        alt="Orienteering Flag in Front of Trees and Hills"
-        loading="lazy"
-      />
+      <!--  -->
+      <div class="h-64 md:h-56 lg:h-64">
+        <Image />
+      </div>
     </div>
   </section>
 </template>
+<script setup lang="ts">
+import Image from './images/OFlag.vue'
+</script>

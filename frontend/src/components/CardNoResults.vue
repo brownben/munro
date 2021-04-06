@@ -1,11 +1,7 @@
 <template>
   <section class="mt-2 text-center card">
     <div class="inline-block w-full my-6">
-      <img
-        src="../assets/images/UndrawLost.svg"
-        class="inline-block object-contain w-full mx-auto max-h-64"
-        alt="Person Lost looking at Map"
-      />
+      <Image class="inline-block object-contain w-full mx-auto max-h-64" />
     </div>
 
     <h1
@@ -23,6 +19,7 @@
 </template>
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import Image from '../components/images/Lost.vue'
 
 const props = defineProps({
   text: { type: String, default: "Sorry, I Couldn't Find Any Results" },

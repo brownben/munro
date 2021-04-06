@@ -20,14 +20,13 @@
           View API Docs
         </router-link>
       </div>
-      <div class="mt-12 md:mt-0">
-        <img
-          class="w-2/3 mx-auto xl:w-7/12"
-          src="../assets/images/Crane.svg"
-          alt="Crane Building Website"
-          loading="lazy"
-        />
+
+      <div class="w-2/3 md:w-5/12 xl:w-1/3 mt-4 md:mt-0">
+        <Image class="h-full" />
       </div>
     </div>
   </section>
 </template>
+<script setup lang="ts">
+import Image from './images/BuildingWall.vue'
+</script>

@@ -7,11 +7,7 @@
 
   <div class="w-full col-span-2 px-6 text-center mb-8">
     <div class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12">
-      <img
-        src="../assets/images/UndrawLost.svg"
-        class="object-contain w-full mx-auto max-h-112"
-        alt="Person Lost looking at Map"
-      />
+      <Image class="object-contain w-full mx-auto max-h-112" />
     </div>
     <h1
       class="mt-8 text-4xl font-bold text-gray-900 md:mt-12 md:text-5xl leading-12"
@@ -31,4 +27,5 @@
 
 <script setup lang="ts">
 import SearchBox from '../components/SearchBox.vue'
+import Image from '../components/images/Lost.vue'
 </script>
