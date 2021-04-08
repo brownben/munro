@@ -233,7 +233,8 @@ class League:
             """,
             (name,),
         )
-        return League(databaseResult)
+
+        return databaseResult and League(databaseResult)
 
     @staticmethod
     def exists(name: str) -> bool:

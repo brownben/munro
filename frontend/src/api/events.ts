@@ -48,7 +48,7 @@ export const createEvent = (
   data: LeagueEvent
 ): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
-    apiLocation: `/api/events`,
+    apiLocation: `/api/events/`,
     data,
     customErrorMessage: 'Problem Creating Event',
     customSuccessMessage: `Event \`${data.name}\` Created`,

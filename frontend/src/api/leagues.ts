@@ -22,7 +22,7 @@ export const createLeague = (
   data: League
 ): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
-    apiLocation: `/api/leagues`,
+    apiLocation: `/api/leagues/`,
     data,
     customErrorMessage: 'Problem Creating League',
     customSuccessMessage: `League \`${data.name}\` Created`,
