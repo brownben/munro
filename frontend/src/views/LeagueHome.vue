@@ -126,7 +126,7 @@
           <h2 class="mb-2 text-2xl font-bold font-heading sm:mb-0">
             League Results
           </h2>
-          <div v-if="league?.leagueScoring === 'course'">
+          <div v-if="league?.leagueScoring !== 'overall'">
             <router-link
               v-for="course of league.courses"
               :key="course"
@@ -136,10 +136,10 @@
               {{ course }}
             </router-link>
           </div>
-          <div v-else class="w-full mx-auto">
+          <div v-else>
             <router-link
               :to="`${$route.path}/results/Overall`"
-              class="button button-white mt-0 sm:mt-0"
+              class="inline-block w-full mx-0 mt-3 py-2 px-4 text-lg font-heading leading-tight bg-white bg-opacity-0 text-white outline-none appearance-none select-none rounded-shape transition duration-300 ease-in-out border border-white border-opacity-50 sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
             >
               Overall Results
             </router-link>
@@ -242,7 +242,7 @@ const scoringMethodShorthandToFull = (value: string): string => {
   else if (value === 'timeTop3Adjusted')
     return 'the Time Relative to the Average Time of the Top 3 (Adjusted by Course/Age Class)'
   else if (value === 'positionStaggered')
-    return 'Position Based (Staggered, 100 Max)'
+    return 'Position Based (Staggered, 60 Max)'
   else if (value === 'file') return 'the points uploaded'
   else return ''
 }

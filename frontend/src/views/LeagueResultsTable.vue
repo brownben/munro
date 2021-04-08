@@ -212,7 +212,7 @@
       v-if="
         !$route.path.includes('/embed/') &&
         !loading &&
-        league?.leagueScoring === 'course' &&
+        league?.leagueScoring !== 'overall' &&
         rawResults.length > 0 &&
         otherCourses.length > 0
       "

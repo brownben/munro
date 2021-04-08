@@ -212,7 +212,7 @@ const scoringMethodOptions = [
   },
   {
     value: 'positionStaggered',
-    text: 'Position Based (Staggered, 100 Max)',
+    text: 'Position Based (Staggered, 60 Max)',
   },
   {
     value: 'timeAverage',
