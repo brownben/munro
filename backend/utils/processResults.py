@@ -32,7 +32,7 @@ def getCountingPoints(
     leagueEvents: List[Event],
 ) -> List[PointsResult]:
     numberOfCountingEvents = league.numberOfCountingEvents
-    events = [getPointsResultEvent(result) for result in results]
+    events = [getPointsResultEvent(result) for result in results if result]
     remainingScores = [
         PointsResultWithIndex(
             index=index,
@@ -42,6 +42,7 @@ def getCountingPoints(
             counting=None,
         )
         for index, result in enumerate(results)
+        if result
     ]
 
     countingScores = []
@@ -64,7 +65,8 @@ def getCountingPoints(
         countingScores.extend(largestScores)
 
     for index, result in enumerate(results):
-        result["counting"] = index in countingScores
+        if result:
+            result["counting"] = index in countingScores
 
     return results
 
@@ -79,7 +81,7 @@ def getIndexesOfRequiredEvents(
 def removeCountingScores(
     scores: List[PointsResultWithIndex], countingScores: List[int]
 ) -> List[PointsResultWithIndex]:
-    return [score for score in scores if score["index"] not in countingScores]
+    return [score for score in scores if score and score["index"] not in countingScores]
 
 
 def getIndexesOfGroupedEvents(
@@ -117,7 +119,9 @@ def getIndexesOfLargestScores(
 
 
 def calculatePointsTotal(results: List[PointsResult]) -> int:
-    return sum([result["score"] or 0 for result in results if result["counting"]])
+    return sum(
+        [result["score"] or 0 for result in results if result and result["counting"]]
+    )
 
 
 def assignPosition(results: List[ResultDict]) -> List[ResultDict]:
@@ -175,6 +179,11 @@ def getMatchingResults(results: List[ResultDict], league: League) -> List[Result
         if matchesClubRestriction(result["club"], league.clubRestriction)
         and (matchesCourse(result, league.courses) or league.leagueScoring != "course")
     ]
+
+
+def hasResults(competitor: Dict[str, Any]):
+    points = competitor.get("points", [])
+    return not all([x is None for x in points])
 
 
 def matchesClubRestriction(club: str, allowedClub: str) -> bool:

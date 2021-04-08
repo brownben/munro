@@ -9,9 +9,10 @@ from .result import Result
 from ..utils.points import assignPoints
 from ..utils.scoringHelpers import isAgeClassEligible
 from ..utils.processResults import (
-    assignPosition,
+    assignPositionMultipleCourses as assignPosition,
     getCountingPoints,
     calculatePointsTotal,
+    hasResults,
     PointsResult,
 )
 
@@ -134,11 +135,12 @@ class LeagueResult:
     def getAgeClassResults(
         league: League, events: List[Event], ageClass: str
     ) -> Dict[int, Dict[str, Any]]:
-        competitors = {
+        competitors: Dict[int, Dict[str, Any]] = {
             competitor.id: {**competitor.toDictionary(), "points": [None] * len(events)}
             for competitor in Competitor.getByLeague(league.getLeagueOfCompetitors())
-            if isAgeClassEligible(ageClass, competitor.ageClass)
+            if isAgeClassEligible(competitor.ageClass, ageClass)
         }
+
         for eventIndex, event in enumerate(events):
             expectedCourse = (
                 event.getAdditionalSettingsAsJSON()
@@ -149,12 +151,14 @@ class LeagueResult:
                 result.toDictionary()
                 for result in Result.getByEvent(event.id)
                 if result.course == expectedCourse
+                and competitors.get(result.competitor)
             ]
+
             resultsWithPositions = assignPosition(results)
             resultsWithPoints = assignPoints(resultsWithPositions, league.scoringMethod)
 
             for result in resultsWithPoints:
-                competitor: Dict[str, Any] = competitors[result["competitor"]]
+                competitor = competitors[result["competitor"]]
                 competitor["points"][eventIndex] = PointsResult(
                     event=event.id,
                     score=int(result["points"]),
@@ -162,7 +166,11 @@ class LeagueResult:
                     counting=None,
                 )
 
-        return competitors
+        return {
+            competitorId: competitor
+            for competitorId, competitor in competitors.items()
+            if hasResults(competitor)
+        }
 
     @staticmethod
     def getByAgeClass(
