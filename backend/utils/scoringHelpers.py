@@ -302,7 +302,9 @@ def isAgeClassEligible(ageClass: str, competitorAgeClass: str) -> bool:
     specifiedGender, specifiedAge = parseAgeClass(competitorAgeClass)
 
     def isAgeEligible(age: int, specifiedAge: int) -> bool:
-        if specifiedAge >= 21:
+        if specifiedAge == 21:
+            return True
+        elif specifiedAge > 21:
             return age >= specifiedAge
 
         return age <= specifiedAge
