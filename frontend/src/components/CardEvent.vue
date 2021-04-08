@@ -143,7 +143,10 @@
       >
         Edit Event
       </router-link>
-      <router-link :to="'/upload/' + event.id" class="button button-dark">
+      <router-link
+        :to="`/upload/file?eventId=${event.id}&uploadKey=${event.uploadKey}`"
+        class="button button-dark"
+      >
         Upload Results
       </router-link>
       <button class="button button-dark" @click="deleteEvent(event)">
