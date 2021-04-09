@@ -46,6 +46,7 @@
         :list="leagues.map((league) => league.name)"
         label="League:"
         class="mt-4"
+        url-parameter="league"
       />
       <InputText
         v-model.trim="event.moreInformation"

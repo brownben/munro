@@ -11,6 +11,7 @@
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
+        url-parameter="league"
       />
       <InputDropdown
         v-model="choices.course"
@@ -18,6 +19,7 @@
         :include-blank="true"
         label="Course"
         class="mt-4"
+        url-parameter="course"
       />
       <InputDropdown
         v-model="choices.competitorKeep"
@@ -30,6 +32,7 @@
         :include-blank="true"
         label="Competitor to Keep:"
         class="mt-4"
+        url-parameter="competitorToKeep"
       />
       <InputDropdown
         v-model="choices.competitorMerge"

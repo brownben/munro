@@ -46,13 +46,22 @@
         >
           Edit Competitor
         </router-link>
-        <router-link to="/competitors/merge" class="button button-white">
+        <router-link
+          :to="`/competitors/merge?league=${competitor?.league}&course=${competitor?.course}&competitorToKeep=${competitor?.id}`"
+          class="button button-white"
+        >
           Merge Competitors
         </router-link>
-        <router-link to="/results/transfer" class="button button-white">
+        <router-link
+          :to="`/results/transfer?league=${competitor?.league}`"
+          class="button button-white"
+        >
           Transfer Result
         </router-link>
-        <router-link to="/results/manual" class="button button-white">
+        <router-link
+          :to="`/results/manual?league=${competitor?.league}`"
+          class="button button-white"
+        >
           Manual Points
         </router-link>
       </div>

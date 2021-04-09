@@ -11,6 +11,7 @@
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
+        url-parameter="league"
       />
       <DropdownInput
         v-model="choices.event"
