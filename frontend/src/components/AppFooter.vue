@@ -9,9 +9,10 @@
         target="_blank"
         rel="noopener noreferrer"
         title="Twitter"
+        class="group"
       >
         <svg
-          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
+          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800"
           viewBox="0 0 400 400"
           aria-label="Twitter"
           role="img"
@@ -32,9 +33,10 @@
         target="_blank"
         rel="noopener noreferrer"
         title="GitHub"
+        class="group"
       >
         <svg
-          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 focus:bg-main-200 focus:text-main-800"
+          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800"
           aria-label="Github"
           viewBox="0 0 24 24"
           role="img"
