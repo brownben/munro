@@ -86,6 +86,8 @@ def parseFileToDictionaries(
 ) -> List[Dict[str, Any]]:
     getValue = createGetValue(headerLocations)
 
+    rowWithFixedTimes = fixTimesFromExcel(data[1:], headerLocations.get("time"))
+
     return [
         {
             "name": getName(row, headerLocations),
@@ -100,7 +102,7 @@ def parseFileToDictionaries(
             "event": event.id,
             "type": "",
         }
-        for row in data[1:]
+        for row in rowWithFixedTimes
     ]
 
 
@@ -132,3 +134,19 @@ def isResultIncomplete(
     status = getValue(row, "status")
 
     return nonComp == "Y" or nonComp == "1" or (status != "" and status != "0")
+
+
+def fixTimesFromExcel(results: List[List[str]], time: int) -> List[List[str]]:
+    def resultHasHoursNoSeconds(result: List[str]) -> bool:
+        hasHours = result[time].count(":") >= 2
+        hasZeroSeconds = result[time][-3:] == ":00"
+
+        return hasHours and hasZeroSeconds
+
+    resultsMissingSeconds = all([resultHasHoursNoSeconds(result) for result in results])
+
+    if resultsMissingSeconds:
+        for result in results:
+            result[time] = result[time][:-3]
+
+    return results
