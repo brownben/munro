@@ -6,7 +6,6 @@ from ..database.competitor import Competitor
 
 static_urls = [
     "/",
-    "/search",
     "/leagues",
     "/latest-results",
     "/about",
