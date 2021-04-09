@@ -7,12 +7,14 @@
         >
           Leagues
         </h2>
-        <router-link
-          to="/leagues"
-          class="inline-block px-4 pt-2 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-700 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
-        >
-          View All Leagues &rarr;
-        </router-link>
+        <div>
+          <router-link
+            to="/leagues"
+            class="inline-block px-4 py-2 text-sm tracking-wide text-right uppercase transition duration-300 text-main-700 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
+          >
+            View All Leagues &rarr;
+          </router-link>
+        </div>
       </div>
 
       <div class="grid grid-cols-2 gap-6 px-6 sm:gap-8 md:grid-cols-3">

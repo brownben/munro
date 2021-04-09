@@ -21,7 +21,7 @@
         </router-link>
       </div>
 
-      <div class="w-2/3 md:w-5/12 xl:w-1/3 mt-4 md:mt-0">
+      <div class="w-3/4 md:w-5/12 xl:w-1/3 mt-6 md:mt-0">
         <Image class="h-full" />
       </div>
     </div>
