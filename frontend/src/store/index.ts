@@ -16,7 +16,7 @@ export interface State {
 }
 
 export default createStore({
-  strict: import.meta.env.PROD,
+  strict: !import.meta.env.PROD,
   modules: {
     messages,
     auth,

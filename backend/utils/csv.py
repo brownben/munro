@@ -86,7 +86,7 @@ def parseFileToDictionaries(
 ) -> List[Dict[str, Any]]:
     getValue = createGetValue(headerLocations)
 
-    rowWithFixedTimes = fixTimesFromExcel(data[1:], headerLocations.get("time"))
+    rowWithFixedTimes = fixTimesFromExcel(data[1:], headerLocations["time"])
 
     return [
         {
