@@ -28,39 +28,12 @@
       @focus="setFocused()"
       @blur="setBlur()"
     />
-    <p
-      v-if="state === 'invalid'"
-      :id="`${label}-error-message`"
-      class="font-heading text-red-600 flex items-center"
-      aria-live="assertive"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="h-4 w-4 text-red-600 inline-block"
-        role="img"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-      <span class="py-1 px-2">
-        {{ validator.message }}
-      </span>
-    </p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watchEffect, defineEmit, defineProps } from 'vue'
 import { useRoute } from 'vue-router'
-import type { PropType } from 'vue'
-import type { Validator } from '../scripts/inputValidation'
 
 type State = 'focused' | 'unfocused' | 'invalid'
 
@@ -71,7 +44,6 @@ const props = defineProps({
   min: { type: Number, default: 0 },
   max: { type: Number, default: 100 },
   urlParameter: { type: String, default: '' },
-  validator: { type: Object as PropType<Validator>, default: null },
 })
 const emit = defineEmit(['update:modelValue'])
 const state = ref<State>('unfocused')
@@ -83,8 +55,9 @@ const handleEvent = (event: Event) =>
   )
 
 const setFocused = () => {
-  state.value = 'focused'
+  if (state.value !== 'invalid') state.value = 'focused'
 }
+
 const setBlur = () => {
   state.value = 'unfocused'
 }

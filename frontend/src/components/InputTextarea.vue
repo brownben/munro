@@ -48,7 +48,7 @@
         />
       </svg>
       <span class="py-1 px-2">
-        {{ validator.message }}
+        {{ validationMessage }}
       </span>
     </p>
   </div>
@@ -68,10 +68,11 @@ const props = defineProps({
   label: { type: String, default: '', required: true },
   type: { type: String, default: 'text' },
   urlParameter: { type: String, default: '' },
-  validator: { type: Object as PropType<Validator>, default: null },
+  validators: { type: Array as PropType<Validator[]>, default: [] },
 })
 const emit = defineEmit(['update:modelValue'])
 const state = ref<State>('unfocused')
+const validationMessage = ref<string>('')
 
 const handleEvent = (event: Event) => {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
@@ -82,9 +83,16 @@ const setFocused = () => {
 }
 
 const setBlur = () => {
-  if (props.validator && !props.validator.func(props.modelValue))
-    state.value = 'invalid'
-  else state.value = 'unfocused'
+  if (props.validators.length === 0) state.value = 'unfocused'
+
+  for (const validator of props.validators) {
+    if (validator.func(props.modelValue)) state.value = 'unfocused'
+    else {
+      state.value = 'invalid'
+      validationMessage.value = validator.message
+      break
+    }
+  }
 }
 
 watchEffect(() => {
