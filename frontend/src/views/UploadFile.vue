@@ -23,6 +23,7 @@
         v-model.lazy="uploadConfig.eventId"
         label="Event ID:"
         url-parameter="eventId"
+        :validators="[RequiredField('an event id')]"
       />
 
       <p v-if="uploadConfig.eventId" class="my-4">
@@ -35,6 +36,7 @@
         label="Upload Key:"
         class="mt-4"
         url-parameter="uploadKey"
+        :validators="[RequiredField('an upload key')]"
       />
 
       <!-- If Event already have results, confirm they want to overwrite -->
@@ -92,6 +94,8 @@ import InputCheckbox from '../components/InputCheckbox.vue'
 
 import { useEvent } from '../api/events'
 import { uploadFile as apiUploadFile } from '../api/upload'
+
+import { RequiredField } from '../scripts/inputValidation'
 
 const store = useStore()
 const router = useRouter()

@@ -6,14 +6,14 @@
         v-model="username"
         label="Email Address:"
         type="email"
-        :validator="IsValidEmail()"
+        :validators="[IsValidEmail()]"
       />
       <InputText
         v-model="password"
         label="Password:"
         type="password"
         class="mt-4"
-        :validator="RequiredField('a password')"
+        :validators="[RequiredField('a password')]"
       />
       <button class="mt-6 button-lg">Login</button>
     </form>

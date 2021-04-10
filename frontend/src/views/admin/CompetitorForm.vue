@@ -5,7 +5,11 @@
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
-      <InputText v-model.trim="competitor.name" label="Name:" />
+      <InputText
+        v-model.trim="competitor.name"
+        label="Name:"
+        :validators="[RequiredField('a name')]"
+      />
       <InputText v-model.trim="competitor.club" label="Club:" class="mt-4" />
       <InputText
         v-model.trim="competitor.ageClass"
@@ -18,12 +22,14 @@
         label="League:"
         class="mt-4"
         url-parameter="league"
+        :validator="RequiredField('a league', true)"
       />
       <InputDropdown
         v-model="competitor.course"
         :list="courses"
         label="Course:"
         class="mt-4"
+        :validator="RequiredField('a course', true)"
       />
 
       <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
@@ -44,6 +50,7 @@ import InputDropdown from '../../components/InputDropdown.vue'
 import InputText from '../../components/InputText.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
+import { RequiredField } from '../../scripts/inputValidation'
 
 import {
   useCompetitor,

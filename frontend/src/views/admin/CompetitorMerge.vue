@@ -33,6 +33,7 @@
         label="Competitor to Keep:"
         class="mt-4"
         url-parameter="competitorToKeep"
+        :validator="RequiredField('a competitor to keep', true)"
       />
       <InputDropdown
         v-model="choices.competitorMerge"
@@ -45,6 +46,7 @@
         :include-blank="true"
         label="Competitor to be Merged:"
         class="mt-4"
+        :validator="RequiredField('a competitor to be merged', true)"
       />
       <button class="mt-8 button-lg">Merge Competitors</button>
     </form>
@@ -58,6 +60,8 @@ import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
+
+import { RequiredField } from '../../scripts/inputValidation'
 
 import { useLeagues } from '../../api/leagues'
 import {

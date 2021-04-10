@@ -29,13 +29,13 @@
         v-model.trim="result.name"
         label="Your Name:"
         class="mt-4"
-        :validator="RequiredField('your name')"
+        :validators="[RequiredField('your name')]"
       />
       <InputText
         v-model.trim="result.time"
         label="Your Time: (MM:SS)"
         class="mt-4"
-        :validator="IsValidTime()"
+        :validators="[IsValidTime()]"
       />
 
       <!-- Only show upload once all fields have been filled -->

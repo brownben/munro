@@ -38,6 +38,7 @@
         :include-blank="true"
         label="Result:"
         class="mt-4"
+        :validator="RequiredField('a result', true)"
       />
       <DropdownInput
         v-model="choices.competitor"
@@ -50,6 +51,7 @@
         :include-blank="true"
         label="Competitor:"
         class="mt-4"
+        :validator="RequiredField('a competitor', true)"
       />
 
       <button class="mt-8 button-lg">Transfer Result</button>
@@ -76,6 +78,7 @@ import {
 import { sortEventResults, SortablePropertiesEvent } from '../../scripts/sort'
 import { eventResultWithAgeGender as resultWithAgeGender } from '../../scripts/ageClassSplit'
 import { elapsedTime } from '../../scripts/time'
+import { RequiredField } from '../../scripts/inputValidation'
 
 const store = useStore()
 const router = useRouter()

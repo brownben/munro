@@ -5,7 +5,11 @@
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
-      <InputText v-model.trim="league.name" label="Name:" />
+      <InputText
+        v-model.trim="league.name"
+        label="Name:"
+        :validators="[RequiredField('a name'), IsValidURLParameter('a name')]"
+      />
       <InputNumber
         v-model.number="league.year"
         label="Year:"
@@ -34,6 +38,7 @@
         :include-blank="false"
         label="Scoring Method:"
         class="mt-4"
+        :validator="RequiredField('a Scoring Method', true)"
       />
       <InputDropdown
         v-model="league.leagueScoring"
@@ -78,6 +83,7 @@
         v-model="league.additionalSettings"
         label="Additional Settings: (Advanced Use Only)"
         class="mt-6 text-left"
+        :validators="[IsValidJSON('additional settings')]"
       />
       <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
         Update League
@@ -99,6 +105,11 @@ import InputTextarea from '../../components/InputTextarea.vue'
 import InputNumber from '../../components/InputNumber.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
+import {
+  RequiredField,
+  IsValidURLParameter,
+  IsValidJSON,
+} from '../../scripts/inputValidation'
 
 import {
   useLeagues,

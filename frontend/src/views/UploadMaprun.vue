@@ -7,7 +7,11 @@
       :block-robots="false"
     />
     <div class="col-span-2">
-      <InputText v-model.lazy="uploadConfig.eventId" label="Event ID:" />
+      <InputText
+        v-model.lazy="uploadConfig.eventId"
+        label="Event ID:"
+        :validators="[RequiredField('an event id')]"
+      />
 
       <p v-if="event?.name" class="my-4">
         <b class="mr-2 text-main-800">Event Name:</b>
@@ -18,11 +22,13 @@
         v-model.trim="uploadConfig.uploadKey"
         label="Upload Key:"
         class="mt-4"
+        :validators="[RequiredField('an upload key')]"
       />
       <InputText
         v-model.trim="maprunId"
         label="MapRun Event Id:"
         class="mt-4"
+        :validators="[RequiredField('a MapRun event id')]"
       />
 
       <InputDropdown
@@ -30,6 +36,7 @@
         label="Course:"
         :list="courses"
         class="mt-4"
+        :validator="RequiredField('a course')"
       />
 
       <!-- Only show upload once all fields have been filled -->
@@ -54,6 +61,8 @@ import { useStore } from 'vuex'
 import Layout from '../components/Layout.vue'
 import InputText from '../components/InputText.vue'
 import InputDropdown from '../components/InputDropdown.vue'
+
+import { RequiredField } from '../scripts/inputValidation'
 
 import { getText } from '../api/requests'
 import { uploadSimple } from '../api/upload'

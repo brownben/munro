@@ -20,6 +20,7 @@
         :include-blank="true"
         label="Event:"
         class="mt-4"
+        :validator="RequiredField('an event', true)"
       />
       <InputDropdown
         v-model="choices.course"
@@ -27,6 +28,7 @@
         :include-blank="true"
         label="Course"
         class="mt-4"
+        :validator="RequiredField('a course', true)"
       />
       <InputDropdown
         v-model="choices.competitor"
@@ -39,6 +41,7 @@
         :include-blank="true"
         label="Competitor:"
         class="mt-4"
+        :validator="RequiredField('a competitor', true)"
       />
       <InputNumber
         v-model.number="choices.points"
@@ -61,6 +64,8 @@ import { useStore } from 'vuex'
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 import InputNumber from '../../components/InputNumber.vue'
+
+import { RequiredField } from '../../scripts/inputValidation'
 
 import { useLeagues } from '../../api/leagues'
 import { useEvents } from '../../api/events'

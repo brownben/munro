@@ -5,12 +5,17 @@
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
-      <InputText v-model.trim="event.name" label="Name:" />
+      <InputText
+        v-model.trim="event.name"
+        label="Name:"
+        :validators="[RequiredField('a name'), IsValidURLParameter('a name')]"
+      />
       <InputText
         v-model.trim="event.date"
         label="Date:"
         class="mt-4"
         type="date"
+        :validators="[RequiredField('a date', true)]"
       />
       <InputText
         v-model.trim="event.organiser"
@@ -47,6 +52,7 @@
         label="League:"
         class="mt-4"
         url-parameter="league"
+        :validator="RequiredField('a league', true)"
       />
       <InputText
         v-model.trim="event.moreInformation"
@@ -74,6 +80,7 @@
         v-model="event.additionalSettings"
         label="Additional Settings: (Advanced Use Only)"
         class="mt-6 text-left"
+        :validators="[IsValidJSON('additional settings')]"
       />
       <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
         Update Event
@@ -95,6 +102,11 @@ import InputCheckbox from '../../components/InputCheckbox.vue'
 import InputTextarea from '../../components/InputTextarea.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
+import {
+  RequiredField,
+  IsValidURLParameter,
+  IsValidJSON,
+} from '../../scripts/inputValidation'
 
 import { useLeagues } from '../../api/leagues'
 import {
