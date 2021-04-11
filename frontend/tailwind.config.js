@@ -1,10 +1,13 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
+  mode: 'jit',
   purge: ['./src/**/*.html', './src/**/*.vue'],
   dark: false,
   theme: {
     extend: {
+      screens: {
+        print: { raw: 'print' },
+      },
+
       fontFamily: {
         heading: ['Josefin Sans', 'sans-serif'],
       },
@@ -93,12 +96,6 @@ module.exports = {
         },
       },
     },
-  },
-
-  variants: {
-    border: ({ after }) => after(['checked']),
-    backgroundColor: ({ after }) => after(['checked', 'group-hover']),
-    opacity: ({ after }) => after(['group-hover']),
   },
 
   plugins: [require('@tailwindcss/typography')],

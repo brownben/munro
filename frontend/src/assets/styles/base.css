@@ -80,3 +80,9 @@ option {
 ::-moz-selection {
   background: var(--main-100, #fae8ff);
 }
+
+@media print {
+  @page {
+    size: A3;
+  }
+}

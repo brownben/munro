@@ -28,7 +28,7 @@
 
         <button
           title="Toggle Filter Menu"
-          class="p-2 text-gray-500 transition rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600"
+          class="p-2 text-gray-500 transition rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 print:hidden"
           :class="{ 'text-main-600 bg-main-50': filterOpen }"
           @click="filterOpen = !filterOpen"
         >
@@ -216,7 +216,7 @@
         rawResults.length > 0 &&
         otherCourses.length > 0
       "
-      class="col-span-2 mt-6 card"
+      class="col-span-2 mt-6 card print:hidden"
     >
       <h2 class="text-2xl font-bold font-heading leading-tight">
         Results for Other Courses

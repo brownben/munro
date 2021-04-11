@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white font-heading">
+  <nav class="bg-white font-heading print:hidden">
     <div class="max-w-screen-xl px-2 mx-auto sm:px-6 lg:px-8">
       <div class="relative z-40 flex items-center justify-between h-16">
         <div

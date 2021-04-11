@@ -1,6 +1,6 @@
 module.exports = {
   plugins: [
-    require('@tailwindcss/jit'),
+    require('tailwindcss'),
     require('postcss-preset-env')({
       stage: 1,
       features: {

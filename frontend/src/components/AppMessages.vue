@@ -6,6 +6,7 @@
       tag="div"
       name="messages"
       mode="out-in"
+      role="alert"
       class="fixed bottom-0 right-0 z-50 mx-4 my-4"
     >
       <template v-for="message of $store.getters.allMessages" :key="message.id">
