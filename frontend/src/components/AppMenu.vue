@@ -116,10 +116,10 @@
     Menu open: "block", Menu closed: "hidden"
   -->
     <transition
-      enter-active-class="transition duration-100 ease-out origin-top transform"
+      enter-active-class="motion-safe:transition duration-100 ease-out origin-top motion-safe:transform"
       enter-from-class="scale-y-90 opacity-75"
       enter-to-class="scale-y-100 opacity-100"
-      leave-active-class="transition duration-75 ease-in origin-top transform"
+      leave-active-class="motion-safe:transition duration-75 ease-in origin-top motion-safe:transform"
       leave-from-class="scale-y-100 opacity-100"
       leave-to-class="scale-y-90 opacity-75"
     >

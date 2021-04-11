@@ -26,12 +26,12 @@
       </div>
 
       <transition
-        enter-active-class="origin-top transition ease-out duration-150"
-        enter-from-class="transform opacity-0 scale-y-95"
-        enter-to-class="transform opacity-100 scale-y-100"
-        leave-active-class="origon-top transition ease-in duration-100"
-        leave-from-class="transform opacity-100 scale-y-100"
-        leave-to-class="transform opacity-0 scale-y-95"
+        enter-active-class="origin-top motion-safe:transition ease-out duration-150"
+        enter-from-class="motion-safe:transform opacity-0 scale-y-95"
+        enter-to-class="motion-safe:transform opacity-100 scale-y-100"
+        leave-active-class="origon-top motion-safe:transition ease-in duration-100"
+        leave-from-class="motion-safe:transform opacity-100 scale-y-100"
+        leave-to-class="motion-safe:transform opacity-0 scale-y-95"
       >
         <div
           v-if="$slots.expansion"

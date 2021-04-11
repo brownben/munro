@@ -8,7 +8,7 @@
       fill="none"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="inline-block transition-all duration-300 text-main-900"
+      class="inline-block motion-safe:transition-all duration-300 text-main-900"
       :class="{
         'h-2 -mt-2': !ascending && active,
         'h-5 -mt-1': ascending && active,
@@ -29,7 +29,7 @@
       fill="none"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="inline-block -ml-2 transition-all duration-300 text-main-900"
+      class="inline-block -ml-2 motion-safe:transition-all duration-300 text-main-900"
       :class="{
         'h-2 mt-2': ascending && active,
         'h-5 -mt-1': !ascending && active,
