@@ -28,7 +28,7 @@
     </template>
 
     <div
-      v-if="competitor && $store.getters.loggedIn"
+      v-if="competitor && auth.loggedIn"
       class="col-span-2 card card-color-dark"
     >
       <h2 class="text-3xl font-bold text-white font-heading">Admin Actions</h2>
@@ -86,11 +86,14 @@ import CardResult from '../components/CardResult.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
+import { useAuthentication } from '../store/authentication'
+
 import { useLeague } from '../api/leagues'
 import { useCompetitor } from '../api/competitors'
 import { useCompetitorResults } from '../api/results'
 
 const route = useRoute()
+const auth = useAuthentication()
 
 /* Get Data */
 

@@ -85,7 +85,6 @@
 <script lang="ts" setup>
 import { ref, watchEffect, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
 import InputText from '../components/InputText.vue'
@@ -95,10 +94,12 @@ import InputCheckbox from '../components/InputCheckbox.vue'
 import { useEvent } from '../api/events'
 import { uploadFile as apiUploadFile } from '../api/upload'
 
+import { useMessages } from '../store/messages'
+
 import { RequiredField } from '../scripts/inputValidation'
 
-const store = useStore()
 const router = useRouter()
+const messages = useMessages()
 
 const uploadConfig = ref<UploadFile>({
   eventId: '',
@@ -124,7 +125,7 @@ const fileRead = (file: string) => {
   uploadConfig.value.file = file
 }
 const uploadFile = () => {
-  store.dispatch('createMessage', 'Upload Data Sent')
+  messages.create('Upload Data Sent')
   return apiUploadFile(uploadConfig.value)
     .then(() => router.push(`/events/${eventId.value}/results`))
     .catch(() => false)

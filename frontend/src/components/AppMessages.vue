@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <transition-group
-      v-show="$store.getters.allMessages.length > 0"
+      v-show="messages.all.length > 0"
       id="messages"
       tag="div"
       name="messages"
@@ -9,7 +9,7 @@
       role="alert"
       class="fixed bottom-0 right-0 z-50 mx-4 my-4"
     >
-      <template v-for="message of $store.getters.allMessages" :key="message.id">
+      <template v-for="message of messages.all" :key="message.id">
         <p
           v-if="message.visible"
           class="mt-4 text-lg select-none card card-color font-heading"
@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex'
+import { useMessages } from '../store/messages'
 
-const store = useStore()
+const messages = useMessages()
 
-const clear = (id: number) => store.commit('removeMessage', id)
+const clear = (id: number) => messages.remove(id)
 </script>

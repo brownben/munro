@@ -1,4 +1,4 @@
-import store from '../store'
+import { useMessages } from '../store/messages'
 
 export interface TypedResponse<T = any> extends Response {
   json: <P = T>() => Promise<P>
@@ -34,7 +34,10 @@ export const sendRequestText = (
     })
     .catch((error: Error) => handleError(error, responseConfig))
 
-const addMessage = (text: string) => store.dispatch('createMessage', text)
+const addMessage = (text: string) => {
+  const messages = useMessages()
+  messages.create(text)
+}
 
 const showSuccessMessage = <T>(data: T, config: RequestConfig): T => {
   if (config.customSuccessMessage) addMessage(config.customSuccessMessage)

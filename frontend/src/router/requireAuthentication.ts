@@ -1,9 +1,10 @@
 import { RouteLocationNormalized, RouteLocationRaw } from 'vue-router'
-import store from '../store'
+import { useAuthentication } from '../store/authentication'
 
 export default (to: RouteLocationNormalized): RouteLocationRaw | true => {
+  const auth = useAuthentication()
   // Check they are logged in before going to restricted route, if they are not redirect
-  if (!store.getters.loggedIn)
+  if (!auth.loggedIn)
     return {
       path: '/login',
       query: { redirect: to.fullPath },

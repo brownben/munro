@@ -60,7 +60,7 @@
       </p>
 
       <router-link
-        v-if="!$store.getters.loggedIn"
+        v-if="!auth.loggedIn"
         to="/login"
         class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"
       >
@@ -84,7 +84,7 @@
   </footer>
 </template>
 <script setup lang="ts">
-import { useStore } from 'vuex'
+import { useAuthentication } from '../store/authentication'
 
-const store = useStore()
+const auth = useAuthentication()
 </script>

@@ -43,7 +43,6 @@
 <script lang="ts" setup>
 import { ref, computed, watchEffect } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
@@ -52,6 +51,8 @@ import InputText from '../../components/InputText.vue'
 import { toSingleString } from '../../scripts/typeHelpers'
 import { RequiredField } from '../../scripts/inputValidation'
 
+import { useMessages } from '../../store/messages'
+
 import {
   useCompetitor,
   createCompetitor as apiCreateCompetitor,
@@ -59,9 +60,9 @@ import {
 } from '../../api/competitors'
 import { useLeagues } from '../../api/leagues'
 
-const store = useStore()
 const router = useRouter()
 const route = useRoute()
+const messages = useMessages()
 
 const routeParamsId = computed(() => toSingleString(route.params.id))
 const [leagues] = useLeagues()
@@ -94,8 +95,7 @@ const validateForm = () => {
   )
     return true
   else {
-    store.dispatch(
-      'createMessage',
+    messages.create(
       'Please Ensure Name, League and Course Fields are not Blank'
     )
     return false

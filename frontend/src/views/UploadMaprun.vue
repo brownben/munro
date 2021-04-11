@@ -56,7 +56,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
 import InputText from '../components/InputText.vue'
@@ -64,12 +63,14 @@ import InputDropdown from '../components/InputDropdown.vue'
 
 import { RequiredField } from '../scripts/inputValidation'
 
+import { useMessages } from '../store/messages'
+
 import { getText } from '../api/requests'
 import { uploadSimple } from '../api/upload'
 import { useEvent } from '../api/events'
 import { useLeague } from '../api/leagues'
 
-const store = useStore()
+const messages = useMessages()
 const router = useRouter()
 
 const maprunId = ref('')
@@ -112,14 +113,11 @@ const getMaprunData = () =>
     .then(maprunHTMLtoCSV)
     .then((file: string) => {
       if (!file || file.split('\n').length < 1) {
-        store.dispatch(
-          'createMessage',
-          'Error: No MapRun Event Found With That Id'
-        )
+        messages.create('Error: No MapRun Event Found With That Id')
         throw new Error()
       } else {
         uploadConfig.value.file = file
-        store.dispatch('createMessage', 'Upload Data Sent')
+        messages.create('Upload Data Sent')
       }
     })
 

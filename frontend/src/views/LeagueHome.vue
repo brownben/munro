@@ -94,7 +94,7 @@
 
     <template v-if="league" #fullWidth>
       <section
-        v-if="$store.getters.loggedIn && league?.name"
+        v-if="auth.loggedIn && league?.name"
         class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-800"
       >
         <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
@@ -158,7 +158,7 @@
       </h2>
 
       <router-link
-        v-if="$store.getters.loggedIn"
+        v-if="auth.loggedIn"
         :to="`/events/create?league=${league?.name}`"
         class="inline-block px-4 py-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
       >
@@ -179,7 +179,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../components/Layout.vue'
 import CardEvent from '../components/CardEvent.vue'
@@ -189,16 +188,18 @@ import { toSingleString } from '../scripts/typeHelpers'
 import { useLeague, deleteLeague } from '../api/leagues'
 import { useLeagueEvents } from '../api/events'
 
-const store = useStore()
+import { useAuthentication } from '../store/authentication'
+
 const router = useRouter()
 const route = useRoute()
+const auth = useAuthentication()
 
 /* Get Data */
 const routeParamsName = computed(() => toSingleString(route.params.name))
 const [league, leagueLoading] = useLeague(routeParamsName)
 const [events, eventsLoading, refreshEvents] = useLeagueEvents(
   routeParamsName,
-  store.getters.loggedIn
+  auth.loggedIn
 )
 const loading = computed(() => leagueLoading.value || eventsLoading.value)
 

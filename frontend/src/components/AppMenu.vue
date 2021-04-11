@@ -54,7 +54,7 @@
                 {{ link?.text }}
               </router-link>
               <router-link
-                v-if="$store.getters.loggedIn"
+                v-if="auth.loggedIn"
                 to="/logout"
                 class="px-3 py-2 ml-4 font-medium leading-5 text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
               >
@@ -143,7 +143,7 @@
             {{ link?.text }}
           </router-link>
           <router-link
-            v-if="$store.getters.loggedIn"
+            v-if="auth.loggedIn"
             to="/logout"
             class="block px-3 py-2 mt-1 text-lg font-medium text-gray-500 transition duration-150 ease-in-out rounded-shape focus:outline-none hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
             @click="menuOpen = false"
@@ -158,6 +158,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
+import { useAuthentication } from '../store/authentication'
+
+const auth = useAuthentication()
 
 interface Link {
   text: string

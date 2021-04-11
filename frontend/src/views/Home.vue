@@ -9,11 +9,11 @@
 
     <HeroSection />
     <section
-      v-if="$store.getters.loggedIn"
+      v-if="auth.loggedIn"
       class="w-full py-8 text-center text-white actions bg-main-600"
     >
       <h2 class="pb-2 text-4xl font-bold font-heading">
-        Hello {{ $store.getters.userName || 'Admin' }}!
+        Hello {{ auth.userName || 'Admin' }}!
       </h2>
       <div class="mx-6">
         <router-link to="/leagues/create" class="button button-white">
@@ -44,4 +44,8 @@ import UploadSection from '../components/HomeSectionUpload.vue'
 import AboutSection from '../components/HomeSectionAbout.vue'
 import DeveloperSection from '../components/HomeSectionDeveloper.vue'
 import AppFooter from '../components/AppFooter.vue'
+
+import { useAuthentication } from '../store/authentication'
+
+const auth = useAuthentication()
 </script>

@@ -62,7 +62,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import DropdownInput from '../../components/InputDropdown.vue'
@@ -75,13 +74,15 @@ import {
   transferResult as apiTransferResult,
 } from '../../api/results'
 
+import { useMessages } from '../../store/messages'
+
 import { sortEventResults, SortablePropertiesEvent } from '../../scripts/sort'
 import { eventResultWithAgeGender as resultWithAgeGender } from '../../scripts/ageClassSplit'
 import { elapsedTime } from '../../scripts/time'
 import { RequiredField } from '../../scripts/inputValidation'
 
-const store = useStore()
 const router = useRouter()
+const messages = useMessages()
 
 const [leagues] = useLeagues()
 const [events] = useEvents()
@@ -154,10 +155,7 @@ const validateForm = () => {
   )
     return true
   else {
-    store.dispatch(
-      'createMessage',
-      'Please Ensure Result and Competitor Fields are not Blank'
-    )
+    messages.create('Please Ensure Result and Competitor Fields are not Blank')
     return false
   }
 }

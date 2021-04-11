@@ -96,7 +96,6 @@
 <script lang="ts" setup>
 import { ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
@@ -111,6 +110,9 @@ import {
   IsValidJSON,
 } from '../../scripts/inputValidation'
 
+import { useAuthentication } from '../../store/authentication'
+import { useMessages } from '../../store/messages'
+
 import {
   useLeagues,
   createLeague as apiCreateLeague,
@@ -118,9 +120,10 @@ import {
   useLeague,
 } from '../../api/leagues'
 
-const store = useStore()
 const router = useRouter()
 const route = useRoute()
+const messages = useMessages()
+const auth = useAuthentication()
 
 const routeParamsName = computed(() => toSingleString(route.params.name))
 const [leagues] = useLeagues()
@@ -156,8 +159,7 @@ watchEffect(() => {
 
 const validateForm = () => {
   if (league.value.name === '' || league.value.scoringMethod === '') {
-    store.dispatch(
-      'createMessage',
+    messages.create(
       'Please Ensure Name and Scoring Method Fields are not Blank'
     )
     return false
@@ -165,10 +167,7 @@ const validateForm = () => {
     league.value.name.includes('/') ||
     league.value.name.includes('\\')
   ) {
-    store.dispatch(
-      'createMessage',
-      "Please Ensure Name doesn't Include any Slashes"
-    )
+    messages.create("Please Ensure Name doesn't Include any Slashes")
     return false
   } else return true
 }

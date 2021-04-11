@@ -93,7 +93,6 @@
 <script lang="ts" setup>
 import { ref, computed, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
@@ -108,6 +107,8 @@ import {
   IsValidJSON,
 } from '../../scripts/inputValidation'
 
+import { useMessages } from '../../store/messages'
+
 import { useLeagues } from '../../api/leagues'
 import {
   useEvent,
@@ -115,9 +116,9 @@ import {
   updateEvent as apiUpdateEvent,
 } from '../../api/events'
 
-const store = useStore()
 const router = useRouter()
 const route = useRoute()
+const messages = useMessages()
 
 const routeParamsId = computed(() => toSingleString(route.params.id))
 const [leagues] = useLeagues()
@@ -148,19 +149,13 @@ watchEffect(() => {
 
 const validateForm = () => {
   if (event.value.name === '' || event.value.league === '') {
-    store.dispatch(
-      'createMessage',
-      'Please Ensure Name and League Fields are not Blank'
-    )
+    messages.create('Please Ensure Name and League Fields are not Blank')
     return false
   } else if (
     event.value.name.includes('/') ||
     event.value.name.includes('\\')
   ) {
-    store.dispatch(
-      'createMessage',
-      "Please Ensure Name doesn't Include any Slashes"
-    )
+    messages.create("Please Ensure Name doesn't Include any Slashes")
     return false
   } else return true
 }

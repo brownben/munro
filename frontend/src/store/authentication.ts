@@ -1,59 +1,57 @@
-import { GetterTree, MutationTree, ActionTree } from 'vuex'
+import { defineStore } from 'pinia'
 import { postData } from '../api/requests'
 
-export interface user {
+export interface User {
   idToken?: string
   displayName?: string
 }
 
-class AuthState {
-  user: user = {}
+interface State {
+  user: User
 }
 
-const mutations = <MutationTree<AuthState>>{
-  setUser: (state, user: user) => {
-    state.user = user
+export const useAuthentication = defineStore({
+  id: 'authentication',
+
+  state: (): State => ({
+    user: {},
+  }),
+
+  actions: {
+    login({ username, password }: { username: string; password: string }) {
+      return postData<User>({
+        apiLocation:
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ',
+        data: {
+          email: username,
+          password,
+          returnSecureToken: true,
+        },
+        useServerErrorMessage: false,
+        customErrorHandler: true,
+        noToken: true,
+      }).then((user?: User) => {
+        if (user === undefined) throw new Error()
+        this.user = user
+        return this.user
+      })
+    },
+
+    logout() {
+      this.user = {}
+      return Promise.resolve(this.user)
+    },
   },
 
-  clearUser: (state) => {
-    state.user = {}
+  getters: {
+    userToken() {
+      return this.user?.idToken
+    },
+    loggedIn() {
+      return !!this.user?.idToken
+    },
+    userName() {
+      return this.user?.displayName
+    },
   },
-}
-
-const actions = <ActionTree<AuthState, string>>{
-  login: (context, { username, password }) =>
-    postData<user>({
-      apiLocation:
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ',
-      data: {
-        email: username,
-        password,
-        returnSecureToken: true,
-      },
-      useServerErrorMessage: false,
-      customErrorHandler: true,
-      noToken: true,
-    }).then((user?: user) => {
-      if (user === undefined) throw new Error()
-      context.commit('setUser', user)
-      return context.state.user
-    }),
-
-  logout: (context) => {
-    context.commit('clearUser')
-    return Promise.resolve(context.state.user)
-  },
-}
-
-const getters = <GetterTree<AuthState, string>>{
-  userToken: (state) => state.user?.idToken,
-  loggedIn: (state) => !!state.user?.idToken,
-  userName: (state) => state.user?.displayName,
-}
-
-export default {
-  state: new AuthState(),
-  mutations,
-  actions,
-  getters,
-}
+})

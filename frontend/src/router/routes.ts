@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router'
-import store from '../store'
+import { useMessages } from '../store/messages'
+import { useAuthentication } from '../store/authentication'
 import requireAuthentication from './requireAuthentication'
 
 const homeRoutes: RouteRecordRaw[] = [
@@ -29,17 +30,13 @@ const login: RouteRecordRaw = {
 const logout: RouteRecordRaw = {
   path: '/logout',
   redirect: () => {
-    store
-      .dispatch('logout')
-      .then(() =>
-        store.dispatch('createMessage', 'Goodbye - Logged Out Successfully')
-      )
-      .catch(() =>
-        store.dispatch(
-          'createMessage',
-          'Problem Logging Out - Please Try Again'
-        )
-      )
+    const messages = useMessages()
+    const auth = useAuthentication()
+
+    auth
+      .logout()
+      .then(() => messages.create('Goodbye - Logged Out Successfully'))
+      .catch(() => messages.create('Problem Logging Out - Please Try Again'))
     return '/'
   },
 }

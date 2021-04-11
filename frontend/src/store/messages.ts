@@ -1,48 +1,46 @@
-import { GetterTree, MutationTree, ActionTree } from 'vuex'
+import { defineStore } from 'pinia'
 
-export interface message {
+export interface Message {
   id: number
   text: string
   visible: boolean
 }
 
-class State {
-  messages: message[] = []
-  currentMessageId: number = 0
+interface State {
+  messages: Message[]
+  currentMessageId: number
 }
 
-const mutations = <MutationTree<State>>{
-  addMessage: (state, { value, id }: { value: string; id: number }) =>
-    state.messages.push({
-      id: id,
-      text: value,
-      visible: true,
-    }),
+export const useMessages = defineStore({
+  id: 'messages',
 
-  removeMessage: (state, id: number) =>
-    state.messages.map((message) => {
-      if (message.id === id) message.visible = false
-      return message
-    }),
+  state: (): State => ({
+    messages: [],
+    currentMessageId: 0,
+  }),
 
-  clearAllMessages: (state) => state.messages.splice(0, state.messages.length),
-}
+  actions: {
+    create(text: string) {
+      const id = this.currentMessageId++
+      this.messages.push({
+        id,
+        text,
+        visible: true,
+      })
+      setTimeout((id: number) => this.remove(id), 15000, id)
+    },
 
-const actions = <ActionTree<State, string>>{
-  createMessage: (context, text: string) => {
-    const id = context.state.currentMessageId++
-    context.commit('addMessage', { value: text, id })
-    setTimeout((id: number) => context.commit('removeMessage', id), 15000, id)
+    remove(id: number) {
+      this.messages.map((message) => {
+        if (message.id === id) message.visible = false
+        return message
+      })
+    },
   },
-}
 
-const getters = <GetterTree<State, any>>{
-  allMessages: (state) => state.messages,
-}
-
-export default {
-  state: new State(),
-  mutations,
-  actions,
-  getters,
-}
+  getters: {
+    all() {
+      return this.messages
+    },
+  },
+})

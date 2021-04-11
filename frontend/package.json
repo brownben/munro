@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@vueuse/head": "^0.5.1",
+    "pinia": "^2.0.0-alpha.13",
     "register-service-worker": "^1.7.2",
     "vue": "^3.0.11",
-    "vue-router": "^4.0.6",
-    "vuex": "^4.0.0"
+    "vue-router": "^4.0.6"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.4.0",

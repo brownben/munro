@@ -35,17 +35,20 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import InputText from '../../components/InputText.vue'
 
+import { useMessages } from '../../store/messages'
+import { useAuthentication } from '../../store/authentication'
+
 import { toSingleString } from '../../scripts/typeHelpers'
 import { RequiredField, IsValidEmail } from '../../scripts/inputValidation'
 
-const store = useStore()
 const router = useRouter()
 const route = useRoute()
+const messages = useMessages()
+const auth = useAuthentication()
 
 const username = ref('')
 const password = ref('')
@@ -56,34 +59,27 @@ const blankFields = () => {
 }
 
 const sendLoginRequest = () => {
-  return store
-    .dispatch('login', {
+  return auth
+    .login({
       username: username.value,
       password: password.value,
     })
     .then((response) => {
       if (response) router.replace(toSingleString(route.query.redirect || '/'))
-      store.dispatch(
-        'createMessage',
-        `Hello ${store.getters.userName || 'Admin'}`
-      )
+      messages.create(`Hello ${auth.userName || 'Admin'}`)
       blankFields()
     })
     .catch(() =>
-      store.dispatch(
-        'createMessage',
-        'Error: Problem Logging In - Please Try Again'
-      )
+      messages.create('Error: Problem Logging In - Please Try Again')
     )
 }
 
 onMounted(() => {
-  if (store.getters.loggedIn) {
-    store.dispatch('createMessage', 'You Are Already Logged In')
+  if (auth.loggedIn) {
+    messages.create('You Are Already Logged In')
     router.push('/')
   }
   blankFields()
-  if (route.query.redirect)
-    store.dispatch('createMessage', 'Please Login to Access that Page')
+  if (route.query.redirect) messages.create('Please Login to Access that Page')
 })
 </script>

@@ -54,14 +54,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 
 import { RequiredField } from '../../scripts/inputValidation'
+
+import { useMessages } from '../../store/messages'
 
 import { useLeagues } from '../../api/leagues'
 import {
@@ -69,7 +70,7 @@ import {
   mergeCompetitors as apiMergeCompetitors,
 } from '../../api/competitors'
 
-const store = useStore()
+const messages = useMessages()
 const router = useRouter()
 
 const [leagues] = useLeagues()
@@ -115,10 +116,7 @@ const validateForm = () => {
   )
     return true
   else {
-    store.dispatch(
-      'createMessage',
-      'Please Ensure Competitors Are Not The Same'
-    )
+    messages.create('Please Ensure Competitors Are Not The Same')
     return false
   }
 }

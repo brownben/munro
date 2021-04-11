@@ -46,8 +46,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
 import InputText from '../components/InputText.vue'
@@ -59,9 +58,7 @@ import { useLeagues } from '../api/leagues'
 import { useEvents } from '../api/events'
 import { uploadResult as apiUploadResult } from '../api/upload'
 
-const store = useStore()
 const router = useRouter()
-const route = useRoute()
 
 const [leagues] = useLeagues()
 const [rawEvents] = useEvents()

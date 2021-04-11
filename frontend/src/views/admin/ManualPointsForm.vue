@@ -59,7 +59,6 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { useStore } from 'vuex'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
@@ -67,13 +66,15 @@ import InputNumber from '../../components/InputNumber.vue'
 
 import { RequiredField } from '../../scripts/inputValidation'
 
+import { useMessages } from '../../store/messages'
+
 import { useLeagues } from '../../api/leagues'
 import { useEvents } from '../../api/events'
 import { useCompetitors } from '../../api/competitors'
 import { createManualResult } from '../../api/results'
 
-const store = useStore()
 const router = useRouter()
+const messages = useMessages()
 
 const [leagues] = useLeagues()
 const [events] = useEvents()
@@ -122,8 +123,7 @@ const validateForm = () => {
   )
     return true
   else {
-    store.dispatch(
-      'createMessage',
+    messages.create(
       'Please Ensure Event, Course  and Competitor Fields are not Blank'
     )
     return false

@@ -115,7 +115,7 @@
       </div>
     </div>
     <div
-      v-if="$store.getters.loggedIn"
+      v-if="auth.loggedIn"
       class="w-full px-4 pt-4 pb-4 mt-2 bg-main-50 md:px-6 rounded-shape-xl"
     >
       <div class="mb-2">
@@ -160,6 +160,10 @@
 import { defineEmit, defineProps } from 'vue'
 import type { PropType } from 'vue'
 import { deleteEvent as apiDeleteEvent } from '../api/events'
+
+import { useAuthentication } from '../store/authentication'
+
+const auth = useAuthentication()
 
 const props = defineProps({
   showLeagueName: { type: Boolean, default: false },
