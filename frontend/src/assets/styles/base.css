@@ -62,8 +62,14 @@ a.link {
 }
 
 button:focus,
-a:focus {
+a:focus,
+div:focus {
   outline: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: inherit;
 }
 
 b {

@@ -65,6 +65,8 @@
             eventsWithResults.length <= 10 ||
             (eventsWithResults.length < 8 && results?.[0]?.course),
         }"
+        role="region"
+        tabindex="0"
       >
         <table class="w-full border-collapse">
           <thead>
@@ -75,7 +77,7 @@
                 text="Pos."
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.position"
-                @click="changeSortPreference(SortableProperties.position)"
+                @toggle="changeSortPreference(SortableProperties.position)"
               />
 
               <Heading
@@ -83,7 +85,7 @@
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.name"
                 :left-on-mobile="true"
-                @click="changeSortPreference(SortableProperties.name)"
+                @toggle="changeSortPreference(SortableProperties.name)"
               />
               <Heading
                 v-if="results?.[0]?.course"
@@ -91,27 +93,27 @@
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.course"
                 :hide-on-mobile="true"
-                @click="changeSortPreference(SortableProperties.course)"
+                @toggle="changeSortPreference(SortableProperties.course)"
               />
               <Heading
                 text="Class"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.age"
                 :hide-on-mobile="true"
-                @click="changeSortPreference(SortableProperties.age)"
+                @toggle="changeSortPreference(SortableProperties.age)"
               />
               <Heading
                 text="Club"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.club"
                 :hide-on-mobile="true"
-                @click="changeSortPreference(SortableProperties.club)"
+                @toggle="changeSortPreference(SortableProperties.club)"
               />
               <Heading
                 text="Points"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.totalPoints"
-                @click="changeSortPreference(SortableProperties.totalPoints)"
+                @toggle="changeSortPreference(SortableProperties.totalPoints)"
               />
 
               <Heading
@@ -125,7 +127,7 @@
                   sortPreferences.event === i
                 "
                 :compressed="true"
-                @click="changeSortPreference(SortableProperties.points, i)"
+                @toggle="changeSortPreference(SortableProperties.points, i)"
               />
 
               <th class="table-cell md:hidden" />

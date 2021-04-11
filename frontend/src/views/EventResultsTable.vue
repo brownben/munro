@@ -85,92 +85,96 @@
       <FilterMenu @changed="filterChanged" />
     </template>
 
-    <table
-      v-if="results.length > 0"
-      class="w-full col-span-2 mb-2 border-collapse"
-    >
-      <thead>
-        <tr
-          class="transition duration-300 bg-white border-b border-collapse border-main-200 hover:bg-main-200"
-        >
-          <Heading
-            text="Pos."
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.position"
-            @click="changeSortPreference(SortableProperties.position)"
-          />
-          <Heading
-            text="Name"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.name"
-            :left-on-mobile="true"
-            @click="changeSortPreference(SortableProperties.name)"
-          />
-          <Heading
-            text="Class"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.age"
-            :hide-on-mobile="true"
-            @click="changeSortPreference(SortableProperties.age)"
-          />
-          <Heading
-            text="Club"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.club"
-            :hide-on-mobile="true"
-            @click="changeSortPreference(SortableProperties.club)"
-          />
-          <Heading
-            text="Time"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.time"
-            @click="changeSortPreference(SortableProperties.time)"
-          />
-        </tr>
-      </thead>
-      <transition-group name="list">
-        <TableRow
-          v-for="(result, i) in results"
-          :key="`${result?.course}-${result?.id}`"
-          :striped="i % 2 === 0"
-          :expanding="false"
-        >
-          <template v-if="result">
-            <Cell>
-              <template
-                v-if="['max', 'average', 'manual'].includes(result.type ?? '')"
-              >
-                *
-              </template>
-              <template v-else-if="result.incomplete">-</template>
-              <template v-else>
-                {{ result.position || '' }}
-              </template>
-            </Cell>
+    <div class="col-span-2" role="region" tabindex="0">
+      <table
+        v-if="results.length > 0"
+        class="w-full col-span-2 mb-2 border-collapse"
+      >
+        <thead>
+          <tr
+            class="transition duration-300 bg-white border-b border-collapse border-main-200 hover:bg-main-200"
+          >
+            <Heading
+              text="Pos."
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.position"
+              @toggle="changeSortPreference(SortableProperties.position)"
+            />
+            <Heading
+              text="Name"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.name"
+              :left-on-mobile="true"
+              @toggle="changeSortPreference(SortableProperties.name)"
+            />
+            <Heading
+              text="Class"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.age"
+              :hide-on-mobile="true"
+              @toggle="changeSortPreference(SortableProperties.age)"
+            />
+            <Heading
+              text="Club"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.club"
+              :hide-on-mobile="true"
+              @toggle="changeSortPreference(SortableProperties.club)"
+            />
+            <Heading
+              text="Time"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.time"
+              @toggle="changeSortPreference(SortableProperties.time)"
+            />
+          </tr>
+        </thead>
+        <transition-group name="list">
+          <TableRow
+            v-for="(result, i) in results"
+            :key="`${result?.course}-${result?.id}`"
+            :striped="i % 2 === 0"
+            :expanding="false"
+          >
+            <template v-if="result">
+              <Cell>
+                <template
+                  v-if="
+                    ['max', 'average', 'manual'].includes(result.type ?? '')
+                  "
+                >
+                  *
+                </template>
+                <template v-else-if="result.incomplete">-</template>
+                <template v-else>
+                  {{ result.position || '' }}
+                </template>
+              </Cell>
 
-            <Cell show-secondary-until="sm" class="text-left pl-6">
-              {{ result.name }}
-              <template #secondary>
-                <span v-if="result.ageClass" class="mr-4">
-                  {{ result.ageClass }}
-                </span>
-                <span>{{ result.club }}</span>
-              </template>
-            </Cell>
+              <Cell show-secondary-until="sm" class="text-left pl-6">
+                {{ result.name }}
+                <template #secondary>
+                  <span v-if="result.ageClass" class="mr-4">
+                    {{ result.ageClass }}
+                  </span>
+                  <span>{{ result.club }}</span>
+                </template>
+              </Cell>
 
-            <Cell show-after="sm">
-              {{ result.ageClass }}
-            </Cell>
-            <Cell show-after="sm">
-              {{ result.club }}
-            </Cell>
-            <Cell>
-              {{ elapsedTime(result.time) }}
-            </Cell>
-          </template>
-        </TableRow>
-      </transition-group>
-    </table>
+              <Cell show-after="sm">
+                {{ result.ageClass }}
+              </Cell>
+              <Cell show-after="sm">
+                {{ result.club }}
+              </Cell>
+              <Cell>
+                {{ elapsedTime(result.time) }}
+              </Cell>
+            </template>
+          </TableRow>
+        </transition-group>
+      </table>
+    </div>
     <CardNoResults v-if="!loading && results.length === 0" class="col-span-2" />
   </Layout>
 </template>

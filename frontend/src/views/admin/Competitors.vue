@@ -43,84 +43,85 @@
         </router-link>
       </div>
     </div>
-
-    <table
-      v-if="competitors.length > 0"
-      class="table w-full col-span-2 my-4 border-collapse table-fixed"
-    >
-      <thead>
-        <tr
-          class="transition duration-300 bg-white border-b border-collapse border-main-300 hover:bg-main-200"
-        >
-          <Heading
-            text="Id"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.id"
-            @click="changeSortPreference(SortableProperties.id)"
-          />
-          <Heading
-            text="Name"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.name"
-            :left-on-mobile="true"
-            @click="changeSortPreference(SortableProperties.name)"
-          />
-          <Heading
-            text="Club"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.club"
-            :hide-on-mobile="true"
-            @click="changeSortPreference(SortableProperties.club)"
-          />
-          <Heading
-            text="Class"
-            :ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.ageClass"
-            :hide-on-mobile="true"
-            @click="changeSortPreference(SortableProperties.ageClass)"
-          />
-          <Heading
-            text="Course"
-            ::ascending="sortPreferences.ascending"
-            :active="sortPreferences.by === SortableProperties.course"
-            @click="changeSortPreference(SortableProperties.course)"
-          />
-        </tr>
-      </thead>
-      <transition-group name="list">
-        <TableRow
-          v-for="(competitor, i) of competitors"
-          :key="competitor?.id"
-          :striped="i % 2 === 0"
-          :expanding="false"
-          @click="$router.push(`/competitors/${competitor?.id}`)"
-        >
-          <template v-if="competitor">
-            <Cell>
-              {{ competitor.id }}
-            </Cell>
-            <Cell show-secondary-until="sm" class="text-left pl-6">
-              {{ competitor.name }}
-              <template #secondary>
-                <span v-if="competitor.ageClass" class="mr-4">
-                  {{ competitor.ageClass }}
-                </span>
-                <span>{{ competitor.club }}</span>
-              </template>
-            </Cell>
-            <Cell show-after="sm">
-              {{ competitor.club }}
-            </Cell>
-            <Cell show-after="sm">
-              {{ competitor.ageClass }}
-            </Cell>
-            <Cell>
-              {{ competitor.course }}
-            </Cell>
-          </template>
-        </TableRow>
-      </transition-group>
-    </table>
+    <div class="col-span-2" role="region" tabindex="0">
+      <table
+        v-if="competitors.length > 0"
+        class="table w-full col-span-2 my-4 border-collapse table-fixed"
+      >
+        <thead>
+          <tr
+            class="transition duration-300 bg-white border-b border-collapse border-main-300 hover:bg-main-200"
+          >
+            <Heading
+              text="Id"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.id"
+              @toggle="changeSortPreference(SortableProperties.id)"
+            />
+            <Heading
+              text="Name"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.name"
+              :left-on-mobile="true"
+              @toggle="changeSortPreference(SortableProperties.name)"
+            />
+            <Heading
+              text="Club"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.club"
+              :hide-on-mobile="true"
+              @toggle="changeSortPreference(SortableProperties.club)"
+            />
+            <Heading
+              text="Class"
+              :ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.ageClass"
+              :hide-on-mobile="true"
+              @toggle="changeSortPreference(SortableProperties.ageClass)"
+            />
+            <Heading
+              text="Course"
+              ::ascending="sortPreferences.ascending"
+              :active="sortPreferences.by === SortableProperties.course"
+              @toggle="changeSortPreference(SortableProperties.course)"
+            />
+          </tr>
+        </thead>
+        <transition-group name="list">
+          <TableRow
+            v-for="(competitor, i) of competitors"
+            :key="competitor?.id"
+            :striped="i % 2 === 0"
+            :expanding="false"
+            @click="$router.push(`/competitors/${competitor?.id}`)"
+          >
+            <template v-if="competitor">
+              <Cell>
+                {{ competitor.id }}
+              </Cell>
+              <Cell show-secondary-until="sm" class="text-left pl-6">
+                {{ competitor.name }}
+                <template #secondary>
+                  <span v-if="competitor.ageClass" class="mr-4">
+                    {{ competitor.ageClass }}
+                  </span>
+                  <span>{{ competitor.club }}</span>
+                </template>
+              </Cell>
+              <Cell show-after="sm">
+                {{ competitor.club }}
+              </Cell>
+              <Cell show-after="sm">
+                {{ competitor.ageClass }}
+              </Cell>
+              <Cell>
+                {{ competitor.course }}
+              </Cell>
+            </template>
+          </TableRow>
+        </transition-group>
+      </table>
+    </div>
   </Layout>
 </template>
 
