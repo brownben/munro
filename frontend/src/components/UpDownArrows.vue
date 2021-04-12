@@ -14,7 +14,6 @@
         'h-5 -mt-1': ascending && active,
         'h-7/2 -mt-1 opacity-75': !active,
       }"
-      role="img"
     >
       <path stroke="none" d="M0 0h24v24H0z" />
       <line x1="12" y1="5" x2="12" y2="19" />
@@ -35,7 +34,6 @@
         'h-5 -mt-1': !ascending && active,
         'h-7/2 -mt-1 opacity-75': !active,
       }"
-      role="img"
     >
       <path stroke="none" d="M0 0h24v24H0z" />
       <line x1="12" y1="5" x2="12" y2="19" />

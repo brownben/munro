@@ -26,7 +26,7 @@
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          role="img"
+          aria-hidden="true"
         >
           <path
             d="M19 9l-7 7-7-7"
@@ -81,7 +81,7 @@
         viewBox="0 0 24 24"
         stroke="currentColor"
         class="h-4 w-4 text-red-600 inline-block"
-        role="img"
+        aria-hidden="true"
       >
         <path
           stroke-linecap="round"

@@ -12,7 +12,7 @@
         <strong>Munro is Open Source!</strong>
 
         <span class="pl-2">
-          All the Code is Avaliable on
+          All the Code is Available on
           <a class="link" href="https://github.com/brownben/munro">Github</a>
         </span>
       </blockquote>
@@ -21,7 +21,7 @@
       <p>
         All leagues, events, and results are able to be accessed through Munro's
         API to allow you to create your own applications/ statistics based on
-        the data in Munro. Full Swagger documentation is avaliable
+        the data in Munro. Full Swagger documentation is available
         <a href="https://munro-leagues.herokuapp.com/api/">to view here</a>.
         (You may need to do a hard refresh to view the page)
       </p>
@@ -29,7 +29,7 @@
       <h3>Basic Overview of API Methods</h3>
       <p>
         The event id is made by combining the league name, event name and date
-        and removing all spaces, it is avaliable for the league admin to view.
+        and removing all spaces, it is available for the league admin to view.
         Dates are in the form YYYY-MM-DD
       </p>
       <ul>

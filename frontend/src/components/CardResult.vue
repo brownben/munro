@@ -33,9 +33,9 @@
         class="inline-block mx-8 mb-2 text-gray-900 whitespace-nowrap font-heading"
       >
         <p class="text-5xl font-bold">
-          <template v-if="result.time">
+          <time v-if="result.time" :datetime="timeToHTMLElapsed(result.time)">
             {{ elapsedTime(result.time) }}
-          </template>
+          </time>
           <template v-else> * </template>
         </p>
         <p class="inline-block text-sm text-gray-500 uppercase">Time</p>
@@ -99,7 +99,7 @@
 <script lang="ts" setup>
 import { defineEmit, defineProps } from 'vue'
 import type { PropType } from 'vue'
-import { elapsedTime } from '../scripts/time'
+import { elapsedTime, timeToHTMLElapsed } from '../scripts/time'
 import {
   hideResult as apiHideResult,
   incompleteResult as apiIncompleteResult,

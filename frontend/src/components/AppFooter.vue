@@ -11,11 +11,11 @@
         title="Twitter"
         class="group"
       >
+        <span class="sr-only">Twitter</span>
         <svg
           class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800"
           viewBox="0 0 400 400"
-          aria-label="Twitter"
-          role="img"
+          aria-hidden="true"
         >
           <path
             fill="currentColor"
@@ -35,11 +35,11 @@
         title="GitHub"
         class="group"
       >
+        <span class="sr-only">GitHub</span>
         <svg
           class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800"
-          aria-label="Github"
           viewBox="0 0 24 24"
-          role="img"
+          aria-hidden="true"
         >
           <path
             fill="currentColor"
@@ -73,7 +73,12 @@
       >
         Logout
       </router-link>
-      <p class="inline-block text-sm text-gray-400 font-heading">&bull;</p>
+      <p
+        class="inline-block text-sm text-gray-400 font-heading"
+        aria-hidden="true"
+      >
+        &bull;
+      </p>
       <a
         href="mailto:munro.leagues@gmail.com"
         class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"

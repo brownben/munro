@@ -39,7 +39,7 @@
             viewBox="0 0 24 24"
             stroke="currentColor"
             class="h-6 w-6"
-            role="img"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -68,13 +68,14 @@
         role="region"
         tabindex="0"
       >
-        <table class="w-full border-collapse">
+        <table class="w-full border-collapse tabular-nums">
           <thead>
             <tr
               class="transition duration-300 bg-white border-b border-collapse border-main-200"
             >
               <Heading
                 text="Pos."
+                screenreader-text="Position"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.position"
                 @toggle="changeSortPreference(SortableProperties.position)"
@@ -97,6 +98,7 @@
               />
               <Heading
                 text="Class"
+                screenreader-text="Age Class"
                 :ascending="sortPreferences.ascending"
                 :active="sortPreferences.by === SortableProperties.age"
                 :hide-on-mobile="true"

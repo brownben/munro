@@ -13,11 +13,11 @@
       {{ event.name }}
     </h4>
     <h5 class="text-base leading-tight text-gray-500 font-heading">
-      <template v-if="event.date">
+      <time v-if="event.date" :datetime="event.date">
         {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
           event.date.split('-')[0]
         }}
-      </template>
+      </time>
       <span
         v-if="event.organiser && event.date"
         class="hidden mx-1 sm:inline-block md:hidden xl:inline-block"

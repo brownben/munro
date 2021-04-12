@@ -11,20 +11,21 @@
       >
         {{ event.league }}
       </router-link>
-      <h2
+      <h3
         class="mt-2 mb-1 text-3xl font-bold leading-tight tracking-tight text-gray-900 font-heading"
       >
         {{ event.name }}
-      </h2>
-      <h3 class="mt-1 text-lg text-gray-600 font-heading last:mb-4 md:mt-0">
-        <span v-if="event.date" class="leading-4">
+      </h3>
+      <h4 class="mt-1 text-lg text-gray-600 font-heading last:mb-4 md:mt-0">
+        <time v-if="event.date" class="leading-4" :datetime="event.date">
           {{ event.date.split('-')[2] }}/{{ event.date.split('-')[1] }}/{{
             event.date.split('-')[0]
           }}
-        </span>
+        </time>
         <span
           v-if="event.organiser && event.date"
           class="hidden mx-1 md:inline-block"
+          aria-hidden="true"
         >
           -
         </span>
@@ -34,7 +35,7 @@
         >
           Organised By {{ event.organiser }}
         </span>
-      </h3>
+      </h4>
 
       <div
         v-if="

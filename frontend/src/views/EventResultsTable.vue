@@ -35,7 +35,7 @@
             viewBox="0 0 24 24"
             stroke="currentColor"
             class="h-6 w-6"
-            role="img"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -51,9 +51,9 @@
     <template #white>
       <div v-if="coursesInResults.length > 0" class="col-span-2 -mt-2 flex">
         <div class="hidden sm:flex w-full items-center">
-          <h2 class="text-lg tracking-tight text-gray-600 mr-2 font-heading">
+          <p class="text-lg tracking-tight text-gray-600 mr-2 font-heading">
             Courses:
-          </h2>
+          </p>
           <router-link
             v-for="course in coursesInResults"
             :key="course"
@@ -88,7 +88,7 @@
     <div class="col-span-2" role="region" tabindex="0">
       <table
         v-if="results.length > 0"
-        class="w-full col-span-2 mb-2 border-collapse"
+        class="w-full col-span-2 mb-2 border-collapse tabular-nums"
       >
         <thead>
           <tr
@@ -96,6 +96,7 @@
           >
             <Heading
               text="Pos."
+              screenreader-text="Position"
               :ascending="sortPreferences.ascending"
               :active="sortPreferences.by === SortableProperties.position"
               @toggle="changeSortPreference(SortableProperties.position)"
@@ -109,6 +110,7 @@
             />
             <Heading
               text="Class"
+              screenreader-text="Age Class"
               :ascending="sortPreferences.ascending"
               :active="sortPreferences.by === SortableProperties.age"
               :hide-on-mobile="true"
@@ -168,7 +170,12 @@
                 {{ result.club }}
               </Cell>
               <Cell>
-                {{ elapsedTime(result.time) }}
+                <time
+                  v-if="result.time"
+                  :datetime="timeToHTMLElapsed(result.time)"
+                >
+                  {{ elapsedTime(result.time) }}
+                </time>
               </Cell>
             </template>
           </TableRow>
@@ -195,7 +202,7 @@ const CardNoResults = defineAsyncComponent(
 )
 
 import { toSingleString } from '../scripts/typeHelpers'
-import { elapsedTime } from '../scripts/time'
+import { elapsedTime, timeToHTMLElapsed } from '../scripts/time'
 import { eventResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
 import { filterResults } from '../scripts/filter'
 import {

@@ -12,14 +12,18 @@
       </div>
 
       <div>
-        <h2
-          class="text-4xl leading-tight tracking-tight text-main-800 md:text-5xl xl:text-6xl"
-        >
-          League Results.
-        </h2>
-        <h2 class="text-5xl font-bold text-main-600 sm:text-6xl lg:text-7xl">
-          Sorted.
-        </h2>
+        <h1>
+          <span
+            class="block text-4xl leading-tight tracking-tight text-main-800 md:text-5xl xl:text-6xl"
+          >
+            League Results.
+          </span>
+          <span
+            class="block text-5xl font-bold text-main-600 sm:text-6xl lg:text-7xl"
+          >
+            Sorted.
+          </span>
+        </h1>
         <router-link to="/leagues" class="w-auto mx-0 mt-3 md:mt-4 button">
           View All Leagues
         </router-link>
