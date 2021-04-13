@@ -5,7 +5,7 @@
     <div class="flex-shrink text-center sm:text-left">
       <router-link
         :to="`/leagues/${competitor.league}`"
-        class="text-xs font-bold leading-tight tracking-widest uppercase font-heading text-main-700"
+        class="text-xs font-bold leading-tight tracking-widest uppercase font-heading text-main-700 focus-visible:shadow-outline rounded-shape"
       >
         {{ competitor.league }}
       </router-link>
@@ -31,7 +31,7 @@
     </div>
 
     <router-link
-      class="inline-block w-auto px-3 py-2 mt-2 text-base leading-tight whitespace-nowrap transition duration-300 ease-in-out select-none text-main-700 font-heading rounded-shape hover:text-main-800 focus:text-main-800 sm:my-0 hover:bg-main-100 focus:bg-main-100 sm:mr-0 sm:ml-4"
+      class="inline-block w-auto px-3 py-2 mt-2 text-base leading-tight whitespace-nowrap transition duration-300 ease-in-out select-none text-main-700 font-heading rounded-shape hover:text-main-800 focus:text-main-800 sm:my-0 hover:bg-main-100 focus:bg-main-100 sm:mr-0 sm:ml-4 focus-visible:shadow-outline"
       :to="`/competitors/${competitor.id}`"
     >
       View Results &rarr;

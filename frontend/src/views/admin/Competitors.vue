@@ -5,7 +5,7 @@
       <h1 class="text-3xl font-bold leading-tight font-heading">
         <router-link
           :to="'/leagues/' + $route.params.league"
-          class="text-xl text-main-700"
+          class="text-xl text-main-700 focus-visible:shadow-outline rounded-shape"
         >
           {{ $route.params.league }}
         </router-link>

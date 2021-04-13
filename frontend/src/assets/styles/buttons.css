@@ -15,6 +15,10 @@
     @apply bg-main-200 text-main-800;
   }
 
+  &:focus-visible {
+    @apply shadow-outline;
+  }
+
   &.button-dark {
     /* On Light Pink Card Background */
     @apply bg-main-100;

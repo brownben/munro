@@ -7,7 +7,7 @@
       <router-link
         v-if="showLeagueName"
         :to="`/leagues/${event.league}`"
-        class="text-xs font-bold tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700 leading-none"
+        class="text-xs font-bold tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700 leading-none focus-visible:shadow-outline rounded-shape"
       >
         {{ event.league }}
       </router-link>

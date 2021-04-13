@@ -39,9 +39,9 @@
 
         <p v-if="league?.scoringMethod" class="w-full leading-6 text-gray-600">
           The scoring for the league is calculated using
-          <span class="text-gray-900 md:text-lg font-heading">{{
-            scoringMethodShorthandToFull(league.scoringMethod)
-          }}</span>
+          <span class="text-gray-900 md:text-lg font-heading">
+            {{ scoringMethodShorthandToFull(league.scoringMethod) }}
+          </span>
 
           <span
             v-if="league.numberOfCountingEvents && league.numberOfEvents"
@@ -131,7 +131,7 @@
               v-for="course of league.courses"
               :key="course"
               :to="`${$route.path}/results/${course}`"
-              class="inline-block w-full mx-0 mt-3 py-2 px-4 text-lg font-heading leading-tight bg-white bg-opacity-0 text-white outline-none appearance-none select-none rounded-shape transition duration-300 ease-in-out border border-white border-opacity-50 sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
+              class="inline-block w-full mx-0 mt-3 py-2 px-4 text-lg font-heading leading-tight bg-white bg-opacity-0 text-white outline-none appearance-none select-none rounded-shape transition duration-300 ease-in-out border border-white border-opacity-50 sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 ring-white ring-opacity-75"
             >
               {{ course }}
             </router-link>

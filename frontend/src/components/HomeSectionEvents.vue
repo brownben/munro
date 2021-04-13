@@ -13,7 +13,7 @@
         <div>
           <router-link
             to="/latest-results"
-            class="inline-block px-4 py-2 text-sm tracking-wide text-right uppercase transition duration-300 text-main-700 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
+            class="inline-block px-4 py-2 text-sm tracking-wide text-right uppercase transition duration-300 text-main-700 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape focus-visible:shadow-outline"
           >
             View More &rarr;
           </router-link>

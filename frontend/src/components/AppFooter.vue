@@ -13,7 +13,7 @@
       >
         <span class="sr-only">Twitter</span>
         <svg
-          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800"
+          class="box-content inline-block h-6 p-1 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800 group-focus-visible:shadow-outline"
           viewBox="0 0 400 400"
           aria-hidden="true"
         >
@@ -37,7 +37,7 @@
       >
         <span class="sr-only">GitHub</span>
         <svg
-          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800"
+          class="box-content inline-block h-4 p-2 mx-2 transition duration-300 rounded-full bg-main-100 text-main-700 hover:bg-main-200 hover:text-main-800 group-focus:bg-main-200 group-focus:text-main-800 group-focus-visible:shadow-outline"
           viewBox="0 0 24 24"
           aria-hidden="true"
         >
@@ -53,7 +53,7 @@
         Created By
         <a
           href="https://benbrown.dev"
-          class="font-bold transition duration-300 text-main-700 hover:text-main-800 focus:text-main-800"
+          class="font-bold transition duration-300 text-main-700 hover:text-main-800 focus:text-main-800 focus-visible:shadow-outline rounded-shape"
         >
           Ben Brown
         </a>
@@ -62,14 +62,14 @@
       <router-link
         v-if="!auth.loggedIn"
         to="/login"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading focus-visible:shadow-outline rounded-shape"
       >
         Admin Login
       </router-link>
       <router-link
         v-else
         to="/logout"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading focus-visible:shadow-outline rounded-shape"
       >
         Logout
       </router-link>
@@ -81,7 +81,7 @@
       </p>
       <a
         href="mailto:munro.leagues@gmail.com"
-        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading"
+        class="text-sm text-gray-500 transition duration-300 hover:text-main-700 focus:text-main-700 font-heading focus-visible:shadow-outline rounded-shape"
       >
         Contact
       </a>

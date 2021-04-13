@@ -13,7 +13,7 @@
         <h1 class="text-3xl font-bold leading-tight font-heading -mt-2">
           <router-link
             :to="'/leagues/' + event?.league"
-            class="text-xl text-main-700"
+            class="text-xl text-main-700 focus-visible:shadow-outline rounded-shape"
           >
             {{ event?.league || '' }}
           </router-link>
@@ -60,9 +60,9 @@
             :class="
               currentCourse === course
                 ? 'text-main-700 bg-main-100'
-                : 'hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 text-gray-500'
+                : 'hover:bg-main-100  focus:bg-main-100  text-gray-500 '
             "
-            class="px-3 py-2 ml-2 font-heading leading-5 transition duration-150 ease-in-out rounded-shape focus:outline-none text-lg"
+            class="px-3 py-2 ml-2 font-heading leading-5 transition duration-150 ease-in-out rounded-shape focus-visible:shadow-outline text-lg hover:text-main-600 focus:text-main-600"
             :to="`/events/${$route.params.event}/results/${course}`"
           >
             {{ course }}

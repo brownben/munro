@@ -58,18 +58,19 @@ html {
 }
 
 a.link {
-  text-decoration: underline;
+  @apply underline rounded-shape;
+
+  &:focus-visible {
+    @apply shadow-outline;
+  }
 }
 
-button:focus,
-a:focus,
-div:focus {
-  outline: none;
+:is(button, a):focus {
+  @apply outline-none;
 }
 
-button:focus-visible,
-a:focus-visible {
-  outline: inherit;
+:is(button):focus-visible {
+  @apply shadow-outline;
 }
 
 b {

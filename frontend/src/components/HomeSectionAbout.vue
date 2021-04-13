@@ -21,7 +21,7 @@
         </h2>
         <router-link
           to="/about"
-          class="inline-block w-auto px-4 py-1 mx-0 mt-1 text-main-700 transition duration-300 ease-in-out outline-none appearance-none select-none md:mt-2 md:text-lg bg-main-100 font-heading rounded-shape hover:bg-main-200 focus:bg-main-200"
+          class="inline-block w-auto px-4 py-1 mx-0 mt-1 text-main-700 transition duration-300 ease-in-out outline-none appearance-none select-none md:mt-2 md:text-lg bg-main-100 font-heading rounded-shape hover:bg-main-200 focus:bg-main-200 focus-visible:shadow-outline"
         >
           Introducing Munro Leagues
         </router-link>
