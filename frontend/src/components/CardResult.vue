@@ -127,13 +127,13 @@ const positionSuperscript = (position: number) => {
   else return 'th'
 }
 
-const hideResult = (result: EventResult) =>
-  apiHideResult(result.id, result.type !== 'hidden').then(() =>
-    emit('result-changed')
-  )
+const hideResult = async (result: EventResult) => {
+  await apiHideResult(result.id, result.type !== 'hidden')
+  emit('result-changed')
+}
 
-const incompleteResult = (result: EventResult) =>
-  apiIncompleteResult(result.id, !result.incomplete).then(() =>
-    emit('result-changed')
-  )
+const incompleteResult = async (result: EventResult) => {
+  await apiIncompleteResult(result.id, !result.incomplete)
+  emit('result-changed')
+}
 </script>

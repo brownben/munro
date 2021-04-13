@@ -1,5 +1,5 @@
 <template>
-  <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
+  <form class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
     <InputText
       v-model="name"
       label="Name:"
@@ -46,7 +46,7 @@
       class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 md:pt-4 md:pb-0text-center"
       @update:modelValue="onChange"
     />
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts">

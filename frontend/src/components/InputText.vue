@@ -29,7 +29,7 @@
     <p
       v-if="state === 'invalid'"
       :id="`${label}-error-message`"
-      class="font-heading text-red-600 flex items-center"
+      class="font-heading text-red-600 flex items-center select-none"
       aria-live="assertive"
     >
       <svg

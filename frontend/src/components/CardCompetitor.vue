@@ -9,11 +9,11 @@
       >
         {{ competitor.league }}
       </router-link>
-      <h2
+      <h3
         class="mt-1 mb-1 text-3xl font-bold leading-tight tracking-tight text-gray-900 font-heading sm:tracking-normal"
       >
         {{ competitor.name }}
-      </h2>
+      </h3>
       <p class="text-lg leading-tight text-gray-500 font-heading">
         {{ competitor.course }}
         <span

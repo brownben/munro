@@ -1,5 +1,5 @@
 <template>
-  <tbody v-bind="$attrs" class="group">
+  <tbody class="group">
     <tr
       class="transition duration-300 ease-in-out bg-white border-collapse group-hover:bg-main-200"
       :class="{ 'bg-main-100': striped }"
