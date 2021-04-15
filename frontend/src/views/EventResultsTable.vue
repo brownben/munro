@@ -85,7 +85,7 @@
       <FilterMenu @changed="filterChanged" />
     </template>
 
-    <div class="col-span-2" role="region" tabindex="0">
+    <div class="col-span-2" >
       <table
         v-if="results.length > 0"
         class="w-full col-span-2 mb-2 border-collapse tabular-nums"

@@ -43,7 +43,7 @@
         </router-link>
       </div>
     </div>
-    <div class="col-span-2" role="region" tabindex="0">
+    <div class="col-span-2">
       <table
         v-if="competitors.length > 0"
         class="table w-full col-span-2 my-4 border-collapse table-fixed"

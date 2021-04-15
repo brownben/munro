@@ -65,8 +65,6 @@
             eventsWithResults.length <= 10 ||
             (eventsWithResults.length < 8 && results?.[0]?.course),
         }"
-        role="region"
-        tabindex="0"
       >
         <table class="w-full border-collapse tabular-nums">
           <thead>
