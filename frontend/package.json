@@ -15,6 +15,7 @@
     "build": "vite build && npm run generateServiceWorker"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.0.0",
     "@vueuse/head": "^0.5.1",
     "pinia": "^2.0.0-alpha.13",
     "register-service-worker": "^1.7.2",
@@ -23,13 +24,13 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.4.0",
-    "@types/node": "^14.14.37",
+    "@types/node": "^14.14.41",
     "@vitejs/plugin-vue": "^1.2.1",
     "@vue/compiler-sfc": "^3.0.11",
     "autoprefixer": "^10.2.5",
-    "cssnano": "^5.0.0",
+    "cssnano": "^5.0.1",
     "cssnano-preset-advanced": "^5.0.0",
-    "postcss": "^8.2.9",
+    "postcss": "^8.2.10",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.2.1",
     "rollup-plugin-workbox": "^6.1.1",
