@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col flex-grow h-full">
+  <div id="content" class="flex flex-col flex-grow h-full">
     <header
       v-if="(title || $slots.title) && !notFound"
       class="text-gray-900 bg-white"
@@ -26,17 +26,17 @@
       </div>
 
       <transition
-        enter-active-class="origin-top motion-safe:transition ease-out duration-150"
-        enter-from-class="motion-safe:transform opacity-0 scale-y-95"
-        enter-to-class="motion-safe:transform opacity-100 scale-y-100"
-        leave-active-class="origon-top motion-safe:transition ease-in duration-100"
-        leave-from-class="motion-safe:transform opacity-100 scale-y-100"
-        leave-to-class="motion-safe:transform opacity-0 scale-y-95"
+        enter-active-class="duration-150 ease-out origin-top motion-safe:transition"
+        enter-from-class="scale-y-95 opacity-0 motion-safe:transform"
+        enter-to-class="scale-y-100 opacity-100 motion-safe:transform"
+        leave-active-class="duration-100 ease-in origin-top motion-safe:transition"
+        leave-from-class="scale-y-100 opacity-100 motion-safe:transform"
+        leave-to-class="scale-y-95 opacity-0 motion-safe:transform"
       >
         <div
           v-if="$slots.expansion"
           v-show="showExpansion"
-          class="origin-top border-t border-b border-main-100 bg-gray-50 py-6 mb-8 -mt-2"
+          class="py-6 mb-8 -mt-2 origin-top border-t border-b border-main-100 bg-gray-50"
         >
           <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
             <div class="px-6 sm:px-0">

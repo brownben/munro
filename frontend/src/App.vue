@@ -1,7 +1,13 @@
 <template>
+  <a
+    href="#content"
+    class="z-50 bg-white sr-only focus:absolute focus:px-3 focus:py-2 focus:m-4 text-main-800 rounded-shape focus:not-sr-only focus:block focus:shadow-outline"
+  >
+    Skip to main content
+  </a>
   <AppMenu v-if="!$route.path.includes('/embed/')" />
 
-  <div id="content" class="flex flex-col flex-grow">
+  <div class="flex flex-col flex-grow">
     <Messages />
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">

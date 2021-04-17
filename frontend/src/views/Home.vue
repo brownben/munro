@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main id="content">
     <Meta
       title="Munro"
       description="League Results. Sorted with Munro. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
