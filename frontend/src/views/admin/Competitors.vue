@@ -99,7 +99,7 @@
               <Cell>
                 {{ competitor.id }}
               </Cell>
-              <Cell show-secondary-until="sm" class="text-left pl-6">
+              <Cell show-secondary-until="sm" class="pl-6 text-left">
                 {{ competitor.name }}
                 <template #secondary>
                   <span v-if="competitor.ageClass" class="mr-4">

@@ -9,8 +9,8 @@
       :block-robots="false"
     />
     <template #title>
-      <div class="flex justify-between items-center">
-        <h1 class="text-3xl font-bold leading-tight font-heading -mt-2">
+      <div class="flex items-center justify-between">
+        <h1 class="-mt-2 text-3xl font-bold leading-tight font-heading">
           <router-link
             :to="'/leagues/' + event?.league"
             class="text-xl text-main-700 focus-visible:shadow-outline rounded-shape"
@@ -34,7 +34,7 @@
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            class="h-6 w-6"
+            class="w-6 h-6"
             aria-hidden="true"
           >
             <path
@@ -49,9 +49,9 @@
     </template>
 
     <template #white>
-      <div v-if="coursesInResults.length > 0" class="col-span-2 -mt-2 flex">
-        <div class="hidden sm:flex w-full items-center">
-          <p class="text-lg tracking-tight text-gray-600 mr-2 font-heading">
+      <div v-if="coursesInResults.length > 0" class="flex col-span-2 -mt-2">
+        <div class="items-center hidden w-full sm:flex">
+          <p class="mr-2 text-lg tracking-tight text-gray-600 font-heading">
             Courses:
           </p>
           <router-link
@@ -62,7 +62,7 @@
                 ? 'text-main-700 bg-main-100'
                 : 'hover:bg-main-100  focus:bg-main-100  text-gray-500 '
             "
-            class="px-3 py-2 ml-2 font-heading leading-5 transition duration-150 ease-in-out rounded-shape focus-visible:shadow-outline text-lg hover:text-main-600 focus:text-main-600"
+            class="px-3 py-2 ml-2 text-lg leading-5 transition duration-150 ease-in-out font-heading rounded-shape focus-visible:shadow-outline hover:text-main-600 focus:text-main-600"
             :to="`/events/${$route.params.event}/results/${course}`"
           >
             {{ course }}
@@ -71,7 +71,7 @@
         <InputDropdown
           v-model="currentCourse"
           label="Course:"
-          class="block sm:hidden w-full"
+          class="block w-full sm:hidden"
           :list="coursesInResults"
           :include-blank="false"
           @update:modelValue="
@@ -153,7 +153,7 @@
                 </template>
               </Cell>
 
-              <Cell show-secondary-until="sm" class="text-left pl-6">
+              <Cell show-secondary-until="sm" class="pl-6 text-left">
                 {{ result.name }}
                 <template #secondary>
                   <span v-if="result.ageClass" class="mr-4">

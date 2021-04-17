@@ -168,7 +168,7 @@ const themes: Record<string, Theme> = {
   pink: pinkTheme,
 }
 
-export default (themeName: string) => {
+export default (themeName: string): void => {
   const theme = themes[themeName] ?? purpleTheme
 
   document

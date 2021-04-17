@@ -1,5 +1,5 @@
 import { getData, postData, putData } from './requests'
-import { useData, useDataList } from './useData'
+import { useDataList } from './useData'
 
 const getResults = (): Promise<EventResult[] | undefined> =>
   getData<EventResult[]>({

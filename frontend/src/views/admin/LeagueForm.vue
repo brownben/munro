@@ -34,7 +34,7 @@
       />
       <InputDropdown
         v-model="league.scoringMethod"
-        :listWithDifferentValue="scoringMethodOptions"
+        :list-with-different-value="scoringMethodOptions"
         :include-blank="false"
         label="Scoring Method:"
         class="mt-4"
@@ -42,7 +42,7 @@
       />
       <InputDropdown
         v-model="league.leagueScoring"
-        :listWithDifferentValue="[
+        :list-with-different-value="[
           { value: 'course', text: 'Per Course' },
           { value: 'overall', text: 'Overall' },
           { value: 'ageClass', text: 'Age Class' },

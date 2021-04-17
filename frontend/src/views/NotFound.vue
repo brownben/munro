@@ -5,7 +5,7 @@
     :block-robots="true"
   />
 
-  <div class="w-full col-span-2 px-6 text-center mb-8">
+  <div class="w-full col-span-2 px-6 mb-8 text-center">
     <div class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12">
       <Image class="object-contain w-full mx-auto max-h-112" />
     </div>

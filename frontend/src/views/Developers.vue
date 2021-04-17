@@ -6,7 +6,7 @@
       url="https://munroleagues.com/developers"
       :block-robots="false"
     />
-    <article class="col-span-2 w-full mx-auto mt-4 mb-auto prose lg:prose-lg">
+    <article class="w-full col-span-2 mx-auto mt-4 mb-auto prose lg:prose-lg">
       <h1>Developers</h1>
       <blockquote>
         <strong>Munro is Open Source!</strong>

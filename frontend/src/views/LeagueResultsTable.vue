@@ -13,7 +13,7 @@
       :block-robots="false"
     />
     <template #title>
-      <div class="flex justify-between items-center">
+      <div class="flex items-center justify-between">
         <h1 class="text-3xl font-bold leading-tight font-heading">
           <router-link
             :to="'/leagues/' + $route.params.league"
@@ -38,7 +38,7 @@
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            class="h-6 w-6"
+            class="w-6 h-6"
             aria-hidden="true"
           >
             <path
@@ -141,7 +141,7 @@
             >
               <template v-if="result">
                 <Cell>{{ result.position }}</Cell>
-                <Cell show-secondary-until="sm" class="text-left pl-6">
+                <Cell show-secondary-until="sm" class="pl-6 text-left">
                   {{ result.name }}
                   <template #secondary>
                     <span v-if="result?.course" class="mr-4">
@@ -176,10 +176,9 @@
               </template>
               <template #expansion>
                 <p
-                  v-if="result"
                   v-for="(point, j) of result.points"
                   :key="j"
-                  class="mr-3 text-right font-light"
+                  class="mr-3 font-light text-right"
                 >
                   {{ eventsWithResults[j]?.name }}:
                   <span
@@ -220,7 +219,7 @@
       "
       class="col-span-2 mt-6 card print:hidden"
     >
-      <h2 class="text-2xl font-bold font-heading leading-tight">
+      <h2 class="text-2xl font-bold leading-tight font-heading">
         Results for Other Courses
       </h2>
       <div class="w-full">

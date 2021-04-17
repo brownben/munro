@@ -23,7 +23,7 @@
       />
       <InputDropdown
         v-model="choices.competitorKeep"
-        :listWithDifferentValue="
+        :list-with-different-value="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),
@@ -37,7 +37,7 @@
       />
       <InputDropdown
         v-model="choices.competitorMerge"
-        :listWithDifferentValue="
+        :list-with-different-value="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),

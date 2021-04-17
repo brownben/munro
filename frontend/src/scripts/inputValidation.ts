@@ -7,7 +7,7 @@ export type Validator = {
 
 export const RequiredField = (
   fieldName: string,
-  select: boolean = false
+  select = false
 ): Validator => ({
   message: `Please ${select ? 'select' : 'enter'} ${fieldName}.`,
   func: (value: string) => !!value,

@@ -26,7 +26,7 @@ const newRegex = (pattern: string): RegExp => {
 export const filterResults = (
   result: EventResultWithAgeGender | LeagueResultWithAgeGender,
   filterPreferences: FilterPreferences
-) =>
+): boolean | null =>
   result.name.match(newRegex(filterPreferences.name)) &&
   result.club.match(newRegex(filterPreferences.club)) &&
   resultMatchesGender(result, filterPreferences) &&

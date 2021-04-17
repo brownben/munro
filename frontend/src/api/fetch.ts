@@ -6,7 +6,7 @@ export interface TypedResponse<T = any> extends Response {
 
 const Fetch = <T>(
   location: string,
-  options: object
+  options: RequestInit
 ): Promise<TypedResponse<T>> => window.fetch(location, options)
 
 export const sendRequest = <T>(

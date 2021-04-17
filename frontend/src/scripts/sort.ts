@@ -1,4 +1,9 @@
-const sortComparison = (ascending: boolean, a: any, b: any): 0 | 1 | -1 => {
+type SortValue = string | number | null | undefined | (EventPoints | null)[]
+const sortComparison = (
+  ascending: boolean,
+  a: SortValue,
+  b: SortValue
+): 0 | 1 | -1 => {
   const aIsLess = ascending ? -1 : 1
   const bIsLess = ascending ? 1 : -1
 
@@ -48,13 +53,19 @@ export const sortCompetitors = (sortPreferences: SortPreferencesCompetitor) => (
     b[sortPreferences.by]
   )
 
-export const sortLeagueResults = (sortPreferences: SortPreferencesLeague) => {
+export const sortLeagueResults = (
+  sortPreferences: SortPreferencesLeague
+): ReturnType<
+  typeof sortLeagueResultsByPoints | typeof sortLeagueResultsByProperty
+> => {
   if (sortPreferences.by === SortablePropertiesLeague.points)
     return sortLeagueResultsByPoints(sortPreferences)
   else return sortLeagueResultsByProperty(sortPreferences)
 }
 
-export const sortEventResults = (sortPreferences: SortPreferencesEvent) =>
+export const sortEventResults = (
+  sortPreferences: SortPreferencesEvent
+): ReturnType<typeof sortEventResultsByProperty> =>
   sortEventResultsByProperty(sortPreferences)
 
 export enum SortablePropertiesEvent {

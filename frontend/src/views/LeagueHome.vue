@@ -8,13 +8,13 @@
     />
     <template #title>
       <h1
-        class="text-3xl lg:text-4xl font-bold leading-none font-heading tracking-tight"
+        class="text-3xl font-bold leading-none tracking-tight lg:text-4xl font-heading"
       >
         {{ league?.name || $route.params.name }}
       </h1>
       <h2
         v-if="league && league.description"
-        class="mt-2 md:text-lg lg:text-xl font-heading leading-tight tracking-tight text-gray-600"
+        class="mt-2 leading-tight tracking-tight text-gray-600 md:text-lg lg:text-xl font-heading"
       >
         {{ league.description }}
       </h2>
@@ -118,10 +118,10 @@
           (league?.courses && league.courses.length > 0) ||
           league?.leagueScoring === 'overall'
         "
-        class="col-span-2 py-6 sm:py-8 text-center text-white bg-gradient-to-r from-main-600 to-main-500"
+        class="col-span-2 py-6 text-center text-white sm:py-8 bg-gradient-to-r from-main-600 to-main-500"
       >
         <div
-          class="max-w-screen-xl mx-auto px-6 lg:px-8 sm:flex justify-between items-center"
+          class="items-center justify-between max-w-screen-xl px-6 mx-auto lg:px-8 sm:flex"
         >
           <h2 class="mb-2 text-2xl font-bold font-heading sm:mb-0">
             League Results
@@ -131,7 +131,7 @@
               v-for="course of league.courses"
               :key="course"
               :to="`${$route.path}/results/${course}`"
-              class="inline-block w-full mx-0 mt-3 py-2 px-4 text-lg font-heading leading-tight bg-white bg-opacity-0 text-white outline-none appearance-none select-none rounded-shape transition duration-300 ease-in-out border border-white border-opacity-50 sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 ring-white ring-opacity-75"
+              class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 ring-white ring-opacity-75"
             >
               {{ course }}
             </router-link>
@@ -139,7 +139,7 @@
           <div v-else>
             <router-link
               :to="`${$route.path}/results/Overall`"
-              class="inline-block w-full mx-0 mt-3 py-2 px-4 text-lg font-heading leading-tight bg-white bg-opacity-0 text-white outline-none appearance-none select-none rounded-shape transition duration-300 ease-in-out border border-white border-opacity-50 sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
+              class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
             >
               Overall Results
             </router-link>

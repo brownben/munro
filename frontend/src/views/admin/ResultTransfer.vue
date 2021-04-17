@@ -15,7 +15,7 @@
       />
       <DropdownInput
         v-model="choices.event"
-        :listWithDifferentValue="
+        :list-with-different-value="
           eventsInLeague.map((event) => ({
             value: event.id,
             text: `${event.name} (${event.date})`,
@@ -34,7 +34,7 @@
       />
       <DropdownInput
         v-model="choices.result"
-        :listWithDifferentValue="resultsInEvent"
+        :list-with-different-value="resultsInEvent"
         :include-blank="true"
         label="Result:"
         class="mt-4"
@@ -42,7 +42,7 @@
       />
       <DropdownInput
         v-model="choices.competitor"
-        :listWithDifferentValue="
+        :list-with-different-value="
           competitorsInLeague.map((competitor) => ({
             value: competitor.id.toString(),
             text: competitorToText(competitor),

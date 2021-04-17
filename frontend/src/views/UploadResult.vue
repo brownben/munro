@@ -10,7 +10,7 @@
       <InputDropdown
         v-model="result.eventId"
         label="Event:"
-        :listWithDifferentValue="
+        :list-with-different-value="
           events.map((event) => ({
             text: `${event.league} - ${event.name}`,
             value: event.id,
