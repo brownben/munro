@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <label class="relative flex flex-row items-center select-none">
+  <div class="flex flex-row items-center select-none">
+    <div class="relative">
       <svg
         viewBox="0 0 16 16"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
-        class="absolute left-0 w-5 h-5 text-white"
+        class="absolute left-0 w-5 h-5 text-white pointer-events-none top-1"
         aria-hidden="true"
       >
         <path
@@ -13,15 +13,16 @@
         />
       </svg>
       <input
+        :id="label"
         type="checkbox"
         class="flex-shrink-0 inline-block w-5 h-5 align-middle transition duration-300 ease-in-out bg-white border outline-none appearance-none text-main-500 rounded-shape focus:shadow-outline focus:border-main-400 checked:bg-main-500 checked:border-main-400"
         :checked="modelValue"
         @change="handleEvent($event)"
       />
-      <span class="ml-3 leading-tight text-gray-600 font-heading">
+      <label :for="label" class="ml-3 leading-tight text-gray-600 font-heading">
         {{ label }}
-      </span>
-    </label>
+      </label>
+    </div>
   </div>
 </template>
 
