@@ -110,7 +110,6 @@ import {
   IsValidJSON,
 } from '../../scripts/inputValidation'
 
-import { useAuthentication } from '../../store/authentication'
 import { useMessages } from '../../store/messages'
 
 import {
@@ -123,7 +122,6 @@ import {
 const router = useRouter()
 const route = useRoute()
 const messages = useMessages()
-const auth = useAuthentication()
 
 const routeParamsName = computed(() => toSingleString(route.params.name))
 const [leagues] = useLeagues()
