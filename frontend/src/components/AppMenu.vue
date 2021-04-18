@@ -9,7 +9,7 @@
             <div class="flex-shrink-0">
               <router-link
                 to="/"
-                class="flex flex-row items-center"
+                class="flex flex-row items-center px-1 pb-1 rounded-shape focus-visible:shadow-outline"
                 aria-label="Home"
               >
                 <MunroLogo class="inline-block w-10 h-8 sm:w-20 md:w-10" />
@@ -56,15 +56,15 @@
           </div>
         </div>
         <transition
-          enter-active-class="motion-safe:transition duration-75 ease-out origin-top motion-safe:transform"
+          enter-active-class="duration-75 ease-out origin-top motion-safe:transition motion-safe:transform"
           enter-from-class="scale-y-90 opacity-75"
           enter-to-class="scale-y-100 opacity-100"
-          leave-active-class="motion-safe:transition duration-75 ease-in origin-top motion-safe:transform"
+          leave-active-class="duration-75 ease-in origin-top motion-safe:transition motion-safe:transform"
           leave-from-class="scale-y-100 opacity-100"
           leave-to-class="scale-y-90 opacity-75"
         >
           <MenuItems
-            class="absolute z-30 flex flex-col justify-center w-full pt-16 -mt-16 bg-white shadow sm:hidden outline-none left-0"
+            class="absolute left-0 z-30 flex flex-col justify-center w-full pt-16 -mt-16 bg-white shadow outline-none sm:hidden"
           >
             <div class="px-2 pt-2 pb-3 text-left">
               <MenuItem
