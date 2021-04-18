@@ -19,10 +19,10 @@
 
       <div class="grid grid-cols-2 gap-6 px-6 sm:gap-8 md:grid-cols-3">
         <CardLeague
-          title="(Not) Sprintelope"
-          description=" Socially Distant Sprint/ Urban Orienteering Around Edinburgh"
+          title="Sprintelope"
+          description="Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians"
           website="https://en-gb.facebook.com/sprintelope/"
-          alternative-link="/leagues/(Not) Sprintelope 2020"
+          alternative-link="/leagues/Sprintelope 2021"
           :larger="false"
           smaller
         />
