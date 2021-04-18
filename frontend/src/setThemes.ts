@@ -73,6 +73,20 @@ const coolGray: ThemeGray = {
   '--gray-900': '#0F172A',
 }
 
+const grayTheme: Theme = {
+  '--main-50': '#F8FAFC',
+  '--main-100': '#F1F5F9',
+  '--main-200': '#E2E8F0',
+  '--main-300': '#CBD5E1',
+  '--main-400': '#94A3B8',
+  '--main-500': '#64748B',
+  '--main-600': '#475569',
+  '--main-700': '#334155',
+  '--main-800': '#1E293B',
+  '--main-900': '#0F172A',
+  ...warmGray,
+}
+
 const redTheme: Theme = {
   '--main-50': '#FEF2F2',
   '--main-100': '#FEE2E2',
@@ -166,6 +180,8 @@ const themes: Record<string, Theme> = {
   orange: orangeTheme,
   cyan: cyanTheme,
   pink: pinkTheme,
+  gray: grayTheme,
+  grey: grayTheme,
 }
 
 export default (themeName: string): void => {

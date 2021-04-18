@@ -116,6 +116,7 @@
         <li>orange</li>
         <li>cyan</li>
         <li>pink</li>
+        <li>gray</li>
       </ul>
       <p>For example to view a red theme:</p>
       <pre><code>&lt;iframe src=&quot;https://munroleagues.com/embed/leagues/Sprintelope 2018/events?theme=red&quot;&gt;&lt;/iframe&gt;</code></pre>
