@@ -31,6 +31,7 @@ api = Api(
     description="Get League, Event, Competitor and Results from Munro",
     validate=True,
 )
+app.url_map.strict_slashes = False
 app.register_blueprint(blueprint)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 Compress(app)
