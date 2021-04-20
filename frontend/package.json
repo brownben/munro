@@ -44,7 +44,7 @@
     "rollup-plugin-workbox": "^6.1.1",
     "tailwindcss": "^2.1.1",
     "typescript": "^4.2.4",
-    "vite": "^2.1.5",
+    "vite": "^2.2.1",
     "vue-tsc": "^0.0.24"
   },
   "browserslist": [
