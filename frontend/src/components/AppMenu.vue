@@ -2,7 +2,7 @@
   <Menu>
     <nav class="bg-white font-heading print:hidden">
       <div class="max-w-screen-xl px-2 mx-auto sm:px-6 lg:px-8">
-        <div class="relative z-40 flex items-center justify-between h-16">
+        <div class="relative z-20 flex items-center justify-between h-16">
           <div
             class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-between"
           >

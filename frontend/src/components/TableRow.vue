@@ -12,7 +12,7 @@
           width="16"
           height="16"
           viewBox="0 0 24 24"
-          class="motion-safe:transition-all duration-300 transform fill-current text-gray-600 group-hover:text-main-700"
+          class="text-gray-600 duration-300 transform fill-current motion-safe:transition-all group-hover:text-main-700"
           aria-hidden="true"
         >
           <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
