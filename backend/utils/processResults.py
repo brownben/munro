@@ -125,7 +125,7 @@ def calculatePointsTotal(results: List[PointsResult]) -> int:
 
 
 def assignPosition(results: List[ResultDict]) -> List[ResultDict]:
-    """ Assign 1st, 2nd, 3rd, etc based off total points """
+    """Assign 1st, 2nd, 3rd, etc based off total points"""
 
     lastPosition = 0
     position = 0
