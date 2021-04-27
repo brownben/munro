@@ -7,7 +7,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL", "")
 
 class DatabaseConnection:
     def __init__(self) -> None:
-        self.connection = psycopg2.connect(DATABASE_URL)
+        self.connection = psycopg2.connect(DATABASE_URL, sslmode="require")
         self.cursor = self.connection.cursor()
 
     def execute(self, string: str, values=tuple()) -> None:
