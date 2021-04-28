@@ -4,7 +4,7 @@ atomicwrites==1.4.0
 attrs==20.3.0
 black==21.4b0
 Brotli==1.0.9
-cachetools==4.2.1
+cachetools==4.2.2
 certifi==2020.12.5
 chardet==4.0.0
 click==7.1.2
