@@ -4,7 +4,7 @@ export const uploadFile = (
   data: UploadFile
 ): Promise<ServerMessage | undefined> =>
   postData<ServerMessage>({
-    apiLocation: `/api/upload/`,
+    apiLocation: `/api/upload`,
     data,
     useServerErrorMessage: true,
     customSuccessMessage: `Results Uploaded Successfully`,

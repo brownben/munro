@@ -14,6 +14,7 @@ from ..utils.csv import (
     parseFileToDictionaries,
 )
 from ..utils.processResults import (
+    assignPositionMultipleCourses,
     getMatchingResults,
     matchesClubRestriction,
     normaliseCourses,
@@ -68,7 +69,8 @@ class UploadRoute(Resource):
         normalisedResults = normaliseCourses(matchingResults, league)
         sortedResults = sortByTime(normalisedResults)
         resultsWithCompetitors = matchResultsToCompetitors(sortedResults, league)
-        resultsWithPoints = assignPoints(resultsWithCompetitors, league.scoringMethod)
+        resultsWithPositions = assignPositionMultipleCourses(resultsWithCompetitors)
+        resultsWithPoints = assignPoints(resultsWithPositions, league.scoringMethod)
 
         for result in resultsWithPoints:
             Result(result).create()
