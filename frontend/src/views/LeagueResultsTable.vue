@@ -267,7 +267,10 @@ const routeCourse = computed(() => toSingleString(route.params.course))
 
 const [rawResults, resultsLoading] = useLeagueResults(routeLeague, routeCourse)
 const [league, leagueLoading] = useLeague(routeLeague)
-const [eventsWithResults, eventsLoading] = useLeagueEvents(routeLeague)
+const [leagueEvents, eventsLoading] = useLeagueEvents(routeLeague)
+const eventsWithResults = computed(() =>
+  leagueEvents.value.filter((event: LeagueEvent) => event.resultUploaded)
+)
 const loading = computed(
   () => leagueLoading.value || eventsLoading.value || resultsLoading.value
 )
