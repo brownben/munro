@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from flask import g
 from typing import Any, Tuple
 
 DATABASE_URL = os.environ.get("DATABASE_URL", "")
@@ -24,23 +25,27 @@ class DatabaseConnection:
         self.connection.close()
 
 
+def getDatabaseConnection() -> DatabaseConnection:
+    if "db" not in g:
+        g.db = DatabaseConnection()
+
+    return g.db
+
+
 def query(query: str, values=tuple()) -> None:
-    connection = DatabaseConnection()
+    connection = getDatabaseConnection()
     connection.execute(query, values)
-    connection.close()
 
 
 def queryWithResult(query: str, values=tuple()) -> Any:
-    connection = DatabaseConnection()
+    connection = getDatabaseConnection()
     connection.execute(query, values)
     result = connection.getResult()
-    connection.close()
     return result
 
 
 def queryWithResults(query: str, values=tuple()) -> Tuple[Any]:
-    connection = DatabaseConnection()
+    connection = getDatabaseConnection()
     connection.execute(query, values)
     result = connection.getResults()
-    connection.close()
     return result

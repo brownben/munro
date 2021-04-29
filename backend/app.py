@@ -1,12 +1,5 @@
 from typing import Any, Dict
-from flask import (
-    Flask,
-    Blueprint,
-    request,
-    send_from_directory,
-    wrappers,
-    redirect,
-)
+from flask import Flask, Blueprint, request, send_from_directory, wrappers, redirect, g
 from flask_compress import Compress
 from flask_cors import CORS
 from flask_talisman import Talisman
@@ -50,14 +43,28 @@ if not app.debug:
         },
     )
 
-# Register Routes + Initilize Database
-initializeDatabase()
+# Register Routes
 api.add_namespace(leagueRoutes, path="/leagues")
 api.add_namespace(eventRoutes, path="/events")
 api.add_namespace(competitorRoutes, path="/competitors")
 api.add_namespace(resultRoutes, path="/results")
 api.add_namespace(searchRoutes, path="/search")
 api.add_namespace(uploadRoutes, path="/upload")
+
+# Intialise and Teardown Database
+# Database connection created and added to context for request in database/database.py
+
+with app.app_context():
+    initializeDatabase()
+
+
+@app.teardown_appcontext
+def teardownDatabase(exception) -> None:
+    db = g.pop("db", None)
+
+    if db is not None:
+        db.close()
+
 
 # Serve app files
 @app.route("/", defaults={"path": ""})
