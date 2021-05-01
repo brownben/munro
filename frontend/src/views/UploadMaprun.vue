@@ -1,12 +1,12 @@
 <template>
-  <Layout title="Import MapRun Results">
+  <Layout title="Import MapRun Results" thin>
     <Meta
       title="Munro - Import MapRun Results"
       description="Import results from MapRun to to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munroleagues.com/upload/maprun"
       :block-robots="false"
     />
-    <div class="col-span-2">
+    <form class="col-span-2" @submit.prevent="uploadFile">
       <InputText
         v-model.lazy="uploadConfig.eventId"
         label="Event ID:"
@@ -39,17 +39,8 @@
         :validator="RequiredField('a course')"
       />
 
-      <!-- Only show upload once all fields have been filled -->
-      <button
-        v-if="
-          uploadConfig.eventId && uploadConfig.uploadKey && uploadConfig.course
-        "
-        class="mt-6 button-lg"
-        @click="uploadFile"
-      >
-        Import Data
-      </button>
-    </div>
+      <button class="mt-6 button-lg" @click="uploadFile">Import Data</button>
+    </form>
   </Layout>
 </template>
 
@@ -121,9 +112,19 @@ const getMaprunData = () =>
       }
     })
 
-const uploadFile = () =>
-  getMaprunData()
-    .then(() => uploadSimple(uploadConfig.value))
-    .then(() => router.push(`/events/${eventId.value}/results`))
-    .catch(() => false)
+const isValid = computed(
+  () =>
+    uploadConfig.value.eventId &&
+    uploadConfig.value.uploadKey &&
+    maprunId.value &&
+    uploadConfig.value.course
+)
+
+const uploadFile = () => {
+  if (isValid.value)
+    return getMaprunData()
+      .then(() => uploadSimple(uploadConfig.value))
+      .then(() => router.push(`/events/${eventId.value}/results`))
+      .catch(() => false)
+}
 </script>

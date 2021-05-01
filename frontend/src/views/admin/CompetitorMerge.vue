@@ -1,5 +1,5 @@
 <template>
-  <Layout title="Merge Competitors">
+  <Layout title="Merge Competitors" thin>
     <Meta
       title="Munro - Merge Competitors"
       description=""

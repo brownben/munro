@@ -6,7 +6,11 @@
     >
       <div
         class="max-w-screen-xl px-6 pb-6 mx-auto lg:px-8"
-        :class="hasMobileSubTitle ? 'pt-3 md:pt-6' : 'pt-6'"
+        :class="{
+          'pt-3 md:pt-6': hasMobileSubTitle,
+          'pt-6': !hasMobileSubTitle,
+          'max-w-screen-sm mx-auto': thin,
+        }"
       >
         <slot name="title">
           <h1 class="text-3xl font-bold leading-tight font-heading">
@@ -18,7 +22,10 @@
 
     <main class="flex flex-col flex-grow">
       <div v-if="$slots.white && !notFound" class="bg-white">
-        <div class="max-w-screen-xl pb-8 mx-auto sm:px-6 lg:px-8">
+        <div
+          class="max-w-screen-xl pb-8 mx-auto sm:px-6 lg:px-8"
+          :class="{ 'max-w-screen-sm mx-auto': thin && !notFound }"
+        >
           <div class="px-6 sm:px-0">
             <slot name="white" />
           </div>
@@ -51,16 +58,16 @@
       </div>
       <div
         class="flex-grow"
-        :class="
-          gray && !notFound
-            ? 'bg-gray-50 border-t border-main-100 pt-8'
-            : 'bg-white'
-        "
+        :class="{
+          'bg-gray-50 border-t border-main-100 pt-8': gray && !notFound,
+          'bg-white': !gray || notFound,
+        }"
       >
         <div
           class="max-w-screen-xl pb-8 mx-auto sm:pb-10 xl:pb-12 lg:px-8 sm:px-6"
           :class="{
             'sm:pt-8': $slots.fullWidth && !gray,
+            'mx-auto max-w-screen-sm': thin,
           }"
         >
           <div class="grid grid-cols-2 gap-6 px-6 sm:px-0 sm:gap-8">
@@ -85,5 +92,6 @@ const props = defineProps({
   gray: { type: Boolean, default: false },
   notFound: { type: Boolean, default: false },
   showExpansion: { type: Boolean, default: false },
+  thin: { type: Boolean, default: false },
 })
 </script>

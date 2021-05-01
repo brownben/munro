@@ -1,5 +1,5 @@
 <template>
-  <Layout title="Manual Points">
+  <Layout title="Manual Points" thin>
     <Meta title="Munro - Manual Points" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="addResult">
       <InputDropdown

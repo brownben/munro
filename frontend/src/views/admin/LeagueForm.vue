@@ -2,18 +2,23 @@
   <Layout
     :title="title"
     :not-found="!loading && !league?.name && $route.path.includes('/edit')"
+    thin
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
+      <div>
+        <h2 class="text-lg font-bold text-gray-900 font-heading">
+          Basic Information
+        </h2>
+        <p class="text-sm text-gray-600">
+          The identifying data for the league.
+        </p>
+      </div>
+
       <InputText
         v-model.trim="league.name"
         label="Name:"
         :validators="[RequiredField('a name'), IsValidURLParameter('a name')]"
-      />
-      <InputNumber
-        v-model.number="league.year"
-        label="Year:"
-        :max="2050"
         class="mt-4"
       />
       <InputText
@@ -22,16 +27,35 @@
         class="mt-4"
       />
       <InputText
+        v-model.trim="league.coordinator"
+        label="Coordinator:"
+        class="mt-4"
+      />
+      <InputNumber
+        v-model.number="league.year"
+        label="Year:"
+        :max="2050"
+        class="mt-4"
+      />
+      <InputText
         v-model.trim="league.website"
         label="Website: (URL)"
         type="url"
         class="mt-4"
       />
-      <InputText
-        v-model.trim="league.coordinator"
-        label="Coordinator:"
+      <InputTextarea
+        v-model.trim="league.moreInformation"
+        label="More Information:"
         class="mt-4"
       />
+
+      <div class="mt-6">
+        <h2 class="text-lg font-bold text-gray-900 font-heading">Scoring</h2>
+        <p class="text-sm text-gray-600">
+          How the scores should be calculated for the league
+        </p>
+      </div>
+
       <InputDropdown
         v-model="league.scoringMethod"
         :list-with-different-value="scoringMethodOptions"
@@ -40,31 +64,52 @@
         class="mt-4"
         :validator="RequiredField('a Scoring Method', true)"
       />
-      <InputDropdown
-        v-model="league.leagueScoring"
-        :list-with-different-value="[
-          { value: 'course', text: 'Per Course' },
-          { value: 'overall', text: 'Overall' },
-          { value: 'ageClass', text: 'Age Class' },
-        ]"
-        :include-blank="false"
-        label="League Results:"
-        class="mt-4"
-      />
-      <InputText
-        v-model.trim="league.clubRestriction"
-        label="Only Include Results from Club:"
-        class="mt-4"
-      />
       <InputNumber
         v-model.number="league.numberOfCountingEvents"
         :min="1"
-        label="Number of Events to Count:"
+        label="Maximum Number of Counting Events:"
         class="mt-4"
       />
       <InputText
         v-model.trim="league.courses"
         label="Courses: (Comma Separated)"
+        class="mt-4"
+      />
+      <InputRadio
+        v-model="league.leagueScoring"
+        label="League Scoring Grouping:"
+        :options="[
+          {
+            title: 'Course',
+            description: 'League results are calculated for each course',
+            value: 'course',
+          },
+          {
+            title: 'Age Class',
+            description: 'League results are caculated for age classes',
+            value: 'ageClass',
+          },
+          {
+            title: 'Overall',
+            description:
+              'League results are calculate for all courses together',
+            value: 'overall',
+          },
+        ]"
+        class="mt-4"
+      />
+
+      <div class="mt-8">
+        <h2 class="text-lg font-bold text-gray-900 font-heading">
+          Additional Settings
+        </h2>
+        <p class="text-sm text-gray-600">
+          Adjust advanced settings and enable additional features
+        </p>
+      </div>
+      <InputText
+        v-model.trim="league.clubRestriction"
+        label="Only Include Results from Club:"
         class="mt-4"
       />
       <InputDropdown
@@ -75,20 +120,16 @@
         class="mt-4"
       />
       <InputTextarea
-        v-model.trim="league.moreInformation"
-        label="More Information:"
-        class="mt-4"
-      />
-      <InputTextarea
         v-model="league.additionalSettings"
         label="Additional Settings: (Advanced Use Only)"
         class="mt-6 text-left"
         :validators="[IsValidJSON('additional settings')]"
       />
-      <button v-if="$route.path.includes('/edit')" class="mt-8 button-lg">
-        Update League
+
+      <button class="mt-8 button-lg">
+        <template v-if="$route.path.includes('/edit')">Update League</template>
+        <template v-else>Create League</template>
       </button>
-      <button v-else class="mt-8 button-lg">Create League</button>
     </form>
   </Layout>
 </template>
@@ -102,6 +143,7 @@ import InputDropdown from '../../components/InputDropdown.vue'
 import InputText from '../../components/InputText.vue'
 import InputTextarea from '../../components/InputTextarea.vue'
 import InputNumber from '../../components/InputNumber.vue'
+import InputRadio from '../../components/InputRadio.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import {
@@ -136,7 +178,7 @@ const league = ref<LeagueForm>({
   numberOfCountingEvents: 1,
   scoringMethod: '',
   website: '',
-  year: 2000,
+  year: 2020,
   leagueScoring: 'course',
   clubRestriction: '',
   subLeagueOf: '',

@@ -1,5 +1,5 @@
 <template>
-  <Layout title="Submit Result">
+  <Layout title="Submit Result" thin>
     <Meta
       title="Munro - Submit Result"
       description="Manually Submit a Result to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
@@ -38,7 +38,6 @@
         :validators="[IsValidTime()]"
       />
 
-      <!-- Only show upload once all fields have been filled -->
       <button class="mt-8 button-lg">Submit Result</button>
     </form>
   </Layout>
@@ -83,8 +82,18 @@ const courses = computed(() => {
   return leagueOfEvent?.courses
 })
 
-const uploadResult = () =>
-  apiUploadResult(result.value)
-    .then(() => router.push(`/events/${result.value.eventId}/results`))
-    .catch(() => false)
+const isValid = computed(
+  () =>
+    result.value.eventId &&
+    result.value.course &&
+    result.value.name &&
+    result.value.time
+)
+
+const uploadResult = () => {
+  if (isValid.value)
+    return apiUploadResult(result.value)
+      .then(() => router.push(`/events/${result.value.eventId}/results`))
+      .catch(() => false)
+}
 </script>

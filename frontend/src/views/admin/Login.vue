@@ -1,12 +1,12 @@
 <template>
-  <Layout title="Admin Login">
+  <Layout title="Admin Login" thin>
     <Meta title="Munro - Login" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="sendLoginRequest">
       <InputText
         v-model="username"
         label="Email Address:"
         type="email"
-        :validators="[IsValidEmail()]"
+        :validators="[IsValidEmail(), RequiredField('an email.')]"
       />
       <InputText
         v-model="password"
@@ -20,11 +20,7 @@
 
     <div class="col-span-2 p-4 card card-color">
       <p>
-        <b
-          class="block mb-2 text-xl font-heading md:m-0 md:text-lg md:inline-block md:mr-4"
-        >
-          Looking for Results Upload?
-        </b>
+        <b class="block text-xl font-heading"> Looking for Results Upload? </b>
         You don't have to login, just visit the
         <router-link to="/upload" class="link"> upload page </router-link>
       </p>

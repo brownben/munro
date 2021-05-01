@@ -2,6 +2,7 @@
   <Layout
     :title="title"
     :not-found="!loading && !competitor?.id && $route.path.includes('/edit')"
+    thin
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">

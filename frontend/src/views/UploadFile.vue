@@ -1,27 +1,27 @@
 <template>
-  <Layout title="Upload Results File">
+  <Layout title="Upload Results File" thin>
     <Meta
       title="Munro - Upload Results File"
       description="Upload Results Files to Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
       url="https://munroleagues.com/upload/file"
       :block-robots="false"
     />
-    <div class="col-span-2 card card-color">
-      <p>
-        For instructions on how to upload results please visit
-        <router-link
-          to="/upload/instructions"
-          class="inline ml-1 text-white link"
-        >
-          /upload/instructions
-        </router-link>
-      </p>
-    </div>
 
-    <div class="col-span-2">
+    <form @submit.prevent="uploadFile" class="col-span-2">
+      <div>
+        <h2 class="text-lg font-bold text-gray-900 font-heading">
+          Event Details
+        </h2>
+        <p class="text-sm text-gray-600">
+          These details are required to identify the event. If you are unsure
+          you can ask your league administrator.
+        </p>
+      </div>
+
       <InputText
         v-model.lazy="uploadConfig.eventId"
         label="Event ID:"
+        class="mt-4"
         url-parameter="eventId"
         :validators="[RequiredField('an event id')]"
       />
@@ -49,6 +49,16 @@
 
       <InputFile label="Results File:" class="mt-4" @file="fileRead" />
 
+      <div class="mt-6">
+        <h2 class="text-lg font-bold text-gray-900 font-heading">
+          Results Links
+        </h2>
+        <p class="text-sm text-gray-600">
+          Add links to other results display and analysis sites, these can be
+          updated later just ask your league administrator.
+        </p>
+      </div>
+
       <InputText
         v-model.trim="uploadConfig.results"
         label="Results (URL):"
@@ -68,17 +78,8 @@
         class="mt-4"
       />
 
-      <!-- Only show upload once all fields have been filled -->
-      <button
-        v-if="
-          uploadConfig.eventId && uploadConfig.uploadKey && uploadConfig.file
-        "
-        class="mt-6 button-lg"
-        @click="uploadFile"
-      >
-        Upload File
-      </button>
-    </div>
+      <button class="mt-6 button-lg">Upload File</button>
+    </form>
   </Layout>
 </template>
 
@@ -90,6 +91,8 @@ import Layout from '../components/Layout.vue'
 import InputText from '../components/InputText.vue'
 import InputFile from '../components/InputFile.vue'
 import InputCheckbox from '../components/InputCheckbox.vue'
+
+import InputSwitch from '../components/InputSwitch.vue'
 
 import { useEvent } from '../api/events'
 import { uploadFile as apiUploadFile } from '../api/upload'
@@ -124,10 +127,20 @@ watchEffect(() => {
 const fileRead = (file: string) => {
   uploadConfig.value.file = file
 }
+
+const isValid = computed(
+  () =>
+    uploadConfig.value.eventId &&
+    uploadConfig.value.uploadKey &&
+    uploadConfig.value.file
+)
+
 const uploadFile = () => {
-  messages.create('Upload Data Sent')
-  return apiUploadFile(uploadConfig.value)
-    .then(() => router.push(`/events/${eventId.value}/results`))
-    .catch(() => false)
+  if (isValid.value) {
+    messages.create('Upload Data Sent')
+    return apiUploadFile(uploadConfig.value)
+      .then(() => router.push(`/events/${eventId.value}/results`))
+      .catch(() => false)
+  }
 }
 </script>

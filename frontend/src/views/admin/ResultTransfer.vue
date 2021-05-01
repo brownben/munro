@@ -1,5 +1,5 @@
 <template>
-  <Layout title="Transfer Result">
+  <Layout title="Transfer Result" thin>
     <Meta
       title="Munro - Transfer Results"
       description=""
