@@ -47,18 +47,13 @@
 /* Button Large (Forms) */
 
 .button-lg {
-  @apply w-auto px-4 py-2 mx-0 mt-2;
-  @apply bg-white border rounded-shape;
-  @apply text-lg leading-tight text-gray-500 font-heading;
-  @apply transition duration-300 ease-in-out;
-  @apply outline-none appearance-none select-none;
+  @apply inline-flex justify-center float-right px-4 py-2 font-medium leading-tight tracking-wide text-white transition duration-150 border border-transparent shadow-sm outline-none select-none bg-main-600 rounded-shape font-heading;
 
-  &:hover,
-  &:focus {
-    @apply border-main-400 text-main-600;
+  &:hover {
+    @apply bg-main-700;
   }
 
   &:focus {
-    @apply shadow-outline;
+    @apply ring-2 ring-offset-2 ring-main-400;
   }
 }
