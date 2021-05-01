@@ -8,7 +8,7 @@ interface LeagueBase {
 
   subLeagueOf?: string
   courses: string[] | string
-  leagueScoring?: string
+  leagueScoring: string
   scoringMethod: string
   numberOfCountingEvents: number
   dynamicEventResults: boolean
