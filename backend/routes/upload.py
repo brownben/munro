@@ -75,7 +75,9 @@ class UploadRoute(Resource):
         for result in resultsWithPoints:
             Result(result).create()
 
+        recalculateResults(event.getEventId(), league.scoringMethod)
         calculateDynamicPoints(league)
+
         event.setResultUploadedWithURLs(
             requestData["results"], requestData["winsplits"], requestData["routegadget"]
         )
