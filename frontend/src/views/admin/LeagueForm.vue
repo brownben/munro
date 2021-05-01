@@ -1,7 +1,12 @@
 <template>
   <Layout
     :title="title"
-    :not-found="!loading && !league?.name && $route.path.includes('/edit')"
+    :not-found="
+      !loading &&
+      !league?.name &&
+      !league.description &&
+      $route.path.includes('/edit')
+    "
     thin
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
