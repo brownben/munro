@@ -72,7 +72,7 @@
     <p
       v-if="state === 'invalid'"
       :id="`${label}-error-message`"
-      class="font-heading text-red-600 flex items-center select-none"
+      class="flex items-center text-red-600 select-none font-heading"
       aria-live="assertive"
     >
       <svg
@@ -80,7 +80,7 @@
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
-        class="h-4 w-4 text-red-600 inline-block"
+        class="inline-block w-4 h-4 text-red-600"
         aria-hidden="true"
       >
         <path
@@ -90,7 +90,7 @@
           d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
         />
       </svg>
-      <span class="py-1 px-2">
+      <span class="px-2 py-1">
         {{ validator.message }}
       </span>
     </p>
@@ -154,7 +154,8 @@ const inputValidationProps = computed(() => {
       'aria-describedby': `${props.label}-error-message`,
       'aria-invalid': true,
       required: true,
+      ...props.validator?.fieldProperties,
     }
-  else return {}
+  else return props.validator?.fieldProperties
 })
 </script>
