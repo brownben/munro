@@ -78,9 +78,11 @@ setupFuzzyExtension = "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch "
 
 
 def setup() -> None:
+    print("init")
     query(setupLeagues)
     query(setupEvents)
     query(setupCompetitors)
     query(setupResults)
     query(setupTRGMExtension)
     query(setupFuzzyExtension)
+    print("init end")

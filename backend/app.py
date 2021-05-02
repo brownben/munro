@@ -36,7 +36,7 @@ if not app.debug:
         frame_options="ALLOW_FROM",
         frame_options_allow_from="*",
         content_security_policy={
-            "script-src": "'self' 'sha256-ZQ9Tre7j0XjGYU+J/2Hlv9fJaA9shnqdDWPu8HbUXTs=' storage.googleapis.com",
+            "script-src": "'self' 'sha256-7znq/89hS4wzz2/DYmbizPP16RYMnUCUVak3lYPZl+c=' storage.googleapis.com",
             "default-src": "'self'",
             "style-src": "'self' 'unsafe-inline'",
             "connect-src": "'self' identitytoolkit.googleapis.com https://www.p.fne.com.au/",
