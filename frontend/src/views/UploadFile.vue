@@ -92,8 +92,6 @@ import InputText from '../components/InputText.vue'
 import InputFile from '../components/InputFile.vue'
 import InputCheckbox from '../components/InputCheckbox.vue'
 
-import InputSwitch from '../components/InputSwitch.vue'
-
 import { useEvent } from '../api/events'
 import { uploadFile as apiUploadFile } from '../api/upload'
 

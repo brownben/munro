@@ -39,7 +39,7 @@
         :validator="RequiredField('a course')"
       />
 
-      <button class="mt-6 button-lg" @click="uploadFile">Import Data</button>
+      <button class="mt-6 button-lg">Import Data</button>
     </form>
   </Layout>
 </template>

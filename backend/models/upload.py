@@ -75,5 +75,9 @@ uploadSimpleModel = Model(
             example="Long",
             required=True,
         ),
+        "routegadget": fields.String(
+            description="Link to a Routegadget page for the event",
+            example="https://example.com",
+        ),
     },
 )

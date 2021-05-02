@@ -184,7 +184,11 @@ class UploadSimpleRoute(Resource):
             newResults = [
                 result for result in results if result["type"] not in existingResultsIDs
             ]
-            resultsWithCompetitors = matchResultsToCompetitors(newResults, league)
+            matchingResults = getMatchingResults(newResults, league)
+            normalisedResults = normaliseCourses(matchingResults, league)
+            resultsWithCompetitors = matchResultsToCompetitors(
+                normalisedResults, league
+            )
             createdResults = [
                 Result(result).create() or 1
                 for result in resultsWithCompetitors
@@ -194,7 +198,10 @@ class UploadSimpleRoute(Resource):
             recalculateResults(event.getEventId(), league.scoringMethod)
             calculateDynamicPoints(league)
 
-            event.setResultUploaded()
+            if not requestData["routegadget"]:
+                event.setResultUploaded()
+            else:
+                event.setResultUploadedWithURLs("", "", requestData["routegadget"])
 
             return createMessage(f"{len(createdResults)} Results Imported")
         except:
