@@ -20,6 +20,9 @@ class DatabaseConnection:
     def getResults(self) -> Tuple[Any]:
         return self.cursor.fetchall()
 
+    def commit(self) -> None:
+        self.connection.commit()
+
     def close(self) -> None:
         self.connection.commit()
         self.connection.close()
@@ -34,8 +37,8 @@ def getDatabaseConnection() -> DatabaseConnection:
 
 def query(query: str, values=tuple()) -> None:
     connection = getDatabaseConnection()
-    print(connection.connection, query)
     connection.execute(query, values)
+    connection.commit()
 
 
 def queryWithResult(query: str, values=tuple()) -> Any:

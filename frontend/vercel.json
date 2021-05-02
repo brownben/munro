@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/sitemap.txt",
-      "destination": "https://munro-leagues.herokuapp.com/sitemap.txt"
+      "destination": "https://munro-leagues-production.up.railway.app/sitemap.txt"
     },
     {
       "source": "/api/:match*",
-      "destination": "https://munro-leagues.herokuapp.com/api/:match*"
+      "destination": "https://munro-leagues-production.up.railway.app/api/:match*"
     },
     { "source": "/(.*)", "destination": "/index.html" }
   ]

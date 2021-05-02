@@ -64,6 +64,7 @@ setupResults = """
         position INT,
         points INT NOT NULL,
         incomplete TEXT,
+        type TEXT,
         event TEXT NOT NULL,
         competitor INT NOT NULL,
         course TEXT,
@@ -78,11 +79,9 @@ setupFuzzyExtension = "CREATE EXTENSION IF NOT EXISTS fuzzystrmatch "
 
 
 def setup() -> None:
-    print("init")
     query(setupLeagues)
     query(setupEvents)
     query(setupCompetitors)
     query(setupResults)
     query(setupTRGMExtension)
     query(setupFuzzyExtension)
-    print("init end")
