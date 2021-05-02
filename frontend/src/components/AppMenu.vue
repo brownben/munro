@@ -2,7 +2,7 @@
   <Menu>
     <nav class="bg-white font-heading print:hidden">
       <div class="max-w-screen-xl px-2 mx-auto sm:px-6 lg:px-8">
-        <div class="relative z-20 flex items-center justify-between h-16">
+        <div class="relative z-40 flex items-center justify-between h-16">
           <div
             class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-between"
           >
@@ -24,7 +24,6 @@
               <div class="flex">
                 <router-link
                   v-for="link of links"
-                  v-slot="{ isActive }"
                   :key="link?.location"
                   :to="link?.location"
                   class="px-3 py-2 ml-4 font-medium leading-5 text-gray-500 transition duration-150 ease-in-out rounded-shape hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 focus-visible:shadow-outline"
