@@ -101,6 +101,20 @@ const redTheme: Theme = {
   ...warmGray,
 }
 
+const ukEliteLeagueTheme: Theme = {
+  '--main-50': '#FFF1F1',
+  '--main-100': '#FFE1E1',
+  '--main-200': '#FFC9C9',
+  '--main-300': '#FFA2A2',
+  '--main-400': '#FF7070',
+  '--main-500': '#FF5757',
+  '--main-600': '#EE2B2B',
+  '--main-700': '#D41111',
+  '--main-800': '#A70D0E',
+  '--main-900': '#900C0C',
+  ...warmGray,
+}
+
 const blueTheme: Theme = {
   '--main-50': '#F0F9FF',
   '--main-100': '#E0F2FE',
@@ -182,6 +196,7 @@ const themes: Record<string, Theme> = {
   pink: pinkTheme,
   gray: grayTheme,
   grey: grayTheme,
+  ukEliteLeague: ukEliteLeagueTheme,
 }
 
 export default (themeName: string): void => {
