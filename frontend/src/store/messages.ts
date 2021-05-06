@@ -39,8 +39,8 @@ export const useMessages = defineStore({
   },
 
   getters: {
-    all() {
-      return this.messages
+    all(state) {
+      return state.messages
     },
   },
 })

@@ -44,14 +44,14 @@ export const useAuthentication = defineStore({
   },
 
   getters: {
-    userToken() {
-      return this.user?.idToken
+    userToken(state) {
+      return state.user?.idToken
     },
-    loggedIn() {
-      return !!this.user?.idToken
+    loggedIn(state) {
+      return !!state.user?.idToken
     },
-    userName() {
-      return this.user?.displayName
+    userName(state) {
+      return state.user?.displayName
     },
   },
 })
