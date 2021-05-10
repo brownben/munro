@@ -175,26 +175,26 @@
                 </Cell>
               </template>
               <template #expansion>
-                <p
-                  v-for="(point, j) of result.points"
-                  :key="j"
-                  class="mr-3 font-light text-right"
-                >
-                  {{ eventsWithResults[j]?.name }}:
-                  <span
-                    class="inline-block w-4 pl-2 pr-4"
-                    :class="{
-                      'line-through': !point?.counting,
-                      'font-normal italic': [
-                        'manual',
-                        'max',
-                        'average',
-                      ].includes(point?.type ?? ''),
-                    }"
-                  >
-                    {{ point?.score }}
-                  </span>
-                </p>
+                <dl class="mr-3 font-light text-right">
+                  <div v-for="(point, j) of result.points" :key="j">
+                    <dt class="inline-block">
+                      {{ eventsWithResults[j]?.name }}:
+                    </dt>
+                    <dd
+                      class="inline-block w-4 pl-2 pr-4"
+                      :class="{
+                        'line-through': !point?.counting,
+                        'font-normal italic': [
+                          'manual',
+                          'max',
+                          'average',
+                        ].includes(point?.type ?? ''),
+                      }"
+                    >
+                      {{ point?.score }}
+                    </dd>
+                  </div>
+                </dl>
               </template>
             </TableRow>
           </transition-group>

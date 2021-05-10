@@ -68,8 +68,11 @@ a.link {
 :is(button, a):focus {
   @apply outline-none;
 }
+button {
+  -webkit-tap-highlight-color: transparent;
+}
 
-:is(button):focus-visible {
+button:focus-visible {
   @apply shadow-outline;
 }
 
