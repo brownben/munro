@@ -13,11 +13,31 @@
       :modelValue="modelValue"
       @update:modelValue="handleEvent"
       :class="modelValue ? 'bg-main-600' : 'bg-gray-200'"
-      class="relative inline-flex items-center flex-shrink-0 h-6 ml-4 transition-colors rounded-full w-11 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main-400"
+      class="
+        relative
+        inline-flex
+        items-center
+        flex-shrink-0
+        h-6
+        ml-4
+        transition-colors
+        rounded-full
+        w-11
+        focus:outline-none
+        focus:ring-2 focus:ring-offset-2 focus:ring-main-400
+      "
     >
       <span
         :class="modelValue ? 'translate-x-6' : 'translate-x-1'"
-        class="inline-block w-4 h-4 transition-transform transform bg-white rounded-full"
+        class="
+          inline-block
+          w-4
+          h-4
+          transition-transform
+          transform
+          bg-white
+          rounded-full
+        "
       />
     </Switch>
   </SwitchGroup>

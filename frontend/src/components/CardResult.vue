@@ -1,11 +1,29 @@
 <template>
   <section
     v-if="(result && result.type !== 'hidden') || auth.loggedIn"
-    class="flex flex-col col-span-2 pt-6 text-center bg-white shadow-md lg:col-span-1 rounded-shape-xl"
+    class="
+      flex flex-col
+      col-span-2
+      pt-6
+      text-center
+      bg-white
+      shadow-md
+      lg:col-span-1
+      rounded-shape-xl
+    "
   >
     <slot>
       <h2
-        class="px-4 mb-3 text-xl font-bold tracking-wide uppercase font-heading text-main-700"
+        class="
+          px-4
+          mb-3
+          text-xl
+          font-bold
+          tracking-wide
+          uppercase
+          font-heading
+          text-main-700
+        "
       >
         {{ result.eventName }}
       </h2>
@@ -13,13 +31,28 @@
 
     <div class="flex flex-row flex-wrap justify-around w-full">
       <div
-        class="inline-block mx-8 mb-2 text-gray-900 whitespace-nowrap font-heading"
+        class="
+          inline-block
+          mx-8
+          mb-2
+          text-gray-900
+          whitespace-nowrap
+          font-heading
+        "
       >
         <p class="text-5xl font-bold">
           <template v-if="result.position && !result.incomplete">
             {{ result.position }}
             <sup
-              class="relative inline-block -ml-3 text-xl font-normal text-gray-500 -top-5"
+              class="
+                relative
+                inline-block
+                -ml-3
+                text-xl
+                font-normal
+                text-gray-500
+                -top-5
+              "
             >
               {{ positionSuperscript(result.position) }}
             </sup>
@@ -30,7 +63,14 @@
       </div>
       <div
         v-if="showTime"
-        class="inline-block mx-8 mb-2 text-gray-900 whitespace-nowrap font-heading"
+        class="
+          inline-block
+          mx-8
+          mb-2
+          text-gray-900
+          whitespace-nowrap
+          font-heading
+        "
       >
         <p class="text-5xl font-bold">
           <time v-if="result.time" :datetime="timeToHTMLElapsed(result.time)">
@@ -41,7 +81,14 @@
         <p class="inline-block text-sm text-gray-500 uppercase">Time</p>
       </div>
       <div
-        class="inline-block mx-8 mb-2 text-gray-900 whitespace-nowrap font-heading"
+        class="
+          inline-block
+          mx-8
+          mb-2
+          text-gray-900
+          whitespace-nowrap
+          font-heading
+        "
       >
         <p class="text-5xl font-bold">
           {{ result.points }}
@@ -63,7 +110,18 @@
 
     <div
       v-if="auth.loggedIn"
-      class="flex-grow w-full px-4 pt-4 pb-4 mt-2 shadow md:px-6 bg-main-50 rounded-shape-xl"
+      class="
+        flex-grow
+        w-full
+        px-4
+        pt-4
+        pb-4
+        mt-2
+        shadow
+        md:px-6
+        bg-main-50
+        rounded-shape-xl
+      "
     >
       <div class="flex flex-row flex-wrap justify-around px-6">
         <p class="mx-2 mb-1">

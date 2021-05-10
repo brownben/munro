@@ -17,7 +17,11 @@
         <h1 class="text-3xl font-bold leading-tight font-heading">
           <router-link
             :to="'/leagues/' + $route.params.league"
-            class="text-xl text-main-700 focus-visible:shadow-outline rounded-shape"
+            class="
+              text-xl text-main-700
+              focus-visible:shadow-outline
+              rounded-shape
+            "
           >
             {{ toSingleString($route.params.league).trim() }}
           </router-link>
@@ -28,7 +32,17 @@
 
         <button
           title="Toggle Filter Menu"
-          class="p-2 text-gray-500 transition rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 print:hidden"
+          class="
+            p-2
+            text-gray-500
+            transition
+            rounded-shape
+            hover:bg-main-100
+            hover:text-main-600
+            focus:bg-main-100
+            focus:text-main-600
+            print:hidden
+          "
           :class="{ 'text-main-600 bg-main-50': filterOpen }"
           @click="filterOpen = !filterOpen"
         >
@@ -69,7 +83,12 @@
         <table class="w-full border-collapse tabular-nums">
           <thead>
             <tr
-              class="transition duration-300 bg-white border-b border-collapse border-main-200"
+              class="
+                transition
+                duration-300
+                bg-white
+                border-b border-collapse border-main-200
+              "
             >
               <Heading
                 text="Pos."

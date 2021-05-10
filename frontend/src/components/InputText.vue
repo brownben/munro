@@ -15,7 +15,22 @@
       :id="label"
       :value="modelValue"
       :type="type"
-      class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline"
+      class="
+        w-full
+        px-3
+        py-2
+        font-sans
+        text-gray-900
+        transition
+        duration-300
+        ease-in-out
+        bg-white
+        border
+        outline-none
+        appearance-none
+        rounded-shape
+        focus:shadow-outline
+      "
       :class="{
         'border-red-500 focus:border-red-500 focus:shadow-outline-red':
           state == 'invalid',

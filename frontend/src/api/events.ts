@@ -36,13 +36,10 @@ const getLatestResults = (): Promise<LeagueEvent[] | undefined> =>
 
 export const useEvent = useData<LeagueEvent, typeof getEvent>(getEvent)
 export const useEvents = useDataList<LeagueEvent, typeof getEvents>(getEvents)
-export const useLeagueEvents = useDataList<LeagueEvent, typeof getLeagueEvents>(
-  getLeagueEvents
-)
-export const useLatestResults = useDataList<
-  LeagueEvent,
-  typeof getLatestResults
->(getLatestResults)
+export const useLeagueEvents =
+  useDataList<LeagueEvent, typeof getLeagueEvents>(getLeagueEvents)
+export const useLatestResults =
+  useDataList<LeagueEvent, typeof getLatestResults>(getLatestResults)
 
 export const createEvent = (
   data: LeagueEvent

@@ -27,7 +27,26 @@
       </span>
       <span
         v-if="tooltip"
-        class="absolute block z-40 opacity-0 transition duration-300 py-2 px-2 font-sans text-sm leading-tight text-center break-words whitespace-normal shadow bg-white rounded-shape group-hover:opacity-100"
+        class="
+          absolute
+          block
+          z-40
+          opacity-0
+          transition
+          duration-300
+          py-2
+          px-2
+          font-sans
+          text-sm
+          leading-tight
+          text-center
+          break-words
+          whitespace-normal
+          shadow
+          bg-white
+          rounded-shape
+          group-hover:opacity-100
+        "
         style="width: calc(100% + 3.5rem); left: -1.75rem"
       >
         {{ tooltip }}

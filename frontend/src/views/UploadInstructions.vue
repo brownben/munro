@@ -7,7 +7,17 @@
       :block-robots="false"
     />
     <article
-      class="w-full col-span-2 pb-4 mx-auto mt-4 mb-auto prose lg:pb-8 lg:prose-lg"
+      class="
+        w-full
+        col-span-2
+        pb-4
+        mx-auto
+        mt-4
+        mb-auto
+        prose
+        lg:pb-8
+        lg:prose-lg
+      "
     >
       <h1>Upload Instructions</h1>
       <ol>

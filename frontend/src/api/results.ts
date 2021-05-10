@@ -34,20 +34,14 @@ const getCompetitorResults = (
     noToken: true,
   })
 
-export const useResults = useDataList<EventResult, typeof getResults>(
-  getResults
-)
-export const useEventResults = useDataList<EventResult, typeof getEventResults>(
-  getEventResults
-)
-export const useLeagueResults = useDataList<
-  LeagueResult,
-  typeof getLeagueResults
->(getLeagueResults)
-export const useCompetitorResults = useDataList<
-  EventResult,
-  typeof getCompetitorResults
->(getCompetitorResults)
+export const useResults =
+  useDataList<EventResult, typeof getResults>(getResults)
+export const useEventResults =
+  useDataList<EventResult, typeof getEventResults>(getEventResults)
+export const useLeagueResults =
+  useDataList<LeagueResult, typeof getLeagueResults>(getLeagueResults)
+export const useCompetitorResults =
+  useDataList<EventResult, typeof getCompetitorResults>(getCompetitorResults)
 
 export const hideResult = (
   id: number,

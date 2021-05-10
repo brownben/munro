@@ -10,7 +10,15 @@
       <Image class="object-contain w-full mx-auto max-h-112" />
     </div>
     <h1
-      class="mt-8 text-4xl font-bold text-gray-900 md:mt-12 md:text-5xl leading-12"
+      class="
+        mt-8
+        text-4xl
+        font-bold
+        text-gray-900
+        md:mt-12
+        md:text-5xl
+        leading-12
+      "
     >
       Sorry, I'm Lost
     </h1>

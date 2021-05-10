@@ -1,12 +1,37 @@
 <template>
   <section
-    class="w-full py-8 md:py-10 lg:py-14 text-white bg-gradient-to-r from-main-600 to-main-500"
+    class="
+      w-full
+      py-8
+      md:py-10
+      lg:py-14
+      text-white
+      bg-gradient-to-r
+      from-main-600
+      to-main-500
+    "
   >
     <div
-      class="flex flex-col items-center max-w-screen-xl px-6 mx-auto text-center sm:px-12 lg:px-8"
+      class="
+        flex flex-col
+        items-center
+        max-w-screen-xl
+        px-6
+        mx-auto
+        text-center
+        sm:px-12
+        lg:px-8
+      "
     >
       <h2
-        class="md:mb-2 text-4xl leading-tight tracking-tighter md:text-5xl font-heading"
+        class="
+          md:mb-2
+          text-4xl
+          leading-tight
+          tracking-tighter
+          md:text-5xl
+          font-heading
+        "
       >
         Find <span class="font-bold tracking-normal">Everything</span> You Need
       </h2>
@@ -23,12 +48,41 @@
           v-model="searchQuery"
           type="text"
           spellcheck="false"
-          class="w-full py-2 pl-10 pr-24 font-sans leading-snug text-white transition duration-300 ease-in-out bg-transparent border border-main-300 outline-none appearance-none focus:border-white rounded-shape focus:shadow-outline-white"
+          class="
+            w-full
+            py-2
+            pl-10
+            pr-24
+            font-sans
+            leading-snug
+            text-white
+            transition
+            duration-300
+            ease-in-out
+            bg-transparent
+            border border-main-300
+            outline-none
+            appearance-none
+            focus:border-white
+            rounded-shape
+            focus:shadow-outline-white
+          "
           @focus="searchFocused = true"
           @blur="searchFocused = false"
         />
         <button
-          class="absolute top-0 right-0 px-4 py-2 transition duration-300 outline-none font-heading rounded-shape"
+          class="
+            absolute
+            top-0
+            right-0
+            px-4
+            py-2
+            transition
+            duration-300
+            outline-none
+            font-heading
+            rounded-shape
+          "
           :class="
             searchFocused
               ? 'bg-white text-main-700 hover:bg-main-200 focus:bg-main-200'

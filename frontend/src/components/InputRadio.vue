@@ -21,7 +21,15 @@
             'shadow-outline z-10 relative': active,
             'bg-main-100 text-main-900': checked,
           }"
-          class="flex px-5 py-4 outline-none cursor-pointer first:rounded-tl-xl last:rounded-br-xl"
+          class="
+            flex
+            px-5
+            py-4
+            outline-none
+            cursor-pointer
+            first:rounded-tl-xl
+            last:rounded-br-xl
+          "
         >
           <div class="flex items-center justify-between w-full">
             <div class="items-center text-sm">

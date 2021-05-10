@@ -8,13 +8,28 @@
     />
     <template #title>
       <h1
-        class="text-3xl font-bold leading-none tracking-tight lg:text-4xl font-heading"
+        class="
+          text-3xl
+          font-bold
+          leading-none
+          tracking-tight
+          lg:text-4xl
+          font-heading
+        "
       >
         {{ league?.name || $route.params.name }}
       </h1>
       <h2
         v-if="league && league.description"
-        class="mt-2 leading-tight tracking-tight text-gray-600 md:text-lg lg:text-xl font-heading"
+        class="
+          mt-2
+          leading-tight
+          tracking-tight
+          text-gray-600
+          md:text-lg
+          lg:text-xl
+          font-heading
+        "
       >
         {{ league.description }}
       </h2>
@@ -118,10 +133,26 @@
           (league?.courses && league.courses.length > 0) ||
           league?.leagueScoring === 'overall'
         "
-        class="col-span-2 py-6 text-center text-white sm:py-8 bg-gradient-to-r from-main-600 to-main-500"
+        class="
+          col-span-2
+          py-6
+          text-center text-white
+          sm:py-8
+          bg-gradient-to-r
+          from-main-600
+          to-main-500
+        "
       >
         <div
-          class="items-center justify-between max-w-screen-xl px-6 mx-auto lg:px-8 sm:flex"
+          class="
+            items-center
+            justify-between
+            max-w-screen-xl
+            px-6
+            mx-auto
+            lg:px-8
+            sm:flex
+          "
         >
           <h2 class="mb-2 text-2xl font-bold font-heading sm:mb-0">
             League Results
@@ -131,7 +162,36 @@
               v-for="course of league.courses"
               :key="course"
               :to="`${$route.path}/results/${course}`"
-              class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 ring-white ring-opacity-75"
+              class="
+                inline-block
+                w-full
+                px-4
+                py-2
+                mx-0
+                mt-3
+                text-lg
+                leading-tight
+                text-white
+                transition
+                duration-300
+                ease-in-out
+                bg-white bg-opacity-0
+                border border-white border-opacity-50
+                outline-none
+                appearance-none
+                select-none
+                font-heading
+                rounded-shape
+                sm:w-auto
+                sm:mx-2
+                sm:mt-0
+                hover:bg-opacity-25
+                hover:text-white
+                focus:bg-opacity-25
+                focus:text-white
+                focus-visible:ring-1
+                ring-white ring-opacity-75
+              "
             >
               {{ course }}
             </router-link>
@@ -139,7 +199,34 @@
           <div v-else>
             <router-link
               :to="`${$route.path}/results/Overall`"
-              class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
+              class="
+                inline-block
+                w-full
+                px-4
+                py-2
+                mx-0
+                mt-3
+                text-lg
+                leading-tight
+                text-white
+                transition
+                duration-300
+                ease-in-out
+                bg-white bg-opacity-0
+                border border-white border-opacity-50
+                outline-none
+                appearance-none
+                select-none
+                font-heading
+                rounded-shape
+                sm:w-auto
+                sm:mx-2
+                sm:mt-0
+                hover:bg-opacity-25
+                hover:text-white
+                focus:bg-opacity-25
+                focus:text-white
+              "
             >
               Overall Results
             </router-link>
@@ -152,7 +239,14 @@
       class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
     >
       <h2
-        class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
+        class="
+          text-lg
+          leading-5
+          uppercase
+          align-middle
+          font-heading
+          text-main-700
+        "
       >
         Events
       </h2>
@@ -160,7 +254,23 @@
       <router-link
         v-if="auth.loggedIn"
         :to="`/events/create?league=${league?.name}`"
-        class="inline-block px-4 py-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
+        class="
+          inline-block
+          px-4
+          py-1
+          text-sm
+          leading-6
+          tracking-wide
+          text-right
+          uppercase
+          transition
+          duration-300
+          text-main-600
+          font-heading
+          hover:bg-main-100
+          focus:bg-main-100
+          rounded-shape
+        "
       >
         <span class="mr-1 text-xl">+</span> Add Event
       </router-link>

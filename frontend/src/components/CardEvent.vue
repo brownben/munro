@@ -1,18 +1,49 @@
 <template>
   <section
-    class="flex flex-col items-center justify-between col-span-2 pt-5 text-center bg-white shadow-md rounded-shape-xl"
+    class="
+      flex flex-col
+      items-center
+      justify-between
+      col-span-2
+      pt-5
+      text-center
+      bg-white
+      shadow-md
+      rounded-shape-xl
+    "
     :class="{ 'xl:col-span-1': !showFullDetails }"
   >
     <div class="flex-grow w-full px-5 my-auto md:px-6 lg:px-8">
       <router-link
         v-if="showLeagueName"
         :to="`/leagues/${event.league}`"
-        class="text-xs font-bold tracking-widest uppercase sm:tracking-wider sm:text-sm font-heading text-main-700 leading-none focus-visible:shadow-outline rounded-shape"
+        class="
+          text-xs
+          font-bold
+          tracking-widest
+          uppercase
+          sm:tracking-wider
+          sm:text-sm
+          font-heading
+          text-main-700
+          leading-none
+          focus-visible:shadow-outline
+          rounded-shape
+        "
       >
         {{ event.league }}
       </router-link>
       <h3
-        class="mt-2 mb-1 text-3xl font-bold leading-tight tracking-tight text-gray-900 font-heading"
+        class="
+          mt-2
+          mb-1
+          text-3xl
+          font-bold
+          leading-tight
+          tracking-tight
+          text-gray-900
+          font-heading
+        "
       >
         {{ event.name }}
       </h3>
@@ -122,7 +153,14 @@
       <div class="mb-2">
         <p class="mx-2">
           <b
-            class="block mr-1 leading-tight select-none text-main-900 sm:inline-block"
+            class="
+              block
+              mr-1
+              leading-tight
+              select-none
+              text-main-900
+              sm:inline-block
+            "
           >
             Event ID:
           </b>
@@ -130,7 +168,14 @@
         </p>
         <p v-if="event.uploadKey" class="leading-tight mt-3 sm:my-2">
           <b
-            class="block mr-1 leading-tight select-none text-main-900 sm:inline-block"
+            class="
+              block
+              mr-1
+              leading-tight
+              select-none
+              text-main-900
+              sm:inline-block
+            "
           >
             Event Upload Key:
           </b>
