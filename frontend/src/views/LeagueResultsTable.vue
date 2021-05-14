@@ -276,8 +276,7 @@ import {
   SortablePropertiesLeague as SortableProperties,
 } from '../scripts/sort'
 
-import { useLeague } from '../api/leagues'
-import { useLeagueEvents } from '../api/events'
+import { useLeagueOverview } from '../api/leagues'
 import { useLeagueResults } from '../api/results'
 
 const route = useRoute()
@@ -285,14 +284,13 @@ const routeLeague = computed(() => toSingleString(route.params.league))
 const routeCourse = computed(() => toSingleString(route.params.course))
 
 const [rawResults, resultsLoading] = useLeagueResults(routeLeague, routeCourse)
-const [league, leagueLoading] = useLeague(routeLeague)
-const [leagueEvents, eventsLoading] = useLeagueEvents(routeLeague)
-const eventsWithResults = computed(() =>
-  leagueEvents.value.filter((event: LeagueEvent) => event.resultUploaded)
+const [league, leagueLoading] = useLeagueOverview(routeLeague)
+const eventsWithResults = computed(
+  () =>
+    league.value?.events.filter((event: LeagueEvent) => event.resultUploaded) ??
+    []
 )
-const loading = computed(
-  () => leagueLoading.value || eventsLoading.value || resultsLoading.value
-)
+const loading = computed(() => leagueLoading.value || resultsLoading.value)
 
 const results = computed(() =>
   rawResults.value
