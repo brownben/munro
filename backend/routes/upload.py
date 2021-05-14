@@ -1,7 +1,5 @@
-from flask.globals import request
 from flask_restx import Namespace, Resource
 
-from ..database.league import League
 from ..database.event import Event
 from ..database.competitor import Competitor
 from ..database.result import Result

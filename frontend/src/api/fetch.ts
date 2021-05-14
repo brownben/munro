@@ -4,6 +4,10 @@ export interface TypedResponse<T = any> extends Response {
   json: <P = T>() => Promise<P>
 }
 
+interface ServerMessage {
+  message: string
+}
+
 const Fetch = <T>(
   location: string,
   options: RequestInit
@@ -15,8 +19,14 @@ export const sendRequest = <T>(
   responseConfig: RequestConfig
 ): Promise<T | undefined> =>
   Fetch<T>(apiLocation, fetchConfig)
-    .then((response: TypedResponse<T>) => {
-      if (!response.ok) throw Error(response.statusText)
+    .then(async (response: TypedResponse<T>) => {
+      if (!response.ok) {
+        let message
+        try {
+          message = ((await response.json()) as ServerMessage)?.message
+        } catch {}
+        throw Error(message ?? response.statusText)
+      }
       return response.json()
     })
     .then((data: T) => showSuccessMessage<T>(data, responseConfig))
