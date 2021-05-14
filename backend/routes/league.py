@@ -1,11 +1,11 @@
 from flask_restx import Namespace, Resource
 
-from .requireAuthentication import requireAuthentication
+from .requireAuthentication import isAuthenticated, requireAuthentication
 from ..database.league import League
 from ..database.event import Event
 from ..database.competitor import Competitor
 from ..database.leagueResult import LeagueResult
-from ..models.league import leagueModel
+from ..models.league import leagueModel, leagueOverviewModel
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.competitor import competitorModel
 from ..models.leagueResult import (
@@ -27,6 +27,7 @@ api.models[pointsModel.name] = pointsModel
 api.models[leagueResultModel.name] = leagueResultModel
 api.models[leagueResultModelWithCourse.name] = leagueResultModelWithCourse
 api.models[messageModel.name] = messageModel
+api.models[leagueOverviewModel.name] = leagueOverviewModel
 
 
 @api.route("")
@@ -118,6 +119,30 @@ class LeagueEventsRoute(Resource):
             return [event.toDictionary() for event in Event.getByLeague(name)]
         except:
             return [], 500
+
+
+@api.route("/<name>/overview")
+@api.param("name", "League Name")
+class LeagueRoute(Resource):
+    @api.marshal_with(leagueOverviewModel)
+    @api.response(200, "Success - Details of the League")
+    @api.response(500, "Problem Connecting to the Database")
+    def get(self, name):
+        try:
+            eventsFromDatabase = Event.getByLeague(name)
+            if isAuthenticated():
+                events = [
+                    event.toDictionaryWithUploadKey() for event in eventsFromDatabase
+                ]
+            else:
+                events = [event.toDictionary() for event in eventsFromDatabase]
+
+            return {
+                **League.getByName(name).toDictionary(),
+                "events": events,
+            }
+        except:
+            return None, 500
 
 
 @api.route("/<name>/results/Overall")

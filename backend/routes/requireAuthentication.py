@@ -30,3 +30,20 @@ def requireAuthentication(func):
         return func(*args, **kwargs)
 
     return decorator
+
+
+def isAuthenticated() -> bool:
+    authorization_header = request.headers.get("Authorization")
+
+    if authorization_header:
+        id_token = authorization_header[7:]
+
+        try:
+            google.oauth2.id_token.verify_firebase_token(
+                id_token, firebase_request_adapter
+            )
+            return True
+        except:
+            return False
+
+    return False

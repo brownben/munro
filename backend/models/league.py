@@ -1,4 +1,5 @@
 from flask_restx import Model, fields
+from .event import eventModelWithUploadKey
 
 leagueModel = Model(
     "League",
@@ -60,6 +61,20 @@ leagueModel = Model(
         ),
         "additionalSettings": fields.String(
             description="Extra Settings for the League", default=""
+        ),
+    },
+)
+
+
+leagueOverviewModel = leagueModel.inherit(
+    "League Overview",
+    {
+        "events": fields.Nested(
+            eventModelWithUploadKey,
+            allow_null=True,
+            as_list=True,
+            readonly=True,
+            skip_none=True,
         ),
     },
 )

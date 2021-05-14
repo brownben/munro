@@ -287,12 +287,12 @@
       </router-link>
     </div>
     <CardEvent
-      v-for="event of events"
+      v-for="event of league?.events"
       :key="event?.name ?? 0"
       :event="event"
       :league="league"
       class="col-span-2"
-      @event-changed="refreshEvents"
+      @event-changed="refreshData"
     />
   </Layout>
 </template>
@@ -306,8 +306,7 @@ import CardEvent from '../components/CardEvent.vue'
 
 import { toSingleString } from '../scripts/typeHelpers'
 
-import { useLeague, deleteLeague } from '../api/leagues'
-import { useLeagueEvents } from '../api/events'
+import { useLeagueOverview, deleteLeague } from '../api/leagues'
 
 import { useAuthentication } from '../store/authentication'
 
@@ -317,12 +316,7 @@ const auth = useAuthentication()
 
 /* Get Data */
 const routeParamsName = computed(() => toSingleString(route.params.name))
-const [league, leagueLoading] = useLeague(routeParamsName)
-const [events, eventsLoading, refreshEvents] = useLeagueEvents(
-  routeParamsName,
-  auth.loggedIn
-)
-const loading = computed(() => leagueLoading.value || eventsLoading.value)
+const [league, loading, refreshData] = useLeagueOverview(routeParamsName)
 
 /* Template Methods */
 const deleteLeagueConfirmation = () => {

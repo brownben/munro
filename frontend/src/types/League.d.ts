@@ -25,3 +25,8 @@ interface League extends LeagueBase {
 interface LeagueForm extends LeagueBase {
   courses: string
 }
+
+interface LeagueOverview extends LeagueBase {
+  courses: string[]
+  events: LeagueEvent[]
+}

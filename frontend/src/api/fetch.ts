@@ -24,7 +24,10 @@ export const sendRequest = <T>(
         let message
         try {
           message = ((await response.json()) as ServerMessage)?.message
-        } catch {}
+        } catch {
+          message = ''
+        }
+
         throw Error(message ?? response.statusText)
       }
       return response.json()

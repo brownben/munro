@@ -8,6 +8,13 @@ const getLeague = (name: string): Promise<League | undefined> =>
     noToken: true,
   })
 
+const getLeagueOverview = (name: string): Promise<LeagueOverview | undefined> =>
+  getData<LeagueOverview | undefined>({
+    apiLocation: `/api/leagues/${name}/overview`,
+    customErrorMessage: 'Problem Fetching League Details',
+    noToken: false,
+  })
+
 const getLeagues = (): Promise<League[] | undefined> =>
   getData<League[]>({
     apiLocation: '/api/leagues',
@@ -16,6 +23,9 @@ const getLeagues = (): Promise<League[] | undefined> =>
   })
 
 export const useLeague = useData<League, typeof getLeague>(getLeague)
+export const useLeagueOverview =
+  useData<LeagueOverview, typeof getLeagueOverview>(getLeagueOverview)
+
 export const useLeagues = useDataList<League, typeof getLeagues>(getLeagues)
 
 export const createLeague = (
