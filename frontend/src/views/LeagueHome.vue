@@ -137,11 +137,14 @@
           col-span-2
           py-6
           text-center text-white
-          sm:py-8
           bg-gradient-to-r
           from-main-600
           to-main-500
         "
+        :class="{
+          'sm:pt-4 sm:pb-6 md:py-8': league.courses.length >= 6,
+          'py-6 sm:py-8': league.courses.length < 6,
+        }"
       >
         <div
           class="
@@ -151,10 +154,18 @@
             px-6
             mx-auto
             lg:px-8
-            sm:flex
           "
+          :class="{
+            'md:flex': league.courses.length >= 6,
+            'sm:flex': league.courses.length < 6,
+          }"
         >
-          <h2 class="mb-2 text-2xl font-bold font-heading sm:mb-0">
+          <h2
+            class="mb-2 text-2xl font-bold font-heading sm:mb-0"
+            :class="{
+              'sm:pb-3 md:py-0': league.courses.length >= 6,
+            }"
+          >
             League Results
           </h2>
           <div v-if="league?.leagueScoring !== 'overall'">
