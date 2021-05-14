@@ -221,12 +221,10 @@
       </div>
     </template>
 
-    <transition name="fade">
-      <CardNoResults
-        v-if="!loading && results.length === 0"
-        class="col-span-2 -mt-2 -mb-6 md:-mt-8"
-      />
-    </transition>
+    <CardNoResults
+      v-if="!loading && results.length === 0"
+      class="col-span-2 -mt-2 -mb-6 md:-mt-8"
+    />
 
     <div
       v-if="

@@ -123,7 +123,7 @@ class LeagueEventsRoute(Resource):
 
 @api.route("/<name>/overview")
 @api.param("name", "League Name")
-class LeagueRoute(Resource):
+class LeagueOverviewRoute(Resource):
     @api.marshal_with(leagueOverviewModel)
     @api.response(200, "Success - Details of the League")
     @api.response(500, "Problem Connecting to the Database")
