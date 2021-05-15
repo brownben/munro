@@ -52,18 +52,18 @@
           smaller
         />
         <CardLeague
-          title="Fight with the Night"
-          description="Thursday Night Orienteering Events Around Edinburgh"
-          website="https://euoc.wordpress.com/"
-          alternative-link="/leagues/Fight with the Night 20-21"
+          title="UK Elite League"
+          description="The UK's must-do races for elites and aspiring elites"
+          website="http://www.ukeliteoleague.org.uk/"
+          alternative-link="/leagues/UK Elite League 2021"
           :larger="false"
           smaller
         />
         <CardLeague
-          title="Northern Night Cup"
-          description="Night Orienteering Events in the North of Scotland"
-          website="https://www.orienteering.scot/northern-night-cup/"
-          alternative-link="/leagues/Northern Night Cup 19-20"
+          title="Fight with the Night"
+          description="Thursday Night Orienteering Events Around Edinburgh"
+          website="https://euoc.wordpress.com/"
+          alternative-link="/leagues/Fight with the Night 20-21"
           :larger="false"
           smaller
         />
