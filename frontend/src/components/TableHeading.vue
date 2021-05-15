@@ -46,8 +46,9 @@
           bg-white
           rounded-shape
           group-hover:opacity-100
+          -left-7
+          w-[calc(100%+3.5rem)]
         "
-        style="width: calc(100% + 3.5rem); left: -1.75rem"
       >
         {{ tooltip }}
       </span>
