@@ -220,7 +220,8 @@ const createLeague = () => {
   if (validateForm())
     return apiCreateLeague({
       ...league.value,
-      courses: league.value?.courses?.split(',') ?? [],
+      courses:
+        league.value?.courses?.split(',').map((course) => course.trim()) ?? [],
       moreInformation: league.value?.moreInformation?.replace(/\n/g, '|') ?? '',
     })
       .then(() => router.push(`/leagues/${league.value.name}`))
@@ -230,7 +231,8 @@ const updateLeague = () => {
   if (validateForm())
     return apiUpdateLeague({
       ...league.value,
-      courses: league.value?.courses?.split(',') ?? [],
+      courses:
+        league.value?.courses?.split(',').map((course) => course.trim()) ?? [],
       moreInformation: league.value?.moreInformation?.replace(/\n/g, '|') ?? '',
     })
       .then(() => router.push(`/leagues/${league.value.name}`))
