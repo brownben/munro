@@ -112,7 +112,7 @@ const uploadConfig = ref<UploadFile>({
   winsplits: '',
 })
 const eventId = computed(() => uploadConfig.value.eventId)
-const [event] = useEvent(eventId)
+const [event] = await useEvent(eventId)
 
 watchEffect(() => {
   if (event.value) {

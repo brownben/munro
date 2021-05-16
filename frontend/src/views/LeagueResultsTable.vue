@@ -3,7 +3,7 @@
     class="w-full"
     wide
     has-mobile-sub-title
-    :not-found="!loading && !league?.name"
+    :not-found="!league?.name"
     :show-expansion="filterOpen"
   >
     <Meta
@@ -17,11 +17,7 @@
         <h1 class="text-3xl font-bold leading-tight font-heading">
           <router-link
             :to="'/leagues/' + $route.params.league"
-            class="
-              text-xl text-main-700
-              focus-visible:shadow-outline
-              rounded-shape
-            "
+            class="text-xl  text-main-700 focus-visible:shadow-outline rounded-shape"
           >
             {{ toSingleString($route.params.league).trim() }}
           </router-link>
@@ -32,17 +28,7 @@
 
         <button
           title="Toggle Filter Menu"
-          class="
-            p-2
-            text-gray-500
-            transition
-            rounded-shape
-            hover:bg-main-100
-            hover:text-main-600
-            focus:bg-main-100
-            focus:text-main-600
-            print:hidden
-          "
+          class="p-2 text-gray-500 transition  rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 print:hidden"
           :class="{ 'text-main-600 bg-main-50': filterOpen }"
           @click="filterOpen = !filterOpen"
         >
@@ -83,12 +69,7 @@
         <table class="w-full border-collapse tabular-nums">
           <thead>
             <tr
-              class="
-                transition
-                duration-300
-                bg-white
-                border-b border-collapse border-main-200
-              "
+              class="transition duration-300 bg-white border-b border-collapse  border-main-200"
             >
               <Heading
                 text="Pos."
@@ -222,14 +203,13 @@
     </template>
 
     <CardNoResults
-      v-if="!loading && results.length === 0"
+      v-if="results.length === 0"
       class="col-span-2 -mt-2 -mb-6 md:-mt-8"
     />
 
     <div
       v-if="
         !$route.path.includes('/embed/') &&
-        !loading &&
         league?.leagueScoring !== 'overall' &&
         rawResults.length > 0 &&
         otherCourses.length > 0
@@ -281,14 +261,13 @@ const route = useRoute()
 const routeLeague = computed(() => toSingleString(route.params.league))
 const routeCourse = computed(() => toSingleString(route.params.course))
 
-const [rawResults, resultsLoading] = useLeagueResults(routeLeague, routeCourse)
-const [league, leagueLoading] = useLeagueOverview(routeLeague)
+const [rawResults] = await useLeagueResults(routeLeague, routeCourse)
+const [league] = await useLeagueOverview(routeLeague)
 const eventsWithResults = computed(
   () =>
     league.value?.events.filter((event: LeagueEvent) => event.resultUploaded) ??
     []
 )
-const loading = computed(() => leagueLoading.value || resultsLoading.value)
 
 const results = computed(() =>
   rawResults.value

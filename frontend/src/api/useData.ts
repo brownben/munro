@@ -1,4 +1,4 @@
-import { computed, ref, unref, watchEffect, Ref } from 'vue'
+import { computed, ref, unref, watch, Ref } from 'vue'
 
 export const useData = <
   DataType,
@@ -8,23 +8,23 @@ export const useData = <
 ) => {
   type Parameter = Parameters<typeof dataFetcher>[number]
   type Arguments = (Ref<Parameter> | Parameter)[]
-  type ReturnTuple = [Ref<DataType | undefined>, Ref<boolean>, () => void]
+  type ReturnTuple = [Ref<DataType | undefined>, () => void]
 
-  return (...argument: Arguments): ReturnTuple => {
-    const data = ref<DataType | undefined>()
-    const loading = ref(true)
+  return async (...argument: Arguments): Promise<ReturnTuple> => {
+    const originalArgs = argument.map((argument) => unref(argument))
+    const data = ref(await dataFetcher(...originalArgs)) as Ref<
+      DataType | undefined
+    >
 
     const refresh = async () => {
       if ((argument.length > 0 && unref(argument[0])) || argument.length == 0) {
-        loading.value = true
         const args = argument.map((argument) => unref(argument))
         data.value = await dataFetcher(...args)
-        loading.value = false
       }
     }
 
-    watchEffect(() => refresh())
-    return [data, loading, refresh]
+    watch(argument, refresh)
+    return [data, refresh]
   }
 }
 
@@ -36,23 +36,22 @@ export const useDataList = <
 ) => {
   type Parameter = Parameters<typeof dataFetcher>[number]
   type Arguments = (Ref<Parameter> | Parameter)[]
-  type ReturnTuple = [Ref<DataType[]>, Ref<boolean>, () => void]
+  type ReturnTuple = [Ref<DataType[]>, () => void]
 
-  return (...argument: Arguments): ReturnTuple => {
-    const data = ref<DataType[] | undefined>()
-    const value = computed(() => unref(data) ?? [])
-    const loading = ref(true)
+  return async (...argument: Arguments): Promise<ReturnTuple> => {
+    const originalArgs = argument.map((argument) => unref(argument))
+    const data = ref((await dataFetcher(...originalArgs)) ?? []) as Ref<
+      DataType[]
+    >
 
     const refresh = async () => {
       if ((argument.length > 0 && unref(argument[0])) || argument.length == 0) {
-        loading.value = true
         const args = argument.map((argument) => unref(argument))
-        data.value = await dataFetcher(...args)
-        loading.value = false
+        data.value = (await dataFetcher(...args)) ?? []
       }
     }
 
-    watchEffect(() => refresh())
-    return [value, loading, refresh]
+    watch(argument, refresh)
+    return [data, refresh]
   }
 }

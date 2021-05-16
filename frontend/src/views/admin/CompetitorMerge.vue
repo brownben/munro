@@ -73,8 +73,8 @@ import {
 const messages = useMessages()
 const router = useRouter()
 
-const [leagues] = useLeagues()
-const [competitors] = useCompetitors()
+const [leagues] = await useLeagues()
+const [competitors] = await useCompetitors()
 
 const choices = ref({
   league: '',

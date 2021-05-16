@@ -84,10 +84,10 @@ import { RequiredField } from '../../scripts/inputValidation'
 const router = useRouter()
 const messages = useMessages()
 
-const [leagues] = useLeagues()
-const [events] = useEvents()
-const [competitors] = useCompetitors()
-const [results] = useResults()
+const [leagues] = await useLeagues()
+const [events] = await useEvents()
+const [competitors] = await useCompetitors()
+const [results] = await useResults()
 const choices = ref({
   league: '',
   event: '',

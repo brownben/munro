@@ -21,5 +21,5 @@ import CardLeague from '../components/CardLeague.vue'
 
 import { useLeagues } from '../api/leagues'
 
-const [leagues] = useLeagues()
+const [leagues] = await useLeagues()
 </script>

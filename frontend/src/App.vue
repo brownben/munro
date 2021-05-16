@@ -1,20 +1,7 @@
 <template>
   <a
     href="#content"
-    class="
-      z-50
-      bg-white
-      sr-only
-      focus:absolute
-      focus:px-3
-      focus:py-2
-      focus:m-4
-      text-main-800
-      rounded-shape
-      focus:not-sr-only
-      focus:block
-      focus:shadow-outline
-    "
+    class="z-50 bg-white sr-only  focus:absolute focus:px-3 focus:py-2 focus:m-4 text-main-800 rounded-shape focus:not-sr-only focus:block focus:shadow-outline"
   >
     Skip to main content
   </a>
@@ -24,7 +11,9 @@
     <Messages />
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">
-        <component :is="Component" />
+        <suspense>
+          <component :is="Component" />
+        </suspense>
       </transition>
     </router-view>
   </div>
