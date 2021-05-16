@@ -27,7 +27,9 @@
 
     <LeaguesSection />
     <SearchSection />
-    <EventsSection />
+    <Suspense>
+      <EventsSection />
+    </Suspense>
     <UploadSection />
     <AboutSection />
     <DeveloperSection />
