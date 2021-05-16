@@ -1,7 +1,7 @@
 <template>
   <Layout
     :title="title"
-    :not-found="!loading && !competitor?.id && $route.path.includes('/edit')"
+    :not-found="!competitor?.id && $route.path.includes('/edit')"
     thin
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
@@ -66,8 +66,8 @@ const route = useRoute()
 const messages = useMessages()
 
 const routeParamsId = computed(() => toSingleString(route.params.id))
-const [leagues] = useLeagues()
-const [competitorRaw, loading] = useCompetitor(routeParamsId)
+const [leagues] = await useLeagues()
+const [competitorRaw] = await useCompetitor(routeParamsId)
 
 const competitor = ref<Competitor>({
   id: 0,

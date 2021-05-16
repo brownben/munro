@@ -59,8 +59,8 @@ import { uploadResult as apiUploadResult } from '../api/upload'
 
 const router = useRouter()
 
-const [leagues] = useLeagues()
-const [rawEvents] = useEvents()
+const [leagues] = await useLeagues()
+const [rawEvents] = await useEvents()
 const events = computed(() =>
   rawEvents.value.filter((event) => event.userSubmittedResults)
 )

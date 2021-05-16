@@ -1,5 +1,5 @@
 <template>
-  <Layout v-if="league && league.name" :not-found="!league && !loading">
+  <Layout v-if="league && league.name" :not-found="!league">
     <Meta
       :title="`Munro - ${$route.params.name} League`"
       :description="`Event Information and Results for the ${$route.params.name} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
@@ -29,7 +29,6 @@ import { useLeagueEvents } from '../api/events'
 const route = useRoute()
 
 const routeParamsName = computed(() => toSingleString(route.params.name))
-const [league, leagueLoading] = useLeague(routeParamsName)
-const [events, eventsLoading] = useLeagueEvents(routeParamsName)
-const loading = computed(() => leagueLoading.value || eventsLoading.value)
+const [league] = await useLeague(routeParamsName)
+const [events] = await useLeagueEvents(routeParamsName)
 </script>

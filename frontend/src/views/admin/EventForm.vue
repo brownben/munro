@@ -1,7 +1,7 @@
 <template>
   <Layout
     :title="title"
-    :not-found="$route.path.includes('/edit') && !loading && !event.id"
+    :not-found="$route.path.includes('/edit') && !event.id"
     thin
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
@@ -157,8 +157,8 @@ const route = useRoute()
 const messages = useMessages()
 
 const routeParamsId = computed(() => toSingleString(route.params.id))
-const [leagues] = useLeagues()
-const [eventRaw, loading] = useEvent(routeParamsId)
+const [leagues] = await useLeagues()
+const [eventRaw] = await useEvent(routeParamsId)
 
 const event = ref<LeagueEvent>({
   id: '',

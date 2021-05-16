@@ -23,5 +23,5 @@ import CardEvent from '../components/CardEvent.vue'
 
 import { useLatestResults } from '../api/events'
 
-const [events] = useLatestResults()
+const [events] = await useLatestResults()
 </script>

@@ -11,13 +11,7 @@
 
     <template #title>
       <div
-        class="
-          flex flex-col
-          items-start
-          justify-between
-          sm:items-center
-          sm:flex-row
-        "
+        class="flex flex-col items-start justify-between  sm:items-center sm:flex-row"
       >
         <h1 class="mb-4 text-3xl font-bold leading-tight sm:mb-0 font-heading">
           Search
@@ -31,39 +25,13 @@
       class="flex flex-row flex-wrap justify-between w-full col-span-2 -mb-4"
     >
       <h2
-        class="
-          inline-block
-          py-2
-          leading-tight
-          tracking-wide
-          uppercase
-          select-none
-          font-heading
-          text-main-600
-        "
+        class="inline-block py-2 leading-tight tracking-wide uppercase select-none  font-heading text-main-600"
       >
         Leagues
       </h2>
       <router-link
         to="/leagues"
-        class="
-          inline-block
-          px-4
-          pt-2
-          text-xs
-          leading-6
-          tracking-wider
-          text-right
-          uppercase
-          transition
-          duration-300
-          select-none
-          text-main-600
-          font-heading
-          hover:bg-main-100
-          focus:bg-main-100
-          rounded-shape
-        "
+        class="inline-block px-4 pt-2 text-xs leading-6 tracking-wider text-right uppercase transition duration-300 select-none  text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape"
       >
         View All Leagues &rarr;
       </router-link>
@@ -109,7 +77,6 @@
         leagues.length === 0 &&
         events.length === 0 &&
         competitors.length === 0 &&
-        !loading &&
         $route.params.query
       "
       :text="`Sorry I Couldn't Find &quot;${$route.params.query || ''}&quot;`"
@@ -141,7 +108,7 @@ import { useQuery } from '../api/search'
 const route = useRoute()
 
 const routeParamsQuery = computed(() => toSingleString(route.params.query))
-const [data, loading] = useQuery(routeParamsQuery)
+const [data] = await useQuery(routeParamsQuery)
 const leagues = computed(() => data.value?.leagues ?? [])
 const events = computed(() => data.value?.events ?? [])
 const competitors = computed(() => data.value?.competitors ?? [])

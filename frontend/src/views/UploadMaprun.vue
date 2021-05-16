@@ -72,8 +72,8 @@ const uploadConfig = ref<UploadSimple>({
   course: '',
 })
 const eventId = computed(() => uploadConfig.value.eventId)
-const [event] = useEvent(eventId)
-const [league] = useLeague(computed(() => event.value?.league ?? ''))
+const [event] = await useEvent(eventId)
+const [league] = await useLeague(computed(() => event.value?.league ?? ''))
 const courses = computed(() => league?.value?.courses ?? [])
 
 const maprunHTMLtoCSV = (html?: string): string =>

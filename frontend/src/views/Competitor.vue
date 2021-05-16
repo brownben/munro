@@ -1,5 +1,5 @@
 <template>
-  <Layout has-mobile-sub-title gray :not-found="!loading && !competitor?.name">
+  <Layout has-mobile-sub-title gray :not-found="!competitor?.name">
     <Meta
       :title="`Munro - ${competitor?.name ?? ''} - Competitor`"
       :description="`Results for ${competitor?.name ?? ''} in the ${
@@ -11,15 +11,7 @@
     <template #title>
       <router-link
         :to="`/leagues/${competitor?.league}`"
-        class="
-          mb-1
-          text-xl
-          font-bold
-          text-main-700
-          font-heading
-          focus-visible:shadow-outline
-          rounded-shape
-        "
+        class="mb-1 text-xl font-bold  text-main-700 font-heading focus-visible:shadow-outline rounded-shape"
       >
         {{ competitor?.league }}
       </router-link>
@@ -106,12 +98,8 @@ const auth = useAuthentication()
 /* Get Data */
 
 const routeParamsId = computed(() => toSingleString(route.params.id))
-const [competitor, competitorLoading] = useCompetitor(routeParamsId)
+const [competitor] = await useCompetitor(routeParamsId)
 const competitorLeague = computed(() => competitor.value?.league ?? '')
-const [league, leagueLoading] = useLeague(competitorLeague)
-const [results, resultsLoading, refreshResults] =
-  useCompetitorResults(routeParamsId)
-const loading = computed(
-  () => competitorLoading.value || leagueLoading.value || resultsLoading.value
-)
+const [league] = await useLeague(competitorLeague)
+const [results, refreshResults] = await useCompetitorResults(routeParamsId)
 </script>

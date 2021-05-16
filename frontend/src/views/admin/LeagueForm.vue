@@ -2,10 +2,7 @@
   <Layout
     :title="title"
     :not-found="
-      !loading &&
-      !league?.name &&
-      !league.description &&
-      $route.path.includes('/edit')
+      !league?.name && !league.description && $route.path.includes('/edit')
     "
     thin
   >
@@ -171,8 +168,8 @@ const route = useRoute()
 const messages = useMessages()
 
 const routeParamsName = computed(() => toSingleString(route.params.name))
-const [leagues] = useLeagues()
-const [leagueRaw, loading] = useLeague(routeParamsName)
+const [leagues] = await useLeagues()
+const [leagueRaw] = await useLeague(routeParamsName)
 const league = ref<LeagueForm>({
   courses: '',
   coordinator: '',
