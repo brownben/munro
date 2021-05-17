@@ -6,6 +6,8 @@
         event?.league || ''
       } league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
       :url="`https://munroleagues.com/events/${$route.params.event}`"
+      :image="`https://images.munroleagues.com/${event?.name}?subText=${event?.league}`"
+      :imageAlt="`Munro Leagues - ${event?.name} (${event.league})`"
       :block-robots="false"
     />
     <template #title>
@@ -13,7 +15,7 @@
         <h1 class="-mt-2 text-3xl font-bold leading-tight font-heading">
           <router-link
             :to="'/leagues/' + event?.league"
-            class="text-xl text-main-700 focus-visible:shadow-outline rounded-shape"
+            class="text-xl  text-main-700 focus-visible:shadow-outline rounded-shape"
           >
             {{ event?.league || '' }}
           </router-link>
@@ -24,7 +26,7 @@
 
         <button
           title="Toggle Filter Menu"
-          class="p-2 text-gray-500 transition rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 print:hidden"
+          class="p-2 text-gray-500 transition  rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 print:hidden"
           :class="{ 'text-main-600 bg-main-50': filterOpen }"
           @click="filterOpen = !filterOpen"
         >
@@ -62,7 +64,7 @@
                 ? 'text-main-700 bg-main-100'
                 : 'hover:bg-main-100  focus:bg-main-100  text-gray-500 '
             "
-            class="px-3 py-2 ml-2 text-lg leading-5 transition duration-150 ease-in-out font-heading rounded-shape focus-visible:shadow-outline hover:text-main-600 focus:text-main-600"
+            class="px-3 py-2 ml-2 text-lg leading-5 transition duration-150 ease-in-out  font-heading rounded-shape focus-visible:shadow-outline hover:text-main-600 focus:text-main-600"
             :to="`/events/${$route.params.event}/results/${course}`"
           >
             {{ course }}
@@ -92,7 +94,7 @@
       >
         <thead>
           <tr
-            class="transition duration-300 bg-white border-b border-collapse border-main-200 hover:bg-main-200"
+            class="transition duration-300 bg-white border-b border-collapse  border-main-200 hover:bg-main-200"
           >
             <Heading
               text="Pos."
