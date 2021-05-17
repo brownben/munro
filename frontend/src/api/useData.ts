@@ -1,4 +1,4 @@
-import { computed, ref, unref, watch, Ref } from 'vue'
+import { ref, unref, watch, Ref } from 'vue'
 
 export const useData = <
   DataType,
@@ -11,16 +11,18 @@ export const useData = <
   type ReturnTuple = [Ref<DataType | undefined>, () => void]
 
   return async (...argument: Arguments): Promise<ReturnTuple> => {
-    const originalArgs = argument.map((argument) => unref(argument))
-    const data = ref(await dataFetcher(...originalArgs)) as Ref<
-      DataType | undefined
-    >
-
-    const refresh = async () => {
+    const getData = () => {
       if ((argument.length > 0 && unref(argument[0])) || argument.length == 0) {
         const args = argument.map((argument) => unref(argument))
-        data.value = await dataFetcher(...args)
+        return dataFetcher(...args)
       }
+    }
+
+    const data = ref(await getData()) as Ref<DataType | undefined>
+
+    const refresh = async () => {
+      const newValue = await getData()
+      if (newValue) data.value = newValue
     }
 
     watch(argument, refresh)
@@ -39,16 +41,18 @@ export const useDataList = <
   type ReturnTuple = [Ref<DataType[]>, () => void]
 
   return async (...argument: Arguments): Promise<ReturnTuple> => {
-    const originalArgs = argument.map((argument) => unref(argument))
-    const data = ref((await dataFetcher(...originalArgs)) ?? []) as Ref<
-      DataType[]
-    >
-
-    const refresh = async () => {
+    const getData = () => {
       if ((argument.length > 0 && unref(argument[0])) || argument.length == 0) {
         const args = argument.map((argument) => unref(argument))
-        data.value = (await dataFetcher(...args)) ?? []
+        return dataFetcher(...args)
       }
+    }
+
+    const data = ref((await getData()) ?? []) as Ref<DataType[]>
+
+    const refresh = async () => {
+      const newValue = await getData()
+      if (newValue) data.value = newValue
     }
 
     watch(argument, refresh)
