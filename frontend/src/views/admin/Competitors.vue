@@ -5,7 +5,11 @@
       <h1 class="text-3xl font-bold leading-tight font-heading">
         <router-link
           :to="'/leagues/' + $route.params.league"
-          class="text-xl  text-main-700 focus-visible:shadow-outline rounded-shape"
+          class="
+            text-xl text-main-700
+            focus-visible:shadow-outline
+            rounded-shape
+          "
         >
           {{ $route.params.league }}
         </router-link>
@@ -50,7 +54,13 @@
       >
         <thead>
           <tr
-            class="transition duration-300 bg-white border-b border-collapse  border-main-300 hover:bg-main-200"
+            class="
+              transition
+              duration-300
+              bg-white
+              border-b border-collapse border-main-300
+              hover:bg-main-200
+            "
           >
             <Heading
               text="Id"
