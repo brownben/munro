@@ -1,11 +1,10 @@
 <template>
-  <Meta
-    title="Munro - I'm Lost"
-    description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
-    :block-robots="true"
-  />
-
   <div class="w-full col-span-2 px-6 mb-8 text-center">
+    <Meta
+      title="Munro - I'm Lost"
+      description="Page Not Found on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options"
+      :block-robots="true"
+    />
     <div class="inline-block w-full mt-8 md:w-2/3 xl:w-7/12">
       <Image class="object-contain w-full mx-auto max-h-112" />
     </div>

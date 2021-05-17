@@ -7,28 +7,42 @@
     :show-expansion="filterOpen"
   >
     <Meta
-      :title="`Munro - ${$route.params.league} - ${$route.params.course} Results`"
-      :description="`Results from the ${$route.params.course} course of the ${$route.params.league} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
-      :url="`https://munroleagues.com/leagues/${$route.params.league}/results/${$route.params.course}`"
+      :title="`Munro - ${leagueName} - ${course} Results`"
+      :description="`Results from the ${course} course of the ${leagueName} league on Munro - League Results. Sorted. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options`"
+      :url="`https://munroleagues.com/leagues/${leagueName}/results/${course}`"
       :block-robots="false"
     />
     <template #title>
       <div class="flex items-center justify-between">
         <h1 class="text-3xl font-bold leading-tight font-heading">
           <router-link
-            :to="'/leagues/' + $route.params.league"
-            class="text-xl  text-main-700 focus-visible:shadow-outline rounded-shape"
+            :to="'/leagues/' + leagueName"
+            class="
+              text-xl text-main-700
+              focus-visible:shadow-outline
+              rounded-shape
+            "
           >
-            {{ toSingleString($route.params.league).trim() }}
+            {{ leagueName }}
           </router-link>
           <span class="block text-3xl">
-            {{ $route.params.course }}
+            {{ course }}
           </span>
         </h1>
 
         <button
           title="Toggle Filter Menu"
-          class="p-2 text-gray-500 transition  rounded-shape hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-600 print:hidden"
+          class="
+            p-2
+            text-gray-500
+            transition
+            rounded-shape
+            hover:bg-main-100
+            hover:text-main-600
+            focus:bg-main-100
+            focus:text-main-600
+            print:hidden
+          "
           :class="{ 'text-main-600 bg-main-50': filterOpen }"
           @click="filterOpen = !filterOpen"
         >
@@ -69,7 +83,12 @@
         <table class="w-full border-collapse tabular-nums">
           <thead>
             <tr
-              class="transition duration-300 bg-white border-b border-collapse  border-main-200"
+              class="
+                transition
+                duration-300
+                bg-white
+                border-b border-collapse border-main-200
+              "
             >
               <Heading
                 text="Pos."
@@ -136,7 +155,7 @@
           <transition-group name="list">
             <TableRow
               v-for="(result, i) of results"
-              :key="`${$route.params.course}-${result?.id}`"
+              :key="`${course}-${result?.id}`"
               :striped="i % 2 === 0"
             >
               <template v-if="result">
@@ -223,7 +242,7 @@
         <router-link
           v-for="course in otherCourses"
           :key="course"
-          :to="`/leagues/${$route.params.league}/results/${course}`"
+          :to="`/leagues/${leagueName}/results/${course}`"
           class="button"
         >
           {{ course }}
@@ -258,11 +277,17 @@ import { useLeagueOverview } from '../api/leagues'
 import { useLeagueResults } from '../api/results'
 
 const route = useRoute()
+const course = ref<string>('')
 const routeLeague = computed(() => toSingleString(route.params.league))
-const routeCourse = computed(() => toSingleString(route.params.course))
+const routeCourse = computed(() => {
+  const value = toSingleString(route.params.course)
+  if (value) course.value = value
+  return value
+})
 
 const [rawResults] = await useLeagueResults(routeLeague, routeCourse)
 const [league] = await useLeagueOverview(routeLeague)
+const leagueName = computed(() => league.value?.name || unref(routeLeague))
 const eventsWithResults = computed(
   () =>
     league.value?.events.filter((event: LeagueEvent) => event.resultUploaded) ??
