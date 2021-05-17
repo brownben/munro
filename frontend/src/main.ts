@@ -1,21 +1,23 @@
-import { createApp } from 'vue'
-import { createHead } from '@vueuse/head'
+import { createSSRApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createRouter } from './router'
+import { createHead } from '@vueuse/head'
 
 import App from './App.vue'
-import router from './router'
 import Meta from './components/AppMeta.vue'
-
-import './registerServiceWorker.js'
 import './assets/styles/index.css'
 
-const app = createApp(App)
-const head = createHead()
+export const createApp = () => {
+  const app = createSSRApp(App)
+  const router = createRouter()
+  const store = createPinia()
+  const head = createHead()
 
-app.use(head)
-app.use(router)
-app.use(createPinia())
+  app.use(router)
+  app.use(store)
+  app.use(head)
 
-app.component('Meta', Meta)
+  app.component('Meta', Meta)
 
-app.mount('#app')
+  return { app, router, head, store }
+}
