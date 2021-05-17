@@ -24,12 +24,16 @@ const getLeagueCompetitors = (
     noToken: true,
   })
 
-export const useCompetitor =
-  useData<Competitor, typeof getCompetitor>(getCompetitor)
-export const useCompetitors =
-  useDataList<Competitor, typeof getCompetitors>(getCompetitors)
-export const useLeagueCompetitors =
-  useDataList<Competitor, typeof getLeagueCompetitors>(getLeagueCompetitors)
+export const useCompetitor = useData<Competitor, typeof getCompetitor>(
+  getCompetitor
+)
+export const useCompetitors = useDataList<Competitor, typeof getCompetitors>(
+  getCompetitors
+)
+export const useLeagueCompetitors = useDataList<
+  Competitor,
+  typeof getLeagueCompetitors
+>(getLeagueCompetitors)
 
 export const createCompetitor = (
   data: Competitor

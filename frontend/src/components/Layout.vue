@@ -43,14 +43,7 @@
         <div
           v-if="$slots.expansion"
           v-show="showExpansion"
-          class="
-            py-6
-            mb-8
-            -mt-2
-            origin-top
-            border-t border-b border-main-100
-            bg-gray-50
-          "
+          class="py-6 mb-8 -mt-2 origin-top border-t border-b border-main-100 bg-gray-50"
         >
           <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
             <div class="px-6 sm:px-0">

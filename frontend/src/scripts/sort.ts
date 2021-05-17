@@ -14,41 +14,44 @@ const sortComparison = (
   else return aIsLess
 }
 
-const sortEventResultsByProperty =
-  (sortPreferences: SortPreferencesEvent) =>
-  (a: EventResultWithAgeGender, b: EventResultWithAgeGender) =>
-    sortComparison(
-      sortPreferences.ascending,
-      a[sortPreferences.by],
-      b[sortPreferences.by]
-    )
+const sortEventResultsByProperty = (sortPreferences: SortPreferencesEvent) => (
+  a: EventResultWithAgeGender,
+  b: EventResultWithAgeGender
+) =>
+  sortComparison(
+    sortPreferences.ascending,
+    a[sortPreferences.by],
+    b[sortPreferences.by]
+  )
 
-const sortLeagueResultsByProperty =
-  (sortPreferences: SortPreferencesLeague) =>
-  (a: LeagueResultWithAgeGender, b: LeagueResultWithAgeGender) =>
-    sortComparison(
-      sortPreferences.ascending,
-      a[sortPreferences.by],
-      b[sortPreferences.by]
-    )
+const sortLeagueResultsByProperty = (
+  sortPreferences: SortPreferencesLeague
+) => (a: LeagueResultWithAgeGender, b: LeagueResultWithAgeGender) =>
+  sortComparison(
+    sortPreferences.ascending,
+    a[sortPreferences.by],
+    b[sortPreferences.by]
+  )
 
-const sortLeagueResultsByPoints =
-  (sortPreferences: SortPreferencesLeague) =>
-  (a: LeagueResultWithAgeGender, b: LeagueResultWithAgeGender): number =>
-    sortComparison(
-      sortPreferences.ascending,
-      a.points[sortPreferences.event ?? 0]?.score || 0,
-      b.points[sortPreferences.event ?? 0]?.score || 0
-    )
+const sortLeagueResultsByPoints = (sortPreferences: SortPreferencesLeague) => (
+  a: LeagueResultWithAgeGender,
+  b: LeagueResultWithAgeGender
+): number =>
+  sortComparison(
+    sortPreferences.ascending,
+    a.points[sortPreferences.event ?? 0]?.score || 0,
+    b.points[sortPreferences.event ?? 0]?.score || 0
+  )
 
-export const sortCompetitors =
-  (sortPreferences: SortPreferencesCompetitor) =>
-  (a: Competitor, b: Competitor): number =>
-    sortComparison(
-      sortPreferences.ascending,
-      a[sortPreferences.by],
-      b[sortPreferences.by]
-    )
+export const sortCompetitors = (sortPreferences: SortPreferencesCompetitor) => (
+  a: Competitor,
+  b: Competitor
+): number =>
+  sortComparison(
+    sortPreferences.ascending,
+    a[sortPreferences.by],
+    b[sortPreferences.by]
+  )
 
 export const sortLeagueResults = (
   sortPreferences: SortPreferencesLeague

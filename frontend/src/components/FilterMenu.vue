@@ -36,33 +36,14 @@
       v-model="male"
       label="Male"
       url-parameter="male"
-      class="
-        flex flex-col
-        items-center
-        justify-center
-        col-span-1
-        pt-2
-        pb-2
-        text-center
-        md:pt-4
-        md:pb-0
-      "
+      class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 text-center md:pt-4 md:pb-0"
       @update:modelValue="onChange"
     />
     <InputCheckbox
       v-model="female"
       label="Female"
       url-parameter="female"
-      class="
-        flex flex-col
-        items-center
-        justify-center
-        col-span-1
-        pt-2
-        pb-2
-        md:pt-4
-        md:pb-0text-center
-      "
+      class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 md:pt-4 md:pb-0text-center"
       @update:modelValue="onChange"
     />
   </form>

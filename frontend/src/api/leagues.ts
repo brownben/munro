@@ -23,8 +23,10 @@ const getLeagues = (): Promise<League[] | undefined> =>
   })
 
 export const useLeague = useData<League, typeof getLeague>(getLeague)
-export const useLeagueOverview =
-  useData<LeagueOverview, typeof getLeagueOverview>(getLeagueOverview)
+export const useLeagueOverview = useData<
+  LeagueOverview,
+  typeof getLeagueOverview
+>(getLeagueOverview)
 
 export const useLeagues = useDataList<League, typeof getLeagues>(getLeagues)
 
