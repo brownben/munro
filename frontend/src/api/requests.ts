@@ -3,10 +3,12 @@ import { useAuthentication } from '../store/authentication'
 
 export const getData = <T>(config: RequestConfig): Promise<T | undefined> => {
   const headers: HeadersInit = {}
-  const auth = useAuthentication()
 
-  if (!config?.noToken) headers.Authorization = `Bearer ${auth.userToken}`
-
+  if (!import.meta.env.SSR) {
+    // Authenticated views are not rendered on server
+    const auth = useAuthentication()
+    if (!config?.noToken) headers.Authorization = `Bearer ${auth.userToken}`
+  }
   return sendRequest<T>(config.apiLocation, { method: 'GET', headers }, config)
 }
 
