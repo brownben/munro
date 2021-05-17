@@ -1,14 +1,7 @@
 <template>
   <Disclosure v-slot="{ open }" as="tbody" class="group">
     <tr
-      class="
-        transition
-        duration-300
-        ease-in-out
-        bg-white
-        border-collapse
-        group-hover:bg-main-200 group-focus-within:bg-main-200
-      "
+      class="transition duration-300 ease-in-out bg-white border-collapse group-hover:bg-main-200 group-focus-within:bg-main-200"
       :class="{ 'bg-main-100': striped }"
     >
       <slot />
@@ -21,14 +14,7 @@
             width="16"
             height="16"
             viewBox="0 0 24 24"
-            class="
-              text-gray-500
-              duration-300
-              transform
-              fill-current
-              motion-safe:transition-all
-              group-hover:text-main-700
-            "
+            class="text-gray-500 duration-300 transform fill-current motion-safe:transition-all group-hover:text-main-700"
             aria-hidden="true"
           >
             <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
@@ -41,15 +27,7 @@
     <transition v-if="$slots.expansion" name="shrink">
       <DisclosurePanel
         as="tr"
-        class="
-          text-right
-          transition
-          duration-300
-          bg-white
-          border-collapse
-          md:hidden
-          group-hover:bg-main-200 group-focus-within:bg-main-200
-        "
+        class="text-right transition duration-300 bg-white border-collapse md:hidden group-hover:bg-main-200 group-focus-within:bg-main-200"
         :class="{ 'bg-main-100': striped }"
       >
         <td class="pb-2" :colspan="100">

@@ -1,18 +1,6 @@
 <template>
   <section
-    class="
-      flex flex-col
-      items-center
-      justify-around
-      px-4
-      pb-4
-      text-center
-      bg-white
-      shadow-md
-      rounded-shape-xl
-      sm:px-6
-      sm:pt-6
-    "
+    class="flex flex-col items-center justify-around px-4 pb-4 text-center bg-white shadow-md rounded-shape-xl sm:px-6 sm:pt-6"
     :class="
       smaller
         ? 'pt-6 col-span-2 md:col-span-1'
@@ -37,28 +25,7 @@
     </div>
 
     <router-link
-      class="
-        inline-block
-        w-auto
-        px-3
-        py-2
-        text-base
-        leading-tight
-        transition
-        duration-300
-        ease-in-out
-        select-none
-        text-main-700
-        font-heading
-        rounded-shape
-        hover:text-main-800
-        focus:text-main-800
-        sm:my-0
-        hover:bg-main-100
-        focus:bg-main-100
-        whitespace-nowrap
-        focus-visible:shadow-outline
-      "
+      class="inline-block w-auto px-3 py-2 text-base leading-tight transition duration-300 ease-in-out select-none text-main-700 font-heading rounded-shape hover:text-main-800 focus:text-main-800 sm:my-0 hover:bg-main-100 focus:bg-main-100 whitespace-nowrap focus-visible:shadow-outline"
       :class="
         smaller
           ? 'w-full bg-main-100 hover:bg-main-200 focus:bg-main-200 px-4 mt-6 sm:mt-5 sm:w-auto md:bg-transparent md:hover:bg-main-100 md:focus:bg-main-100'

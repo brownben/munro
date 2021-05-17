@@ -1,49 +1,14 @@
 <template>
   <section
-    class="
-      flex flex-col
-      items-center
-      justify-around
-      col-span-2
-      px-4
-      pt-6
-      pb-4
-      text-center
-      bg-white
-      shadow-md
-      md:px-2
-      md:pb-3
-      md:col-span-1
-      xl:px-4
-      rounded-shape-xl
-    "
+    class="flex flex-col items-center justify-around col-span-2 px-4 pt-6 pb-4 text-center bg-white shadow-md md:px-2 md:pb-3 md:col-span-1 xl:px-4 rounded-shape-xl"
   >
     <h3
-      class="
-        text-xs
-        font-bold
-        leading-tight
-        tracking-wider
-        uppercase
-        truncate
-        font-heading
-        text-main-700
-        md:tracking-wide
-      "
+      class="text-xs font-bold leading-tight tracking-wider uppercase truncate font-heading text-main-700 md:tracking-wide"
     >
       {{ event.league }}
     </h3>
     <h4
-      class="
-        mt-3
-        mb-2
-        text-3xl
-        font-bold
-        leading-none
-        tracking-tight
-        text-gray-900
-        font-heading
-      "
+      class="mt-3 mb-2 text-3xl font-bold leading-none tracking-tight text-gray-900 font-heading"
     >
       {{ event.name }}
     </h4>

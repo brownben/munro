@@ -4,24 +4,7 @@
       {{ label }}
     </label>
     <p
-      class="
-        flex flex-row
-        justify-between
-        w-full
-        px-3
-        py-2
-        font-sans
-        transition
-        duration-300
-        ease-in-out
-        bg-white
-        border
-        outline-none
-        appearance-none
-        rounded-shape
-        focus:shadow-outline
-        focus:border-main-400
-      "
+      class="flex flex-row justify-between w-full px-3 py-2 font-sans transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline focus:border-main-400"
     >
       <span
         class="inline-block"
@@ -36,31 +19,7 @@
       <label
         :tabindex="0"
         for="file"
-        class="
-          z-10
-          inline-block
-          h-full
-          px-4
-          py-2
-          -mt-2
-          -mb-4
-          -mr-3
-          text-gray-500
-          transition
-          duration-300
-          border-l
-          outline-none
-          appearance-none
-          select-none
-          rounded-shape
-          hover:text-main-700
-          hover:bg-main-100
-          font-heading
-          focus:text-main-700
-          focus:bg-main-100
-          focus:shadow-outline
-          hover:shadow-outline
-        "
+        class="z-10 inline-block h-full px-4 py-2 -mt-2 -mb-4 -mr-3 text-gray-500 transition duration-300 border-l outline-none appearance-none select-none rounded-shape hover:text-main-700 hover:bg-main-100 font-heading focus:text-main-700 focus:bg-main-100 focus:shadow-outline hover:shadow-outline"
       >
         Browse for File
       </label>

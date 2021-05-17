@@ -14,15 +14,7 @@
 
     <div class="relative">
       <span
-        class="
-          absolute
-          inset-y-0
-          right-0
-          flex
-          items-center
-          pr-2
-          pointer-events-none
-        "
+        class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none"
       >
         <svg
           class="w-5 h-5"
@@ -48,22 +40,7 @@
       <select
         :id="label"
         :value="modelValue"
-        class="
-          w-full
-          px-3
-          py-2
-          font-sans
-          text-gray-900
-          transition
-          duration-300
-          ease-in-out
-          bg-white
-          border
-          outline-none
-          appearance-none
-          rounded-shape
-          focus:shadow-outline
-        "
+        class="w-full px-3 py-2 font-sans text-gray-900 transition duration-300 ease-in-out bg-white border outline-none appearance-none rounded-shape focus:shadow-outline"
         :class="{
           'border-red-500 focus:border-red-500 focus:shadow-outline-red':
             state == 'invalid',

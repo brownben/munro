@@ -1,29 +1,11 @@
 <template>
   <section class="w-full py-10 bg-white border-t md:py-12 border-main-100">
     <div
-      class="
-        flex flex-col
-        items-center
-        justify-between
-        w-10/12
-        mx-auto
-        md:flex-row-reverse
-        lg:w-3/4
-        xl:max-w-screen-xl
-      "
+      class="flex flex-col items-center justify-between w-10/12 mx-auto md:flex-row-reverse lg:w-3/4 xl:max-w-screen-xl"
     >
       <div class="w-full mb-12 text-center md:w-1/2 md:text-left md:mb-0">
         <h2
-          class="
-            mb-2
-            text-4xl
-            tracking-tight
-            text-gray-900
-            xl:text-5xl
-            font-heading
-            leading-12
-            xl:leading-14
-          "
+          class="mb-2 text-4xl tracking-tight text-gray-900 xl:text-5xl font-heading leading-12 xl:leading-14"
         >
           Upload Results in
           <strong class="tracking-normal text-main-600">Seconds</strong>

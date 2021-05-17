@@ -11,15 +11,7 @@
     <template #title>
       <router-link
         :to="`/leagues/${competitor?.league}`"
-        class="
-          mb-1
-          text-xl
-          font-bold
-          text-main-700
-          font-heading
-          focus-visible:shadow-outline
-          rounded-shape
-        "
+        class="mb-1 text-xl font-bold text-main-700 font-heading focus-visible:shadow-outline rounded-shape"
       >
         {{ competitor?.league }}
       </router-link>

@@ -28,13 +28,7 @@
       fill="none"
       stroke-linecap="round"
       stroke-linejoin="round"
-      class="
-        inline-block
-        -ml-2
-        duration-300
-        motion-safe:transition-all
-        text-main-900
-      "
+      class="inline-block -ml-2 duration-300 motion-safe:transition-all text-main-900"
       :class="{
         'h-2 mt-2': ascending && active,
         'h-5 -mt-1': !ascending && active,
