@@ -7,6 +7,6 @@ export default createRouter({
 
   scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) return savedPosition
-    else return { top: 0, left: 0 }
+    else return { top: 0, left: 0, behavior: 'smooth' }
   },
 })
