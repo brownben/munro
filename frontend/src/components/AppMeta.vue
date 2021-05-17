@@ -16,6 +16,14 @@ const props = defineProps({
     type: String,
     default: 'https://munroleagues.com',
   },
+  image: {
+    type: String,
+    default: 'https://munroleagues.com/MunroLogo-Social.png',
+  },
+  imageAlt: {
+    type: String,
+    default: 'Munro Leagues Logo - Hills Shaped as an "M"',
+  },
   blockRobots: { type: Boolean, default: false },
 })
 
@@ -34,10 +42,7 @@ useHead({
     { property: 'og:title', content: computed(() => props.title) },
     { property: 'og:description', content: computed(() => props.description) },
     { property: 'og:url', content: computed(() => props.url) },
-    {
-      property: 'og:image',
-      content: 'https://munroleagues.com/MunroLogo-Social.png',
-    },
+    { property: 'og:image', content: computed(() => props.image) },
     { property: 'og:type', content: 'website' },
 
     { name: 'twitter:card', content: 'summary_large_image' },
@@ -45,14 +50,8 @@ useHead({
     { name: 'twitter:title', content: computed(() => props.title) },
     { name: 'twitter:description', content: computed(() => props.description) },
     { name: 'twitter:url', content: computed(() => props.url) },
-    {
-      name: 'twitter:image',
-      content: 'https://munroleagues.com/MunroLogo-Social.png',
-    },
-    {
-      name: 'twitter:image:alt',
-      content: 'Munro Leagues Logo - Hills Shaped as an "M"',
-    },
+    { name: 'twitter:image', content: computed(() => props.image) },
+    { name: 'twitter:image:alt', content: computed(() => props.imageAlt) },
 
     { itemprop: 'name', content: 'Munro' },
     { itemprop: 'description', content: computed(() => props.description) },
