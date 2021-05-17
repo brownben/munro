@@ -198,10 +198,10 @@
               </Cell>
 
               <Cell show-after="sm">
-                {{ result.ageClass }}
+                {{ result.ageClass || ' ' }}
               </Cell>
               <Cell show-after="sm">
-                {{ result.club }}
+                {{ result.club || ' ' }}
               </Cell>
               <Cell>
                 <time
