@@ -1,7 +1,7 @@
 <template>
   <a
     href="#content"
-    class="z-50 bg-white sr-only focus:absolute focus:px-3 focus:py-2 focus:m-4 text-main-800 rounded-shape focus:not-sr-only focus:block focus:shadow-outline"
+    class="z-50 bg-white sr-only  focus:absolute focus:px-3 focus:py-2 focus:m-4 text-main-800 rounded-shape focus:not-sr-only focus:block focus:shadow-outline"
   >
     Skip to main content
   </a>
@@ -37,6 +37,7 @@ watchEffect(async () => {
   }
 })
 </script>
+
 <style lang="postcss">
 #app {
   @apply flex flex-col w-full h-full min-h-full;
