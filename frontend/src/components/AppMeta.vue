@@ -23,17 +23,52 @@ useHead({
   title: computed(() => props.title),
   meta: [
     { name: 'description', content: computed(() => props.description) },
+    {
+      name: 'keywords',
+      content:
+        'leagues, results, orienteering,  sporting results, sports, scotland,  munro, munro leagues, munro league results, munro orienteering',
+    },
+    { name: 'theme-color', content: '#b80bda' },
+
+    { property: 'og:sitename', content: 'Munro' },
     { property: 'og:title', content: computed(() => props.title) },
     { property: 'og:description', content: computed(() => props.description) },
     { property: 'og:url', content: computed(() => props.url) },
+    {
+      property: 'og:image',
+      content: 'https://munroleagues.com/MunroLogo-Social.png',
+    },
+    { property: 'og:type', content: 'website' },
+
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:site', content: 'munroleagues' },
     { name: 'twitter:title', content: computed(() => props.title) },
     { name: 'twitter:description', content: computed(() => props.description) },
     { name: 'twitter:url', content: computed(() => props.url) },
+    {
+      name: 'twitter:image',
+      content: 'https://munroleagues.com/MunroLogo-Social.png',
+    },
+    {
+      name: 'twitter:image:alt',
+      content: 'Munro Leagues Logo - Hills Shaped as an "M"',
+    },
+
+    { itemprop: 'name', content: 'Munro' },
     { itemprop: 'description', content: computed(() => props.description) },
+    { itemprop: 'image', content: 'https://munroleagues.com/MunroLogo.png' },
+
     {
       name: 'robots',
       content: computed(() => (props.blockRobots ? 'noindex' : 'all')),
     },
+  ],
+
+  link: [
+    { rel: 'shortcut icon', href: '/MunroLogoNoBG-512.png', type: 'image/png' },
+    { rel: 'icon', href: '/MunroLogoNoBG-512.png' },
+    { rel: 'apple-touch-icon', href: '/MunroLogo-512.png' },
+    { rel: 'manifest', href: '/manifest.json' },
   ],
 })
 </script>
