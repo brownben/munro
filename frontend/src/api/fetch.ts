@@ -8,10 +8,18 @@ interface ServerMessage {
   message: string
 }
 
-const Fetch = <T>(
+const Fetch = async <T>(
   location: string,
   options: RequestInit
-): Promise<TypedResponse<T>> => window.fetch(location, options)
+): Promise<TypedResponse<T>> => {
+  if (!import.meta.env.SSR) return window.fetch(location, options)
+  else {
+    const fetch = (await import('node-fetch'))?.default
+    const api =
+      location[0] !== '/' ? location : 'https://munroleagues.com' + location
+    return fetch(api, options)
+  }
+}
 
 export const sendRequest = <T>(
   apiLocation: string,
@@ -48,8 +56,11 @@ export const sendRequestText = (
     .catch((error: Error) => handleError(error, responseConfig))
 
 const addMessage = (text: string) => {
-  const messages = useMessages()
-  messages.create(text)
+  if (!import.meta.env.SSR) {
+    // Messages not made on server
+    const messages = useMessages()
+    messages.create(text)
+  }
 }
 
 const showSuccessMessage = <T>(data: T, config: RequestConfig): T => {

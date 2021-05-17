@@ -30,13 +30,16 @@ const login: RouteRecordRaw = {
 const logout: RouteRecordRaw = {
   path: '/logout',
   redirect: () => {
-    const messages = useMessages()
-    const auth = useAuthentication()
+    if (!import.meta.env.SSR) {
+      // Just Redirect, if on server will not be logged in
+      const messages = useMessages()
+      const auth = useAuthentication()
 
-    auth
-      .logout()
-      .then(() => messages.create('Goodbye - Logged Out Successfully'))
-      .catch(() => messages.create('Problem Logging Out - Please Try Again'))
+      auth
+        .logout()
+        .then(() => messages.create('Goodbye - Logged Out Successfully'))
+        .catch(() => messages.create('Problem Logging Out - Please Try Again'))
+    }
     return '/'
   },
 }
