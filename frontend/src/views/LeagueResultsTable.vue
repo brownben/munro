@@ -173,10 +173,10 @@
                   </template>
                 </Cell>
                 <Cell v-if="result.course" show-after="sm">
-                  {{ result.course }}
+                  {{ result.course || ' ' }}
                 </Cell>
-                <Cell show-after="sm">{{ result.ageClass }}</Cell>
-                <Cell show-after="sm">{{ result.club }}</Cell>
+                <Cell show-after="sm">{{ result.ageClass || ' ' }}</Cell>
+                <Cell show-after="sm">{{ result.club || ' ' }}</Cell>
                 <Cell>{{ result.totalPoints }}</Cell>
 
                 <Cell
@@ -190,7 +190,7 @@
                     ),
                   }"
                 >
-                  {{ point?.score }}
+                  {{ point?.score || ' ' }}
                 </Cell>
               </template>
               <template #expansion>
