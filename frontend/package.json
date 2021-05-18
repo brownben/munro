@@ -13,11 +13,11 @@
     "lint": "npm run prettier:fix && npm run typescript:check && npm run eslint:fix",
     "check": "npm run prettier:check && npm run typescript:check && npm run eslint:check",
     "generateServiceWorker": "node ./generateSW.js",
-    "dev": "node server",
+    "dev": "vite",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build --ssrManifest --outDir dist",
     "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
-    "serve": "cross-env NODE_ENV=production node server"
+    "vercel-build": "npm run build && node ./buildSSR.js"
   },
   "dependencies": {
     "@headlessui/vue": "^1.2.0",

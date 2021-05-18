@@ -1,18 +1,15 @@
 {
-  "rewrites": [
+  "routes": [
+    { "src": "/", "dest": "/api" },
+    { "handle": "filesystem" },
     {
-      "source": "/sitemap.txt",
-      "destination": "https://munro-leagues-production.up.railway.app/sitemap.txt"
+      "src": "/sitemap.txt",
+      "dest": "https://munro-leagues-production.up.railway.app/sitemap.txt"
     },
     {
-      "source": "/api/:match*",
-      "destination": "https://munro-leagues-production.up.railway.app/api/:match*"
+      "src": "/api/(?<location>.*)",
+      "dest": "https://munro-leagues-production.up.railway.app/api/$location"
     },
-    { "source": "/(.*)", "destination": "/api/index.js" }
-  ],
-  "functions": {
-    "api/index.js": {
-      "includeFiles": "dist/**"
-    }
-  }
+    { "src": "/(.*)", "dest": "/api" }
+  ]
 }
