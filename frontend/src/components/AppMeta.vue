@@ -2,8 +2,11 @@
   <div class="hidden" />
 </template>
 <script setup lang="ts">
-import { defineProps, computed } from 'vue'
+import { ref, computed, watchEffect, defineProps } from 'vue'
 import { useHead } from '@vueuse/head'
+import { useRoute } from 'vue-router'
+
+import { toSingleString } from '../scripts/typeHelpers'
 
 const props = defineProps({
   title: { type: String, default: 'Munro' },
@@ -27,34 +30,48 @@ const props = defineProps({
   blockRobots: { type: Boolean, default: false },
 })
 
+const route = useRoute()
+
+const theme = ref('#b80bda')
+const title = computed(() => props.title)
+const description = computed(() => props.description)
+const url = computed(() => props.url)
+const image = computed(() => {
+  if (theme.value !== '#b80bda') return props.image
+  else if (props.image.includes('?'))
+    return `${props.image}&theme=${theme.value}`
+  else return `${props.image}?theme=${theme.value}`
+})
+const imageAlt = computed(() => props.imageAlt)
+
 useHead({
-  title: computed(() => props.title),
+  title: title,
   meta: [
-    { name: 'description', content: computed(() => props.description) },
+    { name: 'description', content: description },
     {
       name: 'keywords',
       content:
         'leagues, results, orienteering,  sporting results, sports, scotland,  munro, munro leagues, munro league results, munro orienteering',
     },
-    { name: 'theme-color', content: '#b80bda' },
+    { name: 'theme-color', content: theme },
 
     { property: 'og:sitename', content: 'Munro' },
-    { property: 'og:title', content: computed(() => props.title) },
-    { property: 'og:description', content: computed(() => props.description) },
-    { property: 'og:url', content: computed(() => props.url) },
-    { property: 'og:image', content: computed(() => props.image) },
+    { property: 'og:title', content: title },
+    { property: 'og:description', content: description },
+    { property: 'og:url', content: url },
+    { property: 'og:image', content: image },
     { property: 'og:type', content: 'website' },
 
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:site', content: 'munroleagues' },
-    { name: 'twitter:title', content: computed(() => props.title) },
-    { name: 'twitter:description', content: computed(() => props.description) },
-    { name: 'twitter:url', content: computed(() => props.url) },
-    { name: 'twitter:image', content: computed(() => props.image) },
-    { name: 'twitter:image:alt', content: computed(() => props.imageAlt) },
+    { name: 'twitter:title', content: title },
+    { name: 'twitter:description', content: description },
+    { name: 'twitter:url', content: url },
+    { name: 'twitter:image', content: image },
+    { name: 'twitter:image:alt', content: imageAlt },
 
     { itemprop: 'name', content: 'Munro' },
-    { itemprop: 'description', content: computed(() => props.description) },
+    { itemprop: 'description', content: description },
     { itemprop: 'image', content: 'https://munroleagues.com/MunroLogo.png' },
 
     {
@@ -69,5 +86,12 @@ useHead({
     { rel: 'apple-touch-icon', href: '/MunroLogo-512.png' },
     { rel: 'manifest', href: '/manifest.json' },
   ],
+})
+
+watchEffect(async () => {
+  if (route.query.theme) {
+    const setTheme = (await import('../setThemes')).default
+    theme.value = setTheme(toSingleString(route.query.theme))
+  }
 })
 </script>
