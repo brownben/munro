@@ -14,10 +14,9 @@
     "check": "npm run prettier:check && npm run typescript:check && npm run eslint:check",
     "generateServiceWorker": "node ./generateSW.js",
     "dev": "node server",
-    "build": "yarn build:client && yarn build:server",
-    "build:client": "vite build --ssrManifest --outDir dist/client",
-    "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
-    "generate": "vite build --ssrManifest --outDir dist/static && yarn build:server && node prerender",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --ssrManifest --outDir dist",
+    "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
     "serve": "cross-env NODE_ENV=production node server"
   },
   "dependencies": {

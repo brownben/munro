@@ -8,6 +8,11 @@
       "source": "/api/:match*",
       "destination": "https://munro-leagues-production.up.railway.app/api/:match*"
     },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+    { "source": "/(.*)", "destination": "/api/index.js" }
+  ],
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "dist/**"
+    }
+  }
 }
