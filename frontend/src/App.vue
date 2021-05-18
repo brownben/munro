@@ -1,7 +1,7 @@
 <template>
   <a
     href="#content"
-    class="z-50 bg-white sr-only  focus:absolute focus:px-3 focus:py-2 focus:m-4 text-main-800 rounded-shape focus:not-sr-only focus:block focus:shadow-outline"
+    class="z-50 bg-white sr-only focus:absolute focus:px-3 focus:py-2 focus:m-4 text-main-800 rounded-shape focus:not-sr-only focus:block focus:shadow-outline"
   >
     Skip to main content
   </a>
@@ -20,22 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import { watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
-
-import { toSingleString } from './scripts/typeHelpers'
-
 import AppMenu from './components/AppMenu.vue'
 import Messages from './components/AppMessages.vue'
-
-const route = useRoute()
-
-watchEffect(async () => {
-  if (route.query.theme) {
-    const setTheme = (await import('./setThemes')).default
-    setTheme(toSingleString(route.query.theme))
-  }
-})
 </script>
 
 <style lang="postcss">
