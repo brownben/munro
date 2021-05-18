@@ -12,9 +12,12 @@ const Fetch = async <T>(
   location: string,
   options: RequestInit
 ): Promise<TypedResponse<T>> => {
-  if (!import.meta.env.SSR) return window.fetch(location, options)
+  if (!import.meta.env.SSR) return fetch(location, options)
   else {
-    const fetch = (await import('node-fetch'))?.default
+    // Polyfill Fetch for SSR in Node
+    // @ts-ignore-nextline
+    const fetch = (await import('node-fetch'))
+      ?.default as typeof globalThis.fetch
     const api =
       location[0] !== '/' ? location : 'https://munroleagues.com' + location
     return fetch(api, options)
