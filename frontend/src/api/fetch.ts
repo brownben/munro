@@ -15,6 +15,7 @@ const Fetch = async <T>(
   if (!import.meta.env.SSR) return fetch(location, options)
   else {
     // Polyfill Fetch for SSR in Node
+    // eslint-disable-next-line
     // @ts-ignore-nextline
     const fetch = (await import('node-fetch'))
       ?.default as typeof globalThis.fetch

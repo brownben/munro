@@ -8,7 +8,7 @@ export async function render(url: string, manifest: Record<string, string[]>) {
   // Headless UI doesn't properly support Vue SSR yet
   // We mock window.addEventListener, so it will render on the server without error
   globalThis.window = {} as Window & typeof globalThis
-  globalThis.window.addEventListener = () => {}
+  globalThis.window.addEventListener = () => null
 
   const { app, router, head } = createApp()
 

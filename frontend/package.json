@@ -15,7 +15,7 @@
     "generateServiceWorker": "node ./generateSW.js",
     "dev": "vite",
     "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build --ssrManifest --outDir dist",
+    "build:client": "vite build --ssrManifest --outDir dist && node ./generateSW.js",
     "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
     "vercel-build": "npm run build && node ./buildSSR.js"
   },
