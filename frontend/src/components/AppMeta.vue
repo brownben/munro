@@ -21,7 +21,7 @@ const props = defineProps({
   },
   image: {
     type: String,
-    default: 'https://munroleagues.com/MunroLogo-Social.png',
+    default: 'https://images.munroleagues.com/%20',
   },
   imageAlt: {
     type: String,
@@ -32,15 +32,15 @@ const props = defineProps({
 
 const route = useRoute()
 
-const theme = ref('#b80bda')
 const title = computed(() => props.title)
 const description = computed(() => props.description)
 const url = computed(() => props.url)
+const theme = ref('#b80bda')
 const image = computed(() => {
-  if (theme.value !== '#b80bda') return props.image
+  if (theme.value === '#b80bda') return props.image
   else if (props.image.includes('?'))
-    return `${props.image}&theme=${theme.value}`
-  else return `${props.image}?theme=${theme.value}`
+    return `${props.image}&theme=${theme.value}`.replace('#', '%23')
+  else return `${props.image}?theme=${theme.value}`.replace('#', '%23')
 })
 const imageAlt = computed(() => props.imageAlt)
 
@@ -72,7 +72,7 @@ useHead({
 
     { itemprop: 'name', content: 'Munro' },
     { itemprop: 'description', content: description },
-    { itemprop: 'image', content: 'https://munroleagues.com/MunroLogo.png' },
+    { itemprop: 'image', content: image },
 
     {
       name: 'robots',
@@ -88,10 +88,19 @@ useHead({
   ],
 })
 
-watchEffect(async () => {
+if (import.meta.env.SSR) {
   if (route.query.theme) {
     const setTheme = (await import('../setThemes')).default
     theme.value = setTheme(toSingleString(route.query.theme))
   }
-})
+}
+
+const updateTheme = async () => {
+  if (route.query.theme) {
+    const setTheme = (await import('../setThemes')).default
+    theme.value = setTheme(toSingleString(route.query.theme))
+  }
+}
+
+watchEffect(updateTheme)
 </script>
