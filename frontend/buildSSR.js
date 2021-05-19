@@ -15,10 +15,12 @@ module.exports = async (req, res) => {
     const url = req.url
 
     const [appHtml, preloadLinks, metaTags] = await render(url, manifest)
+    const styles = getTheme(req.query)
 
     const html = template
       .replace('<!--meta-tags-->', metaTags)
       .replace('<!--preload-links-->', preloadLinks)
+      .replace('</head>', \`\${styles}\n</head>\`)
       .replace('<!--app-html-->', appHtml)
 
     res.status(200).send(html)

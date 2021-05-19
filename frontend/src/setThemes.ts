@@ -202,8 +202,20 @@ const themes: Record<string, Theme> = {
 export default (themeName: string): string => {
   const theme = themes[themeName] ?? purpleTheme
 
-  for (const [name, value] of Object.entries(theme))
-    document.body.style.setProperty(name, value)
+  if (!import.meta.env.SSR) {
+    for (const [name, value] of Object.entries(theme))
+      document.body.style.setProperty(name, value)
+  }
 
   return theme['--main-600']
+}
+
+export const getStyle = (themeName: string): string => {
+  const theme = themes[themeName] ?? purpleTheme
+  let style = ''
+
+  for (const [name, value] of Object.entries(theme))
+    style += `${name}: ${value};`
+
+  return style
 }

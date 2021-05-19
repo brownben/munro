@@ -2,6 +2,8 @@ import { createApp } from './main'
 import { renderToString, SSRContext } from '@vue/server-renderer'
 import { renderHeadToString } from '@vueuse/head'
 
+import { getStyle } from './setThemes'
+
 export async function render(url: string, manifest: Record<string, string[]>) {
   // Headless UI doesn't properly support Vue SSR yet
   // We mock window.addEventListener, so it will render on the server without error
@@ -19,6 +21,11 @@ export async function render(url: string, manifest: Record<string, string[]>) {
   const { headTags } = renderHeadToString(head)
 
   return [html, preloadLinks, headTags]
+}
+
+export const getTheme = (query: Record<string, string>) => {
+  if (query.theme) return `<style>:root {${getStyle(query.theme)}}</style>`
+  return ''
 }
 
 const renderPreloadLinks = (
