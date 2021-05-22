@@ -109,22 +109,82 @@
       </p>
       <p>The following themes are available:</p>
       <ul>
-        <li>default</li>
-        <li>purple</li>
-        <li>blue</li>
-        <li>green</li>
-        <li>red</li>
-        <li>orange</li>
-        <li>cyan</li>
-        <li>pink</li>
-        <li>gray</li>
+        <li v-for="color of colors">{{ color }}</li>
       </ul>
       <p>For example to view a red theme:</p>
       <pre><code>&lt;iframe src=&quot;https://munroleagues.com/embed/leagues/Sprintelope 2018/events?theme=red&quot;&gt;&lt;/iframe&gt;</code></pre>
+
+      <h2>Preview Themes</h2>
+
+      <div class="grid grid-cols-2 gap-6 md:grid-cols-3">
+        <button
+          v-for="color in colors"
+          class="flex items-end justify-start w-full h-24 p-2 transition-all ring-offset-2 rounded-shape hover:ring focus:ring"
+          :class="color"
+          @click="changeTheme(color)"
+        >
+          <span class="leading-tight text-white font-heading">{{ color }}</span>
+        </button>
+      </div>
     </article>
   </Layout>
 </template>
 
 <script setup lang="ts">
 import Layout from '../components/Layout.vue'
+import setTheme from '../setThemes'
+
+const changeTheme = (theme: string) => {
+  const color = setTheme(theme)
+  const metaTag = document.querySelector(
+    '[name="theme-color"]'
+  ) as HTMLMetaElement
+  metaTag.content = color
+}
+
+const colors = [
+  'purple',
+  'blue',
+  'green',
+  'red',
+  'orange',
+  'cyan',
+  'pink',
+  'gray',
+]
 </script>
+
+<style>
+.purple {
+  --tw-ring-color: #c026d3;
+  background-color: #c026d3;
+}
+.blue {
+  --tw-ring-color: #0284c7;
+  background-color: #0284c7;
+}
+.green {
+  --tw-ring-color: #16a34a;
+  background-color: #16a34a;
+}
+.red {
+  --tw-ring-color: #dc2626;
+  background-color: #dc2626;
+}
+.orange {
+  --tw-ring-color: #ea580c;
+  background-color: #ea580c;
+}
+.cyan {
+  --tw-ring-color: #0d9488;
+  background-color: #0d9488;
+}
+.pink {
+  --tw-ring-color: #db2777;
+  background-color: #db2777;
+}
+.gray {
+  --tw-ring-color: #475569;
+  background-color: #475569;
+}
+</style>
