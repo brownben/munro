@@ -12,11 +12,11 @@
     "eslint:fix": "eslint ./src --fix",
     "lint": "npm run prettier:fix && npm run typescript:check && npm run eslint:fix",
     "check": "npm run prettier:check && npm run typescript:check && npm run eslint:check",
-    "generateServiceWorker": "node ./generateSW.js",
     "serve": "node ./localSSR.js",
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build --ssrManifest --outDir dist && node ./generateSW.js",
+    "build": "npm run build:client && npm run build:server && npm run build:service-worker",
+    "build:client": "vite build --ssrManifest --outDir dist",
     "build:server": "vite build --ssr src/entry-server.ts --outDir dist/server",
+    "build:service-worker": "rollup -c service-worker-build.config.js",
     "vercel-build": "npm run build && node ./buildSSR.js"
   },
   "dependencies": {
@@ -28,6 +28,7 @@
     "vue-router": "^4.0.8"
   },
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "@tailwindcss/typography": "^0.4.0",
     "@types/node": "^15.6.0",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
@@ -37,10 +38,9 @@
     "@vue/eslint-config-typescript": "^7.0.0",
     "@vue/server-renderer": "^3.0.11",
     "autoprefixer": "^10.2.5",
-    "cross-env": "^7.0.3",
-    "cssnano": "^5.0.3",
-    "cssnano-preset-advanced": "^5.1.0",
-    "eslint": "^7.26.0",
+    "cssnano": "^5.0.4",
+    "cssnano-preset-advanced": "^5.1.1",
+    "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^7.0.0-beta.4",
     "express": "^4.17.1",
@@ -48,11 +48,15 @@
     "postcss": "^8.3.0",
     "postcss-preset-env": "^6.7.0",
     "prettier": "2.2.1",
-    "rollup-plugin-workbox": "^6.1.1",
+    "rollup": "^2.48.0",
     "tailwindcss": "^2.1.2",
     "typescript": "^4.2.4",
     "vite": "^2.3.3",
-    "vue-tsc": "^0.1.4"
+    "vue-tsc": "^0.1.4",
+    "workbox-cacheable-response": "^6.1.5",
+    "workbox-precaching": "^6.1.5",
+    "workbox-routing": "^6.1.5",
+    "workbox-strategies": "^6.1.5"
   },
   "browserslist": [
     "defaults",
