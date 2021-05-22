@@ -7,7 +7,7 @@ precacheAndRoute(['/index.html'])
 
 registerRoute(
   new RegExp('/api/'),
-  new NetworkCache({
+  new NetworkFirst({
     networkTimeoutSeconds: 5,
     cacheName: 'api',
     plugins: [new CacheableResponsePlugin({ statuses: [200] })],
