@@ -1,5 +1,9 @@
 import { registerRoute, setCatchHandler } from 'workbox-routing'
-import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
+import {
+  NetworkFirst,
+  CacheFirst,
+  StaleWhileRevalidate,
+} from 'workbox-strategies'
 import { precacheAndRoute, matchPrecache } from 'workbox-precaching'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 
