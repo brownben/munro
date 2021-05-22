@@ -7,7 +7,7 @@ import {
 import { precacheAndRoute, matchPrecache } from 'workbox-precaching'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 
-precacheAndRoute(['/index.html'])
+precacheAndRoute(self.__WB_MANIFEST)
 
 registerRoute(
   new RegExp('/api/'),
