@@ -36,6 +36,14 @@ const title = computed(() => props.title)
 const description = computed(() => props.description)
 const url = computed(() => props.url)
 const theme = ref('#b80bda')
+
+if (!import.meta.env.SSR) {
+  const existingTheme = (document.querySelector(
+    '[name="theme-color"]'
+  ) as HTMLMetaElement)?.content
+  theme.value = existingTheme ?? theme.value
+}
+
 const image = computed(() => {
   if (theme.value === '#b80bda') return props.image
   else if (props.image.includes('?'))
