@@ -11,7 +11,6 @@
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
-        url-parameter="league"
       />
       <DropdownInput
         v-model="choices.event"
@@ -61,7 +60,7 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import Layout from '../../components/Layout.vue'
 import DropdownInput from '../../components/InputDropdown.vue'
@@ -76,11 +75,13 @@ import {
 
 import { useMessages } from '../../store/messages'
 
+import { toSingleString } from '../../scripts/typeHelpers'
 import { sortEventResults, SortablePropertiesEvent } from '../../scripts/sort'
 import { eventResultWithAgeGender as resultWithAgeGender } from '../../scripts/ageClassSplit'
 import { elapsedTime } from '../../scripts/time'
 import { RequiredField } from '../../scripts/inputValidation'
 
+const route = useRoute()
 const router = useRouter()
 const messages = useMessages()
 
@@ -89,7 +90,7 @@ const [events] = await useEvents()
 const [competitors] = await useCompetitors()
 const [results] = await useResults()
 const choices = ref({
-  league: '',
+  league: toSingleString(route.query?.league),
   event: '',
   course: '',
   competitor: '',

@@ -84,7 +84,7 @@
     </template>
 
     <template #expansion>
-      <FilterMenu @changed="filterChanged" />
+      <FilterMenu :preferences="filterPreferences" @changed="filterChanged" />
     </template>
 
     <div class="col-span-2">
@@ -203,7 +203,7 @@ const CardNoResults = defineAsyncComponent(
   () => import('../components/CardNoResults.vue')
 )
 
-import { toSingleString } from '../scripts/typeHelpers'
+import { toSingleString, asyncComputed } from '../scripts/typeHelpers'
 import { elapsedTime, timeToHTMLElapsed } from '../scripts/time'
 import { eventResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
 import { filterResults } from '../scripts/filter'
@@ -224,15 +224,32 @@ const routeParamsEvent = computed(
 const [event] = await useEvent(routeParamsEvent)
 const [rawResults] = await useEventResults(routeParamsEvent)
 
+/* Sort + Filter Preferences */
+const filterOpen = ref<boolean>(false)
+const filterPreferences = ref<FilterPreferences>({
+  name: toSingleString(route.query?.name),
+  club: toSingleString(route.query?.club),
+  minAge: Number(toSingleString(route.query?.minAge)) || 0,
+  maxAge: Number(toSingleString(route.query?.maxAge)) || 100,
+  male: toSingleString(route.query?.male) !== 'false',
+  female: toSingleString(route.query?.female) !== 'false',
+})
+const sortPreferences = ref<SortPreferencesEvent>({
+  ascending: false,
+  by: SortableProperties.position,
+})
+const filterChanged = (preferences: Partial<FilterPreferences>) => {
+  filterPreferences.value = { ...filterPreferences.value, ...preferences }
+}
+const changeSortPreference = (property: SortableProperties) => {
+  if (property !== sortPreferences.value.by)
+    sortPreferences.value.ascending = false
+  else sortPreferences.value.ascending = !sortPreferences.value.ascending
+  sortPreferences.value.by = property
+}
+
 /* Results */
-const results = computed(() =>
-  rawResults.value
-    .filter((result) => result.course === currentCourse.value)
-    .map(resultWithAgeGender)
-    .filter((result) => filterResults(result, filterPreferences.value))
-    .sort(sortResults(sortPreferences.value))
-)
-const coursesInResults = computed(() => [
+const coursesInResults = await asyncComputed(() => [
   ...new Set(rawResults.value?.map((result) => result.course)),
 ])
 
@@ -244,27 +261,11 @@ watchEffect(() => {
     currentCourse.value = coursesInResults.value?.[0]
 })
 
-/* Sort + Filter Preferences */
-const filterOpen = ref<boolean>(false)
-const filterPreferences = ref<FilterPreferences>({
-  name: '',
-  club: '',
-  minAge: 0,
-  maxAge: 100,
-  male: true,
-  female: true,
-})
-const sortPreferences = ref<SortPreferencesEvent>({
-  ascending: false,
-  by: SortableProperties.position,
-})
-const filterChanged = (preferences: FilterPreferences) => {
-  filterPreferences.value = preferences
-}
-const changeSortPreference = (property: SortableProperties) => {
-  if (property !== sortPreferences.value.by)
-    sortPreferences.value.ascending = false
-  else sortPreferences.value.ascending = !sortPreferences.value.ascending
-  sortPreferences.value.by = property
-}
+const results = await asyncComputed(() =>
+  rawResults.value
+    .filter((result) => result.course === currentCourse.value)
+    .map(resultWithAgeGender)
+    .filter((result) => filterResults(result, filterPreferences.value))
+    .sort(sortResults(sortPreferences.value))
+)
 </script>

@@ -22,7 +22,6 @@
         :list="leagues.map((league) => league.name)"
         label="League:"
         class="mt-4"
-        url-parameter="league"
         :validator="RequiredField('a league', true)"
       />
       <InputDropdown
@@ -43,7 +42,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, watchEffect } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
@@ -61,8 +60,8 @@ import {
 } from '../../api/competitors'
 import { useLeagues } from '../../api/leagues'
 
-const router = useRouter()
 const route = useRoute()
+const router = useRouter()
 const messages = useMessages()
 
 const routeParamsId = computed(() => toSingleString(route.params.id))
@@ -75,7 +74,7 @@ const competitor = ref<Competitor>({
   club: '',
   ageClass: '',
   course: '',
-  league: '',
+  league: toSingleString(route.query?.league),
 })
 
 watchEffect(() => {

@@ -11,7 +11,6 @@
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
-        url-parameter="league"
       />
       <InputDropdown
         v-model="choices.course"
@@ -19,7 +18,6 @@
         :include-blank="true"
         label="Course"
         class="mt-4"
-        url-parameter="course"
       />
       <InputDropdown
         v-model="choices.competitorKeep"
@@ -32,7 +30,6 @@
         :include-blank="true"
         label="Competitor to Keep:"
         class="mt-4"
-        url-parameter="competitorToKeep"
         :validator="RequiredField('a competitor to keep', true)"
       />
       <InputDropdown
@@ -55,12 +52,13 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 
 import { RequiredField } from '../../scripts/inputValidation'
+import { toSingleString } from '../../scripts/typeHelpers'
 
 import { useMessages } from '../../store/messages'
 
@@ -70,17 +68,18 @@ import {
   mergeCompetitors as apiMergeCompetitors,
 } from '../../api/competitors'
 
-const messages = useMessages()
+const route = useRoute()
 const router = useRouter()
+const messages = useMessages()
 
 const [leagues] = await useLeagues()
 const [competitors] = await useCompetitors()
 
 const choices = ref({
-  league: '',
+  league: toSingleString(route.query?.league),
   competitorMerge: '',
-  competitorKeep: '',
-  course: '',
+  competitorKeep: toSingleString(route.query?.competitorToKeep),
+  course: toSingleString(route.query?.course),
 })
 
 const courses = computed(

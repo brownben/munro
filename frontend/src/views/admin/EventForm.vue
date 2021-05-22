@@ -34,7 +34,6 @@
         :list="leagues.map((league) => league.name)"
         label="League:"
         class="mt-4"
-        url-parameter="league"
         :validator="RequiredField('a league', true)"
       />
       <InputText
@@ -134,7 +133,6 @@ import InputDropdown from '../../components/InputDropdown.vue'
 import InputText from '../../components/InputText.vue'
 import InputTextarea from '../../components/InputTextarea.vue'
 import InputSwitch from '../../components/InputSwitch.vue'
-import InputRadio from '../../components/InputRadio.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import {
@@ -172,7 +170,7 @@ const event = ref<LeagueEvent>({
   winsplits: '',
   routegadget: '',
   userSubmittedResults: false,
-  league: '',
+  league: toSingleString(route.query?.league),
   secondaryLeague: '',
   requiredInTotal: false,
   additionalSettings: '',

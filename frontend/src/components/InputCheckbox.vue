@@ -27,22 +27,14 @@
 </template>
 
 <script setup lang="ts">
-import { watchEffect, defineEmit, defineProps } from 'vue'
-import { useRoute } from 'vue-router'
+import { defineEmit, defineProps } from 'vue'
 
-const route = useRoute()
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
   label: { type: String, default: '' },
-  urlParameter: { type: String, default: '' },
 })
 const emit = defineEmit(['update:modelValue'])
 
 const handleEvent = (event: Event) =>
   emit('update:modelValue', (event.target as HTMLInputElement).checked)
-
-watchEffect(() => {
-  if (props.urlParameter && route.query?.[props.urlParameter])
-    emit('update:modelValue', route.query?.[props.urlParameter] !== 'false')
-})
 </script>

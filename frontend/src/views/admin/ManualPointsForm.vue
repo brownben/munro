@@ -7,7 +7,6 @@
         :list="leagues.map((league) => league.name)"
         :include-blank="true"
         label="League:"
-        url-parameter="league"
       />
       <InputDropdown
         v-model="choices.event"
@@ -58,13 +57,14 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 import InputNumber from '../../components/InputNumber.vue'
 
 import { RequiredField } from '../../scripts/inputValidation'
+import { toSingleString } from '../../scripts/typeHelpers'
 
 import { useMessages } from '../../store/messages'
 
@@ -73,6 +73,7 @@ import { useEvents } from '../../api/events'
 import { useCompetitors } from '../../api/competitors'
 import { createManualResult } from '../../api/results'
 
+const route = useRoute()
 const router = useRouter()
 const messages = useMessages()
 
@@ -80,7 +81,7 @@ const [leagues] = await useLeagues()
 const [events] = await useEvents()
 const [competitors] = await useCompetitors()
 const choices = ref({
-  league: '',
+  league: toSingleString(route.query?.league),
   event: '',
   course: '',
   competitor: '',

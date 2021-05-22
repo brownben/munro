@@ -1,77 +1,67 @@
 <template>
   <form class="grid w-full grid-cols-2 gap-4 md:grid-cols-4">
     <InputText
-      v-model="name"
+      :modelValue="props.preferences.name"
       label="Name:"
-      url-parameter="name"
       class="col-span-2"
-      @update:modelValue="onChange"
+      @update:modelValue="onChange('name')($event ?? '')"
     />
     <InputText
-      v-model="club"
+      :modelValue="props.preferences.club"
       label="Club:"
-      url-parameter="club"
       class="col-span-2"
-      @update:modelValue="onChange"
+      @update:modelValue="onChange('club')($event ?? '')"
     />
     <InputNumber
-      v-model.number="minAge"
+      :modelValue="props.preferences.minAge"
       :min="0"
       :max="120"
       label="Min Age:"
-      url-parameter="minAge"
       class="col-span-1"
-      @update:modelValue="onChange"
+      @update:modelValue="onChange('minAge')($event ?? 0)"
     />
     <InputNumber
-      v-model.number="maxAge"
+      :modelValue="props.preferences.maxAge"
       :min="0"
       :max="120"
       label="Max Age:"
-      url-parameter="maxAge"
       class="col-span-1"
-      @update:modelValue="onChange"
+      @update:modelValue="onChange('maxAge')($event ?? 100)"
     />
     <InputCheckbox
-      v-model="male"
+      :modelValue="props.preferences.male"
       label="Male"
-      url-parameter="male"
       class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 text-center md:pt-4 md:pb-0"
-      @update:modelValue="onChange"
+      @update:modelValue="onChange('male')($event ?? true)"
     />
     <InputCheckbox
-      v-model="female"
+      :modelValue="props.preferences.female"
       label="Female"
-      url-parameter="female"
       class="flex flex-col items-center justify-center col-span-1 pt-2 pb-2 md:pt-4 md:pb-0text-center"
-      @update:modelValue="onChange"
+      @update:modelValue="onChange('female')($event ?? true)"
     />
   </form>
 </template>
 
 <script setup lang="ts">
-import { ref, defineEmit } from 'vue'
+import { defineEmit, defineProps } from 'vue'
+import type { PropType } from 'vue'
 
 import InputText from './InputText.vue'
 import InputNumber from './InputNumber.vue'
 import InputCheckbox from './InputCheckbox.vue'
 
-const emit = defineEmit({ changed: (_filterData: FilterPreferences) => {} })
+const emit = defineEmit({
+  changed: (_filterData: Partial<FilterPreferences>) => true,
+})
+const props = defineProps({
+  preferences: {
+    type: Object as PropType<FilterPreferences>,
+    required: true,
+  },
+})
 
-const name = ref('')
-const club = ref('')
-const minAge = ref(0)
-const maxAge = ref(100)
-const male = ref(true)
-const female = ref(true)
-
-const onChange = () =>
-  emit('changed', {
-    name: name.value,
-    club: club.value,
-    minAge: minAge.value || 0,
-    maxAge: maxAge.value || 100,
-    male: male.value,
-    female: female.value,
-  })
+const onChange = (key: keyof FilterPreferences) => (
+  value: FilterPreferences[keyof FilterPreferences]
+) => emit('changed', { [key]: value })
 </script>

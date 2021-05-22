@@ -32,18 +32,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watchEffect, defineEmit, defineProps } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed, defineEmit, defineProps } from 'vue'
 
 type State = 'focused' | 'unfocused' | 'invalid'
 
-const route = useRoute()
 const props = defineProps({
   modelValue: { type: Number, default: 0 },
   label: { type: String, default: '' },
   min: { type: Number, default: 0 },
   max: { type: Number, default: 100 },
-  urlParameter: { type: String, default: '' },
 })
 const emit = defineEmit(['update:modelValue'])
 const state = ref<State>('unfocused')
@@ -61,11 +58,6 @@ const setFocused = () => {
 const setBlur = () => {
   state.value = 'unfocused'
 }
-
-watchEffect(() => {
-  if (props.urlParameter && route.query?.[props.urlParameter])
-    emit('update:modelValue', Number(route.query?.[props.urlParameter]))
-})
 
 const inputValidationProps = computed(() => {
   if (state.value === 'invalid')

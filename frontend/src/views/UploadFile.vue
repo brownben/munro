@@ -22,7 +22,6 @@
         v-model.lazy="uploadConfig.eventId"
         label="Event ID:"
         class="mt-4"
-        url-parameter="eventId"
         :validators="[RequiredField('an event id')]"
       />
 
@@ -35,7 +34,6 @@
         v-model.trim="uploadConfig.uploadKey"
         label="Upload Key:"
         class="mt-4"
-        url-parameter="uploadKey"
         :validators="[RequiredField('an upload key')]"
       />
 
@@ -85,7 +83,7 @@
 
 <script lang="ts" setup>
 import { ref, watchEffect, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import Layout from '../components/Layout.vue'
 import InputText from '../components/InputText.vue'
@@ -96,15 +94,16 @@ import { useEvent } from '../api/events'
 import { uploadFile as apiUploadFile } from '../api/upload'
 
 import { useMessages } from '../store/messages'
-
+import { toSingleString } from '../scripts/typeHelpers'
 import { RequiredField } from '../scripts/inputValidation'
 
+const route = useRoute()
 const router = useRouter()
 const messages = useMessages()
 
 const uploadConfig = ref<UploadFile>({
-  eventId: '',
-  uploadKey: '',
+  eventId: toSingleString(route.query?.eventId),
+  uploadKey: toSingleString(route.query?.uploadKey),
   file: '',
   overwrite: false,
   results: '',

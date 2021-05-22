@@ -145,7 +145,7 @@
             <router-link
               v-for="course of league.courses"
               :key="course"
-              :to="`${$route.path}/results/${course}`"
+              :to="`/leagues/${name}/results/${course}`"
               class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 ring-white ring-opacity-75"
             >
               {{ course }}
@@ -153,7 +153,7 @@
           </div>
           <div v-else>
             <router-link
-              :to="`${$route.path}/results/Overall`"
+              :to="`/leagues/${name}/results/Overall`"
               class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
             >
               Overall Results

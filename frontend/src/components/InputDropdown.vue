@@ -98,19 +98,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watchEffect, defineEmit, defineProps } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed, defineEmit, defineProps } from 'vue'
 import type { PropType } from 'vue'
 import type { Validator } from '../scripts/inputValidation'
 
 type State = 'focused' | 'unfocused' | 'invalid'
 
-const route = useRoute()
 const props = defineProps({
   label: { type: String, required: true },
   modelValue: { type: String, default: '' },
   list: { type: Array as PropType<string[]>, default: () => [] },
-  urlParameter: { type: String, default: '' },
   includeBlank: { type: Boolean, default: true },
   validator: { type: Object as PropType<Validator>, default: null },
   listWithDifferentValue: {
@@ -142,11 +139,6 @@ const setBlur = () => {
     state.value = 'invalid'
   else state.value = 'unfocused'
 }
-
-watchEffect(() => {
-  if (props.urlParameter && route.query?.[props.urlParameter])
-    emit('update:modelValue', route.query?.[props.urlParameter])
-})
 
 const inputValidationProps = computed(() => {
   if (state.value === 'invalid')

@@ -55,7 +55,7 @@
     </template>
 
     <template #expansion>
-      <FilterMenu @changed="filterChanged" />
+      <FilterMenu :preferences="filterPreferences" @changed="filterChanged" />
     </template>
 
     <template #fullWidth>
@@ -248,7 +248,7 @@ const CardNoResults = defineAsyncComponent(
   () => import('../components/CardNoResults.vue')
 )
 
-import { toSingleString } from '../scripts/typeHelpers'
+import { toSingleString, asyncComputed } from '../scripts/typeHelpers'
 import { leagueResultWithAgeGender as resultWithAgeGender } from '../scripts/ageClassSplit'
 import { filterResults } from '../scripts/filter'
 import {
@@ -277,14 +277,14 @@ const eventsWithResults = computed(
     []
 )
 
-const results = computed(() =>
+const results = await asyncComputed(() =>
   rawResults.value
     .map(resultWithAgeGender)
     .filter((result) => filterResults(result, filterPreferences.value))
     .sort(sortResults(sortPreferences.value))
 )
 
-const otherCourses = computed(
+const otherCourses = await asyncComputed(
   () =>
     league.value?.courses.filter((course) => course !== unref(routeCourse)) ??
     []
@@ -293,19 +293,19 @@ const otherCourses = computed(
 /* Sort + Filter Preferences */
 const filterOpen = ref<boolean>(false)
 const filterPreferences = ref<FilterPreferences>({
-  name: '',
-  club: '',
-  minAge: 0,
-  maxAge: 100,
-  male: true,
-  female: true,
+  name: toSingleString(route.query?.name),
+  club: toSingleString(route.query?.club),
+  minAge: Number(toSingleString(route.query?.minAge)) || 0,
+  maxAge: Number(toSingleString(route.query?.maxAge)) || 100,
+  male: toSingleString(route.query?.male) !== 'false',
+  female: toSingleString(route.query?.female) !== 'false',
 })
 const sortPreferences = ref<SortPreferencesLeague>({
   ascending: false,
   by: SortableProperties.position,
 })
-const filterChanged = (preferences: FilterPreferences) => {
-  filterPreferences.value = preferences
+const filterChanged = (preferences: Partial<FilterPreferences>) => {
+  filterPreferences.value = { ...filterPreferences.value, ...preferences }
 }
 const changeSortPreference = (property: SortableProperties, event?: number) => {
   if (property !== sortPreferences.value.by)
