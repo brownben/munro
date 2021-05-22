@@ -9,7 +9,7 @@ module.exports = {
     }),
     require('autoprefixer'),
     require('cssnano')({
-      preset: 'advanced',
+      preset: ['advanced', { colormin: false }],
     }),
   ],
 }
