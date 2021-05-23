@@ -76,6 +76,10 @@
           </div>
         </div>
       </div>
+
+      <div v-if="$slots.fullWidthEnd && !notFound" class="w-full sm:-mt-8">
+        <slot name="fullWidthEnd" />
+      </div>
     </main>
     <AppFooter />
   </div>

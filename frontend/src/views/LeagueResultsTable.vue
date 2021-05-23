@@ -206,32 +206,51 @@
 
     <CardNoResults
       v-if="results.length === 0"
-      class="col-span-2 -mt-2 -mb-6 md:-mt-8"
+      class="col-span-2 -mt-2 md:-mt-8 sm:mb-10"
     />
 
-    <div
+    <template
+      #fullWidthEnd
       v-if="
         !$route.path.includes('/embed/') &&
         league?.leagueScoring !== 'overall' &&
-        rawResults.length > 0 &&
         otherCourses.length > 0
       "
-      class="col-span-2 mt-6 card print:hidden"
     >
-      <h2 class="text-2xl font-bold leading-tight font-heading">
-        Results for Other Courses
-      </h2>
-      <div class="w-full">
-        <router-link
-          v-for="course in otherCourses"
-          :key="course"
-          :to="`/leagues/${leagueName}/results/${course}`"
-          class="button"
+      <section
+        class="col-span-2 py-6 text-center text-white bg-gradient-to-r from-main-600 to-main-500"
+        :class="{
+          'sm:pt-4 sm:pb-6 md:py-8': otherCourses.length >= 5,
+          'py-6 sm:py-8': otherCourses.length < 5,
+        }"
+      >
+        <div
+          class="items-center justify-between max-w-screen-xl px-6 mx-auto lg:px-8"
+          :class="{
+            'md:flex': otherCourses.length >= 5,
+            'sm:flex': otherCourses.length < 5,
+          }"
         >
-          {{ course }}
-        </router-link>
-      </div>
-    </div>
+          <h2
+            class="mb-2 text-2xl font-bold font-heading sm:mb-0"
+            :class="{ 'sm:pb-3 md:py-0': otherCourses.length >= 5 }"
+          >
+            <template v-if="otherCourses.length < 4 ">Results for</template>
+            Other Courses
+          </h2>
+          <div>
+            <router-link
+              v-for="course in otherCourses"
+              :key="course"
+              :to="`/leagues/${leagueName}/results/${course}`"
+              class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 ring-white ring-opacity-75"
+            >
+              {{ course }}
+            </router-link>
+          </div>
+        </div>
+      </section>
+    </template>
   </Layout>
 </template>
 

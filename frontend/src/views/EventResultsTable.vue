@@ -184,7 +184,7 @@
         </transition-group>
       </table>
     </div>
-    <CardNoResults v-if="results.length === 0" class="col-span-2" />
+    <CardNoResults v-if="results.length === 0" class="col-span-2 -mt-6" />
   </Layout>
 </template>
 <script lang="ts" setup>
