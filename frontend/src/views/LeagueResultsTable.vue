@@ -235,7 +235,7 @@
             class="mb-2 text-2xl font-bold font-heading sm:mb-0"
             :class="{ 'sm:pb-3 md:py-0': otherCourses.length >= 5 }"
           >
-            <template v-if="otherCourses.length < 4 ">Results for</template>
+            <template v-if="otherCourses.length < 4">Results for</template>
             Other Courses
           </h2>
           <div>

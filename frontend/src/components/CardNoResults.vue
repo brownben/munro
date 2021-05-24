@@ -1,5 +1,5 @@
 <template>
-  <section class="mt-2 text-center card">
+  <section class="mt-2 text-center">
     <div class="inline-block w-full my-6">
       <Image class="inline-block object-contain w-full mx-auto max-h-64" />
     </div>
