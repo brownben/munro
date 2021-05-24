@@ -109,11 +109,14 @@
         label="Secondary League:"
         class="mt-4"
       />
-      <InputTextarea
-        v-model="event.additionalSettings"
-        label="Additional Settings: (Advanced Use Only)"
-        class="mt-6 text-left"
-        :validators="[IsValidJSON('additional settings')]"
+      <InputJSON
+        v-if="league && league.leagueScoring === 'ageClass'"
+        :keys="league.courses ?? []"
+        :value="ageClassMapping"
+        label="Course Mappings"
+        description="Assign a course to each age class"
+        class="mt-4"
+        @changed="setAgeClassMapping"
       />
 
       <button class="mt-8 button-lg">
@@ -131,14 +134,13 @@ import { useRoute, useRouter } from 'vue-router'
 import Layout from '../../components/Layout.vue'
 import InputDropdown from '../../components/InputDropdown.vue'
 import InputText from '../../components/InputText.vue'
-import InputTextarea from '../../components/InputTextarea.vue'
+import InputJSON from '../../components/InputJSON.vue'
 import InputSwitch from '../../components/InputSwitch.vue'
 
 import { toSingleString } from '../../scripts/typeHelpers'
 import {
   RequiredField,
   IsValidURLParameter,
-  IsValidJSON,
 } from '../../scripts/inputValidation'
 
 import { useMessages } from '../../store/messages'
@@ -175,11 +177,23 @@ const event = ref<LeagueEvent>({
   requiredInTotal: false,
   additionalSettings: '',
 })
+const league = computed(() =>
+  leagues.value.find((league) => league.name === event.value.league)
+)
+const ageClassMapping = computed(
+  () => JSON.parse(event.value?.additionalSettings || '{}').ageClassMapping
+)
 
 watchEffect(() => {
   if (eventRaw.value) event.value = eventRaw.value
   if (!event.value?.secondaryLeague) event.value.secondaryLeague = ''
 })
+
+const setAgeClassMapping = (value: Record<string, string>) => {
+  const currentValue = JSON.parse(event.value?.additionalSettings || '{}')
+  currentValue.ageClassMapping = value
+  event.value.additionalSettings = JSON.stringify(currentValue)
+}
 
 const validateForm = () => {
   if (event.value.name === '' || event.value.league === '') {

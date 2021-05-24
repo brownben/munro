@@ -4,7 +4,7 @@
       <SwitchLabel class="text-base font-heading">
         {{ props.label }}
       </SwitchLabel>
-      <SwitchDescription class="text-gray-600">
+      <SwitchDescription class="text-sm text-gray-600">
         {{ props.description }}
       </SwitchDescription>
     </div>
