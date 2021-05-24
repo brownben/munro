@@ -55,7 +55,7 @@
     "tailwindcss": "^2.1.2",
     "typescript": "^4.2.4",
     "vite": "^2.3.3",
-    "vue-tsc": "^0.1.4",
+    "vue-tsc": "^0.1.5",
     "workbox-cacheable-response": "^6.1.5",
     "workbox-precaching": "^6.1.5",
     "workbox-routing": "^6.1.5",
