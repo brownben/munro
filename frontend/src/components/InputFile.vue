@@ -41,7 +41,7 @@ const props = defineProps({
   value: { type: String, default: '' },
   label: { type: String, default: '' },
 })
-const emit = defineEmit({ file: (_fileContents: string) => {} })
+const emit = defineEmit({ file: (_fileContents: string) => true })
 
 const fileName = ref('')
 
