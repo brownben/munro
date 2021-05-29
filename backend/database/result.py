@@ -195,7 +195,7 @@ class Result:
                 results.competitor=competitors.rowid
                 AND event=%s
                 AND COALESCE(results.type, '') <> 'hidden'
-            ORDER BY competitors.course ASC, results.position ASC
+            ORDER BY results.course ASC, results.position ASC
         """,
             (eventId,),
         )
