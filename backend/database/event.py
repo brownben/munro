@@ -306,7 +306,7 @@ class Event:
                 uploadKey
             FROM events
             WHERE league=%s OR secondaryLeague=%s
-            ORDER BY date ASC
+            ORDER BY date ASC, name ASC
             """,
             (league, league),
         )
