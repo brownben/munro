@@ -332,7 +332,7 @@ class Result:
                 AND COALESCE(type, '') <> 'manual'
                 AND COALESCE(type, '') <> 'max'
                 AND COALESCE(type, '') <> 'average'
-            ORDER BY competitors.course ASC, results.time ASC
+            ORDER BY results.course ASC, results.time ASC
             """,
             (eventId,),
         )
