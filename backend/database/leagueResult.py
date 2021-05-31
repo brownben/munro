@@ -88,6 +88,7 @@ class LeagueResult:
                 array_agg(results.course),
                 competitors.course
             FROM competitors, results, events
+            ORDER BY events.date
             WHERE
                 results.competitor=competitors.rowid
                 AND (competitors.league=%s OR competitors.league=%s)
@@ -117,6 +118,7 @@ class LeagueResult:
                 array_agg(results.type),
                 array_agg(results.course)
             FROM competitors, results, events
+            ORDER BY events.date ASC
             WHERE
                 results.competitor=competitors.rowid
                 AND (competitors.league=%s OR competitors.league=%s)

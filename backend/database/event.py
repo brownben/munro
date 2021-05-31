@@ -246,7 +246,7 @@ class Event:
                 additionalSettings,
                 uploadKey
             FROM events
-            ORDER BY date ASC
+            ORDER BY date ASC, name ASC
             """
         )
         return [Event(result) for result in databaseResult]
@@ -337,7 +337,7 @@ class Event:
             WHERE
                 (league=%s OR secondaryLeague=%s)
                 AND resultUploaded=%s
-            ORDER BY date ASC
+            ORDER BY date ASC, name ASC
             """,
             (league, league, True),
         )
@@ -366,7 +366,7 @@ class Event:
                 uploadKey
             FROM events
             WHERE resultUploaded = true
-            ORDER BY date DESC
+            ORDER BY date DESC, name ASC
             LIMIT 12
             """
         )
