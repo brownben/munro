@@ -5,7 +5,7 @@ attrs==20.3.0
 black==21.5b0
 Brotli==1.0.9
 cachetools==4.2.2
-certifi==2020.12.5
+certifi==2021.5.30
 chardet==4.0.0
 click==7.1.2
 colorama==0.4.4
@@ -15,7 +15,7 @@ Flask-Compress==1.9.0
 Flask-Cors==3.0.10
 flask-restx==0.3.0
 flask-talisman==0.7.0
-google-auth==1.30.0
+google-auth==1.31.0
 gunicorn==20.1.0
 idna==2.10
 iniconfig==1.1.1
@@ -43,5 +43,5 @@ six==1.16.0
 toml==0.10.2
 typed-ast==1.4.3
 typing-extensions==3.10.0.0
-urllib3==1.26.4
+urllib3==1.26.5
 Werkzeug==1.0.1
