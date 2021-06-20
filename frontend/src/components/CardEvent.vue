@@ -145,7 +145,9 @@
         Edit Event
       </router-link>
       <router-link
-        :to="`/upload/file?eventId=${event.id}&uploadKey=${event.uploadKey}`"
+        :to="`/upload/file?eventId=${event.id}&uploadKey=${encodeURIComponent(
+          event.uploadKey ?? ''
+        )}`"
         class="button button-dark"
       >
         Upload Results
