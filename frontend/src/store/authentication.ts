@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { postData } from '../api/requests'
+import { sendRequest } from '../api/fetch'
 
 export interface User {
   idToken?: string
@@ -19,18 +19,27 @@ export const useAuthentication = defineStore({
 
   actions: {
     login({ username, password }: { username: string; password: string }) {
-      return postData<User>({
-        apiLocation:
-          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ',
-        data: {
-          email: username,
-          password,
-          returnSecureToken: true,
+      const apiLocation =
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ'
+      const data = {
+        email: username,
+        password,
+        returnSecureToken: true,
+      }
+
+      return sendRequest<User>(
+        apiLocation,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
         },
-        useServerErrorMessage: false,
-        customErrorHandler: true,
-        noToken: true,
-      }).then((user?: User) => {
+        {
+          apiLocation,
+          useServerErrorMessage: false,
+          customErrorHandler: true,
+        }
+      ).then((user?: User) => {
         if (user === undefined) throw new Error()
         this.user = user
         return this.user
