@@ -11,9 +11,9 @@
 
     <Switch
       :modelValue="modelValue"
-      @update:modelValue="handleEvent"
       :class="modelValue ? 'bg-main-600' : 'bg-gray-200'"
       class="relative inline-flex items-center flex-shrink-0 h-6 ml-4 transition-colors rounded-full w-11 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-main-400"
+      @update:modelValue="handleEvent"
     >
       <span
         :class="modelValue ? 'translate-x-6' : 'translate-x-1'"

@@ -55,10 +55,10 @@
           </div>
         </div>
         <transition
-          enter-active-class="duration-75 ease-out origin-top motion-safe:transition motion-safe:transform"
+          enter-active-class="duration-75 ease-out origin-top motion-safe:transition motion-reduce:transform-none"
           enter-from-class="scale-y-90 opacity-75"
           enter-to-class="scale-y-100 opacity-100"
-          leave-active-class="duration-75 ease-in origin-top motion-safe:transition motion-safe:transform"
+          leave-active-class="duration-75 ease-in origin-top motion-safe:transition motion-reduce:transform-none"
           leave-from-class="scale-y-100 opacity-100"
           leave-to-class="scale-y-90 opacity-75"
         >

@@ -34,11 +34,11 @@
 
       <transition
         enter-active-class="duration-150 ease-out origin-top motion-safe:transition"
-        enter-from-class="scale-y-95 opacity-0 motion-safe:transform"
-        enter-to-class="scale-y-100 opacity-100 motion-safe:transform"
+        enter-from-class="scale-y-95 opacity-0 motion-reduce:transform-none"
+        enter-to-class="scale-y-100 opacity-100 motion-reduce:transform-none"
         leave-active-class="duration-100 ease-in origin-top motion-safe:transition"
-        leave-from-class="scale-y-100 opacity-100 motion-safe:transform"
-        leave-to-class="scale-y-95 opacity-0 motion-safe:transform"
+        leave-from-class="scale-y-100 opacity-100 motion-reduce:transform-none"
+        leave-to-class="scale-y-95 opacity-0 motion-reduce:transform-none"
       >
         <div
           v-if="$slots.expansion"
