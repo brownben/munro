@@ -36,7 +36,7 @@ def splitFile(rawFile: str) -> List[List[str]]:
 
 def checkHeader(value: str) -> Union[str, None]:
     for expectedValues, mappedValue in expectedHeaders:
-        if value.upper() in expectedValues:
+        if value.strip().upper() in expectedValues:
             return mappedValue
 
     return None
