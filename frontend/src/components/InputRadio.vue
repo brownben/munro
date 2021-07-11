@@ -65,7 +65,7 @@
   </RadioGroup>
 </template>
 <script setup lang="ts">
-import { computed, defineProps, defineEmit } from 'vue'
+import { computed } from 'vue'
 import type { PropType } from 'vue'
 import {
   RadioGroup,
@@ -79,7 +79,7 @@ type Option = {
   description: string
   value: string
 }
-const emit = defineEmit(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
   modelValue: { type: String, required: true },
   label: { type: String, required: true },

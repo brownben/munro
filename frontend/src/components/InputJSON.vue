@@ -30,7 +30,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, defineProps, defineEmit, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 import type { PropType } from 'vue'
 
 const props = defineProps({
@@ -42,7 +42,7 @@ const props = defineProps({
     default: () => ({}),
   },
 })
-const emit = defineEmit(['changed'])
+const emit = defineEmits(['changed'])
 const focused = ref('')
 
 const handleEvent = (key: string, event: Event) => {

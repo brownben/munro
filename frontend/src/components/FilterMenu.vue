@@ -44,14 +44,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmit, defineProps } from 'vue'
 import type { PropType } from 'vue'
 
 import InputText from './InputText.vue'
 import InputNumber from './InputNumber.vue'
 import InputCheckbox from './InputCheckbox.vue'
 
-const emit = defineEmit({
+const emit = defineEmits({
   changed: (_filterData: Partial<FilterPreferences>) => true,
 })
 const props = defineProps({

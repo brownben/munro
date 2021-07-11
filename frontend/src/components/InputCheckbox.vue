@@ -27,13 +27,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineEmit, defineProps } from 'vue'
-
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
   label: { type: String, default: '' },
 })
-const emit = defineEmit(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 
 const handleEvent = (event: Event) =>
   emit('update:modelValue', (event.target as HTMLInputElement).checked)

@@ -98,7 +98,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, defineEmit, defineProps } from 'vue'
+import { ref, computed } from 'vue'
 import type { PropType } from 'vue'
 import type { Validator } from '../scripts/inputValidation'
 
@@ -120,7 +120,7 @@ const props = defineProps({
     default: () => [],
   },
 })
-const emit = defineEmit(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 const state = ref<State>('unfocused')
 
 const handleEvent = (event: Event) => {

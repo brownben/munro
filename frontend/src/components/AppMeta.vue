@@ -2,7 +2,7 @@
   <div class="hidden" />
 </template>
 <script setup lang="ts">
-import { ref, computed, watchEffect, defineProps } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useHead } from '@vueuse/head'
 import { useRoute } from 'vue-router'
 

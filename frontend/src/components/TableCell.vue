@@ -28,8 +28,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 const props = defineProps({
   showAfter: { type: String, default: '' },
   showSecondaryUntil: { type: String, default: '' },

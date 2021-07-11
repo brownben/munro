@@ -44,8 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 const props = defineProps({
   active: { type: Boolean, default: false },
   ascending: { type: Boolean, default: false },

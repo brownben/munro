@@ -40,8 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 const props = defineProps({
   competitor: { type: Object, default: () => ({}) },
 })

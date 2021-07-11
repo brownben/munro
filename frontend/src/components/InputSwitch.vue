@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmit } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import {
   Switch,
   SwitchGroup,
@@ -32,7 +32,7 @@ import {
   SwitchLabel,
 } from '@headlessui/vue'
 
-const emit = defineEmit(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
   label: { type: String, required: true },

@@ -18,7 +18,6 @@
   </section>
 </template>
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import Image from '../components/images/Lost.vue'
 
 const props = defineProps({

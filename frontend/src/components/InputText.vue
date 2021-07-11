@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineEmit, defineProps, computed } from 'vue'
+import { ref, computed } from 'vue'
 import type { PropType } from 'vue'
 import type { Validator } from '../scripts/inputValidation'
 
@@ -67,7 +67,7 @@ const props = defineProps({
   type: { type: String, default: 'text' },
   validators: { type: Array as PropType<Validator[]>, default: [] },
 })
-const emit = defineEmit(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 const state = ref<State>('unfocused')
 const validationMessage = ref<string>('')
 

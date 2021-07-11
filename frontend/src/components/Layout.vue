@@ -85,7 +85,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { defineAsyncComponent, defineProps } from 'vue'
+import { defineAsyncComponent } from 'vue'
 
 import AppFooter from './AppFooter.vue'
 const NotFound = defineAsyncComponent(() => import('../views/NotFound.vue'))

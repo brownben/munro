@@ -39,7 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 
 const props = defineProps({

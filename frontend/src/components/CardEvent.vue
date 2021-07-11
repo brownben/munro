@@ -160,7 +160,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmit, defineProps } from 'vue'
 import type { PropType } from 'vue'
 import { deleteEvent as apiDeleteEvent } from '../api/events'
 
@@ -177,7 +176,7 @@ const props = defineProps({
   },
   showFullDetails: { type: Boolean, default: true },
 })
-const emit = defineEmit({ 'event-changed': () => {} })
+const emit = defineEmits({ 'event-changed': () => {} })
 
 const deleteEvent = (event: LeagueEvent) => {
   if (

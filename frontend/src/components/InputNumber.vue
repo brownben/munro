@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, defineEmit, defineProps } from 'vue'
+import { ref, computed } from 'vue'
 
 type State = 'focused' | 'unfocused' | 'invalid'
 
@@ -42,7 +42,7 @@ const props = defineProps({
   min: { type: Number, default: 0 },
   max: { type: Number, default: 100 },
 })
-const emit = defineEmit(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 const state = ref<State>('unfocused')
 
 const handleEvent = (event: Event) =>

@@ -35,13 +35,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineEmit, defineProps } from 'vue'
+import { ref } from 'vue'
 
 const props = defineProps({
   value: { type: String, default: '' },
   label: { type: String, default: '' },
 })
-const emit = defineEmit({ file: (_fileContents: string) => true })
+const emit = defineEmits({ file: (_fileContents: string) => true })
 
 const fileName = ref('')
 
