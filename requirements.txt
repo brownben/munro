@@ -19,7 +19,7 @@ google-auth==1.31.0
 gunicorn==20.1.0
 idna==2.10
 iniconfig==1.1.1
-itsdangerous==1.1.0
+itsdangerous==2.0.1
 Jinja2==2.11.3
 jsonschema==3.2.0
 MarkupSafe==1.1.1
