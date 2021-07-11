@@ -1,9 +1,5 @@
 <template>
-  <Layout
-    :title="title"
-    :not-found="$route.path.includes('/edit') && !event.id"
-    thin
-  >
+  <Layout :title="title" :not-found="title.includes('Edit') && !event.id" thin>
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
     <form class="col-span-2" @submit.prevent="submit">
       <div>
@@ -120,8 +116,7 @@
       />
 
       <button class="mt-8 button-lg">
-        <template v-if="$route.path.includes('/edit')">Update Event</template>
-        <template v-else>Create Event</template>
+        {{ buttonText }}
       </button>
     </form>
   </Layout>
@@ -222,9 +217,10 @@ const updateEvent = () => {
 const submit = () =>
   route.path.includes('/edit') ? updateEvent() : createEvent()
 
-const title = computed(() =>
-  route.path.includes('/edit') ? 'Edit Event' : 'Create Event'
-)
+const title = route.path.includes('/edit') ? 'Edit Event' : 'Create Event'
+const buttonText = route.path.includes('/edit')
+  ? 'Update Event'
+  : 'Create Event'
 
 const subLeagues = computed(() =>
   leagues.value

@@ -1,9 +1,7 @@
 <template>
   <Layout
     :title="title"
-    :not-found="
-      !league?.name && !league.description && $route.path.includes('/edit')
-    "
+    :not-found="!league?.name && !league.description && title.includes('Edit')"
     thin
   >
     <Meta :title="`Munro - ${title}`" description="" :block-robots="true" />
@@ -129,8 +127,7 @@
       />
 
       <button class="mt-8 button-lg">
-        <template v-if="$route.path.includes('/edit')">Update League</template>
-        <template v-else>Create League</template>
+        {{ buttonText }}
       </button>
     </form>
   </Layout>
@@ -238,9 +235,10 @@ const updateLeague = () => {
 const submit = () =>
   route.path.includes('/edit') ? updateLeague() : createLeague()
 
-const title = computed(() =>
-  route.path.includes('/edit') ? 'Edit League' : 'Create League'
-)
+const title = route.path.includes('/edit') ? 'Edit League' : 'Create League'
+const buttonText = route.path.includes('/edit')
+  ? 'Update League'
+  : 'Create League'
 
 const leaguesSuitableForSubLeague = computed(() =>
   leagues.value
