@@ -1,5 +1,20 @@
 from typing import Any, Dict
-from flask import Flask, Blueprint, request, send_from_directory, wrappers, redirect, g
+from flask import (
+    Flask,
+    Blueprint,
+    request,
+    send_from_directory,
+    wrappers,
+    redirect,
+    g,
+    Response,
+)
+
+# Monkey patch flask so it works for flask_restx
+import flask.scaffold
+
+flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func  # type: ignore
+
 from flask_compress import Compress
 from flask_cors import CORS
 from flask_talisman import Talisman
@@ -16,7 +31,8 @@ from .routes.upload import api as uploadRoutes
 from .routes.sitemap import generate_sitemap
 
 # Set up Flask with plugins
-app = Flask(__name__, static_folder="./dist/static", template_folder="./dist")
+STATIC_FOLDER = "./dist/static"
+app = Flask(__name__, static_folder=STATIC_FOLDER, template_folder="./dist")
 blueprint = Blueprint("api", __name__, url_prefix="/api")
 api = Api(
     blueprint,
@@ -59,11 +75,13 @@ with app.app_context():
 
 
 @app.teardown_appcontext
-def teardownDatabase(exception) -> None:
+def teardownDatabase(exception: BaseException = None) -> Response:
     db = g.pop("db", None)
 
     if db is not None:
         db.close()
+
+    return Response()
 
 
 # Serve app files
@@ -85,7 +103,7 @@ def sitemap() -> wrappers.Response:
 
 @app.route("/service-worker.js")
 def static_from_root() -> wrappers.Response:
-    return send_from_directory(app.static_folder, request.path[1:], cache_timeout=0)
+    return send_from_directory(STATIC_FOLDER, request.path[1:], cache_timeout=0)
 
 
 if __name__ == "__main__":
