@@ -193,6 +193,7 @@ watchEffect(() => {
         leagueRaw.value.moreInformation?.replace(/\|\s*/g, '\n') ?? '',
       dynamicEventResults: leagueRaw.value.dynamicEventResults ?? true,
       leagueScoring: leagueRaw.value.leagueScoring ?? 'course',
+      subLeagueOf: leagueRaw.value.subLeagueOf ?? '',
     } as LeagueForm
 })
 
