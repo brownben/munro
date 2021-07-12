@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 from .database import queryWithResults
 from .league import League
@@ -132,8 +132,8 @@ class LeagueResult:
         return [LeagueResult(result) for result in databaseResults]
 
     @staticmethod
-    def getAgeClassResults(
-        league: League, events: List[Event], ageClass: str
+    def getFilteredResults(
+        league: League, events: List[Event], ageClass: str, course: Optional[str]
     ) -> Dict[int, Dict[str, Any]]:
         competitors: Dict[int, Dict[str, Any]] = {
             competitor.id: {**competitor.toDictionary(), "points": [None] * len(events)}
@@ -142,7 +142,7 @@ class LeagueResult:
         }
 
         for eventIndex, event in enumerate(events):
-            expectedCourse = (
+            expectedCourse = course or (
                 event.getAdditionalSettingsAsJSON()
                 .get("ageClassMapping", {})
                 .get(ageClass)
@@ -173,11 +173,11 @@ class LeagueResult:
         }
 
     @staticmethod
-    def getByAgeClass(
-        league: League, events: List[Event], ageClass: str
+    def getWithFilter(
+        league: League, events: List[Event], ageClass: str, course: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         competitorsList: List[Dict[str, Any]] = list(
-            LeagueResult.getAgeClassResults(league, events, ageClass).values()
+            LeagueResult.getFilteredResults(league, events, ageClass, course).values()
         )
         competitors: List[Dict[str, Any]] = []
 

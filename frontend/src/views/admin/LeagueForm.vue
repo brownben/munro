@@ -95,6 +95,12 @@
               'League results are calculate for all courses together',
             value: 'overall',
           },
+          {
+            title: 'Filtered Course',
+            description:
+              'League results are calculated for an age class on a course',
+            value: 'filteredCourse',
+          },
         ]"
         class="mt-4"
       />

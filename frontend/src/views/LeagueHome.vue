@@ -26,7 +26,8 @@
       <section class="w-full text-left bg-white">
         <p v-if="league?.courses" class="w-full leading-6 text-gray-600">
           There are normally
-          {{ league.courses.length }} courses -
+          {{ league.courses.length }}
+          {{ league.leagueScoring === 'course' ? 'courses' : 'classes' }} -
           <span class="text-gray-900 md:text-lg font-heading">
             {{ leagueCourses }}
           </span>
