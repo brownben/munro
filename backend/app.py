@@ -10,11 +10,6 @@ from flask import (
     Response,
 )
 
-# Monkey patch flask so it works for flask_restx
-import flask.scaffold
-
-flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func  # type: ignore
-
 from flask_compress import Compress
 from flask_cors import CORS
 from flask_talisman import Talisman
