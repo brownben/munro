@@ -183,6 +183,19 @@ class LeagueResult:
 
         for competitor in competitorsList:
             competitors.append(competitor)
+
+            # Calculate scores of dynamic results
+            standardScores = [
+                point["score"]
+                for point in competitor["points"]
+                if point and point["type"] not in ["max", "average"]
+            ]
+            for point in competitor["points"]:
+                if point and point["type"] == "max":
+                    point["score"] = max(standardScores)
+                elif point and point["type"] == "average":
+                    point["score"] = round(sum(standardScores) / len(standardScores))
+
             competitor["points"] = getCountingPoints(
                 competitor["points"], league, events
             )
