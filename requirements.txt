@@ -36,12 +36,12 @@ pyparsing==2.4.7
 pyrsistent==0.18.0
 pytest==6.2.4
 pytz==2021.1
-regex==2021.7.6
+regex==2021.8.3
 requests==2.26.0
 rsa==4.7.2
 six==1.16.0
 toml==0.10.2
-tomli==1.2.0
+tomli==1.2.1
 typing-extensions==3.10.0.0
 urllib3==1.26.6
 Werkzeug==2.0.1
