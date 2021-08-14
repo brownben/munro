@@ -4,7 +4,7 @@ const twoDigits = (number: number): string => {
 }
 
 export const elapsedTime = (totalTimeInSeconds: number): string => {
-  if (totalTimeInSeconds === 0) return ''
+  if (totalTimeInSeconds === 0) return ' '
   const timeInMinutes = Math.floor(totalTimeInSeconds / 60)
   const timeInSeconds = Math.abs(totalTimeInSeconds % 60)
   return `${twoDigits(timeInMinutes)}:${twoDigits(timeInSeconds)}`

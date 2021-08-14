@@ -178,6 +178,7 @@
                 >
                   {{ elapsedTime(result.time) }}
                 </time>
+                <span v-else>{{ ' ' }}</span>
               </Cell>
             </template>
           </TableRow>
