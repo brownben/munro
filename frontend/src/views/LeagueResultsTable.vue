@@ -3,7 +3,7 @@
     class="w-full"
     wide
     has-mobile-sub-title
-    :not-found="!league?.name"
+    :not-found="!rawData?.league"
     :show-expansion="filterOpen"
   >
     <Meta
@@ -173,27 +173,25 @@
                     ),
                   }"
                 >
-                  {{ point?.score || ' ' }}
+                  {{ point?.score ?? ' ' }}
                 </Cell>
               </template>
               <template #expansion>
                 <dl class="mr-3 font-light text-right">
-                  <div v-for="(point, j) of result.points" :key="j">
-                    <dt class="inline-block">
-                      {{ eventsWithResults[j]?.name }}:
-                    </dt>
+                  <div v-for="(event, j) of eventsWithResults" :key="j">
+                    <dt class="inline-block">{{ event?.name }}:</dt>
                     <dd
                       class="inline-block w-4 pl-2 pr-4"
                       :class="{
-                        'line-through': !point?.counting,
+                        'line-through': !result.points[j]?.counting,
                         'font-normal italic': [
                           'manual',
                           'max',
                           'average',
-                        ].includes(point?.type ?? ''),
+                        ].includes(result.points[j]?.type ?? ''),
                       }"
                     >
-                      {{ point?.score }}
+                      {{ result.points[j]?.score }}
                     </dd>
                   </div>
                 </dl>
@@ -213,7 +211,7 @@
       #fullWidthEnd
       v-if="
         !$route.path.includes('/embed/') &&
-        league?.leagueScoring !== 'overall' &&
+        rawData?.leagueScoring !== 'overall' &&
         otherCourses.length > 0
       "
     >
@@ -275,7 +273,6 @@ import {
   SortablePropertiesLeague as SortableProperties,
 } from '../scripts/sort'
 
-import { useLeagueOverview } from '../api/leagues'
 import { useLeagueResults } from '../api/results'
 
 const route = useRoute()
@@ -287,25 +284,20 @@ const routeCourse = computed(() => {
   return value
 })
 
-const [rawResults] = await useLeagueResults(routeLeague, routeCourse)
-const [league] = await useLeagueOverview(routeLeague)
-const leagueName = computed(() => league.value?.name || unref(routeLeague))
-const eventsWithResults = computed(
+const [rawData] = await useLeagueResults(routeLeague, routeCourse)
+
+const leagueName = computed(() => rawData.value?.league || unref(routeLeague))
+const eventsWithResults = computed(() => rawData.value?.events ?? [])
+const results = await asyncComputed(
   () =>
-    league.value?.events.filter((event: LeagueEvent) => event.resultUploaded) ??
-    []
+    rawData.value?.results
+      ?.map(resultWithAgeGender)
+      ?.filter((result) => filterResults(result, filterPreferences.value))
+      ?.sort(sortResults(sortPreferences.value)) ?? []
 )
-
-const results = await asyncComputed(() =>
-  rawResults.value
-    .map(resultWithAgeGender)
-    .filter((result) => filterResults(result, filterPreferences.value))
-    .sort(sortResults(sortPreferences.value))
-)
-
 const otherCourses = await asyncComputed(
   () =>
-    league.value?.courses.filter((course) => course !== unref(routeCourse)) ??
+    rawData.value?.courses?.filter((course) => course !== unref(routeCourse)) ??
     []
 )
 

@@ -1,5 +1,5 @@
 import { getData, postData, putData } from './requests'
-import { useDataList } from './useData'
+import { useData, useDataList } from './useData'
 
 const getResults = (): Promise<EventResult[] | undefined> =>
   getData<EventResult[]>({
@@ -18,8 +18,8 @@ const getEventResults = (eventId: string): Promise<EventResult[] | undefined> =>
 const getLeagueResults = (
   league: string,
   course: string
-): Promise<LeagueResult[] | undefined> =>
-  getData<LeagueResult[]>({
+): Promise<LeagueResults | undefined> =>
+  getData<LeagueResults>({
     apiLocation: `/api/leagues/${league}/results/${course}`,
     customErrorMessage: 'Problem Fetching Results',
     noToken: true,
@@ -40,10 +40,9 @@ export const useResults = useDataList<EventResult, typeof getResults>(
 export const useEventResults = useDataList<EventResult, typeof getEventResults>(
   getEventResults
 )
-export const useLeagueResults = useDataList<
-  LeagueResult,
-  typeof getLeagueResults
->(getLeagueResults)
+export const useLeagueResults = useData<LeagueResults, typeof getLeagueResults>(
+  getLeagueResults
+)
 export const useCompetitorResults = useDataList<
   EventResult,
   typeof getCompetitorResults

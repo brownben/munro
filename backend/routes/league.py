@@ -9,7 +9,7 @@ from ..models.league import leagueModel, leagueOverviewModel
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.competitor import competitorModel
 from ..models.leagueResult import (
-    leagueResultModel,
+    leagueResultsOverviewModel,
     leagueResultModelWithCourse,
     pointsModel,
 )
@@ -24,7 +24,7 @@ api.models[eventModel.name] = eventModel
 api.models[eventModelWithUploadKey.name] = eventModelWithUploadKey
 api.models[competitorModel.name] = competitorModel
 api.models[pointsModel.name] = pointsModel
-api.models[leagueResultModel.name] = leagueResultModel
+api.models[leagueResultsOverviewModel.name] = leagueResultsOverviewModel
 api.models[leagueResultModelWithCourse.name] = leagueResultModelWithCourse
 api.models[messageModel.name] = messageModel
 api.models[leagueOverviewModel.name] = leagueOverviewModel
@@ -169,7 +169,7 @@ class LeagueOverallResultsRoute(Resource):
 @api.param("name", "League Name")
 @api.param("course", "Course Name")
 class LeagueCourseResultsRoute(Resource):
-    @api.marshal_with(leagueResultModel, as_list=True)
+    @api.marshal_with(leagueResultsOverviewModel)
     @api.response(200, "Success - List of all Results for the Course")
     @api.response(500, "Problem Connecting to the Database")
     def get(self, name, course):
@@ -178,14 +178,14 @@ class LeagueCourseResultsRoute(Resource):
             events = Event.getByLeagueWithResults(name)
 
             if league.leagueScoring == "ageClass":
-                results = LeagueResult.getWithFilter(league, events, course)
+                results, events = LeagueResult.getWithFilter(league, events, course)
             elif league.leagueScoring == "filteredCourse":
                 ageClass, expectedCourse = (
                     league.getAdditionalSettingsAsJSON()
                     .get("courseMappings", {})
                     .get(course)
                 )
-                results = LeagueResult.getWithFilter(
+                results, events = LeagueResult.getWithFilter(
                     league, events, ageClass, expectedCourse
                 )
             else:
@@ -196,9 +196,15 @@ class LeagueCourseResultsRoute(Resource):
                     )
                 ]
             sortedResults = sortByTotalPoints(results)
-            return assignPosition(sortedResults)
+            return {
+                "league": league.name,
+                "courses": league.courses,
+                "leagueScoring": league.leagueScoring,
+                "results": assignPosition(sortedResults),
+                "events": events,
+            }
         except:
-            return [], 500
+            return {}, 500
 
 
 @api.route("/<name>/events/uploadKey")

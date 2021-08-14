@@ -26,6 +26,14 @@ interface LeagueResult {
   points: (EventPoints | null)[]
 }
 
+interface LeagueResults {
+  league: string
+  courses: string[]
+  leagueScoring: string
+  events: LeagueEvent[]
+  results: LeagueResult[]
+}
+
 interface EventPoints {
   score: number | ''
   counting: boolean

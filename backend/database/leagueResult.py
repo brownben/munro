@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional, Tuple
 
 from .database import queryWithResults
 from .league import League
@@ -134,12 +134,13 @@ class LeagueResult:
     @staticmethod
     def getFilteredResults(
         league: League, events: List[Event], ageClass: str, course: Optional[str]
-    ) -> Dict[int, Dict[str, Any]]:
+    ) -> Tuple[List[Dict[str, Any]], List[Event]]:
         competitors: Dict[int, Dict[str, Any]] = {
             competitor.id: {**competitor.toDictionary(), "points": [None] * len(events)}
             for competitor in Competitor.getByLeague(league.getLeagueOfCompetitors())
             if isAgeClassEligible(competitor.ageClass, ageClass)
         }
+        eventsWithResults: List[Event] = []
 
         for eventIndex, event in enumerate(events):
             expectedCourse = course or (
@@ -154,36 +155,42 @@ class LeagueResult:
                 and competitors.get(result.competitor)
             ]
 
-            resultsWithPositions = assignPosition(results)
-            resultsWithPoints = assignPoints(resultsWithPositions, league.scoringMethod)
+            if len(results) > 0:
+                eventsWithResults.append(event)
+                eventIndex = len(eventsWithResults) - 1
 
-            for result in resultsWithPoints:
-                competitor = competitors[result["competitor"]]
-                competitor["points"][eventIndex] = PointsResult(
-                    event=event.id,
-                    score=int(result["points"]),
-                    type=result["type"],
-                    counting=None,
+                resultsWithPositions = assignPosition(results)
+                resultsWithPoints = assignPoints(
+                    resultsWithPositions, league.scoringMethod
                 )
 
-        return {
-            competitorId: competitor
-            for competitorId, competitor in competitors.items()
-            if hasResults(competitor)
-        }
+                for result in resultsWithPoints:
+                    competitor = competitors[result["competitor"]]
+                    competitor["points"][eventIndex] = PointsResult(
+                        event=event.id,
+                        score=int(result["points"]),
+                        type=result["type"],
+                        counting=None,
+                    )
+
+        return (
+            [
+                competitor
+                for competitor in competitors.values()
+                if hasResults(competitor)
+            ],
+            eventsWithResults,
+        )
 
     @staticmethod
     def getWithFilter(
         league: League, events: List[Event], ageClass: str, course: Optional[str] = None
-    ) -> List[Dict[str, Any]]:
-        competitorsList: List[Dict[str, Any]] = list(
-            LeagueResult.getFilteredResults(league, events, ageClass, course).values()
+    ) -> Tuple[List[Dict[str, Any]], List[Event]]:
+        competitors, events = LeagueResult.getFilteredResults(
+            league, events, ageClass, course
         )
-        competitors: List[Dict[str, Any]] = []
 
-        for competitor in competitorsList:
-            competitors.append(competitor)
-
+        for competitor in competitors:
             # Calculate scores of dynamic results
             standardScores = [
                 point["score"]
@@ -201,4 +208,4 @@ class LeagueResult:
             )
             competitor["totalPoints"] = calculatePointsTotal(competitor["points"])
 
-        return competitors
+        return competitors, events

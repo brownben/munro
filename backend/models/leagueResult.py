@@ -1,5 +1,7 @@
 from flask_restx import Model, fields
 
+from .event import eventModel
+
 pointsModel = Model(
     "League Result Points",
     {
@@ -70,6 +72,38 @@ leagueResultModelWithCourse = leagueResultModel.inherit(
     {
         "course": fields.String(
             description="Course of the Competitor", example="Long", readonly=True
+        ),
+    },
+)
+
+
+leagueResultsOverviewModel = Model(
+    "League Results Overview",
+    {
+        "league": fields.String(
+            description="Name of the league which the results are from",
+            example="Sprintelope",
+        ),
+        "courses": fields.List(
+            fields.String,
+            description="List of the course names in the league",
+            default=[],
+            example=["Long", "Short"],
+        ),
+        "leagueScoring": fields.String(description="Scoring system of the league"),
+        "events": fields.Nested(
+            eventModel,
+            allow_null=True,
+            as_list=True,
+            readonly=True,
+            skip_none=True,
+        ),
+        "results": fields.Nested(
+            leagueResultModel,
+            allow_null=True,
+            as_list=True,
+            readonly=True,
+            skip_none=True,
         ),
     },
 )
