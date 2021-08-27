@@ -3,6 +3,8 @@ from typing import Any, List, Dict
 from ..database.league import League
 from ..database.competitor import Competitor
 
+from .names import matches_equivalent_name
+
 ResultDict = Dict[str, Any]
 
 
@@ -54,7 +56,10 @@ def primaryMatch(result: ResultDict, competitor: Competitor, league: League) -> 
 
 def secondaryMatch(result: ResultDict, competitor: Competitor, league: League) -> bool:
     return (
-        match(nameToInitial(competitor.name), nameToInitial(result["name"]))
+        (
+            match(nameToInitial(competitor.name), nameToInitial(result["name"]))
+            or matches_equivalent_name(result["name"], competitor.name)
+        )
         and (competitor.course == result["course"] or league.leagueScoring != "course")
         and (
             match(competitor.ageClass, result["ageClass"])
