@@ -138,7 +138,7 @@ class LeagueResult:
         competitors: Dict[int, Dict[str, Any]] = {
             competitor.id: {**competitor.toDictionary(), "points": [None] * len(events)}
             for competitor in Competitor.getByLeague(league.getLeagueOfCompetitors())
-            if isAgeClassEligible(competitor.ageClass, ageClass)
+            if isAgeClassEligible(competitor.ageClass, ageClass, league)
         }
         eventsWithResults: List[Event] = []
 

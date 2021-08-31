@@ -3,6 +3,7 @@ import statistics
 import re
 
 from typing import Any, Dict, List, Tuple, TypedDict, Union
+from ..database.league import League
 
 
 def isValidResult(result: Dict[str, Any]) -> bool:
@@ -297,9 +298,22 @@ def getMultiplier(ageClass: str, courseRan: str) -> int:
     )
 
 
-def isAgeClassEligible(ageClass: str, competitorAgeClass: str) -> bool:
+def isAgeClassEligible(ageClass: str, specifiedAgeClass: str, league: League):
+    ageClassMatchingSetting = league.getAdditionalSettingsAsJSON().get(
+        "ageClassMatching"
+    )
+
+    if ageClassMatchingSetting == "exact":
+        return matchesAgeClassExactly(ageClass, specifiedAgeClass)
+    elif ageClassMatchingSetting == "exactWithB":
+        return matchesAgeClassExactlyWithBClass(ageClass, specifiedAgeClass)
+
+    return matchesAgeClass(ageClass, specifiedAgeClass)
+
+
+def matchesAgeClass(ageClass: str, specifiedAgeClass: str) -> bool:
     gender, age = parseAgeClass(ageClass)
-    specifiedGender, specifiedAge = parseAgeClass(competitorAgeClass)
+    specifiedGender, specifiedAge = parseAgeClass(specifiedAgeClass)
 
     def isAgeEligible(age: int, specifiedAge: int) -> bool:
         if specifiedAge == 21:
@@ -319,4 +333,20 @@ def isAgeClassEligible(ageClass: str, competitorAgeClass: str) -> bool:
 
     return isAgeEligible(age, specifiedAge) and isGenderEligible(
         gender, specifiedGender
+    )
+
+
+def matchesAgeClassExactly(ageClass: str, specifiedAgeClass: str) -> bool:
+    gender, age = parseAgeClass(ageClass)
+    specifiedGender, specifiedAge = parseAgeClass(specifiedAgeClass)
+
+    return gender == specifiedGender and age == specifiedAge
+
+
+def matchesAgeClassExactlyWithBClass(ageClass: str, specifiedAgeClass: str) -> bool:
+    gender, age = parseAgeClass(ageClass)
+    specifiedGender, specifiedAge = parseAgeClass(specifiedAgeClass)
+
+    return gender == specifiedGender and (
+        age == specifiedAge or age == specifiedAge + 2
     )
