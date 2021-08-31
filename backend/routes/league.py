@@ -9,6 +9,7 @@ from ..models.league import leagueModel, leagueOverviewModel
 from ..models.event import eventModel, eventModelWithUploadKey
 from ..models.competitor import competitorModel
 from ..models.leagueResult import (
+    leagueResultModel,
     leagueResultsOverviewModel,
     leagueResultModelWithCourse,
     pointsModel,
@@ -24,6 +25,7 @@ api.models[eventModel.name] = eventModel
 api.models[eventModelWithUploadKey.name] = eventModelWithUploadKey
 api.models[competitorModel.name] = competitorModel
 api.models[pointsModel.name] = pointsModel
+api.models[leagueResultModel.name] = leagueResultModel
 api.models[leagueResultsOverviewModel.name] = leagueResultsOverviewModel
 api.models[leagueResultModelWithCourse.name] = leagueResultModelWithCourse
 api.models[messageModel.name] = messageModel
