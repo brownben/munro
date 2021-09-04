@@ -46,7 +46,7 @@
 
     <template #white>
       <div v-if="coursesInResults.length > 0" class="flex col-span-2 -mt-2">
-        <div class="items-center hidden w-full sm:flex">
+        <div class="flex-wrap items-center hidden w-full gap-2 sm:flex">
           <p class="mr-2 text-lg tracking-tight text-gray-600 font-heading">
             Courses:
           </p>
@@ -58,8 +58,10 @@
                 ? 'text-main-700 bg-main-100'
                 : 'hover:bg-main-100  focus:bg-main-100  text-gray-500 '
             "
-            class="px-3 py-2 ml-2 text-lg leading-5 transition duration-150 ease-in-out font-heading rounded-shape focus-visible:shadow-outline hover:text-main-600 focus:text-main-600"
-            :to="`/sitiming/${encodeURIComponent(routeParamsURL)}/${course}`"
+            class="px-3 py-2 text-lg leading-5 transition duration-150 ease-in-out font-heading rounded-shape focus-visible:shadow-outline hover:text-main-600 focus:text-main-600"
+            :to="`/sitiming/${encodeURIComponent(
+              routeParamsURL
+            )}/${encodeURIComponent(course)}`"
           >
             {{ course }}
           </router-link>
@@ -72,7 +74,9 @@
           :include-blank="false"
           @update:modelValue="
             $router.push(
-              `/sitiming/${encodeURIComponent(routeParamsURL)}/${currentCourse}`
+              `/sitiming/${encodeURIComponent(
+                routeParamsURL
+              )}/${encodeURIComponent(currentCourse)}`
             )
           "
         />
