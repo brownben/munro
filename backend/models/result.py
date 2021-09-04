@@ -85,3 +85,17 @@ manualResultModel = Model(
         ),
     },
 )
+
+sitimingModel = Model(
+    "SI Timing Scraped Results",
+    {
+        "eventName": fields.String(),
+        "results": fields.Nested(
+            eventResultModel,
+            allow_null=True,
+            as_list=True,
+            readonly=True,
+            skip_none=True,
+        ),
+    },
+)

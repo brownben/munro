@@ -61,3 +61,8 @@ interface TransferResult {
   competitor: number
   result: number
 }
+
+interface SITimingResults {
+  eventName: string
+  results: EventResult[]
+}

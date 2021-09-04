@@ -23,6 +23,7 @@ from .routes.competitor import api as competitorRoutes
 from .routes.result import api as resultRoutes
 from .routes.search import api as searchRoutes
 from .routes.upload import api as uploadRoutes
+from .routes.sitiming import api as sitimingRoutes
 from .routes.sitemap import generate_sitemap
 
 # Set up Flask with plugins
@@ -61,6 +62,7 @@ api.add_namespace(competitorRoutes, path="/competitors")
 api.add_namespace(resultRoutes, path="/results")
 api.add_namespace(searchRoutes, path="/search")
 api.add_namespace(uploadRoutes, path="/upload")
+api.add_namespace(sitimingRoutes, path="/sitiming")
 
 # Intialise and Teardown Database
 # Database connection created and added to context for request in database/database.py

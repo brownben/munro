@@ -34,6 +34,15 @@ const getCompetitorResults = (
     noToken: true,
   })
 
+const getSITimingResults = (
+  url: string
+): Promise<SITimingResults | undefined> =>
+  getData<SITimingResults>({
+    apiLocation: `/api/sitiming/${url}`,
+    customErrorMessage: 'Problem Fetching Results',
+    noToken: true,
+  })
+
 export const useResults = useDataList<EventResult, typeof getResults>(
   getResults
 )
@@ -47,6 +56,10 @@ export const useCompetitorResults = useDataList<
   EventResult,
   typeof getCompetitorResults
 >(getCompetitorResults)
+export const useSITimingResults = useData<
+  SITimingResults,
+  typeof getSITimingResults
+>(getSITimingResults)
 
 export const hideResult = (
   id: number,

@@ -42,6 +42,7 @@ rsa==4.7.2
 six==1.16.0
 toml==0.10.2
 tomli==1.2.1
+types-requests==2.25.6
 typing-extensions==3.10.0.0
 urllib3==1.26.6
 Werkzeug==2.0.1

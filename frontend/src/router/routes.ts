@@ -135,6 +135,18 @@ const resultRoutes: RouteRecordRaw[] = [
     path: '/results/manual',
     component: () => import('../views/admin/ManualPointsForm.vue'),
   },
+  {
+    path: '/sitiming',
+    component: () => import('../views/SITiming.vue'),
+  },
+  {
+    path: '/sitiming/:url',
+    component: () => import('../views/SITimingResults.vue'),
+  },
+  {
+    path: '/sitiming/:url/:course',
+    component: () => import('../views/SITimingResults.vue'),
+  },
 ]
 const uploadRoutes: RouteRecordRaw[] = [
   {
