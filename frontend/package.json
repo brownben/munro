@@ -22,7 +22,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.4.0",
     "@vueuse/head": "^0.6.0",
-    "pinia": "^2.0.0-rc.4",
+    "pinia": "^2.0.0-rc.8",
     "register-service-worker": "^1.7.2",
     "vue": "3.2.2",
     "vue-router": "^4.0.10"
