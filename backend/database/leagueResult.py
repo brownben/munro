@@ -204,7 +204,7 @@ class LeagueResult:
                     point["score"] = round(sum(standardScores) / len(standardScores))
 
             competitor["points"] = getCountingPoints(
-                competitor["points"], league, events
+                competitor["points"], league, events, ageClass
             )
             competitor["totalPoints"] = calculatePointsTotal(competitor["points"])
 

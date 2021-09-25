@@ -30,8 +30,13 @@ def getCountingPoints(
     results: List[PointsResult],
     league: League,
     leagueEvents: List[Event],
+    ageClass: Optional[str] = None,
 ) -> List[PointsResult]:
-    numberOfCountingEvents = league.numberOfCountingEvents
+    numberOfCountingEvents = (
+        league.getAdditionalSettingsAsJSON()
+        .get("courseNumberOfCountingEvents", {})
+        .get(ageClass, league.numberOfCountingEvents)
+    )
     events = [getPointsResultEvent(result) for result in results if result]
     remainingScores = [
         PointsResultWithIndex(
