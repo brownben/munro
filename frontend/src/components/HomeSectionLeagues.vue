@@ -38,7 +38,7 @@
           title="Fight with the Night"
           description="Thursday Night Orienteering Events Around Edinburgh"
           website="https://euoc.wordpress.com/"
-          alternative-link="/leagues/Fight with the Night 20-21"
+          alternative-link="/leagues/Fight with the Night 21-22"
           :larger="false"
           smaller
         />
