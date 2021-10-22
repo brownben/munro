@@ -31,7 +31,7 @@
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-replace": "^3.0.0",
     "@tailwindcss/typography": "^0.4.1",
-    "@types/node": "^16.10.0",
+    "@types/node": "^16.11.3",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "@vitejs/plugin-vue": "^1.9.2",
