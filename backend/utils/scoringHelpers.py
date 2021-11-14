@@ -309,7 +309,8 @@ def isAgeClassEligible(ageClass: str, specifiedAgeClass: str, league: League):
         return matchesAgeClassExactlyWithBClass(ageClass, specifiedAgeClass)
     elif ageClassMatchingSetting == "older18":
         return matchesAgeClassOlder18(ageClass, specifiedAgeClass)
-
+    elif ageClassMatchingSetting == "genderUnder":
+        return matchesAgeClassGenderUnder(ageClass, specifiedAgeClass)
     return matchesAgeClass(ageClass, specifiedAgeClass)
 
 
@@ -359,6 +360,14 @@ def matchesAgeClassOlder18(ageClass: str, specifiedAgeClass: str) -> bool:
     return isAgeEligible(age, specifiedAge) and isGenderEligible(
         gender, specifiedGender
     )
+
+
+def matchesAgeClassGenderUnder(ageClass: str, specifiedAgeClass: str) -> bool:
+    gender, age = parseAgeClass(ageClass)
+    specifiedGender, specifiedAge = parseAgeClass(specifiedAgeClass)
+
+    return age <= specifiedAge and gender == specifiedGender
+
 
 def matchesAgeClassExactly(ageClass: str, specifiedAgeClass: str) -> bool:
     gender, age = parseAgeClass(ageClass)
