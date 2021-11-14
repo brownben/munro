@@ -101,6 +101,12 @@
               'League results are calculated for an age class on a course',
             value: 'filteredCourse',
           },
+          {
+            title: 'Combined Courses',
+            description:
+              'League results are calculated for a set of courses together',
+            value: 'coursesOverall',
+          },
         ]"
         class="mt-4"
       />

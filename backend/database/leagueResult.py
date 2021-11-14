@@ -133,7 +133,7 @@ class LeagueResult:
 
     @staticmethod
     def getFilteredResults(
-        league: League, events: List[Event], ageClass: str, course: Optional[str]
+        league: League, events: List[Event], ageClass: str, courses: List[str]
     ) -> Tuple[List[Dict[str, Any]], List[Event]]:
         competitors: Dict[int, Dict[str, Any]] = {
             competitor.id: {**competitor.toDictionary(), "points": [None] * len(events)}
@@ -143,15 +143,15 @@ class LeagueResult:
         eventsWithResults: List[Event] = []
 
         for eventIndex, event in enumerate(events):
-            expectedCourse = course or (
+            expectedCourses = courses or [
                 event.getAdditionalSettingsAsJSON()
                 .get("ageClassMapping", {})
                 .get(ageClass)
-            )
+            ]
             results = [
                 result.toDictionary()
                 for result in Result.getByEvent(event.id)
-                if result.course == expectedCourse
+                if result.course in expectedCourses
                 and competitors.get(result.competitor)
             ]
 
@@ -184,10 +184,10 @@ class LeagueResult:
 
     @staticmethod
     def getWithFilter(
-        league: League, events: List[Event], ageClass: str, course: Optional[str] = None
+        league: League, events: List[Event], ageClass: str, courses: List[str] = []
     ) -> Tuple[List[Dict[str, Any]], List[Event]]:
         competitors, events = LeagueResult.getFilteredResults(
-            league, events, ageClass, course
+            league, events, ageClass, courses
         )
 
         for competitor in competitors:
