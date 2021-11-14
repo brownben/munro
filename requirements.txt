@@ -45,4 +45,4 @@ tomli==1.2.1
 types-requests==2.25.9
 typing-extensions==3.10.0.2
 urllib3==1.26.7
-Werkzeug==2.0.1
+Werkzeug==2.0.2
