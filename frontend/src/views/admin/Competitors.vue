@@ -81,7 +81,7 @@
             />
             <Heading
               text="Course"
-              ::ascending="sortPreferences.ascending"
+              :ascending="sortPreferences.ascending"
               :active="sortPreferences.by === SortableProperties.course"
               @toggle="changeSortPreference(SortableProperties.course)"
             />
