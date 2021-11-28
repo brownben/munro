@@ -180,7 +180,7 @@ class LeagueCourseResultsRoute(Resource):
             events = Event.getByLeagueWithResults(name)
 
             if league.leagueScoring == "ageClass":
-                results, events = LeagueResult.getWithFilter(league, events, [course])
+                results, events = LeagueResult.getWithFilter(league, events, course)
             elif league.leagueScoring == "filteredCourse":
                 ageClass, expectedCourse = (
                     league.getAdditionalSettingsAsJSON()
