@@ -195,7 +195,7 @@ class LeagueResult:
             standardScores = [
                 point["score"]
                 for point in competitor["points"]
-                if point and point["type"] not in ["max", "average"]
+                if point and point["type"] not in ["max", "average", "manual"]
             ]
             for point in competitor["points"]:
                 if point and point["type"] == "max":

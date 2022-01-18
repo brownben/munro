@@ -147,6 +147,11 @@ def getScoringMethod(
 def assignPoints(
     results: List[ResultDict], leagueScoringMethod: str
 ) -> List[ResultDict]:
-    getScore = getScoringMethod(leagueScoringMethod, results)
+    scoringCalculator = getScoringMethod(leagueScoringMethod, results)
+
+    def getScore(result):
+        if result["type"] == "manual":
+            return result["points"]
+        return scoringCalculator(result)
 
     return [{**result, "points": getScore(result)} for result in results]
