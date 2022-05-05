@@ -22,7 +22,7 @@
           title="Sprintelope"
           description="Wednesday Evening Sprint Orienteering Events in Edinburgh and the Lothians"
           website="https://en-gb.facebook.com/sprintelope/"
-          alternative-link="/leagues/Sprintelope 2021"
+          alternative-link="/leagues/Sprintelope 2022"
           :larger="false"
           smaller
         />
@@ -30,7 +30,7 @@
           title="UK Elite League"
           description="The UK's must-do races for elites and aspiring elites"
           website="http://www.ukeliteoleague.org.uk/"
-          alternative-link="/leagues/UK Elite League 2021"
+          alternative-link="/leagues/UK Elite League 2022"
           :larger="false"
           smaller
         />
