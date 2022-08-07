@@ -1,0 +1,42 @@
+<script setup lang="ts">
+import { ExclamationCircleIcon } from '@heroicons/vue/outline/index.js'
+
+const props = defineProps({
+  button: { type: String, default: '' },
+  action: { type: Function, default: () => null },
+})
+const message = ref('')
+const loading = ref(false)
+const submit = async () => {
+  message.value = ''
+  loading.value = true
+
+  try {
+    await props.action()
+  } catch (error) {
+    if (typeof error === 'string') message.value = error
+    else throw error
+  }
+  loading.value = false
+}
+</script>
+
+<template>
+  <form
+    class="mx-auto grid max-w-screen-lg grid-cols-1 gap-6 px-6 py-8 sm:py-10 md:grid-cols-3 lg:px-8"
+    @submit.prevent="submit"
+  >
+    <slot />
+    <div
+      v-if="message"
+      class="col-span-2 flex select-auto flex-row items-center gap-4 rounded border border-main-100 bg-main-50 p-4 leading-tight text-main-800"
+      role="alert"
+    >
+      <ExclamationCircleIcon aria-hidden="true" class="h-6 w-6 flex-shrink-0" />
+      {{ message }}
+    </div>
+    <div class="col-span-2 flex justify-end">
+      <Button :loading="loading">{{ button }}</Button>
+    </div>
+  </form>
+</template>
