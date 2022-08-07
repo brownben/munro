@@ -1,0 +1,29 @@
+# Build and Output Folders
+**/build/**
+**/config/**
+**/dist/**
+**/coverage/**
+**/__snapshots__/**
+**/.nuxt/**
+**/.output/**
+
+# Dependencies
+**/node-modules/**
+**/package-lock.json
+
+# Config Files
+**/.editorconfig
+**/.*ignore
+
+# Static File Types
+**/*.txt
+**/*.toml
+**/*.png
+**/*.avif
+**/*.svg
+**/*.jpg
+**/*.woff2
+
+# Env Files
+.env.production
+.env.development

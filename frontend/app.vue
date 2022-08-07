@@ -1,0 +1,238 @@
+<template>
+  <div id="app" :class="themeClass">
+    <a
+      href="#content"
+      class="focus:shadow-outline sr-only z-50 rounded-md bg-white text-main-700 focus:not-sr-only focus:absolute focus:m-4 focus:block focus:px-3 focus:py-2"
+    >
+      Skip to main content
+    </a>
+    <Menu />
+    <div class="flex-grow">
+      <NuxtPage id="content" />
+    </div>
+    <Footer />
+  </div>
+</template>
+<script setup lang="ts">
+const route = useRoute()
+
+const theme = useState('theme', () => queryToString(route.query.theme))
+
+const themeClass = computed(() => {
+  if (!theme.value || theme.value === 'purple') return ''
+
+  const cool = ['blue', 'green', 'cyan']
+  const gray = cool.includes(theme.value)
+    ? 'theme-cool-gray'
+    : 'theme-warm-gray'
+
+  return `theme-${theme.value} ${gray}`
+})
+</script>
+<style>
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --main-50: #fdf4ff;
+  --main-100: #fae8ff;
+  --main-200: #f5d0fe;
+  --main-300: #f0abfc;
+  --main-400: #e879f9;
+  --main-500: #d946ef;
+  --main-600: #c026d3;
+  --main-700: #a21caf;
+  --main-800: #86198f;
+  --main-900: #701a75;
+
+  --gray-50: #fbf9fb;
+  --gray-100: #f7f4f7;
+  --gray-200: #eae5eb;
+  --gray-300: #dad2dc;
+  --gray-400: #af9fb2;
+  --gray-500: #7d6b80;
+  --gray-600: #5f4b63;
+  --gray-700: #4d3751;
+  --gray-800: #3b253f;
+  --gray-900: #2a162e;
+}
+
+html,
+body,
+#app,
+#__nuxt {
+  @apply flex h-full flex-col;
+}
+
+a,
+button {
+  @apply rounded ring-main-200 focus:outline-none focus-visible:ring;
+}
+
+::selection {
+  background: var(--main-100, #fae8ff);
+}
+::-moz-selection {
+  background: var(--main-100, #fae8ff);
+}
+
+@media print {
+  @page {
+    size: A3;
+  }
+}
+
+.theme-purple {
+  --main-50: #fdf4ff;
+  --main-100: #fae8ff;
+  --main-200: #f5d0fe;
+  --main-300: #f0abfc;
+  --main-400: #e879f9;
+  --main-500: #d946ef;
+  --main-600: #c026d3;
+  --main-700: #a21caf;
+  --main-800: #86198f;
+  --main-900: #701a75;
+  --gray-50: hsl(290, 20%, 98%);
+  --gray-100: hsl(290, 15.8%, 96.3%);
+  --gray-200: hsl(290, 13%, 91%);
+  --gray-300: hsl(290, 12.5%, 84.3%);
+  --gray-400: hsl(290, 11%, 66.1%);
+  --gray-500: hsl(290, 8.9%, 46.1%);
+  --gray-600: hsl(290, 13.8%, 34.1%);
+  --gray-700: hsl(290, 19.1%, 26.7%);
+  --gray-800: hsl(290, 26%, 19.6%);
+  --gray-900: hsl(290, 35.3%, 13.3%);
+}
+
+.theme-warm-gray {
+  --gray-50: #fafaf9;
+  --gray-100: #f5f5f4;
+  --gray-200: #e7e5e4;
+  --gray-300: #d6d3d1;
+  --gray-400: #a8a29e;
+  --gray-500: #78716c;
+  --gray-600: #57534e;
+  --gray-700: #44403c;
+  --gray-800: #292524;
+  --gray-900: #1c1917;
+}
+
+.theme-cool-gray {
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+}
+
+.theme-gray {
+  --main-50: #f8fafc;
+  --main-100: #f1f5f9;
+  --main-200: #e2e8f0;
+  --main-300: #cbd5e1;
+  --main-400: #94a3b8;
+  --main-500: #64748b;
+  --main-600: #475569;
+  --main-700: #334155;
+  --main-800: #1e293b;
+  --main-900: #0f172a;
+}
+
+.theme-red {
+  --main-50: #fef2f2;
+  --main-100: #fee2e2;
+  --main-200: #fecaca;
+  --main-300: #fca5a5;
+  --main-400: #f87171;
+  --main-500: #ef4444;
+  --main-600: #dc2626;
+  --main-700: #b91c1c;
+  --main-800: #991b1b;
+  --main-900: #7f1d1d;
+}
+
+.theme-ukEliteLeague {
+  --main-50: #fff1f1;
+  --main-100: #ffe1e1;
+  --main-200: #ffc9c9;
+  --main-300: #ffa2a2;
+  --main-400: #ff7070;
+  --main-500: #ff5757;
+  --main-600: #ee2b2b;
+  --main-700: #d41111;
+  --main-800: #a70d0e;
+  --main-900: #900c0c;
+}
+
+.theme-blue {
+  --main-50: #f0f9ff;
+  --main-100: #e0f2fe;
+  --main-200: #bae6fd;
+  --main-300: #7dd3fc;
+  --main-400: #38bdf8;
+  --main-500: #0ea5e9;
+  --main-600: #0284c7;
+  --main-700: #0369a1;
+  --main-800: #075985;
+  --main-900: #0c4a6e;
+}
+
+.theme-green {
+  --main-50: #f0fdf4;
+  --main-100: #dcfce7;
+  --main-200: #bbf7d0;
+  --main-300: #86efac;
+  --main-400: #4ade80;
+  --main-500: #22c55e;
+  --main-600: #16a34a;
+  --main-700: #15803d;
+  --main-800: #166534;
+  --main-900: #14532d;
+}
+
+.theme-orange {
+  --main-50: #fff7ed;
+  --main-100: #ffedd5;
+  --main-200: #fed7aa;
+  --main-300: #fdba74;
+  --main-400: #fb923c;
+  --main-500: #f97316;
+  --main-600: #ea580c;
+  --main-700: #c2410c;
+  --main-800: #9a3412;
+  --main-900: #7c2d12;
+}
+
+.theme-cyan {
+  --main-50: #f0fdfa;
+  --main-100: #ccfbf1;
+  --main-200: #99f6e4;
+  --main-300: #5eead4;
+  --main-400: #2dd4bf;
+  --main-500: #14b8a6;
+  --main-600: #0d9488;
+  --main-700: #0f766e;
+  --main-800: #115e59;
+  --main-900: #134e4a;
+}
+
+.theme-pink {
+  --main-50: #fdf2f8;
+  --main-100: #fce7f3;
+  --main-200: #fbcfe8;
+  --main-300: #f9a8d4;
+  --main-400: #f472b6;
+  --main-500: #ec4899;
+  --main-600: #db2777;
+  --main-700: #be185d;
+  --main-800: #9d174d;
+  --main-900: #831843;
+}
+</style>
