@@ -10,31 +10,34 @@
     />
     <template #title>
       <h1
-        class="text-3xl font-bold leading-none tracking-tight lg:text-4xl font-heading"
+        class="font-heading text-3xl font-bold leading-none tracking-tight lg:text-4xl"
       >
         {{ name }}
       </h1>
       <h2
         v-if="league && league.description"
-        class="mt-2 leading-tight tracking-tight text-gray-600 md:text-lg lg:text-xl font-heading"
+        class="mt-2 font-heading leading-tight tracking-tight text-gray-600 md:text-lg lg:text-xl"
       >
         {{ league.description }}
       </h2>
     </template>
 
     <template v-if="league" #white>
-      <section class="w-full text-left bg-white">
-        <p v-if="league?.courses" class="w-full leading-6 text-gray-600">
+      <section class="w-full bg-white text-left">
+        <p
+          v-if="league?.courses && league.courses[0] != ''"
+          class="w-full leading-6 text-gray-600"
+        >
           There are normally
           {{ league.courses.length }}
           {{ league.leagueScoring === 'course' ? 'courses' : 'classes' }} -
-          <span class="text-gray-900 md:text-lg font-heading">
+          <span class="font-heading text-gray-900 md:text-lg">
             {{ leagueCourses }}
           </span>
         </p>
 
         <p v-if="league?.coordinator" class="w-full leading-6 text-gray-600">
-          <span class="text-gray-900 md:text-lg font-heading">
+          <span class="font-heading text-gray-900 md:text-lg">
             {{ league.coordinator }}
           </span>
           coordinates the league.
@@ -42,7 +45,7 @@
 
         <p v-if="league?.scoringMethod" class="w-full leading-6 text-gray-600">
           The scoring for the league is calculated using
-          <span class="text-gray-900 md:text-lg font-heading">
+          <span class="font-heading text-gray-900 md:text-lg">
             {{ scoringMethodShorthandToFull(league.scoringMethod) }}
           </span>
 
@@ -51,7 +54,7 @@
             class="block"
           >
             Your
-            <span class="text-gray-900 md:text-lg font-heading">
+            <span class="font-heading text-gray-900 md:text-lg">
               best {{ league.numberOfCountingEvents }} scores
             </span>
             from all
@@ -70,7 +73,7 @@
 
         <p
           v-if="league?.moreInformation"
-          class="w-full my-2 leading-6 text-gray-600"
+          class="my-2 w-full leading-6 text-gray-600"
         >
           <span
             v-for="line of league.moreInformation.split('|')"
@@ -81,13 +84,13 @@
           </span>
         </p>
 
-        <p v-if="league?.website" class="w-full mt-2 leading-6 text-gray-600">
+        <p v-if="league?.website" class="mt-2 w-full leading-6 text-gray-600">
           More information can be found at:
           <a
             :href="league.website"
             target="_blank"
             rel="noopener noreferrer"
-            class="ml-1 link font-heading text-main-800"
+            class="link ml-1 font-heading text-main-800"
           >
             {{ league.website }}
           </a>
@@ -98,10 +101,10 @@
     <template v-if="league" #fullWidth>
       <section
         v-if="auth.loggedIn && league?.name"
-        class="w-full col-span-2 pt-5 pb-6 text-center text-white bg-main-800"
+        class="col-span-2 w-full bg-main-800 pt-5 pb-6 text-center text-white"
       >
-        <h2 class="text-2xl font-bold font-heading">Admin Actions</h2>
-        <div class="w-10/12 mx-auto sm:mt-2">
+        <h2 class="font-heading text-2xl font-bold">Admin Actions</h2>
+        <div class="mx-auto w-10/12 sm:mt-2">
           <router-link :to="`${$route.path}/edit`" class="button button-white">
             Edit League
           </router-link>
@@ -121,21 +124,21 @@
           (league?.courses && league.courses.length > 0) ||
           league?.leagueScoring === 'overall'
         "
-        class="col-span-2 py-6 text-center text-white bg-gradient-to-r from-main-600 to-main-500"
+        class="col-span-2 bg-gradient-to-r from-main-600 to-main-500 py-6 text-center text-white"
         :class="{
           'sm:pt-4 sm:pb-6 md:py-8': league.courses.length >= 6,
           'py-6 sm:py-8': league.courses.length < 6,
         }"
       >
         <div
-          class="items-center justify-between max-w-screen-xl px-6 mx-auto lg:px-8"
+          class="mx-auto max-w-screen-xl items-center justify-between px-6 lg:px-8"
           :class="{
             'md:flex': league.courses.length >= 6,
             'sm:flex': league.courses.length < 6,
           }"
         >
           <h2
-            class="mb-2 text-2xl font-bold font-heading sm:mb-0"
+            class="mb-2 font-heading text-2xl font-bold sm:mb-0"
             :class="{
               'sm:pb-3 md:py-0': league.courses.length >= 6,
             }"
@@ -147,7 +150,7 @@
               v-for="course of league.courses"
               :key="course"
               :to="`/leagues/${name}/results/${course}`"
-              class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 ring-white ring-opacity-75"
+              class="mx-0 mt-3 inline-block w-full select-none appearance-none rounded-shape border border-white border-opacity-50 bg-white bg-opacity-0 px-4 py-2 font-heading text-lg leading-tight text-white outline-none ring-white ring-opacity-75 transition duration-300 ease-in-out hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white focus-visible:ring-1 sm:mx-2 sm:mt-0 sm:w-auto"
             >
               {{ course }}
             </router-link>
@@ -155,7 +158,7 @@
           <div v-else>
             <router-link
               :to="`/leagues/${name}/results/Overall`"
-              class="inline-block w-full px-4 py-2 mx-0 mt-3 text-lg leading-tight text-white transition duration-300 ease-in-out bg-white bg-opacity-0 border border-white border-opacity-50 outline-none appearance-none select-none font-heading rounded-shape sm:w-auto sm:mx-2 sm:mt-0 hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white"
+              class="mx-0 mt-3 inline-block w-full select-none appearance-none rounded-shape border border-white border-opacity-50 bg-white bg-opacity-0 px-4 py-2 font-heading text-lg leading-tight text-white outline-none transition duration-300 ease-in-out hover:bg-opacity-25 hover:text-white focus:bg-opacity-25 focus:text-white sm:mx-2 sm:mt-0 sm:w-auto"
             >
               Overall Results
             </router-link>
@@ -165,10 +168,10 @@
     </template>
 
     <div
-      class="flex items-center justify-between w-full col-span-2 py-2 sm:py-0"
+      class="col-span-2 flex w-full items-center justify-between py-2 sm:py-0"
     >
       <h2
-        class="text-lg leading-5 uppercase align-middle font-heading text-main-700"
+        class="align-middle font-heading text-lg uppercase leading-5 text-main-700"
       >
         Events
       </h2>
@@ -176,7 +179,7 @@
       <router-link
         v-if="auth.loggedIn"
         :to="`/events/create?league=${league?.name}`"
-        class="inline-block px-4 py-1 text-sm leading-6 tracking-wide text-right uppercase transition duration-300 text-main-600 font-heading hover:bg-main-100 focus:bg-main-100 rounded-shape focus-visible:shadow-outline"
+        class="inline-block rounded-shape px-4 py-1 text-right font-heading text-sm uppercase leading-6 tracking-wide text-main-600 transition duration-300 hover:bg-main-100 focus:bg-main-100 focus-visible:shadow-outline"
       >
         <span class="mr-1 text-xl">+</span> Add Event
       </router-link>
