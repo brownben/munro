@@ -1,6 +1,7 @@
 from typing import Any, Callable, List, Dict
 
 from .scoringHelpers import (
+    getWelshMultiplier,
     isValidResult,
     occuracesOfPosition,
     calculateCourseStatistics,
@@ -125,18 +126,35 @@ def timeRelativeToTopBasedPoints(
     return calculate
 
 
+def timeRelativeToTopBasedPointsWelsh(results: List[ResultDict]) -> GetScoreFunction:
+    courseStats = calculateCourseStatistics(results)
+
+    def calculate(result: ResultDict) -> int:
+        if not isValidResult(result) and not result["time"]:
+            return 0
+
+        winner = courseStats.get(result["course"], {}).get("max", 0)
+        multiplier = getWelshMultiplier(result["ageClass"], result["course"])
+
+        return round((winner / result["time"]) * multiplier)
+
+    return calculate
+
+
 def getScoringMethod(
     leagueScoringMethod: str, results: List[ResultDict]
 ) -> GetScoreFunction:
     if "position99average" in leagueScoringMethod:
         return positionBasedPointsWithDraw(results)
+    elif leagueScoringMethod == "timeTopAdjustedWelsh":
+        return timeRelativeToTopBasedPointsWelsh(results)
     elif "positionStaggered" in leagueScoringMethod:
         return positionBasedPointsStaggered()
     elif "position" in leagueScoringMethod:
         return positionBasedPoints(leagueScoringMethod)
     elif "timeAverage" in leagueScoringMethod:
         return timeRelativeToAverageBasedPoints(leagueScoringMethod, results)
-    elif "timeTop" in leagueScoringMethod:
+    elif "timeTop3" in leagueScoringMethod:
         return timeRelativeToTopBasedPoints(leagueScoringMethod, results)
     elif "file" in leagueScoringMethod:
         return lambda result: result.get("file_points") or 0
@@ -150,7 +168,7 @@ def assignPoints(
     scoringCalculator = getScoringMethod(leagueScoringMethod, results)
 
     def getScore(result):
-        if result["type"] == "manual":
+        if result.get("type", "") == "manual":
             return result["points"]
         return scoringCalculator(result)
 

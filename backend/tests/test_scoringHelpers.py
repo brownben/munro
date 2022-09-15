@@ -37,7 +37,7 @@ class Test_calculateCourseStatistics:
     def test_oneResult(self) -> None:
         assert calculateCourseStatistics(
             [{"course": "red", "time": 5, "incomplete": False, "position": 1}]
-        ) == {"red": {"average": 5, "standardDeviation": 0}}
+        ) == {"red": {"average": 5, "standardDeviation": 0, "max": 5}}
 
     def test_twoResults(self) -> None:
         results = [

@@ -43,6 +43,7 @@ def calculateCourseStatistics(
         course: {
             "average": statistics.mean(times),
             "standardDeviation": getStandardDeviation(times),
+            "max": max(times),
         }
         for course, times in courseTimes.items()
     }
@@ -296,6 +297,64 @@ def getMultiplier(ageClass: str, courseRan: str) -> int:
     return multipliers.get(standardCourse, multipliers["BROWN"]).get(
         courseRan.upper(), 1000
     )
+
+
+def getWelshMultiplier(ageClass: str, courseRan: str) -> int:
+    course_multipliers = {
+        "black": 1.1,
+        "brown": 1,
+        "short brown": 0.9,
+        "blue": 0.8,
+        "short blue": 0.7,
+        "green": 0.6,
+        "short green": 0.5,
+        "light green": 0.5,
+        "orange": 0.37,
+        "yellow": 0.3,
+    }
+    age_class_multipliers = {
+        "M10": 3.5,
+        "W10": 4.0,
+        "M12": 2.5,
+        "W12": 3.0,
+        "M14": 2.0,
+        "W14": 2.5,
+        "M16": 1.5,
+        "W16": 2.0,
+        "M18": 1.3,
+        "W18": 1.7,
+        "M20": 1.1,
+        "W20": 1.6,
+        "M21": 1.0,
+        "W21": 1.4,
+        "M35": 1.1,
+        "W35": 1.6,
+        "M40": 1.2,
+        "W40": 1.7,
+        "M45": 1.3,
+        "W45": 1.8,
+        "M50": 1.5,
+        "W50": 1.9,
+        "M55": 1.6,
+        "W55": 2.0,
+        "M60": 1.8,
+        "W60": 2.2,
+        "M65": 2.0,
+        "W65": 2.4,
+        "M70": 2.2,
+        "W70": 2.6,
+        "M75": 2.4,
+        "W75": 2.8,
+        "M80": 2.6,
+        "W80": 3.0,
+        "M85": 2.8,
+        "W85": 3.2,
+    }
+
+    course_multiplier = course_multipliers.get(courseRan.lower(), 1)
+    age_class_multiplier = age_class_multipliers.get(ageClass.upper(), 1)
+
+    return course_multiplier * age_class_multiplier * 100
 
 
 def isAgeClassEligible(ageClass: str, specifiedAgeClass: str, league: League):

@@ -292,6 +292,10 @@ const scoringMethodOptions = [
     value: 'timeTop3Adjusted',
     text: 'Relative to Top 3 Times (Adjusted)',
   },
+  {
+    value: 'timeTopAdjustedWelsh',
+    text: 'Relative to Winners Time (Adjusted - Welsh Multipliers)',
+  },
   { value: 'file', text: 'From Upload File' },
 ]
 </script>
