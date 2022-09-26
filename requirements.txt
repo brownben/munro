@@ -5,7 +5,7 @@ attrs==21.2.0
 black==21.9b0
 Brotli==1.0.9
 cachetools==4.2.2
-certifi==2021.5.30
+certifi==2022.9.24
 charset-normalizer==2.0.6
 click==8.0.1
 colorama==0.4.4
