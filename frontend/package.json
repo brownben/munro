@@ -37,7 +37,7 @@
     "@vitejs/plugin-vue": "^1.9.4",
     "@vue/compiler-sfc": "^3.2.21",
     "@vue/eslint-config-typescript": "^9.0.1",
-    "@vue/server-renderer": "^3.2.21",
+    "@vue/server-renderer": "^3.2.41",
     "autoprefixer": "^10.4.0",
     "cssnano": "^5.0.10",
     "cssnano-preset-advanced": "^5.1.6",
