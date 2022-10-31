@@ -44,6 +44,7 @@ def calculateCourseStatistics(
             "average": statistics.mean(times),
             "standardDeviation": getStandardDeviation(times),
             "max": max(times),
+            "min": min(times),
         }
         for course, times in courseTimes.items()
     }

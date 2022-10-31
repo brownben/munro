@@ -130,10 +130,10 @@ def timeRelativeToTopBasedPointsWelsh(results: List[ResultDict]) -> GetScoreFunc
     courseStats = calculateCourseStatistics(results)
 
     def calculate(result: ResultDict) -> int:
-        if not isValidResult(result) and not result["time"]:
+        if not isValidResult(result) or not result["time"]:
             return 0
 
-        winner = courseStats.get(result["course"], {}).get("max", 0)
+        winner = courseStats.get(result["course"], {}).get("min", 0)
         multiplier = getWelshMultiplier(result["ageClass"], result["course"])
 
         return round((winner / result["time"]) * multiplier)
