@@ -150,7 +150,7 @@ class LeagueOverviewRoute(Resource):
 @api.route("/<name>/results/Overall")
 @api.param("name", "League Name")
 class LeagueOverallResultsRoute(Resource):
-    @api.marshal_with(leagueResultModelWithCourse, as_list=True)
+    @api.marshal_with(leagueResultsOverviewModel)
     @api.response(200, "Success - List of Overall Results for the League")
     @api.response(500, "Problem Connecting to the Database")
     def get(self, name):
@@ -162,7 +162,13 @@ class LeagueOverallResultsRoute(Resource):
                 for result in LeagueResult.getByLeague(name, league.subLeagueOf)
             ]
             sortedResults = sortByTotalPoints(results)
-            return assignPosition(sortedResults)
+            return {
+                "league": league.name,
+                "courses": league.courses,
+                "leagueScoring": league.leagueScoring,
+                "results": assignPosition(sortedResults),
+                "events": events,
+            }
         except:
             return [], 500
 
