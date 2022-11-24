@@ -7,6 +7,10 @@ eventResultModel = Model(
             description="The ID of the Result",
             example=7,
         ),
+        "competitor": fields.Integer(
+            description="The ID of the competitor of the result",
+            example=7,
+        ),
         "time": fields.Integer(description="Result Time in Seconds", example=202052),
         "position": fields.Raw(
             description="The Position of the Result (1st, etc), blank string if not in results (incomplete)",
