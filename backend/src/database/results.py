@@ -71,7 +71,8 @@ class Results:
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
             .where(ResultTable.course == course)
-            .order_by(ResultTable.time)
+            .order_by(ResultTable.course, ascending=True)
+            .order_by(ResultTable.time, ascending=True)
             .run()
         )
 
@@ -85,7 +86,8 @@ class Results:
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
             .where(ResultTable.course.is_in(list(courses)))
-            .order_by(ResultTable.time)
+            .order_by(ResultTable.course, ascending=True)
+            .order_by(ResultTable.time, ascending=True)
             .run()
         )
 
@@ -96,7 +98,8 @@ class Results:
             for result in await ResultTable.select(*results_fields)
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
-            .order_by(ResultTable.time)
+            .order_by(ResultTable.course, ascending=True)
+            .order_by(ResultTable.time, ascending=True)
             .run()
         )
 

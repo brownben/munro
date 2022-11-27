@@ -11,6 +11,11 @@ const { data } = await useData<LeagueResultsOverview>(
 const results = computed(
   () => data.value?.results.map(leagueResultWithAgeGender) ?? []
 )
+const otherClasses = computed(
+  () =>
+    data.value?.classes.filter((course) => course !== data.value?.class_name) ??
+    []
+)
 
 const show = ref(false)
 const filters = reactive<Filters>({
@@ -18,8 +23,8 @@ const filters = reactive<Filters>({
   club: queryToString(route.query.club ?? ''),
   minAge: queryToString(route.query.minAge ?? '0'),
   maxAge: queryToString(route.query.maxAge ?? '100'),
-  male: true,
-  female: true,
+  male: queryToString(route.query.male) !== 'false',
+  female: queryToString(route.query.female) !== 'false',
 })
 
 if (data.value) {
@@ -85,13 +90,12 @@ if (data.value) {
       />
     </section>
     <LinksSection
+      v-if="otherClasses.length > 0"
       :links="
-        data.classes
-          .filter((course) => course !== data?.class_name)
-          .map((course) => ({
-            text: course,
-            location: `/leagues/${data?.league}/results/${course}`,
-          }))
+        otherClasses.map((course) => ({
+          text: course,
+          location: `/leagues/${data?.league}/results/${course}`,
+        }))
       "
     >
       Other Classes

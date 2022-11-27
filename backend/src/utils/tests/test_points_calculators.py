@@ -140,7 +140,7 @@ class TestPointsCalculators(unittest.TestCase):
             ("timeAverage", [1135, 1117, 1091, 1003, 654, 0]),
             ("timeAverage100", [113, 112, 109, 100, 65, 0]),
             ("timeTop", [1233, 1028, 822, 493, 190, 0]),
-            ("timeTopAdjustedWelsh", [650, 542, 433, 260, 100, 0]),
+            ("timeTopAdjustedWelsh", [100, 83, 67, 40, 15, 0]),
             # Fallback
             ("fallback", [0, 0, 0, 0, 0, 0]),
             ("blablabla", [0, 0, 0, 0, 0, 0]),

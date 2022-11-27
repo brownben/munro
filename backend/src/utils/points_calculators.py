@@ -11,7 +11,7 @@ def is_valid_result(result: Result) -> bool:
 
 
 def is_invalid_result(result: Result) -> bool:
-    return not is_valid_result(result)
+    return result.incomplete or not result.visible
 
 
 class PointsCalculator:
@@ -276,11 +276,10 @@ class TimeRelativeToWinnerWelshAdjusted(PointsCalculator):
         return scoring_method == "timeTopAdjustedWelsh"
 
     def calculate_required_stats(self, results: Iterable[Result]) -> None:
+        valid_results = [result for result in results if is_valid_result(result)]
         self._course_winners_time = {
-            course: max(
-                [result.time if is_valid_result(result) else 0 for result in results]
-            )
-            for course, results in itertools.groupby(results, lambda x: x.course)
+            course: next(results).time
+            for course, results in itertools.groupby(valid_results, lambda x: x.course)
         }
 
     def _points_calculator(self, result: Result, age_class: str) -> int:
