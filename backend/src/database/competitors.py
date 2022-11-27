@@ -121,7 +121,7 @@ class Competitors:
         return (
             Competitor.parse_obj(competitor)
             for competitor in await CompetitorTable.select(*competitor_fields)
-            .where(CompetitorTable.name.like(f"%{query}%"))
+            .where(CompetitorTable.name.ilike(f"%{query}%"))
             .limit(12)
             .run()
         )

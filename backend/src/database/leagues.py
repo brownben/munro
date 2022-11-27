@@ -133,8 +133,8 @@ class Leagues:
             League.parse_obj(league)
             for league in await LeagueTable.select(*league_fields)
             .where(
-                LeagueTable.name.like(f"%{query}%")
-                | LeagueTable.tagline.like(f"%{query}%")
+                LeagueTable.name.ilike(f"%{query}%")
+                | LeagueTable.tagline.ilike(f"%{query}%")
             )
             .order_by(LeagueTable.year, ascending=False)
             .limit(6)

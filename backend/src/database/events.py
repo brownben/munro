@@ -235,7 +235,7 @@ class Events:
         return (
             EventWithUploadKey.parse_obj(event)
             for event in await EventTable.select(*event_fields)
-            .where(EventTable.name.like(f"%{query}%"))
+            .where(EventTable.name.ilike(f"%{query}%"))
             .order_by(EventTable.date, ascending=False)
             .output(load_json=True)
             .limit(12)
