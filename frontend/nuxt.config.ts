@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     shim: false,
     strict: true,
   },
+
   app: {
     head: {
       title,
@@ -66,6 +67,23 @@ export default defineNuxtConfig({
             '@font-face{font-family:Inter var;font-style:normal;font-weight:100 900;font-display:swap;src:url(/Inter.var.woff2) format("woff2");font-named-instance:"Regular"}',
         },
       ],
+    },
+  },
+
+  nitro: {
+    vercel: {
+      config: {
+        routes: [
+          {
+            src: '/sitemap.txt',
+            dest: 'https://munro.up.railway.app/sitemap.txt',
+          },
+          {
+            src: '/api/(?<location>.*)',
+            dest: 'https://munro.up.railway.app/$location',
+          },
+        ],
+      },
     },
   },
 })

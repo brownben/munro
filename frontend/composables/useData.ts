@@ -1,6 +1,6 @@
 import { useUser, useLoggedIn } from './auth'
 
-const base = 'http://localhost:8000/'
+const base = 'https://munroleagues.com/api/'
 
 export const useData = <Type>(location: string) =>
   useFetch<Type>(`${base}${location}`, { key: location })
