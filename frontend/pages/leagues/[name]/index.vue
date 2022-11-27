@@ -147,13 +147,13 @@ if (league.value) {
         <div
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pt-10 sm:pb-6 lg:px-8"
         >
-          <div>
+          <div class="pb-4">
             <h2 class="col-span-1 text-2xl font-bold text-gray-500 sm:text-3xl">
               Classes
             </h2>
             <NuxtLink
               :to="`/leagues/${route.params.name}/classes/create`"
-              class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+              class="mt-2 inline-block rounded bg-gray-100 px-2 pt-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
             >
               + Add Class
             </NuxtLink>
