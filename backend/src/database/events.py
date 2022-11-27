@@ -126,28 +126,34 @@ class Events:
         return cast(str, event["league"])
 
     @staticmethod
-    async def update(id: str, event: Event) -> bool:
-        new_id = f"{event.name.replace(' ', '')}-{event.date}"
-        if new_id != id:
-            await (
-                EventTable.update({EventTable.id: new_id})
-                .where(EventTable.id == new_id)
-                .run()
-            )
-
+    async def update(
+        id: str, event: Event
+    ) -> Literal["updated"] | Literal["id-exists"] | Literal["no-event"]:
         existing_event = (
-            await EventTable.objects().where(EventTable.id == new_id).first().run()
+            await EventTable.objects().where(EventTable.id == id).first().run()
         )
 
         if not existing_event:
-            return False
+            return "no-event"
+
+        if event.name != existing_event.name or event.date != existing_event.date:
+            new_id = f"{event.name.replace(' ', '')}-{event.date}"
+
+            if (await EventTable.count().where(EventTable.id == new_id).run()) > 0:
+                return "id-exists"
+
+            await (
+                EventTable.update({EventTable.id: new_id})
+                .where(EventTable.id == id)
+                .run()
+            )
 
         for key, value in event.dict().items():
             setattr(existing_event, key, value)
 
         await existing_event.save().run()
 
-        return True
+        return "updated"
 
     @staticmethod
     async def delete_by_id(id: str) -> None:

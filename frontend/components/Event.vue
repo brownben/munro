@@ -51,7 +51,7 @@ const deleteEvent = async () => {
         <strong class="font-medium">{{ event.organiser }}</strong>
       </ImageRow>
       <ImageRow v-if="event.part_of" :icon="CollectionIcon" darker>
-        Part of the
+        Part of
         <strong class="font-medium">{{ event.part_of }}</strong>
       </ImageRow>
       <ImageRow v-if="event.website" :icon="GlobeIcon" darker hover>

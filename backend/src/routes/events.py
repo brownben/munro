@@ -6,7 +6,7 @@ from fastapi.param_functions import Depends
 from fastapi.routing import APIRouter
 
 from ..database import Events, Leagues, Results
-from ..exceptions import HTTP_201, HTTP_404, HTTP_500
+from ..exceptions import HTTP_201, HTTP_404, HTTP_409, HTTP_500
 from ..schemas import (
     Event,
     EventCreationRequest,
@@ -34,12 +34,17 @@ async def create_event(
     authentication: bool = Depends(require_authentication),
 ) -> Message:
     league = await Leagues.get_by_name(event.league)
-
-    if league:
-        await Events.create(event, league)
-        raise HTTP_201(f"Event `{event.name}` created")
-    else:
+    if not league:
         raise HTTP_500(f"Couldn't find league `{event.league}`")
+
+    existing_event = await Events.get_by_id(
+        f"{event.name.replace(' ', '')}-{event.date}"
+    )
+    if existing_event:
+        raise HTTP_409(f"Event `{event.name}` already exists")
+
+    await Events.create(event, league)
+    raise HTTP_201(f"Event `{event.name}` created")
 
 
 @router.get("/upload-key", response_model=List[EventWithUploadKey])
@@ -87,12 +92,17 @@ async def update_competitor_details(
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
-    success = await Events.update(id, event)
+    result = await Events.update(id, event)
 
-    if success:
-        return Message(detail=f"Event `{event.name}` updated")
-    else:
-        raise HTTP_404(f"Couldn't find event with the id `{id}`")
+    match result:
+        case "updated":
+            return Message(detail=f"Event `{event.name}` updated")
+        case "id-exists":
+            raise HTTP_409(
+                f"Event already exists with name `{event.name}` and date `{event.date}`"
+            )
+        case "no-event":
+            raise HTTP_404(f"Couldn't find event with the id `{id}`")
 
 
 @router.delete("/{id}", response_model=Message)

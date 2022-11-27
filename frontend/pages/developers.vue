@@ -43,9 +43,8 @@ useTitle({
           All leagues, events, and results are able to be accessed through
           Munro's API to allow you to create your own applications/ statistics
           based on the data in Munro. Full Swagger documentation is available
-          <a href="https://munro-leagues-production.up.railway.app/api"
-            >to view here</a
-          >. (You may need to do a hard refresh to view the page)
+          <a href="https://munro.up.railway.app/docs">to view here</a>. (You may
+          need to do a hard refresh to view the page)
         </p>
 
         <h2>Themes</h2>

@@ -404,6 +404,33 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
         self.assertEqual(event["date"], datetime.date(2022, 12, 12))
         self.assertIsInstance(event["upload_key"], str)
 
+    def test_create_event_already_exists(self) -> None:
+        for _ in range(2):
+            response = self.client.post(
+                "/events/",
+                headers={"Authorization": "Bearer SuperSecretTest"},
+                json={
+                    "name": "Test Event",
+                    "date": "2022-12-12",
+                    "organiser": "",
+                    "part_of": "",
+                    "website": "",
+                    "more_information": "",
+                    "results_links": {},
+                    "allow_user_submitted_results": False,
+                    "league": "Sprintelope 2021",
+                    "compulsory": False,
+                    "league_group": "",
+                    "overridden_scoring_method": "",
+                    "expected_courses": {},
+                },
+            )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertDictEqual(
+            response.json(), {"detail": "Event `Test Event` already exists"}
+        )
+
     def test_create_event_unknown_league(self) -> None:
         original_events = EventTable.select(EventTable.name).run_sync()
         original_league_events = LeagueEventTable.select(LeagueEventTable.id).run_sync()
@@ -510,4 +537,82 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
         self.assertDictEqual(
             response.json(),
             {"detail": "Couldn't find event with the id `hahaha-unknown`"},
+        )
+
+    def test_update_event_id(self) -> None:
+        event = (
+            EventTable.select(EventTable.organiser)
+            .where(EventTable.id == "TheFinalCountdown-2021-12-24")
+            .first()
+            .run_sync()
+        )
+
+        self.assertEqual(event["organiser"], "Saint Nicholas")
+
+        response = self.client.put(
+            "/events/TheFinalCountdown-2021-12-24",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "id": "TheFinalCountdown-2021-12-24",
+                "name": "The Final Countdown",
+                "date": "2021-12-25",
+                "organiser": "Saint Nicholas",
+                "part_of": "Testing",
+                "website": "",
+                "more_information": "",
+                "results_links": {},
+                "allow_user_submitted_results": False,
+                "league": "Sprintelope 2021",
+                "compulsory": False,
+                "league_group": "",
+                "overridden_scoring_method": "",
+                "expected_courses": {},
+                "competitor_pool": "Edinburgh Summer 2021",
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertDictEqual(
+            response.json(),
+            {"detail": "Event `The Final Countdown` updated"},
+        )
+
+        event = (
+            EventTable.select(EventTable.id, EventTable.organiser)
+            .where(EventTable.id == "TheFinalCountdown-2021-12-25")
+            .first()
+            .run_sync()
+        )
+        self.assertEqual(event["organiser"], "Saint Nicholas")
+
+    def test_update_event_already_exists(self) -> None:
+        for _ in range(2):
+            response = self.client.put(
+                "/events/TestEvent-2022-12-12",
+                headers={"Authorization": "Bearer SuperSecretTest"},
+                json={
+                    "id": "",
+                    "name": "The Final Countdown",
+                    "date": "2021-12-24",
+                    "organiser": "",
+                    "part_of": "",
+                    "website": "",
+                    "more_information": "",
+                    "results_links": {},
+                    "allow_user_submitted_results": False,
+                    "league": "Sprintelope 2021",
+                    "compulsory": False,
+                    "league_group": "",
+                    "overridden_scoring_method": "",
+                    "expected_courses": {},
+                    "competitor_pool": "Edinburgh Summer 2021",
+                },
+            )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertDictEqual(
+            response.json(),
+            {
+                "detail": "Event already exists with name `The Final Countdown` and date `2021-12-24`"
+            },
         )
