@@ -26,6 +26,16 @@ const getEvent = async () => {
 
   try {
     event.value = await useGet(`events/${form.event_id}`)
+
+    const links = event.value?.results_links
+    if (links) {
+      if (links.Winsplits) form.results_links.Winsplits = links.Winsplits
+      if (links.Routegadget) form.results_links.Winsplits = links.Routegadget
+      if (links['Standard Results'])
+        form.results_links.Winsplits = links['Standard Results']
+      if (links['GPS Tracking'])
+        form.results_links.Winsplits = links['GPS Tracking']
+    }
   } catch {
     event.value = null
   }
