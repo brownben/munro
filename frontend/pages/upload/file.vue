@@ -30,11 +30,11 @@ const getEvent = async () => {
     const links = event.value?.results_links
     if (links) {
       if (links.Winsplits) form.results_links.Winsplits = links.Winsplits
-      if (links.Routegadget) form.results_links.Winsplits = links.Routegadget
+      if (links.Routegadget) form.results_links.Routegadget = links.Routegadget
       if (links['Standard Results'])
-        form.results_links.Winsplits = links['Standard Results']
+        form.results_links['Standard Results'] = links['Standard Results']
       if (links['GPS Tracking'])
-        form.results_links.Winsplits = links['GPS Tracking']
+        form.results_links['GPS Tracking'] = links['GPS Tracking']
     }
   } catch {
     event.value = null
