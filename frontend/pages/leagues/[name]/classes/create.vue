@@ -3,6 +3,7 @@ import {
   IsValidURLParameter,
   RequiredField,
   IsValidOptionalURLParameter,
+  IsValidAgeClass,
 } from '~/utils/validation'
 import { League } from '~~/api-types'
 
@@ -93,12 +94,6 @@ useTitle({
         class="col-span-2"
         :validator="IsValidURLParameter('a name')"
       />
-      <Input
-        v-model.trim="form.course"
-        label="Default Course:"
-        class="col-span-2"
-        :validator="IsValidOptionalURLParameter('a default course')"
-      />
 
       <InputSwitch
         v-model="form.specify_number_of_counting_events"
@@ -111,6 +106,17 @@ useTitle({
         v-model="form.number_of_counting_events"
         label="Number of Counting Events:"
         class="col-span-2"
+      />
+
+      <FormHeading
+        title="Course"
+        description="Set the default course to use for results for this class."
+      />
+      <Input
+        v-model.trim="form.course"
+        label="Default Course:"
+        class="col-span-2"
+        :validator="IsValidOptionalURLParameter('a default course')"
       />
 
       <FormHeading
@@ -139,19 +145,19 @@ useTitle({
           {
             title: 'Exact with B',
             description:
-              'Only include people who are in the age class, or juniors who\' B class is the specified class',
+              'Only include people who are in the age class, or juniors who\'s B class is the specified class',
             value: 'exactWithB',
           },
           {
-            title: 'Over 18',
+            title: 'Exact Gender',
             description:
-              'Only include seniors in senior classes (don\'t let juniors run up)',
-            value: 'older18',
+              'Gender must match the age class (Women can\'t run up as men)',
+            value: 'exactGender',
           },
           {
-            title: 'Junior Strict',
-            description: 'Can run up, but must have the same gender',
-            value: 'genderUnder',
+            title: 'Seniors',
+            description: 'Only include seniors (over 18s)',
+            value: 'older18',
           },
         ]"
         class="col-span-2"
@@ -161,6 +167,7 @@ useTitle({
         v-model.trim="form.age_class"
         label="Age Class:"
         class="col-span-2"
+        :validator="IsValidAgeClass"
       />
 
       <FormHeading

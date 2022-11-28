@@ -80,11 +80,25 @@ def is_age_class_eligible_exact_with_b_class(
     )
 
 
-def is_age_class_eligible_under(specified_string: str, age_class_string: str) -> bool:
+def is_age_class_eligible_exact_gender(
+    specified_string: str, age_class_string: str
+) -> bool:
     gender, age = parse_age_class(age_class_string)
     specified_gender, specified_age = parse_age_class(specified_string)
 
-    return age <= specified_age and gender == specified_gender
+    def is_age_eligible() -> bool:
+        # If 21, it is Open. All age classes are eligible
+        if specified_age == 21:
+            return True
+
+        # If a senior age class, only age classes older count
+        elif specified_age > 21:
+            return age >= specified_age
+
+        # Else is a junior age class, only age classes lower count
+        return age <= specified_age
+
+    return is_age_eligible() and gender == specified_gender
 
 
 def is_age_class_eligible_over_18(specified_string: str, age_class_string: str) -> bool:
@@ -92,9 +106,19 @@ def is_age_class_eligible_over_18(specified_string: str, age_class_string: str) 
     specified_gender, specified_age = parse_age_class(specified_string)
 
     def is_age_eligible() -> bool:
-        if specified_age >= 18:
+        # If less than 18 they are not a senior
+        if age < 18:
+            return False
+
+        # If 21, it is Open. All age classes are eligible
+        if specified_age == 21:
+            return True
+
+        # If a senior age class, only age classes older count
+        elif specified_age > 21:
             return age >= specified_age
 
+        # Else is a junior age class, only age classes lower count
         return age <= specified_age
 
     def is_gender_eligible() -> bool:
@@ -120,8 +144,8 @@ def age_class_matches_filter(filter: str, age_class: str) -> bool:
         return is_age_class_eligible_exact(specified_age_class, age_class)
     elif filter.startswith("exactWithB-"):
         return is_age_class_eligible_exact_with_b_class(specified_age_class, age_class)
-    elif filter.startswith("genderUnder-"):
-        return is_age_class_eligible_under(specified_age_class, age_class)
+    elif filter.startswith("exactGender-"):
+        return is_age_class_eligible_exact_gender(specified_age_class, age_class)
     elif filter.startswith("older18-"):
         return is_age_class_eligible_over_18(specified_age_class, age_class)
 

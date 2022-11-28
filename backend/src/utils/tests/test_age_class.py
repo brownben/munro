@@ -144,17 +144,26 @@ class TestMatchesAgeClassFilter(unittest.TestCase):
 
     def test_older_18(self) -> None:
         self.assertTrue(age_class_matches_filter("older18-M18", "M18"))
-        self.assertFalse(age_class_matches_filter("older18-M18", "M16"))
         self.assertTrue(age_class_matches_filter("older18-M18", "W18"))
-        self.assertTrue(age_class_matches_filter("older18-W18", "W21"))
-        self.assertTrue(age_class_matches_filter("older18-W16", "W12"))
+        self.assertTrue(age_class_matches_filter("older18-W18", "W18"))
+        self.assertTrue(age_class_matches_filter("older18-W21", "W45"))
+        self.assertTrue(age_class_matches_filter("older18-W35", "W45"))
+        self.assertFalse(age_class_matches_filter("older18-M18", "M16"))
+        self.assertFalse(age_class_matches_filter("older18-W45", "W21"))
+        self.assertFalse(age_class_matches_filter("older18-W35", "M45"))
+        self.assertFalse(age_class_matches_filter("older18-W16", "W12"))
         self.assertFalse(age_class_matches_filter("older18-W16", "M12"))
 
-    def test_gender_under(self) -> None:
-        self.assertTrue(age_class_matches_filter("genderUnder-M18", "M18"))
-        self.assertTrue(age_class_matches_filter("genderUnder-M18", "M16"))
-        self.assertFalse(age_class_matches_filter("genderUnder-M18", "W18"))
-        self.assertFalse(age_class_matches_filter("genderUnder-W18", "W21"))
+    def test_exact_gender(self) -> None:
+        self.assertTrue(age_class_matches_filter("exactGender-M18", "M18"))
+        self.assertTrue(age_class_matches_filter("exactGender-M18", "M16"))
+        self.assertTrue(age_class_matches_filter("exactGender-W21", "W35"))
+        self.assertTrue(age_class_matches_filter("exactGender-W21", "W12"))
+        self.assertTrue(age_class_matches_filter("exactGender-W35", "W45"))
+        self.assertTrue(age_class_matches_filter("exactGender-W21", "W12"))
+        self.assertFalse(age_class_matches_filter("exactGender-M18", "W18"))
+        self.assertFalse(age_class_matches_filter("exactGender-W18", "W21"))
+        self.assertFalse(age_class_matches_filter("exactGender-W35", "M45"))
 
     def test_no_filter(self) -> None:
         self.assertTrue(age_class_matches_filter("", "M16"))
