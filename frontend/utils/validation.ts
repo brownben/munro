@@ -74,6 +74,12 @@ export const IsValidURL = {
   },
 }
 
+export const IsValidAgeClass = {
+  message: `Please enter a valid age class.`,
+  checker: (value: string) => /^[MW][0-9]+$/.test(value) || value == '',
+  fieldProperties: {},
+}
+
 export const IsValidJSON = (fieldName: string): Validator => ({
   message: `Please enter ${fieldName} as valid JSON.`,
   checker: (value: string) => {

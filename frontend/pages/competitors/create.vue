@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RequiredField } from '~/utils/validation'
+import { RequiredField, IsValidAgeClass } from '~/utils/validation'
 
 const loggedIn = useLoggedIn()
 if (!loggedIn.value) await redirect('/login')
@@ -48,6 +48,7 @@ useTitle({
         v-model.trim="form.age_class"
         label="Age Class:"
         class="col-span-2"
+        :validator="IsValidAgeClass"
       />
       <Input v-model.trim="form.club" label="Club:" class="col-span-2" />
 

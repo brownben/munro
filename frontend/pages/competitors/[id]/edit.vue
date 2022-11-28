@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RequiredField } from '~/utils/validation'
+import { RequiredField, IsValidAgeClass } from '~/utils/validation'
 import { Competitor } from '~~/api-types'
 
 const loggedIn = useLoggedIn()
@@ -45,6 +45,7 @@ useTitle({
         v-model.trim="form.age_class"
         label="Age Class:"
         class="col-span-2"
+        :validator="IsValidAgeClass"
       />
       <Input v-model.trim="form.club" label="Club:" class="col-span-2" />
 
