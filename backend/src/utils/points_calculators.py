@@ -1,6 +1,6 @@
 import collections
 import itertools
-from typing import Dict, Iterable, Tuple, Type
+from typing import Iterable, Type
 
 from ..schemas import Result
 from . import stats
@@ -80,7 +80,7 @@ class PositionBasedWithDraw(PointsCalculator):
     e.g. 1st - 100, 2nd - 98, 2nd - 98, 2nd - 98, 5th - 96
     """
 
-    _occurances_of_positions: Dict[str, Dict[int, int]] = {}
+    _occurances_of_positions: dict[str, dict[int, int]] = {}
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
@@ -137,7 +137,7 @@ class TimeRelativeToAverageBased(PointsCalculator):
 
     _average_points = 1000
     _points_per_standard_deviation = 200
-    _statistics_for_courses: Dict[str, Tuple[float, float]]
+    _statistics_for_courses: dict[str, tuple[float, float]]
 
     def __init__(self, scoring_method: str):
         if "100" in scoring_method:
@@ -178,7 +178,7 @@ class TimeRelativeToTopBased(PointsCalculator):
     Calculates points by the difference between the time and the average time of the top 3
     """
 
-    _top3_average_for_courses: Dict[str, float]
+    _top3_average_for_courses: dict[str, float]
     _multiplier = 1000
 
     @staticmethod
@@ -212,7 +212,7 @@ class TimeRelativeToWinnerWelshAdjusted(PointsCalculator):
     Adjusts the scores based on the welsh league scoring system
     """
 
-    _course_winners_time: Dict[str, float]
+    _course_winners_time: dict[str, float]
 
     def get_multipliers(self, age_class: str, course_ran: str) -> int:
         course_multipliers = {

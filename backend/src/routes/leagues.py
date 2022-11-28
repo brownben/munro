@@ -1,5 +1,5 @@
 import asyncio
-from typing import Awaitable, Iterable, List
+from typing import Awaitable, Iterable
 
 from fastapi import Depends, Path
 from fastapi.routing import APIRouter
@@ -52,7 +52,7 @@ def competitor_to_league_result(
     return league_result
 
 
-@router.get("/", response_model=List[League])
+@router.get("/", response_model=list[League])
 async def get_all_league_details() -> Iterable[League]:
     return await Leagues.get_all()
 

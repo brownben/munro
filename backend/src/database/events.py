@@ -1,7 +1,7 @@
 import base64
 import datetime
 import os
-from typing import Any, Dict, Iterable, Literal, Optional, Union, cast
+from typing import Any, Iterable, Literal, Optional, cast
 
 from piccolo.query.methods.select import Count
 from pydantic.networks import HttpUrl
@@ -196,7 +196,7 @@ class Events:
 
     @staticmethod
     async def update_results_links(
-        event_id: str, results_links: Dict[str, Union[HttpUrl, Literal[""]]]
+        event_id: str, results_links: dict[str, HttpUrl | Literal[""]]
     ) -> None:
         await (
             EventTable.update(

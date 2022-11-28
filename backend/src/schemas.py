@@ -1,5 +1,5 @@
 import datetime
-from typing import Dict, List, Literal, Optional, Union
+from typing import Literal, Optional
 
 from pydantic import BaseModel
 from pydantic.networks import HttpUrl
@@ -10,7 +10,7 @@ class League(BaseModel):
     tagline: str
     year: int
     coordinator: str
-    website: Union[HttpUrl, Literal[""]]
+    website: HttpUrl | Literal[""]
     more_information: str
 
     visible: bool = True
@@ -45,9 +45,9 @@ class Event(BaseModel):
     competitor_pool: str
 
     organiser: str
-    website: Union[HttpUrl, Literal[""]]
+    website: HttpUrl | Literal[""]
     more_information: str
-    results_links: Dict[str, Union[HttpUrl, Literal[""]]]
+    results_links: dict[str, HttpUrl | Literal[""]]
     part_of: str = ""
 
     results_uploaded: bool = False
@@ -61,15 +61,15 @@ class EventCreationRequest(BaseModel):
     date: datetime.date
     organiser: str = ""
     part_of: str = ""
-    website: Union[HttpUrl, Literal[""]]
+    website: HttpUrl | Literal[""]
     more_information: str
-    results_links: Dict[str, Union[HttpUrl, Literal[""]]]
+    results_links: dict[str, HttpUrl | Literal[""]]
     allow_user_submitted_results: bool = False
     league: str
     compulsory: bool = False
     league_group: Optional[str] = None
     overridden_scoring_method: Optional[str] = None
-    expected_courses: Optional[Dict[str, str]]
+    expected_courses: Optional[dict[str, str]]
 
 
 class EventWithUploadKey(Event):
@@ -86,7 +86,7 @@ class LeagueEventDatabase(BaseModel):
     league_group: Optional[str]
     overridden_scoring_method: Optional[str]
 
-    expected_courses: Optional[Dict[str, str]]
+    expected_courses: Optional[dict[str, str]]
 
 
 class LeagueEvent(LeagueEventDatabase):
@@ -152,7 +152,7 @@ class UploadRequest(BaseModel):
     upload_key: str
     overwrite: bool = False
 
-    results_links: Optional[Dict[str, Union[HttpUrl, Literal[""]]]]
+    results_links: Optional[dict[str, HttpUrl | Literal[""]]]
 
 
 class UploadFileRequest(UploadRequest):
@@ -184,15 +184,15 @@ class LeagueResult(BaseModel):
     total_points: int = 0
     position: int = 0
 
-    points: List[Optional[LeagueResultScore]] = []
+    points: list[Optional[LeagueResultScore]] = []
 
 
 class LeagueResultsResponse(BaseModel):
     league: str
     class_name: str
-    classes: List[str]
-    results: List[LeagueResult]
-    events: List[LeagueEvent]
+    classes: list[str]
+    results: list[LeagueResult]
+    events: list[LeagueEvent]
 
 
 class EventResult(BaseModel):
@@ -215,10 +215,10 @@ class EventWithResults(BaseModel):
 
     date: Optional[datetime.date]
     organiser: Optional[str]
-    website: Union[HttpUrl, Literal[""]]
-    results_links: Dict[str, Union[HttpUrl, Literal[""]]]
+    website: HttpUrl | Literal[""]
+    results_links: dict[str, HttpUrl | Literal[""]]
 
-    results: List[EventResult]
+    results: list[EventResult]
 
 
 class Message(BaseModel):
@@ -245,30 +245,30 @@ class UploadResultRequest(BaseModel):
 
 
 class LeagueOverview(League):
-    classes: List[LeagueClass]
-    events: List[Event]
+    classes: list[LeagueClass]
+    events: list[Event]
 
 
 class LeagueOverviewAuthenticated(League):
-    classes: List[LeagueClass]
-    events: List[EventWithUploadKey]
+    classes: list[LeagueClass]
+    events: list[EventWithUploadKey]
 
 
 class SearchResult(BaseModel):
-    leagues: List[League]
-    events: List[Event]
-    competitors: List[Competitor]
+    leagues: list[League]
+    events: list[Event]
+    competitors: list[Competitor]
 
 
 class HomeDetails(BaseModel):
     leagues: int
     events: int
     results: int
-    latestResults: List[Event]
+    latestResults: list[Event]
 
 
 class CompetitorOverview(Competitor):
-    results: List[ResultWithEventName]
+    results: list[ResultWithEventName]
     league: str
 
 

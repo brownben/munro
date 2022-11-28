@@ -1,11 +1,10 @@
 import unittest
-from typing import List, Tuple
 
 from ...schemas import LeagueResult, LeagueResultScore
 from ..dynamic_results import calculate_dynamic_results
 
 
-def league_result(values: List[Tuple[int, str]]) -> LeagueResult:
+def league_result(values: list[tuple[int, str]]) -> LeagueResult:
     return LeagueResult(
         id=0,
         name="",

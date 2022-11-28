@@ -1,5 +1,5 @@
 from itertools import groupby
-from typing import Dict, Iterable, List, Optional, Set, Tuple
+from typing import Iterable, Optional, Set
 
 from ..schemas import League, LeagueClass, LeagueEvent
 from ..schemas import LeagueResultScore as Result
@@ -8,8 +8,8 @@ from ..schemas import LeagueResultScore as Result
 def find_counting_results(
     results: Iterable[Optional[Result]],
     league: League,
-    events: List[LeagueEvent] = [],
-    league_groups: Dict[str, Tuple[int, int]] = {},
+    events: list[LeagueEvent] = [],
+    league_groups: dict[str, tuple[int, int]] = {},
     league_class: Optional[LeagueClass] = None,
 ) -> Set[Result]:
     """Returns the results that are used as their counting scores when calculating their total points"""
@@ -36,7 +36,7 @@ def find_counting_results(
         max_number_of_counting_results -= len(compulsory_events) - len(counting_results)
 
     # If a subset of a league (a group) has a required minimum/ maximum number of events counting
-    groups: Dict[str, List[str]] = {
+    groups: dict[str, list[str]] = {
         group_name: [event.event for event in events_in_group]
         for group_name, events_in_group in groupby(events, lambda x: x.league_group)
         if group_name

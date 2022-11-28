@@ -1,4 +1,4 @@
-from typing import Dict, cast
+from typing import cast
 
 from ...database.tables import Result
 from .helpers import TestCaseWithDatabase
@@ -38,7 +38,7 @@ class TestResultRoutes(TestCaseWithDatabase):
         self.assertNotEqual(result_from_database, {"competitor": 3})
 
     def test_update_result(self) -> None:
-        def request(data: Dict[str, bool]) -> None:
+        def request(data: dict[str, bool]) -> None:
             response = self.client.patch(
                 "/results/2",
                 headers={"Authorization": "Bearer SuperSecretTest"},
@@ -48,9 +48,9 @@ class TestResultRoutes(TestCaseWithDatabase):
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.json(), {"detail": "Result `2` updated"})
 
-        def get_result() -> Dict[str, bool]:
+        def get_result() -> dict[str, bool]:
             return cast(
-                Dict[str, bool],
+                dict[str, bool],
                 Result.select(Result.visible, Result.incomplete)
                 .where(Result.id == 2)
                 .first()

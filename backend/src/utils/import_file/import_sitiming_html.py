@@ -1,7 +1,7 @@
 import html
 import json
 import re
-from typing import Iterator, List, cast
+from typing import Iterator, cast
 
 from ..times import is_valid_time
 from .import_file import ImportedRecord, ImportException
@@ -11,7 +11,7 @@ def remove_html_tags_from_string(string: str) -> str:
     return re.sub("<.*>", "", string)
 
 
-def transform_result_row(result_row: List[str], course: str) -> ImportedRecord:
+def transform_result_row(result_row: list[str], course: str) -> ImportedRecord:
     time_position = (
         6
         if len(result_row) >= 7

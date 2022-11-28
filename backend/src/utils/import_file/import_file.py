@@ -1,14 +1,4 @@
-from typing import (
-    Any,
-    Callable,
-    Generator,
-    Iterable,
-    List,
-    Literal,
-    Optional,
-    Tuple,
-    TypedDict,
-)
+from typing import Any, Callable, Generator, Iterable, Literal, Optional, TypedDict
 
 from ..times import parse_time
 
@@ -79,7 +69,7 @@ class ImportedResult:
         self.club = self._get_club(result)
         self.file_points = self._get_int(result, "filePoints")
 
-    def __iter__(self) -> Generator[Tuple[str, Any], None, None]:
+    def __iter__(self) -> Generator[tuple[str, Any], None, None]:
         for key in (
             "name",
             "course",
@@ -93,7 +83,7 @@ class ImportedResult:
             yield (key, getattr(self, key))
 
 
-def fix_times_from_excel(results: List[ImportedRecord]) -> List[ImportedRecord]:
+def fix_times_from_excel(results: list[ImportedRecord]) -> list[ImportedRecord]:
     def result_has_hours_but_no_seconds(result: ImportedRecord) -> bool:
         has_hours = result["time"].count(":") >= 2
         has_zero_seconds = result["time"][-3:] == ":00"

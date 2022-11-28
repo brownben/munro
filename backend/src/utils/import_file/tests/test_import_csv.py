@@ -1,11 +1,10 @@
 import unittest
-from typing import List
 
 from ..import_csv import process_csv_file as process_csv_file_generator
 from ..import_file import ImportedRecord, ImportException
 
 
-def process_csv_file(file: str) -> List[ImportedRecord]:
+def process_csv_file(file: str) -> list[ImportedRecord]:
     return list(process_csv_file_generator(file))
 
 

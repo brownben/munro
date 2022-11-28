@@ -1,4 +1,4 @@
-from typing import Any, Dict, Iterable, Optional, Tuple
+from typing import Any, Iterable, Optional
 
 from piccolo.query.methods.select import Count
 
@@ -211,7 +211,7 @@ class LeagueClasses:
 
 class LeagueGroups:
     @staticmethod
-    async def get_by_league(league: str) -> Dict[str, Tuple[int, int]]:
+    async def get_by_league(league: str) -> dict[str, tuple[int, int]]:
         return {
             group["name"]: (group["min"], group["max"])
             for group in await LeagueGroupTable.select(*league_group_fields)

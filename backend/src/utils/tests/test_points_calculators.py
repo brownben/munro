@@ -1,5 +1,5 @@
 import unittest
-from typing import Any, List
+from typing import Any
 
 from ...schemas import Result
 from ..points_calculators import PointsCalculator, get_matching_points_calculator
@@ -7,8 +7,8 @@ from ..points_calculators import PointsCalculator, get_matching_points_calculato
 
 def get_points_for_results(
     scoring_method: str,
-    results: List[Result],
-) -> List[int]:
+    results: list[Result],
+) -> list[int]:
     points_calculator = get_matching_points_calculator(scoring_method)
     points_calculator.calculate_required_stats(results)
 
@@ -36,7 +36,7 @@ def create_result(**kwargs: Any) -> Result:
 
 class TestPointsCalculators(unittest.TestCase):
     def test_single_valid_result(self) -> None:
-        results: List[Result] = [
+        results: list[Result] = [
             create_result(position=1, time=10, file_points=47),
         ]
 
@@ -64,7 +64,7 @@ class TestPointsCalculators(unittest.TestCase):
             )
 
     def test_single_invalid_result(self) -> None:
-        results: List[Result] = [
+        results: list[Result] = [
             create_result(position=1, time=10, file_points=47, incomplete=True),
         ]
 
@@ -92,7 +92,7 @@ class TestPointsCalculators(unittest.TestCase):
             )
 
     def test_single_zero_time_result(self) -> None:
-        results: List[Result] = [
+        results: list[Result] = [
             create_result(position=1, time=0, file_points=47, incomplete=False),
         ]
 
@@ -120,7 +120,7 @@ class TestPointsCalculators(unittest.TestCase):
             )
 
     def test_standard_sorted_results(self) -> None:
-        results: List[Result] = [
+        results: list[Result] = [
             create_result(position=1, time=10, file_points=47),
             create_result(position=2, time=12, file_points=52),
             create_result(position=3, time=15, file_points=12),
@@ -153,7 +153,7 @@ class TestPointsCalculators(unittest.TestCase):
             )
 
     def test_standard_randomized_results(self) -> None:
-        results: List[Result] = [
+        results: list[Result] = [
             create_result(position=5, time=65, file_points=47),
             create_result(position=1, time=10, file_points=47),
             create_result(position=3, time=15, file_points=12),

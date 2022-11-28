@@ -1,5 +1,5 @@
 import unittest
-from typing import Iterable, List
+from typing import Iterable
 
 from ...schemas import League, LeagueEvent
 from ...schemas import LeagueResultScore as Result
@@ -20,7 +20,7 @@ def league_config(number_of_counting_events: int) -> League:
     )
 
 
-def generate_results(*points: int) -> List[Result]:
+def generate_results(*points: int) -> list[Result]:
     return [
         Result(event=str(index), score=point, counting=False, type="")
         for index, point in enumerate(points)
@@ -40,7 +40,7 @@ def event(id: str, compulsory: bool = False, group: str = "") -> LeagueEvent:
 
 
 def counting_results(
-    results: List[Result], counting_events: int, events: List[LeagueEvent] = []
+    results: list[Result], counting_events: int, events: list[LeagueEvent] = []
 ) -> Iterable[Result]:
     return find_counting_results(
         results, league=league_config(counting_events), events=events

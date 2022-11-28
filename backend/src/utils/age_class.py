@@ -1,12 +1,11 @@
 import datetime
 import re
-from typing import Tuple, Union
 
 Gender = str
 Age = int
 
 
-def _parse_age(num: Union[str, int]) -> int:
+def _parse_age(num: str | int) -> int:
     """Parse a string which represents an age. Fallbacks to 21"""
     try:
         return int(num)
@@ -14,7 +13,7 @@ def _parse_age(num: Union[str, int]) -> int:
         return 21
 
 
-def parse_age_class(age_class: str) -> Tuple[Gender, Age]:
+def parse_age_class(age_class: str) -> tuple[Gender, Age]:
     """Parse a provided age class string into an age and gender which can be processed"""
 
     age_class = age_class.upper()

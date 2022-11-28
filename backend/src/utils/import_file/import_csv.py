@@ -1,4 +1,4 @@
-from typing import Dict, Iterable, List, Literal, cast
+from typing import Iterable, Literal, cast
 
 from .import_file import ImportedRecord, ImportException
 
@@ -16,7 +16,7 @@ Columns = Literal[
     "filePoints",
 ]
 
-field_names: Dict[str, Columns] = {
+field_names: dict[str, Columns] = {
     "name": "name",
     "firstname": "firstName",
     "givenname": "firstName",
@@ -59,7 +59,7 @@ def normalise_header(header: str) -> str:
     return header.lower().strip().replace("-", "").replace("_", "").replace(" ", "")
 
 
-def get_column_locations(header_row: List[str]) -> Dict[Columns, int]:
+def get_column_locations(header_row: list[str]) -> dict[Columns, int]:
     """Get the positions of each column in the file"""
 
     column_mappings = {}
@@ -74,7 +74,7 @@ def get_column_locations(header_row: List[str]) -> Dict[Columns, int]:
     return column_mappings
 
 
-def check_all_required_columns_present(column_mappings: Dict[Columns, int]) -> bool:
+def check_all_required_columns_present(column_mappings: dict[Columns, int]) -> bool:
     """Check all required columns (Name, Course, Time) are present"""
 
     headings = column_mappings.keys()
@@ -95,7 +95,7 @@ def check_all_required_columns_present(column_mappings: Dict[Columns, int]) -> b
     return True
 
 
-def _get_value_in_row(row: List[str], position: int, column: Columns) -> str:
+def _get_value_in_row(row: list[str], position: int, column: Columns) -> str:
     mandatory_fields = (
         "name",
         "firstName",

@@ -1,4 +1,4 @@
-from typing import Iterable, List
+from typing import Iterable
 
 from fastapi import Path
 from fastapi.routing import APIRouter
@@ -12,12 +12,12 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[str])
+@router.get("/", response_model=list[str])
 async def get_all_competitor_pools() -> Iterable[str]:
     return await Competitors.get_all_pools()
 
 
-@router.get("/{name}/competitors", response_model=List[Competitor])
+@router.get("/{name}/competitors", response_model=list[Competitor])
 async def get_competitor_details(
     name: str = Path(
         title="Competitor Pool Name",
@@ -28,7 +28,7 @@ async def get_competitor_details(
     return await Competitors.get_by_pool(name)
 
 
-@router.get("/{name}/events", response_model=List[Event])
+@router.get("/{name}/events", response_model=list[Event])
 async def get_events_in_competitor_pool(
     name: str = Path(
         title="Competitor Pool Name",

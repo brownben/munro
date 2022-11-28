@@ -1,5 +1,5 @@
 import asyncio
-from typing import Iterable, List
+from typing import Iterable
 
 from fastapi import Path
 from fastapi.param_functions import Depends
@@ -23,7 +23,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[Event])
+@router.get("/", response_model=list[Event])
 async def get_all_event_details() -> Iterable[EventWithUploadKey]:
     return await Events.get_all()
 
@@ -47,19 +47,19 @@ async def create_event(
     raise HTTP_201(f"Event `{event.name}` created")
 
 
-@router.get("/upload-key", response_model=List[EventWithUploadKey])
+@router.get("/upload-key", response_model=list[EventWithUploadKey])
 async def get_all_event_details_with_upload_key(
     authentication: bool = Depends(require_authentication),
 ) -> Iterable[EventWithUploadKey]:
     return await Events.get_all()
 
 
-@router.get("/latest-results", response_model=List[Event])
+@router.get("/latest-results", response_model=list[Event])
 async def get_latest_results() -> Iterable[Event]:
     return await Events.get_latest_with_results()
 
 
-@router.get("/results-submission", response_model=List[Event])
+@router.get("/results-submission", response_model=list[Event])
 async def get_events_allowing_results_submission() -> Iterable[Event]:
     return await Events.get_allowing_results_submission()
 

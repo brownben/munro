@@ -1,4 +1,4 @@
-from typing import Iterable, Optional, TypeVar, Union
+from typing import Iterable, Optional, TypeVar
 
 from ..schemas import EventResult, LeagueResult, Result
 from .dynamic_results import DYNAMIC_RESULT_TYPES
@@ -27,7 +27,7 @@ def assign_position_based_on_points(
         yield result
 
 
-TResult = TypeVar("TResult", bound=Union[Result, EventResult])
+TResult = TypeVar("TResult", bound=Result | EventResult)
 
 
 def assign_position_based_on_time(results: Iterable[TResult]) -> Iterable[TResult]:

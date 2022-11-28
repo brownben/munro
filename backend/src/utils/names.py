@@ -1,5 +1,3 @@
-from typing import List
-
 equivalent_names_with_different_initials = (
     ("Aaron", "Ron"),
     ("Abigail", "Gail"),
@@ -117,7 +115,7 @@ def name_to_initial(name: str) -> str:
         return name.upper()
 
 
-def get_split_name(name: str) -> List[str]:
+def get_split_name(name: str) -> list[str]:
     """Get tuple with first name and surname"""
 
     splitName = name.strip().split(" ", 1)

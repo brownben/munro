@@ -1,5 +1,5 @@
 import asyncio
-from typing import Iterable, List
+from typing import Iterable
 
 from fastapi import Depends, Path
 from fastapi.routing import APIRouter
@@ -21,7 +21,7 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=List[Competitor])
+@router.get("/", response_model=list[Competitor])
 async def get_all_competitors() -> Iterable[Competitor]:
     return await Competitors.get_all()
 
