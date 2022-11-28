@@ -110,6 +110,7 @@ class Leagues:
             League.parse_obj(league)
             for league in await LeagueTable.select(*league_fields)
             .order_by(LeagueTable.year, ascending=False)
+            .order_by(LeagueTable.name)
             .where(LeagueTable.visible == True)
             .run()
         )

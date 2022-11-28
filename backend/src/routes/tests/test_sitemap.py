@@ -13,13 +13,13 @@ https://munroleagues.com/upload/file
 https://munroleagues.com/upload/result
 https://munroleagues.com/sitiming
 https://munroleagues.com/search
+https://munroleagues.com/leagues/Night%20League
+https://munroleagues.com/leagues/Other%20League
 https://munroleagues.com/leagues/Sprintelope%202021
 https://munroleagues.com/leagues/Sprintelope%202021/results/Long
 https://munroleagues.com/leagues/Sprintelope%202021/results/Multiple
 https://munroleagues.com/leagues/Sprintelope%202021/results/Overall
 https://munroleagues.com/leagues/Sprintelope%202021/results/Short
-https://munroleagues.com/leagues/Night%20League
-https://munroleagues.com/leagues/Other%20League
 https://munroleagues.com/events/TestEvent-2022-02-03/results
 https://munroleagues.com/events/TheFinalCountdown-2021-12-24/results
 https://munroleagues.com/events/TestEvent-2021-12-12/results
