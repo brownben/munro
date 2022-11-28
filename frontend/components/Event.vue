@@ -92,7 +92,9 @@ const deleteEvent = async () => {
       </dl>
       <div class="-mb-2 flex flex-wrap gap-3">
         <NuxtLink
-          :to="`/upload/file?event_id=${event.id}&upload_key=${event.upload_key}`"
+          :to="`/upload/file?event_id=${encodeURIComponent(
+            event.id
+          )}&upload_key=${encodeURIComponent(event.upload_key ?? '')}`"
           class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
         >
           Upload Results

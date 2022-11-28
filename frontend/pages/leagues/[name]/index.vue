@@ -153,7 +153,7 @@ if (league.value) {
             </h2>
             <NuxtLink
               :to="`/leagues/${route.params.name}/classes/create`"
-              class="mt-2 inline-block rounded bg-gray-100 px-2 pt-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+              class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
             >
               + Add Class
             </NuxtLink>
