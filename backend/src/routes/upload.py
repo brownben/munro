@@ -44,7 +44,7 @@ async def process_upload_file(
     elif overwrite:
         await Results.delete_by_event_no_type(event.id)
 
-    competitors = await Competitors.get_by_pool(event.competitor_pool)
+    competitors = list(await Competitors.get_by_pool(event.competitor_pool))
 
     try:
         imported_results = import_results_from_file(file)
