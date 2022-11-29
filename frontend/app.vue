@@ -17,6 +17,9 @@
 const route = useRoute()
 
 const theme = useState('theme', () => queryToString(route.query.theme))
+if (import.meta.env.DEV) {
+  theme.value = 'blue'
+}
 
 const themeClass = computed(() => {
   if (!theme.value || theme.value === 'purple') return ''

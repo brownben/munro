@@ -8,8 +8,11 @@ defineProps({
 </script>
 <template>
   <header
-    class="w-full border-b border-gray-50 bg-gradient-to-b from-white to-gray-50 print:border-0 print:to-white"
-    :class="{ 'border-gray-100': !$slots.rightAction }"
+    class="w-full border-b bg-gradient-to-b from-white to-gray-50 print:border-0 print:to-white"
+    :class="{
+      'border-gray-100': !$slots.rightAction,
+      'border-gray-50': $slots.rightAction,
+    }"
   >
     <div
       class="relative mx-auto max-w-screen-lg px-6 py-6 sm:pt-8 sm:pb-10 lg:px-8 print:sm:py-4"

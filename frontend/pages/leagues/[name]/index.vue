@@ -118,7 +118,11 @@ if (league.value) {
           >
             &nbsp;
           </p>
-          <Event :event="latestEvents[1]" class="pt-4 pb-6" />
+          <Event
+            v-if="latestEvents.length > 1"
+            :event="latestEvents[1]"
+            class="pt-4 pb-6"
+          />
         </div>
       </section>
 
