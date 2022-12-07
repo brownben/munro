@@ -50,6 +50,7 @@ import {
     <NuxtLink
       to="/about"
       class="inline-block text-gray-600 hover:text-main-700 md:col-span-3 md:mt-4"
+      no-prefetch
     >
       Read more about Munro, and why it was created →
     </NuxtLink>

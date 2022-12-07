@@ -29,6 +29,7 @@
       <NuxtLink
         to="/upload/instructions"
         class="mt-8 inline-block font-medium text-white"
+        no-prefetch
       >
         See how simple it is →
       </NuxtLink>

@@ -20,8 +20,9 @@ const events = league.value?.events ?? []
 const latestEvents = events.filter((event) => event.results_uploaded).reverse()
 
 const todaysDate = getCurrentDate()
-const nextEvent = events.filter((event) => event.date > todaysDate)[0]
-const isEventsInFuture = events.some((event) => event.date > todaysDate)
+const nextEvent = events.filter(
+  (event) => event.date >= todaysDate && !event.results_uploaded
+)[0]
 
 const scoringMethods: Record<string, [string, string]> = {
   position: ['Position Based Scoring', 'System (100 Max)'],
@@ -107,7 +108,7 @@ if (league.value) {
           </h2>
           <Event :event="latestEvents[0]" class="pt-4 pb-6" />
         </div>
-        <div v-if="isEventsInFuture">
+        <div v-if="nextEvent">
           <h2 class="font-bold uppercase text-gray-500 sm:pb-2">Next Event</h2>
           <Event :event="nextEvent" class="pt-4 pb-6" />
         </div>

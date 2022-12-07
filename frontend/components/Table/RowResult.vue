@@ -23,7 +23,10 @@ defineProps({
         {{ result.name }}
       </span>
       <span class="text-sm leading-tight text-gray-600 sm:hidden">
-        {{ result.age_class }} &nbsp; {{ result.club }}
+        <template v-if="result.age_class">
+          {{ result.age_class }} &nbsp;
+        </template>
+        {{ result.club }}
       </span>
     </td>
     <td class="hidden text-center sm:table-cell">
