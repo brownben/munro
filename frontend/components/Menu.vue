@@ -98,13 +98,14 @@ const links: Link[] = [
               <MenuItem
                 v-for="link of links"
                 :key="link.location"
-                v-slot="{ active }"
+                v-slot="{ active, close }"
               >
                 <NuxtLink
                   :to="link.location"
                   class="mt-1 block rounded-md px-3 py-2 font-normal text-gray-500 ring-main-200 transition duration-150 ease-in-out hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 focus:outline-none focus-visible:ring"
                   :class="active && 'bg-main-100 text-main-700'"
                   active-class="text-main-700 bg-main-100"
+                  @click="close"
                 >
                   {{ link.text }}
                 </NuxtLink>
