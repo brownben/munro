@@ -15,7 +15,7 @@ const { data: competitor_pools } = await useData<string[]>(`competitor-pools/`)
 const form = reactive({
   name: '',
   tagline: '',
-  year: 2022,
+  year: new Date().getUTCFullYear(),
   coordinator: '',
   website: '',
   more_information: '',
