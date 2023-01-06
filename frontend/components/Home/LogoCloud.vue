@@ -15,7 +15,7 @@ const leagues = [
     height: 551,
   },
   {
-    to: '/leagues/UK Elite League 2022',
+    to: '/leagues/UK Elite League 2023',
     src: '/logos/uk-elite-orienteering-league',
     alt: 'UK Elite Orienteering League Logo',
     width: 512,
