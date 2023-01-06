@@ -89,7 +89,7 @@ if (event.value) {
     <div
       class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 pt-8 lg:px-8 print:hidden"
     >
-      <p class="py-1 pr-2 font-bold text-gray-500">Courses:</p>
+      <p class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto">Courses:</p>
       <NuxtLink
         v-for="course in courses"
         :key="course"
@@ -107,7 +107,7 @@ if (event.value) {
     >
       <h2
         :id="course"
-        class="px-3 pb-4 text-3xl font-black tracking-tight text-gray-800 sm:px-6 sm:pb-6 lg:px-0"
+        class="px-3 pb-4 text-3xl font-extrabold tracking-tight text-gray-800 sm:px-6 sm:pb-6 lg:px-0"
       >
         {{ course }}
       </h2>
