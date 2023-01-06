@@ -98,6 +98,19 @@ if (league.value) {
       </template>
     </Heading>
     <main>
+      <LinksSection
+        v-if="league.classes.length > 0"
+        class="block sm:hidden"
+        :links="
+          league.classes.map((course) => ({
+            text: course.name,
+            location: `/leagues/${league?.name}/results/${course.name}`,
+          }))
+        "
+      >
+        League Results
+      </LinksSection>
+
       <section
         v-if="events.length >= 2 && latestEvents.length > 0"
         class="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 px-6 py-8 sm:grid-cols-2 sm:pt-10 sm:pb-6 lg:px-8"
@@ -178,6 +191,7 @@ if (league.value) {
 
       <LinksSection
         v-if="league.classes.length > 0"
+        class="hidden sm:block"
         :links="
           league.classes.map((course) => ({
             text: course.name,
