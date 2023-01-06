@@ -148,8 +148,13 @@ class Events:
                 .run()
             )
 
+            existing_event = (
+                await EventTable.objects().where(EventTable.id == new_id).first().run()
+            )
+
         for key, value in event.dict().items():
-            setattr(existing_event, key, value)
+            if key != "id":
+                setattr(existing_event, key, value)
 
         await existing_event.save().run()
 

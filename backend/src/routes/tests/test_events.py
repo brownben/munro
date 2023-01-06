@@ -578,12 +578,13 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
         )
 
         event = (
-            EventTable.select(EventTable.id, EventTable.organiser)
+            EventTable.select(EventTable.id, EventTable.organiser, EventTable.date)
             .where(EventTable.id == "TheFinalCountdown-2021-12-25")
             .first()
             .run_sync()
         )
         self.assertEqual(event["organiser"], "Saint Nicholas")
+        self.assertEqual(str(event["date"]), "2021-12-25")
 
     def test_update_event_already_exists(self) -> None:
         for _ in range(2):
