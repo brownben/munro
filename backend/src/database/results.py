@@ -70,7 +70,7 @@ class Results:
             for result in await ResultTable.select(*results_fields)
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
-            .where(ResultTable.course == course)
+            .where(ResultTable.course.ilike(course))
             .order_by(ResultTable.course, ascending=True)
             .order_by(ResultTable.time, ascending=True)
             .run()
