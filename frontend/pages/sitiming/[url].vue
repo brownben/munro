@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import type { EventResults } from '~/api-types'
 import type { Filters } from '~/utils/filter'
-import { AdjustmentsVerticalIcon } from '@heroicons/vue/24/outline/index.js'
+import {
+  AdjustmentsVerticalIcon,
+  DocumentArrowUpIcon,
+} from '@heroicons/vue/24/outline/index.js'
 
 const route = useRoute()
 
@@ -77,9 +80,9 @@ useTitle({
     </transition>
 
     <div
-      class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 pt-8 lg:px-8"
+      class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 pt-8 lg:px-8 print:hidden"
     >
-      <p class="py-1 pr-2 font-bold text-gray-500">Courses:</p>
+      <p class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto">Courses:</p>
       <NuxtLink
         v-for="course in courses"
         :key="course"
@@ -95,12 +98,21 @@ useTitle({
       :key="course"
       class="mx-auto w-full max-w-screen-lg flex-grow py-8 sm:py-12 lg:px-8"
     >
-      <h2
-        :id="course"
-        class="px-6 pb-6 text-3xl font-black text-gray-800 lg:px-0"
-      >
-        {{ course }}
-      </h2>
+      <div class="flex items-center gap-3 px-3 pb-4 sm:px-6 sm:pb-6 lg:px-0">
+        <h2
+          :id="course"
+          class="text-3xl font-extrabold tracking-tight text-gray-800"
+        >
+          {{ course }}
+        </h2>
+        <NuxtLink to="#content" title="Return to Top" class="group">
+          <span class="sr-only">Return to Top</span>
+          <DocumentArrowUpIcon
+            class="h-5 text-gray-400 group-hover:text-main-600 group-focus:text-main-600"
+            aria-hidden="true"
+          />
+        </NuxtLink>
+      </div>
 
       <TableResults :results="results[course]" :filters="filters" />
     </section>
