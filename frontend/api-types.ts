@@ -16,6 +16,8 @@ export interface Event {
 
   allow_user_submitted_results: boolean
   upload_key?: string
+
+  group?: string
 }
 
 export interface Message {

@@ -71,16 +71,19 @@ async def create_league(
 
 
 async def get_league(name: str) -> LeagueOverviewAuthenticated:
-    result, classes, events = await asyncio.gather(
+    result, classes, events, groups = await asyncio.gather(
         Leagues.get_by_name(name),
         LeagueClasses.get_by_league(name),
         Events.get_by_league(name),
+        LeagueGroups.get_by_league(name),
     )
 
     if not result:
         raise HTTP_404(f"Couldn't find league with name `{name}`")
 
-    return LeagueOverviewAuthenticated(**result.dict(), classes=classes, events=events)
+    return LeagueOverviewAuthenticated(
+        **result.dict(), classes=classes, events=events, groups=groups
+    )
 
 
 @router.get("/{name}", response_model=LeagueOverview)
@@ -180,7 +183,7 @@ async def get_league_results(
         LeagueEvents.get_by_league_with_results(league_name),
         LeagueClasses.get_by_name(league_name, cls),
         LeagueClasses.get_by_league(league_name),
-        LeagueGroups.get_by_league(league_name),
+        LeagueGroups.get_dict_by_league(league_name),
     )
 
     if not league:

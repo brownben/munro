@@ -5,6 +5,7 @@ import {
   CalendarIcon,
   GlobeEuropeAfricaIcon as GlobeIcon,
   PuzzlePieceIcon,
+  TagIcon,
 } from '@heroicons/vue/24/outline/index.js'
 import { displayDate } from '~/utils/date'
 import type { Event } from '~/api-types'
@@ -53,6 +54,9 @@ const deleteEvent = async () => {
       <ImageRow v-if="event.part_of" :icon="PuzzlePieceIcon" darker>
         Part of
         <strong class="font-medium">{{ event.part_of }}</strong>
+      </ImageRow>
+      <ImageRow v-if="event?.group" :icon="TagIcon" darker>
+        <strong class="font-medium">{{ event?.group }}</strong>
       </ImageRow>
       <ImageRow v-if="event.website" :icon="GlobeIcon" darker hover>
         <a :href="event.website" rel="noopener noreferrer" target="_blank">

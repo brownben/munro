@@ -72,7 +72,15 @@ class EventCreationRequest(BaseModel):
     expected_courses: Optional[dict[str, str]]
 
 
+class EventWithLeagueDetails(Event):
+    group: Optional[str]
+
+
 class EventWithUploadKey(Event):
+    upload_key: str
+
+
+class EventWithLeagueDetailsAndUploadKey(EventWithLeagueDetails):
     upload_key: str
 
 
@@ -246,12 +254,14 @@ class UploadResultRequest(BaseModel):
 
 class LeagueOverview(League):
     classes: list[LeagueClass]
-    events: list[Event]
+    events: list[EventWithLeagueDetails]
+    groups: list[LeagueGroup]
 
 
 class LeagueOverviewAuthenticated(League):
     classes: list[LeagueClass]
-    events: list[EventWithUploadKey]
+    events: list[EventWithLeagueDetailsAndUploadKey]
+    groups: list[LeagueGroup]
 
 
 class SearchResult(BaseModel):

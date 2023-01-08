@@ -9,12 +9,14 @@ from pydantic.networks import HttpUrl
 from ..schemas import (
     Event,
     EventCreationRequest,
+    EventWithLeagueDetailsAndUploadKey,
     EventWithUploadKey,
     League,
     LeagueEvent,
 )
 from .tables import Event as EventTable
 from .tables import LeagueEvent as LeagueEventTable
+from .tables import LeagueGroup as LeagueGroupTable
 
 event_fields = (
     EventTable.id,
@@ -216,24 +218,25 @@ class Events:
         )
 
     @staticmethod
-    async def get_by_league(league: str) -> Iterable[EventWithUploadKey]:
-        league_events = (
-            await LeagueEventTable.select(LeagueEventTable.event)
+    async def get_by_league(
+        league: str,
+    ) -> Iterable[EventWithLeagueDetailsAndUploadKey]:
+        return (
+            EventWithLeagueDetailsAndUploadKey(
+                **event["event"],
+                results_links=event["results_links"],
+                group=event["group"],
+            )
+            for event in await LeagueEventTable.select(
+                *LeagueEventTable.event.all_columns(exclude=[EventTable.results_links]),
+                LeagueEventTable.event.results_links.as_alias("results_links"),
+                LeagueEventTable.league_group.name.as_alias("group"),
+            )
             .where(LeagueEventTable.league == league)
-            .output(as_list=True)
+            .order_by(LeagueEventTable.event.date, LeagueEventTable.event.name)
+            .output(load_json=True, nested=True)
             .run()
         )
-        if len(league_events):
-            return (
-                EventWithUploadKey.parse_obj(event)
-                for event in await EventTable.select(*event_fields)
-                .where(EventTable.id.is_in(league_events))
-                .order_by(EventTable.date, EventTable.name)
-                .output(load_json=True)
-                .run()
-            )
-        else:
-            return []
 
     @staticmethod
     async def search(query: str) -> Iterable[EventWithUploadKey]:

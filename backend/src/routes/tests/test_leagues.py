@@ -123,6 +123,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "results_uploaded_time": "2021-09-19T12:47:06.401102",
                         "allow_user_submitted_results": False,
                         "part_of": "",
+                        "group": None,
                     },
                     {
                         "id": "TheFinalCountdown-2021-12-24",
@@ -137,6 +138,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "results_uploaded_time": "2021-12-24T19:47:06.500000",
                         "allow_user_submitted_results": False,
                         "part_of": "",
+                        "group": None,
                     },
                     {
                         "id": "TestEvent-2022-02-03",
@@ -151,8 +153,10 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "results_uploaded_time": None,
                         "allow_user_submitted_results": True,
                         "part_of": "",
+                        "group": None,
                     },
                 ],
+                "groups": [],
             },
         )
 
@@ -229,6 +233,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "allow_user_submitted_results": False,
                         "part_of": "",
                         "upload_key": ANY,
+                        "group": None,
                     },
                     {
                         "id": "TheFinalCountdown-2021-12-24",
@@ -244,6 +249,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "allow_user_submitted_results": False,
                         "part_of": "",
                         "upload_key": ANY,
+                        "group": None,
                     },
                     {
                         "id": "TestEvent-2022-02-03",
@@ -259,8 +265,10 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "allow_user_submitted_results": True,
                         "part_of": "",
                         "upload_key": ANY,
+                        "group": None,
                     },
                 ],
+                "groups": [],
             },
         )
 

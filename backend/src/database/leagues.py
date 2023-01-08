@@ -2,7 +2,7 @@ from typing import Any, Iterable, Optional
 
 from piccolo.query.methods.select import Count
 
-from ..schemas import League, LeagueClass
+from ..schemas import League, LeagueClass, LeagueGroup
 from .tables import CompetitorPool as CompetitorPoolTable
 from .tables import League as LeagueTable
 from .tables import LeagueClass as LeagueClassTable
@@ -28,13 +28,6 @@ league_class_fields = (
     LeagueClassTable.age_class_filter,
     LeagueClassTable.club_filter,
     LeagueClassTable.number_of_counting_events,
-)
-
-league_group_fields = (
-    LeagueGroupTable.name,
-    LeagueGroupTable.league,
-    LeagueGroupTable.min,
-    LeagueGroupTable.max,
 )
 
 
@@ -211,10 +204,20 @@ class LeagueClasses:
 
 class LeagueGroups:
     @staticmethod
-    async def get_by_league(league: str) -> dict[str, tuple[int, int]]:
+    async def get_by_league(league: str) -> list[LeagueGroup]:
+        return [
+            LeagueGroup.parse_obj(group)
+            for group in await LeagueGroupTable.select(*LeagueGroupTable.all_columns())
+            .where(LeagueGroupTable.league == league)
+            .order_by(LeagueGroupTable.name)
+            .run()
+        ]
+
+    @staticmethod
+    async def get_dict_by_league(league: str) -> dict[str, tuple[int, int]]:
         return {
             group["name"]: (group["min"], group["max"])
-            for group in await LeagueGroupTable.select(*league_group_fields)
+            for group in await LeagueGroupTable.select(*LeagueGroupTable.all_columns())
             .where(LeagueGroupTable.league == league)
             .order_by(LeagueGroupTable.name)
             .run()
