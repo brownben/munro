@@ -99,21 +99,29 @@ if (league.value) {
     </Heading>
     <main>
       <LinksSection
-        v-if="league.classes.length > 0"
-        class="block sm:hidden"
-        :links="
-          league.classes.map((course) => ({
-            text: course.name,
-            location: `/leagues/${league?.name}/results/${course.name}`,
-          }))
-        "
+        v-if="loggedIn"
+        :links="[
+          {
+            text: 'Edit League',
+            location: `/leagues/${league.name}/edit`,
+          },
+          {
+            text: 'Create Event',
+            location: `/events/create?league=${league.name}`,
+          },
+          {
+            text: 'Manage Competitors',
+            location: `/competitor-pools/${league.competitor_pool}`,
+          },
+        ]"
+        dark
       >
-        League Results
+        Manage your league
       </LinksSection>
 
       <section
         v-if="events.length >= 2 && latestEvents.length > 0"
-        class="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 px-6 py-8 sm:grid-cols-2 sm:pt-10 sm:pb-6 lg:px-8"
+        class="mx-auto hidden max-w-screen-lg grid-cols-1 gap-8 px-6 py-8 sm:grid sm:grid-cols-2 sm:pt-10 sm:pb-6 lg:px-8"
       >
         <div>
           <h2 class="font-bold uppercase text-gray-500 sm:pb-2">
@@ -141,24 +149,15 @@ if (league.value) {
       </section>
 
       <LinksSection
-        v-if="loggedIn"
-        :links="[
-          {
-            text: 'Edit League',
-            location: `/leagues/${league.name}/edit`,
-          },
-          {
-            text: 'Create Event',
-            location: `/events/create?league=${league.name}`,
-          },
-          {
-            text: 'Manage Competitors',
-            location: `/competitor-pools/${league.competitor_pool}`,
-          },
-        ]"
-        dark
+        v-if="league.classes.length > 0"
+        :links="
+          league.classes.map((course) => ({
+            text: course.name,
+            location: `/leagues/${league?.name}/results/${course.name}`,
+          }))
+        "
       >
-        Manage your league
+        League Results
       </LinksSection>
 
       <section v-if="loggedIn">
@@ -166,9 +165,7 @@ if (league.value) {
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pt-10 sm:pb-6 lg:px-8"
         >
           <div class="pb-4">
-            <h2 class="col-span-1 text-2xl font-bold text-gray-500 sm:text-3xl">
-              Classes
-            </h2>
+            <h2 class="col-span-1 text-2xl font-bold text-gray-500">Classes</h2>
             <NuxtLink
               :to="`/leagues/${route.params.name}/classes/create`"
               class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
@@ -189,25 +186,12 @@ if (league.value) {
         </div>
       </section>
 
-      <LinksSection
-        v-if="league.classes.length > 0"
-        class="hidden sm:block"
-        :links="
-          league.classes.map((course) => ({
-            text: course.name,
-            location: `/leagues/${league?.name}/results/${course.name}`,
-          }))
-        "
-      >
-        League Results
-      </LinksSection>
-
       <section
         class="mx-auto max-w-screen-lg gap-8 px-6 py-6 sm:py-12 md:py-14 lg:px-8"
       >
         <div class="flex grid-cols-3 flex-col sm:grid">
           <div class="col-span-1 pb-8 sm:pb-0">
-            <h2 class="text-2xl font-bold text-gray-500 sm:text-3xl">Events</h2>
+            <h2 class="text-2xl font-bold text-gray-500">Events</h2>
             <NuxtLink
               v-if="loggedIn"
               :to="`/events/create?league=${league.name}`"

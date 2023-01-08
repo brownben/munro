@@ -20,8 +20,8 @@ const deleteClass = async () => {
 </script>
 
 <template>
-  <article class="flex justify-between gap-4">
-    <h3 class="text-2xl font-black text-gray-900">
+  <article class="flex flex-col justify-between gap-4 sm:flex-row">
+    <h3 class="text-xl font-bold text-gray-900 md:text-2xl">
       {{ cls.name }}
     </h3>
 

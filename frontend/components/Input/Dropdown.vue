@@ -98,7 +98,7 @@ const inputValidationProps = computed(() => {
       <select
         :id="label"
         :value="modelValue"
-        class="w-full appearance-none rounded border p-2 text-sm ring-offset-2 transition focus:outline-none focus-visible:ring-2"
+        class="w-full appearance-none rounded border bg-white p-2 text-sm ring-offset-2 transition focus:outline-none focus-visible:ring-2"
         :class="{
           'border-gray-400 ring-main-600 focus:border-main-600':
             state != 'invalid',
