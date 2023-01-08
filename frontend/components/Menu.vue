@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import {
-  XIcon as CloseIcon,
-  MenuIcon as HamburgerMenuIcon,
-} from '@heroicons/vue/outline/index.js'
+  XMarkIcon as CloseIcon,
+  Bars3Icon as HamburgerMenuIcon,
+} from '@heroicons/vue/24/outline/index.js'
 
 import MunroLogo from './MunroLogo.vue'
 

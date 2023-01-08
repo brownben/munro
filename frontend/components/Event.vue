@@ -3,9 +3,9 @@ import type { PropType } from 'vue'
 import {
   UserIcon,
   CalendarIcon,
-  GlobeIcon,
-  CollectionIcon,
-} from '@heroicons/vue/outline/index.js'
+  GlobeEuropeAfricaIcon as GlobeIcon,
+  PuzzlePieceIcon,
+} from '@heroicons/vue/24/outline/index.js'
 import { displayDate } from '~/utils/date'
 import type { Event } from '~/api-types'
 
@@ -50,7 +50,7 @@ const deleteEvent = async () => {
         Organised by
         <strong class="font-medium">{{ event.organiser }}</strong>
       </ImageRow>
-      <ImageRow v-if="event.part_of" :icon="CollectionIcon" darker>
+      <ImageRow v-if="event.part_of" :icon="PuzzlePieceIcon" darker>
         Part of
         <strong class="font-medium">{{ event.part_of }}</strong>
       </ImageRow>

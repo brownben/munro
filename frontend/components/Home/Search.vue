@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SearchIcon } from '@heroicons/vue/outline/index.js'
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline/index.js'
 </script>
 <template>
   <section class="bg-main-600 text-white">
@@ -25,7 +25,7 @@ import { SearchIcon } from '@heroicons/vue/outline/index.js'
             class="absolute top-0 right-0 h-full rounded px-4 outline-none transition hover:bg-white hover:text-main-600 focus:bg-white focus:text-main-600"
           >
             <span class="sr-only">Search</span>
-            <SearchIcon class="h-6 w-6" />
+            <MagnifyingGlassIcon class="h-6 w-6" />
           </button>
         </div>
       </form>

@@ -2,9 +2,9 @@
 import {
   UserIcon,
   CalculatorIcon,
-  ChartSquareBarIcon,
-  GlobeIcon,
-} from '@heroicons/vue/outline/index.js'
+  ChartBarSquareIcon,
+  GlobeEuropeAfricaIcon,
+} from '@heroicons/vue/24/outline/index.js'
 import type { LeagueOverview } from '~/api-types'
 
 const route = useRoute()
@@ -72,7 +72,7 @@ if (league.value) {
         </strong>
         {{ scoringMethods[league.scoring_method][1] }}
       </ImageRow>
-      <ImageRow :icon="ChartSquareBarIcon">
+      <ImageRow :icon="ChartBarSquareIcon">
         Your
         <strong class="font-medium">
           best {{ league.number_of_counting_events }} scores
@@ -82,7 +82,7 @@ if (league.value) {
           {{ league.events.length }} events count
         </strong>
       </ImageRow>
-      <ImageRow v-if="league.website" :icon="GlobeIcon" hover>
+      <ImageRow v-if="league.website" :icon="GlobeEuropeAfricaIcon" hover>
         <a :href="league.website" rel="noopener noreferrer" target="_blank">
           {{ league.website }}
         </a>

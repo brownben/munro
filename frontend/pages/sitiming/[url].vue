@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { EventResults } from '~/api-types'
 import type { Filters } from '~/utils/filter'
-import { AdjustmentsIcon } from '@heroicons/vue/outline/index.js'
+import { AdjustmentsVerticalIcon } from '@heroicons/vue/24/outline/index.js'
 
 const route = useRoute()
 
@@ -45,7 +45,10 @@ useTitle({
           class="inline-flex select-none items-center rounded-md bg-gradient-to-r from-main-500 to-main-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:from-main-600 hover:to-main-700 focus:outline-none focus:ring-2 focus:ring-main-600 focus:ring-offset-2 print:hidden"
           @click="show = !show"
         >
-          <AdjustmentsIcon class="mr-2 -ml-1 h-5 w-5" aria-hidden="true" />
+          <AdjustmentsVerticalIcon
+            class="mr-2 -ml-1 h-5 w-5"
+            aria-hidden="true"
+          />
           <span>Filter Results</span>
         </button>
       </template>

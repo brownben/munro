@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {
-  CloudUploadIcon,
-  PencilAltIcon,
+  CloudArrowUpIcon,
+  PencilSquareIcon,
   InformationCircleIcon,
-} from '@heroicons/vue/outline/index.js'
+} from '@heroicons/vue/24/outline/index.js'
 
 useTitle({
   title: 'Upload',
@@ -16,7 +16,7 @@ useTitle({
     <Heading title="Upload Results" />
     <main class="mx-auto grid max-w-screen-lg grid-cols-1 px-6 py-8 lg:px-8">
       <div class="border-b border-gray-200 py-12 transition" to="/upload/file">
-        <CloudUploadIcon
+        <CloudArrowUpIcon
           aria-hidden="true"
           class="h-12 rounded-md bg-main-500 p-2 text-white transition"
         />
@@ -35,7 +35,7 @@ useTitle({
       </div>
 
       <div class="rounded-lg border-b border-gray-200 py-12 transition">
-        <PencilAltIcon
+        <PencilSquareIcon
           aria-hidden="true"
           class="h-12 rounded-md bg-main-500 p-2 text-white transition"
         />

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import {
   MapIcon,
-  DeviceMobileIcon,
-  SwitchVerticalIcon,
-} from '@heroicons/vue/outline/index.js'
+  DevicePhoneMobileIcon,
+  ArrowsUpDownIcon,
+} from '@heroicons/vue/24/outline/index.js'
 </script>
 <template>
   <section
     class="mx-auto grid max-w-screen-lg grid-cols-1 gap-12 px-6 py-10 sm:py-16 md:grid-cols-3 md:gap-8 lg:gap-10 lg:px-8"
   >
     <div>
-      <SwitchVerticalIcon
+      <ArrowsUpDownIcon
         aria-hidden="true"
         class="h-12 rounded-md bg-main-500 p-2 text-white transition"
       />
@@ -36,7 +36,7 @@ import {
       </p>
     </div>
     <div>
-      <DeviceMobileIcon
+      <DevicePhoneMobileIcon
         aria-hidden="true"
         class="h-12 rounded-md bg-main-500 p-2 text-white transition"
       />

@@ -3,8 +3,8 @@ import type { PropType } from 'vue'
 import {
   UserGroupIcon,
   CakeIcon,
-  CollectionIcon,
-} from '@heroicons/vue/outline/index.js'
+  RectangleStackIcon,
+} from '@heroicons/vue/24/outline/index.js'
 import type { Competitor } from '~/api-types'
 
 defineProps({
@@ -25,7 +25,11 @@ defineProps({
       <ImageRow v-if="competitor.age_class" :icon="CakeIcon" darker>
         {{ competitor.age_class }}
       </ImageRow>
-      <ImageRow v-if="competitor.competitor_pool" :icon="CollectionIcon" darker>
+      <ImageRow
+        v-if="competitor.competitor_pool"
+        :icon="RectangleStackIcon"
+        darker
+      >
         {{ competitor.competitor_pool }}
       </ImageRow>
     </div>

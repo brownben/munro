@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UserGroupIcon, CakeIcon } from '@heroicons/vue/outline/index.js'
+import { UserGroupIcon, CakeIcon } from '@heroicons/vue/24/outline/index.js'
 import type { CompetitorOverview } from '~/api-types'
 
 const route = useRoute()

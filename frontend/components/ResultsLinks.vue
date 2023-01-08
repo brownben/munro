@@ -2,12 +2,12 @@
 import type { PropType } from 'vue'
 
 import {
-  ClipboardListIcon,
+  DocumentTextIcon,
   MapIcon,
   ChartBarIcon,
-  LocationMarkerIcon,
+  MapPinIcon,
   LinkIcon,
-} from '@heroicons/vue/outline/index.js'
+} from '@heroicons/vue/24/outline/index.js'
 
 const props = defineProps({
   links: {
@@ -22,10 +22,10 @@ const filteredLinks = computed(() =>
 )
 
 const getIcon = (type: string) => {
-  if (type === 'Standard Results') return ClipboardListIcon
+  if (type === 'Standard Results') return DocumentTextIcon
   else if (type === 'Routegadget') return MapIcon
   else if (type === 'Winsplits') return ChartBarIcon
-  else if (type === 'GPS Tracking') return LocationMarkerIcon
+  else if (type === 'GPS Tracking') return MapPinIcon
   else return LinkIcon
 }
 </script>
