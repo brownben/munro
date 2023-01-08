@@ -63,10 +63,9 @@ const logout = () => {
         class="group focus-visible:ring-0"
       >
         <span class="sr-only">Mastodon</span>
-
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          aria-hidden
+          aria-hidden="true"
           viewBox="0 0 16 16"
           class="mx-2 box-content inline-block h-4 rounded-full bg-gray-200 p-2 text-gray-600 ring-main-300 transition duration-300 hover:bg-main-200 hover:text-main-700 group-focus:bg-main-200 group-focus:text-main-700 group-focus-visible:ring"
         >
