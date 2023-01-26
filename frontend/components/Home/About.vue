@@ -3,7 +3,7 @@ import {
   MapIcon,
   DevicePhoneMobileIcon,
   ArrowsUpDownIcon,
-} from '@heroicons/vue/24/outline/index.js'
+} from '@heroicons/vue/24/outline'
 </script>
 <template>
   <section

@@ -3,7 +3,7 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import {
   XMarkIcon as CloseIcon,
   Bars3Icon as HamburgerMenuIcon,
-} from '@heroicons/vue/24/outline/index.js'
+} from '@heroicons/vue/24/outline'
 
 import MunroLogo from './MunroLogo.vue'
 

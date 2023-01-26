@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ExclamationCircleIcon } from '@heroicons/vue/24/outline/index.js'
+import { ExclamationCircleIcon } from '@heroicons/vue/24/outline'
 
 const props = defineProps({
   button: { type: String, default: '' },

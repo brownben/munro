@@ -6,7 +6,7 @@ import {
   GlobeEuropeAfricaIcon as GlobeIcon,
   PuzzlePieceIcon,
   TagIcon,
-} from '@heroicons/vue/24/outline/index.js'
+} from '@heroicons/vue/24/outline'
 import { displayDate } from '~/utils/date'
 import type { Event } from '~/api-types'
 

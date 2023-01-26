@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { LeagueResultsOverview } from '~/api-types'
 import type { Filters } from '~/utils/filter'
-import { AdjustmentsVerticalIcon } from '@heroicons/vue/24/outline/index.js'
+import { AdjustmentsVerticalIcon } from '@heroicons/vue/24/outline'
 
 const route = useRoute()
 

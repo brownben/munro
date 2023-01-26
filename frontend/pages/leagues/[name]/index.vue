@@ -4,7 +4,7 @@ import {
   CalculatorIcon,
   ChartBarSquareIcon,
   GlobeEuropeAfricaIcon,
-} from '@heroicons/vue/24/outline/index.js'
+} from '@heroicons/vue/24/outline'
 import type { LeagueOverview } from '~/api-types'
 
 const route = useRoute()

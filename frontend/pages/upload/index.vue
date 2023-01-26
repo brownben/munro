@@ -3,7 +3,7 @@ import {
   CloudArrowUpIcon,
   PencilSquareIcon,
   InformationCircleIcon,
-} from '@heroicons/vue/24/outline/index.js'
+} from '@heroicons/vue/24/outline'
 
 useTitle({
   title: 'Upload',

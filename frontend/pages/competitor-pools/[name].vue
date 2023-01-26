@@ -2,7 +2,7 @@
 import {
   UserGroupIcon,
   AdjustmentsVerticalIcon,
-} from '@heroicons/vue/24/outline/index.js'
+} from '@heroicons/vue/24/outline'
 import { Filters } from '~/utils/filter'
 import type { Competitor } from '~/api-types'
 

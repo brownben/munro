@@ -4,7 +4,7 @@ import {
   UserGroupIcon,
   CakeIcon,
   RectangleStackIcon,
-} from '@heroicons/vue/24/outline/index.js'
+} from '@heroicons/vue/24/outline'
 import type { Competitor } from '~/api-types'
 
 defineProps({

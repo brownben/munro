@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline/index.js'
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
 </script>
 <template>
   <form method="get" action="/search" class="flex justify-center sm:mb-4">
