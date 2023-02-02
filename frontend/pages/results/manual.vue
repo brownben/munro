@@ -115,6 +115,7 @@ useTitle({
         class="col-span-2"
       />
       <Input
+        v-if="form.type == ''"
         v-model="form.time"
         label="Time:"
         type="text"
@@ -122,6 +123,7 @@ useTitle({
         :validator="IsValidTime"
       />
       <InputNumber
+        v-if="form.type == 'manual'"
         v-model="form.points"
         label="Points:"
         type="text"

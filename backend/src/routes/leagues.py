@@ -34,7 +34,7 @@ from ..utils.assign_positions import (
 )
 from ..utils.club import club_matches_filter
 from ..utils.counting_results import find_counting_results
-from ..utils.dynamic_results import calculate_dynamic_results
+from ..utils.dynamic_results import DYNAMIC_RESULT_TYPES, calculate_dynamic_results
 from ..utils.points_calculators import get_matching_points_calculator
 from .authentication import require_authentication
 
@@ -224,7 +224,7 @@ async def get_league_results(
                 points_calculator.calculate_points(
                     result, league_results[result.competitor].age_class
                 )
-                if result.type != "manual"
+                if result.type not in DYNAMIC_RESULT_TYPES
                 else result.file_points or 0
             )
 

@@ -40,3 +40,13 @@ class TestCalculateDynamicResults(unittest.TestCase):
         self.assertEqual(
             [point.score for point in result.points if point], [10, 10, 15]
         )
+
+    def test_max_no_standard_results(self) -> None:
+        result = league_result([(0, "max")])
+        calculate_dynamic_results(result)
+        self.assertEqual([point.score for point in result.points if point], [0])
+
+    def test_average_no_standard_results(self) -> None:
+        result = league_result([(0, "average")])
+        calculate_dynamic_results(result)
+        self.assertEqual([point.score for point in result.points if point], [0])
