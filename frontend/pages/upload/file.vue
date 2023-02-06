@@ -117,7 +117,7 @@ useTitle({
 
       <FormHeading
         title="Results Links"
-        description=" Add links to other results display and analysis sites, these can be
+        description="Add links to other results display and analysis sites, these can be
           updated later - just ask your league administrator."
       />
 
