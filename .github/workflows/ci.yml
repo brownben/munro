@@ -66,6 +66,11 @@ jobs:
           poetry run black . --check
           poetry run isort . --check
 
+      - name: Lint
+        working-directory: backend
+        run: |
+          poetry run ruff check .
+
       - name: Test
         working-directory: backend
         run: |

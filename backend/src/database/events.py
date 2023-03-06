@@ -16,7 +16,6 @@ from ..schemas import (
 )
 from .tables import Event as EventTable
 from .tables import LeagueEvent as LeagueEventTable
-from .tables import LeagueGroup as LeagueGroupTable
 
 event_fields = (
     EventTable.id,

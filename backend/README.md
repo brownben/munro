@@ -18,6 +18,9 @@ black . --check
 # Typecheck
 mypy
 
+# Lint
+ruff check .
+
 # Run tests and output coverage
 coverage run -m unittest
 coverage html

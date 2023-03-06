@@ -32,6 +32,7 @@ coverage = "^7.0.3"
 isort = "^5.10.1"
 mypy = "^0.991"
 respx = "^0.20.1"
+ruff = "^0.0.254"
 time-machine = "^2.6.0"
 types-requests = "^2.27.16"
 
