@@ -9,7 +9,7 @@ def find_counting_results(
     results: Iterable[Optional[Result]],
     league: League,
     events: list[LeagueEvent] = [],
-    league_groups: dict[str, tuple[int, int]] = {},
+    league_groups: dict[int, tuple[int, int]] = {},
     league_class: Optional[LeagueClass] = None,
 ) -> Set[Result]:
     """Returns the results that are used as their counting scores when calculating their total points"""
@@ -36,7 +36,7 @@ def find_counting_results(
         max_number_of_counting_results -= len(compulsory_events) - len(counting_results)
 
     # If a subset of a league (a group) has a required minimum/ maximum number of events counting
-    groups: dict[str, list[str]] = {
+    groups: dict[int, list[str]] = {
         group_name: [event.event for event in events_in_group]
         for group_name, events_in_group in groupby(events, lambda x: x.league_group)
         if group_name

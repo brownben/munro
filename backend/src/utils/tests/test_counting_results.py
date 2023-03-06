@@ -5,6 +5,8 @@ from ...schemas import League, LeagueEvent
 from ...schemas import LeagueResultScore as Result
 from ..counting_results import find_counting_results
 
+SHORT_GROUP = 22
+
 
 def league_config(number_of_counting_events: int) -> League:
     return League(
@@ -27,7 +29,7 @@ def generate_results(*points: int) -> list[Result]:
     ]
 
 
-def event(id: str, compulsory: bool = False, group: str = "") -> LeagueEvent:
+def event(id: str, compulsory: bool = False, group: int | None = None) -> LeagueEvent:
     return LeagueEvent(
         id=0,
         event=id,
@@ -199,36 +201,36 @@ class TestCountingEvents(unittest.TestCase):
         self.assertEqual(
             find_counting_results(
                 results,
-                events=[event("0", group="Short"), event("2", group="Short")],
+                events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
-                league_groups={"Short": (0, 3)},
+                league_groups={SHORT_GROUP: (0, 3)},
             ),
             set([results[0], results[2]]),
         )
         self.assertEqual(
             find_counting_results(
                 results,
-                events=[event("0", group="Short"), event("2", group="Short")],
+                events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
-                league_groups={"Short": (0, 2)},
+                league_groups={SHORT_GROUP: (0, 2)},
             ),
             set([results[0], results[2]]),
         )
         self.assertEqual(
             find_counting_results(
                 results,
-                events=[event("0", group="Short"), event("2", group="Short")],
+                events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=1),
-                league_groups={"Short": (0, 2)},
+                league_groups={SHORT_GROUP: (0, 2)},
             ),
             set([results[2]]),
         )
         self.assertEqual(
             find_counting_results(
                 results,
-                events=[event("0", group="Short"), event("2", group="Short")],
+                events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=3),
-                league_groups={"Short": (0, 2)},
+                league_groups={SHORT_GROUP: (0, 2)},
             ),
             set([results[0], results[2], results[4]]),
         )
@@ -239,9 +241,9 @@ class TestCountingEvents(unittest.TestCase):
         self.assertEqual(
             find_counting_results(
                 results,
-                events=[event("0", group="Short"), event("2", group="Short")],
+                events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
-                league_groups={"Short": (0, 1)},
+                league_groups={SHORT_GROUP: (0, 1)},
             ),
             set([results[2], results[4]]),
         )
@@ -249,13 +251,13 @@ class TestCountingEvents(unittest.TestCase):
             find_counting_results(
                 results,
                 events=[
-                    event("0", group="Short"),
-                    event("2", group="Short"),
-                    event("4", group="Short"),
-                    event("3", group="Short"),
+                    event("0", group=SHORT_GROUP),
+                    event("2", group=SHORT_GROUP),
+                    event("4", group=SHORT_GROUP),
+                    event("3", group=SHORT_GROUP),
                 ],
                 league=league_config(number_of_counting_events=3),
-                league_groups={"Short": (0, 2)},
+                league_groups={SHORT_GROUP: (0, 2)},
             ),
             set([results[0], results[2], results[1]]),
         )
@@ -263,13 +265,13 @@ class TestCountingEvents(unittest.TestCase):
             find_counting_results(
                 results,
                 events=[
-                    event("0", group="Short"),
-                    event("2", group="Short"),
-                    event("4", group="Short"),
-                    event("3", group="Short"),
+                    event("0", group=SHORT_GROUP),
+                    event("2", group=SHORT_GROUP),
+                    event("4", group=SHORT_GROUP),
+                    event("3", group=SHORT_GROUP),
                 ],
                 league=league_config(number_of_counting_events=3),
-                league_groups={"Short": (0, 0)},
+                league_groups={SHORT_GROUP: (0, 0)},
             ),
             set([results[1]]),
         )
@@ -280,9 +282,9 @@ class TestCountingEvents(unittest.TestCase):
         self.assertEqual(
             find_counting_results(
                 results,
-                events=[event("0", group="Short"), event("2", group="Short")],
+                events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
-                league_groups={"Short": (1, 5)},
+                league_groups={SHORT_GROUP: (1, 5)},
             ),
             set([results[2], results[0]]),
         )
@@ -290,13 +292,13 @@ class TestCountingEvents(unittest.TestCase):
             find_counting_results(
                 results,
                 events=[
-                    event("0", group="Short"),
-                    event("2", group="Short"),
-                    event("4", group="Short"),
-                    event("3", group="Short"),
+                    event("0", group=SHORT_GROUP),
+                    event("2", group=SHORT_GROUP),
+                    event("4", group=SHORT_GROUP),
+                    event("3", group=SHORT_GROUP),
                 ],
                 league=league_config(number_of_counting_events=3),
-                league_groups={"Short": (2, 3)},
+                league_groups={SHORT_GROUP: (2, 3)},
             ),
             set([results[0], results[2], results[4]]),
         )

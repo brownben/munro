@@ -214,9 +214,9 @@ class LeagueGroups:
         ]
 
     @staticmethod
-    async def get_dict_by_league(league: str) -> dict[str, tuple[int, int]]:
+    async def get_dict_by_league(league: str) -> dict[int, tuple[int, int]]:
         return {
-            group["name"]: (group["min"], group["max"])
+            group["id"]: (group["min"], group["max"])
             for group in await LeagueGroupTable.select(*LeagueGroupTable.all_columns())
             .where(LeagueGroupTable.league == league)
             .order_by(LeagueGroupTable.name)

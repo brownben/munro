@@ -91,7 +91,7 @@ class LeagueEventDatabase(BaseModel):
     league: str
 
     compulsory: bool = False
-    league_group: Optional[str]
+    league_group: Optional[int]
     overridden_scoring_method: Optional[str]
 
     expected_courses: Optional[dict[str, str]]
