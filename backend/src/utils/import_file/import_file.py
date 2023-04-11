@@ -30,7 +30,7 @@ class ImportedResult:
 
     @staticmethod
     def _get_string(result: ImportedRecord, field: str) -> str:
-        return str(result.get(field)) or ""
+        return str(result.get(field) or "")
 
     @staticmethod
     def _get_int(
