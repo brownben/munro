@@ -111,7 +111,6 @@ useTitle({
           { value: 'max', text: 'Maximum Points' },
         ]"
         label="Type:"
-        :validator="RequiredField('a type', true)"
         class="col-span-2"
       />
       <Input
