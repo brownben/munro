@@ -1,8 +1,8 @@
 <template>
   <Disclosure v-slot="{ open }" as="tbody" class="group">
     <tr
-      class="border-collapse bg-white text-gray-800 transition duration-300 ease-in-out group-focus-within:bg-main-200 group-hover:bg-main-200"
-      :class="{ 'bg-main-100': striped }"
+      class="border-collapse text-gray-800 transition duration-300 ease-in-out group-focus-within:bg-main-200 group-hover:bg-main-200"
+      :class="{ 'bg-main-100': striped, 'bg-white': !striped }"
     >
       <slot />
       <td class="relative table-cell text-center md:hidden">
