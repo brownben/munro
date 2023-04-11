@@ -5,7 +5,9 @@ const base = 'https://munroleagues.com/api/'
 export const useData = <Type>(location: string) =>
   useFetch<Type>(`${base}${location}`, { key: location })
 
-export const useRestrictedData = <Type>(location: string) =>
+export const useRestrictedData = <Type>(
+  location: string
+): ReturnType<typeof useData<Type>> =>
   useFetch<Type>(`${base}${location}`, {
     key: location,
     headers: { Authorization: `bearer ${useUser().value?.idToken}` },
@@ -14,7 +16,7 @@ export const useRestrictedData = <Type>(location: string) =>
 export const useRestrictedDataIfLoggedIn = <Type>(
   location: string,
   authLocation: string
-) => {
+): ReturnType<typeof useData<Type>> => {
   const loggedIn = useLoggedIn()
   if (loggedIn.value) return useRestrictedData<Type>(authLocation)
   else return useData<Type>(location)
