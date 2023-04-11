@@ -105,7 +105,7 @@ useTitle({
       <InputDropdown
         v-model="form.type"
         :list="[
-          { value: ' ', text: 'Normal' },
+          { value: '', text: 'Normal' },
           { value: 'manual', text: 'Fixed Points' },
           { value: 'average', text: 'Average Points' },
           { value: 'max', text: 'Maximum Points' },
