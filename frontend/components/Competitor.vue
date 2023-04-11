@@ -18,7 +18,7 @@ defineProps({
       {{ competitor.name }}
     </h2>
 
-    <div class="flex flex-col gap-y-2 gap-x-7 sm:flex-row sm:flex-wrap">
+    <div class="flex flex-col gap-x-7 gap-y-2 sm:flex-row sm:flex-wrap">
       <ImageRow v-if="competitor.club" :icon="UserGroupIcon" darker>
         {{ competitor.club }}
       </ImageRow>

@@ -43,7 +43,7 @@ const links: Link[] = [
               >
                 <MunroLogo class="inline-block h-8 w-10 sm:w-20 md:w-10" />
                 <p
-                  class="ml-1 mb-[-0.65rem] hidden text-[1.65rem] font-semibold text-main-600 md:inline-block"
+                  class="mb-[-0.65rem] ml-1 hidden text-[1.65rem] font-semibold text-main-600 md:inline-block"
                 >
                   <span class="sr-only">M</span>unro
                 </p>
@@ -94,7 +94,7 @@ const links: Link[] = [
           <MenuItems
             class="absolute left-0 z-30 -mt-16 flex w-full flex-col justify-center bg-white pt-16 shadow outline-none sm:hidden"
           >
-            <div class="px-2 pt-2 pb-3 text-left">
+            <div class="px-2 pb-3 pt-2 text-left">
               <MenuItem
                 v-for="link of links"
                 :key="link.location"

@@ -39,7 +39,7 @@ useTitle({
             Leagues
           </h2>
 
-          <div class="col-span-2 -mt-10 -mb-4 flex flex-col divide-y">
+          <div class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y">
             <League
               v-for="league in data?.leagues"
               :key="league.name"
@@ -59,7 +59,7 @@ useTitle({
             Events
           </h2>
 
-          <div class="col-span-2 -mt-10 -mb-4 flex flex-col divide-y">
+          <div class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y">
             <Event
               v-for="event in data?.events"
               :key="event.id"
@@ -78,7 +78,7 @@ useTitle({
             Competitors
           </h2>
 
-          <div class="col-span-2 -mt-10 -mb-4 flex flex-col divide-y">
+          <div class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y">
             <Competitor
               v-for="competitor in data?.competitors"
               :key="competitor.id"

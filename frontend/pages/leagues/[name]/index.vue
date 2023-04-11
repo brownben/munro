@@ -121,17 +121,17 @@ if (league.value) {
 
       <section
         v-if="events.length >= 2 && latestEvents.length > 0"
-        class="mx-auto hidden max-w-screen-lg grid-cols-1 gap-8 px-6 py-8 sm:grid sm:grid-cols-2 sm:pt-10 sm:pb-6 lg:px-8"
+        class="mx-auto hidden max-w-screen-lg grid-cols-1 gap-8 px-6 py-8 sm:grid sm:grid-cols-2 sm:pb-6 sm:pt-10 lg:px-8"
       >
         <div>
           <h2 class="font-bold uppercase text-gray-500 sm:pb-2">
             Latest Results
           </h2>
-          <Event :event="latestEvents[0]" class="pt-4 pb-6" />
+          <Event :event="latestEvents[0]" class="pb-6 pt-4" />
         </div>
         <div v-if="nextEvent">
           <h2 class="font-bold uppercase text-gray-500 sm:pb-2">Next Event</h2>
-          <Event :event="nextEvent" class="pt-4 pb-6" />
+          <Event :event="nextEvent" class="pb-6 pt-4" />
         </div>
         <div v-else>
           <p
@@ -143,7 +143,7 @@ if (league.value) {
           <Event
             v-if="latestEvents.length > 1"
             :event="latestEvents[1]"
-            class="pt-4 pb-6"
+            class="pb-6 pt-4"
           />
         </div>
       </section>
@@ -162,7 +162,7 @@ if (league.value) {
 
       <section v-if="loggedIn">
         <div
-          class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pt-10 sm:pb-6 lg:px-8"
+          class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-6 sm:pt-10 lg:px-8"
         >
           <div class="pb-4">
             <h2 class="col-span-1 text-2xl font-bold text-gray-500">Classes</h2>
@@ -201,7 +201,7 @@ if (league.value) {
             </NuxtLink>
           </div>
 
-          <div class="col-span-2 -mt-10 -mb-4 flex flex-col divide-y">
+          <div class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y">
             <Event
               v-for="event in league.events"
               :key="event.id"

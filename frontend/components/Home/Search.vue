@@ -22,7 +22,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
             class="w-full rounded border border-white bg-transparent p-2 pr-16 outline-none ring-white ring-offset-2 ring-offset-main-600 focus:ring"
           />
           <button
-            class="absolute top-0 right-0 h-full rounded px-4 outline-none transition hover:bg-white hover:text-main-600 focus:bg-white focus:text-main-600"
+            class="absolute right-0 top-0 h-full rounded px-4 outline-none transition hover:bg-white hover:text-main-600 focus:bg-white focus:text-main-600"
           >
             <span class="sr-only">Search</span>
             <MagnifyingGlassIcon class="h-6 w-6" />

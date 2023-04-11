@@ -15,7 +15,7 @@ defineProps({
     }"
   >
     <div
-      class="relative mx-auto max-w-screen-lg px-6 py-6 sm:pt-8 sm:pb-10 lg:px-8 print:sm:py-4"
+      class="relative mx-auto max-w-screen-lg px-6 py-6 sm:pb-10 sm:pt-8 lg:px-8 print:sm:py-4"
     >
       <NuxtLink
         v-if="linkLocation"
@@ -46,7 +46,7 @@ defineProps({
 
       <div
         v-if="!!$slots.default"
-        class="flex flex-col gap-y-2 gap-x-7 sm:flex-row sm:flex-wrap"
+        class="flex flex-col gap-x-7 gap-y-2 sm:flex-row sm:flex-wrap"
         :class="{
           'pt-8 sm:pt-10': !!$slots.description || tagline,
           'pt-4': !(!!$slots.description || tagline),
@@ -58,7 +58,7 @@ defineProps({
 
       <div
         v-if="!!$slots.rightAction"
-        class="top-0 right-0 flex h-full flex-col justify-center sm:absolute sm:pr-6 lg:px-8"
+        class="right-0 top-0 flex h-full flex-col justify-center sm:absolute sm:pr-6 lg:px-8"
       >
         <div
           class="pt-4 sm:-mt-2 md:-mt-6"

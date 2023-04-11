@@ -13,7 +13,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
         :value="$route.query.query"
       />
       <button
-        class="absolute top-0 right-0 h-full rounded px-3 text-gray-400 outline-none transition hover:bg-main-600 hover:text-white focus:bg-main-600 group-focus-within:text-main-600 group-focus-within:hover:text-white group-focus-within:focus:text-white"
+        class="absolute right-0 top-0 h-full rounded px-3 text-gray-400 outline-none transition hover:bg-main-600 hover:text-white focus:bg-main-600 group-focus-within:text-main-600 group-focus-within:hover:text-white group-focus-within:focus:text-white"
       >
         <span class="sr-only">Search</span>
         <MagnifyingGlassIcon class="h-5 w-5" />

@@ -6,7 +6,7 @@ const theme = '#b80bda'
 const image = 'https://images.munroleagues.com/%20'
 const imageAlt = 'Munro Leagues Logo - Hills Shaped as an "M"'
 
-export default defineNuxtConfig({
+export default {
   build: {
     transpile: ['@headlessui/vue'],
   },
@@ -86,4 +86,4 @@ export default defineNuxtConfig({
       },
     },
   },
-})
+}

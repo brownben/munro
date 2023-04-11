@@ -43,7 +43,7 @@ const deleteEvent = async () => {
     <h3 v-else class="text-3xl font-black text-gray-900 sm:text-4xl">
       {{ event.name }}
     </h3>
-    <div class="flex flex-col gap-y-2 gap-x-7 sm:flex-row sm:flex-wrap">
+    <div class="flex flex-col gap-x-7 gap-y-2 sm:flex-row sm:flex-wrap">
       <ImageRow :icon="CalendarIcon" darker>
         {{ displayDate(event.date) }}
       </ImageRow>

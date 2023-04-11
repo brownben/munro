@@ -55,7 +55,7 @@ const { data: competitor, refresh } = await useData<CompetitorOverview>(
           Results
         </h2>
 
-        <div class="col-span-2 -mt-8 -mb-4 flex flex-col divide-y">
+        <div class="col-span-2 -mb-4 -mt-8 flex flex-col divide-y">
           <template v-for="result in competitor.results" :key="result.id">
             <Result
               v-if="result.visible == true || loggedIn"

@@ -116,7 +116,7 @@ const ariaSorted = computed(
         <td class="py-3 text-center">
           {{ competitor.id }}
         </td>
-        <td class="py-2 px-2">
+        <td class="px-2 py-2">
           <span class="block leading-tight text-gray-900">
             {{ competitor.name }}
           </span>
@@ -136,13 +136,13 @@ const ariaSorted = computed(
           >
             <NuxtLink
               :to="`/competitors/${competitor.id}`"
-              class="rounded border border-main-300 py-1 px-2 font-medium text-main-700 transition hover:bg-main-300 hover:text-main-900"
+              class="rounded border border-main-300 px-2 py-1 font-medium text-main-700 transition hover:bg-main-300 hover:text-main-900"
             >
               View Results
             </NuxtLink>
             <NuxtLink
               :to="`/competitors/${competitor.id}/edit`"
-              class="rounded border border-main-300 py-1 px-2 font-medium text-main-700 transition hover:bg-main-300 hover:text-main-900"
+              class="rounded border border-main-300 px-2 py-1 font-medium text-main-700 transition hover:bg-main-300 hover:text-main-900"
             >
               Edit
             </NuxtLink>
