@@ -153,6 +153,9 @@ class Events:
                 await EventTable.objects().where(EventTable.id == new_id).first().run()
             )
 
+        if not existing_event:
+            return "no-event"
+
         for key, value in event.dict().items():
             if key != "id":
                 setattr(existing_event, key, value)
@@ -220,13 +223,15 @@ class Events:
     async def get_by_league(
         league: str,
     ) -> Iterable[EventWithLeagueDetailsAndUploadKey]:
+        # TODO: piccolo output doesn't have correct overload yet for `order_by`
+
         return (
             EventWithLeagueDetailsAndUploadKey(
                 **event["event"],
                 results_links=event["results_links"],
                 group=event["group"],
             )
-            for event in await LeagueEventTable.select(
+            for event in await LeagueEventTable.select(  # type: ignore
                 *LeagueEventTable.event.all_columns(exclude=[EventTable.results_links]),
                 LeagueEventTable.event.results_links.as_alias("results_links"),
                 LeagueEventTable.league_group.name.as_alias("group"),
@@ -251,9 +256,12 @@ class Events:
 
     @staticmethod
     async def count() -> int:
-        return int(
-            (await EventTable.select(Count(EventTable.id)).first().run())["count"] or 0
-        )
+        database_result = await EventTable.select(Count(EventTable.id)).first().run()
+
+        if database_result:
+            return int(database_result["count"])
+        else:
+            return 0
 
 
 class LeagueEvents:

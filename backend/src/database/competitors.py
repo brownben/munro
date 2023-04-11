@@ -1,4 +1,4 @@
-from typing import Any, Iterable, Optional, cast
+from typing import Any, Iterable, Optional
 
 from piccolo.columns.combination import WhereRaw
 
@@ -17,7 +17,7 @@ competitor_fields = (
 )
 
 
-def as_competitor(record: dict[str, Any]) -> Optional[Competitor]:
+def as_competitor(record: dict[str, Any] | None) -> Optional[Competitor]:
     if not record:
         return None
 
@@ -145,4 +145,7 @@ class Competitors:
             .run()
         )
 
-        return cast(str, league["name"])
+        if league:
+            return str(league["name"])
+        else:
+            return ""

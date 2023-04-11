@@ -22,7 +22,6 @@ async def get_competitor_details(
     name: str = Path(
         title="Competitor Pool Name",
         example="Edinburgh Winter 2020",
-        default="",
     ),
 ) -> Iterable[Competitor]:
     return await Competitors.get_by_pool(name)
@@ -33,7 +32,6 @@ async def get_events_in_competitor_pool(
     name: str = Path(
         title="Competitor Pool Name",
         example="Edinburgh Winter 2020",
-        default="",
     ),
 ) -> Iterable[EventWithUploadKey]:
     return await Events.get_by_competitor_pool(name)

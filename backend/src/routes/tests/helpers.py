@@ -40,7 +40,7 @@ def _create_tables() -> None:
     ]
 
     for table in tables:
-        table.create_table(if_not_exists=True).run_sync()
+        table.create_table(if_not_exists=True).run_sync()  # type: ignore
 
 
 def _add_sample_data() -> None:

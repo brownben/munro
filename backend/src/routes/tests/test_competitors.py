@@ -112,6 +112,7 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
 
     def test_update_competitor(self) -> None:
         competitor = Competitor.objects().where(Competitor.id == 3).first().run_sync()
+        assert competitor is not None
         self.assertNotEqual(competitor.name, "Suzie Dent")
         self.assertNotEqual(competitor.age_class, "W40")
         self.assertNotEqual(competitor.club, "GREEN")
@@ -131,6 +132,7 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
         self.assertEqual(response.json(), {"detail": "Competitor `Suzie Dent` updated"})
 
         competitor = Competitor.objects().where(Competitor.id == 3).first().run_sync()
+        assert competitor is not None
         self.assertEqual(competitor.name, "Suzie Dent")
         self.assertEqual(competitor.age_class, "W40")
         self.assertEqual(competitor.club, "GREEN")

@@ -160,7 +160,9 @@ class Results:
 
     @staticmethod
     async def count() -> int:
-        return int(
-            (await ResultTable.select(Count(ResultTable.id)).first().run())["count"]
-            or 0
-        )
+        database_result = await ResultTable.select(Count(ResultTable.id)).first().run()
+
+        if database_result:
+            return int(database_result["count"])
+        else:
+            return 0

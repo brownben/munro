@@ -39,7 +39,6 @@ async def create_competitor(
 @router.get("/{id}", response_model=Competitor)
 async def get_competitor_details(
     id: int = Path(
-        default="",
         title="Competitor ID",
         description="ID of the competitor to fetch",
         example=7,
@@ -57,7 +56,6 @@ async def get_competitor_details(
 async def update_competitor_details(
     competitor: NewCompetitor,
     id: int = Path(
-        default="",
         title="Competitor ID",
         description="ID of the competitor to fetch",
         example=7,
@@ -75,13 +73,11 @@ async def update_competitor_details(
 @router.get("/{id}/results", response_model=CompetitorOverview)
 async def get_overview_for_competitor(
     id: int = Path(
-        default="",
         title="Competitor ID",
         description="ID of the competitor to fetch results for",
         example=7,
     ),
 ) -> CompetitorOverview:
-
     competitor, results, league = await asyncio.gather(
         Competitors.get_by_id(id),
         Results.get_by_competitor(id),

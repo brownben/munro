@@ -101,6 +101,7 @@ class TestResultRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert result is not None
         self.assertEqual(result["file_points"], 100)
         self.assertEqual(result["time"], 0)
         self.assertEqual(result["type"], "manual")

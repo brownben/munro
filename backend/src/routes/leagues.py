@@ -89,7 +89,6 @@ async def get_league(name: str) -> LeagueOverviewAuthenticated:
 @router.get("/{name}", response_model=LeagueOverview)
 async def get_league_details(
     name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league to fetch",
         example="Sprintelope 2021",
@@ -101,7 +100,6 @@ async def get_league_details(
 @router.get("/{name}/uploadKey", response_model=LeagueOverviewAuthenticated)
 async def get_league_details_with_event_upload_keys(
     name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league to fetch",
         example="Sprintelope 2021",
@@ -115,7 +113,6 @@ async def get_league_details_with_event_upload_keys(
 async def update_competitor_details(
     league: League,
     name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league to update",
         example="Sprintelope 2021",
@@ -133,7 +130,6 @@ async def update_competitor_details(
 @router.delete("/{name}", response_model=Message)
 async def delete_league(
     name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league to delete",
         example="Sprintelope 2021",
@@ -166,13 +162,11 @@ def get_results_for_event(
 @router.get("/{league_name}/results/{cls}", response_model=LeagueResultsResponse)
 async def get_league_results(
     league_name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league to get the results for",
         example="Sprintelope 2021",
     ),
     cls: str = Path(
-        default="",
         title="Class",
         description="Name of the class to get results for",
         example="Long",
@@ -266,7 +260,6 @@ async def get_league_results(
 async def create_league_class(
     cls: LeagueClass,
     league_name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league",
         example="Sprintelope 2021",
@@ -294,13 +287,11 @@ async def create_league_class(
 @router.get("/{league_name}/classes/{cls}", response_model=LeagueClass)
 async def get_league_class(
     league_name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league ",
         example="Sprintelope 2021",
     ),
     cls: str = Path(
-        default="",
         title="Class Name",
         description="Name of the class",
         example="Sprintelope 2021",
@@ -318,13 +309,11 @@ async def get_league_class(
 async def update_league_class(
     cls: LeagueClass,
     league_name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league ",
         example="Sprintelope 2021",
     ),
     class_name: str = Path(
-        default="",
         title="Class Name",
         description="Name of the class",
         example="Sprintelope 2021",
@@ -341,13 +330,11 @@ async def update_league_class(
 @router.delete("/{league_name}/classes/{name}", response_model=Message)
 async def delete_league_class(
     league_name: str = Path(
-        default="",
         title="League Name",
         description="Name of the league",
         example="Sprintelope 2021",
     ),
     name: str = Path(
-        default="",
         title="Class Name",
         description="Name of the league class to delete",
         example="Long",

@@ -56,7 +56,6 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
 
     def test_get_league_by_name(self) -> None:
         response = self.client.get("/leagues/Sprintelope 2021")
-
         self.assertEqual(response.status_code, 200)
 
         self.assertEqual(
@@ -594,6 +593,7 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert league is not None
         self.assertEqual(league["number_of_counting_events"], 1)
 
         response = self.client.put(
@@ -625,6 +625,7 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert league is not None
         self.assertEqual(league["number_of_counting_events"], 5)
 
     def test_update_league_name(self) -> None:
@@ -664,6 +665,7 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert league is not None
         self.assertEqual(league["number_of_counting_events"], 7)
 
     def test_update_unknown_league(self) -> None:
@@ -811,6 +813,7 @@ class TestLeagueClassModify(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert league_class is not None
         self.assertEqual(league_class["standard_course"], None)
 
         response = self.client.put(
@@ -839,6 +842,7 @@ class TestLeagueClassModify(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert league_class is not None
         self.assertEqual(league_class["standard_course"], "Blue")
 
     def test_update_unknown_league_class(self) -> None:

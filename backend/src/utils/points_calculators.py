@@ -141,7 +141,6 @@ class TimeRelativeToAverageBased(PointsCalculator):
 
     def __init__(self, scoring_method: str):
         if "100" in scoring_method:
-
             self._average_points = 100
             self._points_per_standard_deviation = 20
 

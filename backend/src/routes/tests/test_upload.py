@@ -188,6 +188,7 @@ class TestUploadResult(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert expected_competitor is not None
 
         new_result = (
             ResultTable.objects()
@@ -221,6 +222,7 @@ class TestUploadResult(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert new_result is not None
         self.assertEqual(new_result.time, 712)
         self.assertEqual(new_result.incomplete, False)
         self.assertEqual(new_result.course, "Long")
@@ -255,6 +257,7 @@ class TestUploadResult(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert new_competitor is not None
         self.assertEqual(new_competitor.name, "Tom Bond")
         self.assertEqual(new_competitor.competitor_pool, "Edinburgh Summer 2021")
         self.assertEqual(new_competitor.age_class, "M21")
@@ -266,6 +269,7 @@ class TestUploadResult(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert new_result is not None
         self.assertEqual(new_result.time, 832)
         self.assertEqual(new_result.incomplete, False)
         self.assertEqual(new_result.course, "Long")

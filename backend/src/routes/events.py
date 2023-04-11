@@ -67,7 +67,6 @@ async def get_events_allowing_results_submission() -> Iterable[Event]:
 @router.get("/{id}", response_model=Event)
 async def get_event_details(
     id: str = Path(
-        default="",
         title="Event ID",
         description="ID of the event to fetch",
         example="Tentsmuir2021-08-12",
@@ -85,7 +84,6 @@ async def get_event_details(
 async def update_competitor_details(
     event: Event,
     id: str = Path(
-        default="",
         title="Event ID",
         description="ID of the event to fetch",
         example="Tentsmuir2021-08-12",
@@ -108,7 +106,6 @@ async def update_competitor_details(
 @router.delete("/{id}", response_model=Message)
 async def delete_event(
     id: str = Path(
-        default="",
         title="Event ID",
         description="ID of the event to fetch",
         example="Tentsmuir2021-08-12",
@@ -123,7 +120,6 @@ async def delete_event(
 @router.get("/{id}/upload-key", response_model=EventWithUploadKey)
 async def get_event_details_with_upload_key(
     id: str = Path(
-        default="",
         title="Event ID",
         description="ID of the event to fetch",
         example="Tentsmuir2021-08-12",
@@ -141,7 +137,6 @@ async def get_event_details_with_upload_key(
 @router.get("/{id}/results", response_model=EventWithResults)
 async def get_results_for_event(
     id: str = Path(
-        default="",
         title="Event ID",
         description="ID of the event to fetch results for",
         example="Tentsmuir2021-08-12",

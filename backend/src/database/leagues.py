@@ -31,14 +31,14 @@ league_class_fields = (
 )
 
 
-def as_league(record: dict[str, Any]) -> Optional[League]:
+def as_league(record: dict[str, Any] | None) -> Optional[League]:
     if not record:
         return None
 
     return League.parse_obj(record)
 
 
-def as_league_class(record: dict[str, Any]) -> Optional[LeagueClass]:
+def as_league_class(record: dict[str, Any] | None) -> Optional[LeagueClass]:
     if not record:
         return None
 
@@ -137,10 +137,14 @@ class Leagues:
 
     @staticmethod
     async def count() -> int:
-        return int(
-            (await LeagueTable.select(Count(LeagueTable.name)).first().run())["count"]
-            or 0
+        database_result = (
+            await LeagueTable.select(Count(LeagueTable.name)).first().run()
         )
+
+        if database_result:
+            return int(database_result["count"])
+        else:
+            return 0
 
 
 class LeagueClasses:

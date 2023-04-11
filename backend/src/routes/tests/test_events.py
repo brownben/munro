@@ -400,6 +400,7 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert event is not None
         self.assertEqual(event["name"], "Test Event")
         self.assertEqual(event["date"], datetime.date(2022, 12, 12))
         self.assertIsInstance(event["upload_key"], str)
@@ -472,6 +473,7 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert event is not None
         self.assertEqual(event["part_of"], "")
 
         response = self.client.put(
@@ -508,6 +510,7 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert event is not None
         self.assertEqual(event["part_of"], "Testing")
 
     def test_update_unknown_event(self) -> None:
@@ -546,6 +549,7 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert event is not None
 
         self.assertEqual(event["organiser"], "Saint Nicholas")
 
@@ -583,6 +587,7 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             .first()
             .run_sync()
         )
+        assert event is not None
         self.assertEqual(event["organiser"], "Saint Nicholas")
         self.assertEqual(str(event["date"]), "2021-12-25")
 

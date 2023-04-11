@@ -45,14 +45,12 @@ async def transfer_result(
 async def update_result(
     result: ResultUpdate,
     id: int = Path(
-        default="",
         title="Competitor ID",
         description="ID of the competitor to fetch",
         example=7,
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
-
     if result.visible is not None:
         await Results.set_visible(id, result.visible)
 
