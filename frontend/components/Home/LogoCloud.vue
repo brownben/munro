@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const leagues = [
   {
-    to: '/leagues/Sprintelope 2022',
+    to: '/leagues/Sprintelope 2023',
     src: '/logos/sprintelope',
     alt: 'Sprintelope League Logo',
     width: 318,
