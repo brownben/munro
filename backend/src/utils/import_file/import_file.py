@@ -56,8 +56,9 @@ class ImportedResult:
     def _is_result_incomplete(result: ImportedRecord) -> bool:
         status = result.get("status", "")
         nonComp = result.get("nonCompetitive")
+        invalidTime = parse_time(result["time"]) == 0
 
-        return nonComp in ("Y", "1") or (status not in ("", "0", "OK"))
+        return nonComp in ("Y", "1") or (status not in ("", "0", "OK")) or invalidTime
 
     def __init__(self, result: ImportedRecord) -> None:
         self.name = self._get_name(result)
