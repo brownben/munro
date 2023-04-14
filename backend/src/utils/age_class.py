@@ -163,11 +163,20 @@ def get_correct_age_for_age_class(age: int) -> int:
         return 21
 
 
-def date_to_age_class(date: str, gender: str) -> str:
-    """Takes a date ion the format YYY-MM-DD and transforms it into an age class"""
-    raw_year, month, day = date.split("-")
-    year = int(raw_year or 0)
+def get_year_from_date(date: str | int) -> int:
+    """Parse a year from a date, either just a year or in YYYY-MM-DD format"""
+    if isinstance(date, int):
+        return date
+    elif date.count("-") == 2:
+        raw_year, month, day = date.split("-")
+        return int(raw_year or 0)
+    else:
+        return int(date or 0)
 
+
+def date_to_age_class(date: str, gender: str) -> str:
+    """Takes a date and transforms it into an age class"""
+    year = get_year_from_date(date)
     current_year = datetime.datetime.now().year
 
     age = current_year - year if year else 21

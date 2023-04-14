@@ -1,5 +1,8 @@
-def parse_time(time: str) -> int:
+def parse_time(time: str | int) -> int:
     """Parse an elapsed time string into seconds"""
+
+    if isinstance(time, int):
+        return time
 
     splitTime = time.split(":")
 

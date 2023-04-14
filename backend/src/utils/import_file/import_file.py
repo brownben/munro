@@ -1,5 +1,6 @@
 from typing import Any, Callable, Generator, Iterable, Literal, Optional, TypedDict
 
+from ..age_class import date_to_age_class
 from ..times import parse_time
 
 
@@ -23,14 +24,12 @@ class ImportedRecord(TypedDict):
     ageClass: Optional[str]
     club: Optional[str]
     filePoints: Optional[str]
+    birthDate: Optional[str]
+    gender: Optional[str]
 
 
 class ImportedResult:
     """Result imported from a file"""
-
-    @staticmethod
-    def _get_string(result: ImportedRecord, field: str) -> str:
-        return str(result.get(field) or "")
 
     @staticmethod
     def _get_int(
@@ -49,6 +48,19 @@ class ImportedResult:
         return f"{result['firstName']} {result['surname']}"
 
     @staticmethod
+    def _get_age_class(result: ImportedRecord) -> str:
+        if ageClass := result.get("ageClass"):
+            return ageClass
+
+        gender = result.get("gender")
+        birthDate = result.get("birthDate")
+
+        if gender and birthDate:
+            return date_to_age_class(birthDate, gender)
+
+        return ""
+
+    @staticmethod
     def _get_club(result: ImportedRecord) -> str:
         return (result.get("club") or "").upper()[:20]
 
@@ -62,11 +74,11 @@ class ImportedResult:
 
     def __init__(self, result: ImportedRecord) -> None:
         self.name = self._get_name(result)
-        self.course = result["course"].strip()
+        self.course = str(result["course"]).strip()
         self.time = parse_time(result["time"])
         self.incomplete = self._is_result_incomplete(result)
         self.position = self._get_int(result, "position")
-        self.age_class = self._get_string(result, "ageClass")
+        self.age_class = self._get_age_class(result)
         self.club = self._get_club(result)
         self.file_points = self._get_int(result, "filePoints")
 
@@ -86,6 +98,9 @@ class ImportedResult:
 
 def fix_times_from_excel(results: list[ImportedRecord]) -> list[ImportedRecord]:
     def result_has_hours_but_no_seconds(result: ImportedRecord) -> bool:
+        if isinstance(result["time"], int):
+            return False
+
         has_hours = result["time"].count(":") >= 2
         has_zero_seconds = result["time"][-3:] == ":00"
 

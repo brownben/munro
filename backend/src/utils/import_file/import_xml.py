@@ -3,7 +3,6 @@ from xml.etree.ElementTree import Element
 
 from defusedxml.ElementTree import fromstring as parse
 
-from ..age_class import date_to_age_class
 from .import_file import ImportedRecord, ImportException
 
 iof_namespace = "{http://www.orienteering.org/datastandard/3.0}"
@@ -51,12 +50,8 @@ def process_xml_file(file: str) -> Iterator[ImportedRecord]:
                 "time": get_text_at(result, "Result/Time"),
                 "club": get_text_at(result, "Organisation/Name"),
                 "status": get_text_at(result, "Result/Status"),
+                "birthDate": get_text_at(result, "Person/BirthDate"),
+                "gender": get_attribute(result.find(f"{iof_namespace}Person"), "sex"),
             }
-
-            sex = get_attribute(result.find(f"{iof_namespace}Person"), "sex")
-            birthday = get_text_at(result, "Person/BirthDate")
-
-            if birthday:
-                record["ageClass"] = date_to_age_class(birthday, sex)
 
             yield cast(ImportedRecord, record)

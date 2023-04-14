@@ -1,4 +1,7 @@
+import datetime
 import unittest
+
+import time_machine
 
 from .. import ImportException, import_results_from_file
 
@@ -46,8 +49,8 @@ class TestImportFile(unittest.TestCase):
 
         imported_results = import_results_from_file(file)
 
-        for index, result in enumerate(imported_results):
-            self.assertDictEqual(dict(result), expected_results[index])
+        for result, expected in zip(imported_results, expected_results):
+            self.assertDictEqual(dict(result), expected)
 
     def test_import_csv_file_fixing_excel_issue(self) -> None:
         file = (
@@ -110,3 +113,38 @@ class TestImportFile(unittest.TestCase):
             import_results_from_file(
                 '<ResultList xmlns="http://www.orienteering.org/datastandard/3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" iofVersion="3.0" createTime="2011-07-31T22:46:33+01:00" creator="Example Software" status="Complete"></ResultList>'
             )
+
+    def test_import_json(self) -> None:
+        with self.assertRaisesRegex(
+            ImportException, "Expected results to have at least 1 class"
+        ):
+            import_results_from_file("[]")
+
+    def test_invalid_json(self) -> None:
+        with self.assertRaisesRegex(
+            ImportException, "Expected file to have at least 1 result"
+        ):
+            import_results_from_file("[")
+
+    @time_machine.travel(datetime.datetime(2021, 8, 11))
+    def test_json_with_birthdate(self) -> None:
+        imported_results = list(
+            import_results_from_file(
+                '[{"Name":"Bob", "yearofbirth": 2000, "gender": "male", "course":"1", "time": 5}]'
+            )
+        )
+
+        self.assertEqual(len(imported_results), 1)
+        self.assertEqual(
+            dict(imported_results[0]),
+            {
+                "age_class": "M21",
+                "club": "",
+                "course": "1",
+                "file_points": 0,
+                "incomplete": False,
+                "name": "Bob",
+                "position": 0,
+                "time": 5,
+            },
+        )

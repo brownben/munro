@@ -1,7 +1,4 @@
-import datetime
 import unittest
-
-import time_machine
 
 from ..import_file import ImportException
 from ..import_xml import process_xml_file
@@ -785,6 +782,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "2001",
                     "club": "OC Back and Forth",
                     "status": "OK",
+                    "birthDate": "",
+                    "gender": "",
                 },
                 {
                     "firstName": "Edgar",
@@ -793,6 +792,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "2202",
                     "club": "Bushmen OC",
                     "status": "MissingPunch",
+                    "birthDate": "",
+                    "gender": "",
                 },
                 {
                     "firstName": "Toni",
@@ -801,6 +802,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "",
                     "club": "Doubtful Direction",
                     "status": "DidNotStart",
+                    "birthDate": "",
+                    "gender": "",
                 },
             ],
         )
@@ -816,6 +819,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "2001",
                     "club": "OC Back and Forth",
                     "status": "OK",
+                    "birthDate": "",
+                    "gender": "",
                 },
                 {
                     "firstName": "Edgar",
@@ -824,6 +829,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "2202",
                     "club": "Bushmen OC",
                     "status": "MissingPunch",
+                    "birthDate": "",
+                    "gender": "",
                 },
             ],
         )
@@ -833,7 +840,6 @@ class TestImportXML(unittest.TestCase):
             ImportException, lambda: list(process_xml_file(iof_extry_list))
         )
 
-    @time_machine.travel(datetime.datetime(2021, 8, 11))
     def test_sitiming_export_with_age_class(self) -> None:
         self.assertEqual(
             list(process_xml_file(sitiming_export)),
@@ -845,7 +851,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "1620",
                     "club": "INT",
                     "status": "OK",
-                    "ageClass": "M21",
+                    "birthDate": "2000-05-02",
+                    "gender": "M",
                 },
                 {
                     "course": "Long",
@@ -854,7 +861,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "1631",
                     "club": "OD",
                     "status": "OK",
-                    "ageClass": "M21",
+                    "birthDate": "2000-02-31",
+                    "gender": "M",
                 },
                 {
                     "course": "Long",
@@ -863,7 +871,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "1837",
                     "club": "ESOC",
                     "status": "OK",
-                    "ageClass": "W40",
+                    "birthDate": "1981-12-31",
+                    "gender": "F",
                 },
                 {
                     "course": "Long",
@@ -872,7 +881,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "1917",
                     "club": "ESOC",
                     "status": "OK",
-                    "ageClass": "M21",
+                    "birthDate": "1998-12-31",
+                    "gender": "M",
                 },
                 {
                     "course": "Short",
@@ -881,7 +891,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "1414",
                     "club": "ESOC",
                     "status": "OK",
-                    "ageClass": "M20",
+                    "birthDate": "2002-12-31",
+                    "gender": "M",
                 },
                 {
                     "course": "Short",
@@ -890,7 +901,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "1539",
                     "club": "ESOC",
                     "status": "OK",
-                    "ageClass": "W50",
+                    "birthDate": "1969-03-26",
+                    "gender": "F",
                 },
                 {
                     "course": "Short",
@@ -899,7 +911,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "1612",
                     "club": "",
                     "status": "OK",
-                    "ageClass": "W14",
+                    "birthDate": "2008-06-01",
+                    "gender": "F",
                 },
                 {
                     "course": "Short",
@@ -908,7 +921,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "4575",
                     "club": "ESOC",
                     "status": "Disqualified",
-                    "ageClass": "W70",
+                    "birthDate": "1951-12-31",
+                    "gender": "F",
                 },
                 {
                     "course": "Short",
@@ -917,7 +931,8 @@ class TestImportXML(unittest.TestCase):
                     "time": "4575",
                     "club": "ESOC",
                     "status": "Disqualified",
-                    "ageClass": "W10",
+                    "birthDate": "2018-12-31",
+                    "gender": "F",
                 },
             ],
         )

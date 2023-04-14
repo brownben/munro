@@ -1,4 +1,4 @@
-from typing import Iterable, Literal, cast
+from typing import Any, Iterable, Literal, cast
 
 from .import_file import ImportedRecord, ImportException
 
@@ -14,6 +14,8 @@ Columns = Literal[
     "status",
     "nonCompetitive",
     "filePoints",
+    "birthDate",
+    "gender",
 ]
 
 field_names: dict[str, Columns] = {
@@ -25,12 +27,14 @@ field_names: dict[str, Columns] = {
     "course": "course",
     "courseclass": "course",
     "time": "time",
+    "totaltimehhmmss": "time",
     "racetime": "time",
     "text1": "ageClass",
     "category": "ageClass",
     "ageclass": "ageClass",
     "club": "club",
     "city": "club",
+    "clubname": "club",
     "pl": "position",
     "place": "position",
     "pos.": "position",
@@ -41,6 +45,15 @@ field_names: dict[str, Columns] = {
     "nc": "nonCompetitive",
     "noncompetitive": "nonCompetitive",
     "points": "filePoints",
+    "gender": "gender",
+    "sex": "gender",
+    "birthyear": "birthDate",
+    "birthday": "birthDate",
+    "birthdate": "birthDate",
+    "yearofbirth": "birthDate",
+    "dateofbirth": "birthDate",
+    "yob": "birthDate",
+    "dob": "birthDate",
 }
 
 
@@ -74,7 +87,7 @@ def get_column_locations(header_row: list[str]) -> dict[Columns, int]:
     return column_mappings
 
 
-def check_all_required_columns_present(column_mappings: dict[Columns, int]) -> bool:
+def check_all_required_columns_present(column_mappings: dict[Columns, Any]) -> bool:
     """Check all required columns (Name, Course, Time) are present"""
 
     headings = column_mappings.keys()
