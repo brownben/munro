@@ -46,7 +46,7 @@ defineProps({
 
       <div
         v-if="!!$slots.default"
-        class="flex flex-col gap-x-7 gap-y-2 sm:flex-row sm:flex-wrap"
+        class="flex flex-col gap-x-7 gap-y-2 sm:flex-row sm:flex-wrap print:hidden"
         :class="{
           'pt-8 sm:pt-10': !!$slots.description || tagline,
           'pt-4': !(!!$slots.description || tagline),

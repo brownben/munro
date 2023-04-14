@@ -68,7 +68,7 @@ if (event.value) {
       leave-active-class="duration-300 origin-top motion-safe:transform"
       leave-to-class="scale-y-95 opacity-0 "
     >
-      <section v-if="show" class="bg-gray-50">
+      <section v-if="show" class="bg-gray-50 print:hidden">
         <div
           class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
         >
@@ -118,7 +118,11 @@ if (event.value) {
         >
           {{ course }}
         </h2>
-        <NuxtLink to="#content" title="Return to Top" class="group">
+        <NuxtLink
+          to="#content"
+          title="Return to Top"
+          class="group print:hidden"
+        >
           <span class="sr-only">Return to Top</span>
           <DocumentArrowUpIcon
             class="h-5 text-gray-400 group-hover:text-main-600 group-focus:text-main-600"
