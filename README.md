@@ -1,5 +1,4 @@
-<div align="center">
-<img height="120px" src="./frontend/public/MunroLogo.png" />
+<img height="80px" src="./frontend/public/MunroLogo.png" />
 
 # Munro
 
@@ -7,13 +6,9 @@
 
 [munroleagues.com](https://munroleagues.com)
 
-</div>
-
 Munro is a sports league results calculator, it takes the results files from a series of events and produces overall ranking tables. Originally created by Ben Brown for his local Orienteering League as part of his Advanced Higher computing project.
 
 Munro is designed to be as easy to use as possible providing all the features and information you need, whilst making it fast and simple to view the results; with multiple options to sort and filter them. It supports multiple file formats for upload and several different scoring systems, making the process as quick and stress free as possible for event organisers. Once logged in administrators can update all the league and event details. Designed and created based off Orienteers feedback from what they wanted from the system.
-
-I have written more about Munro's features, and why I created it on my [blog.](https://benbrown.dev/posts/introducing-munro-leagues.html)
 
 Munro is a Nuxt Vue app with a Python FastAPI backend and a PostgreSQL database.
 
