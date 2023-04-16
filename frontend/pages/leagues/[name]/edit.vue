@@ -97,7 +97,7 @@ useTitle({
           },
           {
             value: 'positionDouble',
-            text: 'Position Based (100 Max, Double Points',
+            text: 'Position Based (100 Max, Double Points)',
           },
           {
             value: 'position50Double',
@@ -117,16 +117,8 @@ useTitle({
           },
           { value: 'timeTop3', text: 'Relative to Top 3 Times' },
           {
-            value: 'timeTop3Adjusted',
-            text: 'Relative to Top 3 Times (Adjusted)',
-          },
-          {
             value: 'timeTopAdjustedWelsh',
-            text: 'Time Relative to Winner (Welsh Multipliers)',
-          },
-          {
-            value: 'positionStaggered',
-            text: 'Position Based (Staggered, 60 Max)',
+            text: 'Relative to Winner\'s Time (Welsh Multipliers)',
           },
           { value: 'file', text: 'From Upload File' },
         ]"

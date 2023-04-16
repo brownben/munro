@@ -106,7 +106,7 @@ useTitle({
           },
           {
             value: 'positionDouble',
-            text: 'Position Based (100 Max, Double Points',
+            text: 'Position Based (100 Max, Double Points)',
           },
           {
             value: 'position50Double',
@@ -126,18 +126,10 @@ useTitle({
           },
           { value: 'timeTop3', text: 'Relative to Top 3 Times' },
           {
-            value: 'timeTop3Adjusted',
-            text: 'Relative to Top 3 Times (Adjusted)',
-          },
-          {
-            value: 'positionStaggered',
-            text: 'Position Based (Staggered, 60 Max)',
+            value: 'timeTopAdjustedWelsh',
+            text: 'Relative to Winner\'s Time (Welsh Multipliers)',
           },
           { value: 'file', text: 'From Upload File' },
-          {
-            value: 'timeTopAdjustedWelsh',
-            text: 'Time Relative to Winner (Welsh Multipliers)',
-          },
         ]"
         label="Scoring Method:"
         :validator="RequiredField('a scoring method', true)"
