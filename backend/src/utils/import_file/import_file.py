@@ -98,9 +98,6 @@ class ImportedResult:
 
 def fix_times_from_excel(results: list[ImportedRecord]) -> list[ImportedRecord]:
     def result_has_hours_but_no_seconds(result: ImportedRecord) -> bool:
-        if isinstance(result["time"], int):
-            return False
-
         has_hours = result["time"].count(":") >= 2
         has_zero_seconds = result["time"][-3:] == ":00"
 

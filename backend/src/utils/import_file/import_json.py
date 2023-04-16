@@ -31,7 +31,7 @@ def process_json_file(file: str) -> Iterator[ImportedRecord]:
         for key, value in result.items():
             normalised_field = normalise_header(key)
             if field := field_names.get(normalised_field):
-                record[field] = value
+                record[field] = str(value)
 
         check_all_required_columns_present(record)
 

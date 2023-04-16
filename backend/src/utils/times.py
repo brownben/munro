@@ -1,16 +1,14 @@
-def parse_time(time: str | int) -> int:
+def parse_time(time: str) -> int:
     """Parse an elapsed time string into seconds"""
-
-    if isinstance(time, int):
-        return time
 
     splitTime = time.split(":")
 
-    if time == "" or len(splitTime) not in [2, 3]:
-        return 0
-
     try:
-        if len(splitTime) == 2:
+        if len(splitTime) == 1:
+            hours = 0
+            minutes = 0
+            seconds = int(splitTime[0])
+        elif len(splitTime) == 2:
             hours = 0
             minutes = int(splitTime[0])
             seconds = int(splitTime[1])

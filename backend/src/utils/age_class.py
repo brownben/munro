@@ -163,11 +163,9 @@ def get_correct_age_for_age_class(age: int) -> int:
         return 21
 
 
-def get_year_from_date(date: str | int) -> int:
+def get_year_from_date(date: str) -> int:
     """Parse a year from a date, either just a year or in YYYY-MM-DD format"""
-    if isinstance(date, int):
-        return date
-    elif date.count("-") == 2:
+    if date.count("-") == 2:
         raw_year, month, day = date.split("-")
         return int(raw_year or 0)
     else:
