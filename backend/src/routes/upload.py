@@ -29,6 +29,7 @@ async def process_upload_file(
     upload_key: str,
     file: str,
     overwrite: bool,
+    partial: bool,
     results_links: Optional[dict[str, HttpUrl | Literal[""]]],
 ) -> Message:
     event = await Events.get_by_id(event_id)
@@ -37,11 +38,11 @@ async def process_upload_file(
         raise HTTP_404("Problem uploading results - Event doesn't exist")
     elif upload_key != event.upload_key:
         raise HTTP_401("Permission Denied - Upload key incorrect")
-    elif event.results_uploaded and not overwrite:
+    elif event.results_uploaded and not (overwrite or partial):
         raise HTTP_403(
             "Results already exist for this event and overwrite was not enabled"
         )
-    elif overwrite:
+    elif overwrite and not partial:
         await Results.delete_by_event_no_type(event.id)
 
     competitors = list(await Competitors.get_by_pool(event.competitor_pool))
@@ -82,6 +83,7 @@ async def upload_results_file(request: UploadFileRequest) -> Message:
         request.upload_key,
         request.file,
         request.overwrite,
+        request.partial,
         request.results_links,
     )
 
@@ -95,6 +97,7 @@ async def upload_results_url(request: UploadURLRequest) -> Message:
         request.upload_key,
         file,
         request.overwrite,
+        request.partial,
         request.results_links,
     )
 

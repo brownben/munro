@@ -159,6 +159,7 @@ class UploadRequest(BaseModel):
     event_id: str
     upload_key: str
     overwrite: bool = False
+    partial: bool = False
 
     results_links: Optional[dict[str, HttpUrl | Literal[""]]]
 
