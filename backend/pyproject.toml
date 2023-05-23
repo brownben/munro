@@ -23,7 +23,7 @@ google-auth = "^2.16.2"
 httpx = "^0.24.0"
 piccolo = "^0.109.0"
 uvicorn = "^0.20.0"
-requests = "^2.28.1"
+requests = "^2.31.0"
 
 [tool.poetry.dev-dependencies]
 aiosqlite = "^0.18.0"
