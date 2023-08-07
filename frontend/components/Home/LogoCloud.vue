@@ -29,7 +29,7 @@ const leagues = [
     height: 381,
   },
   {
-    to: '/leagues/Bristol Urban League 2022',
+    to: '/leagues/Bristol Urban League 2023',
     src: '/logos/bristol-orienteering-club',
     alt: 'Bristol Orienteering Club Logo',
     width: 225,
