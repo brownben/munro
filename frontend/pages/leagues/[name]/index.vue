@@ -13,7 +13,7 @@ const loggedIn = useLoggedIn()
 const { data: league, refresh } =
   await useRestrictedDataIfLoggedIn<LeagueOverview>(
     `leagues/${route.params.name}`,
-    `leagues/${route.params.name}/uploadKey`
+    `leagues/${route.params.name}/uploadKey`,
   )
 
 const events = league.value?.events ?? []
@@ -21,7 +21,7 @@ const latestEvents = events.filter((event) => event.results_uploaded).reverse()
 
 const todaysDate = getCurrentDate()
 const nextEvent = events.filter(
-  (event) => event.date >= todaysDate && !event.results_uploaded
+  (event) => event.date >= todaysDate && !event.results_uploaded,
 )[0]
 
 const scoringMethods: Record<string, [string, string]> = {

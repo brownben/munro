@@ -27,7 +27,7 @@ const getGender = (ageClass?: string): Gender => {
   else return ''
 }
 export const getAgeGenderFromAgeClass = (
-  ageClass?: string
+  ageClass?: string,
 ): { age: number; gender: Gender } => {
   const gender = getGender(ageClass)
   const age = Number(ageClass?.match(/\d+|$/)?.[0] || 21)
@@ -36,21 +36,21 @@ export const getAgeGenderFromAgeClass = (
 }
 
 export const eventResultWithAgeGender = (
-  result: EventResult
+  result: EventResult,
 ): EventResultWithAgeGender => {
   const { age, gender } = getAgeGenderFromAgeClass(result.age_class)
   return { ...result, age, gender } as EventResultWithAgeGender
 }
 
 export const leagueResultWithAgeGender = (
-  result: LeagueResult
+  result: LeagueResult,
 ): LeagueResultWithAgeGender => {
   const { age, gender } = getAgeGenderFromAgeClass(result?.age_class)
   return { ...result, age, gender } as LeagueResultWithAgeGender
 }
 
 export const competitorWithAgeGender = (
-  competitor: Competitor
+  competitor: Competitor,
 ): CompetitorWithAgeGender => {
   const { age, gender } = getAgeGenderFromAgeClass(competitor?.age_class)
   return { ...competitor, age, gender } as CompetitorWithAgeGender

@@ -12,7 +12,7 @@ export const defaultValidator = {
 
 export const RequiredField = (
   fieldName: string,
-  select = false
+  select = false,
 ): Validator => ({
   message: `Please ${select ? 'select' : 'enter'} ${fieldName}.`,
   checker: (value: string) => !!value,
@@ -23,7 +23,7 @@ export const IsValidEmail = {
   message: `Please enter a valid email address.`,
   checker: (value: string) =>
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
-      value
+      value,
     ),
   fieldProperties: {
     required: 'true',

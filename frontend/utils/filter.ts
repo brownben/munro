@@ -18,7 +18,7 @@ const resultMatchesGender = (
     | EventResultWithAgeGender
     | LeagueResultWithAgeGender
     | CompetitorWithAgeGender,
-  filterPreferences: Filters
+  filterPreferences: Filters,
 ): boolean =>
   (filterPreferences.male && filterPreferences.female) ||
   (filterPreferences.male && result.gender === 'M') ||
@@ -30,7 +30,7 @@ const resultMatchesAge = (
     | EventResultWithAgeGender
     | LeagueResultWithAgeGender
     | CompetitorWithAgeGender,
-  filterPreferences: Filters
+  filterPreferences: Filters,
 ): boolean => {
   const maxAge = Number(filterPreferences.maxAge)
   const minAge = Number(filterPreferences.minAge)
@@ -55,7 +55,7 @@ export const matchingResults = (filterPreferences: Filters) => {
     result:
       | EventResultWithAgeGender
       | LeagueResultWithAgeGender
-      | CompetitorWithAgeGender
+      | CompetitorWithAgeGender,
   ): boolean | null =>
     result.name.match(nameRegex) &&
     result.club.match(clubRegex) &&

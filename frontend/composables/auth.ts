@@ -12,7 +12,7 @@ export const useUserCookie = () =>
 
 export const loginRequest = async (
   email: Ref<string>,
-  password: Ref<string>
+  password: Ref<string>,
 ) => {
   const { idToken, displayName } = await $fetch<User>(
     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQriY0O2Atf-En8yKMXNs5TIRCglWuAbQ',
@@ -23,7 +23,7 @@ export const loginRequest = async (
         returnSecureToken: true,
       },
       method: 'POST',
-    }
+    },
   )
   useUserCookie().value = { idToken, displayName }
   useUserState().value = { idToken, displayName }

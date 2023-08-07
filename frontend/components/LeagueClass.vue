@@ -10,7 +10,7 @@ const emit = defineEmits(['class-changed'])
 const deleteClass = async () => {
   if (
     confirm(
-      `Are you sure you want to delete class "${props.cls.name}"? \nThis action cannot be reversed.`
+      `Are you sure you want to delete class "${props.cls.name}"? \nThis action cannot be reversed.`,
     )
   ) {
     await useDelete(`leagues/${props.cls.league}/classes/${props.cls.name}`)

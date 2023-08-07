@@ -6,7 +6,7 @@ export const useData = <Type>(location: string) =>
   useFetch<Type>(`${base}${location}`, { key: location })
 
 export const useRestrictedData = <Type>(
-  location: string
+  location: string,
 ): ReturnType<typeof useData<Type>> =>
   useFetch<Type>(`${base}${location}`, {
     key: location,
@@ -15,7 +15,7 @@ export const useRestrictedData = <Type>(
 
 export const useRestrictedDataIfLoggedIn = <Type>(
   location: string,
-  authLocation: string
+  authLocation: string,
 ): ReturnType<typeof useData<Type>> => {
   const loggedIn = useLoggedIn()
   if (loggedIn.value) return useRestrictedData<Type>(authLocation)

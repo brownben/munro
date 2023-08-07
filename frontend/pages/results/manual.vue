@@ -27,12 +27,12 @@ const events: Ref<Event[]> = ref([])
 const getData = async () => {
   competitors.value = (
     await useGet<Competitor[]>(
-      `competitor-pools/${form.competitor_pool}/competitors`
+      `competitor-pools/${form.competitor_pool}/competitors`,
     )
   ).sort((a, b) => a.name.localeCompare(b.name))
 
   events.value = await useGet<Event[]>(
-    `competitor-pools/${form.competitor_pool}/events`
+    `competitor-pools/${form.competitor_pool}/events`,
   )
 }
 onMounted(() => {

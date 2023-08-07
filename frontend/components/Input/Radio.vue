@@ -24,7 +24,7 @@ const props = defineProps({
   },
 })
 const selected = computed(() =>
-  props.options.find((option) => option.value === props.modelValue)
+  props.options.find((option) => option.value === props.modelValue),
 )
 
 const handleEvent = (value: unknown) =>

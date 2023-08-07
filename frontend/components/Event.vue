@@ -19,14 +19,14 @@ const emit = defineEmits(['event-changed'])
 
 const resultsLinks = computed(() =>
   Object.keys(props.event.results_links).filter(
-    (link) => props.event.results_links[link]
-  )
+    (link) => props.event.results_links[link],
+  ),
 )
 
 const deleteEvent = async () => {
   if (
     confirm(
-      `Are you sure you want to delete event "${props.event.name}"? \nThis action cannot be reversed.`
+      `Are you sure you want to delete event "${props.event.name}"? \nThis action cannot be reversed.`,
     )
   ) {
     await useDelete(`events/${props.event.id}`)
@@ -97,7 +97,7 @@ const deleteEvent = async () => {
       <div class="-mb-2 flex flex-wrap gap-3">
         <NuxtLink
           :to="`/upload/file?event_id=${encodeURIComponent(
-            event.id
+            event.id,
           )}&upload_key=${encodeURIComponent(event.upload_key ?? '')}`"
           class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
         >

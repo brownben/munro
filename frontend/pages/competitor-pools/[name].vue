@@ -12,10 +12,10 @@ if (!loggedIn.value) await redirect('/login')
 const route = useRoute()
 
 const { data } = await useData<Competitor[]>(
-  `competitor-pools/${route.params.name}/competitors`
+  `competitor-pools/${route.params.name}/competitors`,
 )
 const competitors = computed(
-  () => data.value?.map(competitorWithAgeGender) ?? []
+  () => data.value?.map(competitorWithAgeGender) ?? [],
 )
 const name = queryToString(route.params.name)
 

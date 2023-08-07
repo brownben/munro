@@ -10,7 +10,7 @@ const props = defineProps({
 const emit = defineEmits(['result-changed'])
 
 const { data: competitors } = await useData<Competitor[]>(
-  `competitor-pools/${props.competitorPool}/competitors`
+  `competitor-pools/${props.competitorPool}/competitors`,
 )
 
 const competitor = ref('')

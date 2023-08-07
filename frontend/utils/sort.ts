@@ -2,7 +2,7 @@ import { LeagueResult } from '~/api-types'
 
 export const byProperty = <FullObject>(
   ascending: boolean,
-  property: keyof FullObject
+  property: keyof FullObject,
 ) => {
   return (aFull: FullObject, bFull: FullObject) => {
     const a: any = aFull[property]

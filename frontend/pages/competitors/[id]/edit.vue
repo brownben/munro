@@ -10,7 +10,7 @@ const router = useRouter()
 
 const { data: competitor_pools } = await useData<string[]>(`competitor-pools/`)
 const { data: form } = await useData<Competitor>(
-  `competitors/${route.params.id}`
+  `competitors/${route.params.id}`,
 )
 
 const action = async () => {

@@ -6,7 +6,7 @@ const route = useRoute()
 const loggedIn = useLoggedIn()
 
 const { data: competitor, refresh } = await useData<CompetitorOverview>(
-  `competitors/${route.params.id}/results`
+  `competitors/${route.params.id}/results`,
 )
 </script>
 <template>

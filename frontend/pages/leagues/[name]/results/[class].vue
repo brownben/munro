@@ -6,15 +6,15 @@ import { AdjustmentsVerticalIcon } from '@heroicons/vue/24/outline'
 const route = useRoute()
 
 const { data } = await useData<LeagueResultsOverview>(
-  `leagues/${route.params.name}/results/${route.params.class}`
+  `leagues/${route.params.name}/results/${route.params.class}`,
 )
 const results = computed(
-  () => data.value?.results.map(leagueResultWithAgeGender) ?? []
+  () => data.value?.results.map(leagueResultWithAgeGender) ?? [],
 )
 const otherClasses = computed(
   () =>
     data.value?.classes.filter((course) => course !== data.value?.class_name) ??
-    []
+    [],
 )
 
 const show = ref(false)

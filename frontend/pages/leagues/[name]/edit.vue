@@ -14,7 +14,7 @@ const router = useRouter()
 
 const { data: competitor_pools } = await useData<string[]>(`competitor-pools/`)
 const { data: form } = await useData<LeagueOverview>(
-  `leagues/${route.params.name}`
+  `leagues/${route.params.name}`,
 )
 
 const action = async () => {

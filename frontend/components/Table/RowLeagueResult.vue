@@ -40,7 +40,7 @@ defineProps({
         :class="{
           'line-through': !point?.counting,
           'font-normal italic': ['manual', 'max', 'average'].includes(
-            point?.type ?? ''
+            point?.type ?? '',
           ),
         }"
       >
@@ -62,7 +62,7 @@ defineProps({
             :class="{
               'line-through': !point?.counting,
               'font-normal italic': ['manual', 'max', 'average'].includes(
-                point?.type ?? ''
+                point?.type ?? '',
               ),
             }"
           >

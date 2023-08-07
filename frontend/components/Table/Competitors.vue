@@ -18,7 +18,7 @@ const activeColumn = ref<Column>('id')
 const sortedResults = computed(() =>
   props.competitors
     .filter(matchingResults(props.filters))
-    .sort(byProperty(ascending.value, activeColumn.value))
+    .sort(byProperty(ascending.value, activeColumn.value)),
 )
 
 const changeSortPreference = (property: Column) => {
@@ -30,7 +30,7 @@ const changeSortPreference = (property: Column) => {
 const ariaSorted = computed(
   (): Partial<Record<Column, 'ascending' | 'descending'>> => ({
     [activeColumn.value]: ascending.value ? 'descending' : 'ascending',
-  })
+  }),
 )
 </script>
 <template>

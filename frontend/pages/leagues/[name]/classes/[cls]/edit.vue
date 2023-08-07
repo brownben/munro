@@ -15,7 +15,7 @@ const router = useRouter()
 
 const { data: leagues } = await useData<League[]>(`leagues/`)
 const { data } = await useData<LeagueClass>(
-  `leagues/${route.params.name}/classes/${route.params.cls}`
+  `leagues/${route.params.name}/classes/${route.params.cls}`,
 )
 
 const getClubRestriction = () => {

@@ -9,13 +9,13 @@ import {
 const route = useRoute()
 
 const { data: event } = await useData<EventResults>(
-  `misc/sitiming?url=${route.params.url}`
+  `misc/sitiming?url=${route.params.url}`,
 )
 const results = computed(() =>
   groupBy(
     event.value?.results.map(eventResultWithAgeGender) ?? [],
-    (result) => result.course
-  )
+    (result) => result.course,
+  ),
 )
 const courses = computed(() => Object.keys(results.value))
 

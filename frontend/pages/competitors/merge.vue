@@ -22,7 +22,7 @@ const competitors: Ref<Competitor[]> = ref([])
 const getCompetitors = async () => {
   competitors.value = (
     await useGet<Competitor[]>(
-      `competitor-pools/${form.competitor_pool}/competitors`
+      `competitor-pools/${form.competitor_pool}/competitors`,
     )
   ).sort((a, b) => a.name.localeCompare(b.name))
 }

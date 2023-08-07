@@ -18,7 +18,7 @@ const props = defineProps({
 })
 
 const filteredLinks = computed(() =>
-  Object.keys(props.links).filter((link) => props.links[link])
+  Object.keys(props.links).filter((link) => props.links[link]),
 )
 
 const getIcon = (type: string) => {
