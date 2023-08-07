@@ -153,3 +153,40 @@ export interface Home {
   results: number
   latestResults: Event[]
 }
+
+/* --- Types for MapRun Results API --- */
+
+interface MapRunResult {
+  Id: string
+  Surname: string
+  Firstname: string
+  Gender: string
+  YearOfBirth: string
+  TrackStartDateTimeUTC: string
+  StartPunchTimeLocal: string
+  FinishPunchTimeLocal: string
+  TotalTimehhmmss: string
+  TotalTimeSecs: number
+  Classifier: string
+  ClubName: string
+  GrossScore: number
+  NetScore: number
+  MapRunVersion: string
+  Distance: number
+  Pacemmss: string
+  PaceMins: number
+  punchControlIds: string[]
+  punchTimeAfterStartSecs: number[]
+}
+
+interface MapRunResultWithAddedCourse extends MapRunResult {
+  course: string
+}
+
+export interface MapRunResultsAPI {
+  errorFlag: boolean
+  statusMessage: string
+  warningFlag: boolean
+  warningMessage: string
+  results: MapRunResultWithAddedCourse[]
+}

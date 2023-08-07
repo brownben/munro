@@ -45,6 +45,8 @@ field_names: dict[str, Columns] = {
     "nc": "nonCompetitive",
     "noncompetitive": "nonCompetitive",
     "points": "filePoints",
+    "netscore": "filePoints",
+    "score": "filePoints",
     "gender": "gender",
     "sex": "gender",
     "birthyear": "birthDate",
