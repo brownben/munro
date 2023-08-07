@@ -60,6 +60,7 @@ class Results:
                 *results_fields, ResultTable.event.name.as_alias("event_name")
             )
             .where(ResultTable.competitor == competitor)
+            .order_by(ResultTable.event.date)
             .run()
         )
 

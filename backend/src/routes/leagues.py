@@ -193,9 +193,9 @@ async def get_league_results(
         and club_matches_filter(league_class.club_filter, competitor.club)
     }
 
-    events_with_results = []
+    events_with_results: list[LeagueEvent] = []
     for event in events:
-        event_results: Iterable[Result] = [
+        event_results = [
             result
             for result in await get_results_for_event(event, league_class)
             if league_results.get(result.competitor)
@@ -204,8 +204,8 @@ async def get_league_results(
         if len(list(event_results)) == 0:
             continue
 
+        event_index = len(events_with_results)
         events_with_results.append(event)
-        event_index = len(events_with_results) - 1
 
         event_results = list(assign_position_based_on_time(event_results))
 
@@ -239,13 +239,13 @@ async def get_league_results(
             if point and point.counting:
                 competitor.total_points += point.score
 
-    results: Iterable[LeagueResult] = (
+    results = [
         result
         for result in league_results.values()
-        if result.points != [None] * len(list(events))
-    )
-    results = sorted(results, key=lambda x: x.total_points, reverse=True)
-    results = assign_position_based_on_points(results)
+        if any([points is not None for points in result.points])
+    ]
+    results.sort(key=lambda x: x.total_points, reverse=True)
+    assign_position_based_on_points(results)
 
     return LeagueResultsResponse(
         league=league.name,

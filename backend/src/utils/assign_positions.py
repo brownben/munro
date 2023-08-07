@@ -5,9 +5,9 @@ from .dynamic_results import DYNAMIC_RESULT_TYPES
 
 
 def assign_position_based_on_points(
-    results: Iterable[LeagueResult],
-) -> Iterable[LeagueResult]:
-    """Assign 1st, 2nd, 3rd, etc based off total points. Expects results to be sorted"""
+    results: list[LeagueResult],
+) -> None:
+    """Assign 1st, 2nd, 3rd, etc based off total points. Expects results to be sorted, modifies results in place"""
 
     last_position = 0
     position = 0
@@ -23,8 +23,6 @@ def assign_position_based_on_points(
             result.position = position
 
         last_points = result.total_points
-
-        yield result
 
 
 TResult = TypeVar("TResult", bound=Result | EventResult)

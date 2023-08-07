@@ -41,10 +41,8 @@ class TestAssignPositionBasedOnPoints(unittest.TestCase):
             create_league_result(49),
             create_league_result(48),
         ]
-        self.assertEqual(
-            [result.position for result in assign_position_based_on_points(results)],
-            [1, 2, 3],
-        )
+        assign_position_based_on_points(results)
+        self.assertEqual([result.position for result in results], [1, 2, 3])
 
     def test_drawn_results(self) -> None:
         results = [
@@ -52,20 +50,16 @@ class TestAssignPositionBasedOnPoints(unittest.TestCase):
             create_league_result(50),
             create_league_result(48),
         ]
-        self.assertEqual(
-            [result.position for result in assign_position_based_on_points(results)],
-            [1, 1, 3],
-        )
+        assign_position_based_on_points(results)
+        self.assertEqual([result.position for result in results], [1, 1, 3])
 
         results = [
             create_league_result(50),
             create_league_result(48),
             create_league_result(48),
         ]
-        self.assertEqual(
-            [result.position for result in assign_position_based_on_points(results)],
-            [1, 2, 2],
-        )
+        assign_position_based_on_points(results)
+        self.assertEqual([result.position for result in results], [1, 2, 2])
 
         results = [
             create_league_result(50),
@@ -73,10 +67,8 @@ class TestAssignPositionBasedOnPoints(unittest.TestCase):
             create_league_result(49),
             create_league_result(48),
         ]
-        self.assertEqual(
-            [result.position for result in assign_position_based_on_points(results)],
-            [1, 2, 2, 4],
-        )
+        assign_position_based_on_points(results)
+        self.assertEqual([result.position for result in results], [1, 2, 2, 4])
 
 
 class TestAssignPositionBasedOnTime(unittest.TestCase):
