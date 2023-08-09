@@ -50,18 +50,5 @@ export const useLoggedIn = () => {
 }
 
 export const redirect = async (path: string) => {
-  const app = useNuxtApp()
-  if (app.ssrContext) {
-    app.ssrContext.res.writeHead(302, { Location: path })
-
-    return app.ssrContext.res.end()
-  }
-
-  return await useRouter().push(path)
-}
-
-export const useRequireAuthentication = async () => {
-  const user = useLoggedIn()
-
-  if (!user.value) return redirect('/login')
+  return navigateTo(path, { replace: true })
 }
