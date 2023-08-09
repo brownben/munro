@@ -4,6 +4,7 @@ from ...database import Results
 from ...database.tables import CompetitorPool as CompetitorPoolTable
 from ...database.tables import League as LeagueTable
 from ...database.tables import LeagueClass as LeagueClassTable
+from ...database.tables import LeagueGroup as LeagueGroupTable
 from .helpers import TestCaseWithDatabase
 
 
@@ -863,4 +864,202 @@ class TestLeagueClassModify(TestCaseWithDatabase):
         self.assertDictEqual(
             response.json(),
             {"detail": "Couldn't find league class with the name `unknown`"},
+        )
+
+
+class TestLeagueGroups(TestCaseWithDatabase):
+    def test_create_group(self) -> None:
+        response = self.client.post(
+            "/leagues/Sprintelope 2021/groups",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 0,
+            },
+        )
+
+        self.assertEqual(response.status_code, 201)
+        self.assertDictEqual(
+            response.json(),
+            {"detail": "League group `Test` created for league `Sprintelope 2021`"},
+        )
+
+    def test_create_group_doesnt_match(self) -> None:
+        response = self.client.post(
+            "/leagues/Sprintelope 2021/groups",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2022",
+                "min": 0,
+                "max": 0,
+            },
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertDictEqual(
+            response.json(), {"detail": "League in body and URL don't match"}
+        )
+
+    def test_create_unknown_league(self) -> None:
+        response = self.client.post(
+            "/leagues/Sprint/groups",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 0,
+            },
+        )
+        self.assertEqual(response.status_code, 404)
+        self.assertDictEqual(
+            response.json(), {"detail": "Couldn't find league with name `Sprint`"}
+        )
+
+    def test_create_already_exists(self) -> None:
+        for _ in range(2):
+            response = self.client.post(
+                "/leagues/Sprintelope 2021/groups",
+                headers={"Authorization": "Bearer SuperSecretTest"},
+                json={
+                    "name": "Testing",
+                    "league": "Sprintelope 2021",
+                    "min": 0,
+                    "max": 0,
+                },
+            )
+
+        self.assertEqual(response.status_code, 409)
+        self.assertDictEqual(
+            response.json(),
+            {
+                "detail": "League group `Testing` already exists for league `Sprintelope 2021`"
+            },
+        )
+
+    def test_update_unknown_league_groups(self) -> None:
+        response = self.client.put(
+            "/leagues/hahaha/groups/unknown",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 0,
+            },
+        )
+
+        self.assertEqual(response.status_code, 404)
+        self.assertDictEqual(
+            response.json(),
+            {"detail": "Couldn't find league group with the name `unknown`"},
+        )
+
+    def test_update_league_groups(self) -> None:
+        self.client.post(
+            "/leagues/Sprintelope 2021/groups",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 0,
+            },
+        )
+
+        response = self.client.put(
+            "/leagues/Sprintelope 2021/groups/Test",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 2,
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertDictEqual(
+            response.json(),
+            {"detail": "League group `Test` updated"},
+        )
+
+        group = (
+            LeagueGroupTable.objects()
+            .where(LeagueGroupTable.league == "Sprintelope 2021")
+            .where(LeagueGroupTable.name == "Test")
+            .first()
+            .run_sync()
+        )
+        assert group is not None
+        self.assertEqual(group.max, 2)
+
+    def test_delete_league_groups(self) -> None:
+        self.client.post(
+            "/leagues/Sprintelope 2021/groups",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 0,
+            },
+        )
+        number_of_groups = len(
+            LeagueGroupTable.objects()
+            .where(LeagueGroupTable.league == "Sprintelope 2021")
+            .run_sync()
+        )
+
+        response = self.client.delete(
+            "/leagues/Sprintelope 2021/groups/Test",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertDictEqual(
+            response.json(),
+            {"detail": "League group `Test` deleted"},
+        )
+
+        new_number_of_groups = len(
+            LeagueGroupTable.objects()
+            .where(LeagueGroupTable.league == "Sprintelope 2021")
+            .run_sync()
+        )
+        self.assertGreater(number_of_groups, new_number_of_groups)
+
+    def test_get_league_group(self) -> None:
+        self.client.post(
+            "/leagues/Sprintelope 2021/groups",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 0,
+            },
+        )
+        response = self.client.get("/leagues/Sprintelope 2021/groups/Test")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.json(),
+            {
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "min": 0,
+                "max": 0,
+            },
+        )
+
+    def test_get_missing_league_group(self) -> None:
+        response = self.client.get("/leagues/Sprintelope 2021/groups/unknown")
+
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(
+            response.json(),
+            {"detail": "No group named `unknown` exists"},
         )

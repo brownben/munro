@@ -34,6 +34,14 @@ export interface LeagueClass {
   number_of_counting_events?: number
 }
 
+export interface LeagueGroup {
+  name: string
+  league: string
+
+  min: number
+  max: number
+}
+
 export interface League {
   name: string
   tagline: string
@@ -51,6 +59,7 @@ export interface League {
 export interface LeagueOverview extends League {
   events: Event[]
   classes: LeagueClass[]
+  groups: LeagueGroup[]
 }
 
 export interface LeagueEvent {

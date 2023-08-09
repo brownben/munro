@@ -202,11 +202,27 @@ class LeagueClasses:
         return True
 
     @staticmethod
-    async def delete_by_name(name: str) -> None:
-        await LeagueClassTable.delete().where(LeagueClassTable.name == name).run()
+    async def delete_by_name(name: str, league: str) -> None:
+        await (
+            LeagueClassTable.delete()
+            .where(LeagueClassTable.name == name)
+            .where(LeagueClassTable.league == league)
+            .run()
+        )
 
 
 class LeagueGroups:
+    @staticmethod
+    async def create(league_group: LeagueGroup) -> None:
+        await LeagueGroupTable.insert(
+            LeagueGroupTable(
+                name=league_group.name,
+                league=league_group.league,
+                min=league_group.min,
+                max=league_group.max,
+            )
+        ).run()
+
     @staticmethod
     async def get_by_league(league: str) -> list[LeagueGroup]:
         return [
@@ -218,6 +234,21 @@ class LeagueGroups:
         ]
 
     @staticmethod
+    async def get_by_name(league: str, group: str) -> Optional[LeagueGroup]:
+        database_result = (
+            await LeagueGroupTable.select(*LeagueGroupTable.all_columns())
+            .where(LeagueGroupTable.league == league)
+            .where(LeagueGroupTable.name == group)
+            .first()
+            .run()
+        )
+
+        if database_result:
+            return LeagueGroup.parse_obj(database_result)
+        else:
+            return None
+
+    @staticmethod
     async def get_dict_by_league(league: str) -> dict[int, tuple[int, int]]:
         return {
             group["id"]: (group["min"], group["max"])
@@ -226,3 +257,32 @@ class LeagueGroups:
             .order_by(LeagueGroupTable.name)
             .run()
         }
+
+    @staticmethod
+    async def update(league: str, name: str, group: LeagueGroup) -> bool:
+        existing_group = (
+            await LeagueGroupTable.objects()
+            .where(LeagueGroupTable.league == league)
+            .where(LeagueGroupTable.name == name)
+            .first()
+            .run()
+        )
+
+        if not existing_group:
+            return False
+
+        for key, value in group.dict().items():
+            setattr(existing_group, key, value)
+
+        await existing_group.save().run()
+
+        return True
+
+    @staticmethod
+    async def delete_by_name(name: str, league: str) -> None:
+        await (
+            LeagueGroupTable.delete()
+            .where(LeagueGroupTable.name == name)
+            .where(LeagueGroupTable.league == league)
+            .run()
+        )

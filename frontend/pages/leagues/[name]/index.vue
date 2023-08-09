@@ -186,6 +186,32 @@ if (league.value) {
         </div>
       </section>
 
+      <section v-if="loggedIn && league?.groups.length > 0" class="bg-gray-50">
+        <div
+          class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-4 sm:pt-10 lg:px-8"
+        >
+          <div class="pb-4">
+            <h2 class="col-span-1 text-2xl font-bold text-gray-600">Groups</h2>
+            <NuxtLink
+              :to="`/leagues/${route.params.name}/groups/create`"
+              class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+            >
+              + Add Group
+            </NuxtLink>
+          </div>
+
+          <div class="col-span-2 -mt-6 flex flex-col divide-y">
+            <LeagueGroup
+              v-for="group in league.groups"
+              :key="group.name"
+              :group="group"
+              class="py-6 sm:px-4"
+              @group-changed="refresh"
+            />
+          </div>
+        </div>
+      </section>
+
       <section
         class="mx-auto max-w-screen-lg gap-8 px-6 py-6 sm:py-12 md:py-14 lg:px-8"
       >

@@ -19,6 +19,7 @@ from ..schemas import (
     League,
     LeagueClass,
     LeagueEvent,
+    LeagueGroup,
     LeagueOverview,
     LeagueOverviewAuthenticated,
     LeagueResult,
@@ -294,7 +295,7 @@ async def get_league_class(
     cls: str = Path(
         title="Class Name",
         description="Name of the class",
-        example="Sprintelope 2021",
+        example="Long",
     ),
 ) -> LeagueClass:
     result = await LeagueClasses.get_by_name(league_name, cls)
@@ -316,7 +317,7 @@ async def update_league_class(
     class_name: str = Path(
         title="Class Name",
         description="Name of the class",
-        example="Sprintelope 2021",
+        example="Long",
     ),
 ) -> Message:
     success = await LeagueClasses.update(league_name, class_name, cls)
@@ -341,6 +342,96 @@ async def delete_league_class(
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
-    await LeagueClasses.delete_by_name(name)
+    await LeagueClasses.delete_by_name(name, league_name)
 
     return Message(detail=f"League class `{name}` deleted")
+
+
+@router.get("/{league_name}/groups/{group}", response_model=LeagueGroup)
+async def get_league_group(
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league ",
+        example="Sprintelope 2021",
+    ),
+    group: str = Path(
+        title="Group Name",
+        description="Name of the group",
+        example="Sprint",
+    ),
+) -> LeagueGroup:
+    result = await LeagueGroups.get_by_name(league_name, group)
+
+    if not result:
+        raise HTTP_404(f"No group named `{group}` exists")
+
+    return result
+
+
+@router.post("/{league_name}/groups", response_model=Message)
+async def create_league_group(
+    group: LeagueGroup,
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league",
+        example="Sprintelope 2021",
+    ),
+    authentication: bool = Depends(require_authentication),
+) -> Message:
+    league = await Leagues.get_by_name(league_name)
+
+    if not league:
+        raise HTTP_404(f"Couldn't find league with name `{league_name}`")
+
+    if league_name != group.league:
+        raise HTTP_400("League in body and URL don't match")
+
+    if await LeagueGroups.get_by_name(league.name, group.name):
+        raise HTTP_409(
+            f"League group `{group.name}` already exists for league `{league.name}`"
+        )
+
+    await LeagueGroups.create(group)
+
+    raise HTTP_201(f"League group `{group.name}` created for league `{group.league}`")
+
+
+@router.put("/{league_name}/groups/{group_name}", response_model=Message)
+async def update_league_group(
+    group: LeagueGroup,
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league ",
+        example="Sprintelope 2021",
+    ),
+    group_name: str = Path(
+        title="Group Name",
+        description="Name of the group",
+        example="Sprint",
+    ),
+) -> Message:
+    success = await LeagueGroups.update(league_name, group_name, group)
+
+    if success:
+        return Message(detail=f"League group `{group_name}` updated")
+    else:
+        raise HTTP_404(f"Couldn't find league group with the name `{group_name}`")
+
+
+@router.delete("/{league_name}/groups/{name}", response_model=Message)
+async def delete_league_group(
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league",
+        example="Sprintelope 2021",
+    ),
+    name: str = Path(
+        title="Group Name",
+        description="Name of the league group to delete",
+        example="Sprint",
+    ),
+    authentication: bool = Depends(require_authentication),
+) -> Message:
+    await LeagueGroups.delete_by_name(name, league_name)
+
+    return Message(detail=f"League group `{name}` deleted")

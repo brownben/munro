@@ -84,6 +84,7 @@ class LeagueEvent(Table):
         references=LeagueGroup,
         null=True,
         default=None,
+        on_delete=OnDelete.set_null,
     )
 
     compulsory = Boolean()
