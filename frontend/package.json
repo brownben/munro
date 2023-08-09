@@ -21,9 +21,9 @@
     "dev": "nuxi dev",
     "build": "nuxi build",
     "preview": "nuxi preview",
-    "lint": "eslint components composables pages utils .",
+    "lint": "eslint components pages utils .",
     "lint:fix": "eslint ** --fix",
-    "format:check": "prettier --check components composables pages utils .",
+    "format:check": "prettier --check components pages utils .",
     "format": "prettier --write **",
     "test": "vitest test --run",
     "typecheck": "nuxi typecheck && tsc --noEmit"
