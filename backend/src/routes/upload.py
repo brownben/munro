@@ -62,7 +62,8 @@ async def process_upload_file(
         else:
             result.competitor = await Competitors.create(
                 NewCompetitor(
-                    **dict(full_result), competitor_pool=event.competitor_pool
+                    **dict(full_result),
+                    competitor_pool=event.competitor_pool,
                 )
             )
 

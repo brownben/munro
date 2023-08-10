@@ -152,7 +152,7 @@ async def get_results_for_event(
         raise HTTP_404(f"Couldn't find event with the id `{id}`")
 
     return EventWithResults(
-        **dict(event),
+        **event.dict(),
         results=assign_position_based_on_time(results or []),
         league=league,
     )
