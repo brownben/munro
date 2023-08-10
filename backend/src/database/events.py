@@ -3,7 +3,6 @@ import datetime
 import os
 from typing import Any, Iterable, Literal, Optional, cast
 
-from piccolo.query.methods.select import Count
 from pydantic.networks import HttpUrl
 
 from ..schemas import (
@@ -256,12 +255,8 @@ class Events:
 
     @staticmethod
     async def count() -> int:
-        database_result = await EventTable.select(Count(EventTable.id)).first().run()
-
-        if database_result:
-            return int(database_result["count"])
-        else:
-            return 0
+        database_result = await EventTable.count().run()
+        return int(database_result)
 
 
 class LeagueEvents:
@@ -279,3 +274,8 @@ class LeagueEvents:
             .output(load_json=True)
             .run()
         ]
+
+    @staticmethod
+    async def count() -> int:
+        database_result = await LeagueEventTable.count().run()
+        return int(database_result)

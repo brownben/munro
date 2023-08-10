@@ -1,10 +1,6 @@
 from unittest.mock import ANY, AsyncMock, MagicMock, call, patch
 
-from ...database import Results
-from ...database.tables import CompetitorPool as CompetitorPoolTable
-from ...database.tables import League as LeagueTable
-from ...database.tables import LeagueClass as LeagueClassTable
-from ...database.tables import LeagueGroup as LeagueGroupTable
+from ...database import Competitors, LeagueClasses, LeagueGroups, Leagues, Results
 from .helpers import TestCaseWithDatabase
 
 
@@ -494,11 +490,9 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
 
 
 class TestModifyLeagueRoutes(TestCaseWithDatabase):
-    def test_create_league_no_competitor_pool(self) -> None:
-        original_leagues = LeagueTable.select(LeagueTable.name).run_sync()
-        original_competitor_pools = CompetitorPoolTable.select(
-            CompetitorPoolTable.name
-        ).run_sync()
+    async def test_create_league_no_competitor_pool(self) -> None:
+        original_league_count = await Leagues.count()
+        original_competitor_pool_count = await Competitors.get_pool_count()
 
         response = self.client.post(
             "/leagues/",
@@ -520,19 +514,15 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 201)
         self.assertDictEqual(response.json(), {"detail": "League `Test2` created"})
 
-        leagues = LeagueTable.select(LeagueTable.name).run_sync()
-        competitor_pools = CompetitorPoolTable.select(
-            CompetitorPoolTable.name
-        ).run_sync()
+        league_count = await Leagues.count()
+        competitor_pool_count = await Competitors.get_pool_count()
 
-        self.assertEqual(len(leagues), len(original_leagues) + 1)
-        self.assertEqual(len(competitor_pools), len(original_competitor_pools) + 1)
+        self.assertEqual(league_count, original_league_count + 1)
+        self.assertEqual(competitor_pool_count, original_competitor_pool_count + 1)
 
-    def test_create_league_with_competitor_pool(self) -> None:
-        original_leagues = LeagueTable.select(LeagueTable.name).run_sync()
-        original_competitor_pools = CompetitorPoolTable.select(
-            CompetitorPoolTable.name
-        ).run_sync()
+    async def test_create_league_with_competitor_pool(self) -> None:
+        original_league_count = await Leagues.count()
+        original_competitor_pool_count = await Competitors.get_pool_count()
 
         response = self.client.post(
             "/leagues/",
@@ -554,13 +544,11 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 201)
         self.assertDictEqual(response.json(), {"detail": "League `Test 2` created"})
 
-        leagues = LeagueTable.select(LeagueTable.name).run_sync()
-        competitor_pools = CompetitorPoolTable.select(
-            CompetitorPoolTable.name
-        ).run_sync()
+        league_count = await Leagues.count()
+        competitor_pool_count = await Competitors.get_pool_count()
 
-        self.assertEqual(len(leagues), len(original_leagues) + 1)
-        self.assertEqual(len(competitor_pools), len(original_competitor_pools))
+        self.assertEqual(league_count, original_league_count + 1)
+        self.assertEqual(competitor_pool_count, original_competitor_pool_count)
 
     def test_create_league_already_exists(self) -> None:
         for _ in range(2):
@@ -587,22 +575,17 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
         )
         self.client.delete("/leagues/Test")
 
-    def test_update_league(self) -> None:
-        league = (
-            LeagueTable.select(LeagueTable.number_of_counting_events)
-            .where(LeagueTable.name == "Test")
-            .first()
-            .run_sync()
-        )
+    async def test_update_league(self) -> None:
+        league = await Leagues.get_by_name("Sprintelope 2021")
         assert league is not None
-        self.assertEqual(league["number_of_counting_events"], 1)
+        self.assertEqual(league.number_of_counting_events, 1)
 
         response = self.client.put(
             "/leagues/Test",
             headers={"Authorization": "Bearer SuperSecretTest"},
             json={
-                "name": "Test",
-                "tagline": "Testing",
+                "name": "Sprintelope 2021",
+                "tagline": "Wednesday Evening Urban Sprint Orienteering in Edinburgh and the Lothians",
                 "year": 2021,
                 "coordinator": "The Coordinator",
                 "website": "https://example.com",
@@ -610,35 +593,26 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
                 "visible": True,
                 "scoring_method": "position",
                 "number_of_counting_events": 5,
-                "competitor_pool": "Test",
+                "competitor_pool": "Edinburgh Summer 2021",
             },
         )
 
         self.assertEqual(response.status_code, 200)
         self.assertDictEqual(
             response.json(),
-            {"detail": "League `Test` updated"},
+            {"detail": "League `Sprintelope 2021` updated"},
         )
 
-        league = (
-            LeagueTable.select(LeagueTable.number_of_counting_events)
-            .where(LeagueTable.name == "Test")
-            .first()
-            .run_sync()
-        )
+        league = await Leagues.get_by_name("Sprintelope 2021")
         assert league is not None
-        self.assertEqual(league["number_of_counting_events"], 5)
+        self.assertEqual(league.number_of_counting_events, 5)
 
-    def test_update_league_name(self) -> None:
-        leagues = (
-            LeagueTable.select(LeagueTable.number_of_counting_events)
-            .where(LeagueTable.name == "Test")
-            .run_sync()
-        )
-        self.assertEqual(len(leagues), 1)
+    async def test_update_league_name(self) -> None:
+        league = await Leagues.get_by_name("Sprintelope 2021")
+        self.assertIsNotNone(league)
 
         response = self.client.put(
-            "/leagues/Test",
+            "/leagues/Sprintelope 2021",
             headers={"Authorization": "Bearer SuperSecretTest"},
             json={
                 "name": "Tester",
@@ -650,7 +624,7 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
                 "visible": True,
                 "scoring_method": "position",
                 "number_of_counting_events": 7,
-                "competitor_pool": "Test",
+                "competitor_pool": "Edinburgh Summer 2021",
             },
         )
 
@@ -660,14 +634,12 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
             {"detail": "League `Tester` updated"},
         )
 
-        league = (
-            LeagueTable.select(LeagueTable.number_of_counting_events)
-            .where(LeagueTable.name == "Tester")
-            .first()
-            .run_sync()
-        )
+        league = await Leagues.get_by_name("Tester")
         assert league is not None
-        self.assertEqual(league["number_of_counting_events"], 7)
+        self.assertEqual(league.number_of_counting_events, 7)
+
+        league = await Leagues.get_by_name("Sprintelope 2021")
+        self.assertIsNone(league)
 
     def test_update_unknown_league(self) -> None:
         response = self.client.put(
@@ -693,8 +665,8 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
             {"detail": "Couldn't find league with the name `hahaha-unknown`"},
         )
 
-    def test_delete_league(self) -> None:
-        original_leagues = LeagueTable.select(LeagueTable.name).run_sync()
+    async def test_delete_league(self) -> None:
+        original_league_count = await Leagues.count()
 
         response = self.client.delete(
             "/leagues/Sprintelope 2021",
@@ -706,8 +678,8 @@ class TestModifyLeagueRoutes(TestCaseWithDatabase):
             response.json(), {"detail": "League `Sprintelope 2021` deleted"}
         )
 
-        leagues = LeagueTable.select(LeagueTable.name).run_sync()
-        self.assertEqual(len(leagues), len(original_leagues) - 1)
+        league_count = await Leagues.count()
+        self.assertEqual(league_count, original_league_count - 1)
 
 
 class TestLeagueClassModify(TestCaseWithDatabase):
@@ -790,8 +762,8 @@ class TestLeagueClassModify(TestCaseWithDatabase):
             },
         )
 
-    def test_delete_league_class(self) -> None:
-        original_classes = LeagueClassTable.select(LeagueClassTable.name).run_sync()
+    async def test_delete_league_class(self) -> None:
+        original_classes = list(await LeagueClasses.get_by_league("Sprintelope 2021"))
 
         response = self.client.delete(
             "/leagues/Sprintelope 2021/classes/Long",
@@ -801,21 +773,25 @@ class TestLeagueClassModify(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 200)
         self.assertDictEqual(response.json(), {"detail": "League class `Long` deleted"})
 
-        classes = LeagueClassTable.select(LeagueClassTable.name).run_sync()
+        classes = list(await LeagueClasses.get_by_league("Sprintelope 2021"))
         self.assertEqual(len(classes), len(original_classes) - 1)
 
-    def test_update_league_class(self) -> None:
-        league_class = (
-            LeagueClassTable.select(
-                LeagueClassTable.name, LeagueClassTable.standard_course
-            )
-            .where(LeagueClassTable.name == "Test")
-            .where(LeagueClassTable.league == "Sprintelope 2021")
-            .first()
-            .run_sync()
+    async def test_update_league_class(self) -> None:
+        self.client.post(
+            "/leagues/Sprintelope 2021/classes",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "name": "Test",
+                "league": "Sprintelope 2021",
+                "age_class_filter": "",
+                "club_filter": "",
+                "standard_course": None,
+                "number_of_counting_events": None,
+            },
         )
+        league_class = await LeagueClasses.get_by_name("Sprintelope 2021", "Test")
         assert league_class is not None
-        self.assertEqual(league_class["standard_course"], None)
+        self.assertEqual(league_class.standard_course, None)
 
         response = self.client.put(
             "/leagues/Sprintelope 2021/classes/Test",
@@ -836,15 +812,9 @@ class TestLeagueClassModify(TestCaseWithDatabase):
             {"detail": "League class `Test` updated"},
         )
 
-        league_class = (
-            LeagueClassTable.select(LeagueClassTable.standard_course)
-            .where(LeagueClassTable.name == "Test")
-            .where(LeagueClassTable.league == "Sprintelope 2021")
-            .first()
-            .run_sync()
-        )
+        league_class = await LeagueClasses.get_by_name("Sprintelope 2021", "Test")
         assert league_class is not None
-        self.assertEqual(league_class["standard_course"], "Blue")
+        self.assertEqual(league_class.standard_course, "Blue")
 
     def test_update_unknown_league_class(self) -> None:
         response = self.client.put(
@@ -957,7 +927,7 @@ class TestLeagueGroups(TestCaseWithDatabase):
             {"detail": "Couldn't find league group with the name `unknown`"},
         )
 
-    def test_update_league_groups(self) -> None:
+    async def test_update_league_groups(self) -> None:
         self.client.post(
             "/leagues/Sprintelope 2021/groups",
             headers={"Authorization": "Bearer SuperSecretTest"},
@@ -986,17 +956,11 @@ class TestLeagueGroups(TestCaseWithDatabase):
             {"detail": "League group `Test` updated"},
         )
 
-        group = (
-            LeagueGroupTable.objects()
-            .where(LeagueGroupTable.league == "Sprintelope 2021")
-            .where(LeagueGroupTable.name == "Test")
-            .first()
-            .run_sync()
-        )
+        group = await LeagueGroups.get_by_name("Sprintelope 2021", "Test")
         assert group is not None
         self.assertEqual(group.max, 2)
 
-    def test_delete_league_groups(self) -> None:
+    async def test_delete_league_groups(self) -> None:
         self.client.post(
             "/leagues/Sprintelope 2021/groups",
             headers={"Authorization": "Bearer SuperSecretTest"},
@@ -1007,11 +971,7 @@ class TestLeagueGroups(TestCaseWithDatabase):
                 "max": 0,
             },
         )
-        number_of_groups = len(
-            LeagueGroupTable.objects()
-            .where(LeagueGroupTable.league == "Sprintelope 2021")
-            .run_sync()
-        )
+        number_of_groups = len(await LeagueGroups.get_by_league("Sprintelope 2021"))
 
         response = self.client.delete(
             "/leagues/Sprintelope 2021/groups/Test",
@@ -1024,11 +984,7 @@ class TestLeagueGroups(TestCaseWithDatabase):
             {"detail": "League group `Test` deleted"},
         )
 
-        new_number_of_groups = len(
-            LeagueGroupTable.objects()
-            .where(LeagueGroupTable.league == "Sprintelope 2021")
-            .run_sync()
-        )
+        new_number_of_groups = len(await LeagueGroups.get_by_league("Sprintelope 2021"))
         self.assertGreater(number_of_groups, new_number_of_groups)
 
     def test_get_league_group(self) -> None:

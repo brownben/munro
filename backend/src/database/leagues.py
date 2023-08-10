@@ -1,7 +1,5 @@
 from typing import Any, Iterable, Optional
 
-from piccolo.query.methods.select import Count
-
 from ..schemas import League, LeagueClass, LeagueGroup
 from .tables import CompetitorPool as CompetitorPoolTable
 from .tables import League as LeagueTable
@@ -137,14 +135,8 @@ class Leagues:
 
     @staticmethod
     async def count() -> int:
-        database_result = (
-            await LeagueTable.select(Count(LeagueTable.name)).first().run()
-        )
-
-        if database_result:
-            return int(database_result["count"])
-        else:
-            return 0
+        database_result = await LeagueTable.count().run()
+        return int(database_result)
 
 
 class LeagueClasses:

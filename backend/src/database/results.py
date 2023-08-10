@@ -1,6 +1,4 @@
-from typing import Iterable
-
-from piccolo.query.methods.select import Count
+from typing import Iterable, Optional
 
 from ..schemas import EventResult, Result, ResultBeforeDatabase, ResultWithEventName
 from .tables import Result as ResultTable
@@ -51,6 +49,17 @@ class Results:
                 for result in results
             )
         ).run()
+
+    @staticmethod
+    async def get_by_id(id: int) -> Optional[Result]:
+        database_result = (
+            await ResultTable.select(*results_fields)
+            .where(ResultTable.id == id)
+            .first()
+            .run()
+        )
+
+        return Result.parse_obj(database_result)
 
     @staticmethod
     async def get_by_competitor(competitor: int) -> Iterable[ResultWithEventName]:
@@ -161,9 +170,5 @@ class Results:
 
     @staticmethod
     async def count() -> int:
-        database_result = await ResultTable.select(Count(ResultTable.id)).first().run()
-
-        if database_result:
-            return int(database_result["count"])
-        else:
-            return 0
+        database_result = await ResultTable.count().run()
+        return int(database_result)

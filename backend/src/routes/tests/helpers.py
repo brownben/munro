@@ -1,6 +1,8 @@
 import os
-from unittest import TestCase
+from typing import cast
+from unittest import IsolatedAsyncioTestCase
 
+import pydantic
 from fastapi.testclient import TestClient
 from piccolo.engine import engine_finder
 
@@ -27,7 +29,7 @@ from .sample_data import (
 )
 
 
-def _create_tables() -> None:
+async def _create_tables() -> None:
     tables = [
         CompetitorPool,
         League,
@@ -40,17 +42,17 @@ def _create_tables() -> None:
     ]
 
     for table in tables:
-        table.create_table(if_not_exists=True).run_sync()  # type: ignore
+        await table.create_table(if_not_exists=True).run()  # type: ignore
 
 
-def _add_sample_data() -> None:
-    CompetitorPool.delete(force=True).run_sync()
-    CompetitorPool.insert(
+async def _add_sample_data() -> None:
+    await CompetitorPool.delete(force=True).run()
+    await CompetitorPool.insert(
         *(
             CompetitorPool(name=competitor_pool)
             for competitor_pool in sample_competitor_pools
         )
-    ).run_sync()
+    ).run()
 
     tables_and_data = [
         (League, sample_leagues),
@@ -61,8 +63,10 @@ def _add_sample_data() -> None:
         (Result, sample_results),
     ]
     for table, sample_data in tables_and_data:
-        table.delete(force=True).run_sync()
-        table.insert(*(table(**row.dict()) for row in sample_data)).run_sync()  # type: ignore
+        sample_data = cast(list[pydantic.BaseModel], sample_data)
+
+        await table.delete(force=True).run()
+        await table.insert(*(table(**row.dict()) for row in sample_data)).run()
 
 
 def get_client() -> TestClient:
@@ -72,20 +76,20 @@ def get_client() -> TestClient:
     return TestClient(app)
 
 
-class TestCaseWithDatabase(TestCase):
+class TestCaseWithDatabase(IsolatedAsyncioTestCase):
     client: TestClient
 
     @classmethod
-    def setUpClass(self) -> None:
+    async def asyncSetUp(self) -> None:
         # Use SQlite instead of Postgres for tests
         os.environ["PICCOLO_CONF"] = "src.test_database_conf"
 
         # Populate database
-        _create_tables()
-        _add_sample_data()
+        await _create_tables()
+        await _add_sample_data()
 
         self.client = get_client()
 
     @classmethod
-    def tearDownClass(self) -> None:
+    def tearDown(self) -> None:
         engine_finder().remove_db_file()  # type: ignore

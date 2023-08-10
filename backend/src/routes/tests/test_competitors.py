@@ -1,6 +1,6 @@
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from ...database.tables import Competitor, Result
+from ...database import Competitors, Results
 from .helpers import TestCaseWithDatabase
 from .sample_data import sample_competitors
 
@@ -66,13 +66,11 @@ class TestGetCompetitorRoutes(TestCaseWithDatabase):
 
 
 class TestModifyCompetitorRoutes(TestCaseWithDatabase):
-    def test_create_competitor(self) -> None:
-        competitors_found = (
-            Competitor.select(Competitor.name)
-            .where(Competitor.name == "Suzie Dent")
-            .run_sync()
+    async def test_create_competitor(self) -> None:
+        competitor = await Competitors.get_by_name_and_pool(
+            "Suzie Dent", "Night Events"
         )
-        self.assertEqual(len(competitors_found), 0)
+        self.assertEqual(competitor, None)
 
         response = self.client.post(
             "/competitors/",
@@ -84,12 +82,10 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
             headers={"Authorization": "Bearer SuperSecretTest"},
         )
 
-        competitors_found = (
-            Competitor.select(Competitor.name)
-            .where(Competitor.name == "Suzie Dent")
-            .run_sync()
+        competitor = await Competitors.get_by_name_and_pool(
+            "Suzie Dent", "Night Events"
         )
-        self.assertEqual(len(competitors_found), 1)
+        self.assertNotEqual(competitor, None)
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"detail": "Competitor `Suzie Dent` created"})
@@ -110,8 +106,8 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
         mock_competitors.create.assert_not_called()
         self.assertEqual(response.status_code, 422)
 
-    def test_update_competitor(self) -> None:
-        competitor = Competitor.objects().where(Competitor.id == 3).first().run_sync()
+    async def test_update_competitor(self) -> None:
+        competitor = await Competitors.get_by_id(3)
         assert competitor is not None
         self.assertNotEqual(competitor.name, "Suzie Dent")
         self.assertNotEqual(competitor.age_class, "W40")
@@ -131,7 +127,7 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"detail": "Competitor `Suzie Dent` updated"})
 
-        competitor = Competitor.objects().where(Competitor.id == 3).first().run_sync()
+        competitor = await Competitors.get_by_id(3)
         assert competitor is not None
         self.assertEqual(competitor.name, "Suzie Dent")
         self.assertEqual(competitor.age_class, "W40")
@@ -151,17 +147,11 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
 
         self.assertEqual(response.status_code, 404)
 
-    def test_merge_competitors(self) -> None:
-        original_competitors = Competitor.objects().run_sync()
-        competitor_1 = (
-            Competitor.select(Competitor.name)
-            .where(Competitor.id == 1)
-            .first()
-            .run_sync()
-        )
-        competitor_2_original_results = (
-            Result.select(Result.id).where(Result.competitor == 2).run_sync()
-        )
+    async def test_merge_competitors(self) -> None:
+        original_competitors_count = await Competitors.count()
+        competitor_1 = await Competitors.get_by_id(1)
+        competitor_2_original_results = list(await Results.get_by_competitor(2))
+
         self.assertNotEqual(competitor_1, None)
 
         response = self.client.post(
@@ -176,31 +166,19 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"detail": "Competitors merged successfully"})
 
-        new_competitors = Competitor.objects().run_sync()
-        competitor_1 = (
-            Competitor.select(Competitor.name)
-            .where(Competitor.id == 1)
-            .first()
-            .run_sync()
-        )
-        competitor_2_updated_results = (
-            Result.select(Result.id).where(Result.competitor == 2).run_sync()
-        )
+        new_competitors_count = await Competitors.count()
+        competitor_1 = await Competitors.get_by_id(1)
+        competitor_2_updated_results = list(await Results.get_by_competitor(2))
 
         self.assertEqual(competitor_1, None)
-        self.assertEqual(len(new_competitors), len(original_competitors) - 1)
+        self.assertEqual(new_competitors_count, original_competitors_count - 1)
         self.assertGreater(
             len(competitor_2_updated_results), len(competitor_2_original_results)
         )
 
-    def test_merge_competitors_same_competitor(self) -> None:
-        original_competitors = Competitor.objects().run_sync()
-        competitor_2 = (
-            Competitor.select(Competitor.name)
-            .where(Competitor.id == 2)
-            .first()
-            .run_sync()
-        )
+    async def test_merge_competitors_same_competitor(self) -> None:
+        original_competitor_count = await Competitors.count()
+        competitor_2 = await Competitors.get_by_id(2)
 
         self.assertNotEqual(competitor_2, None)
 
@@ -218,15 +196,10 @@ class TestModifyCompetitorRoutes(TestCaseWithDatabase):
             response.json(), {"detail": "Competitors are the same, no action taken"}
         )
 
-        new_competitors = Competitor.objects().run_sync()
-        competitor_2 = (
-            Competitor.select(Competitor.name)
-            .where(Competitor.id == 2)
-            .first()
-            .run_sync()
-        )
+        new_competitor_count = await Competitors.count()
+        competitor_2 = await Competitors.get_by_id(2)
         self.assertNotEqual(competitor_2, None)
-        self.assertEqual(len(new_competitors), len(original_competitors))
+        self.assertEqual(new_competitor_count, original_competitor_count)
 
     @patch("src.routes.competitors.Competitors")
     def test_merge_competitors_no_auth(self, mock_competitors: MagicMock) -> None:

@@ -37,6 +37,11 @@ class Competitors:
         )
 
     @staticmethod
+    async def get_pool_count() -> int:
+        database_result = await CompetitorPoolTable.count().run()
+        return int(database_result)
+
+    @staticmethod
     async def create(competitor: NewCompetitor) -> int:
         new_row = CompetitorTable(**competitor.dict())
         await new_row.save().run()
@@ -149,3 +154,8 @@ class Competitors:
             return str(league["name"])
         else:
             return ""
+
+    @staticmethod
+    async def count() -> int:
+        database_result = await CompetitorTable.count().run()
+        return int(database_result)

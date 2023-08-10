@@ -3,8 +3,7 @@ from unittest.mock import ANY
 import httpx
 import respx
 
-from ...database.tables import Competitor as CompetitorTable
-from ...database.tables import Result as ResultTable
+from ...database import Competitors, Results
 from .helpers import TestCaseWithDatabase
 from .sample_data import sample_csv_file
 
@@ -80,12 +79,10 @@ class TestUploadFile(TestCaseWithDatabase):
             response.json(), {"detail": "Expected file to have at least 1 row"}
         )
 
-    def test_override_deletes_existing_results(self) -> None:
-        results_for_event = (
-            ResultTable.select(*ResultTable.all_columns())
-            .where(ResultTable.event == "TestEvent-2021-12-12")
-            .run_sync()
-        )
+    async def test_override_deletes_existing_results(self) -> None:
+        self.maxDiff = None
+
+        results_for_event = list(await Results.get_by_event("TestEvent-2021-12-12"))
         self.assertNotEqual(len(results_for_event), 0)
 
         self.client.post(
@@ -99,12 +96,7 @@ class TestUploadFile(TestCaseWithDatabase):
             },
         )
 
-        results_for_event = (
-            ResultTable.select(*ResultTable.all_columns())
-            .where(ResultTable.event == "TestEvent-2021-12-12")
-            .run_sync()
-        )
-
+        results_for_event = list(await Results.get_by_event("TestEvent-2021-12-12"))
         self.assertEqual(
             results_for_event,
             [
@@ -118,6 +110,8 @@ class TestUploadFile(TestCaseWithDatabase):
                     "visible": True,
                     "competitor": ANY,
                     "id": ANY,
+                    "position": 0,
+                    "points": 0,
                 },
                 {
                     "time": 906,
@@ -129,6 +123,8 @@ class TestUploadFile(TestCaseWithDatabase):
                     "visible": True,
                     "competitor": ANY,
                     "id": ANY,
+                    "position": 0,
+                    "points": 0,
                 },
                 {
                     "time": 1081,
@@ -140,6 +136,8 @@ class TestUploadFile(TestCaseWithDatabase):
                     "visible": True,
                     "competitor": ANY,
                     "id": ANY,
+                    "position": 0,
+                    "points": 0,
                 },
             ],
         )
@@ -181,23 +179,14 @@ class TestUploadResult(TestCaseWithDatabase):
             response.json(), {"detail": "Event doesn't accept user submitted results"}
         )
 
-    def test_result_created_competitor_exists(self) -> None:
-        expected_competitor = (
-            CompetitorTable.objects()
-            .where(CompetitorTable.name == "Sophie Glider")
-            .first()
-            .run_sync()
+    async def test_result_created_competitor_exists(self) -> None:
+        expected_competitor = await Competitors.get_by_name_and_pool(
+            "Sophie Glider", "Edinburgh Summer 2021"
         )
         assert expected_competitor is not None
 
-        new_result = (
-            ResultTable.objects()
-            .where(ResultTable.competitor == expected_competitor.id)
-            .where(ResultTable.event == "TestEvent-2022-02-03")
-            .first()
-            .run_sync()
-        )
-        self.assertEqual(new_result, None)
+        results = list(await Results.get_by_event("TestEvent-2022-02-03"))
+        self.assertEqual(len(results), 0)
 
         response = self.client.post(
             "/upload/result",
@@ -215,25 +204,15 @@ class TestUploadResult(TestCaseWithDatabase):
             response.json(), {"detail": "Result created for `Sophie Glider`"}
         )
 
-        new_result = (
-            ResultTable.objects()
-            .where(ResultTable.competitor == expected_competitor.id)
-            .where(ResultTable.event == "TestEvent-2022-02-03")
-            .first()
-            .run_sync()
-        )
-        assert new_result is not None
-        self.assertEqual(new_result.time, 712)
-        self.assertEqual(new_result.incomplete, False)
-        self.assertEqual(new_result.course, "Long")
-        self.assertEqual(new_result.type, "user-upload")
+        result = list(await Results.get_by_event("TestEvent-2022-02-03"))[0]
+        self.assertEqual(result.time, 712)
+        self.assertEqual(result.incomplete, False)
+        self.assertEqual(result.course, "Long")
+        self.assertEqual(result.type, "user-upload")
 
-    def test_result_created_new_competitor(self) -> None:
-        new_competitor = (
-            CompetitorTable.objects()
-            .where(CompetitorTable.name == "Tom Bond")
-            .first()
-            .run_sync()
+    async def test_result_created_new_competitor(self) -> None:
+        new_competitor = await Competitors.get_by_name_and_pool(
+            "Tom Bond", "Edinburgh Summer 2021"
         )
         self.assertEqual(new_competitor, None)
 
@@ -251,25 +230,15 @@ class TestUploadResult(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"detail": "Result created for `Tom Bond`"})
 
-        new_competitor = (
-            CompetitorTable.objects()
-            .where(CompetitorTable.name == "Tom Bond")
-            .first()
-            .run_sync()
+        new_competitor = await Competitors.get_by_name_and_pool(
+            "Tom Bond", "Edinburgh Summer 2021"
         )
         assert new_competitor is not None
         self.assertEqual(new_competitor.name, "Tom Bond")
         self.assertEqual(new_competitor.competitor_pool, "Edinburgh Summer 2021")
         self.assertEqual(new_competitor.age_class, "M21")
 
-        new_result = (
-            ResultTable.objects()
-            .where(ResultTable.competitor == new_competitor.id)
-            .where(ResultTable.event == "TestEvent-2022-02-03")
-            .first()
-            .run_sync()
-        )
-        assert new_result is not None
+        new_result = list(await Results.get_by_event("TestEvent-2022-02-03"))[0]
         self.assertEqual(new_result.time, 832)
         self.assertEqual(new_result.incomplete, False)
         self.assertEqual(new_result.course, "Long")

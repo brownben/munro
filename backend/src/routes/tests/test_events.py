@@ -1,7 +1,6 @@
 import datetime
 
-from ...database.tables import Event as EventTable
-from ...database.tables import LeagueEvent as LeagueEventTable
+from ...database import Events, LeagueEvents
 from .helpers import TestCaseWithDatabase
 
 
@@ -346,8 +345,8 @@ class TestGetResultsForEvents(TestCaseWithDatabase):
 
 
 class TestModifyEventRoutes(TestCaseWithDatabase):
-    def test_delete_event(self) -> None:
-        original_events = EventTable.select(EventTable.id).run_sync()
+    async def test_delete_event(self) -> None:
+        original_event_count = await Events.count()
 
         response = self.client.delete(
             "/events/TestEvent-2021-12-12",
@@ -359,12 +358,12 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             response.json(), {"detail": "Event with id `TestEvent-2021-12-12` deleted"}
         )
 
-        events = EventTable.select(EventTable.id).run_sync()
-        self.assertEqual(len(events), len(original_events) - 1)
+        event_count = await Events.count()
+        self.assertEqual(event_count, original_event_count - 1)
 
-    def test_create_event(self) -> None:
-        original_events = EventTable.select(EventTable.name).run_sync()
-        original_league_events = LeagueEventTable.select(LeagueEventTable.id).run_sync()
+    async def test_create_event(self) -> None:
+        original_event_count = await Events.count()
+        original_league_event_count = await LeagueEvents.count()
 
         response = self.client.post(
             "/events/",
@@ -389,21 +388,16 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 201)
         self.assertDictEqual(response.json(), {"detail": "Event `Test Event` created"})
 
-        events = EventTable.select(EventTable.name).run_sync()
-        league_events = LeagueEventTable.select(LeagueEventTable.id).run_sync()
-        self.assertEqual(len(events), len(original_events) + 1)
-        self.assertEqual(len(league_events), len(original_league_events) + 1)
+        event_count = await Events.count()
+        league_event_count = await LeagueEvents.count()
+        self.assertEqual(event_count, original_event_count + 1)
+        self.assertEqual(league_event_count, original_league_event_count + 1)
 
-        event = (
-            EventTable.select(EventTable.name, EventTable.date, EventTable.upload_key)
-            .where(EventTable.id == "TestEvent-2022-12-12")
-            .first()
-            .run_sync()
-        )
+        event = await Events.get_by_id("TestEvent-2022-12-12")
         assert event is not None
-        self.assertEqual(event["name"], "Test Event")
-        self.assertEqual(event["date"], datetime.date(2022, 12, 12))
-        self.assertIsInstance(event["upload_key"], str)
+        self.assertEqual(event.name, "Test Event")
+        self.assertEqual(event.date, datetime.date(2022, 12, 12))
+        self.assertIsInstance(event.upload_key, str)
 
     def test_create_event_already_exists(self) -> None:
         for _ in range(2):
@@ -432,9 +426,9 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             response.json(), {"detail": "Event `Test Event` already exists"}
         )
 
-    def test_create_event_unknown_league(self) -> None:
-        original_events = EventTable.select(EventTable.name).run_sync()
-        original_league_events = LeagueEventTable.select(LeagueEventTable.id).run_sync()
+    async def test_create_event_unknown_league(self) -> None:
+        original_event_count = await Events.count()
+        original_league_event_count = await LeagueEvents.count()
 
         response = self.client.post(
             "/events/",
@@ -461,28 +455,23 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             response.json(), {"detail": "Couldn't find league `Unknown League`"}
         )
 
-        events = EventTable.select(EventTable.name).run_sync()
-        league_events = LeagueEventTable.select(LeagueEventTable.id).run_sync()
-        self.assertEqual(len(events), len(original_events))
-        self.assertEqual(len(league_events), len(original_league_events))
+        event_count = await Events.count()
+        league_event_count = await LeagueEvents.count()
+        self.assertEqual(original_event_count, event_count)
+        self.assertEqual(original_league_event_count, league_event_count)
 
-    def test_update_event(self) -> None:
-        event = (
-            EventTable.select(EventTable.part_of)
-            .where(EventTable.id == "TestEvent-2022-12-12")
-            .first()
-            .run_sync()
-        )
+    async def test_update_event(self) -> None:
+        event = await Events.get_by_id("TestEvent-2022-02-03")
         assert event is not None
-        self.assertEqual(event["part_of"], "")
+        self.assertEqual(event.part_of, "")
 
         response = self.client.put(
-            "/events/TestEvent-2022-12-12",
+            "/events/TestEvent-2022-02-03",
             headers={"Authorization": "Bearer SuperSecretTest"},
             json={
-                "id": "TestEvent-2022-12-12",
-                "name": "Test Event",
-                "date": "2022-12-12",
+                "id": "TestEvent-2022-02-03",
+                "name": "Return of the Test Event",
+                "date": "2022-02-03",
                 "organiser": "",
                 "part_of": "Testing",
                 "website": "",
@@ -501,17 +490,12 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 200)
         self.assertDictEqual(
             response.json(),
-            {"detail": "Event `Test Event` updated"},
+            {"detail": "Event `Return of the Test Event` updated"},
         )
 
-        event = (
-            EventTable.select(EventTable.part_of)
-            .where(EventTable.id == "TestEvent-2022-12-12")
-            .first()
-            .run_sync()
-        )
+        event = await Events.get_by_id("TestEvent-2022-02-03")
         assert event is not None
-        self.assertEqual(event["part_of"], "Testing")
+        self.assertEqual(event.part_of, "Testing")
 
     def test_update_unknown_event(self) -> None:
         response = self.client.put(
@@ -542,16 +526,10 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             {"detail": "Couldn't find event with the id `hahaha-unknown`"},
         )
 
-    def test_update_event_id(self) -> None:
-        event = (
-            EventTable.select(EventTable.organiser)
-            .where(EventTable.id == "TheFinalCountdown-2021-12-24")
-            .first()
-            .run_sync()
-        )
+    async def test_update_event_id(self) -> None:
+        event = await Events.get_by_id("TheFinalCountdown-2021-12-24")
         assert event is not None
-
-        self.assertEqual(event["organiser"], "Saint Nicholas")
+        self.assertEqual(event.organiser, "Saint Nicholas")
 
         response = self.client.put(
             "/events/TheFinalCountdown-2021-12-24",
@@ -581,39 +559,33 @@ class TestModifyEventRoutes(TestCaseWithDatabase):
             {"detail": "Event `The Final Countdown` updated"},
         )
 
-        event = (
-            EventTable.select(EventTable.id, EventTable.organiser, EventTable.date)
-            .where(EventTable.id == "TheFinalCountdown-2021-12-25")
-            .first()
-            .run_sync()
-        )
+        event = await Events.get_by_id("TheFinalCountdown-2021-12-25")
         assert event is not None
-        self.assertEqual(event["organiser"], "Saint Nicholas")
-        self.assertEqual(str(event["date"]), "2021-12-25")
+        self.assertEqual(event.organiser, "Saint Nicholas")
+        self.assertEqual(str(event.date), "2021-12-25")
 
     def test_update_event_already_exists(self) -> None:
-        for _ in range(2):
-            response = self.client.put(
-                "/events/TestEvent-2022-12-12",
-                headers={"Authorization": "Bearer SuperSecretTest"},
-                json={
-                    "id": "",
-                    "name": "The Final Countdown",
-                    "date": "2021-12-24",
-                    "organiser": "",
-                    "part_of": "",
-                    "website": "",
-                    "more_information": "",
-                    "results_links": {},
-                    "allow_user_submitted_results": False,
-                    "league": "Sprintelope 2021",
-                    "compulsory": False,
-                    "league_group": "",
-                    "overridden_scoring_method": "",
-                    "expected_courses": {},
-                    "competitor_pool": "Edinburgh Summer 2021",
-                },
-            )
+        response = self.client.put(
+            "/events/TestEvent-2021-12-12",
+            headers={"Authorization": "Bearer SuperSecretTest"},
+            json={
+                "id": "",
+                "name": "The Final Countdown",
+                "date": "2021-12-24",
+                "organiser": "",
+                "part_of": "",
+                "website": "",
+                "more_information": "",
+                "results_links": {},
+                "allow_user_submitted_results": False,
+                "league": "Sprintelope 2021",
+                "compulsory": False,
+                "league_group": "",
+                "overridden_scoring_method": "",
+                "expected_courses": {},
+                "competitor_pool": "Edinburgh Summer 2021",
+            },
+        )
 
         self.assertEqual(response.status_code, 409)
         self.assertDictEqual(
