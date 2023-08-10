@@ -17,6 +17,8 @@ def is_invalid_result(result: Result) -> bool:
 class PointsCalculator:
     """Calculate the points to assign to results"""
 
+    best_points_is_max: bool = True
+
     def __init__(self, scoring_method: str):
         pass
 

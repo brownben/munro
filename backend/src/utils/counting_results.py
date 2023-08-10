@@ -3,6 +3,7 @@ from typing import Iterable, Optional, Set
 
 from ..schemas import League, LeagueClass, LeagueEvent
 from ..schemas import LeagueResultScore as Result
+from ..utils.points_calculators import get_matching_points_calculator
 
 
 def find_counting_results(
@@ -20,6 +21,8 @@ def find_counting_results(
         )
     else:
         max_number_of_counting_results = league.number_of_counting_events
+
+    league_points_calculator = get_matching_points_calculator(league.scoring_method)
 
     remaining_results: Set[Result] = set(result for result in results if result)
     counting_results: Set[Result] = set()
@@ -60,7 +63,9 @@ def find_counting_results(
     # Then add the largest results left until the max number is reached
     number_of_results_left = max_number_of_counting_results - len(counting_results)
     sorted_results = sorted(
-        list(remaining_results), key=lambda x: x.score, reverse=True
+        remaining_results,
+        key=lambda x: x.score,
+        reverse=league_points_calculator.best_points_is_max,
     )
 
     counting_results.update(sorted_results[:number_of_results_left])

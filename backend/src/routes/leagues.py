@@ -243,12 +243,16 @@ async def get_league_results(
             if point and point.counting:
                 competitor.total_points += point.score
 
+    league_points_calculator = get_matching_points_calculator(league.scoring_method)
     results = [
         result
         for result in league_results.values()
         if any([points is not None for points in result.points])
     ]
-    results.sort(key=lambda x: x.total_points, reverse=True)
+    results.sort(
+        key=lambda x: x.total_points,
+        reverse=league_points_calculator.best_points_is_max,
+    )
     assign_position_based_on_points(results)
 
     return LeagueResultsResponse(
