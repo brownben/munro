@@ -81,7 +81,7 @@ async def get_event_details(
 
 
 @router.put("/{id}", response_model=Message)
-async def update_competitor_details(
+async def update_event_details(
     event: Event,
     id: str = Path(
         title="Event ID",

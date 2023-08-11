@@ -114,7 +114,7 @@ async def get_league_details_with_event_upload_keys(
 
 
 @router.put("/{name}", response_model=Message)
-async def update_competitor_details(
+async def update_league_details(
     league: League,
     name: str = Path(
         title="League Name",
