@@ -326,6 +326,7 @@ async def update_league_class(
         description="Name of the class",
         example="Long",
     ),
+    authentication: bool = Depends(require_authentication),
 ) -> Message:
     success = await LeagueClasses.update(league_name, class_name, cls)
 
@@ -416,6 +417,7 @@ async def update_league_group(
         description="Name of the group",
         example="Sprint",
     ),
+    authentication: bool = Depends(require_authentication),
 ) -> Message:
     success = await LeagueGroups.update(league_name, group_name, group)
 
