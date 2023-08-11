@@ -24,34 +24,6 @@ const nextEvent = events.filter(
   (event) => event.date >= todaysDate && !event.results_uploaded,
 )[0]
 
-const scoringMethods: Record<string, [string, string]> = {
-  position: ['Position Based Scoring', 'System (100 Max)'],
-  position50: ['Position Based Scoring', 'System (50 Max)'],
-  position99: ['Position Based Scoring', 'System (99 Max)'],
-  position99average: [
-    'Position Based Scoring',
-    'System (99 Max, Reduced in a Draw)',
-  ],
-  positionDouble: ['Position Based Scoring', 'System (100 Max, Double Points)'],
-  position50Double: [
-    'Position Based Scoring',
-    'System (50 Max, Double Points)',
-  ],
-  timeAverage: ['Time Relative to Average Scoring', 'System (1000 Average)'],
-  timeAverage100: ['Time Relative to Average Scoring', 'System (100 Average)'],
-  timeTop3: ['Time Relative to the Average Time of the Top 3', ''],
-  timeTop3Adjusted: [
-    'Time Relative to the Average Time of the Top 3',
-    '(Adjusted by Course/Age Class)',
-  ],
-  timeTopAdjustedWelsh: [
-    'Time Relative to Winner',
-    'System (Adjusted by Course/Age Class - Welsh Multipliers)',
-  ],
-  positionStaggered: ['Position Based Scoring', 'System (Staggered, 60 Max)'],
-  file: ['Points from File', ''],
-}
-
 if (league.value) {
   useTitle({
     title: league.value.name,
@@ -68,9 +40,9 @@ if (league.value) {
       </ImageRow>
       <ImageRow v-if="league.scoring_method" :icon="CalculatorIcon">
         <strong class="font-medium">
-          {{ scoringMethods[league.scoring_method][0] }}
+          {{ scoringShorthandToDescription[league.scoring_method][0] }}
         </strong>
-        {{ scoringMethods[league.scoring_method][1] }}
+        {{ scoringShorthandToDescription[league.scoring_method][1] }}
       </ImageRow>
       <ImageRow :icon="ChartBarSquareIcon">
         Your

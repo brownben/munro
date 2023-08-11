@@ -157,45 +157,7 @@ useTitle({
       />
       <InputDropdown
         v-model="form.overridden_scoring_method"
-        :list="[
-          { value: 'position', text: 'Position Based (100 Max)' },
-          { value: 'position50', text: 'Position Based (50 Max)' },
-          { value: 'position99', text: 'Position Based (99 Max)' },
-          {
-            value: 'position99average',
-            text: 'Position Based (99 Max, Reduced in a Draw)',
-          },
-          {
-            value: 'positionDouble',
-            text: 'Position Based (100 Max, Double Points',
-          },
-          {
-            value: 'position50Double',
-            text: 'Position Based (50 Max, Double Points)',
-          },
-          {
-            value: 'positionStaggered',
-            text: 'Position Based (Staggered, 60 Max)',
-          },
-          {
-            value: 'timeAverage',
-            text: 'Relative to Average Time (1000 Average)',
-          },
-          {
-            value: 'timeAverage100',
-            text: 'Relative to Average Time (100 Average)',
-          },
-          { value: 'timeTop3', text: 'Relative to Top 3 Times' },
-          {
-            value: 'timeTop3Adjusted',
-            text: 'Relative to Top 3 Times (Adjusted)',
-          },
-          {
-            value: 'positionStaggered',
-            text: 'Position Based (Staggered, 60 Max)',
-          },
-          { value: 'file', text: 'From Upload File' },
-        ]"
+        :list="scoringOptions"
         label="Override Scoring Method:"
         include-blank
         class="col-span-2"
