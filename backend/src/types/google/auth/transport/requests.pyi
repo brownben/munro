@@ -45,7 +45,7 @@ class Request:
         body: Optional[bytes] = None,
         headers: Optional[Mapping[str, str]] = None,
         timeout: int = 120,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _Response:
         """Make an HTTP request using requests.
 

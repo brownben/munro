@@ -9,11 +9,11 @@ poetry shell
 
 # Fix Style
 isort .
-black .
+ruff format .
 
 # Check style matches
 isort . --check-only
-black . --check
+ruff format . --check
 
 # Typecheck
 mypy
