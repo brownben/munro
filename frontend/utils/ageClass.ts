@@ -1,4 +1,4 @@
-import { EventResult, LeagueResult, Competitor } from '~/api-types'
+import type { EventResult, LeagueResult, Competitor } from '~/api-types'
 
 type Gender = 'M' | 'W' | ''
 

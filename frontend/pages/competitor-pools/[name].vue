@@ -3,7 +3,7 @@ import {
   UserGroupIcon,
   AdjustmentsVerticalIcon,
 } from '@heroicons/vue/24/outline'
-import { Filters } from '~/utils/filter'
+import type { Filters } from '~/utils/filter'
 import type { Competitor } from '~/api-types'
 
 const loggedIn = useLoggedIn()

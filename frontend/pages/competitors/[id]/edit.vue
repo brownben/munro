@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RequiredField, IsValidAgeClass } from '~/utils/validation'
-import { Competitor } from '~~/api-types'
+import type { Competitor } from '~~/api-types'
 
 const loggedIn = useLoggedIn()
 if (!loggedIn.value) await redirect('/login')

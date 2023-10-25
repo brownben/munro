@@ -4,7 +4,7 @@ import {
   IsValidURL,
   RequiredField,
 } from '~/utils/validation'
-import { LeagueOverview } from '~~/api-types'
+import type { LeagueOverview } from '~~/api-types'
 
 const loggedIn = useLoggedIn()
 if (!loggedIn.value) await redirect('/login')

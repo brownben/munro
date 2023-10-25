@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { PropType } from 'vue'
 import type { Filters } from '~/utils/filter'
-import { CompetitorWithAgeGender } from '~~/utils/ageClass'
+import type { CompetitorWithAgeGender } from '~~/utils/ageClass'
 
 const props = defineProps({
   competitors: {

@@ -1,4 +1,4 @@
-import { LeagueResult } from '~/api-types'
+import type { LeagueResult } from '~/api-types'
 
 export const byProperty = <FullObject>(
   ascending: boolean,

@@ -5,7 +5,7 @@ import {
   IsValidOptionalURLParameter,
   IsValidAgeClass,
 } from '~/utils/validation'
-import { League, LeagueClass } from '~~/api-types'
+import type { League, LeagueClass } from '~~/api-types'
 
 const loggedIn = useLoggedIn()
 if (!loggedIn.value) await redirect('/login')

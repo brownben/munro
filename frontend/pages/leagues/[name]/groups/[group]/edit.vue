@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IsValidURLParameter, RequiredField } from '~/utils/validation'
-import { League, LeagueGroup } from '~~/api-types'
+import type { League, LeagueGroup } from '~~/api-types'
 
 const loggedIn = useLoggedIn()
 if (!loggedIn.value) await redirect('/login')

@@ -4,7 +4,7 @@ import {
   IsValidURL,
   RequiredField,
 } from '~/utils/validation'
-import { Event } from '~~/api-types'
+import type { Event } from '~~/api-types'
 
 const loggedIn = useLoggedIn()
 if (!loggedIn.value) await redirect('/login')
