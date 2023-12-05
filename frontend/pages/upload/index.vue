@@ -45,7 +45,7 @@ useTitle({
         >
           Import from MapRun
         </h2>
-        <p class="mt-2 text-gray-500">Import resuults from MapRun</p>
+        <p class="mt-2 text-gray-500">Import results from MapRun</p>
         <NuxtLink
           to="/upload/maprun"
           class="mt-4 inline-block text-main-700 hover:text-main-800"
