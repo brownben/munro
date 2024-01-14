@@ -27,6 +27,12 @@ const deleteClass = async () => {
 
     <div>
       <NuxtLink
+        :to="`/leagues/${props.cls.league}/results/${props.cls.name}`"
+        class="mr-2 rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+      >
+        Results
+      </NuxtLink>
+      <NuxtLink
         :to="`/leagues/${props.cls.league}/classes/${props.cls.name}/edit`"
         class="mr-2 rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
       >

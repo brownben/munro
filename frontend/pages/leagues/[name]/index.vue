@@ -92,7 +92,7 @@ if (league.value) {
       </LinksSection>
 
       <section
-        v-if="events.length >= 2 && latestEvents.length > 0"
+        v-if="events.length >= 2 && latestEvents.length > 0 && !loggedIn"
         class="mx-auto hidden max-w-screen-lg grid-cols-1 gap-8 px-6 py-8 sm:grid sm:grid-cols-2 sm:pb-6 sm:pt-10 lg:px-8"
       >
         <div>
@@ -121,7 +121,7 @@ if (league.value) {
       </section>
 
       <LinksSection
-        v-if="league.classes.length > 0"
+        v-if="league.classes.length > 0 && !loggedIn"
         :links="
           league.classes.map((course) => ({
             text: course.name,
@@ -132,7 +132,7 @@ if (league.value) {
         League Results
       </LinksSection>
 
-      <section v-if="loggedIn">
+      <section v-if="loggedIn" class="border-t border-gray-100">
         <div
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-6 sm:pt-10 lg:px-8"
         >
