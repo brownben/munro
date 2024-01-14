@@ -26,7 +26,7 @@ const resultsLinks = computed(() =>
 const deleteEvent = async () => {
   if (
     confirm(
-      `Are you sure you want to delete event "${props.event.name}"? \nThis action cannot be reversed.`,
+      `Are you sure you want to delete event "${props.event.name}"? \n\nThe event will be deleted from all leagues. This action cannot be reversed.`,
     )
   ) {
     await useDelete(`events/${props.event.id}`)

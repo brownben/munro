@@ -190,13 +190,23 @@ if (league.value) {
         <div class="flex grid-cols-3 flex-col sm:grid">
           <div class="col-span-1 pb-8 sm:pb-0">
             <h2 class="text-2xl font-bold text-gray-500">Events</h2>
-            <NuxtLink
-              v-if="loggedIn"
-              :to="`/events/create?league=${league.name}`"
-              class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-            >
-              + Add Event
-            </NuxtLink>
+
+            <div class="mt-2 flex gap-2 flex-wrap">
+              <NuxtLink
+                v-if="loggedIn"
+                :to="`/events/create?league=${league.name}`"
+                class="inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+              >
+                + New Event
+              </NuxtLink>
+              <NuxtLink
+                v-if="loggedIn && league.competitor_pool != league.name"
+                :to="`/events/add?league=${league.name}`"
+                class="inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+              >
+                + Add Event from Another League
+              </NuxtLink>
+            </div>
           </div>
 
           <div class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y">

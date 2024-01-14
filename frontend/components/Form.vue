@@ -4,6 +4,7 @@ import { ExclamationCircleIcon } from '@heroicons/vue/24/outline'
 const props = defineProps({
   button: { type: String, default: '' },
   action: { type: Function, default: () => null },
+  disabled: { type: Boolean, default: false },
 })
 const message = ref('')
 const loading = ref(false)
@@ -24,6 +25,7 @@ const submit = async () => {
 <template>
   <form
     class="mx-auto grid max-w-screen-lg grid-cols-1 gap-6 px-6 py-8 sm:py-10 md:grid-cols-3 lg:px-8"
+    :disabled="disabled"
     @submit.prevent="submit"
   >
     <slot />
@@ -35,7 +37,7 @@ const submit = async () => {
       <ExclamationCircleIcon aria-hidden="true" class="h-6 w-6 flex-shrink-0" />
       {{ message }}
     </div>
-    <div class="col-span-2 flex justify-end">
+    <div v-if="!disabled" class="col-span-2 flex justify-end">
       <Button :loading="loading">{{ button }}</Button>
     </div>
   </form>

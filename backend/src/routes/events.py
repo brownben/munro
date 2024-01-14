@@ -5,13 +5,14 @@ from fastapi import Path
 from fastapi.param_functions import Depends
 from fastapi.routing import APIRouter
 
-from ..database import Events, Leagues, Results
+from ..database import Events, LeagueEvents, Leagues, Results
 from ..exceptions import HTTP_201, HTTP_404, HTTP_409, HTTP_500
 from ..schemas import (
     Event,
     EventCreationRequest,
     EventWithResults,
     EventWithUploadKey,
+    LeagueEventCreationRequest,
     Message,
 )
 from ..utils.assign_positions import assign_position_based_on_time
@@ -156,3 +157,20 @@ async def get_results_for_event(
         results=assign_position_based_on_time(results or []),
         league=league,
     )
+
+
+@router.post("/league_event", response_model=Message)
+async def add_league_event(
+    event: LeagueEventCreationRequest,
+    authentication: bool = Depends(require_authentication),
+) -> Message:
+    league = await Leagues.get_by_name(event.league)
+    if not league:
+        raise HTTP_500(f"Couldn't find league `{event.league}`")
+
+    existing_events = await Events.get_by_league(event.league)
+    if event.event in {event.id for event in existing_events}:
+        raise HTTP_409("Event already exists in league")
+
+    await LeagueEvents.create(event)
+    raise HTTP_201(f"Event added to league `{event.league}`")

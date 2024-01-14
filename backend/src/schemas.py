@@ -84,9 +84,7 @@ class EventWithLeagueDetailsAndUploadKey(EventWithLeagueDetails):
     upload_key: str
 
 
-class LeagueEventDatabase(BaseModel):
-    id: int
-
+class LeagueEventCreationRequest(BaseModel):
     event: str
     league: str
 
@@ -95,6 +93,10 @@ class LeagueEventDatabase(BaseModel):
     overridden_scoring_method: Optional[str]
 
     expected_courses: Optional[dict[str, str]]
+
+
+class LeagueEventDatabase(LeagueEventCreationRequest):
+    id: int
 
 
 class LeagueEvent(LeagueEventDatabase):

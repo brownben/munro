@@ -12,6 +12,7 @@ from ..schemas import (
     EventWithUploadKey,
     League,
     LeagueEvent,
+    LeagueEventCreationRequest,
 )
 from .tables import Event as EventTable
 from .tables import LeagueEvent as LeagueEventTable
@@ -260,6 +261,19 @@ class Events:
 
 
 class LeagueEvents:
+    @staticmethod
+    async def create(event: LeagueEventCreationRequest) -> None:
+        await LeagueEventTable.insert(
+            LeagueEventTable(
+                event=event.event,
+                league=event.league,
+                compulsory=event.compulsory,
+                league_group=event.league_group,
+                overridden_scoring_method=event.overridden_scoring_method,
+                expected_courses=event.expected_courses or {},
+            )
+        ).run()
+
     @staticmethod
     async def get_by_league_with_results(league: str) -> Iterable[LeagueEvent]:
         return [
