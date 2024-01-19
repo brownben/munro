@@ -17,7 +17,7 @@ const results = computed(() =>
     (result) => result.course,
   ),
 )
-const courses = computed(() => Object.keys(results.value))
+const courses = computed(() => Object.keys(results.value).sort())
 
 const show = ref(false)
 const filters = reactive<Filters>({
