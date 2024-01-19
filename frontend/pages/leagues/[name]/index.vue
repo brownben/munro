@@ -45,14 +45,19 @@ if (league.value) {
         {{ scoringShorthandToDescription[league.scoring_method][1] }}
       </ImageRow>
       <ImageRow :icon="ChartBarSquareIcon">
-        Your
-        <strong class="font-medium">
-          best {{ league.number_of_counting_events }} scores
-        </strong>
-        from all
-        <strong class="font-medium">
-          {{ league.events.length }} events count
-        </strong>
+        <template
+          v-if="league.number_of_counting_events < league.events.length"
+        >
+          Your
+          <strong class="font-medium">
+            best {{ league.number_of_counting_events }} scores
+          </strong>
+          from all
+          <strong class="font-medium">
+            {{ league.events.length }} events count
+          </strong>
+        </template>
+        <template v-else> All events points count </template>
       </ImageRow>
       <ImageRow v-if="league.website" :icon="GlobeEuropeAfricaIcon" hover>
         <a :href="league.website" rel="noopener noreferrer" target="_blank">
