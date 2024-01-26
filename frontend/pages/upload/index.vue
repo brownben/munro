@@ -35,7 +35,7 @@ useTitle({
         </NuxtLink>
       </div>
 
-      <div class="rounded-lg border-b border-gray-200 py-12 transition">
+      <div class="border-b border-gray-200 py-12 transition">
         <MapPinIcon
           aria-hidden="true"
           class="h-12 rounded-md bg-main-500 p-2 text-white transition"
@@ -54,7 +54,7 @@ useTitle({
         </NuxtLink>
       </div>
 
-      <div class="rounded-lg border-b border-gray-200 py-12 transition">
+      <div class="border-b border-gray-200 py-12 transition">
         <PencilSquareIcon
           aria-hidden="true"
           class="h-12 rounded-md bg-main-500 p-2 text-white transition"
