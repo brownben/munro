@@ -70,9 +70,7 @@ async def process_upload_file(
         results.append(result)
 
     await Results.create_multiple(results)
-
-    if results_links:
-        await Events.update_results_links(event_id, results_links)
+    await Events.update_results_links(event_id, results_links or {})
 
     return Message(detail=f"{len(results)} Results Imported")
 
