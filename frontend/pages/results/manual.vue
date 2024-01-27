@@ -42,7 +42,7 @@ onMounted(() => {
 const action = async () => {
   try {
     await usePost(`results/`, toRaw(form))
-    await router.replace(`/competitors/${form.competitor}`)
+    await router.push(`/competitors/${form.competitor}`)
   } catch (error: any) {
     if (error.data && typeof error.data?.detail === 'string')
       throw error.data.detail

@@ -20,7 +20,7 @@ const { data: form } = await useData<LeagueOverview>(
 const action = async () => {
   try {
     await usePut(`leagues/${route.params.name}`, form.value ?? {})
-    await router.replace(`/leagues/${form.value?.name}`)
+    await router.push(`/leagues/${form.value?.name}`)
   } catch (error: any) {
     if (error.data && typeof error.data?.detail === 'string')
       throw error.data.detail

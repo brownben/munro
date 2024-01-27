@@ -45,7 +45,7 @@ const getEvent = async () => {
 const action = async () => {
   try {
     await usePost(`upload/file`, toRaw(form))
-    await router.replace(`/events/${form.event_id}/results`)
+    await router.push(`/events/${form.event_id}/results`)
   } catch (error: any) {
     if (error.data && typeof error.data?.detail === 'string')
       throw error.data.detail

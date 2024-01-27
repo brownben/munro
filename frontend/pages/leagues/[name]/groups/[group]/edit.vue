@@ -26,7 +26,7 @@ const action = async () => {
       `leagues/${route.params.name}/groups/${route.params.group}`,
       form,
     )
-    await router.replace(`/leagues/${form.league}`)
+    await router.push(`/leagues/${form.league}`)
   } catch (error: any) {
     if (error.data && typeof error.data?.detail === 'string')
       throw error.data.detail

@@ -19,7 +19,7 @@ const form = reactive({
 const action = async () => {
   try {
     await usePost(`competitors/`, toRaw(form))
-    await router.replace(`/competitor-pools/${form.competitor_pool}`)
+    await router.push(`/competitor-pools/${form.competitor_pool}`)
   } catch (error: any) {
     if (error.data && typeof error.data?.detail === 'string')
       throw error.data.detail

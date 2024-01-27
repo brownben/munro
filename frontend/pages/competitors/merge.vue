@@ -34,7 +34,7 @@ onMounted(() => {
 const action = async () => {
   try {
     await usePost(`competitors/merge`, toRaw(form))
-    await router.replace(`/competitors/${form.competitor_to_keep}`)
+    await router.push(`/competitors/${form.competitor_to_keep}`)
   } catch (error: any) {
     if (error.data && typeof error.data?.detail === 'string')
       throw error.data.detail
