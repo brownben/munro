@@ -14,6 +14,7 @@ const props = defineProps({
   event: { type: Object as PropType<Event>, required: true },
   h2: { type: Boolean, default: false },
   admin: { type: Boolean, default: false },
+  small: { type: Boolean, default: false },
 })
 const emit = defineEmits(['event-changed'])
 
@@ -64,7 +65,7 @@ const deleteEvent = async () => {
         </a>
       </ImageRow>
     </div>
-    <p v-if="event.more_information" class="text-gray-600">
+    <p v-if="event.more_information && !small" class="text-gray-600">
       {{ event.more_information }}
     </p>
     <div v-if="event.results_uploaded" class="mt-3 flex flex-wrap gap-3">

@@ -44,6 +44,7 @@ const { data } = await useData<Home>(`misc/home`)
         v-for="event in data.latestResults.slice(0, 3) ?? []"
         :key="event.id"
         :event="event"
+        small
         class="py-2 sm:py-4"
       />
     </section>
