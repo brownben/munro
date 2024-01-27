@@ -190,7 +190,7 @@ if (league.value) {
       </section>
 
       <section
-        class="mx-auto max-w-screen-lg gap-8 px-6 py-6 sm:py-12 md:py-14 lg:px-8"
+        class="mx-auto max-w-screen-lg gap-8 px-6 py-8 sm:py-12 lg:px-8 border-t border-gray-100"
       >
         <div class="flex grid-cols-3 flex-col sm:grid">
           <div class="col-span-1 pb-8 sm:pb-0">
