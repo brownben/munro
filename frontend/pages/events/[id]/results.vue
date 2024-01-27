@@ -111,7 +111,7 @@ if (event.value) {
       :key="course"
       class="mx-auto w-full max-w-screen-lg flex-grow py-8 sm:py-12 lg:px-8"
     >
-      <div class="flex items-center gap-3 px-3 pb-4 sm:px-6 sm:pb-6 lg:px-0">
+      <div class="flex items-center gap-3 pb-4 px-6 sm:pb-6 lg:px-0">
         <h2
           :id="course"
           class="text-3xl font-extrabold tracking-tight text-gray-800"
