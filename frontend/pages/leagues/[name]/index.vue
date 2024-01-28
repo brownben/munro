@@ -83,10 +83,6 @@ if (league.value) {
             location: `/leagues/${league.name}/edit`,
           },
           {
-            text: 'Create Event',
-            location: `/events/create?league=${league.name}`,
-          },
-          {
             text: 'Manage Competitors',
             location: `/competitor-pools/${league.competitor_pool}`,
           },
@@ -163,7 +159,10 @@ if (league.value) {
         </div>
       </section>
 
-      <section v-if="loggedIn && league?.groups.length > 0" class="bg-gray-50">
+      <section
+        v-if="loggedIn && league?.groups.length > 0"
+        class="bg-gray-50 border-t border-gray-100"
+      >
         <div
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-4 sm:pt-10 lg:px-8"
         >
@@ -173,7 +172,7 @@ if (league.value) {
               :to="`/leagues/${route.params.name}/groups/create`"
               class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
             >
-              + Add Group
+              + Create Group
             </NuxtLink>
           </div>
 
@@ -202,7 +201,7 @@ if (league.value) {
                 :to="`/events/create?league=${league.name}`"
                 class="inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
               >
-                + New Event
+                + Create Event
               </NuxtLink>
               <NuxtLink
                 v-if="loggedIn && league.competitor_pool != league.name"

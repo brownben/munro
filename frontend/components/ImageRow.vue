@@ -9,7 +9,7 @@ defineProps({
 </script>
 <template>
   <div
-    class="group flex flex-row items-center leading-tight transition"
+    class="group flex flex-row gap-2 items-center leading-tight transition"
     :class="{
       'text-gray-500': !darker,
       'text-gray-600': darker,
@@ -18,7 +18,7 @@ defineProps({
   >
     <component
       :is="icon"
-      class="inline-block h-5 w-5 transition"
+      class="size-5 transition shrink-0"
       :class="{
         'text-gray-400': !darker,
         'text-gray-500': darker,
@@ -27,7 +27,7 @@ defineProps({
       aria-hidden="true"
     />
 
-    <p class="ml-2 inline-block">
+    <p>
       <slot></slot>
     </p>
   </div>
