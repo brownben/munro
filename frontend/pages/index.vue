@@ -51,7 +51,6 @@ const { data } = await useData<Home>(`misc/home`)
 
     <HomeSearch />
     <HomeUpload />
-    <HomeSITiming />
     <HomeAbout />
   </main>
 </template>

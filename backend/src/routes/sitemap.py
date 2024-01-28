@@ -29,7 +29,6 @@ static_urls = [
     "/upload/instructions",
     "/upload/file",
     "/upload/result",
-    "/sitiming",
     "/search",
 ]
 

@@ -11,7 +11,6 @@ https://munroleagues.com/upload
 https://munroleagues.com/upload/instructions
 https://munroleagues.com/upload/file
 https://munroleagues.com/upload/result
-https://munroleagues.com/sitiming
 https://munroleagues.com/search
 https://munroleagues.com/leagues/Night%20League
 https://munroleagues.com/leagues/Other%20League
