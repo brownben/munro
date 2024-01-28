@@ -10,7 +10,7 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
         Find <strong class="font-black text-white">Everything</strong> You Need
       </h2>
       <p class="text-lg md:text-xl">
-        Instantly Search All Leagues, Events and Competitors
+        Instantly search all leagues, events and competitors
       </p>
       <form action="/search" method="get" class="mt-6 flex justify-center">
         <label for="search-box" class="sr-only">Search Query:</label>
