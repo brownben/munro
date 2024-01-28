@@ -26,7 +26,7 @@ defineProps({
       </NuxtLink>
 
       <h1
-        class="text-4xl font-black leading-none tracking-tight text-gray-900 sm:text-5xl sm:leading-tight"
+        class="text-4xl font-black leading-none tracking-tight text-gray-900 sm:text-5xl sm:leading-tight text-pretty"
       >
         {{ title }}
         <slot name="title" />

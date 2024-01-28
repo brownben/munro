@@ -46,6 +46,7 @@ useTitle({ title: 'Login', description: 'Admin login page' })
           label="Password:"
           type="password"
           class="col-span-2"
+          autocomplete="current-password"
           :validator="RequiredField('a password')"
         />
       </Form>
