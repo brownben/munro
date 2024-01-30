@@ -11,6 +11,7 @@ export default {
     transpile: ['@headlessui/vue'],
   },
 
+  css: ['~/assets/main.css'],
   postcss: {
     plugins: {
       tailwindcss: {},
