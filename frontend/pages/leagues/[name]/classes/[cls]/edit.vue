@@ -46,8 +46,7 @@ const setAgeClassRestriction = (value: string) => {
   return { age_class, age_class_type }
 }
 const getNumberOfCountingEvents = () => {
-  if (form.specify_number_of_counting_events)
-    return form.number_of_counting_events
+  if (form.number_of_counting_events) return form.number_of_counting_events
   else return null
 }
 
@@ -57,8 +56,7 @@ const form = reactive({
   course: data.value?.standard_course ?? '',
   ...setAgeClassRestriction(data.value?.age_class_filter ?? ''),
   ...setClubRestriction(data.value?.club_filter ?? ''),
-  specify_number_of_counting_events: !!data.value?.number_of_counting_events,
-  number_of_counting_events: Number(data.value?.number_of_counting_events),
+  number_of_counting_events: data.value?.number_of_counting_events || 0,
 })
 
 const action = async () => {
@@ -109,19 +107,6 @@ useTitle({
         label="Name:"
         class="col-span-2"
         :validator="IsValidURLParameter('a name')"
-      />
-
-      <InputSwitch
-        v-model="form.specify_number_of_counting_events"
-        label="Override number of counting events?"
-        description="Specify a different number of events to score than the league default?"
-        class="col-span-2"
-      />
-      <InputNumber
-        v-if="form.specify_number_of_counting_events"
-        v-model="form.number_of_counting_events"
-        label="Number of Counting Events:"
-        class="col-span-2"
       />
 
       <FormHeading
@@ -216,6 +201,16 @@ useTitle({
         v-if="form.club_type == 'specific'"
         v-model.trim="form.club"
         label="Club:"
+        class="col-span-2"
+      />
+
+      <FormHeading
+        title="Counting Events"
+        description="The number of events to score for the class. Leave as 0 for the league default."
+      />
+      <InputNumber
+        v-model="form.number_of_counting_events"
+        label="Number of Counting Events:"
         class="col-span-2"
       />
     </Form>
