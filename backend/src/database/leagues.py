@@ -116,6 +116,16 @@ class Leagues:
         )
 
     @staticmethod
+    async def get_by_competitor_pool(competitor_pool: str) -> Iterable[League]:
+        return (
+            League.parse_obj(league)
+            for league in await LeagueTable.select(*league_fields)
+            .where(LeagueTable.competitor_pool == competitor_pool)
+            .order_by(LeagueTable.year, ascending=False)
+            .run()
+        )
+
+    @staticmethod
     async def delete_by_name(name: str) -> None:
         await LeagueTable.delete().where(LeagueTable.name == name).run()
 

@@ -2,22 +2,27 @@
 import {
   UserGroupIcon,
   AdjustmentsVerticalIcon,
+  TrophyIcon,
 } from '@heroicons/vue/24/outline'
 import type { Filters } from '~/utils/filter'
-import type { Competitor } from '~/api-types'
+import type { Competitor, League } from '~/api-types'
 
 const loggedIn = useLoggedIn()
 if (!loggedIn.value) await redirect('/login')
 
 const route = useRoute()
+const pool_name = queryToString(route.params.name)
 
 const { data } = await useData<Competitor[]>(
-  `competitor-pools/${route.params.name}/competitors`,
+  `competitor-pools/${pool_name}/competitors`,
 )
+const { data: leagues } = await useData<League[]>(
+  `competitor-pools/${pool_name}/leagues`,
+)
+
 const competitors = computed(
   () => data.value?.map(competitorWithAgeGender) ?? [],
 )
-const name = queryToString(route.params.name)
 
 const show = ref(false)
 const filters = reactive<Filters>({
@@ -37,10 +42,14 @@ useTitle({
 <template>
   <div>
     <Heading
-      :title="name"
-      link-text="← League Home"
-      :link-location="`/leagues/${route.params.name}`"
+      title="Competitors"
+      :link-text="leagues?.[0]?.name"
+      :link-location="`/leagues/${leagues?.[0]?.name}`"
     >
+      <ImageRow v-if="leagues && leagues.length > 1" :icon="TrophyIcon">
+        <strong class="font-medium">{{ leagues.length }}</strong>
+        Leagues
+      </ImageRow>
       <ImageRow :icon="UserGroupIcon">
         <strong class="font-medium">{{ competitors.length }}</strong>
         Competitors
@@ -97,15 +106,15 @@ useTitle({
       :links="[
         {
           text: 'Add Competitor',
-          location: `/competitors/create?competitor_pool=${name}`,
+          location: `/competitors/create?competitor_pool=${pool_name}`,
         },
         {
           text: 'Merge Competitors',
-          location: `/competitors/merge?competitor_pool=${name}`,
+          location: `/competitors/merge?competitor_pool=${pool_name}`,
         },
         {
           text: 'Add Result',
-          location: `/results/manual?competitor_pool=${name}`,
+          location: `/results/manual?competitor_pool=${pool_name}`,
         },
       ]"
       dark

@@ -50,7 +50,10 @@ useTitle({
 
 <template>
   <div>
-    <Heading title="Merge Competitors" />
+    <Heading
+      title="Merge Competitors"
+      tagline="Combine two competitor records into one."
+    />
 
     <Form button="Merge" :action="action">
       <InputDropdown

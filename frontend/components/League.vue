@@ -25,7 +25,7 @@ defineProps({
       :to="`/leagues/${league.name}`"
       class="mt-6 inline-block text-main-700 hover:text-main-800"
     >
-      View More →
+      View details →
     </NuxtLink>
   </article>
 </template>
