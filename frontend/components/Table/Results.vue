@@ -34,7 +34,7 @@ const ariaSorted = computed(
   <table v-if="sortedResults.length > 0" class="w-full">
     <thead>
       <tr
-        class="h-14 border-b border-main-200 text-left font-medium text-gray-900 md:h-12"
+        class="h-14 border-b border-main-200 text-left font-medium text-gray-600 md:h-12"
       >
         <th class="text-center" :aria-sort="ariaSorted?.position">
           <button
@@ -110,19 +110,13 @@ const ariaSorted = computed(
         </th>
       </tr>
     </thead>
-    <transition-group
-      tag="tbody"
-      move-class="duration-400 motion-safe:transition-transform"
-      enter-from-class="opacity-50"
-      enter-active-class="duration-300 motion-safe:transform"
-      enter-to-class="opacity-100"
-    >
+    <tbody>
       <TableRowResult
         v-for="result of sortedResults"
         :key="result.id"
         :result="result"
       />
-    </transition-group>
+    </tbody>
   </table>
   <div v-else class="px-6 lg:px-0">
     <p class="text-xl font-extrabold text-gray-600">No results found</p>

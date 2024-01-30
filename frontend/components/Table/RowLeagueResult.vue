@@ -19,7 +19,7 @@ defineProps({
         <span class="block leading-tight text-gray-900">
           {{ result.name }}
         </span>
-        <span class="text-sm leading-tight text-gray-600 md:hidden">
+        <span class="text-sm leading-tight text-gray-500 md:hidden">
           <template v-if="result.age_class">
             {{ result.age_class }} &nbsp;
           </template>
@@ -54,11 +54,11 @@ defineProps({
           :key="point?.event"
           class="flex justify-end gap-2"
         >
-          <dt class="text-gray-700">
+          <dt class="text-gray-600">
             {{ events[i]?.event_name ?? '' }}
           </dt>
           <dd
-            class="w-8 font-light"
+            class="w-8"
             :class="{
               'line-through': !point?.counting,
               'font-normal italic': ['manual', 'max', 'average'].includes(

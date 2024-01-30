@@ -105,6 +105,10 @@ useTitle({
       v-if="loggedIn"
       :links="[
         {
+          text: 'Add Result',
+          location: `/results/manual?competitor_pool=${pool_name}`,
+        },
+        {
           text: 'Add Competitor',
           location: `/competitors/create?competitor_pool=${pool_name}`,
         },
@@ -112,17 +116,13 @@ useTitle({
           text: 'Merge Competitors',
           location: `/competitors/merge?competitor_pool=${pool_name}`,
         },
-        {
-          text: 'Add Result',
-          location: `/results/manual?competitor_pool=${pool_name}`,
-        },
       ]"
       dark
     >
       Manage competitors
     </LinksSection>
     <main
-      class="mx-auto w-full max-w-screen-lg flex-grow py-8 sm:py-12 lg:px-8"
+      class="mx-auto w-full max-w-screen-lg flex-grow py-6 md:py-10 lg:px-8"
     >
       <TableCompetitors :competitors="competitors" :filters="filters" />
     </main>

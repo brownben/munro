@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { PencilSquareIcon } from '@heroicons/vue/24/outline'
 import type { PropType } from 'vue'
 import type { Filters } from '~/utils/filter'
 import type { CompetitorWithAgeGender } from '~~/utils/ageClass'
@@ -37,7 +38,7 @@ const ariaSorted = computed(
   <table v-if="sortedResults.length > 0" class="w-full">
     <thead>
       <tr
-        class="h-14 border-b border-main-200 text-left font-medium text-gray-900 md:h-12"
+        class="h-14 border-b-2 border-gray-200 text-left text-gray-600 md:h-12"
       >
         <th class="text-center" :aria-sort="ariaSorted?.id">
           <button
@@ -55,11 +56,11 @@ const ariaSorted = computed(
         <th :aria-sort="ariaSorted?.name">
           <button
             type="button"
-            class="rounded px-1 ring-main-200 focus:outline-none focus-visible:ring"
+            class="rounded px-2 font-medium ring-main-200 focus:outline-none focus-visible:ring"
             @click="changeSortPreference('name')"
           >
-            <span class="font-medium sm:hidden">Athlete</span>
-            <span class="hidden font-medium sm:inline-block">Name</span>
+            <span class="sm:hidden">Athlete</span>
+            <span class="hidden sm:inline-block">Name</span>
             <TableArrows
               :active="activeColumn == 'name'"
               :ascending="ascending"
@@ -101,28 +102,32 @@ const ariaSorted = computed(
         <th></th>
       </tr>
     </thead>
-    <transition-group
-      tag="tbody"
-      move-class="duration-400 motion-safe:transition-transform"
-      enter-from-class="opacity-50"
-      enter-active-class="duration-300 motion-safe:transform"
-      enter-to-class="opacity-100"
-    >
+    <tbody>
       <tr
         v-for="competitor of sortedResults"
         :key="competitor.id"
-        class="text-gray-800 odd:bg-main-100 hover:bg-main-200"
+        class="border-t border-gray-200 text-gray-800 transition hover:bg-main-50"
       >
         <td class="py-3 text-center">
           {{ competitor.id }}
         </td>
         <td class="px-2 py-2">
-          <span class="block leading-tight text-gray-900">
-            {{ competitor.name }}
-          </span>
-          <span class="text-sm leading-tight text-gray-600 sm:hidden">
-            {{ competitor.age_class }} &nbsp; {{ competitor.club }}
-          </span>
+          <NuxtLink
+            :to="`/competitors/${competitor.id}`"
+            class="inline-block ring-main-200 hover:text-main-800 focus-visible:ring"
+          >
+            <span
+              class="block font-medium leading-tight text-gray-900 underline decoration-gray-300 decoration-1 underline-offset-2"
+            >
+              {{ competitor.name }}
+            </span>
+            <span class="text-sm leading-tight text-gray-500 sm:hidden">
+              <template v-if="competitor.age_class">
+                {{ competitor.age_class }} &nbsp;
+              </template>
+              {{ competitor.club }}
+            </span>
+          </NuxtLink>
         </td>
         <td class="hidden text-center sm:table-cell">
           {{ competitor.age_class || ' ' }}
@@ -131,25 +136,18 @@ const ariaSorted = computed(
           {{ competitor.club || ' ' }}
         </td>
         <td>
-          <div
-            class="flex flex-wrap gap-1 py-1 text-sm leading-tight sm:justify-around"
-          >
-            <NuxtLink
-              :to="`/competitors/${competitor.id}`"
-              class="rounded border border-main-300 px-2 py-1 font-medium text-main-700 transition hover:bg-main-300 hover:text-main-900"
-            >
-              View Results
-            </NuxtLink>
+          <div class="flex flex-wrap justify-around gap-2">
             <NuxtLink
               :to="`/competitors/${competitor.id}/edit`"
-              class="rounded border border-main-300 px-2 py-1 font-medium text-main-700 transition hover:bg-main-300 hover:text-main-900"
+              class="flex gap-2 rounded border border-gray-200 px-2 py-1 text-sm font-medium leading-tight text-gray-600 transition hover:border-main-300 hover:bg-main-100 hover:text-main-800"
             >
+              <PencilSquareIcon class="size-4" aria-hidden="true" />
               Edit
             </NuxtLink>
           </div>
         </td>
       </tr>
-    </transition-group>
+    </tbody>
   </table>
   <div v-else class="px-6 lg:px-0">
     <p class="text-xl font-extrabold text-gray-600">No competitors found</p>

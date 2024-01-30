@@ -27,8 +27,8 @@
 
     <DisclosurePanel
       as="tr"
-      class="border-collapse bg-white text-right transition duration-300 group-focus-within:bg-main-200 group-hover:bg-main-200 md:hidden"
-      :class="{ 'bg-main-100': striped }"
+      class="border-collapse text-right transition duration-300 group-focus-within:bg-main-200 group-hover:bg-main-200 md:hidden"
+      :class="{ 'bg-main-100': striped, 'bg-white': !striped }"
     >
       <td class="pb-2" :colspan="100">
         <slot name="expansion" />
