@@ -155,6 +155,15 @@ if (league.value) {
               class="py-6 sm:px-4"
               @class-changed="refresh"
             />
+
+            <div v-if="league.classes.length == 0" class="mt-3 md:mt-6">
+              <p class="text-2xl font-extrabold text-gray-700">
+                No Classes Created
+              </p>
+              <p class="text-gray-500 mt-1">
+                Create a class to calculate league results.
+              </p>
+            </div>
           </div>
         </div>
       </section>
