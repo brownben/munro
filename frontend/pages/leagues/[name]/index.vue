@@ -160,7 +160,7 @@ if (league.value) {
               <p class="text-2xl font-extrabold text-gray-700">
                 No Classes Created
               </p>
-              <p class="text-gray-500 mt-1">
+              <p class="mt-1 text-gray-500">
                 Create a class to calculate league results.
               </p>
             </div>
@@ -170,7 +170,7 @@ if (league.value) {
 
       <section
         v-if="loggedIn && league?.groups.length > 0"
-        class="bg-gray-50 border-t border-gray-100"
+        class="border-t border-gray-100 bg-gray-50"
       >
         <div
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-4 sm:pt-10 lg:px-8"
@@ -198,13 +198,13 @@ if (league.value) {
       </section>
 
       <section
-        class="mx-auto max-w-screen-lg gap-8 px-6 py-8 sm:py-12 lg:px-8 border-t border-gray-100"
+        class="mx-auto max-w-screen-lg gap-8 border-t border-gray-100 px-6 py-8 sm:py-12 lg:px-8"
       >
         <div class="flex grid-cols-3 flex-col sm:grid">
           <div class="col-span-1 pb-8 sm:pb-0">
             <h2 class="text-2xl font-bold text-gray-500">Events</h2>
 
-            <div class="mt-2 flex gap-2 flex-wrap">
+            <div class="mt-2 flex flex-wrap gap-2">
               <NuxtLink
                 v-if="loggedIn"
                 :to="`/events/create?league=${league.name}`"

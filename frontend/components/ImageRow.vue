@@ -9,7 +9,7 @@ defineProps({
 </script>
 <template>
   <div
-    class="group flex flex-row gap-2 items-center leading-tight transition"
+    class="group flex flex-row items-center gap-2 leading-tight transition"
     :class="{
       'text-gray-500': !darker,
       'text-gray-600': darker,
@@ -18,7 +18,7 @@ defineProps({
   >
     <component
       :is="icon"
-      class="size-5 transition shrink-0"
+      class="size-5 shrink-0 transition"
       :class="{
         'text-gray-400': !darker,
         'text-gray-500': darker,
