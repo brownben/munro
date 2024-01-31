@@ -37,63 +37,65 @@ if (event.value) {
 }
 </script>
 <template>
-  <div v-if="event" class="flex h-full flex-grow flex-col">
-    <Heading
-      :title="event.name"
-      :link-text="event.league"
-      :link-location="`/leagues/${event.league}`"
-    >
-      <template v-if="Object.keys(event.results_links).length > 0" #default>
-        <ResultsLinks :links="event.results_links" />
-      </template>
-      <template #rightAction>
-        <button
-          class="inline-flex select-none items-center rounded-md bg-gradient-to-r from-main-500 to-main-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:from-main-600 hover:to-main-700 focus:outline-none focus:ring-2 focus:ring-main-600 focus:ring-offset-2 print:hidden"
-          @click="show = !show"
-        >
-          <AdjustmentsVerticalIcon
-            class="-ml-1 mr-2 h-5 w-5"
-            aria-hidden="true"
-          />
-          <span>Filter Results</span>
-        </button>
-      </template>
-    </Heading>
+  <div v-if="event" class="flex h-full flex-grow flex-col gap-8">
+    <div>
+      <Heading
+        :title="event.name"
+        :link-text="event.league"
+        :link-location="`/leagues/${event.league}`"
+      >
+        <template v-if="Object.keys(event.results_links).length > 0" #default>
+          <ResultsLinks :links="event.results_links" />
+        </template>
+        <template #rightAction>
+          <button
+            class="inline-flex select-none items-center rounded-md bg-gradient-to-r from-main-500 to-main-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:from-main-600 hover:to-main-700 focus:outline-none focus:ring-2 focus:ring-main-600 focus:ring-offset-2 print:hidden"
+            @click="show = !show"
+          >
+            <AdjustmentsVerticalIcon
+              class="-ml-1 mr-2 h-5 w-5"
+              aria-hidden="true"
+            />
+            <span>Filter Results</span>
+          </button>
+        </template>
+      </Heading>
 
-    <transition
-      enter-from-class="scale-y-95 opacity-0 "
-      enter-active-class="duration-300 origin-top motion-safe:transform"
-      enter-to-class="scale-y-100 opacity-100"
-      leave-from-class="scale-y-100 opacity-100"
-      leave-active-class="duration-300 origin-top motion-safe:transform"
-      leave-to-class="scale-y-95 opacity-0 "
-    >
-      <section v-if="show" class="bg-gray-50 print:hidden">
-        <div
-          class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
-        >
-          <Input v-model="filters.name" label="Name:" class="col-span-2" />
-          <Input v-model="filters.club" label="Club:" class="col-span-2" />
-          <Input
-            v-model="filters.minAge"
-            label="Min. Age:"
-            type="number"
-            :form-props="{ max: 120, min: 0, step: 1 }"
-          />
-          <Input
-            v-model="filters.maxAge"
-            label="Max. Age:"
-            type="number"
-            :form-props="{ max: 120, min: 0, step: 1 }"
-          />
-          <InputSwitch v-model="filters.male" label="Male:" />
-          <InputSwitch v-model="filters.female" label="Female:" />
-        </div>
-      </section>
-    </transition>
+      <transition
+        enter-from-class="scale-y-95 opacity-0 "
+        enter-active-class="duration-300 origin-top motion-safe:transform"
+        enter-to-class="scale-y-100 opacity-100"
+        leave-from-class="scale-y-100 opacity-100"
+        leave-active-class="duration-300 origin-top motion-safe:transform"
+        leave-to-class="scale-y-95 opacity-0 "
+      >
+        <section v-if="show" class="bg-gray-50 print:hidden">
+          <div
+            class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
+          >
+            <Input v-model="filters.name" label="Name:" class="col-span-2" />
+            <Input v-model="filters.club" label="Club:" class="col-span-2" />
+            <Input
+              v-model="filters.minAge"
+              label="Min. Age:"
+              type="number"
+              :form-props="{ max: 120, min: 0, step: 1 }"
+            />
+            <Input
+              v-model="filters.maxAge"
+              label="Max. Age:"
+              type="number"
+              :form-props="{ max: 120, min: 0, step: 1 }"
+            />
+            <InputSwitch v-model="filters.male" label="Male:" />
+            <InputSwitch v-model="filters.female" label="Female:" />
+          </div>
+        </section>
+      </transition>
+    </div>
 
     <div
-      class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 pt-8 lg:px-8 print:hidden"
+      class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 lg:px-8 print:hidden"
     >
       <p class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto">Courses:</p>
       <NuxtLink
@@ -109,7 +111,7 @@ if (event.value) {
     <section
       v-for="course in courses"
       :key="course"
-      class="mx-auto w-full max-w-screen-lg flex-grow py-8 sm:py-12 lg:px-8"
+      class="mx-auto w-full max-w-screen-lg flex-grow pb-4 lg:px-8"
     >
       <div class="flex items-center gap-3 px-6 pb-4 sm:pb-6 lg:px-0">
         <h2

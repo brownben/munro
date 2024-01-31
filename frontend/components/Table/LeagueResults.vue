@@ -63,7 +63,7 @@ const ariaSorted = computed(() => {
         <th :aria-sort="ariaSorted?.name">
           <button
             type="button"
-            class="rounded px-1 ring-main-200 focus:outline-none focus-visible:ring"
+            class="rounded ring-main-200 focus:outline-none focus-visible:ring"
             @click="changeSortPreference('name')"
           >
             <span class="font-medium sm:hidden">Athlete</span>
