@@ -22,7 +22,7 @@ const leagues = [
     height: 512,
   },
   {
-    to: '/leagues/Scottish Junior Cup 22',
+    to: '/leagues/Route to WOC 2024',
     src: '/logos/scottish-orienteering',
     alt: 'Scottish Orienteering Logo',
     width: 871,
