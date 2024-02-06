@@ -22,10 +22,6 @@ https://munroleagues.com/leagues/Sprintelope%202021/results/Short
 https://munroleagues.com/events/TestEvent-2022-02-03/results
 https://munroleagues.com/events/TheFinalCountdown-2021-12-24/results
 https://munroleagues.com/events/TestEvent-2021-12-12/results
-https://munroleagues.com/competitors/1
-https://munroleagues.com/competitors/2
-https://munroleagues.com/competitors/3
-https://munroleagues.com/competitors/4
 """
 
 

@@ -3,7 +3,7 @@ import urllib.parse
 from fastapi.responses import PlainTextResponse
 from fastapi.routing import APIRouter
 
-from ..database import Competitors, Events, LeagueClasses, Leagues
+from ..database import Events, LeagueClasses, Leagues
 
 
 class SitemapBuilder:
@@ -51,8 +51,5 @@ async def sitemap() -> str:
 
     for event in await Events.get_all():
         sitemap.add_url(f"/events/{event.id}/results")
-
-    for competitor in await Competitors.get_all():
-        sitemap.add_url(f"/competitors/{competitor.id}")
 
     return sitemap.output
