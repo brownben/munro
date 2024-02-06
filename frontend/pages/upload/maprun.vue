@@ -66,7 +66,7 @@ useTitle({
 
 <template>
   <div>
-    <Heading title="Upload Results File" />
+    <Heading title="Import Results from MapRun" />
 
     <Form button="Upload" :action="action">
       <FormHeading
@@ -100,14 +100,6 @@ useTitle({
         type="text"
         class="col-span-2"
         :validator="RequiredField('an upload key')"
-      />
-
-      <InputSwitch
-        v-if="event?.results_uploaded"
-        v-model="form.overwrite"
-        label="Overwrite existing results?"
-        description="Replace exisiting results with new result in uploaded file"
-        class="col-span-2 py-2"
       />
 
       <FormHeading

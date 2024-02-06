@@ -37,7 +37,12 @@ useTitle({
     <Form button="Submit Result" :action="action">
       <InputDropdown
         v-model="form.event"
-        :list="events?.map((event) => ({ value: event.id, text: event.name }))"
+        :list="
+          events?.map((event) => ({
+            value: event.id,
+            text: `${event.name} (${event.date})`,
+          }))
+        "
         label="Event:"
         type="text"
         class="col-span-2"
