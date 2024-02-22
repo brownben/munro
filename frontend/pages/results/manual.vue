@@ -4,8 +4,7 @@ import { RequiredField, IsValidTime } from '~/utils/validation'
 import type { Competitor, Event } from '~/api-types'
 import type { Ref } from 'vue'
 
-const loggedIn = useLoggedIn()
-if (!loggedIn.value) await redirect('/login')
+requireLogin()
 
 const route = useRoute()
 const router = useRouter()

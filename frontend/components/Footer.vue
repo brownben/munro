@@ -65,7 +65,7 @@ const logout = () => {
 
       <router-link
         v-if="!loggedIn"
-        to="/login"
+        :to="`/login?redirect=${$route.fullPath}`"
         class="text-sm text-gray-500 transition duration-300 hover:text-main-600 focus:text-main-700"
       >
         Admin Login

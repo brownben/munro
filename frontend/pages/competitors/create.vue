@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { RequiredField, IsValidAgeClass } from '~/utils/validation'
 
-const loggedIn = useLoggedIn()
-if (!loggedIn.value) await redirect('/login')
+requireLogin()
 
 const route = useRoute()
 const router = useRouter()

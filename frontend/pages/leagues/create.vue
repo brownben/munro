@@ -5,8 +5,7 @@ import {
   RequiredField,
 } from '~/utils/validation'
 
-const loggedIn = useLoggedIn()
-if (!loggedIn.value) await redirect('/login')
+requireLogin()
 
 const router = useRouter()
 

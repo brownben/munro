@@ -2,8 +2,7 @@
 import { RequiredField, IsValidAgeClass } from '~/utils/validation'
 import type { Competitor } from '~~/api-types'
 
-const loggedIn = useLoggedIn()
-if (!loggedIn.value) await redirect('/login')
+requireLogin()
 
 const route = useRoute()
 const router = useRouter()

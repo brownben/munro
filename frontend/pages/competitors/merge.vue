@@ -4,8 +4,7 @@ import type { Competitor } from '~/api-types'
 import type { Ref } from 'vue'
 import { competitorToText } from '~/utils/competitor'
 
-const loggedIn = useLoggedIn()
-if (!loggedIn.value) await redirect('/login')
+requireLogin()
 
 const route = useRoute()
 const router = useRouter()

@@ -6,11 +6,14 @@ if (useLoggedIn().value) await redirect('/')
 const email = ref('')
 const password = ref('')
 
+const route = useRoute()
 const router = useRouter()
+
 const action = async () => {
   try {
     await loginRequest(email, password)
-    await router.replace('/')
+
+    router.replace(String(route.query.redirect) || '/')
   } catch {
     throw 'Incorrect email or password, please try again.'
   }

@@ -7,8 +7,7 @@ import {
 } from '~/utils/validation'
 import type { League, LeagueClass } from '~~/api-types'
 
-const loggedIn = useLoggedIn()
-if (!loggedIn.value) await redirect('/login')
+requireLogin()
 
 const route = useRoute()
 const router = useRouter()

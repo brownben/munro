@@ -7,8 +7,7 @@ import {
 import type { Filters } from '~/utils/filter'
 import type { Competitor, League } from '~/api-types'
 
-const loggedIn = useLoggedIn()
-if (!loggedIn.value) await redirect('/login')
+requireLogin()
 
 const route = useRoute()
 const pool_name = queryToString(route.params.name)
@@ -102,7 +101,6 @@ useTitle({
     </transition>
 
     <LinksSection
-      v-if="loggedIn"
       :links="[
         {
           text: 'Add Result',

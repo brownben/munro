@@ -49,6 +49,15 @@ export const useLoggedIn = () => {
   return computed(() => !!user.value?.idToken)
 }
 
+export const requireLogin = () => {
+  const user = useUser()
+  const route = useRoute()
+
+  if (!user.value?.idToken) {
+    return redirect(`/login?redirect=${route.fullPath}`)
+  }
+}
+
 export const redirect = async (path: string) => {
   return navigateTo(path, { replace: true })
 }
