@@ -138,13 +138,12 @@ if (league.value) {
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-6 sm:pt-10 lg:px-8"
         >
           <div class="pb-4">
-            <h2 class="col-span-1 text-2xl font-bold text-gray-500">Classes</h2>
-            <NuxtLink
-              :to="`/leagues/${route.params.name}/classes/create`"
-              class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-            >
-              + Add Class
-            </NuxtLink>
+            <h2 class="col-span-1 mb-2 text-2xl font-bold text-gray-600">
+              Classes
+            </h2>
+            <ButtonSmall :link="`/leagues/${route.params.name}/classes/create`">
+              + Create Class
+            </ButtonSmall>
           </div>
 
           <div class="col-span-2 -mt-6 flex flex-col divide-y">
@@ -176,13 +175,12 @@ if (league.value) {
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-4 sm:pt-10 lg:px-8"
         >
           <div class="pb-4">
-            <h2 class="col-span-1 text-2xl font-bold text-gray-600">Groups</h2>
-            <NuxtLink
-              :to="`/leagues/${route.params.name}/groups/create`"
-              class="mt-2 inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-            >
+            <h2 class="col-span-1 mb-2 text-2xl font-bold text-gray-600">
+              Groups
+            </h2>
+            <ButtonSmall :link="`/leagues/${route.params.name}/groups/create`">
               + Create Group
-            </NuxtLink>
+            </ButtonSmall>
           </div>
 
           <div class="col-span-2 -mt-6 flex flex-col divide-y">
@@ -202,23 +200,21 @@ if (league.value) {
       >
         <div class="flex grid-cols-3 flex-col sm:grid">
           <div class="col-span-1 pb-8 sm:pb-0">
-            <h2 class="text-2xl font-bold text-gray-500">Events</h2>
+            <h2 class="text-2xl font-bold text-gray-600">Events</h2>
 
             <div class="mt-2 flex flex-wrap gap-2">
-              <NuxtLink
+              <ButtonSmall
                 v-if="loggedIn"
-                :to="`/events/create?league=${league.name}`"
-                class="inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+                :link="`/events/create?league=${league.name}`"
               >
                 + Create Event
-              </NuxtLink>
-              <NuxtLink
+              </ButtonSmall>
+              <ButtonSmall
                 v-if="loggedIn && league.competitor_pool != league.name"
-                :to="`/events/add?league=${league.name}`"
-                class="inline-block rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
+                :link="`/events/add?league=${league.name}`"
               >
                 + Add Event from Another League
-              </NuxtLink>
+              </ButtonSmall>
             </div>
           </div>
 

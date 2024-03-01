@@ -72,26 +72,17 @@ const showTransferForm = ref(false)
         </div>
       </dl>
       <div class="-mb-2 mt-4 flex flex-wrap gap-3">
-        <button
-          class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-          @click="toggleIncomplete"
-        >
+        <ButtonSmall @click="toggleIncomplete">
           <template v-if="result.incomplete"> Mark as Complete </template>
           <template v-else> Mark as Incomplete </template>
-        </button>
-        <button
-          class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-          @click="toggleVisibility"
-        >
+        </ButtonSmall>
+        <ButtonSmall @click="toggleVisibility">
           <template v-if="result.visible"> Hide Result </template>
           <template v-else> Include Result </template>
-        </button>
-        <button
-          class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-          @click="showTransferForm = !showTransferForm"
-        >
+        </ButtonSmall>
+        <ButtonSmall @click="showTransferForm = !showTransferForm">
           Transfer Result
-        </button>
+        </ButtonSmall>
       </div>
       <LazyResultTransferForm
         v-if="showTransferForm"

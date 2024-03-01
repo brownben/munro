@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import {
+  DocumentTextIcon,
+  PencilSquareIcon,
+  TrashIcon,
+} from '@heroicons/vue/24/outline'
 import type { PropType } from 'vue'
 import type { LeagueClass } from '~/api-types'
 
@@ -25,25 +30,19 @@ const deleteClass = async () => {
       {{ cls.name }}
     </h3>
 
-    <div>
-      <NuxtLink
-        :to="`/leagues/${props.cls.league}/results/${props.cls.name}`"
-        class="mr-2 rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-      >
+    <div class="flex flex-wrap items-center gap-2">
+      <ButtonSmall :link="`/leagues/${cls.league}/results/${cls.name}`">
+        <DocumentTextIcon class="size-4" aria-hidden="true" />
         Results
-      </NuxtLink>
-      <NuxtLink
-        :to="`/leagues/${props.cls.league}/classes/${props.cls.name}/edit`"
-        class="mr-2 rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-      >
-        Edit Class
-      </NuxtLink>
-      <button
-        class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-        @click="deleteClass"
-      >
-        Delete Class
-      </button>
+      </ButtonSmall>
+      <ButtonSmall :link="`/leagues/${cls.league}/classes/${cls.name}/edit`">
+        <PencilSquareIcon class="size-4" aria-hidden="true" />
+        Edit
+      </ButtonSmall>
+      <ButtonSmall @click="deleteClass">
+        <TrashIcon class="size-4" aria-hidden="true" />
+        Delete
+      </ButtonSmall>
     </div>
   </article>
 </template>

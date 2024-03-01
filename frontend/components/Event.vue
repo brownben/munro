@@ -6,6 +6,9 @@ import {
   GlobeEuropeAfricaIcon as GlobeIcon,
   PuzzlePieceIcon,
   TagIcon,
+  CloudArrowUpIcon,
+  TrashIcon,
+  PencilSquareIcon,
 } from '@heroicons/vue/24/outline'
 import { displayDate } from '~/utils/date'
 import type { Event } from '~/api-types'
@@ -23,6 +26,9 @@ const resultsLinks = computed(() =>
     (link) => props.event.results_links[link],
   ),
 )
+const uploadLink = `/upload/file?event_id=${encodeURIComponent(
+  props.event.id,
+)}&upload_key=${encodeURIComponent(props.event.upload_key ?? '')}`
 
 const deleteEvent = async () => {
   if (
@@ -44,6 +50,7 @@ const deleteEvent = async () => {
     <h3 v-else class="text-3xl font-black text-gray-900 sm:text-4xl">
       {{ event.name }}
     </h3>
+
     <div class="flex flex-col gap-x-7 gap-y-2 sm:flex-row sm:flex-wrap">
       <ImageRow :icon="CalendarIcon" darker>
         {{ displayDate(event.date) }}
@@ -65,25 +72,26 @@ const deleteEvent = async () => {
         </a>
       </ImageRow>
     </div>
+
     <p v-if="event.more_information && !small" class="text-gray-600">
       {{ event.more_information }}
     </p>
+
     <div v-if="event.results_uploaded" class="mt-3 flex flex-wrap gap-3">
-      <NuxtLink
-        :to="`/events/${event.id}/results`"
-        class="rounded bg-main-100 px-2 py-1 text-sm font-medium text-main-700 transition hover:bg-main-200"
-      >
+      <ButtonSmall :link="`/events/${event.id}/results`" coloured>
         Results
-      </NuxtLink>
-      <a
+      </ButtonSmall>
+      <ButtonSmall
         v-for="result_type in resultsLinks"
         :key="result_type"
-        :href="props.event.results_links[result_type]"
-        class="rounded bg-main-100 px-2 py-1 text-sm font-medium text-main-700 transition hover:bg-main-200"
+        :link="props.event.results_links[result_type]"
+        coloured
+        external
       >
         {{ result_type }}
-      </a>
+      </ButtonSmall>
     </div>
+
     <template v-if="admin">
       <dl class="text-gray-800">
         <div class="flex gap-2">
@@ -95,27 +103,20 @@ const deleteEvent = async () => {
           <dd class="select-all">{{ event.upload_key }}</dd>
         </div>
       </dl>
+
       <div class="-mb-2 flex flex-wrap gap-3">
-        <NuxtLink
-          :to="`/upload/file?event_id=${encodeURIComponent(
-            event.id,
-          )}&upload_key=${encodeURIComponent(event.upload_key ?? '')}`"
-          class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-        >
+        <ButtonSmall :link="uploadLink">
+          <CloudArrowUpIcon class="size-4" aria-hidden="true" />
           Upload Results
-        </NuxtLink>
-        <NuxtLink
-          :to="`/events/${event.id}/edit`"
-          class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-        >
-          Edit Event
-        </NuxtLink>
-        <button
-          class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-          @click="deleteEvent"
-        >
-          Delete Event
-        </button>
+        </ButtonSmall>
+        <ButtonSmall :link="`/events/${event.id}/edit`">
+          <PencilSquareIcon class="size-4" aria-hidden="true" />
+          Edit
+        </ButtonSmall>
+        <ButtonSmall @click="deleteEvent">
+          <TrashIcon class="size-4" aria-hidden="true" />
+          Delete
+        </ButtonSmall>
       </div>
     </template>
   </article>

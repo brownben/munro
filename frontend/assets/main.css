@@ -45,12 +45,6 @@ button {
   background: var(--main-100, #fae8ff);
 }
 
-@media print {
-  @page {
-    size: A3;
-  }
-}
-
 .theme-purple {
   --main-50: #fdf4ff;
   --main-100: #fae8ff;

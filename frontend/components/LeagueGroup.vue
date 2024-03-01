@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { PencilSquareIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import type { PropType } from 'vue'
 import type { LeagueGroup } from '~/api-types'
 
@@ -25,19 +26,15 @@ const deleteGroup = async () => {
       {{ group.name }}
     </h3>
 
-    <div>
-      <NuxtLink
-        :to="`/leagues/${props.group.league}/groups/${props.group.name}/edit`"
-        class="mr-2 rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-      >
-        Edit Group
-      </NuxtLink>
-      <button
-        class="rounded bg-gray-100 px-2 py-1 text-sm font-medium text-gray-700 transition hover:bg-gray-200"
-        @click="deleteGroup"
-      >
-        Delete Group
-      </button>
+    <div class="flex flex-wrap items-center gap-2">
+      <ButtonSmall :link="`/leagues/${group.league}/groups/${group.name}/edit`">
+        <PencilSquareIcon class="size-4" aria-hidden="true" />
+        Edit
+      </ButtonSmall>
+      <ButtonSmall @click="deleteGroup">
+        <TrashIcon class="size-4" aria-hidden="true" />
+        Delete
+      </ButtonSmall>
     </div>
   </article>
 </template>

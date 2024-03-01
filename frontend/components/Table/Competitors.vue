@@ -137,13 +137,10 @@ const ariaSorted = computed(
         </td>
         <td>
           <div class="flex flex-wrap justify-around gap-2">
-            <NuxtLink
-              :to="`/competitors/${competitor.id}/edit`"
-              class="flex gap-2 rounded border border-gray-200 px-2 py-1 text-sm font-medium leading-tight text-gray-600 transition hover:border-main-300 hover:bg-main-100 hover:text-main-800"
-            >
+            <ButtonSmall :to="`/competitors/${competitor.id}/edit`">
               <PencilSquareIcon class="size-4" aria-hidden="true" />
               Edit
-            </NuxtLink>
+            </ButtonSmall>
           </div>
         </td>
       </tr>
