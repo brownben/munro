@@ -137,7 +137,7 @@ const ariaSorted = computed(
         </td>
         <td>
           <div class="flex flex-wrap justify-around gap-2">
-            <ButtonSmall :to="`/competitors/${competitor.id}/edit`">
+            <ButtonSmall :link="`/competitors/${competitor.id}/edit`">
               <PencilSquareIcon class="size-4" aria-hidden="true" />
               Edit
             </ButtonSmall>
