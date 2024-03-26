@@ -3,7 +3,7 @@ const description =
   'League Results. Sorted with Munro. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options'
 const url = 'https://munroleagues.com'
 const theme = '#b80bda'
-const image = 'https://images.munroleagues.com/%20'
+const image = 'https://munroleagues.com/social.png'
 const imageAlt = 'Munro Leagues Logo - Hills Shaped as an "M"'
 
 export default {
