@@ -30,12 +30,12 @@ html,
 body,
 #app,
 #__nuxt {
-  @apply flex h-full flex-col;
+  @apply flex h-full flex-col scroll-smooth;
 }
 
 a,
 button {
-  @apply rounded ring-main-200 focus:outline-none focus-visible:ring;
+  @apply rounded  focus:outline-none focus-visible:ring;
 }
 
 ::selection {
