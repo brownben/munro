@@ -42,16 +42,13 @@ if (data.value) {
       :link-text="data.league"
     >
       <template #rightAction>
-        <button
-          class="inline-flex select-none items-center rounded-md bg-gradient-to-r from-main-500 to-main-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:from-main-600 hover:to-main-700 focus:outline-none focus:ring-2 focus:ring-main-600 focus:ring-offset-2 print:hidden"
-          @click="show = !show"
-        >
+        <Button small @click="show = !show">
           <AdjustmentsVerticalIcon
             class="-ml-1 mr-2 h-5 w-5"
             aria-hidden="true"
           />
           <span>Filter Results</span>
-        </button>
+        </Button>
       </template>
     </Heading>
 
@@ -79,7 +76,7 @@ if (data.value) {
 
     <section
       v-if="results"
-      class="mx-auto w-full flex-grow py-8 sm:py-12 lg:px-8 print:sm:py-4"
+      class="mx-auto w-full flex-grow pb-10 pt-8 lg:px-8 print:sm:py-4"
       :class="{
         'max-w-screen-lg': results[0]?.points.length <= 3,
         'max-w-screen-xl':
