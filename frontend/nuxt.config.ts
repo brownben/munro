@@ -24,6 +24,16 @@ export default {
     strict: true,
   },
 
+  vite: {
+    vue: {
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag: string) => tag.includes('-'),
+        },
+      },
+    },
+  },
+
   app: {
     head: {
       title,
