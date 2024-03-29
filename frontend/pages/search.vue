@@ -18,7 +18,7 @@ useTitle({
       </template>
     </Heading>
     <main
-      class="mx-auto flex max-w-screen-lg flex-col gap-12 px-6 py-10 sm:py-12 md:py-14 lg:px-8"
+      class="mx-auto flex max-w-screen-lg flex-col gap-12 px-6 py-10 sm:py-12 lg:px-8"
     >
       <div
         v-if="

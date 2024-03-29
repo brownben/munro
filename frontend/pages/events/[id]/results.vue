@@ -48,16 +48,13 @@ if (event.value) {
           <ResultsLinks :links="event.results_links" />
         </template>
         <template #rightAction>
-          <button
-            class="inline-flex select-none items-center rounded-md bg-gradient-to-r from-main-500 to-main-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition duration-200 hover:from-main-600 hover:to-main-700 focus:outline-none focus:ring-2 focus:ring-main-600 focus:ring-offset-2 print:hidden"
-            @click="show = !show"
-          >
+          <Button small @click="show = !show">
             <AdjustmentsVerticalIcon
               class="-ml-1 mr-2 h-5 w-5"
               aria-hidden="true"
             />
             <span>Filter Results</span>
-          </button>
+          </Button>
         </template>
       </Heading>
 
@@ -97,7 +94,12 @@ if (event.value) {
     <div
       class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 lg:px-8 print:hidden"
     >
-      <p class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto">Courses:</p>
+      <p
+        class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto"
+        :class="{ block: courses.length > 6 }"
+      >
+        Courses:
+      </p>
       <NuxtLink
         v-for="course in courses"
         :key="course"

@@ -13,9 +13,9 @@ useTitle({
           <li>
             <strong>
               Go to
-              <router-link to="/upload/file" class="link text-main-700">
+              <NuxtLink to="/upload/file" class="link text-main-700">
                 https://munroleagues.com/upload/file
-              </router-link>
+              </NuxtLink>
             </strong>
             <img
               src="~/assets/UploadInstructions-Blank.avif"

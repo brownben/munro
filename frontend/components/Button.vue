@@ -1,10 +1,14 @@
 <script setup lang="ts">
-defineProps({ loading: { type: Boolean, default: false } })
+defineProps({
+  loading: { type: Boolean, default: false },
+  small: { type: Boolean, default: false },
+})
 </script>
 
 <template>
   <button
-    class="select-none rounded bg-gradient-to-r from-main-500 to-main-600 px-6 py-2 font-medium text-white ring-main-600 ring-offset-2 transition duration-200 hover:from-main-600 hover:to-main-700 hover:shadow focus:outline-none focus-visible:ring"
+    class="flex select-none rounded bg-gradient-to-r from-main-500 to-main-600 font-medium text-white ring-main-600 ring-offset-2 transition hover:from-main-600 hover:to-main-700 hover:shadow focus:outline-none focus-visible:ring"
+    :class="{ 'px-4 py-2 text-sm': small, 'px-6 py-2': !small }"
     :disabled="loading"
   >
     <template v-if="!loading">
