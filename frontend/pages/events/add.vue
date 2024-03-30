@@ -84,10 +84,10 @@ useTitle({
         />
       </template>
       <div v-else class="col-span-2 px-6 py-6 lg:px-0">
-        <p class="text-xl font-extrabold text-gray-800">
+        <p class="text-xl font-extrabold text-gray-800 dark:text-gray-200">
           No suitable events found.
         </p>
-        <p class="mt-2 text-gray-600">
+        <p class="mt-2 text-gray-600 dark:text-gray-400">
           This event must already exist in another league which shares a
           competitor pool with the selected league.
         </p>

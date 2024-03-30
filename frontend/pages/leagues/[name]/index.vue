@@ -68,7 +68,7 @@ if (league.value) {
         <p
           v-for="paragraph in league.more_information.split('|')"
           :key="paragraph"
-          class="mt-1 text-gray-500"
+          class="mt-1 text-gray-500 dark:text-gray-300"
         >
           {{ paragraph }}
         </p>
@@ -97,13 +97,19 @@ if (league.value) {
         class="mx-auto hidden max-w-screen-lg grid-cols-1 gap-8 px-6 py-8 sm:grid sm:grid-cols-2 sm:pb-6 sm:pt-10 lg:px-8"
       >
         <div>
-          <h2 class="font-bold uppercase text-gray-500 sm:pb-2">
+          <h2
+            class="font-bold uppercase text-gray-500 sm:pb-2 dark:text-gray-300"
+          >
             Latest Results
           </h2>
           <Event :event="latestEvents[0]" class="pb-6 pt-4" />
         </div>
         <div v-if="nextEvent">
-          <h2 class="font-bold uppercase text-gray-500 sm:pb-2">Next Event</h2>
+          <h2
+            class="font-bold uppercase text-gray-500 sm:pb-2 dark:text-gray-300"
+          >
+            Next Event
+          </h2>
           <Event :event="nextEvent" class="pb-6 pt-4" />
         </div>
         <div v-else>
@@ -133,12 +139,17 @@ if (league.value) {
         League Results
       </LinksSection>
 
-      <section v-if="loggedIn" class="border-t border-gray-100">
+      <section
+        v-if="loggedIn"
+        class="border-b border-gray-100 dark:border-gray-700"
+      >
         <div
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-6 sm:pt-10 lg:px-8"
         >
           <div class="pb-4">
-            <h2 class="col-span-1 mb-2 text-2xl font-bold text-gray-600">
+            <h2
+              class="col-span-1 mb-2 text-2xl font-bold text-gray-600 dark:text-gray-300"
+            >
               Classes
             </h2>
             <ButtonSmall :link="`/leagues/${route.params.name}/classes/create`">
@@ -146,7 +157,9 @@ if (league.value) {
             </ButtonSmall>
           </div>
 
-          <div class="col-span-2 -mt-6 flex flex-col divide-y">
+          <div
+            class="col-span-2 -mt-6 flex flex-col divide-y dark:divide-gray-600"
+          >
             <LeagueClass
               v-for="cls in league.classes"
               :key="cls.name"
@@ -156,10 +169,12 @@ if (league.value) {
             />
 
             <div v-if="league.classes.length == 0" class="mt-3 md:mt-6">
-              <p class="text-2xl font-extrabold text-gray-700">
+              <p
+                class="text-2xl font-extrabold text-gray-700 dark:text-gray-300"
+              >
                 No Classes Created
               </p>
-              <p class="mt-1 text-gray-500">
+              <p class="mt-1 text-gray-500 dark:text-gray-400">
                 Create a class to calculate league results.
               </p>
             </div>
@@ -169,13 +184,15 @@ if (league.value) {
 
       <section
         v-if="loggedIn && league?.groups.length > 0"
-        class="border-t border-gray-100 bg-gray-50"
+        class="border-b border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-800"
       >
         <div
           class="mx-auto flex max-w-screen-lg grid-cols-3 flex-col gap-8 px-6 py-6 sm:grid sm:pb-4 sm:pt-10 lg:px-8"
         >
           <div class="pb-4">
-            <h2 class="col-span-1 mb-2 text-2xl font-bold text-gray-600">
+            <h2
+              class="col-span-1 mb-2 text-2xl font-bold text-gray-600 dark:text-gray-300"
+            >
               Groups
             </h2>
             <ButtonSmall :link="`/leagues/${route.params.name}/groups/create`">
@@ -183,7 +200,9 @@ if (league.value) {
             </ButtonSmall>
           </div>
 
-          <div class="col-span-2 -mt-6 flex flex-col divide-y">
+          <div
+            class="col-span-2 -mt-6 flex flex-col divide-y dark:divide-gray-600"
+          >
             <LeagueGroup
               v-for="group in league.groups"
               :key="group.name"
@@ -195,12 +214,12 @@ if (league.value) {
         </div>
       </section>
 
-      <section
-        class="mx-auto max-w-screen-lg gap-8 border-t border-gray-100 px-6 py-8 sm:py-12 lg:px-8"
-      >
+      <section class="mx-auto max-w-screen-lg gap-8 px-6 py-8 sm:py-12 lg:px-8">
         <div class="flex grid-cols-3 flex-col sm:grid">
           <div class="col-span-1 pb-8 sm:pb-0">
-            <h2 class="text-2xl font-bold text-gray-600">Events</h2>
+            <h2 class="text-2xl font-bold text-gray-600 dark:text-gray-300">
+              Events
+            </h2>
 
             <div class="mt-2 flex flex-wrap gap-2">
               <ButtonSmall
@@ -218,7 +237,9 @@ if (league.value) {
             </div>
           </div>
 
-          <div class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y">
+          <div
+            class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y dark:divide-gray-600"
+          >
             <Event
               v-for="event in league.events"
               :key="event.id"

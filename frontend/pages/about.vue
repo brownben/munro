@@ -9,7 +9,7 @@ useTitle({
   <div>
     <Heading title="Introducing Munro Leagues" />
     <main class="mx-auto max-w-screen-lg px-6 py-8 sm:py-10 sm:pb-16 lg:px-8">
-      <article class="prose lg:prose-lg">
+      <article class="prose lg:prose-lg dark:prose-invert">
         <blockquote>
           This article was originally featured in the August Issue 2020 of
           Scottish Orienteering's Score Magazine -

@@ -5,7 +5,7 @@
     >
       <div class="lg:-mt-4">
         <h1
-          class="text-center text-4xl font-black tracking-tight text-gray-600 sm:text-left md:text-5xl"
+          class="text-center text-4xl font-black tracking-tight text-gray-600 sm:text-left md:text-5xl dark:text-gray-200"
         >
           League Results.
           <span
@@ -16,7 +16,7 @@
         </h1>
         <NuxtLink
           to="/leagues"
-          class="mt-6 hidden text-gray-500 hover:text-main-600 focus:text-main-600 lg:inline-block"
+          class="mt-6 hidden text-gray-500 hover:text-main-600 focus:text-main-600 lg:inline-block dark:text-gray-300 dark:hover:text-main-500 dark:focus:text-main-400"
         >
           View All Leagues →
         </NuxtLink>

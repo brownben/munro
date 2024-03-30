@@ -10,9 +10,9 @@
       stroke-linejoin="round"
       class="inline-block duration-300 motion-safe:transition-all"
       :class="{
-        '-mt-2 h-2 text-gray-500 ': !ascending && active,
-        '-mt-1 h-5 text-main-700': ascending && active,
-        '-mt-1 h-4 text-gray-400 opacity-75': !active,
+        '-mt-2 h-2 text-gray-500 dark:text-gray-400': !ascending && active,
+        '-mt-1 h-5 text-main-700 dark:text-main-600': ascending && active,
+        '-mt-1 h-4 text-gray-400 opacity-75 dark:text-gray-300': !active,
       }"
     >
       <path stroke="none" d="M0 0h24v24H0z" />

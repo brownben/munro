@@ -60,7 +60,7 @@ if (data.value) {
       leave-active-class="duration-300 origin-top motion-safe:transform"
       leave-to-class="scale-y-95 opacity-0 "
     >
-      <section v-if="show" class="bg-gray-50 print:hidden">
+      <section v-if="show" class="bg-gray-50 dark:bg-gray-800 print:hidden">
         <div
           class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
         >

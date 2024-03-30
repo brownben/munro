@@ -66,7 +66,7 @@ if (event.value) {
         leave-active-class="duration-300 origin-top motion-safe:transform"
         leave-to-class="scale-y-95 opacity-0 "
       >
-        <section v-if="show" class="bg-gray-50 print:hidden">
+        <section v-if="show" class="bg-gray-50 dark:bg-gray-800 print:hidden">
           <div
             class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
           >
@@ -95,7 +95,7 @@ if (event.value) {
       class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 lg:px-8 print:hidden"
     >
       <p
-        class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto"
+        class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto dark:text-gray-400"
         :class="{ block: courses.length > 6 }"
       >
         Courses:
@@ -104,7 +104,7 @@ if (event.value) {
         v-for="course in courses"
         :key="course"
         :to="`#${course}`"
-        class="rounded px-4 py-1 text-gray-600 ring-main-200 transition hover:bg-main-100 hover:text-main-700 focus-visible:ring"
+        class="rounded px-4 py-1 text-gray-600 ring-main-200 transition hover:bg-main-100 hover:text-main-700 focus-visible:ring dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-200"
       >
         {{ course }}
       </NuxtLink>
@@ -118,7 +118,7 @@ if (event.value) {
       <div class="flex items-center gap-3 px-6 pb-4 sm:pb-6 lg:px-0">
         <h2
           :id="course"
-          class="text-3xl font-extrabold tracking-tight text-gray-800"
+          class="text-3xl font-extrabold tracking-tight text-gray-800 dark:text-gray-100"
         >
           {{ course }}
         </h2>

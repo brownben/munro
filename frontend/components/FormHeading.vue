@@ -6,10 +6,12 @@ defineProps({
 </script>
 <template>
   <div class="col-span-2 pt-6 first:pt-0">
-    <h2 class="text-lg font-bold tracking-tight text-gray-900">
+    <h2
+      class="text-lg font-bold tracking-tight text-gray-900 dark:text-gray-100"
+    >
       {{ title }}
     </h2>
-    <p class="text-sm text-gray-600">
+    <p class="text-sm text-gray-600 dark:text-gray-300">
       {{ description }}
     </p>
   </div>

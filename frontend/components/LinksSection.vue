@@ -16,7 +16,8 @@ defineProps({
   <section
     class="w-full print:hidden"
     :class="{
-      'bg-gradient-to-r from-main-500 to-main-700': !dark,
+      'bg-gradient-to-r from-main-500 to-main-700 dark:from-main-600 dark:to-main-800':
+        !dark,
       'bg-main-800': dark,
     }"
   >

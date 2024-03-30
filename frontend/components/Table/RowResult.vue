@@ -8,7 +8,9 @@ defineProps({
 })
 </script>
 <template>
-  <tr class="text-gray-800 odd:bg-main-100 hover:bg-main-200">
+  <tr
+    class="text-gray-800 transition-colors odd:bg-main-100 hover:bg-main-200 dark:text-gray-100 dark:odd:bg-gray-800 dark:hover:bg-gray-700"
+  >
     <td class="py-3 text-center">
       <template v-if="['max', 'average', 'manual'].includes(result.type)">
         *
@@ -19,10 +21,12 @@ defineProps({
       </template>
     </td>
     <td class="py-2">
-      <span class="block leading-tight text-gray-900">
+      <span class="block leading-tight text-gray-900 dark:text-gray-100">
         {{ result.name }}
       </span>
-      <span class="text-sm leading-tight text-gray-600 sm:hidden">
+      <span
+        class="text-sm leading-tight text-gray-600 sm:hidden dark:text-gray-400"
+      >
         <template v-if="result.age_class">
           {{ result.age_class }} &nbsp;
         </template>

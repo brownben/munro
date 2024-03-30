@@ -30,7 +30,10 @@ useTitle({ title: 'Login', description: 'Admin login page' })
           Looking for Results Upload?
         </strong>
         You don't have to login, just visit the
-        <NuxtLink to="/upload" class="text-main-700 underline">
+        <NuxtLink
+          to="/upload"
+          class="text-main-700 underline dark:text-main-600"
+        >
           upload page
         </NuxtLink>
       </template>

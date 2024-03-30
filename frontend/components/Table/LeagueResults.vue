@@ -45,7 +45,7 @@ const ariaSorted = computed(() => {
   <table v-if="sortedResults.length > 0" class="w-full">
     <thead>
       <tr
-        class="h-14 border-b border-main-200 text-left font-medium text-gray-600 md:h-12"
+        class="h-14 border-b border-main-200 text-left font-medium text-gray-600 md:h-12 dark:border-gray-400 dark:text-gray-300"
       >
         <th class="text-center" :aria-sort="ariaSorted?.position">
           <button

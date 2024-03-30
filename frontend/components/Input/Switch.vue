@@ -27,21 +27,21 @@ const handleEvent = (value: boolean) =>
       <SwitchLabel
         class="text-base"
         :class="{
-          'font-bold text-gray-700': description,
-          'mr-4 font-medium text-gray-500': !description,
+          'font-bold text-gray-700 dark:text-gray-300': description,
+          'mr-4 font-medium text-gray-500 dark:text-gray-300': !description,
         }"
       >
         {{ props.label }}
       </SwitchLabel>
-      <SwitchDescription v-if="props.description" class="text-sm text-gray-500">
+      <SwitchDescription v-if="props.description" class="text-sm text-gray-400">
         {{ props.description }}
       </SwitchDescription>
     </div>
 
     <Switch
       :model-value="modelValue"
-      :class="modelValue ? 'bg-main-600' : 'bg-gray-200'"
-      class="relative ml-4 inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-main-600 focus:ring-offset-2"
+      :class="modelValue ? 'bg-main-600' : 'bg-gray-200 dark:bg-gray-600'"
+      class="relative ml-4 inline-flex h-6 w-11 flex-shrink-0 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-main-600 focus:ring-offset-2 dark:ring-offset-gray-800"
       label=""
       @update:model-value="handleEvent"
     >

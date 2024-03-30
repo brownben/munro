@@ -46,16 +46,18 @@ const { data: competitor, refresh } = await useData<CompetitorOverview>(
     </LinksSection>
 
     <main
-      class="mx-auto flex max-w-screen-lg flex-col divide-y px-6 py-10 sm:py-12 md:py-14 lg:px-8"
+      class="mx-auto flex max-w-screen-lg flex-col px-6 py-10 sm:py-12 md:py-14 lg:px-8"
     >
       <div class="flex grid-cols-3 flex-col sm:grid">
         <h2
-          class="col-span-1 pb-8 text-2xl font-bold text-gray-500 sm:px-0 sm:pb-0 sm:text-3xl"
+          class="col-span-1 pb-8 text-2xl font-bold text-gray-500 sm:px-0 sm:pb-0 sm:text-3xl dark:text-gray-300"
         >
           Results
         </h2>
 
-        <div class="col-span-2 -mb-4 -mt-8 flex flex-col divide-y">
+        <div
+          class="col-span-2 -mb-4 -mt-8 flex flex-col divide-y dark:divide-gray-600"
+        >
           <template v-for="result in competitor.results" :key="result.id">
             <Result
               v-if="result.visible == true || loggedIn"

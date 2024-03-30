@@ -19,7 +19,7 @@ const links: Link[] = [
 </script>
 
 <template>
-  <Popover as="nav" class="select-none bg-white print:hidden">
+  <Popover as="nav" class="select-none bg-white dark:bg-gray-900 print:hidden">
     <top-bar
       class="relative z-50 mx-auto flex max-w-screen-lg flex-1 items-center justify-center px-2 py-3 sm:items-stretch sm:justify-between sm:px-6 lg:px-8"
     >
@@ -30,7 +30,7 @@ const links: Link[] = [
       >
         <Logo class="inline-block h-8 w-10" />
         <p
-          class="mb-[-0.55rem] ml-1 hidden text-[1.65rem] font-semibold text-main-600 md:block"
+          class="mb-[-0.55rem] ml-1 hidden text-[1.65rem] font-semibold text-main-600 md:block dark:text-main-600"
         >
           <span class="sr-only">M</span>unro
         </p>
@@ -41,8 +41,8 @@ const links: Link[] = [
           v-for="link of links"
           :key="link?.location"
           :to="link?.location"
-          class="leading-12 outline-primary items-center justify-center rounded px-3 py-1 leading-6 text-gray-500 transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
-          active-class="bg-main-100 text-main-700"
+          class="leading-12 outline-primary items-center justify-center rounded px-3 py-1 leading-6 text-gray-500 transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-100 dark:focus:bg-gray-700 dark:focus:text-gray-100"
+          active-class="bg-main-100 text-main-700 dark:bg-gray-700 dark:text-gray-100"
         >
           {{ link?.text }}
         </NuxtLink>
@@ -51,7 +51,7 @@ const links: Link[] = [
       <div class="absolute inset-y-0 right-0 flex items-center px-2 sm:hidden">
         <PopoverButton
           v-slot="{ open }"
-          class="ring-primary-light items-center justify-center rounded p-2 text-gray-500 outline-none transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 focus:ring-2"
+          class="ring-primary-light items-center justify-center rounded p-2 text-gray-500 outline-none ring-main-500 transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 focus:ring-2 dark:text-gray-200 dark:ring-offset-gray-800 dark:hover:bg-gray-700 dark:hover:text-main-600 dark:focus:bg-gray-700 dark:focus:text-main-600"
         >
           <span class="sr-only">Open main menu</span>
 
@@ -71,14 +71,14 @@ const links: Link[] = [
     >
       <PopoverPanel
         v-slot="{ close }"
-        class="absolute z-50 flex w-full flex-col gap-1 rounded-b-md bg-white p-2 pt-0 shadow-md"
+        class="absolute z-50 flex w-full flex-col gap-1 rounded-b-md bg-white p-2 pt-0 shadow-md dark:bg-gray-900 dark:shadow-gray-800"
       >
         <NuxtLink
           v-for="link of links"
           :key="link?.location"
           :to="link?.location"
-          class="outline-primary block w-full items-center justify-center rounded-md p-2 text-left text-gray-500 transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700"
-          active-class="bg-main-100 text-main-700"
+          class="outline-primary block w-full items-center justify-center rounded-md p-2 text-left text-gray-500 transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-100 dark:focus:bg-gray-700 dark:focus:text-gray-100"
+          active-class="bg-main-100 text-main-700 dark:bg-gray-700 dark:text-gray-100"
           @click="close"
         >
           {{ link?.text }}

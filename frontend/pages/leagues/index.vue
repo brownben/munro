@@ -15,7 +15,9 @@ useTitle({
     <main
       class="mx-auto max-w-screen-lg gap-8 px-6 py-10 sm:py-12 md:py-14 lg:px-8"
     >
-      <div class="col-span-2 -mx-4 -mb-4 -mt-8 flex flex-col divide-y">
+      <div
+        class="col-span-2 -mx-4 -mb-4 -mt-8 flex flex-col divide-y dark:divide-gray-600"
+      >
         <League
           v-for="league in leagues"
           :key="league.name"

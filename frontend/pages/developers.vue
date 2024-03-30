@@ -29,7 +29,7 @@ useTitle({
         </strong>
         All the code is available on
         <a
-          class="text-main-700 underline"
+          class="text-main-700 underline dark:text-main-600"
           href="https://github.com/brownben/munro"
         >
           GitHub
@@ -37,7 +37,7 @@ useTitle({
       </template>
     </Heading>
     <main class="mx-auto max-w-screen-lg px-6 py-8 sm:py-10 sm:pb-16 lg:px-8">
-      <article class="prose lg:prose-lg">
+      <article class="prose lg:prose-lg dark:prose-invert">
         <h2 class="font-black tracking-tight">API</h2>
         <p>
           All leagues, events, and results are able to be accessed through
@@ -65,7 +65,7 @@ useTitle({
           <button
             v-for="color in colors"
             :key="color"
-            class="flex h-24 w-full items-end justify-start rounded-md p-2 ring-offset-2 transition-all hover:ring focus:ring"
+            class="flex h-24 w-full items-end justify-start rounded-md p-2 ring-offset-2 transition-all hover:ring focus:ring dark:ring-offset-gray-800"
             :class="color"
             @click="changeTheme(color)"
           >

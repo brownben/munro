@@ -34,40 +34,50 @@ const showTransferForm = ref(false)
 
 <template>
   <article class="flex flex-col py-8">
-    <h2 class="mb-4 text-2xl font-bold leading-tight text-gray-700">
+    <h2
+      class="mb-4 text-2xl font-bold leading-tight text-gray-700 dark:text-gray-300"
+    >
       {{ result.event_name }}
     </h2>
     <dl class="flex flex-col gap-6 sm:flex-row sm:gap-16">
       <div>
-        <dt class="mb-1 font-medium text-gray-500">Time:</dt>
-        <dd class="text-5xl font-black tracking-tight text-gray-800">
+        <dt class="mb-1 font-medium text-gray-500 dark:text-gray-400">Time:</dt>
+        <dd
+          class="text-5xl font-black tracking-tight text-gray-800 dark:text-gray-100"
+        >
           <template v-if="result.incomplete">*</template>
           <template v-else>{{ elapsedTime(result.time) || '*' }}</template>
         </dd>
       </div>
       <div>
-        <dt class="mb-1 font-medium text-gray-500">Course:</dt>
-        <dd class="text-5xl font-black tracking-tight text-gray-800">
+        <dt class="mb-1 font-medium text-gray-500 dark:text-gray-400">
+          Course:
+        </dt>
+        <dd
+          class="text-5xl font-black tracking-tight text-gray-800 dark:text-gray-100"
+        >
           {{ result.course }}
         </dd>
       </div>
     </dl>
     <template v-if="admin">
-      <dl class="mt-6 text-gray-800">
+      <dl class="mt-6 text-gray-800 dark:text-gray-400">
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium">ID:</dt>
+          <dt class="flex-shrink-0 font-medium dark:text-gray-300">ID:</dt>
           <dd class="select-all truncate">{{ result.id }}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium">Visible:</dt>
+          <dt class="flex-shrink-0 font-medium dark:text-gray-300">Visible:</dt>
           <dd class="select-all">{{ result.visible }}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium">Incomplete:</dt>
+          <dt class="flex-shrink-0 font-medium dark:text-gray-300">
+            Incomplete:
+          </dt>
           <dd class="select-all">{{ result.incomplete }}</dd>
         </div>
         <div v-if="result.type" class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium">Type:</dt>
+          <dt class="flex-shrink-0 font-medium dark:text-gray-300">Type:</dt>
           <dd class="select-all">{{ result.type }}</dd>
         </div>
       </dl>
@@ -93,7 +103,7 @@ const showTransferForm = ref(false)
     </template>
     <NuxtLink
       :to="`/events/${result.event}/results`"
-      class="mt-8 inline-block text-main-700 hover:text-main-800"
+      class="mt-8 inline-block text-main-700 hover:text-main-600 dark:text-main-600 dark:hover:text-main-500"
     >
       View all results for {{ result.event_name }} →
     </NuxtLink>

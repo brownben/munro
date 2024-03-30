@@ -26,7 +26,7 @@ const deleteClass = async () => {
 
 <template>
   <article class="flex flex-col justify-between gap-4 sm:flex-row">
-    <h3 class="text-xl font-bold text-gray-900 md:text-2xl">
+    <h3 class="text-xl font-bold text-gray-900 md:text-2xl dark:text-gray-100">
       {{ cls.name }}
     </h3>
 

@@ -31,7 +31,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
 <template>
   <div>
     <label
-      class="block select-none pb-2 text-sm font-medium text-gray-600"
+      class="block select-none pb-2 text-sm font-medium text-gray-600 dark:text-gray-300"
       :for="label"
     >
       {{ label }}
@@ -39,7 +39,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
     <input
       :id="label"
       type="file"
-      class="-ml-2 p-2 text-base font-medium text-gray-600 outline-none"
+      class="-ml-2 p-2 text-base font-medium text-gray-600 outline-none dark:text-gray-300"
       accept=".csv,.xml,.html"
       required
       @change="fileChange"
@@ -48,7 +48,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
 </template>
 <style>
 input[type='file']::file-selector-button {
-  @apply mr-4 select-none rounded border-0 bg-gradient-to-r from-main-500 to-main-600 px-5 py-2 text-sm font-medium  text-white outline-none transition duration-200;
+  @apply mr-4 select-none rounded border-0 bg-gradient-to-r from-main-500 to-main-600 px-5 py-2 text-sm font-medium  text-white outline-none transition duration-200 dark:ring-offset-gray-800;
 }
 
 input[type='file']::file-selector-button:focus {

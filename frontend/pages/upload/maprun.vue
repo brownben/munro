@@ -22,7 +22,7 @@ const getEvent = async () => {
   eventPending.value = true
 
   try {
-    event.value = await useGet(`events/${form.event_id}`)
+    event.value = await useGet(`events/${form.event_id}/`)
   } catch {
     event.value = null
   }
@@ -83,13 +83,18 @@ useTitle({
         :validator="RequiredField('an event ID')"
         @input="getEvent"
       />
-
-      <p v-if="form.event_id && event" class="col-span-2">
-        <b class="text-base font-bold text-gray-700">Event Name:</b>
+      <p
+        v-if="form.event_id && event"
+        class="col-span-2 -mt-3 mb-3 text-gray-700 dark:text-gray-300"
+      >
+        <b class="text-base font-bold">Event Name:</b>
         {{ event.name }}
       </p>
-      <p v-else-if="form.event_id && !eventPending" class="col-span-2">
-        <b class="text-base font-bold text-gray-700">
+      <p
+        v-else-if="form.event_id && !eventPending"
+        class="col-span-2 -mt-3 mb-3 text-gray-700 dark:text-gray-300"
+      >
+        <b class="text-base font-medium">
           No event found with the id "{{ form.event_id }}"
         </b>
       </p>

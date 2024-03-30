@@ -8,12 +8,12 @@ useTitle({
   <div>
     <Heading title="Upload Instructions" />
     <main class="mx-auto max-w-screen-lg px-6 py-8 sm:py-10 sm:pb-16 lg:px-8">
-      <article class="prose lg:prose-lg">
+      <article class="prose lg:prose-lg dark:prose-invert">
         <ol>
           <li>
             <strong>
               Go to
-              <NuxtLink to="/upload/file" class="link text-main-700">
+              <NuxtLink to="/upload/file">
                 https://munroleagues.com/upload/file
               </NuxtLink>
             </strong>

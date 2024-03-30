@@ -38,7 +38,7 @@ const handleEvent = (value: unknown) =>
     @update:model-value="handleEvent"
   >
     <RadioGroupLabel
-      class="block select-none pb-1 text-sm font-medium text-gray-500"
+      class="block select-none pb-1 text-sm font-medium text-gray-500 dark:text-gray-300"
     >
       {{ label }}
     </RadioGroupLabel>
@@ -50,29 +50,41 @@ const handleEvent = (value: unknown) =>
     >
       <div
         :class="{
-          'relative z-10 border-main-600 ring-2': active,
-          'border-main-400 bg-main-100 text-main-900': checked,
+          'relative z-10 border-main-600 ring-2 dark:border-main-500': active,
+          'border-main-400 bg-main-100 text-main-900 dark:border-main-500 dark:bg-main-900':
+            checked,
         }"
-        class="flex cursor-pointer rounded border border-gray-200 px-5 py-4 outline-none ring-main-600 ring-offset-2"
+        class="flex cursor-pointer rounded border border-gray-200 px-5 py-4 outline-none ring-main-600 ring-offset-2 dark:border-gray-600 dark:ring-offset-gray-800"
       >
         <div class="flex w-full items-center justify-between">
           <div class="items-center text-sm">
             <RadioGroupLabel
               as="p"
-              :class="checked ? 'text-main-800' : 'text-gray-900'"
+              :class="
+                checked
+                  ? 'text-main-800 dark:text-main-100'
+                  : 'text-gray-900 dark:text-gray-100'
+              "
               class="font-bold"
             >
               {{ option.title }}
             </RadioGroupLabel>
             <RadioGroupDescription
               as="span"
-              :class="checked ? 'text-main-700' : 'text-gray-500'"
+              :class="
+                checked
+                  ? 'text-main-700 dark:text-main-300'
+                  : 'text-gray-500 dark:text-gray-300'
+              "
               class="inline"
             >
               {{ option.description }}
             </RadioGroupDescription>
           </div>
-          <div v-show="checked" class="flex-shrink-0 text-main-600">
+          <div
+            v-show="checked"
+            class="flex-shrink-0 text-main-600 dark:text-main-400"
+          >
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
               <circle
                 cx="12"

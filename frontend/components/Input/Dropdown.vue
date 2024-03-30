@@ -63,8 +63,8 @@ const inputValidationProps = computed(() => {
     <label
       class="block select-none pb-1 text-sm font-medium"
       :class="{
-        'text-main-600': state === 'focused',
-        'text-gray-500': state === 'unfocused',
+        'text-main-600 dark:text-main-600': state === 'focused',
+        'text-gray-500 dark:text-gray-300': state === 'unfocused',
         'text-red-600': state === 'invalid',
       }"
       :for="label"
@@ -98,7 +98,7 @@ const inputValidationProps = computed(() => {
       <select
         :id="label"
         :value="modelValue"
-        class="w-full appearance-none rounded border bg-white p-2 text-sm ring-offset-2 transition focus:outline-none focus-visible:ring-2"
+        class="w-full appearance-none rounded border bg-white p-2 text-sm ring-offset-2 transition focus:outline-none focus-visible:ring-2 dark:bg-gray-900 dark:text-gray-100 dark:ring-offset-gray-800"
         :class="{
           'border-gray-400 ring-main-600 focus:border-main-600':
             state != 'invalid',

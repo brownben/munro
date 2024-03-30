@@ -16,10 +16,12 @@ defineProps({
         {{ result.position }}
       </td>
       <td class="py-2">
-        <span class="block leading-tight text-gray-900">
+        <span class="block leading-tight text-gray-900 dark:text-gray-100">
           {{ result.name }}
         </span>
-        <span class="text-sm leading-tight text-gray-500 md:hidden">
+        <span
+          class="text-sm leading-tight text-gray-500 md:hidden dark:text-gray-400"
+        >
           <template v-if="result.age_class">
             {{ result.age_class }} &nbsp;
           </template>
@@ -54,11 +56,11 @@ defineProps({
           :key="point?.event"
           class="flex justify-end gap-2"
         >
-          <dt class="text-gray-600">
+          <dt class="text-gray-600 dark:text-gray-400">
             {{ events[i]?.event_name ?? '' }}
           </dt>
           <dd
-            class="w-8"
+            class="w-8 text-gray-900 dark:text-gray-200"
             :class="{
               'line-through': !point?.counting,
               'font-normal italic': ['manual', 'max', 'average'].includes(

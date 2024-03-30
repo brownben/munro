@@ -44,10 +44,16 @@ const deleteEvent = async () => {
 
 <template>
   <article class="flex flex-col gap-4">
-    <h2 v-if="h2" class="text-3xl font-black text-gray-900 sm:text-4xl">
+    <h2
+      v-if="h2"
+      class="text-3xl font-black text-gray-900 sm:text-4xl dark:text-gray-100"
+    >
       {{ event.name }}
     </h2>
-    <h3 v-else class="text-3xl font-black text-gray-900 sm:text-4xl">
+    <h3
+      v-else
+      class="text-3xl font-black text-gray-900 sm:text-4xl dark:text-gray-100"
+    >
       {{ event.name }}
     </h3>
 
@@ -73,7 +79,10 @@ const deleteEvent = async () => {
       </ImageRow>
     </div>
 
-    <p v-if="event.more_information && !small" class="text-gray-600">
+    <p
+      v-if="event.more_information && !small"
+      class="text-gray-600 dark:text-gray-400"
+    >
       {{ event.more_information }}
     </p>
 
@@ -93,13 +102,17 @@ const deleteEvent = async () => {
     </div>
 
     <template v-if="admin">
-      <dl class="text-gray-800">
+      <dl class="text-gray-800 dark:text-gray-400">
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium">Event ID:</dt>
+          <dt class="flex-shrink-0 font-medium dark:text-gray-300">
+            Event ID:
+          </dt>
           <dd class="select-all truncate">{{ event.id }}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium">Upload Key:</dt>
+          <dt class="flex-shrink-0 font-medium dark:text-gray-300">
+            Upload Key:
+          </dt>
           <dd class="select-all">{{ event.upload_key }}</dd>
         </div>
       </dl>

@@ -4,6 +4,12 @@ import type { Home } from '~/api-types'
 const user = useUser()
 const loggedIn = useLoggedIn()
 const { data } = await useData<Home>(`misc/home`)
+
+useTitle({
+  title: 'Munro',
+  description:
+    'League Results. Sorted with Munro. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options',
+})
 </script>
 
 <template>
@@ -31,10 +37,12 @@ const { data } = await useData<Home>(`misc/home`)
       class="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 sm:py-12 lg:px-8"
     >
       <div class="py-2 sm:py-4">
-        <h2 class="text-3xl font-black text-gray-700">Latest Results</h2>
+        <h2 class="text-3xl font-black text-gray-700 dark:text-gray-300">
+          Latest Results
+        </h2>
         <NuxtLink
           to="/latest-results"
-          class="mt-4 inline-block text-gray-600 hover:text-main-700"
+          class="mt-4 inline-block text-gray-600 hover:text-main-700 dark:text-gray-400 dark:hover:text-main-500"
         >
           View More →
         </NuxtLink>

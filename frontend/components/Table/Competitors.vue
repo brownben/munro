@@ -38,7 +38,7 @@ const ariaSorted = computed(
   <table v-if="sortedResults.length > 0" class="w-full">
     <thead>
       <tr
-        class="h-14 border-b-2 border-gray-200 text-left text-gray-600 md:h-12"
+        class="h-14 border-b-2 border-gray-200 text-left text-gray-600 md:h-12 dark:border-gray-400 dark:text-gray-300"
       >
         <th class="text-center" :aria-sort="ariaSorted?.id">
           <button
@@ -106,7 +106,7 @@ const ariaSorted = computed(
       <tr
         v-for="competitor of sortedResults"
         :key="competitor.id"
-        class="border-t border-gray-200 text-gray-800 transition hover:bg-main-50"
+        class="border-t border-gray-200 text-gray-800 transition hover:bg-main-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
       >
         <td class="py-3 text-center">
           {{ competitor.id }}
@@ -117,11 +117,13 @@ const ariaSorted = computed(
             class="inline-block ring-main-200 hover:text-main-800 focus-visible:ring"
           >
             <span
-              class="block font-medium leading-tight text-gray-900 underline decoration-gray-300 decoration-1 underline-offset-2"
+              class="block font-medium leading-tight text-gray-900 underline decoration-gray-300 decoration-1 underline-offset-2 dark:text-gray-100 dark:decoration-gray-500"
             >
               {{ competitor.name }}
             </span>
-            <span class="text-sm leading-tight text-gray-500 sm:hidden">
+            <span
+              class="text-sm leading-tight text-gray-500 sm:hidden dark:text-gray-400"
+            >
               <template v-if="competitor.age_class">
                 {{ competitor.age_class }} &nbsp;
               </template>
@@ -147,7 +149,11 @@ const ariaSorted = computed(
     </tbody>
   </table>
   <div v-else class="px-6 lg:px-0">
-    <p class="text-xl font-extrabold text-gray-600">No competitors found</p>
-    <p class="text-gray-500">Try changing the filters selected.</p>
+    <p class="text-xl font-extrabold text-gray-600 dark:text-gray-300">
+      No competitors found
+    </p>
+    <p class="text-gray-500 dark:text-gray-400">
+      Try changing the filters selected.
+    </p>
   </div>
 </template>

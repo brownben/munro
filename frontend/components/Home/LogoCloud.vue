@@ -39,9 +39,9 @@ const leagues = [
 </script>
 <template>
   <div
-    class="w-full border-b border-gray-100 bg-gradient-to-b from-white to-gray-50 py-4 text-center"
+    class="w-full border-b border-gray-100 bg-gradient-to-b from-white to-gray-50 py-4 text-center text-gray-500 dark:border-gray-700 dark:from-gray-900 dark:to-gray-800 dark:text-gray-300"
   >
-    <p class="pb-2 font-medium text-gray-500">
+    <p class="px-2 pb-2 font-medium">
       Calculating results for the best leagues in the UK
     </p>
     <div
@@ -56,7 +56,7 @@ const leagues = [
             loading="lazy"
             :width="league.width"
             :height="league.height"
-            class="h-16 w-auto flex-shrink-0 opacity-75 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0 focus:opacity-100 focus:grayscale-0"
+            class="h-16 w-auto flex-shrink-0 opacity-75 grayscale transition duration-200 hover:opacity-100 hover:grayscale-0 focus:opacity-100 focus:grayscale-0 dark:invert dark:hover:contrast-200 dark:hover:grayscale dark:focus:contrast-200 dark:focus:grayscale"
           />
         </picture>
       </NuxtLink>

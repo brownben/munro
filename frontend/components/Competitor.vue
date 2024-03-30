@@ -14,7 +14,9 @@ defineProps({
 
 <template>
   <article class="flex flex-col gap-4">
-    <h2 class="text-3xl font-black text-gray-900 sm:text-4xl">
+    <h2
+      class="text-3xl font-black text-gray-900 sm:text-4xl dark:text-gray-100"
+    >
       {{ competitor.name }}
     </h2>
 
@@ -36,7 +38,7 @@ defineProps({
 
     <NuxtLink
       :to="`/competitors/${competitor.id}`"
-      class="mt-3 inline-block text-main-700 hover:text-main-800"
+      class="mt-3 inline-block text-main-700 hover:text-main-600 dark:text-main-600 dark:hover:text-main-500"
     >
       View Results →
     </NuxtLink>
