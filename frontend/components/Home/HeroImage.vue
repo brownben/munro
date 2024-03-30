@@ -100,11 +100,11 @@ svg {
 
 @media (prefers-color-scheme: dark) {
   svg {
-    --hero-document: var(--gray-800);
+    --hero-document: var(--gray-900);
     --hero-hills: var(--gray-800);
     --hero-trees: var(--gray-500);
     --hero-clouds: var(--main-700);
-    --hero-row: var(--main-900);
+    --hero-row: var(--gray-700);
   }
 }
 </style>

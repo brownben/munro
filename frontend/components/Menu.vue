@@ -51,7 +51,7 @@ const links: Link[] = [
       <div class="absolute inset-y-0 right-0 flex items-center px-2 sm:hidden">
         <PopoverButton
           v-slot="{ open }"
-          class="ring-primary-light items-center justify-center rounded p-2 text-gray-500 outline-none ring-main-500 transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 focus:ring-2 dark:text-gray-200 dark:ring-offset-gray-800 dark:hover:bg-gray-700 dark:hover:text-main-600 dark:focus:bg-gray-700 dark:focus:text-main-600"
+          class="ring-primary-light items-center justify-center rounded p-2 text-gray-500 outline-none ring-main-500 transition hover:bg-main-100 hover:text-main-700 focus:bg-main-100 focus:text-main-700 focus:ring-2 dark:text-gray-200 dark:ring-offset-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-200 dark:focus:bg-gray-700 dark:focus:text-gray-200"
         >
           <span class="sr-only">Open main menu</span>
 

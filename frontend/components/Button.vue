@@ -7,7 +7,7 @@ defineProps({
 
 <template>
   <button
-    class="flex select-none rounded bg-gradient-to-r from-main-500 to-main-600 font-medium text-white ring-main-600 ring-offset-2 transition hover:from-main-600 hover:to-main-700 hover:shadow focus:outline-none focus-visible:ring dark:ring-offset-gray-800"
+    class="flex select-none rounded bg-gradient-to-r from-main-500 to-main-600 font-medium text-white ring-main-600 ring-offset-2 transition hover:from-main-600 hover:to-main-700 hover:shadow focus:outline-none focus-visible:ring dark:from-main-600 dark:to-main-700 dark:ring-offset-gray-800 dark:hover:from-main-700 dark:hover:to-main-800"
     :class="{ 'px-4 py-2 text-sm': small, 'px-6 py-2': !small }"
     :disabled="loading"
   >

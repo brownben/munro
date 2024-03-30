@@ -16,7 +16,7 @@ defineProps({
   <section
     class="w-full print:hidden"
     :class="{
-      'bg-gradient-to-r from-main-500 to-main-700 dark:from-main-600 dark:to-main-800':
+      'bg-gradient-to-r from-main-500 to-main-700 dark:from-main-700 dark:to-main-900':
         !dark,
       'bg-main-800': dark,
     }"
@@ -31,7 +31,7 @@ defineProps({
           v-for="link in links"
           :key="link.location"
           :to="link.location"
-          class="flex items-center justify-center rounded-md bg-white/10 px-7 py-2 font-medium text-white ring-white ring-opacity-40 transition hover:bg-white/25 focus:outline-none focus-visible:ring"
+          class="flex select-none items-center justify-center rounded-md bg-white/10 px-7 py-2 font-medium text-white ring-white ring-opacity-40 transition hover:bg-white/25 focus:outline-none focus-visible:ring"
         >
           {{ link.text }}
         </NuxtLink>

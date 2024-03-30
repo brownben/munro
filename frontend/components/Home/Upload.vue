@@ -1,5 +1,5 @@
 <template>
-  <aside class="relative bg-main-800 text-main-600">
+  <aside class="relative bg-main-800 text-main-600 dark:bg-main-900">
     <svg aria-hidden="true" class="absolute inset-0 z-0 h-full w-full">
       <defs>
         <pattern

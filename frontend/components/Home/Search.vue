@@ -2,7 +2,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
 </script>
 <template>
-  <section class="bg-main-600 text-white">
+  <section class="bg-main-600 text-white dark:bg-main-800">
     <div
       class="mx-auto flex max-w-screen-lg flex-col gap-2 px-6 py-10 text-center sm:py-16 lg:px-8"
     >
