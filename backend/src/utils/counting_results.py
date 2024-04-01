@@ -57,8 +57,10 @@ def find_counting_results(
         # Add the top results up to the minimum counting
         counting_results.update(sorted_results_in_group[:group_min])
         remaining_results.difference_update(counting_results)
+
         # Remove the bottom results which included would take the number over the maximum
-        remaining_results.difference_update(sorted_results_in_group[group_max:])
+        if group_max and group_max > 0:
+            remaining_results.difference_update(sorted_results_in_group[group_max:])
 
     # Then add the largest results left until the max number is reached
     number_of_results_left = max_number_of_counting_results - len(counting_results)

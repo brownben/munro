@@ -261,20 +261,6 @@ class TestCountingEvents(unittest.TestCase):
             ),
             set([results[0], results[2], results[1]]),
         )
-        self.assertEqual(
-            find_counting_results(
-                results,
-                events=[
-                    event("0", group=SHORT_GROUP),
-                    event("2", group=SHORT_GROUP),
-                    event("4", group=SHORT_GROUP),
-                    event("3", group=SHORT_GROUP),
-                ],
-                league=league_config(number_of_counting_events=3),
-                league_groups={SHORT_GROUP: (0, 0)},
-            ),
-            set([results[1]]),
-        )
 
     def test_league_groups_too_few_for_group(self) -> None:
         results = generate_results(50, 45, 59, 41, 48)
