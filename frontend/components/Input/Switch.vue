@@ -33,7 +33,10 @@ const handleEvent = (value: boolean) =>
       >
         {{ props.label }}
       </SwitchLabel>
-      <SwitchDescription v-if="props.description" class="text-sm text-gray-400">
+      <SwitchDescription
+        v-if="props.description"
+        class="text-sm text-gray-500 dark:text-gray-400"
+      >
         {{ props.description }}
       </SwitchDescription>
     </div>

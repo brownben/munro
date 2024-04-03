@@ -5,7 +5,7 @@ const user = useUser()
 const loggedIn = useLoggedIn()
 const { data } = await useData<Home>(`misc/home`)
 
-useTitle({
+useSeoMeta({
   title: 'Munro',
   description:
     'League Results. Sorted with Munro. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options',

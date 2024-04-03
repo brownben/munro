@@ -1,8 +1,8 @@
 <template>
   <Disclosure v-slot="{ open }" as="tbody" class="group">
     <tr
-      class="border-collapse text-gray-800 transition duration-300 ease-in-out group-focus-within:bg-main-200 group-hover:bg-main-200 dark:text-gray-100 dark:group-focus-within:bg-gray-700 dark:group-hover:bg-gray-700"
-      :class="{ 'bg-main-100 dark:bg-gray-800': striped }"
+      class="border-collapse text-gray-800 transition duration-300 ease-in-out group-focus-within:bg-main-200 group-hover:bg-main-200 dark:text-gray-100 dark:group-focus-within:bg-main-900 dark:group-hover:bg-main-900"
+      :class="{ 'bg-main-50 dark:bg-gray-800': striped }"
     >
       <slot />
       <td class="relative table-cell text-center md:hidden">
@@ -27,8 +27,8 @@
 
     <DisclosurePanel
       as="tr"
-      class="border-collapse text-right transition duration-300 group-focus-within:bg-main-200 group-hover:bg-main-200 md:hidden dark:group-focus-within:bg-gray-700 dark:group-hover:bg-gray-700"
-      :class="{ 'bg-main-100 dark:bg-gray-800': striped }"
+      class="border-collapse text-right transition duration-300 group-focus-within:bg-main-200 group-hover:bg-main-200 md:hidden dark:group-focus-within:bg-main-900 dark:group-hover:bg-main-900"
+      :class="{ 'bg-main-50 dark:bg-gray-800': striped }"
     >
       <td class="pb-2" :colspan="100">
         <slot name="expansion" />

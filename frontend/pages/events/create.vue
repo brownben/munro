@@ -22,12 +22,7 @@ const form = reactive({
   website: '',
   more_information: '',
   league: queryToString(route.query.league ?? ''),
-  results_links: {
-    'Standard Results': '',
-    Routegadget: '',
-    Winsplits: '',
-    'GPS Tracking': '',
-  },
+  results_links: {},
   allow_user_submitted_results: false,
   compulsory: false,
   league_group: '',
@@ -103,39 +98,6 @@ useTitle({
         v-model.trim="form.more_information"
         label="More Information:"
         class="col-span-2"
-      />
-
-      <FormHeading
-        title="Results Links"
-        description="Add links to other results display and analysis sites."
-      />
-      <Input
-        v-model="form.results_links['Standard Results']"
-        label="Standard HTML Results:"
-        type="url"
-        class="col-span-2"
-        :validator="IsValidURL"
-      />
-      <Input
-        v-model="form.results_links['Routegadget']"
-        label="Routegadget:"
-        type="url"
-        class="col-span-2"
-        :validator="IsValidURL"
-      />
-      <Input
-        v-model="form.results_links['Winsplits']"
-        label="Winsplits:"
-        type="url"
-        class="col-span-2"
-        :validator="IsValidURL"
-      />
-      <Input
-        v-model="form.results_links['GPS Tracking']"
-        label="GPS Tracking:"
-        type="url"
-        class="col-span-2"
-        :validator="IsValidURL"
       />
 
       <FormHeading
