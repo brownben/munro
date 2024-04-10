@@ -1,7 +1,9 @@
 import asyncio
 from typing import Awaitable, Iterable
 
+import icalendar
 from fastapi import Depends, Path
+from fastapi.responses import PlainTextResponse
 from fastapi.routing import APIRouter
 
 from ..database import (
@@ -164,6 +166,56 @@ async def get_league_events(
         raise HTTP_404(f"Couldn't find league with name `{league_name}`")
 
     return events
+
+
+def generate_event_calendar_description(event: EventWithLeagueDetails) -> str:
+    description = ""
+
+    if event.organiser:
+        description += f"Organised by {event.organiser}\n"
+    if event.part_of:
+        description += f"Part of {event.part_of}\n"
+    if event.more_information:
+        description += f"\n{event.more_information}\n"
+    if event.website:
+        description += f"\n{event.website}\n"
+
+    return description
+
+
+@router.get("/{league_name}/events/calendar")
+async def get_league_events_calendar(
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league to get the results for",
+        example="Sprintelope 2021",
+    ),
+) -> PlainTextResponse:
+    league, events = await asyncio.gather(
+        Leagues.get_by_name(league_name),
+        Events.get_by_league(league_name),
+    )
+
+    if not league:
+        raise HTTP_404(f"Couldn't find league with name `{league_name}`")
+
+    calendar = icalendar.Calendar()
+    calendar["name"] = league.name
+    calendar.add("x-wr-calname", league.name)
+
+    for event in events:
+        calendar_event = icalendar.Event()
+        calendar_event.add("uid", f"{event.id}@munroleagues.com")
+        calendar_event.add("summary", f"{league.name} - {event.name}")
+        calendar_event.add("description", generate_event_calendar_description(event))
+        calendar_event.add("dtstart", event.date)
+        calendar_event.add("location", event.name)
+        calendar_event.add("url", event.website)
+        calendar_event.add("transp", "TRANSPARENT")  # doesn't show as busy
+
+        calendar.add_component(calendar_event)
+
+    return PlainTextResponse(calendar.to_ical(), media_type="text/calendar")
 
 
 def get_results_for_event(
