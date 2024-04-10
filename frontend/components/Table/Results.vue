@@ -119,7 +119,11 @@ const ariaSorted = computed(
     </tbody>
   </table>
   <div v-else class="px-6 lg:px-0">
-    <p class="text-xl font-extrabold text-gray-600">No results found</p>
-    <p class="text-gray-500">Try changing the filters selected.</p>
+    <p class="text-xl font-extrabold text-gray-600 dark:text-gray-300">
+      No results found
+    </p>
+    <p class="text-gray-500 dark:text-gray-400">
+      Try changing the filters selected.
+    </p>
   </div>
 </template>

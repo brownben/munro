@@ -143,7 +143,7 @@ const ariaSorted = computed(() => {
 
             <p
               v-if="event.event_name"
-              class="absolute -left-7 z-40 block w-[calc(100%+3.5rem)] whitespace-normal break-words rounded bg-white p-1 text-center text-sm leading-tight opacity-0 shadow transition duration-300 group-hover:opacity-100 group-focus:opacity-100"
+              class="absolute -left-7 z-40 block w-[calc(100%+3.5rem)] whitespace-normal break-words rounded bg-white p-1 text-center text-sm leading-tight opacity-0 shadow transition duration-300 group-hover:opacity-100 group-focus:opacity-100 dark:bg-gray-900 dark:shadow-gray-700"
             >
               {{ event.event_name }}
             </p>
@@ -160,8 +160,12 @@ const ariaSorted = computed(() => {
       :striped="index % 2 == 0"
     />
   </table>
-  <div v-else class="mx-auto max-w-screen-lg px-6 lg:px-8">
-    <p class="text-2xl font-extrabold text-gray-600">No results found</p>
-    <p class="text-lg text-gray-500">Try changing the filters selected.</p>
+  <div v-else class="mx-auto max-w-screen-lg px-6">
+    <p class="text-2xl font-extrabold text-gray-600 dark:text-gray-300">
+      No results found
+    </p>
+    <p class="text-lg text-gray-500 dark:text-gray-400">
+      Try changing the filters selected.
+    </p>
   </div>
 </template>

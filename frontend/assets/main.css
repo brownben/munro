@@ -4,6 +4,7 @@
 
 :root {
   color-scheme: light dark;
+  font-feature-settings: 'cv01', 'cv03', 'cv04', 'cv06', 'cv11', 'cv13';
 
   --main-50: #fdf4ff;
   --main-100: #fae8ff;
