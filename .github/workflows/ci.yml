@@ -50,29 +50,36 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org | python3 -
+      - name: Install `uv`
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Install Dependencies
-        run: poetry install
+        run: |
+          uv pip compile pyproject.toml --extra dev -o requirements-dev.txt
+          uv venv
+          uv pip install -r requirements-dev.txt
+
+      - name: Activate virtualenv
+        run: |
+          . .venv/bin/activate
+          echo PATH=$PATH >> $GITHUB_ENV
 
       - name: Typecheck
         working-directory: backend
-        run: poetry run mypy
+        run: mypy
 
       - name: Format
         working-directory: backend
         run: |
-          poetry run black . --check
-          poetry run isort . --check
+          ruff format . --check
 
       - name: Lint
         working-directory: backend
         run: |
-          poetry run ruff check .
+          ruff check .
 
       - name: Test
         working-directory: backend
         run: |
-          poetry run coverage run -m unittest
-          poetry run coverage report --skip-empty
+          coverage run -m unittest
+          coverage report --skip-empty

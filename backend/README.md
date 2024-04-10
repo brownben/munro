@@ -1,18 +1,10 @@
 # Backend
 
 ```sh
-# Install Dependencies
-poetry install
-
-# Open Virtual Enviroment
-poetry shell
-
 # Fix Style
-isort .
 ruff format .
 
 # Check style matches
-isort . --check-only
 ruff format . --check
 
 # Typecheck
@@ -30,5 +22,5 @@ coverage report --skip-empty
 uvicorn src.app:app --reload
 
 # Export requirements.txt
-poetry export -f requirements.txt --output requirements.txt --without-hashes
+uv pip compile pyproject.toml -o requirements.txt
 ```
