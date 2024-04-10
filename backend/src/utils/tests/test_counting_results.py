@@ -1,9 +1,9 @@
 import unittest
 from typing import Iterable
 
-from ...schemas import League, LeagueEvent
+from ...schemas import League, LeagueClass, LeagueEvent
 from ...schemas import LeagueResultScore as Result
-from ..counting_results import find_counting_results
+from ..counting_results import counting_results_finder
 
 SHORT_GROUP = 22
 
@@ -41,25 +41,43 @@ def event(id: str, compulsory: bool = False, group: int | None = None) -> League
     )
 
 
+LEAGUE_CLASS_DEFAULT = LeagueClass(
+    name="",
+    league="",
+    age_class_filter="",
+    club_filter="",
+)
+
+
 def counting_results(
-    results: list[Result], counting_events: int, events: list[LeagueEvent] = []
+    results: list[Result], counting_events: int, events: list[LeagueEvent] | None = None
 ) -> Iterable[Result]:
-    return find_counting_results(
-        results, league=league_config(counting_events), events=events
-    )
+    if events is None:
+        events = []
+
+    return counting_results_finder(
+        league=league_config(counting_events),
+        events=events,
+        league_groups={},
+        league_class=LEAGUE_CLASS_DEFAULT,
+    )(results)
 
 
 class TestCountingEvents(unittest.TestCase):
     def test_no_results_or_events(self) -> None:
-        self.assertEqual(find_counting_results([], league_config(1)), set())
+        self.assertEqual(
+            counting_results_finder(league_config(1), [], {}, LEAGUE_CLASS_DEFAULT)([]),
+            set(),
+        )
 
     def test_no_results(self) -> None:
         self.assertEqual(
-            find_counting_results(
-                results=[],
-                events=[event("A"), event("B")],
+            counting_results_finder(
                 league=league_config(1),
-            ),
+                events=[event("A"), event("B")],
+                league_groups={},
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )([]),
             set(),
         )
 
@@ -199,39 +217,39 @@ class TestCountingEvents(unittest.TestCase):
         results = generate_results(50, 45, 59, 41, 48)
 
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
                 league_groups={SHORT_GROUP: (0, 3)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[0], results[2]]),
         )
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
                 league_groups={SHORT_GROUP: (0, 2)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[0], results[2]]),
         )
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=1),
                 league_groups={SHORT_GROUP: (0, 2)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[2]]),
         )
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=3),
                 league_groups={SHORT_GROUP: (0, 2)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[0], results[2], results[4]]),
         )
 
@@ -239,17 +257,16 @@ class TestCountingEvents(unittest.TestCase):
         results = generate_results(50, 45, 59, 41, 48)
 
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
                 league_groups={SHORT_GROUP: (0, 1)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[2], results[4]]),
         )
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[
                     event("0", group=SHORT_GROUP),
                     event("2", group=SHORT_GROUP),
@@ -258,7 +275,8 @@ class TestCountingEvents(unittest.TestCase):
                 ],
                 league=league_config(number_of_counting_events=3),
                 league_groups={SHORT_GROUP: (0, 2)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[0], results[2], results[1]]),
         )
 
@@ -266,17 +284,16 @@ class TestCountingEvents(unittest.TestCase):
         results = generate_results(50, 45, 59, 41, 48)
 
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[event("0", group=SHORT_GROUP), event("2", group=SHORT_GROUP)],
                 league=league_config(number_of_counting_events=2),
                 league_groups={SHORT_GROUP: (1, 5)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[2], results[0]]),
         )
         self.assertEqual(
-            find_counting_results(
-                results,
+            counting_results_finder(
                 events=[
                     event("0", group=SHORT_GROUP),
                     event("2", group=SHORT_GROUP),
@@ -285,6 +302,7 @@ class TestCountingEvents(unittest.TestCase):
                 ],
                 league=league_config(number_of_counting_events=3),
                 league_groups={SHORT_GROUP: (2, 3)},
-            ),
+                league_class=LEAGUE_CLASS_DEFAULT,
+            )(results),
             set([results[0], results[2], results[4]]),
         )

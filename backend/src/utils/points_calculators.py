@@ -1,6 +1,6 @@
 import collections
 import itertools
-from typing import Iterable, Type
+from typing import ClassVar, Iterable, Type
 
 from ..schemas import Result
 from . import stats
@@ -82,7 +82,7 @@ class PositionBasedWithDraw(PointsCalculator):
     e.g. 1st - 100, 2nd - 98, 2nd - 98, 2nd - 98, 5th - 96
     """
 
-    _occurances_of_positions: dict[str, dict[int, int]] = {}
+    _occurances_of_positions: ClassVar[dict[str, dict[int, int]]] = {}
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
@@ -113,7 +113,7 @@ class StaggeredPositionBased(PointsCalculator):
     e.g. 1st - 60, 2nd - 55, 3rd - 51, 4th - 48, 5th - 46, 6th - 45
     """
 
-    position_points_values = {
+    position_points_values: ClassVar[dict[int, int]] = {
         1: 60,
         2: 55,
         3: 51,

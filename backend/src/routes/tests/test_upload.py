@@ -204,7 +204,7 @@ class TestUploadResult(TestCaseWithDatabase):
             response.json(), {"detail": "Result created for `Sophie Glider`"}
         )
 
-        result = list(await Results.get_by_event("TestEvent-2022-02-03"))[0]
+        result = next(await Results.get_by_event("TestEvent-2022-02-03"))
         self.assertEqual(result.time, 712)
         self.assertEqual(result.incomplete, False)
         self.assertEqual(result.course, "Long")
@@ -238,7 +238,7 @@ class TestUploadResult(TestCaseWithDatabase):
         self.assertEqual(new_competitor.competitor_pool, "Edinburgh Summer 2021")
         self.assertEqual(new_competitor.age_class, "M21")
 
-        new_result = list(await Results.get_by_event("TestEvent-2022-02-03"))[0]
+        new_result = next(await Results.get_by_event("TestEvent-2022-02-03"))
         self.assertEqual(new_result.time, 832)
         self.assertEqual(new_result.incomplete, False)
         self.assertEqual(new_result.course, "Long")

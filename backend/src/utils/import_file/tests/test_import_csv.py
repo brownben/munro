@@ -62,10 +62,8 @@ class TestImportCSV(unittest.TestCase):
     def test_one_full_result(self) -> None:
         self.assertEqual(
             process_csv_file(
-                (
-                    "firstname; surname; club; ageclass; status; nonCompetitive; course; time; position; points\n"
-                    "John; Doe; HAT; M16; 1; N; Long; 14:54; 1st; 1000"
-                )
+                "firstname; surname; club; ageclass; status; nonCompetitive; course; time; position; points\n"
+                "John; Doe; HAT; M16; 1; N; Long; 14:54; 1st; 1000"
             ),
             [
                 {

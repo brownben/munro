@@ -1,9 +1,9 @@
-from typing import Any, Mapping, Optional, Union
+from typing import Any, Mapping
 
 from google.auth.transport.requests import Request
 
 def verify_firebase_token(
-    id_token: Union[str, bytes], request: Request, audience: Optional[str] = None
+    id_token: str | bytes, request: Request, audience: str | None = None
 ) -> Mapping[str, Any]:
     """Verifies an ID Token issued by Firebase Authentication.
 

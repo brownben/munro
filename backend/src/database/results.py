@@ -1,4 +1,4 @@
-from typing import Iterable, Optional
+from typing import Iterable, Iterator, Optional
 
 from ..schemas import EventResult, Result, ResultBeforeDatabase, ResultWithEventName
 from .tables import Result as ResultTable
@@ -102,7 +102,7 @@ class Results:
         )
 
     @staticmethod
-    async def get_by_event(event: str) -> Iterable[Result]:
+    async def get_by_event(event: str) -> Iterator[Result]:
         return (
             Result.parse_obj(result)
             for result in await ResultTable.select(*results_fields)

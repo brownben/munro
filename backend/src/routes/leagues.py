@@ -34,7 +34,7 @@ from ..utils.assign_positions import (
     assign_position_based_on_time,
 )
 from ..utils.club import club_matches_filter
-from ..utils.counting_results import find_counting_results
+from ..utils.counting_results import counting_results_finder
 from ..utils.dynamic_results import DYNAMIC_RESULT_TYPES, calculate_dynamic_results
 from ..utils.points_calculators import get_matching_points_calculator
 from .authentication import require_authentication
@@ -232,16 +232,18 @@ async def get_league_results(
                 type=result.type,
             )
 
+    find_counting_results = counting_results_finder(
+        league, events_with_results, league_groups, league_class
+    )
     for competitor in league_results.values():
-        competitor = calculate_dynamic_results(competitor)
-        counting_points = find_counting_results(
-            competitor.points, league, events_with_results, league_groups, league_class
-        )
-        for point in competitor.points:
+        league_result = calculate_dynamic_results(competitor)
+        counting_points = find_counting_results(league_result.points)
+
+        for point in league_result.points:
             if point:
                 point.counting = point in counting_points
             if point and point.counting:
-                competitor.total_points += point.score
+                league_result.total_points += point.score
 
     league_points_calculator = get_matching_points_calculator(league.scoring_method)
     results = [

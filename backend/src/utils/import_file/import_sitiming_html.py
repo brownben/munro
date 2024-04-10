@@ -50,14 +50,14 @@ def process_sitiming_html_file(file: str) -> Iterator[ImportedRecord]:
         raise ImportException("Expected at least 1 course")
 
     data_section = re.search(
-        "function getData\(tableNumber\) \{(.*);\}<\/script>", file
+        "function getData\\(tableNumber\\) \\{(.*);\\}<\\/script>", file
     )
 
     if not data_section:
         raise ImportException("Expected file to contain results data")
 
     data = data_section.group(1)
-    course_sections = re.split("if \(tableNumber == [0-9]+\) return ", data)
+    course_sections = re.split("if \\(tableNumber == [0-9]+\\) return ", data)
 
     course_results = (
         json.loads(

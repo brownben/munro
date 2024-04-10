@@ -14,7 +14,8 @@ from ..schemas import (
     UploadURLRequest,
 )
 from ..utils.get_results import get_document_from_url
-from ..utils.import_file import ImportException, import_results_from_file
+from ..utils.import_file import ImportException as ImportException
+from ..utils.import_file import import_results_from_file
 from ..utils.match_results import match_result_to_competitor
 from ..utils.times import parse_time
 

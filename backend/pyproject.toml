@@ -43,9 +43,6 @@ source = ["src"]
 omit = [".venv/*", "*/test*", "*/*database_conf.py"]
 exclude_lines = ["coverage: ignore"]
 
-[tool.isort]
-profile = "black"
-
 [tool.mypy]
 strict = true
 plugins = "pydantic.mypy"
@@ -54,5 +51,20 @@ files = '**/*.py'
 explicit_package_bases = true
 
 [tool.ruff.lint]
-ignore = ["E501"]
+ignore = [
+  "E501", # Line too long
+  "B904", # Raise inside except
+]
 per-file-ignores = { "./src/database/*"=["E712"] }
+
+select = [
+  "F",    # Pyflakes
+  "E",    # pycodestyle (errors)
+  "W",    # pycodestyle (warnings)
+  "UP",   # pyupgrade
+  "B",    # flake8-bugbear
+  "SIM",  # flake8-simplify
+  "I",    # isort
+  "PERF", # Performnce
+  "RUF",  # Ruff
+]

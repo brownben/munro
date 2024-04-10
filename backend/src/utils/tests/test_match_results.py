@@ -1,5 +1,5 @@
 import unittest
-from typing import Optional, cast
+from typing import ClassVar, Optional, cast
 
 from ...schemas import Competitor
 from ..import_file import ImportedRecord, ImportedResult
@@ -7,28 +7,28 @@ from ..match_results import match_result_to_competitor
 
 
 class TestMatchingResults(unittest.TestCase):
-    paul = {
+    paul: ClassVar[dict[str, str]] = {
         "name": "Paul Thompson",
         "ageClass": "M16",
         "club": "HAT",
         "course": "Long",
         "time": "",
     }
-    bob = {
+    bob: ClassVar[dict[str, str]] = {
         "name": "Robert Jones",
         "ageClass": "M16",
         "club": "HAT",
         "course": "Long",
         "time": "",
     }
-    anne = {
+    anne: ClassVar[dict[str, str]] = {
         "name": "Ann Jenkins",
         "ageClass": "W21",
         "club": "HAT",
         "course": "Long",
         "time": "",
     }
-    sue = {
+    sue: ClassVar[dict[str, str]] = {
         "name": "Sue",
         "ageClass": "W21",
         "club": "HAT",
@@ -36,7 +36,7 @@ class TestMatchingResults(unittest.TestCase):
         "time": "",
     }
 
-    competitors = [
+    competitors: ClassVar[list[Competitor]] = [
         competitor_bob := Competitor(
             id=1,
             name="Bob Jones",

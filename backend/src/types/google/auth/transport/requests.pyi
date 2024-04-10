@@ -1,4 +1,4 @@
-from typing import Any, Mapping, Optional
+from typing import Any, Mapping
 
 class _Response:
     """Requests transport response adapter.
@@ -42,8 +42,8 @@ class Request:
         self,
         url: str,
         method: str = "GET",
-        body: Optional[bytes] = None,
-        headers: Optional[Mapping[str, str]] = None,
+        body: bytes | None = None,
+        headers: Mapping[str, str] | None = None,
         timeout: int = 120,
         **kwargs: Any,
     ) -> _Response:
