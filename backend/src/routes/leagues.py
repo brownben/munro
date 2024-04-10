@@ -16,6 +16,8 @@ from ..database import (
 from ..exceptions import HTTP_201, HTTP_400, HTTP_404, HTTP_409
 from ..schemas import (
     Competitor,
+    EventWithLeagueDetails,
+    EventWithLeagueDetailsAndUploadKey,
     League,
     LeagueClass,
     LeagueEvent,
@@ -145,6 +147,25 @@ async def delete_league(
     return Message(detail=f"League `{name}` deleted")
 
 
+@router.get("/{league_name}/events", response_model=list[EventWithLeagueDetails])
+async def get_league_events(
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league to get the results for",
+        example="Sprintelope 2021",
+    ),
+) -> Iterable[EventWithLeagueDetailsAndUploadKey]:
+    league, events = await asyncio.gather(
+        Leagues.get_by_name(league_name),
+        Events.get_by_league(league_name),
+    )
+
+    if not league:
+        raise HTTP_404(f"Couldn't find league with name `{league_name}`")
+
+    return events
+
+
 def get_results_for_event(
     event: LeagueEvent, league_class: LeagueClass
 ) -> Awaitable[Iterable[Result]]:
@@ -266,6 +287,46 @@ async def get_league_results(
     )
 
 
+@router.get("/{league_name}/classes", response_model=list[LeagueClass])
+async def get_league_classes(
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league ",
+        example="Sprintelope 2021",
+    ),
+) -> Iterable[LeagueClass]:
+    league, classes = await asyncio.gather(
+        Leagues.get_by_name(league_name),
+        LeagueClasses.get_by_league(league_name),
+    )
+
+    if not league:
+        raise HTTP_404(f"Couldn't find league with name `{league_name}`")
+
+    return classes
+
+
+@router.get("/{league_name}/classes/{cls}", response_model=LeagueClass)
+async def get_league_class(
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league ",
+        example="Sprintelope 2021",
+    ),
+    cls: str = Path(
+        title="Class Name",
+        description="Name of the class",
+        example="Long",
+    ),
+) -> LeagueClass:
+    result = await LeagueClasses.get_by_name(league_name, cls)
+
+    if not result:
+        raise HTTP_404(f"No class named `{cls}` exists")
+
+    return result
+
+
 @router.post("/{league_name}/classes", response_model=Message)
 async def create_league_class(
     cls: LeagueClass,
@@ -292,27 +353,6 @@ async def create_league_class(
     await LeagueClasses.create(cls)
 
     raise HTTP_201(f"League class `{cls.name}` created for league `{cls.league}`")
-
-
-@router.get("/{league_name}/classes/{cls}", response_model=LeagueClass)
-async def get_league_class(
-    league_name: str = Path(
-        title="League Name",
-        description="Name of the league ",
-        example="Sprintelope 2021",
-    ),
-    cls: str = Path(
-        title="Class Name",
-        description="Name of the class",
-        example="Long",
-    ),
-) -> LeagueClass:
-    result = await LeagueClasses.get_by_name(league_name, cls)
-
-    if not result:
-        raise HTTP_404(f"No class named `{cls}` exists")
-
-    return result
 
 
 @router.put("/{league_name}/classes/{class_name}", response_model=Message)
@@ -355,6 +395,25 @@ async def delete_league_class(
     await LeagueClasses.delete_by_name(name, league_name)
 
     return Message(detail=f"League class `{name}` deleted")
+
+
+@router.get("/{league_name}/groups", response_model=list[LeagueGroup])
+async def get_league_groups(
+    league_name: str = Path(
+        title="League Name",
+        description="Name of the league ",
+        example="Sprintelope 2021",
+    ),
+) -> list[LeagueGroup]:
+    league, groups = await asyncio.gather(
+        Leagues.get_by_name(league_name),
+        LeagueGroups.get_by_league(league_name),
+    )
+
+    if not league:
+        raise HTTP_404(f"Couldn't find league with name `{league_name}`")
+
+    return groups
 
 
 @router.get("/{league_name}/groups/{group}", response_model=LeagueGroup)
