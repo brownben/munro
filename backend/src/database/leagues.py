@@ -274,7 +274,8 @@ class LeagueGroups:
             return False
 
         for key, value in group.dict().items():
-            setattr(existing_group, key, value)
+            if key != "id":
+                setattr(existing_group, key, value)
 
         await existing_group.save().run()
 

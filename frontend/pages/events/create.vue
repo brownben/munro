@@ -4,7 +4,7 @@ import {
   IsValidURL,
   RequiredField,
 } from '~/utils/validation'
-import type { League } from '~/api-types'
+import type { League, LeagueGroup } from '~/api-types'
 
 requireLogin()
 
@@ -29,6 +29,18 @@ const form = reactive({
   overridden_scoring_method: '',
   expected_courses: null,
 })
+
+const leagueGroups: Ref<LeagueGroup[]> = ref([])
+const getLeague = async () => {
+  try {
+    if (form.league)
+      leagueGroups.value = await useGet(`leagues/${form.league}/groups`)
+    else leagueGroups.value = []
+  } catch {
+    leagueGroups.value = []
+  }
+}
+watch(() => form.name, getLeague)
 
 const action = async () => {
   try {
@@ -104,6 +116,21 @@ useTitle({
         title="Scoring"
         description="Adjust how the event is scored in the league"
       />
+      <InputDropdown
+        v-if="leagueGroups.length > 0"
+        v-model="form.league_group"
+        :list="leagueGroups.map((g) => ({ value: String(g.id), text: g.name }))"
+        label="League Group:"
+        include-blank
+        class="col-span-2"
+      />
+      <InputDropdown
+        v-model="form.overridden_scoring_method"
+        :list="scoringOptions"
+        label="Override Scoring Method:"
+        include-blank
+        class="col-span-2"
+      />
       <InputSwitch
         v-model="form.compulsory"
         label="Event always included in total points?"
@@ -115,13 +142,6 @@ useTitle({
         label="Allow users to submit results?"
         description="Let users add their times to the results"
         class="col-span-2 py-2"
-      />
-      <InputDropdown
-        v-model="form.overridden_scoring_method"
-        :list="scoringOptions"
-        label="Override Scoring Method:"
-        include-blank
-        class="col-span-2"
       />
     </Form>
   </div>

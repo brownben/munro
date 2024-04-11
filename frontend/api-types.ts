@@ -35,6 +35,7 @@ export interface LeagueClass {
 }
 
 export interface LeagueGroup {
+  id: number
   name: string
   league: string
 

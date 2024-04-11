@@ -20,6 +20,7 @@ class League(BaseModel):
 
 
 class LeagueGroup(BaseModel):
+    id: Optional[int] = None
     name: str
     league: str
 
@@ -67,7 +68,7 @@ class EventCreationRequest(BaseModel):
     allow_user_submitted_results: bool = False
     league: str
     compulsory: bool = False
-    league_group: Optional[str] = None
+    league_group: Optional[int] = None
     overridden_scoring_method: Optional[str] = None
     expected_courses: Optional[dict[str, str]]
 

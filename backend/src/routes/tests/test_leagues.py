@@ -932,18 +932,21 @@ class TestLeagueGroups(TestCaseWithDatabase):
             "/leagues/Sprintelope 2021/groups",
             headers={"Authorization": "Bearer SuperSecretTest"},
             json={
-                "name": "Test",
+                "name": "Testing 123",
                 "league": "Sprintelope 2021",
                 "min": 0,
                 "max": 0,
             },
         )
+        group = await LeagueGroups.get_by_name("Sprintelope 2021", "Testing 123")
+        assert group is not None
+        self.assertEqual(group.max, 0)
 
         response = self.client.put(
-            "/leagues/Sprintelope 2021/groups/Test",
+            "/leagues/Sprintelope 2021/groups/Testing 123",
             headers={"Authorization": "Bearer SuperSecretTest"},
             json={
-                "name": "Test",
+                "name": "Testing 123",
                 "league": "Sprintelope 2021",
                 "min": 0,
                 "max": 2,
@@ -953,10 +956,10 @@ class TestLeagueGroups(TestCaseWithDatabase):
         self.assertEqual(response.status_code, 200)
         self.assertDictEqual(
             response.json(),
-            {"detail": "League group `Test` updated"},
+            {"detail": "League group `Testing 123` updated"},
         )
 
-        group = await LeagueGroups.get_by_name("Sprintelope 2021", "Test")
+        group = await LeagueGroups.get_by_name("Sprintelope 2021", "Testing 123")
         assert group is not None
         self.assertEqual(group.max, 2)
 
@@ -1004,6 +1007,7 @@ class TestLeagueGroups(TestCaseWithDatabase):
         self.assertEqual(
             response.json(),
             {
+                "id": 1,
                 "name": "Test",
                 "league": "Sprintelope 2021",
                 "min": 0,
