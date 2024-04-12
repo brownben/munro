@@ -4,6 +4,7 @@ import {
   CalculatorIcon,
   ChartBarSquareIcon,
   GlobeEuropeAfricaIcon,
+  CalendarIcon,
 } from '@heroicons/vue/24/outline'
 import type { LeagueOverview } from '~/api-types'
 
@@ -59,11 +60,19 @@ if (league.value) {
         </template>
         <template v-else> All events points count </template>
       </ImageRow>
+      <ImageRow v-if="nextEvent" :icon="CalendarIcon" hover>
+        <a
+          :href="`https://munroleagues.com/api/leagues/${league.name}/events/calendar`"
+        >
+          Subscribe to calendar
+        </a>
+      </ImageRow>
       <ImageRow v-if="league.website" :icon="GlobeEuropeAfricaIcon" hover>
         <a :href="league.website" rel="noopener noreferrer" target="_blank">
           {{ league.website }}
         </a>
       </ImageRow>
+
       <template v-if="league.more_information" #extra>
         <p
           v-for="paragraph in league.more_information.split('|')"
