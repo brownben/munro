@@ -153,7 +153,7 @@ async def delete_league(
 async def get_league_events(
     league_name: str = Path(
         title="League Name",
-        description="Name of the league to get the results for",
+        description="Name of the league",
         example="Sprintelope 2021",
     ),
 ) -> Iterable[EventWithLeagueDetailsAndUploadKey]:
@@ -187,7 +187,7 @@ def generate_event_calendar_description(event: EventWithLeagueDetails) -> str:
 async def get_league_events_calendar(
     league_name: str = Path(
         title="League Name",
-        description="Name of the league to get the results for",
+        description="Name of the league",
         example="Sprintelope 2021",
     ),
 ) -> PlainTextResponse:
@@ -323,6 +323,7 @@ async def get_league_results(
         result
         for result in league_results.values()
         if any([points is not None for points in result.points])
+        and result.total_points > 0
     ]
     results.sort(
         key=lambda x: x.total_points,
@@ -343,7 +344,7 @@ async def get_league_results(
 async def get_league_classes(
     league_name: str = Path(
         title="League Name",
-        description="Name of the league ",
+        description="Name of the league",
         example="Sprintelope 2021",
     ),
 ) -> Iterable[LeagueClass]:

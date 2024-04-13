@@ -433,23 +433,6 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
                             },
                         ],
                     },
-                    {
-                        "id": 4,
-                        "name": "Freya Smith",
-                        "club": "HAT",
-                        "age_class": "W55",
-                        "total_points": 0,
-                        "position": 4,
-                        "points": [
-                            None,
-                            {
-                                "event": "TheFinalCountdown-2021-12-24",
-                                "score": 0,
-                                "counting": 1,
-                                "type": "",
-                            },
-                        ],
-                    },
                 ],
             },
         )
