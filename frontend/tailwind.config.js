@@ -46,6 +46,17 @@ module.exports = {
           600: '#DC2626',
         },
       },
+
+      animation: {
+        fadeIn: 'fadeIn 100ms ease-out',
+      },
+
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

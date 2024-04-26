@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import {
+  TooltipContent,
+  TooltipProvider,
+  TooltipRoot,
+  TooltipTrigger,
+} from 'radix-vue'
 import type { PropType } from 'vue'
 import type { LeagueEvent } from '~/api-types'
 import type { Filters } from '~/utils/filter'
@@ -125,29 +131,40 @@ const ariaSorted = computed(() => {
           class="hidden text-center md:table-cell"
           :aria-sort="ariaSorted?.[index]"
         >
-          <button
-            type="button"
-            class="group relative rounded font-medium ring-main-200 focus:outline-none focus-visible:ring xl:px-1"
-            @click="changeSortPreference(index)"
+          <TooltipProvider
+            :disabled="!event.event_name"
+            :delay-duration="200"
+            :disable-closing-trigger="true"
           >
-            {{ index + 1 }}
-            <TableArrows
-              :active="activeColumn == index"
-              :ascending="ascending"
-              class="hidden"
-              :class="{
-                '2xl:inline-block': events.length >= 12,
-                'xl:inline-block': events.length < 12,
-              }"
-            />
+            <TooltipRoot>
+              <TooltipTrigger as-child>
+                <button
+                  type="button"
+                  class="group relative rounded font-medium ring-main-200 focus:outline-none focus-visible:ring xl:px-1"
+                  @click="changeSortPreference(index)"
+                >
+                  {{ index + 1 }}
+                  <TableArrows
+                    :active="activeColumn == index"
+                    :ascending="ascending"
+                    class="hidden"
+                    :class="{
+                      '2xl:inline-block': events.length >= 12,
+                      'xl:inline-block': events.length < 12,
+                    }"
+                  />
+                </button>
+              </TooltipTrigger>
 
-            <p
-              v-if="event.event_name"
-              class="absolute -left-7 z-40 block w-[calc(100%+3.5rem)] whitespace-normal break-words rounded bg-white p-1 text-center text-sm leading-tight opacity-0 shadow transition duration-300 group-hover:opacity-100 group-focus:opacity-100 dark:bg-gray-900 dark:shadow-gray-700"
-            >
-              {{ event.event_name }}
-            </p>
-          </button>
+              <TooltipContent
+                as="p"
+                side="bottom"
+                class="select-none rounded bg-white px-3 py-1 font-medium shadow-lg transition data-[state=delayed-open]:animate-fadeIn dark:bg-gray-900 dark:shadow-gray-800"
+              >
+                {{ event.event_name }}
+              </TooltipContent>
+            </TooltipRoot>
+          </TooltipProvider>
         </th>
       </tr>
     </thead>
