@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { EventResults } from '~/api-types'
 import type { Filters } from '~/utils/filter'
-import {
-  AdjustmentsVerticalIcon,
-  DocumentArrowUpIcon,
-} from '@heroicons/vue/24/outline'
+import { DocumentArrowUpIcon } from '@heroicons/vue/24/outline'
 
 const route = useRoute()
 
@@ -19,7 +16,6 @@ const results = computed(() =>
 )
 const courses = computed(() => Object.keys(results.value).sort())
 
-const show = ref(false)
 const filters = reactive<Filters>({
   name: queryToString(route.query.name ?? ''),
   club: queryToString(route.query.club ?? ''),
@@ -38,58 +34,19 @@ if (event.value) {
 </script>
 <template>
   <div v-if="event" class="flex h-full flex-grow flex-col gap-8">
-    <div>
-      <Heading
-        :title="event.name"
-        :link-text="event.league"
-        :link-location="`/leagues/${event.league}`"
-      >
-        <template v-if="Object.keys(event.results_links).length > 0" #default>
-          <ResultsLinks :links="event.results_links" />
-        </template>
-        <template #rightAction>
-          <Button small @click="show = !show">
-            <AdjustmentsVerticalIcon
-              class="-ml-1 mr-2 h-5 w-5"
-              aria-hidden="true"
-            />
-            <span>Filter Results</span>
-          </Button>
-        </template>
-      </Heading>
+    <Heading
+      :title="event.name"
+      :link-text="event.league"
+      :link-location="`/leagues/${event.league}`"
+    >
+      <template v-if="Object.keys(event.results_links).length > 0" #default>
+        <ResultsLinks :links="event.results_links" />
+      </template>
 
-      <transition
-        enter-from-class="scale-y-95 opacity-0 "
-        enter-active-class="duration-300 origin-top motion-safe:transform"
-        enter-to-class="scale-y-100 opacity-100"
-        leave-from-class="scale-y-100 opacity-100"
-        leave-active-class="duration-300 origin-top motion-safe:transform"
-        leave-to-class="scale-y-95 opacity-0 "
-      >
-        <section v-if="show" class="bg-gray-50 dark:bg-gray-800 print:hidden">
-          <div
-            class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
-          >
-            <Input v-model="filters.name" label="Name:" class="col-span-2" />
-            <Input v-model="filters.club" label="Club:" class="col-span-2" />
-            <Input
-              v-model="filters.minAge"
-              label="Min. Age:"
-              type="number"
-              :form-props="{ max: 120, min: 0, step: 1 }"
-            />
-            <Input
-              v-model="filters.maxAge"
-              label="Max. Age:"
-              type="number"
-              :form-props="{ max: 120, min: 0, step: 1 }"
-            />
-            <InputSwitch v-model="filters.male" label="Male:" />
-            <InputSwitch v-model="filters.female" label="Female:" />
-          </div>
-        </section>
-      </transition>
-    </div>
+      <template #rightAction>
+        <ResultsFilterMenu v-model="filters" />
+      </template>
+    </Heading>
 
     <div
       class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 lg:px-8 print:hidden"
@@ -137,6 +94,7 @@ if (event.value) {
 
       <TableResults :results="results[course]" :filters="filters" />
     </section>
+
     <LinksSection
       :links="
         courses.map((course) => ({

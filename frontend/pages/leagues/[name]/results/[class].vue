@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { LeagueResultsOverview } from '~/api-types'
 import type { Filters } from '~/utils/filter'
-import { AdjustmentsVerticalIcon } from '@heroicons/vue/24/outline'
 
 const route = useRoute()
 
@@ -17,7 +16,6 @@ const otherClasses = computed(
     [],
 )
 
-const show = ref(false)
 const filters = reactive<Filters>({
   name: queryToString(route.query.name ?? ''),
   club: queryToString(route.query.club ?? ''),
@@ -42,37 +40,9 @@ if (data.value) {
       :link-text="data.league"
     >
       <template #rightAction>
-        <Button small @click="show = !show">
-          <AdjustmentsVerticalIcon
-            class="-ml-1 mr-2 h-5 w-5"
-            aria-hidden="true"
-          />
-          <span>Filter Results</span>
-        </Button>
+        <ResultsFilterMenu v-model="filters" />
       </template>
     </Heading>
-
-    <transition
-      enter-from-class="scale-y-95 opacity-0 "
-      enter-active-class="duration-300 origin-top motion-safe:transform"
-      enter-to-class="scale-y-100 opacity-100"
-      leave-from-class="scale-y-100 opacity-100"
-      leave-active-class="duration-300 origin-top motion-safe:transform"
-      leave-to-class="scale-y-95 opacity-0 "
-    >
-      <section v-if="show" class="bg-gray-50 dark:bg-gray-800 print:hidden">
-        <div
-          class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
-        >
-          <Input v-model="filters.name" label="Name:" class="col-span-2" />
-          <Input v-model="filters.club" label="Club:" class="col-span-2" />
-          <Input v-model="filters.minAge" label="Min. Age:" type="number" />
-          <Input v-model="filters.maxAge" label="Max. Age:" type="number" />
-          <InputSwitch v-model="filters.male" label="Male:" />
-          <InputSwitch v-model="filters.female" label="Female:" />
-        </div>
-      </section>
-    </transition>
 
     <section
       v-if="results"
