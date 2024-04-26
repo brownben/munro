@@ -58,7 +58,7 @@ if (league.value) {
             {{ league.events.length }} events count
           </strong>
         </template>
-        <template v-else> All events points count </template>
+        <template v-else> All events count </template>
       </ImageRow>
       <ImageRow v-if="nextEvent" :icon="CalendarIcon" hover>
         <a
