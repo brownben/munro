@@ -21,7 +21,7 @@ const links: Link[] = [
 <template>
   <Popover as="nav" class="select-none bg-white dark:bg-gray-900 print:hidden">
     <top-bar
-      class="relative z-50 mx-auto flex max-w-screen-lg flex-1 items-center justify-center px-2 py-3 sm:items-stretch sm:justify-between sm:px-6 lg:px-8"
+      class="relative z-20 mx-auto flex max-w-screen-lg flex-1 items-center justify-center px-2 py-3 sm:items-stretch sm:justify-between sm:px-6 lg:px-8"
     >
       <NuxtLink
         to="/"
@@ -60,7 +60,7 @@ const links: Link[] = [
         </PopoverButton>
       </div>
     </top-bar>
-    <PopoverOverlay class="fixed inset-0 top-20 z-40" />
+    <PopoverOverlay class="fixed inset-0 top-20 z-10" />
     <transition
       enter-active-class="duration-200 transform ease-in-out origin-top motion-safe:transition origin-top"
       enter-from-class="scale-y-75 opacity-0"
@@ -71,7 +71,7 @@ const links: Link[] = [
     >
       <PopoverPanel
         v-slot="{ close }"
-        class="absolute z-50 flex w-full flex-col gap-1 rounded-b-md bg-white p-2 pt-0 shadow-md dark:bg-gray-900 dark:shadow-gray-800"
+        class="absolute z-20 flex w-full flex-col gap-1 rounded-b-md bg-white p-2 pt-0 shadow-md dark:bg-gray-900 dark:shadow-gray-800"
       >
         <NuxtLink
           v-for="link of links"

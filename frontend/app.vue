@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :class="themeClass">
+  <div id="app">
     <a
       href="#content"
       class="focus:shadow-outline sr-only z-50 rounded-md bg-white text-main-700 focus:not-sr-only focus:absolute focus:m-4 focus:block focus:px-3 focus:py-2 dark:bg-gray-900"
@@ -31,4 +31,6 @@ const themeClass = computed(() => {
 
   return `theme-${theme.value} ${gray}`
 })
+
+useHead({ htmlAttrs: { class: themeClass } })
 </script>
