@@ -164,7 +164,7 @@ class UploadRequest(BaseModel):
     overwrite: bool = False
     partial: bool = False
 
-    results_links: Optional[dict[str, HttpUrl | Literal[""]]]
+    results_links: dict[str, HttpUrl | Literal[""]] = {}
 
 
 class UploadFileRequest(UploadRequest):
@@ -172,7 +172,7 @@ class UploadFileRequest(UploadRequest):
 
 
 class UploadURLRequest(UploadRequest):
-    url: str
+    url: HttpUrl
 
 
 class LeagueResultScore(BaseModel):

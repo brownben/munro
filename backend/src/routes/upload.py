@@ -92,6 +92,9 @@ async def upload_results_file(request: UploadFileRequest) -> Message:
 async def upload_results_url(request: UploadURLRequest) -> Message:
     file = await get_document_from_url(request.url)
 
+    if not request.results_links.get("Standard Results"):
+        request.results_links["Standard Results"] = request.url
+
     return await process_upload_file(
         request.event_id,
         request.upload_key,
