@@ -100,10 +100,11 @@ class TestImportFile(unittest.TestCase):
 
     def test_import_html_file(self) -> None:
         with self.assertRaisesRegex(
-            ImportException, "Expected file to contain results data"
+            ImportException,
+            "Data not as expected for SITiming HTML file, please try another format.",
         ):
             import_results_from_file(
-                '<!DOCTYPE html>SiTiming<option value="1">Hello</option>'
+                '<!DOCTYPE html> <link href="https://www.sportident.co.uk/sitiming/skins/v2/jquery/datatables.css" rel="stylesheet" type="text/css"/><option value="1">Hello</option>'
             )
 
     def test_import_xml_file(self) -> None:

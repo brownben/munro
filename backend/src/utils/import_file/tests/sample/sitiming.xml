@@ -1,0 +1,317 @@
+<ResultList xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" iofVersion="3.0" createTime="2021-08-13T13:40:16.5923683+01:00" creator="SiTiming v4.212.1942.4062" xmlns="http://www.orienteering.org/datastandard/3.0" xsi:schemaLocation="http://www.orienteering.org/datastandard/3.0 http://www.orienteering.org/datastandard/IOF.xsd">
+<Event>
+    <Name>Test Event</Name>
+    <StartTime>
+    <Date>2021-01-01</Date>
+    </StartTime>
+</Event>
+<ClassResult>
+    <Class>
+    <Name>Long</Name>
+    </Class>
+    <Course>
+    <Name>Long</Name>
+    <Length>5000</Length>
+    <NumberOfControls>1</NumberOfControls>
+    </Course>
+    <PersonResult>
+    <Person sex="M">
+        <Name>
+        <Family>Adamson</Family>
+        <Given>James</Given>
+        </Name>
+        <BirthDate>2000-05-02</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>INT</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T19:10:02</StartTime>
+        <FinishTime>2021-08-11T19:37:02</FinishTime>
+        <Time>1620</Time>
+        <TimeBehind>0</TimeBehind>
+        <Position>1</Position>
+        <Status>OK</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-4</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>247</ControlCode>
+        <Time>3</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>1620</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+    <PersonResult>
+    <Person sex="M">
+        <Id type="BOF" />
+        <Name>
+        <Family>Ashbrook</Family>
+        <Given>Phil</Given>
+        </Name>
+        <BirthDate>2000-02-31</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>OD</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T18:14:53</StartTime>
+        <FinishTime>2021-08-11T18:42:04</FinishTime>
+        <Time>1631</Time>
+        <TimeBehind>11</TimeBehind>
+        <Position>2</Position>
+        <Status>OK</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-5</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>247</ControlCode>
+        <Time>3</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>1631</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+    <PersonResult>
+    <Person sex="F">
+        <Id type="BOF" />
+        <Name>
+        <Family>Horse</Family>
+        <Given>Josie</Given>
+        </Name>
+        <BirthDate>1981-12-31</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>ESOC</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T18:22:51</StartTime>
+        <FinishTime>2021-08-11T18:53:28</FinishTime>
+        <Time>1837</Time>
+        <TimeBehind>217</TimeBehind>
+        <Position>3</Position>
+        <Status>OK</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-7</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>247</ControlCode>
+        <Time>4</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>1837</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+    <PersonResult>
+    <Person sex="M">
+        <Id type="BOF" />
+        <Name>
+        <Family>Evans</Family>
+        <Given>Simon</Given>
+        </Name>
+        <BirthDate>1998-12-31</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>ESOC</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T18:15:48</StartTime>
+        <FinishTime>2021-08-11T18:47:45</FinishTime>
+        <Time>1917</Time>
+        <TimeBehind>297</TimeBehind>
+        <Position>4</Position>
+        <Status>OK</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-4</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>247</ControlCode>
+        <Time>7</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>1917</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+</ClassResult>
+<ClassResult>
+    <Class>
+    <Name>Short</Name>
+    </Class>
+    <Course>
+    <Name>Short</Name>
+    <Length>1800</Length>
+    <NumberOfControls>1</NumberOfControls>
+    </Course>
+    <PersonResult>
+    <Person sex="M">
+        <Id type="BOF" />
+        <Name>
+        <Family>Gloves</Family>
+        <Given>Albert</Given>
+        </Name>
+        <BirthDate>2002-12-31</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>ESOC</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T18:24:46</StartTime>
+        <FinishTime>2021-08-11T18:48:20</FinishTime>
+        <Time>1414</Time>
+        <TimeBehind>0</TimeBehind>
+        <Position>1</Position>
+        <Status>OK</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-3</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>246</ControlCode>
+        <Time>4</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>1414</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+    <PersonResult>
+    <Person sex="F">
+        <Id type="BOF" />
+        <Name>
+        <Family>Walks</Family>
+        <Given>Claire</Given>
+        </Name>
+        <BirthDate>1969-03-26</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>ESOC</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T18:07:11</StartTime>
+        <FinishTime>2021-08-11T18:32:50</FinishTime>
+        <Time>1539</Time>
+        <TimeBehind>125</TimeBehind>
+        <Position>2</Position>
+        <Status>OK</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-6</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>246</ControlCode>
+        <Time>4</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>1539</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+    <PersonResult>
+    <Person sex="F">
+        <Id type="BOF" />
+        <Name>
+        <Family>Forest</Family>
+        <Given>Ella</Given>
+        </Name>
+        <BirthDate>2008-06-01</BirthDate>
+    </Person>
+    <Result>
+        <StartTime>2021-08-11T19:06:58</StartTime>
+        <FinishTime>2021-08-11T19:33:50</FinishTime>
+        <Time>1612</Time>
+        <TimeBehind>198</TimeBehind>
+        <Position>3</Position>
+        <Status>OK</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-9</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>246</ControlCode>
+        <Time>5</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>1612</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+    <PersonResult>
+    <Person sex="F">
+        <Id type="BOF" />
+        <Name>
+        <Family>Fish</Family>
+        <Given>Gill</Given>
+        </Name>
+        <BirthDate>1951-12-31</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>ESOC</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T18:00:21</StartTime>
+        <FinishTime>2021-08-11T19:16:36</FinishTime>
+        <Time>4575</Time>
+        <Status>Disqualified</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-3</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>246</ControlCode>
+        <Time>7</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>4575</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+            <PersonResult>
+    <Person sex="F">
+        <Id type="BOF" />
+        <Name>
+        <Family>Fish</Family>
+        <Given>Gill</Given>
+        </Name>
+        <BirthDate>2018-12-31</BirthDate>
+    </Person>
+    <Organisation>
+        <Name>ESOC</Name>
+    </Organisation>
+    <Result>
+        <StartTime>2021-08-11T18:00:21</StartTime>
+        <FinishTime>2021-08-11T19:16:36</FinishTime>
+        <Time>4575</Time>
+        <Status>Disqualified</Status>
+        <SplitTime status="Additional">
+        <ControlCode>1</ControlCode>
+        <Time>-3</Time>
+        </SplitTime>
+        <SplitTime>
+        <ControlCode>246</ControlCode>
+        <Time>7</Time>
+        </SplitTime>
+        <SplitTime status="Additional">
+        <ControlCode>RDO</ControlCode>
+        <Time>4575</Time>
+        </SplitTime>
+    </Result>
+    </PersonResult>
+</ClassResult>
+</ResultList>

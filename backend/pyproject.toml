@@ -11,14 +11,16 @@ license = "MIT"
 
 dependencies = [
   "asyncpg~=0.29.0",
+  "beautifulsoup4~=4.12.3",
   "defusedxml~=0.7.1",
   "fastapi~=0.110.1",
   "google-auth~=2.29.0",
   "httpx~=0.27.0",
   "icalendar~=5.0.12",
+  "lxml~=5.2.1",
   "piccolo==0.119.0",
-  "uvicorn~=0.29.0",
-  "requests~=2.31.0"
+  "requests~=2.31.0",
+  "uvicorn~=0.29.0"
 ]
 optional-dependencies.dev = [
   "aiosqlite~=0.20.0",
@@ -27,6 +29,7 @@ optional-dependencies.dev = [
   "respx~=0.21.1",
   "ruff~=0.3.5",
   "time-machine~=2.14.1",
+  "types-beautifulsoup4~=4.12.0",
   "types-icalendar~=5.0.0",
   "types-requests~=2.31.0"
 ]
