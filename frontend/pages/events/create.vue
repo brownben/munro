@@ -43,8 +43,15 @@ const getLeague = async () => {
 watch(() => form.name, getLeague)
 
 const action = async () => {
+  const rawForm: Omit<typeof form, 'league_group'> & {
+    league_group: number | null
+  } = {
+    ...toRaw(form),
+    league_group: form.league_group ? Number(form.league_group) : null,
+  }
+
   try {
-    await usePost(`events/`, toRaw(form))
+    await usePost(`events/`, rawForm)
     await router.push(`/leagues/${form.league}`)
   } catch (error: any) {
     if (error.data && typeof error.data?.detail === 'string')
