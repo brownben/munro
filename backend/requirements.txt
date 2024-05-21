@@ -87,7 +87,7 @@ pytz==2024.1
     # via icalendar
 pyyaml==6.0.1
     # via uvicorn
-requests==2.31.0
+requests==2.32.0
 rsa==4.9
     # via google-auth
 six==1.16.0
