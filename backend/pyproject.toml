@@ -26,7 +26,7 @@ dependencies = [
 
   # check firebase auth tokens
   "google-auth~=2.29.0",
-  "requests~=2.31.0",
+  "requests~=2.32.0",
 
   "httpx~=0.27.0", # make requests for results files
   "icalendar~=5.0.12" # generate ical files
