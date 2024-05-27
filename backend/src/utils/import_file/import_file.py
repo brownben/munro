@@ -1,3 +1,4 @@
+import re
 from typing import Any, Callable, Generator, Iterable, Literal, Optional, TypedDict
 
 from ..age_class import date_to_age_class
@@ -114,14 +115,31 @@ def fix_times_from_excel(results: list[ImportedRecord]) -> list[ImportedRecord]:
     return results
 
 
+COMBINED_AGE_CLASS_CLUB_REGEX = re.compile(
+    r"[MHWFD][0-9]+ \((.*)\)", flags=re.IGNORECASE
+)
+
+
+def fix_combined_age_class_club(
+    results: list[ImportedRecord],
+) -> list[ImportedRecord]:
+    for result in results:
+        if match := COMBINED_AGE_CLASS_CLUB_REGEX.match(result.get("club") or ""):
+            result["ageClass"] = result["club"].split(" ")[0] if result["club"] else ""
+            result["club"] = match.group(1)
+
+    return results
+
+
 def import_results(
     parser: Callable[[str], Iterable[ImportedRecord]], file: str
 ) -> Generator[ImportedResult, None, None]:
     raw_records = parser(file)
-    fixed_records = fix_times_from_excel(list(raw_records))
+    records = fix_times_from_excel(list(raw_records))
+    records = fix_combined_age_class_club(records)
 
     return (
         ImportedResult(result)
-        for result in fixed_records
+        for result in records
         if any(value != "" for value in result.values())
     )
