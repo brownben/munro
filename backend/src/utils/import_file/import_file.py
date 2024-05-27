@@ -120,4 +120,8 @@ def import_results(
     raw_records = parser(file)
     fixed_records = fix_times_from_excel(list(raw_records))
 
-    return (ImportedResult(result) for result in fixed_records)
+    return (
+        ImportedResult(result)
+        for result in fixed_records
+        if any(value != "" for value in result.values())
+    )
