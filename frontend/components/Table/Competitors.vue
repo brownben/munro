@@ -4,6 +4,9 @@ import type { PropType } from 'vue'
 import type { Filters } from '~/utils/filter'
 import type { CompetitorWithAgeGender } from '~~/utils/ageClass'
 
+const route = useRoute()
+const router = useRouter()
+
 const props = defineProps({
   competitors: {
     type: Array as PropType<CompetitorWithAgeGender[]>,
@@ -13,8 +16,10 @@ const props = defineProps({
 })
 
 type Column = keyof CompetitorWithAgeGender
-const ascending = ref(false)
-const activeColumn = ref<Column>('id')
+const ascending = ref(route.query.ascending === 'true')
+const activeColumn = ref<Column>(
+  (queryToString(route.query.sort_by) as Column) || 'id',
+)
 
 const sortedResults = computed(() =>
   props.competitors
@@ -33,6 +38,16 @@ const ariaSorted = computed(
     [activeColumn.value]: ascending.value ? 'descending' : 'ascending',
   }),
 )
+
+watch([activeColumn, ascending], () => {
+  router.replace({
+    query: {
+      ...route.query,
+      sort_by: activeColumn.value,
+      ascending: ascending.value ? 'true' : 'false',
+    },
+  })
+})
 </script>
 <template>
   <table v-if="sortedResults.length > 0" class="w-full">
