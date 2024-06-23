@@ -48,7 +48,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
 </template>
 <style>
 input[type='file']::file-selector-button {
-  @apply mr-4 select-none rounded border-0 bg-gradient-to-r from-main-500 to-main-600 px-5 py-2 text-sm font-medium  text-white outline-none transition duration-200 dark:ring-offset-gray-800;
+  @apply mr-4 select-none rounded border-0 bg-gradient-to-r from-main-500 to-main-600 px-5 py-2 text-sm font-medium text-white outline-none transition duration-200 dark:ring-offset-gray-800;
 }
 
 input[type='file']::file-selector-button:focus {
