@@ -20,8 +20,11 @@ Columns = Literal[
 
 field_names: dict[str, Columns] = {
     "name": "name",
+    "name free format": "name",
     "firstname": "firstName",
     "givenname": "firstName",
+    "forenames": "firstName",
+    "surnames": "surname",
     "surname": "surname",
     "familyname": "surname",
     "course": "course",
@@ -71,7 +74,15 @@ def identify_delimeter(file: str) -> Literal[",", ";"]:
 def normalise_header(header: str) -> str:
     """Normalise case and characters in headings to make matching more reliable"""
 
-    return header.lower().strip().replace("-", "").replace("_", "").replace(" ", "")
+    return (
+        header.lower()
+        .strip()
+        .replace("-", "")
+        .replace("_", "")
+        .replace(" ", "")
+        .replace("(", "")
+        .replace(")", "")
+    )
 
 
 def get_column_locations(header_row: list[str]) -> dict[Columns, int]:
