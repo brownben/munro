@@ -51,10 +51,7 @@ def is_age_class_eligible(specified_string: str, age_class_string: str) -> bool:
 
     def is_gender_eligible() -> bool:
         # either gender matches, or is a women and is eligible for mens/open
-        if gender in (specified_gender, "W"):
-            return True
-
-        return False
+        return gender in (specified_gender, "W")
 
     return is_age_eligible() and is_gender_eligible()
 
@@ -120,10 +117,7 @@ def is_age_class_eligible_over_18(specified_string: str, age_class_string: str) 
 
     def is_gender_eligible() -> bool:
         # either gender matches, or is a women and is eligible for mens/open
-        if gender in (specified_gender, "W"):
-            return True
-
-        return False
+        return gender in (specified_gender, "W")
 
     return is_age_eligible() and is_gender_eligible()
 
