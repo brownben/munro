@@ -29,26 +29,26 @@
     "typecheck": "nuxi typecheck && tsc --noEmit"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.7.22",
+    "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.1.5",
-    "radix-vue": "^1.9.3",
+    "radix-vue": "^1.9.8",
     "vaul-vue": "^0.2.0"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.14",
-    "@typescript-eslint/eslint-plugin": "^7.13",
-    "@typescript-eslint/parser": "^7.13",
-    "@vue/eslint-config-typescript": "^13.0.0",
+    "@tailwindcss/typography": "^0.5.15",
+    "@typescript-eslint/eslint-plugin": "^7.18",
+    "@typescript-eslint/parser": "^7.18",
+    "@vue/eslint-config-typescript": "^13.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.27.0",
-    "nuxt": "^3.12.4",
+    "nuxt": "^3.13.2",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "tailwindcss": "^3.4.8",
-    "vitest": "^2.0.5",
-    "vue-tsc": "^2.0.29"
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "tailwindcss": "^3.4.14",
+    "vitest": "^2.1.4",
+    "vue-tsc": "^2.1.10"
   }
 }
