@@ -76,11 +76,18 @@ def parse_sitiming_file(file: str) -> tuple[list[str], list[list[str]]]:
         block.find("h3").text
         for block in document.find_all("div", attrs={"class": "results-block"})
     ]
+
+    number_of_headings = len(table_headings) - 1
     for results, course in zip(course_results, courses):
         for row in results:
-            while len(row) < len(table_headings) - 1:
+            while len(row) < number_of_headings:
                 # add extra column for when behind is missing for some results
                 row.append("")
+
+            while len(row) > number_of_headings:
+                # if splits are included remove them
+                row.pop()
+
             row.append(course)
 
     return (
