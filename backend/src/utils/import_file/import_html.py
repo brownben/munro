@@ -14,7 +14,8 @@ from .import_file import ImportedRecord, ImportException
 SITIMING_PARSE_FAILURE_MESSAGE = (
     "Data not as expected for SITiming HTML file, please try another format."
 )
-NBSP_REGEX = re.compile(r"&nbsp;|\\\\u0026nbsp;", flags=re.IGNORECASE)
+NBSP_REGEX = re.compile("&nbsp;", flags=re.IGNORECASE)
+SOCIAL_LINK_REGEX = re.compile("<a href=.*?></a>", flags=re.IGNORECASE)
 
 
 def parse_sitiming_script(script_tag_text: str) -> list[str]:
@@ -22,11 +23,21 @@ def parse_sitiming_script(script_tag_text: str) -> list[str]:
     preamble_regex = re.compile(r".*?0\)\s*\n*\s*return", flags=re.DOTALL)
     script_text = preamble_regex.sub("", script_tag_text)
 
+    # replace various escaped html entities
+    script_text = (
+        script_text.replace("\\u003c", "<")
+        .replace("\\u003e", ">")
+        .replace("\\u0026nbsp;", "")
+    )
+
     # remove the end of the function, which isn't data
     script_text = script_text.strip().removesuffix("}").removesuffix(";")
 
     # replace &nbsp; with real spaces
-    script_text = NBSP_REGEX.sub(" ", script_text)
+    script_text = NBSP_REGEX.sub("", script_text)
+
+    # remove the links to social media
+    script_text = SOCIAL_LINK_REGEX.sub("", script_text)
 
     # split into the blocks of JSON
     IF_RETURN = r";\n*\s*if\s*\(tableNumber == [0-9]+\)\n*\s*return\s*\n*"
