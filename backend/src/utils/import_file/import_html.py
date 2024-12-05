@@ -28,6 +28,7 @@ def parse_sitiming_script(script_tag_text: str) -> list[str]:
         script_text.replace("\\u003c", "<")
         .replace("\\u003e", ">")
         .replace("\\u0026nbsp;", "")
+        .replace("\\", "")
     )
 
     # remove the end of the function, which isn't data
