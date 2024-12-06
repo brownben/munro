@@ -59,12 +59,12 @@ class Results:
             .run()
         )
 
-        return Result.parse_obj(database_result)
+        return Result.model_validate(database_result)
 
     @staticmethod
     async def get_by_competitor(competitor: int) -> Iterable[ResultWithEventName]:
         return (
-            ResultWithEventName.parse_obj(result)
+            ResultWithEventName.model_validate(result)
             for result in await ResultTable.select(
                 *results_fields, ResultTable.event.name.as_alias("event_name")
             )
@@ -76,7 +76,7 @@ class Results:
     @staticmethod
     async def get_by_event_and_course(event: str, course: str) -> Iterable[Result]:
         return (
-            Result.parse_obj(result)
+            Result.model_validate(result)
             for result in await ResultTable.select(*results_fields)
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
@@ -91,7 +91,7 @@ class Results:
         event: str, courses: Iterable[str]
     ) -> Iterable[Result]:
         return (
-            Result.parse_obj(result)
+            Result.model_validate(result)
             for result in await ResultTable.select(*results_fields)
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
@@ -104,7 +104,7 @@ class Results:
     @staticmethod
     async def get_by_event(event: str) -> Iterator[Result]:
         return (
-            Result.parse_obj(result)
+            Result.model_validate(result)
             for result in await ResultTable.select(*results_fields)
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
@@ -116,7 +116,7 @@ class Results:
     @staticmethod
     async def get_event_results(event: str) -> Iterable[EventResult]:
         return (
-            EventResult.parse_obj(result)
+            EventResult.model_validate(result)
             for result in await ResultTable.select(
                 ResultTable.id,
                 ResultTable.time,

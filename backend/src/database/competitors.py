@@ -22,7 +22,7 @@ def as_competitor(record: dict[str, Any] | None) -> Competitor | None:
     if not record:
         return None
 
-    return Competitor.parse_obj(record)
+    return Competitor.model_validate(record)
 
 
 class Competitors:
@@ -44,14 +44,14 @@ class Competitors:
 
     @staticmethod
     async def create(competitor: NewCompetitor) -> int:
-        new_row = CompetitorTable(**competitor.dict())
+        new_row = CompetitorTable(**competitor.model_dump())
         await new_row.save().run()
         return new_row.id
 
     @staticmethod
     async def get_all() -> Iterable[Competitor]:
         return (
-            Competitor.parse_obj(competitor)
+            Competitor.model_validate(competitor)
             for competitor in await CompetitorTable.select(*competitor_fields)
             .order_by(CompetitorTable.id)
             .run()
@@ -60,7 +60,7 @@ class Competitors:
     @staticmethod
     async def get_by_pool(competitor_pool_name: str) -> Iterable[Competitor]:
         return (
-            Competitor.parse_obj(competitor)
+            Competitor.model_validate(competitor)
             for competitor in await CompetitorTable.select(*competitor_fields)
             .where(CompetitorTable.competitor_pool == competitor_pool_name)
             .order_by(CompetitorTable.id)
@@ -98,7 +98,7 @@ class Competitors:
         if not existing_competitor:
             return False
 
-        for key, value in competitor.dict().items():
+        for key, value in competitor.model_dump().items():
             setattr(existing_competitor, key, value)
 
         await existing_competitor.save().run()
@@ -125,7 +125,7 @@ class Competitors:
     @staticmethod
     async def search(query: str) -> Iterable[Competitor]:
         return (
-            Competitor.parse_obj(competitor)
+            Competitor.model_validate(competitor)
             for competitor in await CompetitorTable.select(*competitor_fields)
             .where(CompetitorTable.name.ilike(f"%{query}%"))
             .limit(12)

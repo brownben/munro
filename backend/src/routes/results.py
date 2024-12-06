@@ -24,7 +24,7 @@ async def create_manual_result(
     authentication: bool = Depends(require_authentication),
 ) -> Message:
     result = ResultBeforeDatabase(
-        **request.dict(exclude={"time"}),
+        **request.model_dump(exclude={"time"}),
         time=parse_time(request.time),
         file_points=request.points,
     )

@@ -34,10 +34,10 @@ class LeagueClass(BaseModel):
     name: str
     league: str
 
-    standard_course: Optional[str]
+    standard_course: Optional[str] = None
     age_class_filter: str
     club_filter: str
-    number_of_counting_events: Optional[int]
+    number_of_counting_events: Optional[int] = None
 
 
 class Event(BaseModel):
@@ -54,7 +54,7 @@ class Event(BaseModel):
     part_of: str = ""
 
     results_uploaded: bool = False
-    results_uploaded_time: Optional[datetime.datetime]
+    results_uploaded_time: Optional[datetime.datetime] = None
 
     allow_user_submitted_results: bool = False
 
@@ -72,11 +72,11 @@ class EventCreationRequest(BaseModel):
     compulsory: bool = False
     league_group: Optional[int] = None
     overridden_scoring_method: Optional[str] = None
-    expected_courses: Optional[dict[str, str]]
+    expected_courses: Optional[dict[str, str]] = None
 
 
 class EventWithLeagueDetails(Event):
-    group: Optional[str]
+    group: Optional[str] = None
 
 
 class EventWithUploadKey(Event):
@@ -92,10 +92,10 @@ class LeagueEventCreationRequest(BaseModel):
     league: str
 
     compulsory: bool = False
-    league_group: Optional[int]
-    overridden_scoring_method: Optional[str]
+    league_group: Optional[int] = None
+    overridden_scoring_method: Optional[str] = None
 
-    expected_courses: Optional[dict[str, str]]
+    expected_courses: Optional[dict[str, str]] = None
 
 
 class LeagueEventDatabase(LeagueEventCreationRequest):
@@ -115,7 +115,7 @@ class ResultBase(BaseModel):
     course: str
     incomplete: bool
     type: str
-    file_points: Optional[int]
+    file_points: Optional[int] = None
 
     event: str
     competitor: int
@@ -125,7 +125,7 @@ class ResultBeforeDatabase(BaseModel):
     time: int
     course: str
     incomplete: bool = False
-    file_points: Optional[int]
+    file_points: Optional[int] = None
     event: str
 
     type: str = ""
@@ -219,16 +219,16 @@ class EventResult(BaseModel):
     incomplete: bool
     type: str
     competitor: int
-    position: Optional[int]
+    position: Optional[int] = None
 
 
 class EventWithResults(BaseModel):
-    id: Optional[str]
+    id: Optional[str] = None
     name: str
     league: str
 
-    date: Optional[datetime.date]
-    organiser: Optional[str]
+    date: Optional[datetime.date] = None
+    organiser: Optional[str] = None
     website: HttpUrl | Literal[""]
     results_links: dict[str, HttpUrl | Literal[""]]
 
@@ -254,8 +254,8 @@ class UploadResultRequest(BaseModel):
     name: str
     time: str
     course: str
-    age_class: Optional[str]
-    club: Optional[str]
+    age_class: Optional[str] = None
+    club: Optional[str] = None
 
 
 class LeagueOverview(League):
@@ -289,8 +289,8 @@ class CompetitorOverview(Competitor):
 
 
 class ResultUpdate(BaseModel):
-    incomplete: Optional[bool]
-    visible: Optional[bool]
+    incomplete: Optional[bool] = None
+    visible: Optional[bool] = None
 
 
 class ManualResultRequest(BaseModel):

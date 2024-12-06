@@ -10,13 +10,13 @@ class TestGetCompetitorRoutes(TestCaseWithDatabase):
         response = self.client.get("/competitors")
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), sample_competitors)
+        self.assertEqual(response.json(), [c.model_dump() for c in sample_competitors])
 
     def test_get_competitor_details(self) -> None:
         response = self.client.get("/competitors/1")
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), sample_competitors[0])
+        self.assertEqual(response.json(), sample_competitors[0].model_dump())
 
     def test_get_competitor_details_not_found(self) -> None:
         response = self.client.get("/competitors/77")

@@ -92,13 +92,13 @@ class TestUploadFile(TestCaseWithDatabase):
                 "upload_key": "UploadKeyKeepSecret",
                 "file": sample_csv_file,
                 "overwrite": True,
-                "results_links": {"Winsplits": "https://example.com"},
+                "results_links": {"Winsplits": "https://example.com/"},
             },
         )
 
         results_for_event = list(await Results.get_by_event("TestEvent-2021-12-12"))
         self.assertEqual(
-            results_for_event,
+            [result.model_dump() for result in results_for_event],
             [
                 {
                     "time": 894,
@@ -259,7 +259,7 @@ class TestUploadURL(TestCaseWithDatabase):
                 "upload_key": "UploadKeyKeepSecret",
                 "url": "https://example.com/results",
                 "overwrite": True,
-                "results_links": {"Winsplits": "https://example.com"},
+                "results_links": {"Winsplits": "https://example.com/"},
             },
         )
 
@@ -282,7 +282,7 @@ class TestUploadURL(TestCaseWithDatabase):
                 "upload_key": "UploadKeyKeepSecret",
                 "url": "https://example.com/results",
                 "overwrite": True,
-                "results_links": {"Winsplits": "https://example.com"},
+                "results_links": {"Winsplits": "https://example.com/"},
             },
         )
 
@@ -303,7 +303,7 @@ class TestUploadURL(TestCaseWithDatabase):
                 "upload_key": "UploadKeyKeepSecret",
                 "url": "https://example.com/results",
                 "overwrite": True,
-                "results_links": {"Winsplits": "https://example.com"},
+                "results_links": {"Winsplits": "https://example.com/"},
             },
         )
 
@@ -326,7 +326,7 @@ class TestUploadURL(TestCaseWithDatabase):
                 "upload_key": "UploadKeyKeepSecret",
                 "url": "https://example.com/results",
                 "overwrite": True,
-                "results_links": {"Winsplits": "https://example.com"},
+                "results_links": {"Winsplits": "https://example.com/"},
             },
         )
 

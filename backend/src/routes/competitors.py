@@ -87,7 +87,7 @@ async def get_overview_for_competitor(
     if not competitor:
         raise HTTP_404(f"Couldn't find competitor with the id `{id}`")
 
-    return CompetitorOverview(**competitor.dict(), results=results, league=league)
+    return CompetitorOverview(**competitor.model_dump(), results=results, league=league)
 
 
 @router.post("/merge", response_model=Message)

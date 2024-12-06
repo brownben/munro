@@ -4,6 +4,7 @@ from .helpers import TestCaseWithDatabase
 class TestSearchRoute(TestCaseWithDatabase):
     def test_search_query(self) -> None:
         response = self.client.get("/search?query=in")
+        self.maxDiff = None
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
@@ -15,7 +16,7 @@ class TestSearchRoute(TestCaseWithDatabase):
                         "tagline": "Wednesday Evening Urban Sprint Orienteering in Edinburgh and the Lothians",
                         "year": 2021,
                         "coordinator": "The Coordinator",
-                        "website": "https://example.com",
+                        "website": "https://example.com/",
                         "more_information": "",
                         "visible": True,
                         "scoring_method": "position",
@@ -27,7 +28,7 @@ class TestSearchRoute(TestCaseWithDatabase):
                         "tagline": "Run in the Dark",
                         "year": 2021,
                         "coordinator": "The Coordinator",
-                        "website": "https://example.com",
+                        "website": "https://example.com/",
                         "more_information": "",
                         "visible": True,
                         "scoring_method": "timeAverage",

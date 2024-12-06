@@ -34,14 +34,14 @@ def as_league(record: dict[str, Any] | None) -> League | None:
     if not record:
         return None
 
-    return League.parse_obj(record)
+    return League.model_validate(record)
 
 
 def as_league_class(record: dict[str, Any] | None) -> LeagueClass | None:
     if not record:
         return None
 
-    return LeagueClass.parse_obj(record)
+    return LeagueClass.model_validate(record)
 
 
 class Leagues:
@@ -59,7 +59,7 @@ class Leagues:
                 tagline=league.tagline,
                 year=league.year,
                 coordinator=league.coordinator,
-                website=league.website,
+                website=str(league.website),
                 more_information=league.more_information,
                 visible=league.visible,
                 scoring_method=league.scoring_method,
@@ -89,8 +89,11 @@ class Leagues:
         if not existing_league:
             return False
 
-        for key, value in league.dict().items():
-            setattr(existing_league, key, value)
+        for key, value in league.model_dump().items():
+            if key == "website":
+                setattr(existing_league, key, str(value))
+            else:
+                setattr(existing_league, key, value)
 
         await existing_league.save().run()
 
@@ -99,7 +102,7 @@ class Leagues:
     @staticmethod
     async def get_all() -> Iterable[League]:
         return (
-            League.parse_obj(league)
+            League.model_validate(league)
             for league in await LeagueTable.select(*league_fields)
             .order_by(LeagueTable.year, ascending=False)
             .order_by(LeagueTable.name)
@@ -119,7 +122,7 @@ class Leagues:
     @staticmethod
     async def get_by_competitor_pool(competitor_pool: str) -> Iterable[League]:
         return (
-            League.parse_obj(league)
+            League.model_validate(league)
             for league in await LeagueTable.select(*league_fields)
             .where(LeagueTable.competitor_pool == competitor_pool)
             .order_by(LeagueTable.year, ascending=False)
@@ -133,7 +136,7 @@ class Leagues:
     @staticmethod
     async def search(query: str) -> Iterable[League]:
         return (
-            League.parse_obj(league)
+            League.model_validate(league)
             for league in await LeagueTable.select(*league_fields)
             .where(
                 LeagueTable.name.ilike(f"%{query}%")
@@ -177,7 +180,7 @@ class LeagueClasses:
     @staticmethod
     async def get_by_league(league: str) -> Iterable[LeagueClass]:
         return (
-            LeagueClass.parse_obj(league)
+            LeagueClass.model_validate(league)
             for league in await LeagueClassTable.select(*league_class_fields)
             .where(LeagueClassTable.league == league)
             .order_by(LeagueClassTable.name)
@@ -197,7 +200,7 @@ class LeagueClasses:
         if not existing_class:
             return False
 
-        for key, value in cls.dict().items():
+        for key, value in cls.model_dump().items():
             setattr(existing_class, key, value)
 
         await existing_class.save().run()
@@ -229,7 +232,7 @@ class LeagueGroups:
     @staticmethod
     async def get_by_league(league: str) -> list[LeagueGroup]:
         return [
-            LeagueGroup.parse_obj(group)
+            LeagueGroup.model_validate(group)
             for group in await LeagueGroupTable.select(*LeagueGroupTable.all_columns())
             .where(LeagueGroupTable.league == league)
             .order_by(LeagueGroupTable.name)
@@ -247,7 +250,7 @@ class LeagueGroups:
         )
 
         if database_result:
-            return LeagueGroup.parse_obj(database_result)
+            return LeagueGroup.model_validate(database_result)
         else:
             return None
 
@@ -274,7 +277,7 @@ class LeagueGroups:
         if not existing_group:
             return False
 
-        for key, value in group.dict().items():
+        for key, value in group.model_dump().items():
             if key != "id":
                 setattr(existing_group, key, value)
 

@@ -17,7 +17,7 @@ dependencies = [
   "uvloop~=0.21.0; platform_system != 'Windows'",
 
   # database
-  "piccolo==0.119.0",
+  "piccolo==1.22.0",
   "asyncpg~=0.30.0",
 
   # results file parsing
@@ -34,7 +34,7 @@ dependencies = [
 ]
 optional-dependencies.dev = [
   "aiosqlite~=0.20.0",
-  "coverage~=7.6.8",
+  "coverage~=7.6.9",
   "mypy~=1.13.0",
   "respx~=0.21.1",
   "ruff~=0.8.2",

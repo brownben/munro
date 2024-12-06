@@ -1,5 +1,5 @@
 import os
-from typing import cast
+from typing import Any, cast
 from unittest import IsolatedAsyncioTestCase
 
 import pydantic
@@ -66,7 +66,21 @@ async def _add_sample_data() -> None:
         sample_data = cast(list[pydantic.BaseModel], sample_data)
 
         await table.delete(force=True).run()
-        await table.insert(*(table(**row.dict()) for row in sample_data)).run()
+        await table.insert(
+            *(table(**replace_website(row)) for row in sample_data)
+        ).run()
+
+
+def replace_website(model: pydantic.BaseModel) -> dict[str, Any]:
+    dict = model.model_dump()
+
+    if "website" in dict:
+        dict["website"] = str(dict["website"])
+
+    if "results_links" in dict:
+        dict["results_links"] = {k: str(v) for k, v in dict["results_links"].items()}
+
+    return dict
 
 
 def get_client() -> TestClient:

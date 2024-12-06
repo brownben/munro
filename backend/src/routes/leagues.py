@@ -52,7 +52,7 @@ router = APIRouter(
 def competitor_to_league_result(
     competitor: Competitor, number_of_events: int = 0
 ) -> LeagueResult:
-    league_result = LeagueResult.parse_obj(competitor)
+    league_result = LeagueResult.model_validate(competitor.model_dump())
     league_result.points = [None] * number_of_events
     return league_result
 
@@ -87,7 +87,7 @@ async def get_league(name: str) -> LeagueOverviewAuthenticated:
         raise HTTP_404(f"Couldn't find league with name `{name}`")
 
     return LeagueOverviewAuthenticated(
-        **result.dict(),
+        **result.model_dump(),
         classes=classes,
         events=events,
         groups=groups,

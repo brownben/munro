@@ -49,7 +49,7 @@ def as_event(record: dict[str, Any]) -> EventWithUploadKey | None:
     if not record:
         return None
 
-    return EventWithUploadKey.parse_obj(record)
+    return EventWithUploadKey.model_validate(record)
 
 
 def generate_upload_key() -> str:
@@ -72,7 +72,7 @@ class Events:
                 date=event.date,
                 organiser=event.organiser,
                 part_of=event.part_of,
-                website=event.website,
+                website=str(event.website),
                 more_information=event.more_information,
                 results_links=event.results_links,
                 upload_key=generate_upload_key(),
@@ -96,7 +96,7 @@ class Events:
     @staticmethod
     async def get_all() -> Iterable[EventWithUploadKey]:
         return (
-            EventWithUploadKey.parse_obj(event)
+            EventWithUploadKey.model_validate(event)
             for event in await EventTable.select(*event_fields)
             .order_by(EventTable.date, ascending=False)
             .output(load_json=True)
@@ -157,8 +157,10 @@ class Events:
         if not existing_event:
             return "no-event"
 
-        for key, value in event.dict().items():
-            if key != "id":
+        for key, value in event.model_dump().items():
+            if key == "website":
+                setattr(existing_event, key, str(value))
+            elif key != "id":
                 setattr(existing_event, key, value)
 
         await existing_event.save().run()
@@ -172,7 +174,7 @@ class Events:
     @staticmethod
     async def get_latest_with_results(limit: int = 12) -> Iterable[EventWithUploadKey]:
         return (
-            EventWithUploadKey.parse_obj(event)
+            EventWithUploadKey.model_validate(event)
             for event in await EventTable.select(*event_fields)
             .where(EventTable.results_uploaded == True)
             .order_by(EventTable.date, ascending=False)
@@ -184,7 +186,7 @@ class Events:
     @staticmethod
     async def get_allowing_results_submission() -> Iterable[EventWithUploadKey]:
         return (
-            EventWithUploadKey.parse_obj(event)
+            EventWithUploadKey.model_validate(event)
             for event in await EventTable.select(*event_fields)
             .where(EventTable.allow_user_submitted_results == True)
             .output(load_json=True)
@@ -196,7 +198,7 @@ class Events:
         competitor_pool: str,
     ) -> Iterable[EventWithUploadKey]:
         return (
-            EventWithUploadKey.parse_obj(event)
+            EventWithUploadKey.model_validate(event)
             for event in await EventTable.select(*event_fields)
             .where(EventTable.competitor_pool == competitor_pool)
             .order_by(EventTable.date)
@@ -211,7 +213,9 @@ class Events:
         await (
             EventTable.update(
                 {
-                    EventTable.results_links: results_links,
+                    EventTable.results_links: {
+                        k: str(v) for k, v in results_links.items()
+                    },
                     EventTable.results_uploaded: True,
                     EventTable.results_uploaded_time: datetime.datetime.now(),
                 }
@@ -224,15 +228,13 @@ class Events:
     async def get_by_league(
         league: str,
     ) -> Iterable[EventWithLeagueDetailsAndUploadKey]:
-        # TODO: piccolo output doesn't have correct overload yet for `order_by`
-
         return (
             EventWithLeagueDetailsAndUploadKey(
                 **event["event"],
                 results_links=event["results_links"],
                 group=event["group"],
             )
-            for event in await LeagueEventTable.select(  # type: ignore
+            for event in await LeagueEventTable.select(
                 *LeagueEventTable.event.all_columns(exclude=[EventTable.results_links]),
                 LeagueEventTable.event.results_links.as_alias("results_links"),
                 LeagueEventTable.league_group.name.as_alias("group"),
@@ -246,7 +248,7 @@ class Events:
     @staticmethod
     async def search(query: str) -> Iterable[EventWithUploadKey]:
         return (
-            EventWithUploadKey.parse_obj(event)
+            EventWithUploadKey.model_validate(event)
             for event in await EventTable.select(*event_fields)
             .where(EventTable.name.ilike(f"%{query}%"))
             .order_by(EventTable.date, ascending=False)
@@ -278,7 +280,7 @@ class LeagueEvents:
     @staticmethod
     async def get_by_league_with_results(league: str) -> Iterable[LeagueEvent]:
         return [
-            LeagueEvent.parse_obj(event)
+            LeagueEvent.model_validate(event)
             for event in await LeagueEventTable.select(
                 *league_event_fields,
                 LeagueEventTable.event.name.as_alias("event_name"),

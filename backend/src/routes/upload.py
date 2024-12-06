@@ -90,7 +90,7 @@ async def upload_results_file(request: UploadFileRequest) -> Message:
 
 @router.post("/url", response_model=Message)
 async def upload_results_url(request: UploadURLRequest) -> Message:
-    file = await get_document_from_url(request.url)
+    file = await get_document_from_url(str(request.url))
 
     if not request.results_links.get("Standard Results"):
         request.results_links["Standard Results"] = request.url

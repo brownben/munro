@@ -22,7 +22,7 @@ def get_text_at(element: Element, path: str) -> str:
 
 
 def get_attribute(element: Element | None, attribute: str) -> str:
-    if element:
+    if element is not None:
         value = element.get(attribute)
 
     return value or ""

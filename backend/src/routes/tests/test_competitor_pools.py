@@ -24,7 +24,10 @@ class TestCompetitorPoolRoutes(TestCaseWithDatabase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), competitors_in_pool)
+        self.assertEqual(
+            response.json(),
+            [competitor.model_dump() for competitor in competitors_in_pool],
+        )
 
     def test_get_events_in_pool(self) -> None:
         response = self.client.get("/competitor-pools/Edinburgh Summer 2021/events")
@@ -34,7 +37,7 @@ class TestCompetitorPoolRoutes(TestCaseWithDatabase):
             response.json(),
             sorted(
                 [
-                    json.loads(event.json(exclude={"upload_key"}))
+                    json.loads(event.model_dump_json(exclude={"upload_key"}))
                     for event in sample_events
                     if event.competitor_pool == "Edinburgh Summer 2021"
                 ],
