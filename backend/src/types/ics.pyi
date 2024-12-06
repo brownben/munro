@@ -1,5 +1,5 @@
+from collections.abc import Iterable
 from datetime import date
-from typing import Iterable
 
 class Calendar:
     events: set[Event]

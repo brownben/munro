@@ -1,5 +1,5 @@
 import unittest
-from typing import ClassVar, Optional, cast
+from typing import ClassVar, cast
 
 from ...schemas import Competitor
 from ..import_file import ImportedRecord, ImportedResult
@@ -74,7 +74,7 @@ class TestMatchingResults(unittest.TestCase):
     def assertMatchedCompetitorEquals(
         self,
         imported_result: dict[str, str],
-        expected_competitor: Optional[Competitor],
+        expected_competitor: Competitor | None,
     ) -> None:
         self.assertEqual(
             match_result_to_competitor(

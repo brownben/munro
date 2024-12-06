@@ -1,4 +1,5 @@
-from typing import Iterable, Optional, TypeVar
+from collections.abc import Iterable
+from typing import TypeVar
 
 from ..schemas import EventResult, LeagueResult, Result
 from .dynamic_results import DYNAMIC_RESULT_TYPES
@@ -33,7 +34,7 @@ def assign_position_based_on_time(results: Iterable[TResult]) -> Iterable[TResul
 
     position = 0
     last_position = 0
-    last_course: Optional[str] = None
+    last_course: str | None = None
     last_time = -1
 
     for result in results:

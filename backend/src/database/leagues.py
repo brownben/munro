@@ -1,4 +1,5 @@
-from typing import Any, Iterable, Optional
+from collections.abc import Iterable
+from typing import Any
 
 from ..schemas import League, LeagueClass, LeagueGroup
 from .tables import CompetitorPool as CompetitorPoolTable
@@ -29,14 +30,14 @@ league_class_fields = (
 )
 
 
-def as_league(record: dict[str, Any] | None) -> Optional[League]:
+def as_league(record: dict[str, Any] | None) -> League | None:
     if not record:
         return None
 
     return League.parse_obj(record)
 
 
-def as_league_class(record: dict[str, Any] | None) -> Optional[LeagueClass]:
+def as_league_class(record: dict[str, Any] | None) -> LeagueClass | None:
     if not record:
         return None
 
@@ -107,7 +108,7 @@ class Leagues:
         )
 
     @staticmethod
-    async def get_by_name(name: str) -> Optional[League]:
+    async def get_by_name(name: str) -> League | None:
         return as_league(
             await LeagueTable.select(*league_fields)
             .where(LeagueTable.name == name)
@@ -164,7 +165,7 @@ class LeagueClasses:
         ).run()
 
     @staticmethod
-    async def get_by_name(league: str, cls: str) -> Optional[LeagueClass]:
+    async def get_by_name(league: str, cls: str) -> LeagueClass | None:
         return as_league_class(
             await LeagueClassTable.select(*league_class_fields)
             .where(LeagueClassTable.league == league)
@@ -236,7 +237,7 @@ class LeagueGroups:
         ]
 
     @staticmethod
-    async def get_by_name(league: str, group: str) -> Optional[LeagueGroup]:
+    async def get_by_name(league: str, group: str) -> LeagueGroup | None:
         database_result = (
             await LeagueGroupTable.select(*LeagueGroupTable.all_columns())
             .where(LeagueGroupTable.league == league)

@@ -1,5 +1,5 @@
 import asyncio
-from typing import Awaitable, Iterable
+from collections.abc import Awaitable, Iterable
 
 import icalendar
 from fastapi import Depends, Path

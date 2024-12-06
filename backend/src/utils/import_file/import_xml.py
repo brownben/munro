@@ -1,4 +1,5 @@
-from typing import Iterator, Optional, cast
+from collections.abc import Iterator
+from typing import cast
 from xml.etree.ElementTree import Element
 
 from defusedxml.ElementTree import fromstring as parse
@@ -8,7 +9,7 @@ from .import_file import ImportedRecord, ImportException
 iof_namespace = "{http://www.orienteering.org/datastandard/3.0}"
 
 
-def get_text(element: Optional[Element]) -> str:
+def get_text(element: Element | None) -> str:
     if element is None:
         return ""
     else:
@@ -20,7 +21,7 @@ def get_text_at(element: Element, path: str) -> str:
     return get_text(element.find(prefixed_path))
 
 
-def get_attribute(element: Optional[Element], attribute: str) -> str:
+def get_attribute(element: Element | None, attribute: str) -> str:
     if element:
         value = element.get(attribute)
 

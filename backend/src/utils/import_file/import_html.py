@@ -1,6 +1,7 @@
 import json
 import re
-from typing import Iterable, cast
+from collections.abc import Iterable
+from typing import cast
 
 from bs4 import BeautifulSoup, Tag
 
@@ -79,7 +80,7 @@ def parse_sitiming_file(file: str) -> tuple[list[str], list[list[str]]]:
     ]
 
     number_of_headings = len(table_headings) - 1
-    for results, course in zip(course_results, courses):
+    for results, course in zip(course_results, courses, strict=False):
         for row in results:
             while len(row) < number_of_headings:
                 # add extra column for when behind is missing for some results

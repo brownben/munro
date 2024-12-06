@@ -1,4 +1,4 @@
-from typing import Literal, Optional
+from typing import Literal
 
 from fastapi.routing import APIRouter
 from pydantic.networks import HttpUrl
@@ -31,7 +31,7 @@ async def process_upload_file(
     file: str,
     overwrite: bool,
     partial: bool,
-    results_links: Optional[dict[str, HttpUrl | Literal[""]]],
+    results_links: dict[str, HttpUrl | Literal[""]] | None,
 ) -> Message:
     event = await Events.get_by_id(event_id)
 

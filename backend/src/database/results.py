@@ -1,4 +1,4 @@
-from typing import Iterable, Iterator, Optional
+from collections.abc import Iterable, Iterator
 
 from ..schemas import EventResult, Result, ResultBeforeDatabase, ResultWithEventName
 from .tables import Result as ResultTable
@@ -51,7 +51,7 @@ class Results:
         ).run()
 
     @staticmethod
-    async def get_by_id(id: int) -> Optional[Result]:
+    async def get_by_id(id: int) -> Result | None:
         database_result = (
             await ResultTable.select(*results_fields)
             .where(ResultTable.id == id)

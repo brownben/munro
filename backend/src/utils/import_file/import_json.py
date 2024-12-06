@@ -1,5 +1,6 @@
 import json
-from typing import Iterator, cast
+from collections.abc import Iterator
+from typing import cast
 
 from .import_csv import (
     check_all_required_columns_present,

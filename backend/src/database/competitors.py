@@ -1,4 +1,5 @@
-from typing import Any, Iterable, Optional
+from collections.abc import Iterable
+from typing import Any
 
 from piccolo.columns.combination import WhereRaw
 
@@ -17,7 +18,7 @@ competitor_fields = (
 )
 
 
-def as_competitor(record: dict[str, Any] | None) -> Optional[Competitor]:
+def as_competitor(record: dict[str, Any] | None) -> Competitor | None:
     if not record:
         return None
 
@@ -67,7 +68,7 @@ class Competitors:
         )
 
     @staticmethod
-    async def get_by_id(competitor_id: int) -> Optional[Competitor]:
+    async def get_by_id(competitor_id: int) -> Competitor | None:
         return as_competitor(
             await CompetitorTable.select(*competitor_fields)
             .where(CompetitorTable.id == competitor_id)
@@ -76,7 +77,7 @@ class Competitors:
         )
 
     @staticmethod
-    async def get_by_name_and_pool(name: str, pool: str) -> Optional[Competitor]:
+    async def get_by_name_and_pool(name: str, pool: str) -> Competitor | None:
         return as_competitor(
             await CompetitorTable.select(*competitor_fields)
             .where(WhereRaw("LOWER(name) == LOWER({})", name))

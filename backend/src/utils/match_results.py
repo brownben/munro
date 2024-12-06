@@ -1,4 +1,4 @@
-from typing import Iterable, Optional
+from collections.abc import Iterable
 
 from ..schemas import Competitor
 from .import_file import ImportedResult
@@ -14,7 +14,7 @@ def strings_match(stringA: str, stringB: str) -> bool:
 def match_result_to_competitor(
     result: ImportedResult,
     competitors: Iterable[Competitor],
-) -> Optional[Competitor]:
+) -> Competitor | None:
     """Find a competitor which matches the given result"""
 
     def name_matches(competitor: Competitor) -> bool:

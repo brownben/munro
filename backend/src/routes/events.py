@@ -1,5 +1,5 @@
 import asyncio
-from typing import Iterable
+from collections.abc import Iterable
 
 from fastapi import Path
 from fastapi.param_functions import Depends

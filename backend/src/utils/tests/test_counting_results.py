@@ -1,5 +1,5 @@
 import unittest
-from typing import Iterable
+from collections.abc import Iterable
 
 from ...schemas import League, LeagueClass, LeagueEvent
 from ...schemas import LeagueResultScore as Result

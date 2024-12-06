@@ -1,3 +1,5 @@
+# ruff: noqa: UP007
+
 import datetime
 from typing import Literal, Optional
 

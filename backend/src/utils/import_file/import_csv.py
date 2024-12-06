@@ -1,4 +1,5 @@
-from typing import Any, Iterable, Literal, cast
+from collections.abc import Iterable
+from typing import Any, Literal, cast
 
 from .import_file import ImportedRecord, ImportException
 

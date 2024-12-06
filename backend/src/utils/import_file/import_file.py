@@ -1,5 +1,6 @@
 import re
-from typing import Any, Callable, Generator, Iterable, Literal, Optional, TypedDict
+from collections.abc import Callable, Generator, Iterable
+from typing import Any, Literal, TypedDict
 
 from ..age_class import date_to_age_class
 from ..times import parse_time
@@ -14,19 +15,19 @@ class ImportException(Exception):
 
 
 class ImportedRecord(TypedDict):
-    name: Optional[str]
-    firstName: Optional[str]
-    surname: Optional[str]
+    name: str | None
+    firstName: str | None
+    surname: str | None
     course: str
     time: str
-    status: Optional[str]
-    nonCompetitive: Optional[str]
-    position: Optional[str]
-    ageClass: Optional[str]
-    club: Optional[str]
-    filePoints: Optional[str]
-    birthDate: Optional[str]
-    gender: Optional[str]
+    status: str | None
+    nonCompetitive: str | None
+    position: str | None
+    ageClass: str | None
+    club: str | None
+    filePoints: str | None
+    birthDate: str | None
+    gender: str | None
 
 
 class ImportedResult:
@@ -83,7 +84,7 @@ class ImportedResult:
         self.club = self._get_club(result)
         self.file_points = self._get_int(result, "filePoints")
 
-    def __iter__(self) -> Generator[tuple[str, Any], None, None]:
+    def __iter__(self) -> Generator[tuple[str, Any]]:
         for key in (
             "name",
             "course",
@@ -133,7 +134,7 @@ def fix_combined_age_class_club(
 
 def import_results(
     parser: Callable[[str], Iterable[ImportedRecord]], file: str
-) -> Generator[ImportedResult, None, None]:
+) -> Generator[ImportedResult]:
     raw_records = parser(file)
     records = fix_times_from_excel(list(raw_records))
     records = fix_combined_age_class_club(records)

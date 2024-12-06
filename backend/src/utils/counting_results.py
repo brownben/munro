@@ -1,5 +1,5 @@
+from collections.abc import Callable, Iterable
 from itertools import groupby
-from typing import Callable, Iterable, Optional, Set
 
 from ..schemas import League, LeagueClass, LeagueEvent
 from ..schemas import LeagueResultScore as Result
@@ -11,7 +11,7 @@ def counting_results_finder(
     events: list[LeagueEvent],
     league_groups: dict[int, tuple[int, int]],
     league_class: LeagueClass,
-) -> Callable[[Iterable[Optional[Result]]], Set[Result]]:
+) -> Callable[[Iterable[Result | None]], set[Result]]:
     number_of_counting_events = (
         league_class.number_of_counting_events or league.number_of_counting_events
     )
@@ -23,11 +23,11 @@ def counting_results_finder(
         if group_name
     }
 
-    def find_counting_results(results: Iterable[Optional[Result]]) -> Set[Result]:
+    def find_counting_results(results: Iterable[Result | None]) -> set[Result]:
         """Returns the results that are used as their counting scores when calculating their total points"""
 
-        remaining_results: Set[Result] = set(result for result in results if result)
-        counting_results: Set[Result] = set()
+        remaining_results: set[Result] = set(result for result in results if result)
+        counting_results: set[Result] = set()
         number_of_counting_results = number_of_counting_events
 
         # If any results are marked as compulsory they will always be included in the total

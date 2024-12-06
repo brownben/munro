@@ -1,7 +1,8 @@
 import base64
 import datetime
 import os
-from typing import Any, Iterable, Literal, Optional, cast
+from collections.abc import Iterable
+from typing import Any, Literal, cast
 
 from pydantic.networks import HttpUrl
 
@@ -44,7 +45,7 @@ league_event_fields = (
 )
 
 
-def as_event(record: dict[str, Any]) -> Optional[EventWithUploadKey]:
+def as_event(record: dict[str, Any]) -> EventWithUploadKey | None:
     if not record:
         return None
 
@@ -103,7 +104,7 @@ class Events:
         )
 
     @staticmethod
-    async def get_by_id(id: str) -> Optional[EventWithUploadKey]:
+    async def get_by_id(id: str) -> EventWithUploadKey | None:
         return as_event(
             await EventTable.select(*event_fields)
             .where(EventTable.id == id)

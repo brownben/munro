@@ -1,6 +1,7 @@
 import collections
 import itertools
-from typing import ClassVar, Iterable, Type
+from collections.abc import Iterable
+from typing import ClassVar
 
 from ..schemas import Result
 from . import stats
@@ -318,7 +319,7 @@ class Fallback(PointsCalculator):
 def get_matching_points_calculator(scoring_method: str) -> PointsCalculator:
     """Finds the PointsCalculator which matches a scoring method"""
 
-    points_calculators: Iterable[Type[PointsCalculator]] = [
+    points_calculators: Iterable[type[PointsCalculator]] = [
         StaggeredPositionBased,
         PositionBasedWithDraw,
         PositionBased,

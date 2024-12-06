@@ -1,4 +1,4 @@
-from typing import Callable, Iterable, Iterator
+from collections.abc import Callable, Iterable, Iterator
 
 from .import_csv import process_csv_file
 from .import_file import ImportedRecord as ImportedRecord

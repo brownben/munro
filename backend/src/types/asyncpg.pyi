@@ -1,4 +1,5 @@
-from typing import Any, Iterator, TypeVar, overload
+from collections.abc import Iterator
+from typing import Any, TypeVar, overload
 
 _T = TypeVar("_T")
 

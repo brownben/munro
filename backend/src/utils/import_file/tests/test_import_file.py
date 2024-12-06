@@ -49,7 +49,7 @@ class TestImportFile(unittest.TestCase):
 
         imported_results = import_results_from_file(file)
 
-        for result, expected in zip(imported_results, expected_results):
+        for result, expected in zip(imported_results, expected_results, strict=True):
             self.assertDictEqual(dict(result), expected)
 
     def test_import_csv_file_fixing_excel_issue(self) -> None:
