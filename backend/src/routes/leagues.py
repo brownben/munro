@@ -99,7 +99,7 @@ async def get_league_details(
     name: str = Path(
         title="League Name",
         description="Name of the league to fetch",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
 ) -> LeagueOverviewAuthenticated:
     return await get_league(name)
@@ -110,7 +110,7 @@ async def get_league_details_with_event_upload_keys(
     name: str = Path(
         title="League Name",
         description="Name of the league to fetch",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> LeagueOverviewAuthenticated:
@@ -123,7 +123,7 @@ async def update_league_details(
     name: str = Path(
         title="League Name",
         description="Name of the league to update",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -140,7 +140,7 @@ async def delete_league(
     name: str = Path(
         title="League Name",
         description="Name of the league to delete",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -154,7 +154,7 @@ async def get_league_events(
     league_name: str = Path(
         title="League Name",
         description="Name of the league",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
 ) -> Iterable[EventWithLeagueDetailsAndUploadKey]:
     league, events = await asyncio.gather(
@@ -188,7 +188,7 @@ async def get_league_events_calendar(
     league_name: str = Path(
         title="League Name",
         description="Name of the league",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
 ) -> PlainTextResponse:
     league, events = await asyncio.gather(
@@ -241,12 +241,12 @@ async def get_league_results(
     league_name: str = Path(
         title="League Name",
         description="Name of the league to get the results for",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     cls: str = Path(
         title="Class",
         description="Name of the class to get results for",
-        example="Long",
+        examples=["Long"],
     ),
 ) -> LeagueResultsResponse:
     league, events, league_class, league_classes, league_groups = await asyncio.gather(
@@ -345,7 +345,7 @@ async def get_league_classes(
     league_name: str = Path(
         title="League Name",
         description="Name of the league",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
 ) -> Iterable[LeagueClass]:
     league, classes = await asyncio.gather(
@@ -364,12 +364,12 @@ async def get_league_class(
     league_name: str = Path(
         title="League Name",
         description="Name of the league ",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     cls: str = Path(
         title="Class Name",
         description="Name of the class",
-        example="Long",
+        examples=["Long"],
     ),
 ) -> LeagueClass:
     result = await LeagueClasses.get_by_name(league_name, cls)
@@ -386,7 +386,7 @@ async def create_league_class(
     league_name: str = Path(
         title="League Name",
         description="Name of the league",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -414,12 +414,12 @@ async def update_league_class(
     league_name: str = Path(
         title="League Name",
         description="Name of the league ",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     class_name: str = Path(
         title="Class Name",
         description="Name of the class",
-        example="Long",
+        examples=["Long"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -436,12 +436,12 @@ async def delete_league_class(
     league_name: str = Path(
         title="League Name",
         description="Name of the league",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     name: str = Path(
         title="Class Name",
         description="Name of the league class to delete",
-        example="Long",
+        examples=["Long"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -455,7 +455,7 @@ async def get_league_groups(
     league_name: str = Path(
         title="League Name",
         description="Name of the league ",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
 ) -> list[LeagueGroup]:
     league, groups = await asyncio.gather(
@@ -474,12 +474,12 @@ async def get_league_group(
     league_name: str = Path(
         title="League Name",
         description="Name of the league ",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     group: str = Path(
         title="Group Name",
         description="Name of the group",
-        example="Sprint",
+        examples=["Sprint"],
     ),
 ) -> LeagueGroup:
     result = await LeagueGroups.get_by_name(league_name, group)
@@ -496,7 +496,7 @@ async def create_league_group(
     league_name: str = Path(
         title="League Name",
         description="Name of the league",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -524,12 +524,12 @@ async def update_league_group(
     league_name: str = Path(
         title="League Name",
         description="Name of the league ",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     group_name: str = Path(
         title="Group Name",
         description="Name of the group",
-        example="Sprint",
+        examples=["Sprint"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -546,12 +546,12 @@ async def delete_league_group(
     league_name: str = Path(
         title="League Name",
         description="Name of the league",
-        example="Sprintelope 2021",
+        examples=["Sprintelope 2021"],
     ),
     name: str = Path(
         title="Group Name",
         description="Name of the league group to delete",
-        example="Sprint",
+        examples=["Sprint"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:

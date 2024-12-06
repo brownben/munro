@@ -70,7 +70,7 @@ async def get_event_details(
     id: str = Path(
         title="Event ID",
         description="ID of the event to fetch",
-        example="Tentsmuir2021-08-12",
+        examples=["Tentsmuir2021-08-12"],
     ),
 ) -> EventWithUploadKey:
     result = await Events.get_by_id(id)
@@ -87,7 +87,7 @@ async def update_event_details(
     id: str = Path(
         title="Event ID",
         description="ID of the event to fetch",
-        example="Tentsmuir2021-08-12",
+        examples=["Tentsmuir2021-08-12"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -109,7 +109,7 @@ async def delete_event(
     id: str = Path(
         title="Event ID",
         description="ID of the event to fetch",
-        example="Tentsmuir2021-08-12",
+        examples=["Tentsmuir2021-08-12"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -123,7 +123,7 @@ async def get_event_details_with_upload_key(
     id: str = Path(
         title="Event ID",
         description="ID of the event to fetch",
-        example="Tentsmuir2021-08-12",
+        examples=["Tentsmuir2021-08-12"],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> EventWithUploadKey:
@@ -140,7 +140,7 @@ async def get_results_for_event(
     id: str = Path(
         title="Event ID",
         description="ID of the event to fetch results for",
-        example="Tentsmuir2021-08-12",
+        examples=["Tentsmuir2021-08-12"],
     ),
 ) -> EventWithResults:
     event, results, league = await asyncio.gather(

@@ -41,7 +41,7 @@ async def get_competitor_details(
     id: int = Path(
         title="Competitor ID",
         description="ID of the competitor to fetch",
-        example=7,
+        examples=[7],
     ),
 ) -> Competitor:
     result = await Competitors.get_by_id(id)
@@ -58,7 +58,7 @@ async def update_competitor_details(
     id: int = Path(
         title="Competitor ID",
         description="ID of the competitor to fetch",
-        example=7,
+        examples=[7],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
@@ -75,7 +75,7 @@ async def get_overview_for_competitor(
     id: int = Path(
         title="Competitor ID",
         description="ID of the competitor to fetch results for",
-        example=7,
+        examples=[7],
     ),
 ) -> CompetitorOverview:
     competitor, results, league = await asyncio.gather(

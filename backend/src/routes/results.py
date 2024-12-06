@@ -47,7 +47,7 @@ async def update_result(
     id: int = Path(
         title="Competitor ID",
         description="ID of the competitor to fetch",
-        example=7,
+        examples=[7],
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:

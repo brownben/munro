@@ -21,7 +21,7 @@ async def get_all_competitor_pools() -> Iterable[str]:
 async def get_leagues_in_competitor_pool(
     name: str = Path(
         title="Competitor Pool Name",
-        example="Edinburgh Winter 2020",
+        examples=["Edinburgh Winter 2020"],
     ),
 ) -> Iterable[League]:
     return await Leagues.get_by_competitor_pool(name)
@@ -31,7 +31,7 @@ async def get_leagues_in_competitor_pool(
 async def get_competitors_in_competitor_pool(
     name: str = Path(
         title="Competitor Pool Name",
-        example="Edinburgh Winter 2020",
+        examples=["Edinburgh Winter 2020"],
     ),
 ) -> Iterable[Competitor]:
     return await Competitors.get_by_pool(name)
@@ -41,7 +41,7 @@ async def get_competitors_in_competitor_pool(
 async def get_events_in_competitor_pool(
     name: str = Path(
         title="Competitor Pool Name",
-        example="Edinburgh Winter 2020",
+        examples=["Edinburgh Winter 2020"],
     ),
 ) -> Iterable[EventWithUploadKey]:
     return await Events.get_by_competitor_pool(name)
