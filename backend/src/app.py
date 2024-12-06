@@ -1,4 +1,6 @@
 import os
+from collections.abc import AsyncGenerator
+from contextlib import asynccontextmanager
 from typing import cast
 
 from fastapi import FastAPI
@@ -19,10 +21,30 @@ from .routes.upload import router as upload_router
 
 os.environ["PICCOLO_CONF"] = "src.database_conf"
 
+
+@asynccontextmanager
+async def lifespan(
+    app: FastAPI,
+) -> AsyncGenerator[None]:  # coverage: ignore
+    try:
+        if engine := engine_finder():
+            await cast(PostgresEngine, engine).start_connection_pool()
+    except Exception:
+        print("Unable to connect to the database")
+
+    yield
+
+    try:
+        await cast(PostgresEngine, engine).close_connection_pool()
+    except Exception:
+        print("Unable to connect to the database")
+
+
 app = FastAPI(
     title="Munro Leagues",
     description="League Results. Sorted. The easiest way to calculate results for a series of sporting events",
     version="2.0.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -44,21 +66,3 @@ app.include_router(results_router)
 app.include_router(search_router)
 app.include_router(sitemap_router)
 app.include_router(upload_router)
-
-
-@app.on_event("startup")
-async def open_database_connection_pool() -> None:  # coverage: ignore
-    try:
-        if engine := engine_finder():
-            await cast(PostgresEngine, engine).start_connection_pool()
-    except Exception:
-        print("Unable to connect to the database")
-
-
-@app.on_event("shutdown")
-async def close_database_connection_pool() -> None:  # coverage: ignore
-    try:
-        if engine := engine_finder():
-            await cast(PostgresEngine, engine).close_connection_pool()
-    except Exception:
-        print("Unable to connect to the database")

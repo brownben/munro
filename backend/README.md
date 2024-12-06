@@ -1,6 +1,9 @@
 # Backend
 
 ```sh
+# Install dependencies for development
+uv sync --extra dev
+
 # Fix Style
 ruff format .
 

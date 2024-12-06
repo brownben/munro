@@ -48,38 +48,30 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.12'
+          python-version: '3.13'
 
       - name: Install `uv`
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
       - name: Install Dependencies
-        run: |
-          uv pip compile pyproject.toml --extra dev -o requirements-dev.txt
-          uv venv
-          uv pip install -r requirements-dev.txt
-
-      - name: Activate virtualenv
-        run: |
-          . .venv/bin/activate
-          echo PATH=$PATH >> $GITHUB_ENV
+        run: uv sync --extra dev
 
       - name: Typecheck
         working-directory: backend
-        run: mypy
+        run: uv run mypy
 
       - name: Format
         working-directory: backend
         run: |
-          ruff format . --check
+          uv run ruff format . --check
 
       - name: Lint
         working-directory: backend
         run: |
-          ruff check .
+          uv run ruff check .
 
       - name: Test
         working-directory: backend
         run: |
-          coverage run -m unittest
-          coverage report --skip-empty
+          uv run coverage run -m unittest
+          uv run coverage report --skip-empty

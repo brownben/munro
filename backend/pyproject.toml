@@ -6,16 +6,15 @@ keywords = ['sports', 'leagues', 'scoring', 'results', 'orienteering']
 authors = [
   { name = "Ben Brown", email = "9870007+brownben@users.noreply.github.com" },
 ]
-homepage = 'https://munroleagues.com'
-repository = 'https://github.com/brownben/munro'
 readme = 'README.md'
-license = "MIT"
+license = { file = "../LICENSE.md" }
+requires-python = ">=3.13"
 
 dependencies = [
   # fastapi
-  "fastapi~=0.115.4",
-  "uvicorn[standard]~=0.32.0",
-  "uvloop~=0.19.0; platform_system != 'Windows'",
+  "fastapi~=0.115.6",
+  "uvicorn[standard]~=0.32.1",
+  "uvloop~=0.21.0; platform_system != 'Windows'",
 
   # database
   "piccolo==0.119.0",
@@ -27,27 +26,23 @@ dependencies = [
   "defusedxml~=0.7.1",
 
   # check firebase auth tokens
-  "google-auth~=2.35.0",
+  "google-auth~=2.36.0",
   "requests~=2.32.3",
 
   "httpx~=0.27.2",    # make requests for results files
-  "icalendar~=6.0.1", # generate ical files
+  "icalendar~=6.1.0", # generate ical files
 ]
 optional-dependencies.dev = [
   "aiosqlite~=0.20.0",
-  "coverage~=7.6.4",
+  "coverage~=7.6.8",
   "mypy~=1.13.0",
   "respx~=0.21.1",
-  "ruff~=0.7.1",
+  "ruff~=0.8.2",
   "time-machine~=2.16.0",
   "types-beautifulsoup4~=4.12.0",
   "types-icalendar~=6.0.1",
   "types-requests~=2.32.0",
 ]
-
-[build-system]
-requires = ["setuptools >= 61.0"]
-build-backend = "setuptools.build_meta"
 
 [tool.coverage.run]
 source = ["src"]
