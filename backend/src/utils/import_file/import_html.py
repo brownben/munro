@@ -17,6 +17,7 @@ SITIMING_PARSE_FAILURE_MESSAGE = (
 )
 NBSP_REGEX = re.compile("&nbsp;", flags=re.IGNORECASE)
 SOCIAL_LINK_REGEX = re.compile("<a href=.*?></a>", flags=re.IGNORECASE)
+SPAN_REGEX = re.compile("<span.*?>|<\\/span>", flags=re.IGNORECASE)
 
 
 def parse_sitiming_script(script_tag_text: str) -> list[str]:
@@ -38,8 +39,9 @@ def parse_sitiming_script(script_tag_text: str) -> list[str]:
     # replace &nbsp; with real spaces
     script_text = NBSP_REGEX.sub("", script_text)
 
-    # remove the links to social media
+    # remove the links to social media, and span tags
     script_text = SOCIAL_LINK_REGEX.sub("", script_text)
+    script_text = SPAN_REGEX.sub("", script_text)
 
     # split into the blocks of JSON
     IF_RETURN = r";\n*\s*if\s*\(tableNumber == [0-9]+\)\n*\s*return\s*\n*"
@@ -103,7 +105,7 @@ def process_html_file(file: str) -> Iterable[ImportedRecord]:
         header_row, result_rows = parse_sitiming_file(file)
     else:
         raise ImportException(
-            "Unknown HTML format, currently only able to import from British Orienteering and SITiming results."
+            "Unknown HTML format, currently only able to import from SITiming results."
         )
 
     if len(result_rows) == 0:
