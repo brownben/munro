@@ -24,6 +24,7 @@ const filteredLinks = computed(() =>
 const getIcon = (type: string) => {
   if (type === 'Standard Results') return DocumentTextIcon
   else if (type === 'Routegadget') return MapIcon
+  else if (type === 'Livelox') return MapIcon
   else if (type === 'Winsplits') return ChartBarIcon
   else if (type === 'GPS Tracking') return MapPinIcon
   else return LinkIcon

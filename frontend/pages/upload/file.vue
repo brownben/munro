@@ -15,7 +15,8 @@ const form = reactive({
     Routegadget: '',
     Winsplits: '',
     'GPS Tracking': '',
-  },
+    Livelox: '',
+  } as Record<string, string>,
   overwrite: false,
 })
 
@@ -28,14 +29,7 @@ const getEvent = async () => {
     event.value = await useGet(`events/${form.event_id}`)
 
     const links = event.value?.results_links
-    if (links) {
-      if (links.Winsplits) form.results_links.Winsplits = links.Winsplits
-      if (links.Routegadget) form.results_links.Routegadget = links.Routegadget
-      if (links['Standard Results'])
-        form.results_links['Standard Results'] = links['Standard Results']
-      if (links['GPS Tracking'])
-        form.results_links['GPS Tracking'] = links['GPS Tracking']
-    }
+    if (links) form.results_links = links
   } catch {
     event.value = null
   }
@@ -144,6 +138,13 @@ useTitle({
       <Input
         v-model="form.results_links['Winsplits']"
         label="Winsplits:"
+        type="url"
+        class="col-span-2"
+        :validator="IsValidURL"
+      />
+      <Input
+        v-model="form.results_links['Livelox']"
+        label="Livelox:"
         type="url"
         class="col-span-2"
         :validator="IsValidURL"

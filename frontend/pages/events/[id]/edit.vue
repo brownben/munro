@@ -97,6 +97,13 @@ useTitle({
         :validator="IsValidURL"
       />
       <Input
+        v-model="form.results_links['Livelox']"
+        label="Livelox:"
+        type="url"
+        class="col-span-2"
+        :validator="IsValidURL"
+      />
+      <Input
         v-model="form.results_links['GPS Tracking']"
         label="GPS Tracking:"
         type="url"
