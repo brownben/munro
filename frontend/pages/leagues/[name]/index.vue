@@ -111,7 +111,7 @@ if (league.value) {
           >
             Latest Results
           </h2>
-          <Event :event="latestEvents[0]" class="pb-6 pt-4" />
+          <Event :event="latestEvents[0]" class="pb-6 pt-4" small />
         </div>
         <div v-if="nextEvent">
           <h2
@@ -119,7 +119,7 @@ if (league.value) {
           >
             Next Event
           </h2>
-          <Event :event="nextEvent" class="pb-6 pt-4" />
+          <Event :event="nextEvent" class="pb-6 pt-4" small />
         </div>
         <div v-else>
           <p
@@ -132,6 +132,7 @@ if (league.value) {
             v-if="latestEvents.length > 1"
             :event="latestEvents[1]"
             class="pb-6 pt-4"
+            small
           />
         </div>
       </section>

@@ -21,11 +21,13 @@ const props = defineProps({
 })
 const emit = defineEmits(['event-changed'])
 
-const resultsLinks = computed(() =>
-  Object.keys(props.event.results_links).filter(
-    (link) => props.event.results_links[link],
-  ),
-)
+const resultsLinks = computed(() => {
+  const resultsLinks = props.event.results_links
+  const links = Object.keys(resultsLinks).filter((link) => resultsLinks[link])
+
+  if (props.small) return links.slice(-3)
+  return links
+})
 const uploadLink = `/upload/file?event_id=${encodeURIComponent(
   props.event.id,
 )}&upload_key=${encodeURIComponent(props.event.upload_key ?? '')}`
