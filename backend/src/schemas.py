@@ -283,6 +283,12 @@ class HomeDetails(BaseModel):
     latestResults: list[Event]
 
 
+class StatsOverview(BaseModel):
+    leagues: int
+    events: int
+    results: int
+
+
 class CompetitorOverview(Competitor):
     results: list[ResultWithEventName]
     league: str
