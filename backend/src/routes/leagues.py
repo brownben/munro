@@ -249,7 +249,13 @@ async def get_league_results(
         examples=["Long"],
     ),
 ) -> LeagueResultsResponse:
-    league, events, league_class, league_classes, league_groups = await asyncio.gather(
+    (
+        league,
+        events,
+        league_class,
+        league_classes,
+        league_groups,
+    ) = await asyncio.gather(
         Leagues.get_by_name(league_name),
         LeagueEvents.get_by_league_with_results(league_name),
         LeagueClasses.get_by_name(league_name, cls),
@@ -261,6 +267,12 @@ async def get_league_results(
         raise HTTP_404(f"Couldn't find league with name `{league_name}`")
     if not league_class:
         raise HTTP_404(f"Couldn't find league class with name `{cls}`")
+
+    competitor_pool = await Competitors.get_pool_by_name(league.competitor_pool)
+    if not competitor_pool:
+        raise HTTP_404(
+            f"Couldn't find competitor pool with name `{league.competitor_pool}`"
+        )
 
     competitors = await Competitors.get_by_pool(league.competitor_pool)
     league_results = {
@@ -337,6 +349,7 @@ async def get_league_results(
         classes=[cls.name for cls in league_classes],
         results=results,
         events=events_with_results,
+        eligibility=competitor_pool.eligibility,
     )
 
 

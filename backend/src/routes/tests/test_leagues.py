@@ -1,6 +1,7 @@
 from unittest.mock import ANY, AsyncMock, MagicMock, call, patch
 
 from ...database import Competitors, LeagueClasses, LeagueGroups, Leagues, Results
+from ...schemas import CompetitorPool
 from .helpers import TestCaseWithDatabase
 
 
@@ -325,6 +326,10 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
     @patch("src.routes.leagues.Competitors")
     def test_no_events_no_competitors(self, mock_competitors: MagicMock) -> None:
         mock_competitors.get_by_pool = AsyncMock([])
+        mock_competitors.get_pool_by_name = AsyncMock(
+            return_value=CompetitorPool(name="Edinburgh Summer 2021")
+        )
+
         response = self.client.get("/leagues/Sprintelope 2021/results/Long")
 
         self.assertEqual(response.status_code, 200)
@@ -336,6 +341,7 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
                 "classes": ["Long", "Multiple", "Overall", "Short"],
                 "events": [],
                 "results": [],
+                "eligibility": False,
             },
         )
 
@@ -347,6 +353,7 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
             response.json(),
             {
                 "league": "Sprintelope 2021",
+                "eligibility": False,
                 "class_name": "Long",
                 "classes": ["Long", "Multiple", "Overall", "Short"],
                 "events": [
@@ -379,6 +386,7 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
                         "age_class": "M35",
                         "total_points": 100,
                         "position": 1,
+                        "eligible": True,
                         "points": [
                             {
                                 "event": "TestEvent-2021-12-12",
@@ -401,6 +409,7 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
                         "age_class": "M18",
                         "total_points": 99,
                         "position": 2,
+                        "eligible": True,
                         "points": [
                             {
                                 "event": "TestEvent-2021-12-12",
@@ -418,6 +427,7 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
                         "age_class": "W21",
                         "total_points": 99,
                         "position": 2,
+                        "eligible": True,
                         "points": [
                             {
                                 "event": "TestEvent-2021-12-12",

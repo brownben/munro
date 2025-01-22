@@ -45,8 +45,8 @@ async def transfer_result(
 async def update_result(
     result: ResultUpdate,
     id: int = Path(
-        title="Competitor ID",
-        description="ID of the competitor to fetch",
+        title="Result ID",
+        description="ID of the result to update",
         examples=[7],
     ),
     authentication: bool = Depends(require_authentication),

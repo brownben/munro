@@ -14,6 +14,7 @@ const props = defineProps({
   results: { type: Array as PropType<LeagueResult[]>, required: true },
   filters: { type: Object as PropType<Filters>, required: true },
   events: { type: Array as PropType<LeagueEvent[]>, required: true },
+  eligibility: { type: Boolean, default: false },
 })
 
 type Column =
@@ -175,6 +176,7 @@ const ariaSorted = computed(() => {
       :result="result"
       :events="events"
       :striped="index % 2 == 0"
+      :eligibility="eligibility"
     />
   </table>
   <div v-else class="mx-auto max-w-screen-lg px-6">

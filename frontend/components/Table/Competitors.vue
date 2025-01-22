@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { PencilSquareIcon } from '@heroicons/vue/24/outline'
 import type { PropType } from 'vue'
 import type { Filters } from '~/utils/filter'
 import type { CompetitorWithAgeGender } from '~~/utils/ageClass'
@@ -13,6 +12,11 @@ const props = defineProps({
     required: true,
   },
   filters: { type: Object as PropType<Filters>, required: true },
+  eligibility: {
+    type: Boolean,
+    required: false,
+    default: false,
+  },
 })
 
 type Column = keyof CompetitorWithAgeGender
@@ -114,6 +118,13 @@ watch([activeColumn, ascending], () => {
             />
           </button>
         </th>
+        <th
+          v-if="eligibility"
+          class="hidden px-1 text-center font-medium sm:table-cell"
+          :aria-sort="ariaSorted?.club"
+        >
+          Eligible?
+        </th>
         <th></th>
       </tr>
     </thead>
@@ -152,12 +163,12 @@ watch([activeColumn, ascending], () => {
         <td class="hidden text-center md:table-cell">
           {{ competitor.club || ' ' }}
         </td>
+        <td v-if="eligibility" class="hidden text-center sm:table-cell">
+          {{ competitor.eligible }}
+        </td>
         <td>
           <div class="flex flex-wrap justify-around gap-2">
-            <ButtonSmall :link="`/competitors/${competitor.id}/edit`">
-              <PencilSquareIcon class="size-4" aria-hidden="true" />
-              Edit
-            </ButtonSmall>
+            <slot :competitor="competitor"></slot>
           </div>
         </td>
       </tr>

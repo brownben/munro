@@ -8,6 +8,7 @@ from ..database import Competitors, Results
 from ..exceptions import HTTP_404
 from ..schemas import (
     Competitor,
+    CompetitorEligibility,
     CompetitorMergeRequest,
     CompetitorOverview,
     Message,
@@ -68,6 +69,22 @@ async def update_competitor_details(
         return Message(detail=f"Competitor `{competitor.name}` updated")
     else:
         raise HTTP_404(f"Couldn't find competitor with the id `{id}`")
+
+
+@router.patch("/{id}/eligibility", response_model=Message)
+async def update_competitor_eligibility(
+    eligibility: CompetitorEligibility,
+    id: int = Path(
+        title="Competitor ID",
+        description="ID of the competitor to update",
+        examples=[7],
+    ),
+    authentication: bool = Depends(require_authentication),
+) -> Message:
+    eligible = eligibility.eligible
+    await Competitors.set_eligibility(id, eligible)
+
+    return Message(detail=f"Competitor `{id}` eligibility updated to `{eligible}`")
 
 
 @router.get("/{id}/results", response_model=CompetitorOverview)

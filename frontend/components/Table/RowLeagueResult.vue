@@ -7,6 +7,7 @@ defineProps({
   result: { type: Object as PropType<Result>, required: true },
   events: { type: Array as PropType<LeagueEvent[]>, required: true },
   striped: { type: Boolean, default: false },
+  eligibility: { type: Boolean, default: false },
 })
 </script>
 <template>
@@ -18,6 +19,9 @@ defineProps({
       <td class="py-2">
         <span class="block leading-tight text-gray-900 dark:text-gray-100">
           {{ result.name }}
+          <span v-if="eligibility && result.eligible" class="text-main-300">
+            *
+          </span>
         </span>
         <span
           class="text-sm leading-tight text-gray-500 md:hidden dark:text-gray-400"

@@ -38,6 +38,7 @@ class TestGetCompetitorRoutes(TestCaseWithDatabase):
                 "club": "HAT",
                 "age_class": "M18",
                 "id": 1,
+                "eligible": True,
                 "results": [
                     {
                         "id": 1,

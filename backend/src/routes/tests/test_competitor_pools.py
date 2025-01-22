@@ -1,6 +1,7 @@
 import json
 from typing import cast
 
+from ...schemas import CompetitorPool
 from .helpers import TestCaseWithDatabase
 from .sample_data import sample_competitor_pools, sample_competitors, sample_events
 
@@ -10,7 +11,10 @@ class TestCompetitorPoolRoutes(TestCaseWithDatabase):
         response = self.client.get("/competitor-pools")
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json(), sample_competitor_pools)
+        self.assertEqual(
+            response.json(),
+            [CompetitorPool(name=x).model_dump() for x in sample_competitor_pools],
+        )
 
     def test_get_competitors_in_pool(self) -> None:
         competitors_in_pool = [

@@ -3,25 +3,22 @@ import {
   UserGroupIcon,
   AdjustmentsVerticalIcon,
   TrophyIcon,
+  PencilSquareIcon,
 } from '@heroicons/vue/24/outline'
 import type { Filters } from '~/utils/filter'
-import type { Competitor, League } from '~/api-types'
+import type { CompetitorPool } from '~/api-types'
 
 requireLogin()
 
 const route = useRoute()
 const pool_name = queryToString(route.params.name)
 
-const { data } = await useData<Competitor[]>(
-  `competitor-pools/${pool_name}/competitors`,
-)
-const { data: leagues } = await useData<League[]>(
-  `competitor-pools/${pool_name}/leagues`,
-)
+const { data } = await useData<CompetitorPool>(`competitor-pools/${pool_name}`)
 
 const competitors = computed(
-  () => data.value?.map(competitorWithAgeGender) ?? [],
+  () => data.value?.competitors.map(competitorWithAgeGender) ?? [],
 )
+const leagues = computed(() => data.value?.leagues ?? [])
 
 const show = ref(false)
 const filters = reactive<Filters>({
@@ -33,6 +30,26 @@ const filters = reactive<Filters>({
   female: queryToString(route.query.female) !== 'false',
 })
 
+const links = [
+  {
+    text: 'Add Result',
+    location: `/results/manual?competitor_pool=${pool_name}`,
+  },
+  {
+    text: 'Add Competitor',
+    location: `/competitors/create?competitor_pool=${pool_name}`,
+  },
+  {
+    text: 'Merge Competitors',
+    location: `/competitors/merge?competitor_pool=${pool_name}`,
+  },
+]
+if (data.value?.eligibility)
+  links.push({
+    text: 'Eligibility',
+    location: `/competitor-pools/${pool_name}/eligibility`,
+  })
+
 useTitle({
   title: `${route.params.name} Competitor Pool`,
   description: `List of competitors in the ${route.params.name} competitor pool`,
@@ -42,10 +59,10 @@ useTitle({
   <div>
     <Heading
       title="Competitors"
-      :link-text="leagues?.[0]?.name"
-      :link-location="`/leagues/${leagues?.[0]?.name}`"
+      :link-text="leagues[0]?.name"
+      :link-location="`/leagues/${leagues[0]?.name}`"
     >
-      <ImageRow v-if="leagues && leagues.length > 1" :icon="TrophyIcon">
+      <ImageRow v-if="leagues.length > 1" :icon="TrophyIcon">
         <strong class="font-medium">{{ leagues.length }}</strong>
         Leagues
       </ImageRow>
@@ -97,29 +114,20 @@ useTitle({
       </section>
     </transition>
 
-    <LinksSection
-      :links="[
-        {
-          text: 'Add Result',
-          location: `/results/manual?competitor_pool=${pool_name}`,
-        },
-        {
-          text: 'Add Competitor',
-          location: `/competitors/create?competitor_pool=${pool_name}`,
-        },
-        {
-          text: 'Merge Competitors',
-          location: `/competitors/merge?competitor_pool=${pool_name}`,
-        },
-      ]"
-      dark
-    >
-      Manage competitors
-    </LinksSection>
+    <LinksSection :links="links" dark> Manage competitors </LinksSection>
     <main
       class="mx-auto w-full max-w-screen-lg flex-grow py-6 md:py-10 lg:px-8"
     >
-      <TableCompetitors :competitors="competitors" :filters="filters" />
+      <TableCompetitors
+        v-slot="{ competitor }"
+        :competitors="competitors"
+        :filters="filters"
+      >
+        <ButtonSmall :link="`/competitors/${competitor.id}/edit`">
+          <PencilSquareIcon class="size-4" aria-hidden="true" />
+          Edit
+        </ButtonSmall>
+      </TableCompetitors>
     </main>
   </div>
 </template>

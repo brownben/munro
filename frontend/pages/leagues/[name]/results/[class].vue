@@ -57,6 +57,7 @@ if (data.value) {
         :results="results"
         :filters="filters"
         :events="data.events"
+        :eligibility="data.eligibility"
       />
     </section>
     <LinksSection

@@ -96,6 +96,7 @@ export interface LeagueResult {
   position: number
 
   points: (LeagueResultScore | null)[]
+  eligible: boolean
 }
 
 export interface LeagueResultsOverview {
@@ -104,6 +105,7 @@ export interface LeagueResultsOverview {
   classes: string[]
   results: LeagueResult[]
   events: LeagueEvent[]
+  eligibility: boolean
 }
 
 export interface EventResult {
@@ -144,11 +146,19 @@ export interface Competitor {
   age_class: string
   club: string
   competitor_pool: string
+  eligible: boolean
 }
 
 export interface CompetitorOverview extends Competitor {
   results: EventResultWithEventName[]
   league: string
+}
+
+export interface CompetitorPool {
+  name: string
+  eligibility: boolean
+  leagues: League[]
+  competitors: Competitor[]
 }
 
 export interface Search {

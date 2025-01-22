@@ -3,7 +3,7 @@ from typing import Any
 
 from piccolo.columns.combination import WhereRaw
 
-from ..schemas import Competitor, NewCompetitor
+from ..schemas import Competitor, CompetitorPool, NewCompetitor
 from .tables import Competitor as CompetitorTable
 from .tables import CompetitorPool as CompetitorPoolTable
 from .tables import League as LeagueTable
@@ -15,6 +15,11 @@ competitor_fields = (
     CompetitorTable.competitor_pool,
     CompetitorTable.club,
     CompetitorTable.age_class,
+    CompetitorTable.eligible,
+)
+competitor_pool_fields = (
+    CompetitorPoolTable.name,
+    CompetitorPoolTable.eligibility,
 )
 
 
@@ -25,15 +30,29 @@ def as_competitor(record: dict[str, Any] | None) -> Competitor | None:
     return Competitor.model_validate(record)
 
 
+def as_competitor_pool(record: dict[str, Any] | None) -> CompetitorPool | None:
+    if not record:
+        return None
+
+    return CompetitorPool.model_validate(record)
+
+
 class Competitors:
     @staticmethod
-    async def get_all_pools() -> Iterable[str]:
+    async def get_all_pools() -> Iterable[CompetitorPool]:
         return (
-            str(competitor_pool)
+            CompetitorPool.model_validate(competitor_pool)
             for competitor_pool in await CompetitorPoolTable.select(
-                CompetitorPoolTable.name
-            )
-            .output(as_list=True)
+                *competitor_pool_fields
+            ).run()
+        )
+
+    @staticmethod
+    async def get_pool_by_name(name: str) -> CompetitorPool | None:
+        return as_competitor_pool(
+            await CompetitorPoolTable.select(*competitor_pool_fields)
+            .where(CompetitorPoolTable.name == name)
+            .first()
             .run()
         )
 
@@ -104,6 +123,14 @@ class Competitors:
         await existing_competitor.save().run()
 
         return True
+
+    @staticmethod
+    async def set_eligibility(competitor_id: int, new_eligibility: bool) -> None:
+        await (
+            CompetitorTable.update({CompetitorTable.eligible: new_eligibility})
+            .where(CompetitorTable.id == competitor_id)
+            .run()
+        )
 
     @staticmethod
     async def merge(

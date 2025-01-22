@@ -149,14 +149,20 @@ class NewCompetitor(BaseModel):
 
     club: str = ""
     age_class: str = ""
+    eligible: bool = True
 
 
 class Competitor(NewCompetitor):
     id: int
 
 
+class CompetitorEligibility(BaseModel):
+    eligible: bool
+
+
 class CompetitorPool(BaseModel):
     name: str
+    eligibility: bool = False
 
 
 # Requests and Repsonses
@@ -199,6 +205,7 @@ class LeagueResult(BaseModel):
     position: int = 0
 
     points: list[Optional[LeagueResultScore]] = []
+    eligible: bool = True
 
 
 class LeagueResultsResponse(BaseModel):
@@ -207,6 +214,7 @@ class LeagueResultsResponse(BaseModel):
     classes: list[str]
     results: list[LeagueResult]
     events: list[LeagueEvent]
+    eligibility: bool = False
 
 
 class EventResult(BaseModel):
@@ -292,6 +300,11 @@ class StatsOverview(BaseModel):
 class CompetitorOverview(Competitor):
     results: list[ResultWithEventName]
     league: str
+
+
+class CompetitorPoolOverview(CompetitorPool):
+    competitors: list[Competitor]
+    leagues: list[League]
 
 
 class ResultUpdate(BaseModel):

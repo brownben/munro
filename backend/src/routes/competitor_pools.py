@@ -1,10 +1,19 @@
+import asyncio
 from collections.abc import Iterable
 
 from fastapi import Path
 from fastapi.routing import APIRouter
 
 from ..database import Competitors, Events, Leagues
-from ..schemas import Competitor, Event, EventWithUploadKey, League
+from ..exceptions import HTTP_404
+from ..schemas import (
+    Competitor,
+    CompetitorPool,
+    CompetitorPoolOverview,
+    Event,
+    EventWithUploadKey,
+    League,
+)
 
 router = APIRouter(
     prefix="/competitor-pools",
@@ -12,9 +21,33 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=list[str])
-async def get_all_competitor_pools() -> Iterable[str]:
+@router.get("/", response_model=list[CompetitorPool])
+async def get_all_competitor_pools() -> Iterable[CompetitorPool]:
     return await Competitors.get_all_pools()
+
+
+@router.get("/{name}", response_model=CompetitorPoolOverview)
+async def get_competitor_pool(
+    name: str = Path(
+        title="Competitor Pool Name",
+        examples=["Edinburgh Winter 2020"],
+    ),
+) -> CompetitorPoolOverview:
+    pool, leagues, competitors = await asyncio.gather(
+        Competitors.get_pool_by_name(name),
+        Leagues.get_by_competitor_pool(name),
+        Competitors.get_by_pool(name),
+    )
+
+    if pool is None:
+        raise HTTP_404(f"Couldn't find competitor pool with the name `{name}`")
+
+    return CompetitorPoolOverview(
+        name=pool.name,
+        eligibility=pool.eligibility,
+        leagues=leagues,
+        competitors=competitors,
+    )
 
 
 @router.get("/{name}/leagues", response_model=list[League])

@@ -15,6 +15,7 @@ from piccolo.table import Table
 
 class CompetitorPool(Table):
     name = Varchar(40, null=False, primary_key=True)
+    eligibility = Boolean(default=False)
 
 
 class League(Table):
@@ -54,6 +55,7 @@ class Competitor(Table):
     name = Varchar(100, null=False)
     club = Varchar(40)
     age_class = Varchar(20)
+    eligible = Boolean(default=True)
 
 
 class Event(Table):
