@@ -21,7 +21,7 @@ defineProps({
     </div>
     <table class="col-span-2 text-left text-sm">
       <tr
-        class="border-b border-main-200 font-medium text-gray-600 dark:border-gray-400 dark:text-gray-300"
+        class="border-main-200 border-b font-medium text-gray-600 dark:border-gray-400 dark:text-gray-300"
       >
         <th class="px-4 py-2">Position</th>
         <th v-if="exampleTimes.length" class="px-4">Time</th>

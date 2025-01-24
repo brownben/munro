@@ -24,7 +24,7 @@ useSeoMeta({
       ]"
       dark
     >
-      <span class="text-3xl text-main-100">
+      <span class="text-main-100 text-3xl">
         Hello
         <span class="font-black text-white">
           {{ user?.displayName ?? 'Admin' }} </span
@@ -34,7 +34,7 @@ useSeoMeta({
 
     <section
       v-if="data?.latestResults"
-      class="mx-auto grid max-w-screen-lg grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 sm:py-12 lg:px-8"
+      class="mx-auto grid max-w-(--breakpoint-lg) grid-cols-1 gap-8 px-6 py-10 sm:grid-cols-2 sm:py-12 lg:px-8"
     >
       <div class="py-2 sm:py-4">
         <h2 class="text-3xl font-black text-gray-700 dark:text-gray-300">
@@ -42,7 +42,7 @@ useSeoMeta({
         </h2>
         <NuxtLink
           to="/latest-results"
-          class="mt-4 inline-block text-gray-600 hover:text-main-700 dark:text-gray-400 dark:hover:text-main-500"
+          class="hover:text-main-700 dark:hover:text-main-500 mt-4 inline-block text-gray-600 dark:text-gray-400"
         >
           View More →
         </NuxtLink>

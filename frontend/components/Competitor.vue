@@ -38,7 +38,7 @@ defineProps({
 
     <NuxtLink
       :to="`/competitors/${competitor.id}`"
-      class="mt-3 inline-block text-main-700 hover:text-main-600 dark:text-main-600 dark:hover:text-main-500"
+      class="text-main-700 hover:text-main-600 dark:text-main-600 dark:hover:text-main-500 mt-3 inline-block"
     >
       View Results →
     </NuxtLink>

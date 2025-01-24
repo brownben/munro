@@ -2,12 +2,12 @@
   <div id="app">
     <a
       href="#content"
-      class="focus:shadow-outline sr-only z-50 rounded-md bg-white text-main-700 focus:not-sr-only focus:absolute focus:m-4 focus:block focus:px-3 focus:py-2 dark:bg-gray-900"
+      class="focus:shadow-outline text-main-700 sr-only z-50 rounded-md bg-white focus:not-sr-only focus:absolute focus:m-4 focus:block focus:px-3 focus:py-2 dark:bg-gray-900"
     >
       Skip to main content
     </a>
     <Menu />
-    <div class="flex-grow bg-white dark:bg-gray-900">
+    <div class="grow bg-white dark:bg-gray-900">
       <NuxtPage id="content" />
     </div>
     <Footer />

@@ -33,7 +33,7 @@ if (event.value) {
 }
 </script>
 <template>
-  <div v-if="event" class="flex h-full flex-grow flex-col gap-8">
+  <div v-if="event" class="flex h-full grow flex-col gap-8">
     <Heading
       :title="event.name"
       :link-text="event.league"
@@ -49,7 +49,7 @@ if (event.value) {
     </Heading>
 
     <div
-      class="mx-auto flex w-full max-w-screen-lg flex-grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 lg:px-8 print:hidden"
+      class="mx-auto flex w-full max-w-(--breakpoint-lg) grow flex-row flex-wrap gap-x-4 gap-y-2 px-6 lg:px-8 print:hidden"
     >
       <p
         class="w-full py-1 pr-2 font-bold text-gray-500 sm:w-auto dark:text-gray-400"
@@ -61,7 +61,7 @@ if (event.value) {
         v-for="course in courses"
         :key="course"
         :to="`#${course}`"
-        class="rounded px-4 py-1 text-gray-600 ring-main-200 transition hover:bg-main-100 hover:text-main-700 focus-visible:ring dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-200"
+        class="ring-main-200 hover:bg-main-100 hover:text-main-700 rounded-sm px-4 py-1 text-gray-600 transition focus-visible:ring-3 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-gray-200"
       >
         {{ course }}
       </NuxtLink>
@@ -70,7 +70,7 @@ if (event.value) {
     <section
       v-for="course in courses"
       :key="course"
-      class="mx-auto w-full max-w-screen-lg flex-grow pb-4 lg:px-8"
+      class="mx-auto w-full max-w-(--breakpoint-lg) grow pb-4 lg:px-8"
     >
       <div class="flex items-center gap-3 px-6 pb-4 sm:pb-6 lg:px-0">
         <h2
@@ -86,7 +86,7 @@ if (event.value) {
         >
           <span class="sr-only">Return to Top</span>
           <DocumentArrowUpIcon
-            class="h-5 text-gray-400 group-hover:text-main-600 group-focus:text-main-600"
+            class="group-hover:text-main-600 group-focus:text-main-600 h-5 text-gray-400"
             aria-hidden="true"
           />
         </NuxtLink>

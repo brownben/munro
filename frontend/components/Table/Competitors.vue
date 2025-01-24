@@ -62,7 +62,7 @@ watch([activeColumn, ascending], () => {
         <th class="text-center" :aria-sort="ariaSorted?.id">
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('id')"
           >
             Id
@@ -75,7 +75,7 @@ watch([activeColumn, ascending], () => {
         <th :aria-sort="ariaSorted?.name">
           <button
             type="button"
-            class="rounded px-2 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-2 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('name')"
           >
             <span class="sm:hidden">Athlete</span>
@@ -92,7 +92,7 @@ watch([activeColumn, ascending], () => {
         >
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('age_class')"
           >
             Class
@@ -108,7 +108,7 @@ watch([activeColumn, ascending], () => {
         >
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('club')"
           >
             Club
@@ -132,7 +132,7 @@ watch([activeColumn, ascending], () => {
       <tr
         v-for="competitor of sortedResults"
         :key="competitor.id"
-        class="border-t border-gray-200 text-gray-800 transition hover:bg-main-50 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
+        class="hover:bg-main-50 border-t border-gray-200 text-gray-800 transition dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800"
       >
         <td class="py-3 text-center">
           {{ competitor.id }}
@@ -140,10 +140,10 @@ watch([activeColumn, ascending], () => {
         <td class="px-2 py-2">
           <NuxtLink
             :to="`/competitors/${competitor.id}`"
-            class="inline-block ring-main-200 hover:text-main-800 focus-visible:ring"
+            class="ring-main-200 hover:text-main-800 inline-block focus-visible:ring-3"
           >
             <span
-              class="block font-medium leading-tight text-gray-900 underline decoration-gray-300 decoration-1 underline-offset-2 dark:text-gray-100 dark:decoration-gray-500"
+              class="block leading-tight font-medium text-gray-900 underline decoration-gray-300 decoration-1 underline-offset-2 dark:text-gray-100 dark:decoration-gray-500"
             >
               {{ competitor.name }}
             </span>

@@ -9,11 +9,11 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
         id="search-box"
         name="query"
         type="search"
-        class="w-full rounded border border-gray-300 bg-transparent p-2 pr-12 text-sm outline-none ring-main-600 ring-offset-2 focus:border-main-600 focus:ring dark:ring-offset-gray-800 dark:focus:border-main-500"
+        class="ring-main-600 focus:border-main-600 dark:focus:border-main-500 w-full rounded-sm border border-gray-300 bg-transparent p-2 pr-12 text-sm ring-offset-2 outline-hidden focus:ring-3 dark:ring-offset-gray-800"
         :value="$route.query.query"
       />
       <button
-        class="absolute right-0 top-0 h-full rounded px-3 text-gray-400 outline-none transition hover:bg-main-500 hover:text-white focus:bg-main-500 group-focus-within:text-main-500 group-focus-within:hover:text-white group-focus-within:focus:text-white dark:text-gray-300 dark:group-focus-within:text-main-500"
+        class="hover:bg-main-500 focus:bg-main-500 group-focus-within:text-main-500 dark:group-focus-within:text-main-500 absolute top-0 right-0 h-full rounded-sm px-3 text-gray-400 outline-hidden transition hover:text-white hover:group-focus-within:text-white focus:group-focus-within:text-white dark:text-gray-300"
       >
         <span class="sr-only">Search</span>
         <MagnifyingGlassIcon class="h-5 w-5" />

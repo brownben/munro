@@ -9,7 +9,7 @@ defineProps({
 </script>
 <template>
   <tr
-    class="text-gray-800 transition-colors odd:bg-main-50 hover:bg-main-100 dark:text-gray-100 dark:odd:bg-gray-800 dark:hover:bg-main-900"
+    class="odd:bg-main-50 hover:bg-main-100 dark:hover:bg-main-900 text-gray-800 transition-colors dark:text-gray-100 dark:odd:bg-gray-800"
   >
     <td class="py-3 text-center">
       <template v-if="['max', 'average', 'manual'].includes(result.type)">

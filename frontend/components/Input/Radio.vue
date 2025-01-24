@@ -38,7 +38,7 @@ const handleEvent = (value: unknown) =>
     @update:model-value="handleEvent"
   >
     <RadioGroupLabel
-      class="block select-none pb-1 text-sm font-medium text-gray-500 dark:text-gray-300"
+      class="block pb-1 text-sm font-medium text-gray-500 select-none dark:text-gray-300"
     >
       {{ label }}
     </RadioGroupLabel>
@@ -50,11 +50,11 @@ const handleEvent = (value: unknown) =>
     >
       <div
         :class="{
-          'relative z-10 border-main-600 ring-2 dark:border-main-500': active,
+          'border-main-600 dark:border-main-500 relative z-10 ring-2': active,
           'border-main-400 bg-main-100 text-main-900 dark:border-main-500 dark:bg-main-900':
             checked,
         }"
-        class="flex cursor-pointer rounded border border-gray-200 px-5 py-4 outline-none ring-main-600 ring-offset-2 dark:border-gray-600 dark:ring-offset-gray-800"
+        class="ring-main-600 flex cursor-pointer rounded-sm border border-gray-200 px-5 py-4 ring-offset-2 outline-hidden dark:border-gray-600 dark:ring-offset-gray-800"
       >
         <div class="flex w-full items-center justify-between">
           <div class="items-center text-sm">
@@ -83,7 +83,7 @@ const handleEvent = (value: unknown) =>
           </div>
           <div
             v-show="checked"
-            class="flex-shrink-0 text-main-600 dark:text-main-400"
+            class="text-main-600 dark:text-main-400 shrink-0"
           >
             <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
               <circle

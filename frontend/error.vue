@@ -2,14 +2,14 @@
   <div id="app">
     <a
       href="#content"
-      class="focus:shadow-outline sr-only z-50 rounded-md bg-white text-main-700 focus:not-sr-only focus:absolute focus:m-4 focus:block focus:px-3 focus:py-2"
+      class="focus:shadow-outline text-main-700 sr-only z-50 rounded-md bg-white focus:not-sr-only focus:absolute focus:m-4 focus:block focus:px-3 focus:py-2"
     >
       Skip to main content
     </a>
     <Menu />
     <div class="flex-grow">
       <main class="mx-auto w-full max-w-screen-lg px-6 py-10 sm:py-16 lg:px-8">
-        <p class="text-lg font-bold uppercase tracking-wide text-main-600">
+        <p class="text-main-600 text-lg font-bold tracking-wide uppercase">
           500 Error
         </p>
         <h1
@@ -21,7 +21,7 @@
           Sorry, something has gone wrong and I can't load the page
         </p>
         <button
-          class="mt-6 inline-block text-main-600 hover:text-main-700"
+          class="text-main-600 hover:text-main-700 mt-6 inline-block"
           @click="handleError"
         >
           Go back home →

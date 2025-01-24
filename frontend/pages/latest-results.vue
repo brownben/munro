@@ -13,10 +13,10 @@ useTitle({
     <Heading title="Latest Results" />
 
     <main
-      class="mx-auto max-w-screen-lg gap-8 px-6 py-6 sm:py-10 md:py-14 lg:px-8"
+      class="mx-auto max-w-(--breakpoint-lg) gap-8 px-6 py-6 sm:py-10 md:py-14 lg:px-8"
     >
       <div
-        class="col-span-2 -mx-4 -mb-4 -mt-8 flex flex-col divide-y dark:divide-gray-600"
+        class="col-span-2 -mx-4 -mt-8 -mb-4 flex flex-col divide-y divide-gray-200 dark:divide-gray-600"
       >
         <Event
           v-for="event in events"

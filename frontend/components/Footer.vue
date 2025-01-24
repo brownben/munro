@@ -14,14 +14,14 @@ const logout = () => {
     <social-links class="mb-6 flex justify-center gap-4 text-gray-600">
       <a
         href="https://github.com/brownben/munro"
-        class="rounded-full bg-gray-200 p-2 outline-none ring-main-300 transition hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-700 focus:ring-2 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-main-700 dark:hover:text-main-300 dark:focus:bg-main-700 dark:focus:text-main-300"
+        class="ring-main-300 hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-700 dark:hover:bg-main-700 dark:hover:text-main-300 dark:focus:bg-main-700 dark:focus:text-main-300 rounded-full bg-gray-200 p-2 outline-hidden transition focus:ring-2 dark:bg-gray-700 dark:text-gray-300"
       >
         <IconGitHub class="h-4 w-4" />
         <span class="sr-only">GitHub</span>
       </a>
       <a
         href="https://www.threads.net/@munroleagues"
-        class="rounded-full bg-gray-200 p-2 outline-none ring-main-300 transition hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-700 focus:ring-2 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-main-700 dark:hover:text-main-300 dark:focus:bg-main-700 dark:focus:text-main-300"
+        class="ring-main-300 hover:bg-main-100 hover:text-main-600 focus:bg-main-100 focus:text-main-700 dark:hover:bg-main-700 dark:hover:text-main-300 dark:focus:bg-main-700 dark:focus:text-main-300 rounded-full bg-gray-200 p-2 outline-hidden transition focus:ring-2 dark:bg-gray-700 dark:text-gray-300"
       >
         <IconThreads class="h-4" />
         <span class="sr-only">Threads</span>
@@ -32,7 +32,7 @@ const logout = () => {
       Created by
       <a
         href="https://benbrown.dev"
-        class="font-bold text-gray-700 outline-main-600 hover:text-main-700 focus:text-main-700 dark:text-gray-200 dark:hover:text-main-500 dark:focus:text-main-500"
+        class="outline-main-600 hover:text-main-700 focus:text-main-700 dark:hover:text-main-500 dark:focus:text-main-500 font-bold text-gray-700 dark:text-gray-200"
       >
         Ben Brown
       </a>
@@ -52,7 +52,7 @@ const logout = () => {
       >
         Logout
       </button>
-      <span aria-hidden="true" class="select-none opacity-30"> &bull; </span>
+      <span aria-hidden="true" class="opacity-30 select-none"> &bull; </span>
       <a
         href="mailto:munro.leagues@gmail.com"
         class="outline-main-600 hover:text-main-600 focus:text-main-600 dark:hover:text-main-500 dark:focus:text-main-500"

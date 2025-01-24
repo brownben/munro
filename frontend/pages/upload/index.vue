@@ -15,17 +15,19 @@ useTitle({
 <template>
   <div>
     <Heading title="Upload Results" />
-    <main class="mx-auto grid max-w-screen-lg grid-cols-1 px-6 pb-12 lg:px-8">
+    <main
+      class="mx-auto grid max-w-(--breakpoint-lg) grid-cols-1 px-6 pb-12 lg:px-8"
+    >
       <div
         class="border-b border-gray-200 py-12 transition dark:border-gray-600"
         to="/upload/file"
       >
         <CloudArrowUpIcon
           aria-hidden="true"
-          class="h-12 rounded-md bg-main-500 p-2 text-white transition dark:text-gray-900"
+          class="bg-main-500 h-12 rounded-md p-2 text-white transition dark:text-gray-900"
         />
         <h2
-          class="text-gray-80 0 mt-4 text-2xl font-bold leading-tight tracking-tight dark:text-gray-100"
+          class="text-gray-80 0 mt-4 text-2xl leading-tight font-bold tracking-tight dark:text-gray-100"
         >
           Upload a File
         </h2>
@@ -34,7 +36,7 @@ useTitle({
         </p>
         <NuxtLink
           to="/upload/file"
-          class="mt-4 inline-block text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500"
+          class="text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500 mt-4 inline-block"
         >
           Upload results file →
         </NuxtLink>
@@ -45,10 +47,10 @@ useTitle({
       >
         <MapPinIcon
           aria-hidden="true"
-          class="h-12 rounded-md bg-main-500 p-2 text-white transition dark:text-gray-900"
+          class="bg-main-500 h-12 rounded-md p-2 text-white transition dark:text-gray-900"
         />
         <h2
-          class="mt-4 text-2xl font-bold leading-tight tracking-tight text-gray-800 dark:text-gray-100"
+          class="mt-4 text-2xl leading-tight font-bold tracking-tight text-gray-800 dark:text-gray-100"
         >
           Import from MapRun
         </h2>
@@ -57,7 +59,7 @@ useTitle({
         </p>
         <NuxtLink
           to="/upload/maprun"
-          class="mt-4 inline-block text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500"
+          class="text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500 mt-4 inline-block"
         >
           Import results →
         </NuxtLink>
@@ -68,10 +70,10 @@ useTitle({
       >
         <PencilSquareIcon
           aria-hidden="true"
-          class="h-12 rounded-md bg-main-500 p-2 text-white transition dark:text-gray-900"
+          class="bg-main-500 h-12 rounded-md p-2 text-white transition dark:text-gray-900"
         />
         <h2
-          class="mt-4 text-2xl font-bold leading-tight tracking-tight text-gray-800 dark:text-gray-100"
+          class="mt-4 text-2xl leading-tight font-bold tracking-tight text-gray-800 dark:text-gray-100"
         >
           Submit a Result
         </h2>
@@ -80,7 +82,7 @@ useTitle({
         </p>
         <NuxtLink
           to="/upload/result"
-          class="mt-4 inline-block text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500"
+          class="text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500 mt-4 inline-block"
         >
           Submit a result →
         </NuxtLink>
@@ -89,10 +91,10 @@ useTitle({
       <div class="rounded-lg py-12 transition" to="/upload/instructions">
         <InformationCircleIcon
           aria-hidden="true"
-          class="h-12 rounded-md bg-main-500 p-2 text-white transition dark:text-gray-900"
+          class="bg-main-500 h-12 rounded-md p-2 text-white transition dark:text-gray-900"
         />
         <h2
-          class="mt-4 text-2xl font-bold leading-tight tracking-tight text-gray-800 dark:text-gray-100"
+          class="mt-4 text-2xl leading-tight font-bold tracking-tight text-gray-800 dark:text-gray-100"
         >
           Upload Instructions
         </h2>
@@ -101,7 +103,7 @@ useTitle({
         </p>
         <NuxtLink
           to="/upload/instructions"
-          class="mt-4 inline-block text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500"
+          class="text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500 mt-4 inline-block"
         >
           View upload instructions →
         </NuxtLink>

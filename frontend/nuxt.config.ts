@@ -1,3 +1,5 @@
+import tailwindcss from '@tailwindcss/vite'
+
 const title = 'Munro'
 const description =
   'League Results. Sorted with Munro. Sports League Results Calculated Quick and Easily, with Results Sorting and Filtering Options'
@@ -12,12 +14,6 @@ export default {
   },
 
   css: ['~/assets/main.css'],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
 
   typescript: {
     shim: false,
@@ -32,6 +28,7 @@ export default {
         },
       },
     },
+    plugins: [tailwindcss()],
   },
 
   app: {
@@ -97,4 +94,6 @@ export default {
       },
     },
   },
+
+  modules: ['@nuxt/eslint'],
 }

@@ -13,7 +13,7 @@ useTitle({
     />
 
     <main
-      class="mx-auto flex max-w-screen-lg flex-col gap-12 px-6 py-10 sm:grid sm:pt-10 lg:px-8"
+      class="mx-auto flex max-w-(--breakpoint-lg) flex-col gap-12 px-6 py-10 sm:grid sm:pt-10 lg:px-8"
     >
       <ScoringMethod
         id="position"

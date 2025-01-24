@@ -18,7 +18,7 @@ useTitle({
       </template>
     </Heading>
     <main
-      class="mx-auto flex max-w-screen-lg flex-col gap-12 px-6 py-10 sm:py-12 lg:px-8"
+      class="mx-auto flex max-w-(--breakpoint-lg) flex-col gap-12 px-6 py-10 sm:py-12 lg:px-8"
     >
       <div
         v-if="
@@ -44,7 +44,7 @@ useTitle({
           </h2>
 
           <div
-            class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y dark:divide-gray-600"
+            class="col-span-2 -mt-10 -mb-4 flex flex-col divide-y divide-gray-200 dark:divide-gray-600"
           >
             <League
               v-for="league in data?.leagues"
@@ -66,7 +66,7 @@ useTitle({
           </h2>
 
           <div
-            class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y dark:divide-gray-600"
+            class="col-span-2 -mt-10 -mb-4 flex flex-col divide-y divide-gray-200 dark:divide-gray-600"
           >
             <Event
               v-for="event in data?.events"
@@ -87,7 +87,7 @@ useTitle({
           </h2>
 
           <div
-            class="col-span-2 -mb-4 -mt-10 flex flex-col divide-y dark:divide-gray-600"
+            class="col-span-2 -mt-10 -mb-4 flex flex-col divide-y divide-gray-200 dark:divide-gray-600"
           >
             <Competitor
               v-for="competitor in data?.competitors"

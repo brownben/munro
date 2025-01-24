@@ -2,11 +2,11 @@
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
 </script>
 <template>
-  <section class="bg-main-600 text-white dark:bg-main-800">
+  <section class="bg-main-600 dark:bg-main-800 text-white">
     <div
-      class="mx-auto flex max-w-screen-lg flex-col gap-2 px-6 py-10 text-center sm:py-16 lg:px-8"
+      class="mx-auto flex max-w-(--breakpoint-lg) flex-col gap-2 px-6 py-10 text-center sm:py-16 lg:px-8"
     >
-      <h2 class="text-4xl font-medium text-main-100 md:text-5xl">
+      <h2 class="text-main-100 text-4xl font-medium md:text-5xl">
         Find <strong class="font-black text-white">Everything</strong> You Need
       </h2>
       <p class="text-lg md:text-xl">
@@ -19,10 +19,10 @@ import { MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
             id="search-box"
             name="query"
             type="search"
-            class="w-full rounded border border-white bg-transparent p-2 pr-16 outline-none ring-white ring-offset-2 ring-offset-main-600 focus:ring"
+            class="ring-offset-main-600 w-full rounded-sm border border-white bg-transparent p-2 pr-16 ring-white ring-offset-2 outline-hidden focus:ring-3"
           />
           <button
-            class="absolute right-0 top-0 h-full rounded px-4 outline-none transition hover:bg-white hover:text-main-600 focus:bg-white focus:text-main-600"
+            class="hover:text-main-600 focus:text-main-600 absolute top-0 right-0 h-full rounded-sm px-4 outline-hidden transition hover:bg-white focus:bg-white"
           >
             <span class="sr-only">Search</span>
             <MagnifyingGlassIcon class="h-6 w-6" />

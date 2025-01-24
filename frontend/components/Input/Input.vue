@@ -53,7 +53,7 @@ const inputValidationProps = computed(() => {
 <template>
   <div>
     <label
-      class="block select-none pb-1 text-sm font-medium"
+      class="block pb-1 text-sm font-medium select-none"
       :class="{
         'text-main-600 dark:text-main-600': state === 'focused',
         'text-gray-500 dark:text-gray-300': state === 'unfocused',
@@ -67,9 +67,9 @@ const inputValidationProps = computed(() => {
       :id="label"
       :value="modelValue"
       :type="type"
-      class="w-full rounded border bg-white p-2 text-sm text-gray-900 ring-offset-2 transition focus:outline-none focus-visible:ring-2 dark:bg-transparent dark:text-gray-100 dark:ring-offset-gray-800"
+      class="w-full rounded-sm border bg-white p-2 text-sm text-gray-900 ring-offset-2 transition focus:outline-hidden focus-visible:ring-2 dark:bg-transparent dark:text-gray-100 dark:ring-offset-gray-800"
       :class="{
-        'border-gray-400 ring-main-600 focus:border-main-600':
+        'ring-main-600 focus:border-main-600 border-gray-400':
           state != 'invalid',
         'border-red-500 ring-red-500 focus:border-red-600': state == 'invalid',
       }"
@@ -81,7 +81,7 @@ const inputValidationProps = computed(() => {
     <p
       v-if="state === 'invalid'"
       :id="`${label}-error-message`"
-      class="font-heading flex select-none items-center text-sm text-red-600"
+      class="font-heading flex items-center text-sm text-red-600 select-none"
       aria-live="assertive"
     >
       <svg

@@ -34,12 +34,12 @@ const ariaSorted = computed(
   <table v-if="sortedResults.length > 0" class="w-full">
     <thead>
       <tr
-        class="h-14 border-b border-main-200 text-left font-medium text-gray-600 md:h-12 dark:border-gray-400 dark:text-gray-300"
+        class="border-main-200 h-14 border-b text-left font-medium text-gray-600 md:h-12 dark:border-gray-400 dark:text-gray-300"
       >
         <th class="text-center" :aria-sort="ariaSorted?.position">
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('position')"
           >
             Pos.
@@ -52,7 +52,7 @@ const ariaSorted = computed(
         <th :aria-sort="ariaSorted?.name">
           <button
             type="button"
-            class="rounded ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('name')"
           >
             <span class="font-medium sm:hidden">Athlete</span>
@@ -69,7 +69,7 @@ const ariaSorted = computed(
         >
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('age_class')"
           >
             Class
@@ -85,7 +85,7 @@ const ariaSorted = computed(
         >
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('club')"
           >
             Club
@@ -98,7 +98,7 @@ const ariaSorted = computed(
         <th class="text-center" :aria-sort="ariaSorted?.time">
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('time')"
           >
             Time

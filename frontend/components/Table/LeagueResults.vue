@@ -52,12 +52,12 @@ const ariaSorted = computed(() => {
   <table v-if="sortedResults.length > 0" class="w-full">
     <thead>
       <tr
-        class="h-14 border-b border-main-200 text-left font-medium text-gray-600 md:h-12 dark:border-gray-400 dark:text-gray-300"
+        class="border-main-200 h-14 border-b text-left font-medium text-gray-600 md:h-12 dark:border-gray-400 dark:text-gray-300"
       >
         <th class="text-center" :aria-sort="ariaSorted?.position">
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('position')"
           >
             Pos.
@@ -70,7 +70,7 @@ const ariaSorted = computed(() => {
         <th :aria-sort="ariaSorted?.name">
           <button
             type="button"
-            class="rounded ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('name')"
           >
             <span class="font-medium sm:hidden">Athlete</span>
@@ -87,7 +87,7 @@ const ariaSorted = computed(() => {
         >
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('age_class')"
           >
             Class
@@ -103,7 +103,7 @@ const ariaSorted = computed(() => {
         >
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('club')"
           >
             Club
@@ -116,7 +116,7 @@ const ariaSorted = computed(() => {
         <th class="text-center" :aria-sort="ariaSorted?.total_points">
           <button
             type="button"
-            class="rounded px-1 font-medium ring-main-200 focus:outline-none focus-visible:ring"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
             @click="changeSortPreference('total_points')"
           >
             Points
@@ -141,7 +141,7 @@ const ariaSorted = computed(() => {
               <TooltipTrigger as-child>
                 <button
                   type="button"
-                  class="group relative rounded font-medium ring-main-200 focus:outline-none focus-visible:ring xl:px-1"
+                  class="group ring-main-200 relative rounded-sm font-medium focus:outline-hidden focus-visible:ring-3 xl:px-1"
                   @click="changeSortPreference(index)"
                 >
                   {{ index + 1 }}
@@ -160,7 +160,7 @@ const ariaSorted = computed(() => {
               <TooltipContent
                 as="p"
                 side="bottom"
-                class="select-none rounded bg-white px-3 py-1 font-medium shadow-lg transition data-[state=delayed-open]:animate-fadeIn dark:bg-gray-900 dark:shadow-gray-800"
+                class="data-[state=delayed-open]:animate-fadeIn rounded-sm bg-white px-3 py-1 font-medium shadow-lg transition select-none dark:bg-gray-900 dark:shadow-gray-800"
               >
                 {{ event.event_name }}
               </TooltipContent>
@@ -179,7 +179,7 @@ const ariaSorted = computed(() => {
       :eligibility="eligibility"
     />
   </table>
-  <div v-else class="mx-auto max-w-screen-lg px-6">
+  <div v-else class="mx-auto max-w-(--breakpoint-lg) px-6">
     <p class="text-2xl font-extrabold text-gray-600 dark:text-gray-300">
       No results found
     </p>

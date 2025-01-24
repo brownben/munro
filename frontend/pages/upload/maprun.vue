@@ -35,7 +35,7 @@ const action = async () => {
     maprunResults = await fetch(
       `https://p.fne.com.au:8886/resultsGetPublicForEventv2?eventName=${maprunDetails.eventName}`,
     ).then((x) => x.json())
-  } catch (error: unknown) {
+  } catch {
     throw 'Problem fetching results from MapRun'
   }
 

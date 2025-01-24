@@ -32,7 +32,7 @@ useTitle({ title: 'Login', description: 'Admin login page' })
         You don't have to login, just visit the
         <NuxtLink
           to="/upload"
-          class="text-main-700 underline dark:text-main-600"
+          class="text-main-700 dark:text-main-600 underline"
         >
           upload page
         </NuxtLink>

@@ -31,7 +31,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
 <template>
   <div>
     <label
-      class="block select-none pb-2 text-sm font-medium text-gray-600 dark:text-gray-300"
+      class="block pb-2 text-sm font-medium text-gray-600 select-none dark:text-gray-300"
       :for="label"
     >
       {{ label }}
@@ -39,7 +39,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
     <input
       :id="label"
       type="file"
-      class="-ml-2 p-2 text-base font-medium text-gray-600 outline-none dark:text-gray-300"
+      class="-ml-2 p-2 text-base font-medium text-gray-600 outline-hidden dark:text-gray-300"
       accept=".csv,.xml,.html"
       required
       @change="fileChange"
@@ -47,16 +47,18 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
   </div>
 </template>
 <style>
+@reference "../../assets/main.css";
+
 input[type='file']::file-selector-button {
-  @apply mr-4 select-none rounded border-0 bg-gradient-to-r from-main-500 to-main-600 px-5 py-2 text-sm font-medium text-white outline-none transition duration-200 dark:ring-offset-gray-800;
+  @apply from-main-500 to-main-600 mr-4 rounded border-0 bg-linear-to-r px-5 py-2 text-sm font-medium text-white outline-hidden transition duration-200 select-none dark:ring-offset-gray-800;
 }
 
 input[type='file']::file-selector-button:focus {
-  @apply ring ring-main-600 ring-offset-2;
+  @apply ring-main-600 ring ring-offset-2;
 }
 
 input[type='file']:focus {
-  @apply outline-none;
+  @apply outline-hidden;
 }
 
 input[type='file']::file-selector-button:hover {

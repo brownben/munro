@@ -46,10 +46,10 @@ if (data.value) {
 
     <section
       v-if="results"
-      class="mx-auto w-full flex-grow pb-10 pt-8 lg:px-8 print:sm:py-4"
+      class="mx-auto w-full grow pt-8 pb-10 lg:px-8 print:sm:py-4"
       :class="{
-        'max-w-screen-lg': results[0]?.points.length <= 3,
-        'max-w-screen-xl':
+        'max-w-(--breakpoint-lg)': results[0]?.points.length <= 3,
+        'max-w-(--breakpoint-xl)':
           results[0]?.points.length > 3 && results[0]?.points.length <= 10,
       }"
     >

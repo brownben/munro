@@ -24,17 +24,17 @@ const submit = async () => {
 
 <template>
   <form
-    class="mx-auto grid max-w-screen-lg grid-cols-1 gap-6 px-6 py-8 sm:py-10 md:grid-cols-3 lg:px-8"
+    class="mx-auto grid max-w-(--breakpoint-lg) grid-cols-1 gap-6 px-6 py-8 sm:py-10 md:grid-cols-3 lg:px-8"
     :disabled="disabled"
     @submit.prevent="submit"
   >
     <slot />
     <div
       v-if="message"
-      class="col-span-2 flex select-auto flex-row items-center gap-4 rounded border border-main-100 bg-main-50 p-4 leading-tight text-main-800"
+      class="border-main-100 bg-main-50 text-main-800 col-span-2 flex flex-row items-center gap-4 rounded-sm border p-4 leading-tight select-auto"
       role="alert"
     >
-      <ExclamationCircleIcon aria-hidden="true" class="h-6 w-6 flex-shrink-0" />
+      <ExclamationCircleIcon aria-hidden="true" class="h-6 w-6 shrink-0" />
       {{ message }}
     </div>
     <div v-if="!disabled" class="col-span-2 flex justify-end">

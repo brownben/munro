@@ -74,7 +74,7 @@ useTitle({
       <template #rightAction>
         <Button small @click="show = !show">
           <AdjustmentsVerticalIcon
-            class="-ml-1 mr-2 h-5 w-5"
+            class="mr-2 -ml-1 h-5 w-5"
             aria-hidden="true"
           />
           <span>Filter Competitors</span>
@@ -92,7 +92,7 @@ useTitle({
     >
       <section v-if="show" class="bg-gray-50 dark:bg-gray-800">
         <div
-          class="mx-auto grid max-w-screen-lg grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
+          class="mx-auto grid max-w-(--breakpoint-lg) grid-cols-2 gap-6 p-8 pt-4 sm:grid-cols-4 sm:pt-0 lg:px-8"
         >
           <Input v-model="filters.name" label="Name:" class="col-span-2" />
           <Input v-model="filters.club" label="Club:" class="col-span-2" />
@@ -116,7 +116,7 @@ useTitle({
 
     <LinksSection :links="links" dark> Manage competitors </LinksSection>
     <main
-      class="mx-auto w-full max-w-screen-lg flex-grow py-6 md:py-10 lg:px-8"
+      class="mx-auto w-full max-w-(--breakpoint-lg) grow py-6 md:py-10 lg:px-8"
     >
       <TableCompetitors
         v-slot="{ competitor }"

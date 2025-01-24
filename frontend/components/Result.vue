@@ -35,7 +35,7 @@ const showTransferForm = ref(false)
 <template>
   <article class="flex flex-col py-8">
     <h2
-      class="mb-4 text-2xl font-bold leading-tight text-gray-700 dark:text-gray-300"
+      class="mb-4 text-2xl leading-tight font-bold text-gray-700 dark:text-gray-300"
     >
       {{ result.event_name }}
     </h2>
@@ -63,25 +63,23 @@ const showTransferForm = ref(false)
     <template v-if="admin">
       <dl class="mt-6 text-gray-800 dark:text-gray-400">
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium dark:text-gray-300">ID:</dt>
-          <dd class="select-all truncate">{{ result.id }}</dd>
+          <dt class="shrink-0 font-medium dark:text-gray-300">ID:</dt>
+          <dd class="truncate select-all">{{ result.id }}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium dark:text-gray-300">Visible:</dt>
+          <dt class="shrink-0 font-medium dark:text-gray-300">Visible:</dt>
           <dd class="select-all">{{ result.visible }}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium dark:text-gray-300">
-            Incomplete:
-          </dt>
+          <dt class="shrink-0 font-medium dark:text-gray-300">Incomplete:</dt>
           <dd class="select-all">{{ result.incomplete }}</dd>
         </div>
         <div v-if="result.type" class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium dark:text-gray-300">Type:</dt>
+          <dt class="shrink-0 font-medium dark:text-gray-300">Type:</dt>
           <dd class="select-all">{{ result.type }}</dd>
         </div>
       </dl>
-      <div class="-mb-2 mt-4 flex flex-wrap gap-3">
+      <div class="mt-4 -mb-2 flex flex-wrap gap-3">
         <ButtonSmall @click="toggleIncomplete">
           <template v-if="result.incomplete"> Mark as Complete </template>
           <template v-else> Mark as Incomplete </template>
@@ -103,7 +101,7 @@ const showTransferForm = ref(false)
     </template>
     <NuxtLink
       :to="`/events/${result.event}/results`"
-      class="mt-8 inline-block text-main-700 hover:text-main-600 dark:text-main-600 dark:hover:text-main-500"
+      class="text-main-700 hover:text-main-600 dark:text-main-600 dark:hover:text-main-500 mt-8 inline-block"
     >
       View all results for {{ result.event_name }} →
     </NuxtLink>

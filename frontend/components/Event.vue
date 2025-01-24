@@ -106,15 +106,11 @@ const deleteEvent = async () => {
     <template v-if="admin">
       <dl class="text-gray-800 dark:text-gray-400">
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium dark:text-gray-300">
-            Event ID:
-          </dt>
-          <dd class="select-all truncate">{{ event.id }}</dd>
+          <dt class="shrink-0 font-medium dark:text-gray-300">Event ID:</dt>
+          <dd class="truncate select-all">{{ event.id }}</dd>
         </div>
         <div class="flex gap-2">
-          <dt class="flex-shrink-0 font-medium dark:text-gray-300">
-            Upload Key:
-          </dt>
+          <dt class="shrink-0 font-medium dark:text-gray-300">Upload Key:</dt>
           <dd class="select-all">{{ event.upload_key }}</dd>
         </div>
       </dl>

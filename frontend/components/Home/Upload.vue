@@ -1,5 +1,5 @@
 <template>
-  <aside class="relative bg-main-800 text-main-600 dark:bg-main-900">
+  <aside class="bg-main-800 text-main-600 dark:bg-main-900 relative">
     <svg aria-hidden="true" class="absolute inset-0 z-0 h-full w-full">
       <defs>
         <pattern
@@ -16,14 +16,14 @@
       <rect width="100%" height="100%" fill="url(#:Rb6:)"></rect>
     </svg>
     <div
-      class="relative z-10 mx-auto max-w-screen-lg gap-8 px-6 py-10 sm:py-14 lg:px-8"
+      class="relative z-10 mx-auto max-w-(--breakpoint-lg) gap-8 px-6 py-10 sm:py-14 lg:px-8"
     >
       <h2
-        class="text-4xl font-black leading-none tracking-tight text-white sm:text-5xl"
+        class="text-4xl leading-none font-black tracking-tight text-white sm:text-5xl"
       >
         Stop fighting spreadsheets
       </h2>
-      <p class="mt-4 text-lg leading-snug text-main-50">
+      <p class="text-main-50 mt-4 text-lg leading-snug">
         Upload results in seconds. No fuss, no hassle, just works.
       </p>
       <NuxtLink
