@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { RequiredField, IsValidAgeClass } from '~/utils/validation'
-import type { Competitor } from '~~/api-types'
+import type { Competitor, CompetitorPool } from '~~/api-types'
 
 requireLogin()
 
 const route = useRoute()
 const router = useRouter()
 
-const { data: competitor_pools } = await useData<string[]>(`competitor-pools/`)
+const { data: competitor_pools } =
+  await useData<CompetitorPool[]>(`competitor-pools/`)
 const { data: form } = await useData<Competitor>(
   `competitors/${route.params.id}`,
 )
@@ -50,7 +51,12 @@ useTitle({
 
       <InputDropdown
         v-model="form.competitor_pool"
-        :list="competitor_pools?.map((name) => ({ value: name, text: name }))"
+        :list="
+          competitor_pools?.map((pool) => ({
+            value: pool.name,
+            text: pool.name,
+          }))
+        "
         label="Competitor Pool:"
         :validator="RequiredField('a competitor pool', true)"
         class="col-span-2"

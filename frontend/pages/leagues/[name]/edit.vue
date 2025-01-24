@@ -4,14 +4,15 @@ import {
   IsValidURL,
   RequiredField,
 } from '~/utils/validation'
-import type { LeagueOverview } from '~~/api-types'
+import type { LeagueOverview, CompetitorPool } from '~~/api-types'
 
 requireLogin()
 
 const route = useRoute()
 const router = useRouter()
 
-const { data: competitor_pools } = await useData<string[]>(`competitor-pools/`)
+const { data: competitor_pools } =
+  await useData<CompetitorPool[]>(`competitor-pools/`)
 const { data: form } = await useData<LeagueOverview>(
   `leagues/${route.params.name}`,
 )
@@ -105,7 +106,12 @@ useTitle({
       />
       <InputDropdown
         v-model="form.competitor_pool"
-        :list="competitor_pools?.map((name) => ({ value: name, text: name }))"
+        :list="
+          competitor_pools?.map((pool) => ({
+            value: pool.name,
+            text: pool.name,
+          }))
+        "
         label="Competitor Pool:"
         class="col-span-2"
       />

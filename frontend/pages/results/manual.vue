@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { competitorToText } from '~/utils/competitor'
 import { RequiredField, IsValidTime } from '~/utils/validation'
-import type { Competitor, Event } from '~/api-types'
+import type { Competitor, Event, CompetitorPool } from '~/api-types'
 import type { Ref } from 'vue'
 
 requireLogin()
@@ -9,7 +9,8 @@ requireLogin()
 const route = useRoute()
 const router = useRouter()
 
-const { data: competitor_pools } = await useData<string[]>(`competitor-pools/`)
+const { data: competitor_pools } =
+  await useData<CompetitorPool[]>(`competitor-pools/`)
 
 const form = reactive({
   competitor_pool: queryToString(route.query.competitor_pool ?? ''),
@@ -63,7 +64,12 @@ useTitle({
     <Form button="Add Result" :action="action">
       <InputDropdown
         v-model="form.competitor_pool"
-        :list="competitor_pools?.map((name) => ({ value: name, text: name }))"
+        :list="
+          competitor_pools?.map((pool) => ({
+            value: pool.name,
+            text: pool.name,
+          }))
+        "
         label="Competitor Pool:"
         :validator="RequiredField('a competitor pool', true)"
         class="col-span-2"

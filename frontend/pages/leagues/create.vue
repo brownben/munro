@@ -4,12 +4,14 @@ import {
   IsValidURL,
   RequiredField,
 } from '~/utils/validation'
+import type { CompetitorPool } from '~~/api-types'
 
 requireLogin()
 
 const router = useRouter()
 
-const { data: competitor_pools } = await useData<string[]>(`competitor-pools/`)
+const { data: competitor_pools } =
+  await useData<CompetitorPool[]>(`competitor-pools/`)
 
 const form = reactive({
   name: '',
@@ -114,7 +116,12 @@ useTitle({
       />
       <InputDropdown
         v-model="form.competitor_pool"
-        :list="competitor_pools?.map((name) => ({ value: name, text: name }))"
+        :list="
+          competitor_pools?.map((pool) => ({
+            value: pool.name,
+            text: pool.name,
+          }))
+        "
         label="Competitor Pool:"
         include-blank
         class="col-span-2"
