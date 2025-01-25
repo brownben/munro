@@ -40,7 +40,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
       :id="label"
       type="file"
       class="-ml-2 p-2 text-base font-medium text-gray-600 outline-hidden dark:text-gray-300"
-      accept=".csv,.xml,.html"
+      accept=".csv,.xml,.html,.htm"
       required
       @change="fileChange"
     />
