@@ -29,7 +29,7 @@ const leagues = [
     height: 381,
   },
   {
-    to: '/leagues/Bristol Urban League 2023',
+    to: '/leagues/BOK Senior Local League 2024-25',
     src: '/logos/bristol-orienteering-club',
     alt: 'Bristol Orienteering Club Logo',
     width: 225,
