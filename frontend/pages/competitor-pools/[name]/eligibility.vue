@@ -31,11 +31,14 @@ const filters = reactive<Filters>({
   female: queryToString(route.query.female) !== 'false',
 })
 
+const loadingCompetitors = ref(new Set())
 const toggleEligibility = async (competitor: Competitor) => {
+  loadingCompetitors.value.add(competitor.id)
   await usePatch(`competitors/${competitor.id}/eligibility`, {
     eligible: !competitor.eligible,
   })
-  refresh()
+  await refresh()
+  loadingCompetitors.value.delete(competitor.id)
 }
 
 useTitle({
@@ -111,7 +114,10 @@ useTitle({
         :filters="filters"
         :eligibility="true"
       >
-        <ButtonSmall @click="toggleEligibility(competitor)">
+        <ButtonSmall
+          :loading="loadingCompetitors.has(competitor.id)"
+          @click="toggleEligibility(competitor)"
+        >
           <template v-if="competitor.eligible"> Mark Ineligible </template>
           <template v-else> Mark Eligible </template>
         </ButtonSmall>
