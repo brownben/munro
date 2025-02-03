@@ -32,10 +32,6 @@ const filters = reactive<Filters>({
 
 const links = [
   {
-    text: 'Add Result',
-    location: `/results/manual?competitor_pool=${pool_name}`,
-  },
-  {
     text: 'Add Competitor',
     location: `/competitors/create?competitor_pool=${pool_name}`,
   },

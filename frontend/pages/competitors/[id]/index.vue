@@ -36,6 +36,10 @@ const { data: competitor, refresh } = await useData<CompetitorOverview>(
           location: `/competitors/${competitor.id}/edit`,
         },
         {
+          text: 'Add Result',
+          location: `/results/manual?competitor_pool=${competitor.competitor_pool}&competitor=${competitor.id}`,
+        },
+        {
           text: 'Merge Competitor',
           location: `/competitors/merge?competitor_to_merge=${competitor.id}&competitor_pool=${competitor.competitor_pool}`,
         },
