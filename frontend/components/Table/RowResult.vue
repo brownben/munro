@@ -33,10 +33,13 @@ defineProps({
         {{ result.club }}
       </span>
     </td>
-    <td class="hidden text-center sm:table-cell">
+    <td class="hidden max-w-24 text-center sm:table-cell">
       {{ result.age_class || ' ' }}
     </td>
-    <td class="hidden text-center md:table-cell">
+    <td
+      class="hidden max-w-24 truncate text-center md:table-cell"
+      :title="result.club.length > 7 ? result.club : ''"
+    >
       {{ result.club || ' ' }}
     </td>
     <td class="text-center">{{ elapsedTime(result.time) }}</td>
