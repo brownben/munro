@@ -29,6 +29,9 @@ export default {
       },
     },
     plugins: [tailwindcss()],
+
+    css: { transformer: 'lightningcss' },
+    build: { cssMinify: 'lightningcss' },
   },
 
   app: {
