@@ -9,7 +9,7 @@ anyio==4.6.2.post1
     #   watchfiles
 asyncpg==0.30.0
     # via munro (pyproject.toml)
-beautifulsoup4==4.12.3
+beautifulsoup4==4.13.3
     # via munro (pyproject.toml)
 black==24.10.0
     # via piccolo
@@ -40,9 +40,9 @@ docstring-parser==0.16
     # via targ
 email-validator==2.2.0
     # via pydantic
-fastapi==0.115.6
+fastapi==0.115.11
     # via munro (pyproject.toml)
-google-auth==2.37.0
+google-auth==2.38.0
     # via munro (pyproject.toml)
 h11==0.14.0
     # via
@@ -54,7 +54,7 @@ httptools==0.6.4
     # via uvicorn
 httpx==0.28.1
     # via munro (pyproject.toml)
-icalendar==6.1.0
+icalendar==6.1.1
     # via munro (pyproject.toml)
 idna==3.10
     # via
@@ -76,7 +76,7 @@ packaging==24.1
     # via black
 pathspec==0.12.1
     # via black
-piccolo==1.22.0
+piccolo==1.23.0
     # via munro (pyproject.toml)
 platformdirs==4.3.6
     # via black
@@ -114,6 +114,7 @@ targ==0.4.0
     # via piccolo
 typing-extensions==4.12.2
     # via
+    #   beautifulsoup4
     #   fastapi
     #   piccolo
     #   pydantic
