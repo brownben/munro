@@ -6,6 +6,7 @@ from fastapi.param_functions import Depends
 from fastapi.routing import APIRouter
 
 from ..database import Events, LeagueEvents, Leagues, Results
+from ..database.events import generate_event_id
 from ..exceptions import HTTP_201, HTTP_404, HTTP_409, HTTP_500
 from ..schemas import (
     Event,
@@ -38,9 +39,7 @@ async def create_event(
     if not league:
         raise HTTP_500(f"Couldn't find league `{event.league}`")
 
-    existing_event = await Events.get_by_id(
-        f"{event.name.replace(' ', '')}-{event.date}"
-    )
+    existing_event = await Events.get_by_id(generate_event_id(event.name, event.date))
     if existing_event:
         raise HTTP_409(f"Event `{event.name}` already exists")
 

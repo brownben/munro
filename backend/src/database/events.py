@@ -52,6 +52,18 @@ def as_event(record: dict[str, Any]) -> EventWithUploadKey | None:
     return EventWithUploadKey.model_validate(record)
 
 
+def generate_event_id(name: str, date: datetime.date) -> str:
+    santised_name = (
+        name.replace(" ", "")
+        .replace("/", "")
+        .replace("\\", "")
+        .replace("/", "")
+        .replace("#", "")
+    )
+
+    return f"{santised_name}-{date}"
+
+
 def generate_upload_key() -> str:
     random = os.urandom(15)
     string = str(base64.b64encode(random))
@@ -61,7 +73,7 @@ def generate_upload_key() -> str:
 class Events:
     @staticmethod
     async def create(event: EventCreationRequest, league: League) -> None:
-        id = f"{event.name.replace(' ', '')}-{event.date}"
+        id = generate_event_id(event.name, event.date)
         competitor_pool = league.competitor_pool
 
         await EventTable.insert(
@@ -139,7 +151,7 @@ class Events:
             return "no-event"
 
         if event.name != existing_event.name or event.date != existing_event.date:
-            new_id = f"{event.name.replace(' ', '')}-{event.date}"
+            new_id = generate_event_id(event.name, event.date)
 
             if (await EventTable.count().where(EventTable.id == new_id).run()) > 0:
                 return "id-exists"
