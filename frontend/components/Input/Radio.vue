@@ -20,7 +20,6 @@ const props = defineProps({
   options: {
     type: Array as PropType<Option[]>,
     required: true,
-    default: () => [],
   },
 })
 const selected = computed(() =>

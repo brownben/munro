@@ -12,7 +12,6 @@ import {
 const props = defineProps({
   links: {
     type: Object as PropType<Record<string, string>>,
-    default: () => ({}),
     required: true,
   },
 })

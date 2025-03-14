@@ -8,7 +8,7 @@ import {
 
 const emit = defineEmits(['update:modelValue'])
 const props = defineProps({
-  modelValue: { type: Boolean, default: false, required: true },
+  modelValue: { type: Boolean, required: true },
   label: { type: String, required: true },
   description: { type: String, required: false, default: '' },
 })

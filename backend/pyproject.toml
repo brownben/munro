@@ -22,7 +22,7 @@ dependencies = [
 
   # results file parsing
   "beautifulsoup4~=4.13.3",
-  "lxml~=5.3.0",
+  "lxml~=5.3.1",
   "defusedxml~=0.7.1",
 
   # check firebase auth tokens
@@ -37,7 +37,7 @@ optional-dependencies.dev = [
   "coverage~=7.6.12",
   "mypy~=1.15.0",
   "respx~=0.22.0",
-  "ruff~=0.9.9",
+  "ruff~=0.11.0",
   "time-machine~=2.16.0",
   "types-beautifulsoup4~=4.12",
   "types-icalendar~=6.1.0",
