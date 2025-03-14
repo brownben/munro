@@ -64,7 +64,11 @@ useTitle({
         class="col-span-2"
         :validator="IsValidURL"
       />
-      <Input v-model.trim="form.part_of" label="Part of:" class="col-span-2" />
+      <Input
+        v-model.trim="form.part_of"
+        label="Championship/ Weekend Name:"
+        class="col-span-2"
+      />
       <InputTextarea
         v-model.trim="form.more_information"
         label="More Information:"
