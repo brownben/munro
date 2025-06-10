@@ -98,7 +98,7 @@ python-dotenv==1.0.1
     # via uvicorn
 pyyaml==6.0.2
     # via uvicorn
-requests==2.32.3
+requests==2.32.4
     # via munro (pyproject.toml)
 rsa==4.9
     # via google-auth
