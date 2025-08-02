@@ -31,6 +31,7 @@ field_names: dict[str, Columns] = {
     "lastname": "surname",
     "course": "course",
     "courseclass": "course",
+    "classname": "course",
     "time": "time",
     "totaltimehhmmss": "time",
     "racetime": "time",
