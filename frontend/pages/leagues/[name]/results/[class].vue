@@ -15,6 +15,7 @@ const otherClasses = computed(
     data.value?.classes.filter((course) => course !== data.value?.class_name) ??
     [],
 )
+const resultColumnCount = computed(() => results.value[0]?.points.length ?? 0)
 
 const filters = reactive<Filters>({
   name: queryToString(route.query.name ?? ''),
@@ -48,9 +49,9 @@ if (data.value) {
       v-if="results"
       class="mx-auto w-full grow pt-8 pb-10 lg:px-8 print:sm:py-4"
       :class="{
-        'max-w-(--breakpoint-lg)': results[0]?.points.length <= 3,
+        'max-w-(--breakpoint-lg)': resultColumnCount <= 3,
         'max-w-(--breakpoint-xl)':
-          results[0]?.points.length > 3 && results[0]?.points.length <= 10,
+          resultColumnCount > 3 && resultColumnCount <= 10,
       }"
     >
       <TableLeagueResults

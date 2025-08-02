@@ -1,7 +1,5 @@
-# ruff: noqa: UP007
-
 import datetime
-from typing import Literal, Optional
+from typing import Literal
 
 from pydantic import BaseModel
 from pydantic.networks import HttpUrl
@@ -22,7 +20,7 @@ class League(BaseModel):
 
 
 class LeagueGroup(BaseModel):
-    id: Optional[int] = None
+    id: int | None = None
     name: str
     league: str
 
@@ -34,10 +32,10 @@ class LeagueClass(BaseModel):
     name: str
     league: str
 
-    standard_course: Optional[str] = None
+    standard_course: str | None = None
     age_class_filter: str
     club_filter: str
-    number_of_counting_events: Optional[int] = None
+    number_of_counting_events: int | None = None
 
 
 class Event(BaseModel):
@@ -54,7 +52,7 @@ class Event(BaseModel):
     part_of: str = ""
 
     results_uploaded: bool = False
-    results_uploaded_time: Optional[datetime.datetime] = None
+    results_uploaded_time: datetime.datetime | None = None
 
     allow_user_submitted_results: bool = False
 
@@ -70,13 +68,13 @@ class EventCreationRequest(BaseModel):
     allow_user_submitted_results: bool = False
     league: str
     compulsory: bool = False
-    league_group: Optional[int] = None
-    overridden_scoring_method: Optional[str] = None
-    expected_courses: Optional[dict[str, str]] = None
+    league_group: int | None = None
+    overridden_scoring_method: str | None = None
+    expected_courses: dict[str, str] | None = None
 
 
 class EventWithLeagueDetails(Event):
-    group: Optional[str] = None
+    group: str | None = None
 
 
 class EventWithUploadKey(Event):
@@ -92,10 +90,10 @@ class LeagueEventCreationRequest(BaseModel):
     league: str
 
     compulsory: bool = False
-    league_group: Optional[int] = None
-    overridden_scoring_method: Optional[str] = None
+    league_group: int | None = None
+    overridden_scoring_method: str | None = None
 
-    expected_courses: Optional[dict[str, str]] = None
+    expected_courses: dict[str, str] | None = None
 
 
 class LeagueEventDatabase(LeagueEventCreationRequest):
@@ -104,7 +102,7 @@ class LeagueEventDatabase(LeagueEventCreationRequest):
 
 class LeagueEvent(LeagueEventDatabase):
     # Not in table just fetched so full event isn't needed
-    event_name: Optional[str] = None
+    event_name: str | None = None
 
 
 class ResultBase(BaseModel):
@@ -115,7 +113,7 @@ class ResultBase(BaseModel):
     course: str
     incomplete: bool
     type: str
-    file_points: Optional[int] = None
+    file_points: int | None = None
 
     event: str
     competitor: int
@@ -125,12 +123,12 @@ class ResultBeforeDatabase(BaseModel):
     time: int
     course: str
     incomplete: bool = False
-    file_points: Optional[int] = None
+    file_points: int | None = None
     event: str
 
     type: str = ""
     visible: bool = True
-    competitor: Optional[int] = None
+    competitor: int | None = None
 
 
 class Result(ResultBase):
@@ -204,7 +202,7 @@ class LeagueResult(BaseModel):
     total_points: int = 0
     position: int = 0
 
-    points: list[Optional[LeagueResultScore]] = []
+    points: list[LeagueResultScore | None] = []
     eligible: bool = True
 
 
@@ -227,16 +225,16 @@ class EventResult(BaseModel):
     incomplete: bool
     type: str
     competitor: int
-    position: Optional[int] = None
+    position: int | None = None
 
 
 class EventWithResults(BaseModel):
-    id: Optional[str] = None
+    id: str | None = None
     name: str
     league: str
 
-    date: Optional[datetime.date] = None
-    organiser: Optional[str] = None
+    date: datetime.date | None = None
+    organiser: str | None = None
     website: HttpUrl | Literal[""]
     results_links: dict[str, HttpUrl | Literal[""]]
 
@@ -262,8 +260,8 @@ class UploadResultRequest(BaseModel):
     name: str
     time: str
     course: str
-    age_class: Optional[str] = None
-    club: Optional[str] = None
+    age_class: str | None = None
+    club: str | None = None
 
 
 class LeagueOverview(League):
@@ -308,8 +306,8 @@ class CompetitorPoolOverview(CompetitorPool):
 
 
 class ResultUpdate(BaseModel):
-    incomplete: Optional[bool] = None
-    visible: Optional[bool] = None
+    incomplete: bool | None = None
+    visible: bool | None = None
 
 
 class ManualResultRequest(BaseModel):
@@ -320,4 +318,4 @@ class ManualResultRequest(BaseModel):
     points: int = 0
     visible: bool = True
     incomplete: bool = False
-    competitor: Optional[int] = None
+    competitor: int | None = None

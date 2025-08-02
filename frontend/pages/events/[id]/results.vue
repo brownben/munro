@@ -92,7 +92,7 @@ if (event.value) {
         </NuxtLink>
       </div>
 
-      <TableResults :results="results[course]" :filters="filters" />
+      <TableResults :results="results[course] ?? []" :filters="filters" />
     </section>
 
     <LinksSection

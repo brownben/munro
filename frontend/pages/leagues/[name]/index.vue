@@ -41,9 +41,9 @@ if (league.value) {
       </ImageRow>
       <ImageRow v-if="league.scoring_method" :icon="CalculatorIcon">
         <strong class="font-medium">
-          {{ scoringShorthandToDescription[league.scoring_method][0] }}
+          {{ scoringShorthandToDescription[league.scoring_method]?.[0] }}
         </strong>
-        {{ scoringShorthandToDescription[league.scoring_method][1] }}
+        {{ scoringShorthandToDescription[league.scoring_method]?.[1] }}
       </ImageRow>
       <ImageRow :icon="ChartBarSquareIcon">
         <template
@@ -102,7 +102,9 @@ if (league.value) {
       </LinksSection>
 
       <section
-        v-if="events.length >= 2 && latestEvents.length > 0 && !loggedIn"
+        v-if="
+          events.length >= 2 && latestEvents[0] && latestEvents[1] && !loggedIn
+        "
         class="mx-auto hidden max-w-(--breakpoint-lg) grid-cols-1 gap-8 px-6 py-8 sm:grid sm:grid-cols-2 sm:pt-10 sm:pb-6 lg:px-8"
       >
         <div>

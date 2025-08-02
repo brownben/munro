@@ -1,5 +1,4 @@
 from collections.abc import Iterable
-from typing import TypeVar
 
 from ..schemas import EventResult, LeagueResult, Result
 from .dynamic_results import DYNAMIC_RESULT_TYPES
@@ -26,10 +25,9 @@ def assign_position_based_on_points(
         last_points = result.total_points
 
 
-TResult = TypeVar("TResult", bound=Result | EventResult)
-
-
-def assign_position_based_on_time(results: Iterable[TResult]) -> Iterable[TResult]:
+def assign_position_based_on_time[TResult: Result | EventResult](
+    results: Iterable[TResult],
+) -> Iterable[TResult]:
     """Assign 1st, 2nd, 3rd, etc based off time, for results in different courses. Expects results to be sorted"""
 
     position = 0

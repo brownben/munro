@@ -32,13 +32,16 @@ const getAgeClassRestriction = () => {
   else if (form.age_class_type == 'standard') return form.age_class
   else return `${form.age_class_type}-${form.age_class}`
 }
-const setAgeClassRestriction = (value: string) => {
+const setAgeClassRestriction = (
+  value: string,
+): { age_class: string; age_class_type: string } => {
   let [age_class_type, age_class] = value.split('-')
 
-  if (age_class_type == '') {
+  if (age_class_type == '' || age_class_type === undefined) {
     age_class = ''
+    age_class_type = ''
   } else if (age_class == undefined) {
-    age_class = age_class_type
+    age_class = age_class_type || ''
     age_class_type = 'standard'
   }
 
