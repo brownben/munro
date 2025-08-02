@@ -4,6 +4,8 @@ const base = 'https://munroleagues.com/api/'
 
 export const useData = <Type>(location: string) =>
   useFetch<Type>(`${base}${location}`, { key: location })
+export const useDataReactive = <Type>(location: string) =>
+  useFetch<Type>(`${base}${location}`, { key: location, deep: true })
 
 export const useRestrictedData = <Type>(
   location: string,

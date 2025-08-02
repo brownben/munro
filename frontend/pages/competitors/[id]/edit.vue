@@ -9,7 +9,7 @@ const router = useRouter()
 
 const { data: competitor_pools } =
   await useData<CompetitorPool[]>(`competitor-pools/`)
-const { data: form } = await useData<Competitor>(
+const { data: form } = await useDataReactive<Competitor>(
   `competitors/${route.params.id}`,
 )
 

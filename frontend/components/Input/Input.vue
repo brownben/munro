@@ -21,8 +21,9 @@ type State = 'focused' | 'unfocused' | 'invalid'
 const state = ref<State>('unfocused')
 const validationMessage = ref<string>('')
 
-const onInput = (event: Event) =>
+const onInput = (event: Event) => {
   emit('update:modelValue', (event.target as HTMLInputElement).value)
+}
 
 const setFocused = () => {
   if (state.value !== 'invalid') state.value = 'focused'

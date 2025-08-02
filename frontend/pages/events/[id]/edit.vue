@@ -11,7 +11,7 @@ requireLogin()
 const route = useRoute()
 const router = useRouter()
 
-const { data: form } = await useData<Event>(`events/${route.params.id}`)
+const { data: form } = await useDataReactive<Event>(`events/${route.params.id}`)
 
 const action = async () => {
   try {

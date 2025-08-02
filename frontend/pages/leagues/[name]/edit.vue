@@ -13,7 +13,7 @@ const router = useRouter()
 
 const { data: competitor_pools } =
   await useData<CompetitorPool[]>(`competitor-pools/`)
-const { data: form } = await useData<LeagueOverview>(
+const { data: form } = await useDataReactive<LeagueOverview>(
   `leagues/${route.params.name}`,
 )
 
@@ -54,6 +54,7 @@ useTitle({
         v-model.trim="form.tagline"
         label="Description:"
         class="col-span-2"
+        @update:model-value="console.log('Tagline updated', form.tagline)"
       />
       <Input
         v-model.trim="form.coordinator"

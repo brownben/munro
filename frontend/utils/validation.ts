@@ -51,7 +51,7 @@ export const IsValidURLParameter = (fieldName: string): Validator => ({
     !value.includes('\\') &&
     !value.includes('#') &&
     !value.includes('?'),
-  fieldProperties: { pattern: '[^\\/?#]', required: 'true' },
+  fieldProperties: { pattern: '[^\\/?#]*', required: 'true' },
 })
 
 export const IsValidOptionalURLParameter = (fieldName: string): Validator => ({
