@@ -1,6 +1,7 @@
 import base64
 import datetime
 import os
+import re
 from collections.abc import Iterable
 from typing import Any, Literal, cast
 
@@ -53,13 +54,7 @@ def as_event(record: dict[str, Any]) -> EventWithUploadKey | None:
 
 
 def generate_event_id(name: str, date: datetime.date) -> str:
-    santised_name = (
-        name.replace(" ", "")
-        .replace("/", "")
-        .replace("\\", "")
-        .replace("/", "")
-        .replace("#", "")
-    )
+    santised_name = re.sub(r"[;\/?:@&=+$, #]", "", name)
 
     return f"{santised_name}-{date}"
 

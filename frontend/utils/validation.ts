@@ -44,10 +44,14 @@ export const IsValidTimeRequired = {
 }
 
 export const IsValidURLParameter = (fieldName: string): Validator => ({
-  message: `Please enter ${fieldName} without slashes (/, \\)`,
+  message: `Please enter ${fieldName} without slashes, hashtags, or question marks (/, \\, ?,  #)`,
   checker: (value: string) =>
-    !!value && !value.includes('/') && !value.includes('\\'),
-  fieldProperties: { pattern: '[^\\/]+', required: 'true' },
+    !!value &&
+    !value.includes('/') &&
+    !value.includes('\\') &&
+    !value.includes('#') &&
+    !value.includes('?'),
+  fieldProperties: { pattern: '[^\\/?#]', required: 'true' },
 })
 
 export const IsValidOptionalURLParameter = (fieldName: string): Validator => ({
