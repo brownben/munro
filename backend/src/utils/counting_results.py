@@ -17,9 +17,16 @@ def counting_results_finder(
     )
     league_points_calculator = get_matching_points_calculator(league.scoring_method)
     compulsory_events = {event.event for event in events if event.compulsory}
+
+    # we want to have it sorted by league group, as otherwise groupby doesn't work correctly
+    # (as it only considers consecutive items with the same key)
+    events_sorted_by_group = sorted(events, key=lambda x: x.league_group or -1)
+
     groups: dict[int, list[str]] = {
         group_name: [event.event for event in events_in_group]
-        for group_name, events_in_group in groupby(events, lambda x: x.league_group)
+        for group_name, events_in_group in groupby(
+            events_sorted_by_group, lambda x: x.league_group
+        )
         if group_name
     }
 
