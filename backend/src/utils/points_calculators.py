@@ -225,6 +225,7 @@ class TimeRelativeToWinnerWelshAdjusted(PointsCalculator):
             "short blue": 0.7,
             "green": 0.6,
             "short green": 0.5,
+            "very short green": 0.5,
             "light green": 0.5,
             "orange": 0.37,
             "yellow": 0.3,
