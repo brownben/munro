@@ -8,7 +8,7 @@ const leagues = [
     height: 318,
   },
   {
-    to: '/leagues/Fight with the Night 24-25',
+    to: '/leagues/Fight with the Night 25-26',
     src: '/logos/euoc',
     alt: 'Edinburgh Uni Orienteering Club Logo',
     width: 557,
