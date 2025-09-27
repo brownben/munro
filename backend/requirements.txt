@@ -9,7 +9,7 @@ anyio==4.6.2.post1
     #   watchfiles
 asyncpg==0.30.0
     # via munro (pyproject.toml)
-beautifulsoup4==4.13.4
+beautifulsoup4==4.13.5
     # via munro (pyproject.toml)
 black==24.10.0
     # via piccolo
@@ -40,7 +40,7 @@ docstring-parser==0.16
     # via targ
 email-validator==2.2.0
     # via pydantic
-fastapi==0.116.1
+fastapi==0.117.1
     # via munro (pyproject.toml)
 google-auth==2.40.3
     # via munro (pyproject.toml)
@@ -66,7 +66,7 @@ inflection==0.5.1
     # via piccolo
 jinja2==3.1.4
     # via piccolo
-lxml==6.0.0
+lxml==6.0.2
     # via munro (pyproject.toml)
 markupsafe==3.0.2
     # via jinja2
@@ -123,7 +123,7 @@ tzdata==2024.2
     # via icalendar
 urllib3==2.2.3
     # via requests
-uvicorn==0.35.0
+uvicorn==0.37.0
     # via munro (pyproject.toml)
 watchfiles==0.24.0
     # via uvicorn

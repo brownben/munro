@@ -12,8 +12,8 @@ requires-python = ">=3.13"
 
 dependencies = [
   # fastapi
-  "fastapi~=0.116.1",
-  "uvicorn[standard]~=0.35.0",
+  "fastapi~=0.117.1",
+  "uvicorn[standard]~=0.37.0",
   "uvloop~=0.21.0; platform_system != 'Windows'",
 
   # database
@@ -21,8 +21,8 @@ dependencies = [
   "asyncpg~=0.30.0",
 
   # results file parsing
-  "beautifulsoup4~=4.13.4",
-  "lxml~=6.0.0",
+  "beautifulsoup4~=4.13.5",
+  "lxml~=6.0.2",
   "defusedxml~=0.7.1",
 
   # check firebase auth tokens
@@ -34,11 +34,11 @@ dependencies = [
 ]
 optional-dependencies.dev = [
   "aiosqlite~=0.21.0",
-  "coverage~=7.10.1",
-  "mypy~=1.17.1",
+  "coverage~=7.10.7",
+  "mypy~=1.18.2",
   "respx~=0.22.0",
-  "ruff~=0.12.7",
-  "time-machine~=2.16.0",
+  "ruff~=0.13.2",
+  "time-machine~=2.19.0",
   "types-beautifulsoup4~=4.12",
   "types-icalendar~=6.3.1",
   "types-requests~=2.32.4",
