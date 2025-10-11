@@ -28,7 +28,8 @@ const setClubRestriction = (value: string) => {
   else return { club: '', club_type: '' }
 }
 const getAgeClassRestriction = () => {
-  if (form.age_class_type == '') return ''
+  if (form.age_class_type == '' || form.age_class_type.includes('-'))
+    return form.age_class_type
   else if (form.age_class_type == 'standard') return form.age_class
   else return `${form.age_class_type}-${form.age_class}`
 }
@@ -43,6 +44,11 @@ const setAgeClassRestriction = (
   } else if (age_class == undefined) {
     age_class = age_class_type || ''
     age_class_type = 'standard'
+  }
+
+  if (value.includes('older')) {
+    age_class_type = value
+    age_class = ''
   }
 
   return { age_class, age_class_type }
@@ -158,15 +164,30 @@ useTitle({
             value: 'exactGender',
           },
           {
-            title: 'Seniors',
-            description: 'Only include seniors (over 18s)',
-            value: 'older18',
+            title: 'Over 18s',
+            description: 'Only include M/W18 and older',
+            value: 'older18-M21',
+          },
+          {
+            title: 'Over 18s Women',
+            description: 'Only include W18 and older',
+            value: 'older18-W21',
+          },
+          {
+            title: 'Over 16s',
+            description: 'Only include M/W16 and older',
+            value: 'older16-M21',
+          },
+          {
+            title: 'Over 16s Women',
+            description: 'Only include W16 and older',
+            value: 'older16-W21',
           },
         ]"
         class="col-span-2"
       />
       <Input
-        v-if="form.age_class_type != ''"
+        v-if="form.age_class_type != '' && !form.age_class_type.includes('-')"
         v-model.trim="form.age_class"
         label="Age Class:"
         class="col-span-2"

@@ -122,6 +122,21 @@ def is_age_class_eligible_over_18(specified_string: str, age_class_string: str) 
     return is_age_eligible() and is_gender_eligible()
 
 
+def is_age_class_eligible_over_16(specified_string: str, age_class_string: str) -> bool:
+    gender, age = parse_age_class(age_class_string)
+    specified_gender, _specified_age = parse_age_class(specified_string)
+
+    def is_age_eligible() -> bool:
+        # age class must be at least 16
+        return age >= 16
+
+    def is_gender_eligible() -> bool:
+        # either gender matches, or is a women and is eligible for mens/open
+        return gender in (specified_gender, "W")
+
+    return is_age_eligible() and is_gender_eligible()
+
+
 def age_class_matches_filter(filter: str, age_class: str) -> bool:
     if not filter:
         return True
@@ -136,6 +151,8 @@ def age_class_matches_filter(filter: str, age_class: str) -> bool:
         return is_age_class_eligible_exact_gender(specified_age_class, age_class)
     elif filter.startswith("older18-"):
         return is_age_class_eligible_over_18(specified_age_class, age_class)
+    elif filter.startswith("older16-"):
+        return is_age_class_eligible_over_16(specified_age_class, age_class)
 
     return is_age_class_eligible(specified_age_class, age_class)
 

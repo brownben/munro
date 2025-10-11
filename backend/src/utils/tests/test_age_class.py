@@ -147,16 +147,19 @@ class TestMatchesAgeClassFilter(unittest.TestCase):
         self.assertFalse(age_class_matches_filter("exactWithB-M55", "M75"))
 
     def test_older_18(self) -> None:
-        self.assertTrue(age_class_matches_filter("older18-M18", "M18"))
-        self.assertTrue(age_class_matches_filter("older18-M18", "W18"))
-        self.assertTrue(age_class_matches_filter("older18-W18", "W18"))
+        self.assertTrue(age_class_matches_filter("older18-W21", "W18"))
         self.assertTrue(age_class_matches_filter("older18-W21", "W45"))
-        self.assertTrue(age_class_matches_filter("older18-W35", "W45"))
-        self.assertFalse(age_class_matches_filter("older18-M18", "M16"))
-        self.assertFalse(age_class_matches_filter("older18-W45", "W21"))
-        self.assertFalse(age_class_matches_filter("older18-W35", "M45"))
-        self.assertFalse(age_class_matches_filter("older18-W16", "W12"))
-        self.assertFalse(age_class_matches_filter("older18-W16", "M12"))
+        self.assertFalse(age_class_matches_filter("older18-W21", "W16"))
+        self.assertFalse(age_class_matches_filter("older18-W21", "M18"))
+        self.assertFalse(age_class_matches_filter("older18-W21", "M45"))
+        self.assertFalse(age_class_matches_filter("older18-W21", "M16"))
+
+        self.assertTrue(age_class_matches_filter("older18-M21", "W18"))
+        self.assertTrue(age_class_matches_filter("older18-M21", "W45"))
+        self.assertFalse(age_class_matches_filter("older18-M21", "W16"))
+        self.assertTrue(age_class_matches_filter("older18-M21", "M18"))
+        self.assertTrue(age_class_matches_filter("older18-M21", "M45"))
+        self.assertFalse(age_class_matches_filter("older18-M21", "M16"))
 
     def test_exact_gender(self) -> None:
         self.assertTrue(age_class_matches_filter("exactGender-M18", "M18"))
