@@ -123,7 +123,7 @@ typing-extensions==4.12.2
     #   pydantic-core
 tzdata==2024.2
     # via icalendar
-urllib3==2.2.3
+urllib3==2.6.0
     # via requests
 uvicorn==0.38.0
     # via munro (pyproject.toml)
