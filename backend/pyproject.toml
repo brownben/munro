@@ -12,35 +12,35 @@ requires-python = ">=3.13"
 
 dependencies = [
   # fastapi
-  "fastapi~=0.117.1",
-  "uvicorn[standard]~=0.37.0",
-  "uvloop~=0.21.0; platform_system != 'Windows'",
+  "fastapi~=0.124.4",
+  "uvicorn[standard]~=0.38.0",
+  "uvloop~=0.22.1; platform_system != 'Windows'",
 
   # database
-  "piccolo==1.28.0",
-  "asyncpg~=0.30.0",
+  "piccolo==1.30.0",
+  "asyncpg~=0.31.0",
 
   # results file parsing
-  "beautifulsoup4~=4.13.5",
+  "beautifulsoup4~=4.14.3",
   "lxml~=6.0.2",
   "defusedxml~=0.7.1",
 
   # check firebase auth tokens
-  "google-auth~=2.40.3",
-  "requests~=2.32.4",
+  "google-auth~=2.45.0",
+  "requests~=2.32.5",
 
   "httpx~=0.28.1",    # make requests for results files
-  "icalendar~=6.3.1", # generate ical files
+  "icalendar~=6.3.2", # generate ical files
 ]
 optional-dependencies.dev = [
-  "aiosqlite~=0.21.0",
-  "coverage~=7.10.7",
-  "mypy~=1.18.2",
+  "aiosqlite~=0.22.0",
+  "coverage~=7.13.0",
+  "mypy~=1.19.1",
   "respx~=0.22.0",
-  "ruff~=0.13.2",
-  "time-machine~=2.19.0",
+  "ruff~=0.14.9",
+  "time-machine~=3.1.0",
   "types-beautifulsoup4~=4.12",
-  "types-icalendar~=6.3.1",
+  "types-icalendar~=6.3.2",
   "types-requests~=2.32.4",
 ]
 
