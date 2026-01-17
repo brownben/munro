@@ -80,7 +80,7 @@ piccolo==1.30.0
     # via munro (pyproject.toml)
 platformdirs==4.3.6
     # via black
-pyasn1==0.6.1
+pyasn1==0.6.2
     # via
     #   pyasn1-modules
     #   rsa
