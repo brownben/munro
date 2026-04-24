@@ -48,7 +48,7 @@ fastapi==0.136.1
     # via munro (pyproject.toml)
 google-auth==2.49.2
     # via munro (pyproject.toml)
-h11==0.14.0
+h11==0.16.0
     # via
     #   httpcore
     #   uvicorn
