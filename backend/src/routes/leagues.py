@@ -229,12 +229,11 @@ async def get_league_events_calendar(
     if not league:
         raise HTTP_404(f"Couldn't find league with name `{league_name}`")
 
-    calendar = icalendar.Calendar()
-    calendar["name"] = league.name
+    calendar = icalendar.Calendar.new(name=league.name)
     calendar.add("x-wr-calname", league.name)
 
     for event in events:
-        calendar_event = icalendar.Event()
+        calendar_event = icalendar.Event.new()
         calendar_event.add("uid", f"{event.id}@munroleagues.com")
         calendar_event.add("summary", f"{league.name} - {event.name}")
         calendar_event.add("description", generate_event_calendar_description(event))

@@ -20,6 +20,8 @@ certifi==2024.8.30
     #   httpcore
     #   httpx
     #   requests
+cffi==2.0.0
+    # via cryptography
 charset-normalizer==3.4.0
     # via requests
 click==8.1.7
@@ -32,6 +34,8 @@ colorama==0.4.6
     #   piccolo
     #   targ
     #   uvicorn
+cryptography==47.0.0
+    # via google-auth
 defusedxml==0.7.1
     # via munro (pyproject.toml)
 dnspython==2.7.0
@@ -40,9 +44,9 @@ docstring-parser==0.16
     # via targ
 email-validator==2.2.0
     # via pydantic
-fastapi==0.128.0
+fastapi==0.136.1
     # via munro (pyproject.toml)
-google-auth==2.47.0
+google-auth==2.49.2
     # via munro (pyproject.toml)
 h11==0.14.0
     # via
@@ -54,7 +58,7 @@ httptools==0.6.4
     # via uvicorn
 httpx==0.28.1
     # via munro (pyproject.toml)
-icalendar==6.3.2
+icalendar==7.0.3
     # via munro (pyproject.toml)
 idna==3.10
     # via
@@ -66,7 +70,7 @@ inflection==0.5.1
     # via piccolo
 jinja2==3.1.4
     # via piccolo
-lxml==6.0.2
+lxml==6.1.0
     # via munro (pyproject.toml)
 markupsafe==3.0.2
     # via jinja2
@@ -76,16 +80,16 @@ packaging==24.1
     # via black
 pathspec==0.12.1
     # via black
-piccolo==1.30.0
+piccolo==1.33.0
     # via munro (pyproject.toml)
 platformdirs==4.3.6
     # via black
 pyasn1==0.6.1
-    # via
-    #   pyasn1-modules
-    #   rsa
+    # via pyasn1-modules
 pyasn1-modules==0.4.1
     # via google-auth
+pycparser==3.0
+    # via cffi
 pydantic==2.10.4
     # via
     #   fastapi
@@ -98,17 +102,15 @@ python-dotenv==1.0.1
     # via uvicorn
 pyyaml==6.0.2
     # via uvicorn
-requests==2.32.5
+requests==2.33.1
     # via munro (pyproject.toml)
-rsa==4.9
-    # via google-auth
 six==1.16.0
     # via python-dateutil
 sniffio==1.3.1
     # via anyio
 soupsieve==2.6
     # via beautifulsoup4
-starlette==0.41.2
+starlette==1.0.0
     # via fastapi
 targ==0.4.0
     # via piccolo
@@ -119,11 +121,14 @@ typing-extensions==4.12.2
     #   piccolo
     #   pydantic
     #   pydantic-core
-tzdata==2024.2
+    #   typing-inspection
+typing-inspection==0.4.2
+    # via fastapi
+tzdata==2026.2
     # via icalendar
 urllib3==2.2.3
     # via requests
-uvicorn==0.40.0
+uvicorn==0.46.0
     # via munro (pyproject.toml)
 watchfiles==0.24.0
     # via uvicorn
