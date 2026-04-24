@@ -290,7 +290,7 @@ async def get_league_results(
             if league_results.get(result.competitor)
         ]
 
-        if len(list(event_results)) == 0:
+        if len(event_results) == 0:
             continue
 
         event_index = len(events_with_results)
