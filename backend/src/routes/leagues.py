@@ -67,8 +67,23 @@ async def create_league(
     league: League,
     authentication: bool = Depends(require_authentication),
 ) -> Message:
+    if len(league.name) > 50:
+        raise HTTP_400(
+            f"League name must not exceed 50 characters (currently {len(league.name)})"
+        )
+
     if await Leagues.get_by_name(league.name):
         raise HTTP_409(f"League `{league.name}` already exists")
+
+    if league.coordinator and len(league.coordinator) > 50:
+        raise HTTP_400(
+            f"Coordinator name must not exceed 50 characters (currently {len(league.coordinator)})"
+        )
+
+    if league.tagline and len(league.tagline) > 200:
+        raise HTTP_400(
+            f"Tagline must not exceed 200 characters (currently {len(league.tagline)})"
+        )
 
     await Leagues.create(league)
 
@@ -127,6 +142,21 @@ async def update_league_details(
     ),
     authentication: bool = Depends(require_authentication),
 ) -> Message:
+    if len(league.name) > 50:
+        raise HTTP_400(
+            f"League name must not exceed 50 characters (currently {len(league.name)})"
+        )
+
+    if league.coordinator and len(league.coordinator) > 50:
+        raise HTTP_400(
+            f"Coordinator name must not exceed 50 characters (currently {len(league.coordinator)})"
+        )
+
+    if league.tagline and len(league.tagline) > 200:
+        raise HTTP_400(
+            f"Tagline must not exceed 200 characters (currently {len(league.tagline)})"
+        )
+
     success = await Leagues.update(name, league)
 
     if success:
