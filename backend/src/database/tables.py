@@ -22,7 +22,7 @@ class League(Table):
     name = Varchar(50, null=False, primary_key=True)
     tagline = Varchar(200)
     year = Integer()
-    coordinator = Varchar(25)
+    coordinator = Varchar(50)
     website = Text(null=True)
     more_information = Text()
     visible = Boolean()
