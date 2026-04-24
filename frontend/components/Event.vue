@@ -15,6 +15,7 @@ import type { Event } from '~/api-types'
 
 const props = defineProps({
   event: { type: Object as PropType<Event>, required: true },
+  league: { type: String, default: '' },
   h2: { type: Boolean, default: false },
   admin: { type: Boolean, default: false },
   small: { type: Boolean, default: false },
@@ -89,7 +90,10 @@ const deleteEvent = async () => {
     </p>
 
     <div v-if="event.results_uploaded" class="mt-3 flex flex-wrap gap-3">
-      <ButtonSmall :link="`/events/${event.id}/results`" coloured>
+      <ButtonSmall
+        :link="`/events/${event.id}/results${league ? `?league=${league}` : ''}`"
+        coloured
+      >
         Results
       </ButtonSmall>
       <ButtonSmall

@@ -16,6 +16,11 @@ const results = computed(() =>
 )
 const courses = computed(() => Object.keys(results.value).sort())
 
+const league = computed(() => {
+  if (route.query.league) return String(route.query.league)
+  else return event.value?.league
+})
+
 const filters = reactive<Filters>({
   name: queryToString(route.query.name ?? ''),
   club: queryToString(route.query.club ?? ''),
@@ -36,8 +41,8 @@ if (event.value) {
   <div v-if="event" class="flex h-full grow flex-col gap-8">
     <Heading
       :title="event.name"
-      :link-text="event.league"
-      :link-location="`/leagues/${event.league}`"
+      :link-text="league"
+      :link-location="`/leagues/${league}`"
     >
       <template v-if="Object.keys(event.results_links).length > 0" #default>
         <ResultsLinks :links="event.results_links" />

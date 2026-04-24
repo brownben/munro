@@ -258,6 +258,7 @@ if (league.value) {
               v-for="event in league.events"
               :key="event.id"
               :event="event"
+              :league="league.name"
               class="py-10 sm:px-4"
               :admin="loggedIn"
               @event-changed="refresh"
