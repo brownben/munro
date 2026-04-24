@@ -126,7 +126,7 @@ typing-inspection==0.4.2
     # via fastapi
 tzdata==2026.2
     # via icalendar
-urllib3==2.2.3
+urllib3==2.6.3
     # via requests
 uvicorn==0.46.0
     # via munro (pyproject.toml)
