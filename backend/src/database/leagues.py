@@ -1,5 +1,5 @@
 from collections.abc import Iterable
-from typing import Any
+from typing import Any, cast
 
 from ..schemas import League, LeagueClass, LeagueGroup
 from .tables import CompetitorPool as CompetitorPoolTable
@@ -44,13 +44,19 @@ def as_league_class(record: dict[str, Any] | None) -> LeagueClass | None:
     return LeagueClass.model_validate(record)
 
 
+async def competitor_pool_exist(name: str) -> bool:
+    count = await CompetitorPoolTable.count().where(CompetitorPoolTable.name == name)
+    return cast(int, count) > 0
+
+
 class Leagues:
     @staticmethod
     async def create(league: League) -> bool:
         if not league.competitor_pool:
-            await CompetitorPoolTable.insert(
-                CompetitorPoolTable(name=league.name)
-            ).run()
+            if not await competitor_pool_exist(league.name):
+                await CompetitorPoolTable.insert(
+                    CompetitorPoolTable(name=league.name)
+                ).run()
             league.competitor_pool = league.name
 
         await LeagueTable.insert(
