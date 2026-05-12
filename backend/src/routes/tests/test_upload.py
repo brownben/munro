@@ -70,7 +70,7 @@ class TestUploadFile(TestCaseWithDatabase):
             json={
                 "event_id": "TestEvent-2022-02-03",
                 "upload_key": "UploadKeyKeepSecret",
-                "file": "",
+                "file": " ",
             },
         )
 
