@@ -31,7 +31,7 @@ const submit = async () => {
     <slot />
     <div
       v-if="message"
-      class="border-main-100 bg-main-50 text-main-800 col-span-2 flex flex-row items-center gap-4 rounded-sm border p-4 leading-tight select-auto"
+      class="border-main-100 bg-main-50 text-main-800 dark:border-main-700 dark:bg-main-900 dark:text-main-200 col-span-2 flex flex-row items-center gap-4 rounded-sm border p-4 leading-tight select-auto"
       role="alert"
     >
       <ExclamationCircleIcon aria-hidden="true" class="h-6 w-6 shrink-0" />
