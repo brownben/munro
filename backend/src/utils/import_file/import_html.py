@@ -64,9 +64,12 @@ def parse_sitiming_file(file: str) -> tuple[list[str], list[list[str]]]:
     if script_tag is None or not isinstance(table, Tag):
         raise ImportException(SITIMING_PARSE_FAILURE_MESSAGE)
 
-    course_results = [
-        json.loads(block) for block in parse_sitiming_script(script_tag.text)
-    ]
+    try:
+        course_results = [
+            json.loads(block) for block in parse_sitiming_script(script_tag.text)
+        ]
+    except json.JSONDecodeError:
+        raise ImportException(SITIMING_PARSE_FAILURE_MESSAGE)
 
     table_headings = [
         heading_text
