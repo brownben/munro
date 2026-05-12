@@ -174,7 +174,7 @@ class UploadRequest(BaseModel):
 
 
 class UploadFileRequest(UploadRequest):
-    file: str
+    file: str = ""
 
 
 class UploadURLRequest(UploadRequest):

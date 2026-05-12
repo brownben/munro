@@ -107,6 +107,7 @@ useTitle({
       <InputFile
         label="Results File:"
         class="col-span-2"
+        :required="!linksOnly"
         @file="form.file = $event"
       />
 

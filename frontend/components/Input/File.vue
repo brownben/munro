@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps({
   label: { type: String, required: true },
+  required: { type: Boolean, default: true },
 })
 
 const emit = defineEmits({
@@ -41,7 +42,7 @@ const readFileResult = (result: ProgressEvent<FileReader>) =>
       type="file"
       class="-ml-2 p-2 text-base font-medium text-gray-600 outline-hidden dark:text-gray-300"
       accept=".csv,.xml,.html,.htm"
-      required
+      :required="required"
       @change="fileChange"
     />
   </div>
