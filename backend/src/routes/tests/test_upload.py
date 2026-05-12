@@ -3,7 +3,7 @@ from unittest.mock import ANY
 import httpx
 import respx
 
-from ...database import Competitors, Results
+from ...database import Competitors, Events, Results
 from .helpers import TestCaseWithDatabase
 from .sample_data import sample_csv_file
 
@@ -52,7 +52,7 @@ class TestUploadFile(TestCaseWithDatabase):
             json={
                 "event_id": "TestEvent-2021-12-12",
                 "upload_key": "UploadKeyKeepSecret",
-                "file": "",
+                "file": sample_csv_file,
             },
         )
 
@@ -332,3 +332,70 @@ class TestUploadURL(TestCaseWithDatabase):
 
         self.assertTrue(mock_requests_get.called)
         self.assertEqual(response.status_code, 500)
+
+
+class TestUploadLinks(TestCaseWithDatabase):
+    def test_no_results_uploaded_with_file_still_blocked(self) -> None:
+        response = self.client.post(
+            "/upload/file",
+            json={
+                "event_id": "TestEvent-2021-12-12",
+                "upload_key": "UploadKeyKeepSecret",
+                "file": "some content",
+            },
+        )
+
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(
+            response.json(),
+            {
+                "detail": "Results already exist for this event and overwrite was not enabled"
+            },
+        )
+
+    def test_updates_links_when_no_file_provided(self) -> None:
+        response = self.client.post(
+            "/upload/file",
+            json={
+                "event_id": "TestEvent-2021-12-12",
+                "upload_key": "UploadKeyKeepSecret",
+                "file": "",
+                "results_links": {
+                    "Routegadget": "https://example.com/rg",
+                    "Winsplits": "https://example.com/ws",
+                },
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"detail": "Results links updated"})
+
+    async def test_updates_results_links_without_changing_results(self) -> None:
+        results_before = list(await Results.get_by_event("TestEvent-2021-12-12"))
+        self.assertNotEqual(len(results_before), 0)
+
+        self.client.post(
+            "/upload/file",
+            json={
+                "event_id": "TestEvent-2021-12-12",
+                "upload_key": "UploadKeyKeepSecret",
+                "file": "",
+                "results_links": {
+                    "Routegadget": "https://example.com/rg",
+                    "Winsplits": "https://example.com/ws",
+                },
+            },
+        )
+
+        event = await Events.get_by_id("TestEvent-2021-12-12")
+        assert event is not None
+        self.assertEqual(
+            {k: str(v) for k, v in event.results_links.items()},
+            {
+                "Routegadget": "https://example.com/rg",
+                "Winsplits": "https://example.com/ws",
+            },
+        )
+
+        results_after = list(await Results.get_by_event("TestEvent-2021-12-12"))
+        self.assertEqual(len(results_before), len(results_after))

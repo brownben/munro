@@ -22,6 +22,7 @@ const form = reactive({
 
 const event: Ref<Event | null> = ref(null)
 const eventPending = ref(true)
+
 const getEvent = async () => {
   eventPending.value = true
 
@@ -35,6 +36,8 @@ const getEvent = async () => {
   }
   eventPending.value = false
 }
+
+const linksOnly = computed(() => !!event.value?.results_uploaded && !form.file)
 
 const action = async () => {
   try {
@@ -61,7 +64,7 @@ useTitle({
   <div>
     <Heading title="Upload Results File" />
 
-    <Form button="Upload" :action="action">
+    <Form :button="linksOnly ? 'Update Links' : 'Upload'" :action="action">
       <FormHeading
         title="Event Details"
         description="These details are required to identify the event. If you are unsure,
@@ -111,7 +114,7 @@ useTitle({
         v-if="event?.results_uploaded"
         v-model="form.overwrite"
         label="Overwrite existing results?"
-        description="Replace exisiting results with new result in uploaded file"
+        description="Replace existing results with new results in uploaded file"
         class="col-span-2 py-2"
       />
 

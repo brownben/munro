@@ -39,6 +39,9 @@ async def process_upload_file(
         raise HTTP_404("Problem uploading results - Event doesn't exist")
     elif upload_key != event.upload_key:
         raise HTTP_401("Permission Denied - Upload key incorrect")
+    elif not file:
+        await Events.update_results_links(event_id, results_links or {})
+        return Message(detail="Results links updated")
     elif event.results_uploaded and not (overwrite or partial):
         raise HTTP_403(
             "Results already exist for this event and overwrite was not enabled"
