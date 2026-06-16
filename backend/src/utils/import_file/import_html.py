@@ -1,7 +1,7 @@
 import json
 import re
 from collections.abc import Iterable
-from typing import cast
+from typing import Any, cast
 
 from bs4 import BeautifulSoup, Tag
 
@@ -20,7 +20,11 @@ SOCIAL_LINK_REGEX = re.compile("<a href=.*?></a>", flags=re.IGNORECASE)
 SPAN_REGEX = re.compile("<span.*?>|<\\/span>", flags=re.IGNORECASE)
 
 
-def parse_sitiming_script(script_tag_text: str) -> list[str]:
+def _clean_nbsp_in_row(row: list[Any]) -> list[str]:
+    return [NBSP_REGEX.sub("", cell) if isinstance(cell, str) else cell for cell in row]
+
+
+def parse_sitiming_script(script_tag_text: str) -> list[list[list[str]]]:
     # remove preamble of the function definition
     preamble_regex = re.compile(r".*?0\)\s*\n*\s*return", flags=re.DOTALL)
     script_text = preamble_regex.sub("", script_tag_text)
@@ -45,7 +49,17 @@ def parse_sitiming_script(script_tag_text: str) -> list[str]:
 
     # split into the blocks of JSON
     IF_RETURN = r";\n*\s*if\s*\(tableNumber == [0-9]+\)\n*\s*return\s*\n*"
-    return re.split(IF_RETURN, script_text)
+
+    return [json.loads(block) for block in re.split(IF_RETURN, script_text)]
+
+
+def parse_sitiming_script_v4(script_tag_text: str) -> list[list[list[str]]]:
+    decoder = json.JSONDecoder()
+    course_results = []
+    for match in re.finditer(r"'data':\s*", script_tag_text):
+        data, _ = decoder.raw_decode(script_tag_text, match.end())
+        course_results.append([_clean_nbsp_in_row(row) for row in data])
+    return course_results
 
 
 def parse_sitiming_file(file: str) -> tuple[list[str], list[list[str]]]:
@@ -65,9 +79,12 @@ def parse_sitiming_file(file: str) -> tuple[list[str], list[list[str]]]:
         raise ImportException(SITIMING_PARSE_FAILURE_MESSAGE)
 
     try:
-        course_results = [
-            json.loads(block) for block in parse_sitiming_script(script_tag.text)
-        ]
+        script_text = script_tag.text
+        if "'data':" in script_text:
+            course_results = parse_sitiming_script_v4(script_text)
+        else:
+            course_results = parse_sitiming_script(script_text)
+
     except json.JSONDecodeError:
         raise ImportException(SITIMING_PARSE_FAILURE_MESSAGE)
 

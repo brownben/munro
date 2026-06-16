@@ -9,6 +9,8 @@ with open("src/utils/import_file/tests/sample/sitiming_external.html") as file:
     sample_sitiming_external_data_html_file = file.read()
 with open("src/utils/import_file/tests/sample/sitiming_with_classes.html") as file:
     sample_sitiming_html_file_with_classes = file.read()
+with open("src/utils/import_file/tests/sample/sitiming_v4.html") as file:
+    sample_sitiming_v4_html_file = file.read()
 
 
 class TestImportSITimingHTML(unittest.TestCase):
@@ -91,6 +93,69 @@ class TestImportSITimingHTML(unittest.TestCase):
         self.assertRaises(
             ImportException,
             lambda: list(process_html_file('<option value="0">Hello</option>')),
+        )
+
+    def test_v4_format_is_imported_correctly(self) -> None:
+        self.assertEqual(
+            list(process_html_file(sample_sitiming_v4_html_file)),
+            [
+                {
+                    "name": "Alice Smith",
+                    "course": "Long",
+                    "time": "27:00",
+                    "ageClass": "W21",
+                    "club": "HAT",
+                    "position": "1st",
+                },
+                {
+                    "name": "Bob Jones",
+                    "course": "Long",
+                    "time": "28:11",
+                    "ageClass": "M40",
+                    "club": "BAT",
+                    "position": "2nd",
+                },
+                {
+                    "name": "Carol White",
+                    "course": "Long",
+                    "time": "30:37",
+                    "ageClass": "W18",
+                    "club": "DOG",
+                    "position": "3rd",
+                },
+                {
+                    "name": "Dave Brown",
+                    "course": "Long",
+                    "time": "31:57",
+                    "ageClass": "M21",
+                    "club": "",
+                    "position": "4th",
+                },
+                {
+                    "name": "Eve Green",
+                    "course": "Short",
+                    "time": "15:34",
+                    "ageClass": "M20",
+                    "club": "FISH",
+                    "position": "1st",
+                },
+                {
+                    "name": "Frank Hill",
+                    "course": "Short",
+                    "time": "16:39",
+                    "ageClass": "W21",
+                    "club": "HAD",
+                    "position": "2nd",
+                },
+                {
+                    "name": "Grace Lee",
+                    "course": "Short",
+                    "time": "17:52",
+                    "ageClass": "",
+                    "club": "",
+                    "position": "3rd",
+                },
+            ],
         )
 
     def test_internal_data_with_classes(self) -> None:
