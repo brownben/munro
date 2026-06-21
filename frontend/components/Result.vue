@@ -46,7 +46,17 @@ const showTransferForm = ref(false)
           class="text-5xl font-black tracking-tight text-gray-800 dark:text-gray-100"
         >
           <template v-if="result.incomplete">*</template>
-          <template v-else>{{ elapsedTime(result.time) || '*' }}</template>
+          <template v-else>{{ elapsedTime(result.time) || '-' }}</template>
+        </dd>
+      </div>
+      <div v-if="result.file_points">
+        <dt class="mb-1 font-medium text-gray-500 dark:text-gray-400">
+          Uploaded Points:
+        </dt>
+        <dd
+          class="text-5xl font-black tracking-tight text-gray-800 dark:text-gray-100"
+        >
+          {{ result.file_points }}
         </dd>
       </div>
       <div>
