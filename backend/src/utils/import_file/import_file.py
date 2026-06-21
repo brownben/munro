@@ -1,6 +1,6 @@
 import re
 from collections.abc import Callable, Generator, Iterable
-from typing import Any, Literal, TypedDict
+from typing import Any, TypedDict
 
 from ..age_class import date_to_age_class
 from ..times import parse_time
@@ -34,15 +34,16 @@ class ImportedResult:
     """Result imported from a file"""
 
     @staticmethod
-    def _get_int(
-        result: ImportedRecord, field: Literal["position", "filePoints"]
-    ) -> int:
+    def _get_position(result: ImportedRecord) -> int:
         try:
-            value = result[field] or ""
-            if "." in value:
-                return round(float(value or 0) * 10)
-            else:
-                return int(value or 0)
+            return int(result.get("position") or 0)
+        except (ValueError, KeyError):
+            return 0
+
+    @staticmethod
+    def _get_file_points(result: ImportedRecord) -> int:
+        try:
+            return round(float(result.get("filePoints") or 0) * 10)
         except (ValueError, KeyError):
             return 0
 
@@ -83,10 +84,10 @@ class ImportedResult:
         self.course = str(result["course"]).strip()
         self.time = parse_time(result["time"])
         self.incomplete = self._is_result_incomplete(result)
-        self.position = self._get_int(result, "position")
+        self.position = self._get_position(result)
         self.age_class = self._get_age_class(result)
         self.club = self._get_club(result)
-        self.file_points = self._get_int(result, "filePoints")
+        self.file_points = self._get_file_points(result)
 
     def __iter__(self) -> Generator[tuple[str, Any]]:
         for key in (
