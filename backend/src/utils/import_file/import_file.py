@@ -38,7 +38,7 @@ class ImportedResult:
         result: ImportedRecord, field: Literal["position", "filePoints"]
     ) -> int:
         try:
-            return int(result[field] or 0)
+            return round(float(result[field] or 0))
         except (ValueError, KeyError):
             return 0
 
