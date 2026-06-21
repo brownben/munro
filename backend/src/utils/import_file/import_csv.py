@@ -102,6 +102,9 @@ def get_column_locations(header_row: list[str]) -> dict[Columns, int]:
         if heading_name and heading_name not in column_mappings:
             column_mappings[heading_name] = index
 
+    if "time" not in column_mappings:
+        column_mappings["time"] = -1
+
     return column_mappings
 
 
@@ -112,16 +115,15 @@ def check_all_required_columns_present(column_mappings: dict[Columns, Any]) -> b
 
     hasName = "name" in headings
     hasFirstNameAndSurname = "firstName" in headings and "surname" in headings
-    other_required_headings = ("course", "time")
 
     if not (hasName or hasFirstNameAndSurname):
         raise ImportException("Expected results file to have a `name` column")
 
-    for required_heading in other_required_headings:
-        if required_heading not in headings:
-            raise ImportException(
-                f"Expected results file to have a `{required_heading}` column"
-            )
+    if "course" not in headings:
+        raise ImportException("Expected results file to have a `course` column")
+
+    if "time" not in headings and "filePoints" not in headings:
+        raise ImportException("Expected results file to have a `time` column")
 
     return True
 
@@ -132,7 +134,6 @@ def _get_value_in_row(row: list[str], position: int, column: Columns) -> str:
         "firstName",
         "surname",
         "course",
-        "time",
     )
     try:
         return row[position].strip()

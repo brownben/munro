@@ -70,7 +70,7 @@ class ImportedResult:
     def _is_result_incomplete(result: ImportedRecord) -> bool:
         status = result.get("status", "")
         nonComp = result.get("nonCompetitive")
-        invalidTime = parse_time(result["time"]) == 0
+        invalidTime = parse_time(result["time"]) == 0 and not result.get("filePoints")
 
         return nonComp in ("Y", "1") or (status not in ("", "0", "OK")) or invalidTime
 

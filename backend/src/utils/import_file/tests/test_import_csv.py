@@ -38,8 +38,14 @@ class TestImportCSV(unittest.TestCase):
         )
 
     def test_missing_row_value(self) -> None:
+        # A missing mandatory value (e.g. course) raises
         self.assertRaises(
-            ImportException, lambda: process_csv_file("name, course, time\na, b")
+            ImportException, lambda: process_csv_file("name, course, time\na")
+        )
+        # Missing optional values (time, club) default to an empty string
+        self.assertEqual(
+            process_csv_file("name, course, time\na, b"),
+            [{"name": "a", "course": "b", "time": ""}],
         )
         self.assertEqual(
             process_csv_file("name, course, time, club\na, b, c"),

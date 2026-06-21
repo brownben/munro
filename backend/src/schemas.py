@@ -226,6 +226,7 @@ class EventResult(BaseModel):
     type: str
     competitor: int
     position: int | None = None
+    file_points: int | None = None
 
 
 class EventWithResults(BaseModel):
