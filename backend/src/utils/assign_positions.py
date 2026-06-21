@@ -49,7 +49,7 @@ def assign_position_based_on_time[TResult: Result | EventResult](
             last_course = result.course
 
         if result.incomplete or (result.type in DYNAMIC_RESULT_TYPES):
-            result.position = 0
+            result.position = None
         elif result.time == 0:
             if result.file_points == last_points:
                 result.position = last_position

@@ -160,7 +160,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
         ]
         self.assertEqual(
             [result.position for result in assign_position_based_on_time(results)],
-            [0, 1, 2, 1, 0, 2],
+            [None, 1, 2, 1, None, 2],
         )
 
     def test_file_points_when_time_is_zero(self) -> None:
