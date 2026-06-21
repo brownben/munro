@@ -38,7 +38,11 @@ class ImportedResult:
         result: ImportedRecord, field: Literal["position", "filePoints"]
     ) -> int:
         try:
-            return round(float(result[field] or 0))
+            value = result[field] or ""
+            if "." in value:
+                return round(float(value or 0) * 10)
+            else:
+                return int(value or 0)
         except (ValueError, KeyError):
             return 0
 
