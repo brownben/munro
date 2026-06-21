@@ -19,7 +19,12 @@ def create_league_result(total_points: int) -> LeagueResult:
     )
 
 
-def create_event_result(time: int, course: str, incomplete: bool = False) -> Result:
+def create_event_result(
+    time: int,
+    course: str,
+    incomplete: bool = False,
+    file_points: int | None = None,
+) -> Result:
     return Result(
         id=0,
         event="",
@@ -31,6 +36,7 @@ def create_event_result(time: int, course: str, incomplete: bool = False) -> Res
         incomplete=incomplete,
         type="",
         competitor=0,
+        file_points=file_points,
     )
 
 
@@ -154,5 +160,55 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
         ]
         self.assertEqual(
             [result.position for result in assign_position_based_on_time(results)],
-            [None, 1, 2, 1, None, 2],
+            [0, 1, 2, 1, 0, 2],
+        )
+
+    def test_file_points_when_time_is_zero(self) -> None:
+        # When every result has time 0, ranking falls back to file_points,
+        # highest first (results arrive sorted file_points descending).
+        results = [
+            create_event_result(0, "A", file_points=100),
+            create_event_result(0, "A", file_points=90),
+            create_event_result(0, "A", file_points=80),
+        ]
+        self.assertEqual(
+            [result.position for result in assign_position_based_on_time(results)],
+            [1, 2, 3],
+        )
+
+    def test_file_points_ties_when_time_is_zero(self) -> None:
+        results = [
+            create_event_result(0, "A", file_points=100),
+            create_event_result(0, "A", file_points=90),
+            create_event_result(0, "A", file_points=90),
+            create_event_result(0, "A", file_points=80),
+        ]
+        self.assertEqual(
+            [result.position for result in assign_position_based_on_time(results)],
+            [1, 2, 2, 4],
+        )
+
+    def test_zero_file_points_still_gets_first_place(self) -> None:
+        # file_points of 0 must not collide with the "no previous value" sentinel.
+        results = [
+            create_event_result(0, "A", file_points=0),
+            create_event_result(0, "A", file_points=-1),
+        ]
+        self.assertEqual(
+            [result.position for result in assign_position_based_on_time(results)],
+            [1, 2],
+        )
+
+    def test_file_points_reset_between_courses(self) -> None:
+        # last_points must reset per course; course B's leader matches course A's
+        # trailing file_points but must still be assigned 1st.
+        results = [
+            create_event_result(0, "A", file_points=60),
+            create_event_result(0, "A", file_points=50),
+            create_event_result(0, "B", file_points=50),
+            create_event_result(0, "B", file_points=40),
+        ]
+        self.assertEqual(
+            [result.position for result in assign_position_based_on_time(results)],
+            [1, 2, 1, 2],
         )

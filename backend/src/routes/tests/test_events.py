@@ -305,6 +305,7 @@ class TestGetResultsForEvents(TestCaseWithDatabase):
                         "type": "",
                         "competitor": 3,
                         "position": 1,
+                        "file_points": None,
                     },
                     {
                         "id": 1,
@@ -317,6 +318,7 @@ class TestGetResultsForEvents(TestCaseWithDatabase):
                         "type": "",
                         "competitor": 1,
                         "position": 2,
+                        "file_points": None,
                     },
                     {
                         "id": 2,
@@ -329,6 +331,7 @@ class TestGetResultsForEvents(TestCaseWithDatabase):
                         "type": "",
                         "competitor": 2,
                         "position": 3,
+                        "file_points": None,
                     },
                 ],
             },

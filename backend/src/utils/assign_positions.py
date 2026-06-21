@@ -3,6 +3,10 @@ from collections.abc import Iterable
 from ..schemas import EventResult, LeagueResult, Result
 from .dynamic_results import DYNAMIC_RESULT_TYPES
 
+# Sentinel for "no previous file_points seen yet" - distinct from any real value
+# (including 0 and None, both of which are valid file_points).
+_UNSET = object()
+
 
 def assign_position_based_on_points(
     results: list[LeagueResult],
@@ -32,6 +36,7 @@ def assign_position_based_on_time[TResult: Result | EventResult](
 
     position = 0
     last_position = 0
+    last_points = None
     last_course: str | None = None
     last_time = -1
 
@@ -40,10 +45,20 @@ def assign_position_based_on_time[TResult: Result | EventResult](
             position = 0
             last_position = 0
             last_time = -1
+            last_points = None
             last_course = result.course
 
         if result.incomplete or (result.type in DYNAMIC_RESULT_TYPES):
-            result.position = None
+            result.position = 0
+        elif result.time == 0:
+            if result.file_points == last_points:
+                result.position = last_position
+                position += 1
+            else:
+                position += 1
+                result.position = position
+                last_position = position
+                last_points = result.file_points
         elif result.time == last_time:
             result.position = last_position
             position += 1

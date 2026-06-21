@@ -83,6 +83,7 @@ class Results:
             .where(ResultTable.course.ilike(course))
             .order_by(ResultTable.course, ascending=True)
             .order_by(ResultTable.time, ascending=True)
+            .order_by(ResultTable.file_points, ascending=False)
             .run()
         )
 
@@ -98,6 +99,7 @@ class Results:
             .where(ResultTable.course.is_in(list(courses)))
             .order_by(ResultTable.course, ascending=True)
             .order_by(ResultTable.time, ascending=True)
+            .order_by(ResultTable.file_points, ascending=False)
             .run()
         )
 
@@ -110,6 +112,7 @@ class Results:
             .where(ResultTable.event == event)
             .order_by(ResultTable.course, ascending=True)
             .order_by(ResultTable.time, ascending=True)
+            .order_by(ResultTable.file_points, ascending=False)
             .run()
         )
 
@@ -127,11 +130,14 @@ class Results:
                 ResultTable.competitor.name.as_alias("name"),
                 ResultTable.competitor.club.as_alias("club"),
                 ResultTable.competitor.age_class.as_alias("age_class"),
+                ResultTable.file_points,
             )
             .where(ResultTable.visible == True)
             .where(ResultTable.event == event)
-            .order_by(ResultTable.course, ascending=False)
-            .order_by(ResultTable.time, ResultTable.competitor.name, ascending=True)
+            .order_by(ResultTable.course, ascending=True)
+            .order_by(ResultTable.time, ascending=True)
+            .order_by(ResultTable.file_points, ascending=False)
+            .order_by(ResultTable.competitor.name, ascending=True)
             .run()
         )
 
