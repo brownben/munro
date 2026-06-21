@@ -224,7 +224,7 @@ useTitle({
             },
             {
               title: 'Specific Club',
-              description: 'Only include people who are in the age class',
+              description: 'Only include people who are in this club',
               value: 'specific',
             },
           ]"
