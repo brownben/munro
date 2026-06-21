@@ -306,6 +306,35 @@ class FileBased(PointsCalculator):
         return result.file_points or 0
 
 
+class FileBasedAllRanked(PointsCalculator):
+    """
+    Calculate points by ranking results across all courses by their file points.
+
+    The result(s) with the most file points get 100, the next 99, etc. Results
+    with the same file points share the same score.
+    """
+
+    _start_value = 100
+    _points_for_file_points: dict[float, int]
+
+    @staticmethod
+    def matches_scoring_method(scoring_method: str) -> bool:
+        return scoring_method == "fileAllRanked"
+
+    def calculate_required_stats(self, results: Iterable[Result]) -> None:
+        distinct_file_points = sorted(
+            {result.file_points or 0 for result in results if is_valid_result(result)},
+            reverse=True,
+        )
+        self._points_for_file_points = {
+            file_points: self._start_value - rank
+            for rank, file_points in enumerate(distinct_file_points)
+        }
+
+    def _points_calculator(self, result: Result, _age_class: str) -> int:
+        return self._points_for_file_points.get(result.file_points or 0, 0)
+
+
 class Fallback(PointsCalculator):
     """Fallback points calculator to ensure one always matches, but just assigns 0"""
 
@@ -327,6 +356,7 @@ def get_matching_points_calculator(scoring_method: str) -> PointsCalculator:
         TimeRelativeToWinnerWelshAdjusted,
         TimeRelativeToAverageBased,
         TimeRelativeToTopBased,
+        FileBasedAllRanked,
         FileBased,
         Fallback,
     ]
