@@ -8,7 +8,13 @@ const props = defineProps({
   filters: { type: Object as PropType<Filters>, required: true },
 })
 
-type Column = 'position' | 'time' | 'club' | 'age_class' | 'name'
+type Column =
+  | 'position'
+  | 'time'
+  | 'club'
+  | 'age_class'
+  | 'name'
+  | 'file_points'
 const ascending = ref(false)
 const activeColumn = ref<Column>('position')
 
@@ -16,6 +22,10 @@ const sortedResults = computed(() =>
   props.results
     .filter(matchingResults(props.filters))
     .sort(byProperty(ascending.value, activeColumn.value)),
+)
+
+const isPointsOnly = computed(() =>
+  props.results.every((result) => result.time === 0),
 )
 
 const changeSortPreference = (property: Column) => {
@@ -99,9 +109,10 @@ const ariaSorted = computed(
           <button
             type="button"
             class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
-            @click="changeSortPreference('time')"
+            @click="changeSortPreference(isPointsOnly ? 'file_points' : 'time')"
           >
-            Time
+            <template v-if="isPointsOnly"> Points </template>
+            <template v-else> Time </template>
             <TableArrows
               :active="activeColumn == 'time'"
               :ascending="ascending"
@@ -115,6 +126,7 @@ const ariaSorted = computed(
         v-for="result of sortedResults"
         :key="result.id"
         :result="result"
+        :points-not-time="isPointsOnly"
       />
     </tbody>
   </table>

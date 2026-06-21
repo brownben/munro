@@ -5,6 +5,7 @@ import { elapsedTime } from '~/utils/time'
 
 defineProps({
   result: { type: Object as PropType<EventResult>, required: true },
+  pointsNotTime: { type: Boolean, default: false },
 })
 </script>
 <template>
@@ -42,6 +43,13 @@ defineProps({
     >
       {{ result.club || ' ' }}
     </td>
-    <td class="text-center">{{ elapsedTime(result.time) }}</td>
+    <td class="text-center">
+      <template v-if="pointsNotTime">
+        {{ result.file_points }}
+      </template>
+      <template v-else>
+        {{ elapsedTime(result.time) }}
+      </template>
+    </td>
   </tr>
 </template>

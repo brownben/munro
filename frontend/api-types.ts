@@ -121,6 +121,7 @@ export interface EventResult {
   position?: number
   event: string
   visible: boolean
+  file_points: number
 }
 
 export interface EventResults {
