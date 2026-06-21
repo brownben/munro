@@ -81,7 +81,7 @@ class ImportedResult:
 
     def __init__(self, result: ImportedRecord) -> None:
         self.name = self._get_name(result)
-        self.course = str(result["course"]).strip()
+        self.course = str(result["course"]).strip() or "<NO COURSE>"
         self.time = parse_time(result["time"])
         self.incomplete = self._is_result_incomplete(result)
         self.position = self._get_position(result)
