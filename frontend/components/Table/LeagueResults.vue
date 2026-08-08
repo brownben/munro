@@ -18,12 +18,7 @@ const props = defineProps({
 })
 
 type Column =
-  | 'position'
-  | 'total_points'
-  | 'club'
-  | 'age_class'
-  | 'name'
-  | number
+  'position' | 'total_points' | 'club' | 'age_class' | 'name' | number
 const ascending = ref(false)
 const activeColumn = ref<Column>('position')
 

@@ -36,17 +36,17 @@
     "vaul-vue": "^0.4.1"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.16.0",
+    "@nuxt/eslint": "^1.17.0",
     "@tailwindcss/typography": "^0.5.20",
-    "@tailwindcss/vite": "^4.3.1",
-    "eslint": "^10.5.0",
-    "lightningcss": "^1.32.0",
-    "nuxt": "^4.4.8",
-    "prettier": "^3.8.4",
-    "prettier-plugin-tailwindcss": "^0.8.0",
-    "tailwindcss": "^4.3.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "eslint": "^10.8.1",
+    "lightningcss": "^1.33.0",
+    "nuxt": "^4.5.2",
+    "prettier": "^3.9.6",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.9",
-    "vue-tsc": "^3.3.5"
+    "vitest": "^4.1.10",
+    "vue-tsc": "^3.3.9"
   }
 }
