@@ -8,12 +8,12 @@ authors = [
 ]
 readme = 'README.md'
 license = { file = "../LICENSE.md" }
-requires-python = ">=3.13, <3.15"
+requires-python = "==3.13.*"
 
 dependencies = [
   # fastapi
   "fastapi~=0.141.1",
-  "uvicorn[standard]~=0.52.1",
+  "uvicorn[standard]~=0.52.4",
   "uvloop~=0.22.1; platform_system != 'Windows'",
 
   # database
@@ -22,7 +22,7 @@ dependencies = [
 
   # results file parsing
   "beautifulsoup4~=4.15.0",
-  "lxml~=6.1.1",
+  "lxml~=6.1.2",
   "defusedxml~=0.7.1",
 
   # check firebase auth tokens
@@ -30,14 +30,14 @@ dependencies = [
   "requests~=2.34",
 
   "httpx~=0.28.1",    # make requests for results files
-  "icalendar~=7.2.2", # generate ical files
+  "icalendar~=7.3.0", # generate ical files
 ]
 optional-dependencies.dev = [
   "aiosqlite~=0.22.1",
   "coverage~=7.15.4",
-  "mypy~=2.3.0",
+  "mypy~=2.3.1",
   "respx~=0.23.1",
-  "ruff~=0.16.2",
+  "ruff~=0.16.4",
   "time-machine~=3.3.1",
   "types-beautifulsoup4~=4.12.0.20250516",
   "types-requests~=2.33",
