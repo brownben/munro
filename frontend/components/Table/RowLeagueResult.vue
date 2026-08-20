@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
 import type { LeagueResultWithAgeGender as Result } from '~/utils/ageClass'
-import type { LeagueEvent } from '~/api-types'
+import { DYNAMIC_POINTS_TYPES, type LeagueEvent } from '~/api-types'
 
 defineProps({
   result: { type: Object as PropType<Result>, required: true },
@@ -48,7 +48,7 @@ defineProps({
         class="hidden text-center md:table-cell"
         :class="{
           'line-through': !point?.counting,
-          'font-normal italic': ['manual', 'max', 'average'].includes(
+          'font-normal italic': DYNAMIC_POINTS_TYPES.includes(
             point?.type ?? '',
           ),
         }"
@@ -70,7 +70,7 @@ defineProps({
             class="w-8 text-gray-900 dark:text-gray-200"
             :class="{
               'line-through': !point?.counting,
-              'font-normal italic': ['manual', 'max', 'average'].includes(
+              'font-normal italic': DYNAMIC_POINTS_TYPES.includes(
                 point?.type ?? '',
               ),
             }"

@@ -50,3 +50,27 @@ class TestCalculateDynamicResults(unittest.TestCase):
         result = league_result([(0, "average")])
         calculate_dynamic_results(result)
         self.assertEqual([point.score for point in result.points if point], [0])
+
+    def test_third(self) -> None:
+        result = league_result([(5, ""), (10, ""), (15, ""), (0, "third")])
+        calculate_dynamic_results(result)
+        self.assertEqual(
+            [point.score for point in result.points if point], [5, 10, 15, 5]
+        )
+
+    def test_third_with_manual(self) -> None:
+        result = league_result([(20, ""), (15, ""), (10, ""), (5, ""), (0, "third")])
+        calculate_dynamic_results(result)
+        self.assertEqual(
+            [point.score for point in result.points if point], [20, 15, 10, 5, 10]
+        )
+
+    def test_third_not_enough_standard_results(self) -> None:
+        result = league_result([(5, ""), (10, ""), (0, "third")])
+        calculate_dynamic_results(result)
+        self.assertEqual([point.score for point in result.points if point], [5, 10, 0])
+
+    def test_third_no_standard_results(self) -> None:
+        result = league_result([(0, "third")])
+        calculate_dynamic_results(result)
+        self.assertEqual([point.score for point in result.points if point], [0])

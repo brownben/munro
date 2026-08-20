@@ -211,3 +211,5 @@ export interface MapRunResultsAPI {
   warningMessage: string
   results: MapRunResultWithAddedCourse[]
 }
+
+export const DYNAMIC_POINTS_TYPES = ['max', 'average', 'manual', 'third']

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
+import { DYNAMIC_POINTS_TYPES } from '~/api-types'
 import type { EventResultWithAgeGender as EventResult } from '~/utils/ageClass'
 import { elapsedTime } from '~/utils/time'
 
@@ -13,9 +14,7 @@ defineProps({
     class="odd:bg-main-50 hover:bg-main-100 dark:hover:bg-main-900 text-gray-800 transition-colors dark:text-gray-100 dark:odd:bg-gray-800"
   >
     <td class="py-3 text-center">
-      <template v-if="['max', 'average', 'manual'].includes(result.type)">
-        *
-      </template>
+      <template v-if="DYNAMIC_POINTS_TYPES.includes(result.type)"> * </template>
       <template v-else-if="result.incomplete">-</template>
       <template v-else>
         {{ result.position || '' }}

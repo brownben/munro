@@ -114,6 +114,7 @@ useTitle({
           { value: 'manual', text: 'Fixed Points' },
           { value: 'average', text: 'Average Points' },
           { value: 'max', text: 'Maximum Points' },
+          { value: 'third', text: '3rd Best Points Score' },
         ]"
         label="Type:"
         class="col-span-2"
