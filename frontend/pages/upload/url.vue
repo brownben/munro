@@ -1,0 +1,161 @@
+<script setup lang="ts">
+import {
+  RequiredField,
+  IsValidURL,
+  IsValidRequiredURL,
+} from '~/utils/validation'
+import type { Ref } from 'vue'
+import type { Event } from '~~/api-types'
+
+const route = useRoute()
+const router = useRouter()
+
+const form = reactive({
+  event_id: queryToString(route.query.event_id ?? ''),
+  upload_key: queryToString(route.query.upload_key ?? ''),
+  url: '',
+  results_links: {
+    'Standard Results': '',
+    Routegadget: '',
+    Winsplits: '',
+    'GPS Tracking': '',
+    Livelox: '',
+  } as Record<string, string>,
+  overwrite: false,
+})
+
+const event: Ref<Event | null> = ref(null)
+const eventPending = ref(true)
+
+const getEvent = async () => {
+  eventPending.value = true
+
+  try {
+    event.value = await useGet(`events/${form.event_id}`)
+
+    const links = event.value?.results_links
+    if (links) form.results_links = links
+  } catch {
+    event.value = null
+  }
+  eventPending.value = false
+}
+
+const action = async () => {
+  try {
+    await usePost(`upload/url`, toRaw(form))
+    await router.push(`/events/${form.event_id}/results`)
+  } catch (error: any) {
+    if (error.data && typeof error.data?.detail === 'string')
+      throw error.data.detail
+    else throw 'Problem sending URL to the server, please try again.'
+  }
+}
+
+onMounted(() => {
+  if (form.event_id) getEvent()
+})
+
+useTitle({
+  title: 'Upload from URL',
+  description: 'Import results from a URL',
+})
+</script>
+
+<template>
+  <div>
+    <Heading title="Import Results from URL" />
+
+    <Form button="Upload" :action="action">
+      <FormHeading
+        title="Event Details"
+        description="These details are required to identify the event. If you are unsure,
+          ask your league administrator for the details."
+      />
+
+      <Input
+        v-model="form.event_id"
+        label="Event ID:"
+        type="text"
+        class="col-span-2"
+        :validator="RequiredField('an event ID')"
+        @input="getEvent"
+      />
+
+      <p
+        v-if="form.event_id && event"
+        class="col-span-2 -mt-3 mb-3 text-gray-700 dark:text-gray-300"
+      >
+        <b class="text-base font-bold">Event Name:</b>
+        {{ event.name }}
+      </p>
+      <p
+        v-else-if="form.event_id && !eventPending"
+        class="col-span-2 -mt-3 mb-3 text-gray-700 dark:text-gray-300"
+      >
+        <b class="text-base font-medium">
+          No event found with the id "{{ form.event_id }}"
+        </b>
+      </p>
+
+      <Input
+        v-model="form.upload_key"
+        label="Upload Key:"
+        type="text"
+        class="col-span-2"
+        :validator="RequiredField('an upload key')"
+      />
+
+      <Input
+        v-model="form.url"
+        label="Results URL:"
+        type="url"
+        class="col-span-2"
+        :validator="IsValidRequiredURL"
+      />
+
+      <InputSwitch
+        v-if="event?.results_uploaded"
+        v-model="form.overwrite"
+        label="Overwrite existing results?"
+        description="Replace existing results with new results in uploaded file"
+        class="col-span-2 py-2"
+      />
+
+      <FormHeading
+        title="Results Links"
+        description="Add links to other results display and analysis sites, these can be
+          updated later - just ask your league administrator."
+      />
+
+      <Input
+        v-model="form.results_links['Routegadget']"
+        label="Routegadget:"
+        type="url"
+        class="col-span-2"
+        :validator="IsValidURL"
+      />
+      <Input
+        v-model="form.results_links['Winsplits']"
+        label="Winsplits:"
+        type="url"
+        class="col-span-2"
+        :validator="IsValidURL"
+      />
+      <Input
+        v-model="form.results_links['Livelox']"
+        label="Livelox:"
+        type="url"
+        class="col-span-2"
+        :validator="IsValidURL"
+      />
+      <Input
+        v-model="form.results_links['GPS Tracking']"
+        label="GPS Tracking:"
+        type="url"
+        class="col-span-2"
+        :validator="IsValidURL"
+      />
+    </Form>
+  </div>
+</template>

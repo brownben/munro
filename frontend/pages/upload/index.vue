@@ -4,6 +4,7 @@ import {
   PencilSquareIcon,
   InformationCircleIcon,
   MapPinIcon,
+  LinkIcon,
 } from '@heroicons/vue/24/outline'
 
 useTitle({
@@ -39,6 +40,29 @@ useTitle({
           class="text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500 mt-4 inline-block"
         >
           Upload results file →
+        </NuxtLink>
+      </div>
+
+      <div
+        class="border-b border-gray-200 py-12 transition dark:border-gray-600"
+      >
+        <LinkIcon
+          aria-hidden="true"
+          class="bg-main-500 h-12 rounded-md p-2 text-white transition dark:text-gray-900"
+        />
+        <h2
+          class="mt-4 text-2xl leading-tight font-bold tracking-tight text-gray-800 dark:text-gray-100"
+        >
+          Import from URL
+        </h2>
+        <p class="mt-2 text-gray-500 dark:text-gray-400">
+          Import results from a results page hosted online
+        </p>
+        <NuxtLink
+          to="/upload/url"
+          class="text-main-700 hover:text-main-800 dark:text-main-600 dark:hover:text-main-500 mt-4 inline-block"
+        >
+          Import from URL →
         </NuxtLink>
       </div>
 
