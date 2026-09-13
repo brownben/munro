@@ -20,10 +20,6 @@ SOCIAL_LINK_REGEX = re.compile("<a href=.*?></a>", flags=re.IGNORECASE)
 SPAN_REGEX = re.compile("<span.*?>|<\\/span>", flags=re.IGNORECASE)
 
 
-def _clean_nbsp_in_row(row: list[Any]) -> list[str]:
-    return [NBSP_REGEX.sub("", cell) if isinstance(cell, str) else cell for cell in row]
-
-
 def parse_sitiming_script(script_tag_text: str) -> list[list[list[str]]]:
     # remove preamble of the function definition
     preamble_regex = re.compile(r".*?0\)\s*\n*\s*return", flags=re.DOTALL)
@@ -53,12 +49,23 @@ def parse_sitiming_script(script_tag_text: str) -> list[list[list[str]]]:
     return [json.loads(block) for block in re.split(IF_RETURN, script_text)]
 
 
+def _clean_cell(cell: Any) -> Any:
+    if not isinstance(cell, str):
+        return cell
+
+    cell = NBSP_REGEX.sub("", cell)
+    cell = SOCIAL_LINK_REGEX.sub("", cell)
+    cell = SPAN_REGEX.sub("", cell)
+
+    return cell
+
+
 def parse_sitiming_script_v4(script_tag_text: str) -> list[list[list[str]]]:
     decoder = json.JSONDecoder()
     course_results = []
     for match in re.finditer(r"'data':\s*", script_tag_text):
         data, _ = decoder.raw_decode(script_tag_text, match.end())
-        course_results.append([_clean_nbsp_in_row(row) for row in data])
+        course_results.append([[_clean_cell(cell) for cell in row] for row in data])
     return course_results
 
 
