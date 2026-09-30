@@ -186,6 +186,9 @@ class TestAgeClassFromDate(unittest.TestCase):
         self.assertEqual(date_to_age_class("1951-12-31", "W", 2021), "W70")
         self.assertEqual(date_to_age_class("2018-12-31", "W", 2021), "W10")
         self.assertEqual(date_to_age_class("1981-12-31", "M", 2021), "M40")
+        self.assertEqual(date_to_age_class("1987-12-31", "M", 2021), "M21")
+        self.assertEqual(date_to_age_class("1986-12-31", "M", 2021), "M35")
+        self.assertEqual(date_to_age_class("1985-12-31", "W", 2021), "W35")
 
     def test_year_of_birth(self) -> None:
         self.assertEqual(date_to_age_class("2000", "M", 2021), "M21")

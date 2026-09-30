@@ -161,7 +161,7 @@ def get_correct_age_for_age_class(age: int) -> int:
         return 10
     elif age < 21:
         return age + (age % 2)
-    elif age > 35:
+    elif age >= 35:
         return age - (age % 5)
     else:
         return 21
