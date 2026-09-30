@@ -355,7 +355,7 @@ class FileBasedPointsPerHour(PointsCalculator):
         if minutes is None:
             return round(points / 10)
 
-        return round(points * 60 / minutes)
+        return round(points * 60 / minutes / 10)
 
 
 class FileBasedAllRanked(PointsCalculator):
