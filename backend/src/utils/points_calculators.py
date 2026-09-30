@@ -6,6 +6,7 @@ from typing import ClassVar
 
 from ..schemas import Result
 from . import stats
+from .bof_handicap import BOF_HANDICAP_MODIFIER, get_bof_speed_ratio
 
 
 def is_valid_result(result: Result) -> bool:
@@ -20,6 +21,9 @@ class PointsCalculator:
     """Calculate the points to assign to results"""
 
     best_points_is_max: bool = True
+
+    # Set when the scoring method contains the `BofHandicap` modifier
+    uses_bof_handicap: bool = False
 
     def __init__(self, scoring_method: str):
         pass
@@ -44,6 +48,9 @@ class PointsCalculator:
             return 0
 
         points = self._points_calculator(result, age_class)
+
+        if self.uses_bof_handicap:
+            points = round(points / get_bof_speed_ratio(age_class))
 
         return points if points >= 0 else 0
 
@@ -88,7 +95,7 @@ class PositionBasedWithDraw(PointsCalculator):
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
-        return scoring_method == "position99average"
+        return scoring_method.startswith("position99average")
 
     def calculate_required_stats(self, full_results: Iterable[Result]) -> None:
         course_results = itertools.groupby(full_results, lambda result: result.course)
@@ -125,7 +132,7 @@ class StaggeredPositionBased(PointsCalculator):
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
-        return scoring_method == "positionStaggered"
+        return scoring_method.startswith("positionStaggered")
 
     def _points_calculator(self, result: Result, _age_class: str) -> int:
         standard_points = self._maximum_points_value - result.position
@@ -277,7 +284,7 @@ class TimeRelativeToWinnerWelshAdjusted(PointsCalculator):
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
-        return scoring_method == "timeTopAdjustedWelsh"
+        return scoring_method.startswith("timeTopAdjustedWelsh")
 
     def calculate_required_stats(self, results: Iterable[Result]) -> None:
         valid_results = [result for result in results if is_valid_result(result)]
@@ -324,7 +331,7 @@ class FileBasedPointsPerHour(PointsCalculator):
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
-        return scoring_method == "filePointsPerHour"
+        return scoring_method.startswith("filePointsPerHour")
 
     def _get_course_minutes(self, course: str) -> float | None:
         match = self._duration_pattern.search(course)
@@ -364,7 +371,7 @@ class FileBasedAllRanked(PointsCalculator):
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
-        return scoring_method == "fileAllRanked"
+        return scoring_method.startswith("fileAllRanked")
 
     def calculate_required_stats(self, results: Iterable[Result]) -> None:
         distinct_file_points = sorted(
@@ -406,12 +413,14 @@ def get_matching_points_calculator(scoring_method: str) -> PointsCalculator:
         FileBased,
         Fallback,
     ]
-    matching_points_calculators = [
+    matching_points_calculators = next(
         calculator
         for calculator in points_calculators
         if calculator.matches_scoring_method(scoring_method)
-    ]
+    )
 
     # As the `Fallback` points calculator will match for all scoring methods
     # Therefore a scoring method will always match
-    return matching_points_calculators[0](scoring_method)
+    points_calculator = matching_points_calculators(scoring_method)
+    points_calculator.uses_bof_handicap = BOF_HANDICAP_MODIFIER in scoring_method
+    return points_calculator

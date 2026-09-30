@@ -29,6 +29,10 @@ export const scoringShorthandToDescription: Record<string, [string, string]> = {
     'Points from File',
     'Converted to Points Per Hour (Using Minutes in Course Name)',
   ],
+  filePointsPerHourBofHandicap: [
+    'Points from File',
+    'Converted to Points Per Hour with British Orienteering Speed Handicap',
+  ],
 }
 
 export const scoringOptions = [
@@ -72,5 +76,9 @@ export const scoringOptions = [
   {
     value: 'filePointsPerHour',
     text: 'From Upload File - Points Per Hour',
+  },
+  {
+    value: 'filePointsPerHourBofHandicap',
+    text: 'From Upload File - Points Per Hour (British Orienteering Speed Handicap)',
   },
 ]
