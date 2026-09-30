@@ -25,6 +25,10 @@ export const scoringShorthandToDescription: Record<string, [string, string]> = {
   positionStaggered: ['Position Based Scoring', 'System (Staggered, 60 Max)'],
   file: ['Points from File', ''],
   fileAllRanked: ['Points from File', 'Re-ranked by Points (100 Max)'],
+  filePointsPerHour: [
+    'Points from File',
+    'Converted to Points Per Hour (Using Minutes in Course Name)',
+  ],
 }
 
 export const scoringOptions = [
@@ -64,5 +68,9 @@ export const scoringOptions = [
   {
     value: 'fileAllRanked',
     text: 'From Upload File - Re-ranked by Points (100 Max)',
+  },
+  {
+    value: 'filePointsPerHour',
+    text: 'From Upload File - Points Per Hour',
   },
 ]

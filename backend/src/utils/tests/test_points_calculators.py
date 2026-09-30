@@ -35,6 +35,20 @@ def create_result(**kwargs: Any) -> Result:
 
 
 class TestPointsCalculators(unittest.TestCase):
+    def test_file_points_per_hour(self) -> None:
+        results: list[Result] = [
+            create_result(course="60", file_points=70),
+            create_result(course="90 min", file_points=70),
+            create_result(course="30 Minutes", file_points=40),
+            create_result(course="Score", file_points=47),
+            create_result(course="60 min", file_points=50, incomplete=True),
+        ]
+
+        self.assertEqual(
+            get_points_for_results("filePointsPerHour", results),
+            [7, 5, 8, 5, 0],
+        )
+
     def test_single_valid_result(self) -> None:
         results: list[Result] = [
             create_result(position=1, time=10, file_points=47),

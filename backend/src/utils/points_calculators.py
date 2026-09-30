@@ -1,5 +1,6 @@
 import collections
 import itertools
+import re
 from collections.abc import Iterable
 from typing import ClassVar
 
@@ -306,6 +307,50 @@ class FileBased(PointsCalculator):
         return result.file_points or 0
 
 
+class FileBasedPointsPerHour(PointsCalculator):
+    """
+    Calculate points from the uploaded file, scaled to points per hour.
+
+    The course duration in minutes is read from the course name (e.g. "60", "60 min", "90 Minutes")
+
+    40 points on a 30-minute course -> 80
+    100 points on a 60-minute course -> 100
+    200 points on a 120-minute course -> 100
+    If no duration is found, the points are unscaled.
+    """
+
+    _duration_pattern = re.compile(r"\d+(?:\.\d+)?")
+    _minutes_for_courses: dict[str, float | None]
+
+    @staticmethod
+    def matches_scoring_method(scoring_method: str) -> bool:
+        return scoring_method == "filePointsPerHour"
+
+    def _get_course_minutes(self, course: str) -> float | None:
+        match = self._duration_pattern.search(course)
+        if not match:
+            return None
+
+        minutes = float(match.group())
+        return minutes if minutes > 0 else None
+
+    def calculate_required_stats(self, results: Iterable[Result]) -> None:
+        self._minutes_for_courses = {
+            course: self._get_course_minutes(course)
+            for course in {result.course for result in results}
+        }
+
+    def _points_calculator(self, result: Result, _age_class: str) -> int:
+        points = result.file_points or 0
+        minutes = self._minutes_for_courses.get(result.course)
+
+        # return the actual number of points from the file (rather than multiplied by 10)
+        if minutes is None:
+            return round(points / 10)
+
+        return round(points * 60 / minutes)
+
+
 class FileBasedAllRanked(PointsCalculator):
     """
     Calculate points by ranking results across all courses by their file points.
@@ -357,6 +402,7 @@ def get_matching_points_calculator(scoring_method: str) -> PointsCalculator:
         TimeRelativeToAverageBased,
         TimeRelativeToTopBased,
         FileBasedAllRanked,
+        FileBasedPointsPerHour,
         FileBased,
         Fallback,
     ]
