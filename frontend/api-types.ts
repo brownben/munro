@@ -32,6 +32,7 @@ export interface LeagueClass {
   age_class_filter: string
   club_filter: string
   number_of_counting_events?: number
+  scoring_method?: string
 }
 
 export interface LeagueGroup {

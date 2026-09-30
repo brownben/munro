@@ -47,6 +47,7 @@ class LeagueClass(Table):
     age_class_filter = Varchar(30)
     club_filter = Varchar(50)
     number_of_counting_events = Integer(null=True)
+    scoring_method = Varchar(40, null=True)
 
 
 class Competitor(Table):

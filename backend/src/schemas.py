@@ -36,6 +36,7 @@ class LeagueClass(BaseModel):
     age_class_filter: str
     club_filter: str
     number_of_counting_events: int | None = None
+    scoring_method: str | None = None
 
 
 class Event(BaseModel):

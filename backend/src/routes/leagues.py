@@ -327,7 +327,11 @@ async def get_league_results(
 
         event_results = list(assign_position_based_on_time(event_results))
 
-        scoring_method = event.overridden_scoring_method or league.scoring_method
+        scoring_method = (
+            event.overridden_scoring_method
+            or league_class.scoring_method
+            or league.scoring_method
+        )
         points_calculator = get_matching_points_calculator(scoring_method)
         points_calculator.calculate_required_stats(event_results)
 
@@ -359,7 +363,9 @@ async def get_league_results(
             if point and point.counting:
                 league_result.total_points += point.score
 
-    league_points_calculator = get_matching_points_calculator(league.scoring_method)
+    scoring_method = league_class.scoring_method or league.scoring_method
+    league_points_calculator = get_matching_points_calculator(scoring_method)
+
     results = [
         result
         for result in league_results.values()

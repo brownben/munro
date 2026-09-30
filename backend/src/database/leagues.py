@@ -27,6 +27,7 @@ league_class_fields = (
     LeagueClassTable.age_class_filter,
     LeagueClassTable.club_filter,
     LeagueClassTable.number_of_counting_events,
+    LeagueClassTable.scoring_method,
 )
 
 
@@ -170,6 +171,7 @@ class LeagueClasses:
                 age_class_filter=league_class.age_class_filter,
                 club_filter=league_class.club_filter,
                 number_of_counting_events=league_class.number_of_counting_events,
+                scoring_method=league_class.scoring_method,
             )
         ).run()
 

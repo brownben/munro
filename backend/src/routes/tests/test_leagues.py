@@ -77,6 +77,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                     {
                         "name": "Multiple",
@@ -85,6 +86,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                     {
                         "name": "Overall",
@@ -93,6 +95,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                     {
                         "name": "Short",
@@ -101,6 +104,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                 ],
                 "events": [
@@ -186,6 +190,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                     {
                         "name": "Multiple",
@@ -194,6 +199,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                     {
                         "name": "Overall",
@@ -202,6 +208,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                     {
                         "name": "Short",
@@ -210,6 +217,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                         "age_class_filter": "",
                         "club_filter": "",
                         "number_of_counting_events": None,
+                        "scoring_method": None,
                     },
                 ],
                 "events": [
@@ -290,6 +298,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                 "league": "Sprintelope 2021",
                 "name": "Long",
                 "number_of_counting_events": None,
+                "scoring_method": None,
                 "standard_course": "Long",
             },
         )

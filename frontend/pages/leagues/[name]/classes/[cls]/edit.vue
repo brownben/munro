@@ -65,6 +65,7 @@ const form = reactive({
   ...setAgeClassRestriction(data.value?.age_class_filter ?? ''),
   ...setClubRestriction(data.value?.club_filter ?? ''),
   number_of_counting_events: data.value?.number_of_counting_events || 0,
+  scoring_method: data.value?.scoring_method ?? '',
 })
 
 const action = async () => {
@@ -76,6 +77,7 @@ const action = async () => {
       age_class_filter: getAgeClassRestriction(),
       club_filter: getClubRestriction(),
       number_of_counting_events: getNumberOfCountingEvents(),
+      scoring_method: form.scoring_method || null,
     })
     await router.push(`/leagues/${form.league}`)
   } catch (error: any) {
@@ -234,6 +236,18 @@ useTitle({
       <InputNumber
         v-model="form.number_of_counting_events"
         label="Number of Counting Events:"
+        class="col-span-2"
+      />
+
+      <FormHeading
+        title="Scoring Method"
+        description="Use a different scoring method for this class. Leave blank for the league default. Events with their own override take priority."
+      />
+      <InputDropdown
+        v-model="form.scoring_method"
+        :list="scoringOptions"
+        label="Override Scoring Method:"
+        include-blank
         class="col-span-2"
       />
     </Form>

@@ -15,7 +15,8 @@ def counting_results_finder(
     number_of_counting_events = (
         league_class.number_of_counting_events or league.number_of_counting_events
     )
-    league_points_calculator = get_matching_points_calculator(league.scoring_method)
+    scoring_method = league_class.scoring_method or league.scoring_method
+    league_points_calculator = get_matching_points_calculator(scoring_method)
     compulsory_events = {event.event for event in events if event.compulsory}
 
     # we want to have it sorted by league group, as otherwise groupby doesn't work correctly
