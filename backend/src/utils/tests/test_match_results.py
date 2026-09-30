@@ -78,7 +78,7 @@ class TestMatchingResults(unittest.TestCase):
     ) -> None:
         self.assertEqual(
             match_result_to_competitor(
-                ImportedResult(cast(ImportedRecord, imported_result)),
+                ImportedResult(cast(ImportedRecord, imported_result), 2021),
                 self.competitors,
             ),
             expected_competitor,

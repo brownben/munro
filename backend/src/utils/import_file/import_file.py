@@ -55,7 +55,7 @@ class ImportedResult:
         return f"{result['firstName']} {result['surname']}"
 
     @staticmethod
-    def _get_age_class(result: ImportedRecord) -> str:
+    def _get_age_class(result: ImportedRecord, event_year: int) -> str:
         if ageClass := result.get("ageClass"):
             return ageClass
 
@@ -63,7 +63,7 @@ class ImportedResult:
         birthDate = result.get("birthDate")
 
         if gender and birthDate:
-            return date_to_age_class(birthDate, gender)
+            return date_to_age_class(birthDate, gender, event_year)
 
         return ""
 
@@ -79,13 +79,13 @@ class ImportedResult:
 
         return nonComp in ("Y", "1") or (status not in ("", "0", "OK")) or invalidTime
 
-    def __init__(self, result: ImportedRecord) -> None:
+    def __init__(self, result: ImportedRecord, event_year: int) -> None:
         self.name = self._get_name(result)
         self.course = str(result["course"]).strip() or "<NO COURSE>"
         self.time = parse_time(result["time"])
         self.incomplete = self._is_result_incomplete(result)
         self.position = self._get_position(result)
-        self.age_class = self._get_age_class(result)
+        self.age_class = self._get_age_class(result, event_year)
         self.club = self._get_club(result)
         self.file_points = self._get_file_points(result)
 
@@ -138,14 +138,16 @@ def fix_combined_age_class_club(
 
 
 def import_results(
-    parser: Callable[[str], Iterable[ImportedRecord]], file: str
+    parser: Callable[[str], Iterable[ImportedRecord]],
+    file: str,
+    event_year: int,
 ) -> Generator[ImportedResult]:
     raw_records = parser(file)
     records = fix_times_from_excel(list(raw_records))
     records = fix_combined_age_class_club(records)
 
     return (
-        ImportedResult(result)
+        ImportedResult(result, event_year)
         for result in records
         if any(value != "" for value in result.values())
     )

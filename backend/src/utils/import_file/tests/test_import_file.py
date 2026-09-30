@@ -1,7 +1,4 @@
-import datetime
 import unittest
-
-import time_machine
 
 from .. import ImportException, import_results_from_file
 
@@ -47,7 +44,7 @@ class TestImportFile(unittest.TestCase):
             },
         ]
 
-        imported_results = import_results_from_file(file)
+        imported_results = import_results_from_file(file, 2021)
 
         for result, expected in zip(imported_results, expected_results, strict=True):
             self.assertDictEqual(dict(result), expected)
@@ -92,7 +89,7 @@ class TestImportFile(unittest.TestCase):
             },
         ]
 
-        imported_results = import_results_from_file(file)
+        imported_results = import_results_from_file(file, 2021)
 
         self.assertEqual(
             [dict(result) for result in imported_results], expected_results
@@ -104,7 +101,8 @@ class TestImportFile(unittest.TestCase):
             "Data not as expected for SITiming HTML file, please try another format.",
         ):
             import_results_from_file(
-                '<!DOCTYPE html> <link href="https://www.sportident.co.uk/sitiming/skins/v2/jquery/datatables.css" rel="stylesheet" type="text/css"/><option value="1">Hello</option>'
+                '<!DOCTYPE html> <link href="https://www.sportident.co.uk/sitiming/skins/v2/jquery/datatables.css" rel="stylesheet" type="text/css"/><option value="1">Hello</option>',
+                2021,
             )
 
     def test_import_xml_file(self) -> None:
@@ -112,26 +110,27 @@ class TestImportFile(unittest.TestCase):
             ImportException, "Expected results to have at least 1 class"
         ):
             import_results_from_file(
-                '<ResultList xmlns="http://www.orienteering.org/datastandard/3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" iofVersion="3.0" createTime="2011-07-31T22:46:33+01:00" creator="Example Software" status="Complete"></ResultList>'
+                '<ResultList xmlns="http://www.orienteering.org/datastandard/3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" iofVersion="3.0" createTime="2011-07-31T22:46:33+01:00" creator="Example Software" status="Complete"></ResultList>',
+                2021,
             )
 
     def test_import_json(self) -> None:
         with self.assertRaisesRegex(
             ImportException, "Expected results to have at least 1 class"
         ):
-            import_results_from_file("[]")
+            import_results_from_file("[]", 2021)
 
     def test_invalid_json(self) -> None:
         with self.assertRaisesRegex(
             ImportException, "Expected file to have at least 1 result"
         ):
-            import_results_from_file("[")
+            import_results_from_file("[", 2021)
 
-    @time_machine.travel(datetime.datetime(2021, 8, 11))
     def test_json_with_birthdate(self) -> None:
         imported_results = list(
             import_results_from_file(
-                '[{"Name":"Bob", "yearofbirth": 2000, "gender": "male", "course":"1", "time": 5}]'
+                '[{"Name":"Bob", "yearofbirth": 2000, "gender": "male", "course":"1", "time": 5}]',
+                2021,
             )
         )
 

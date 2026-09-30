@@ -21,5 +21,5 @@ def _get_file_processor(file: str) -> Callable[[str], Iterable[ImportedRecord]]:
         return process_csv_file
 
 
-def import_results_from_file(file: str) -> Iterator[ImportedResult]:
-    return import_results(_get_file_processor(file), file)
+def import_results_from_file(file: str, event_year: int) -> Iterator[ImportedResult]:
+    return import_results(_get_file_processor(file), file, event_year)

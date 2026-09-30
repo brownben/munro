@@ -1,7 +1,4 @@
-import datetime
 import unittest
-
-import time_machine
 
 from ..age_class import (
     age_class_matches_filter,
@@ -179,26 +176,24 @@ class TestMatchesAgeClassFilter(unittest.TestCase):
 
 
 class TestAgeClassFromDate(unittest.TestCase):
-    @time_machine.travel(datetime.datetime(2021, 8, 11))
     def test_full_date_of_birth(self) -> None:
-        self.assertEqual(date_to_age_class("2000-05-02", "M"), "M21")
-        self.assertEqual(date_to_age_class("2000-02-31", "M"), "M21")
-        self.assertEqual(date_to_age_class("1998-12-31", "W"), "W21")
-        self.assertEqual(date_to_age_class("2002-12-31", "M"), "M20")
-        self.assertEqual(date_to_age_class("1969-03-26", "M"), "M50")
-        self.assertEqual(date_to_age_class("2008-06-01", "W"), "W14")
-        self.assertEqual(date_to_age_class("1951-12-31", "W"), "W70")
-        self.assertEqual(date_to_age_class("2018-12-31", "W"), "W10")
-        self.assertEqual(date_to_age_class("1981-12-31", "M"), "M40")
+        self.assertEqual(date_to_age_class("2000-05-02", "M", 2021), "M21")
+        self.assertEqual(date_to_age_class("2000-02-31", "M", 2021), "M21")
+        self.assertEqual(date_to_age_class("1998-12-31", "W", 2021), "W21")
+        self.assertEqual(date_to_age_class("2002-12-31", "M", 2021), "M20")
+        self.assertEqual(date_to_age_class("1969-03-26", "M", 2021), "M50")
+        self.assertEqual(date_to_age_class("2008-06-01", "W", 2021), "W14")
+        self.assertEqual(date_to_age_class("1951-12-31", "W", 2021), "W70")
+        self.assertEqual(date_to_age_class("2018-12-31", "W", 2021), "W10")
+        self.assertEqual(date_to_age_class("1981-12-31", "M", 2021), "M40")
 
-    @time_machine.travel(datetime.datetime(2021, 8, 11))
     def test_year_of_birth(self) -> None:
-        self.assertEqual(date_to_age_class("2000", "M"), "M21")
-        self.assertEqual(date_to_age_class("2000", "M"), "M21")
-        self.assertEqual(date_to_age_class("1998", "W"), "W21")
-        self.assertEqual(date_to_age_class("2002", "M"), "M20")
-        self.assertEqual(date_to_age_class("1969", "M"), "M50")
-        self.assertEqual(date_to_age_class("2008", "W"), "W14")
-        self.assertEqual(date_to_age_class("1951", "W"), "W70")
-        self.assertEqual(date_to_age_class("2018", "W"), "W10")
-        self.assertEqual(date_to_age_class("1981", "M"), "M40")
+        self.assertEqual(date_to_age_class("2000", "M", 2021), "M21")
+        self.assertEqual(date_to_age_class("2000", "M", 2021), "M21")
+        self.assertEqual(date_to_age_class("1998", "W", 2021), "W21")
+        self.assertEqual(date_to_age_class("2002", "M", 2021), "M20")
+        self.assertEqual(date_to_age_class("1969", "M", 2021), "M50")
+        self.assertEqual(date_to_age_class("2008", "W", 2021), "W14")
+        self.assertEqual(date_to_age_class("1951", "W", 2021), "W70")
+        self.assertEqual(date_to_age_class("2018", "W", 2021), "W10")
+        self.assertEqual(date_to_age_class("1981", "M", 2021), "M40")

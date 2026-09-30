@@ -1,4 +1,3 @@
-import datetime
 import re
 
 Gender = str
@@ -177,10 +176,9 @@ def get_year_from_date(date: str) -> int:
         return int(date or 0)
 
 
-def date_to_age_class(date: str, gender: str) -> str:
+def date_to_age_class(date: str, gender: str, current_year: int) -> str:
     """Takes a date and transforms it into an age class"""
     year = get_year_from_date(date)
-    current_year = datetime.datetime.now().year
 
     age = current_year - year if year else 21
     age = get_correct_age_for_age_class(age)

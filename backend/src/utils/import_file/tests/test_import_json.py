@@ -10,12 +10,12 @@ class TestImportJSON(unittest.TestCase):
         with self.assertRaisesRegex(
             ImportException, "Expected results to have at least 1 class"
         ):
-            import_results_from_file('{"results":[]}')
+            import_results_from_file('{"results":[]}', 2021)
 
         with self.assertRaisesRegex(
             ImportException, "Expected results to have at least 1 class"
         ):
-            import_results_from_file("[]")
+            import_results_from_file("[]", 2021)
 
     def test_one_to_one(self) -> None:
         json_object = [

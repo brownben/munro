@@ -52,7 +52,7 @@ async def process_upload_file(
     competitors = list(await Competitors.get_by_pool(event.competitor_pool))
 
     try:
-        imported_results = import_results_from_file(file)
+        imported_results = import_results_from_file(file, event.date.year)
     except ImportException as exception:
         raise HTTP_500(exception.message)
 
