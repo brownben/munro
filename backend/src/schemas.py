@@ -19,6 +19,12 @@ class League(BaseModel):
     competitor_pool: str
 
 
+class AdditionalLeagueClass(BaseModel):
+    name: str
+    class_name: str
+    age_class: str
+
+
 class LeagueGroup(BaseModel):
     id: int | None = None
     name: str
@@ -211,6 +217,7 @@ class LeagueResultsResponse(BaseModel):
     league: str
     class_name: str
     classes: list[str]
+    additional_league_classes: list[AdditionalLeagueClass] = []
     results: list[LeagueResult]
     events: list[LeagueEvent]
     eligibility: bool = False
@@ -268,12 +275,14 @@ class UploadResultRequest(BaseModel):
 
 class LeagueOverview(League):
     classes: list[LeagueClass]
+    additional_league_classes: list[AdditionalLeagueClass] = []
     events: list[EventWithLeagueDetails]
     groups: list[LeagueGroup]
 
 
 class LeagueOverviewAuthenticated(League):
     classes: list[LeagueClass]
+    additional_league_classes: list[AdditionalLeagueClass] = []
     events: list[EventWithLeagueDetailsAndUploadKey]
     groups: list[LeagueGroup]
 

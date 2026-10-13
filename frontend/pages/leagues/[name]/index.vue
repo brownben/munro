@@ -194,6 +194,22 @@ if (league.value) {
         </div>
       </section>
 
+      <LinksSection
+        v-if="league.additional_league_classes.length > 0"
+        :links="
+          league.additional_league_classes.map((course) => ({
+            text: course.name,
+            location: additionalLeagueCategoryLocation(
+              league?.name ?? '',
+              course,
+            ),
+          }))
+        "
+        light
+      >
+        Other League Result Categories
+      </LinksSection>
+
       <section
         v-if="loggedIn && league?.groups.length > 0"
         class="border-b border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-800"

@@ -58,9 +58,16 @@ export interface League {
   competitor_pool: string
 }
 
+export interface AdditionalLeagueCategory {
+  name: string
+  class_name: string
+  age_class: string
+}
+
 export interface LeagueOverview extends League {
   events: Event[]
   classes: LeagueClass[]
+  additional_league_classes: AdditionalLeagueCategory[]
   groups: LeagueGroup[]
 }
 
@@ -104,6 +111,7 @@ export interface LeagueResultsOverview {
   league: string
   class_name: string
   classes: string[]
+  additional_league_classes: AdditionalLeagueCategory[]
   results: LeagueResult[]
   events: LeagueEvent[]
   eligibility: boolean

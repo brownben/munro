@@ -91,9 +91,10 @@ async def create_league(
 
 
 async def get_league(name: str) -> LeagueOverviewAuthenticated:
-    result, classes, events, groups = await asyncio.gather(
+    result, classes, additional_league_classes, events, groups = await asyncio.gather(
         Leagues.get_by_name(name),
         LeagueClasses.get_by_league(name),
+        Leagues.get_additional_league_classes(name),
         Events.get_by_league(name),
         LeagueGroups.get_by_league(name),
     )
@@ -104,6 +105,7 @@ async def get_league(name: str) -> LeagueOverviewAuthenticated:
     return LeagueOverviewAuthenticated(
         **result.model_dump(),
         classes=classes,
+        additional_league_classes=additional_league_classes,
         events=events,
         groups=groups,
     )
@@ -284,12 +286,14 @@ async def get_league_results(
         league_class,
         league_classes,
         league_groups,
+        additional_league_classes,
     ) = await asyncio.gather(
         Leagues.get_by_name(league_name),
         LeagueEvents.get_by_league_with_results(league_name),
         LeagueClasses.get_by_name(league_name, cls),
         LeagueClasses.get_by_league(league_name),
         LeagueGroups.get_dict_by_league(league_name),
+        Leagues.get_additional_league_classes(league_name),
     )
 
     if not league:
@@ -382,6 +386,7 @@ async def get_league_results(
         league=league.name,
         class_name=cls,
         classes=[cls.name for cls in league_classes],
+        additional_league_classes=additional_league_classes,
         results=results,
         events=events_with_results,
         eligibility=competitor_pool.eligibility,

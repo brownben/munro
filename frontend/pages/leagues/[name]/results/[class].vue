@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LeagueResultsOverview } from '~/api-types'
+import { additionalLeagueCategoryLocation } from '~/utils/additionalLeagueClass'
 import type { Filters } from '~/utils/filter'
 
 const route = useRoute()
@@ -15,9 +16,15 @@ const otherClasses = computed(
     data.value?.classes.filter((course) => course !== data.value?.class_name) ??
     [],
 )
+const additionalCategories = computed(
+  () =>
+    data.value?.additional_league_classes.filter(
+      (course) => course.class_name === data.value?.class_name,
+    ) ?? [],
+)
 const resultColumnCount = computed(() => results.value[0]?.points.length ?? 0)
 
-const filters = reactive<Filters>({
+const filtersFromQuery = () => ({
   name: queryToString(route.query.name ?? ''),
   club: queryToString(route.query.club ?? ''),
   minAge: queryToString(route.query.minAge ?? '0'),
@@ -25,6 +32,14 @@ const filters = reactive<Filters>({
   male: queryToString(route.query.male) !== 'false',
   female: queryToString(route.query.female) !== 'false',
 })
+
+const filters = reactive<Filters>(filtersFromQuery())
+
+// If the query parameters are changed, update the filters
+watch(
+  () => route.query,
+  () => Object.assign(filters, filtersFromQuery()),
+)
 
 if (data.value) {
   useTitle({
@@ -61,6 +76,21 @@ if (data.value) {
         :eligibility="data.eligibility"
       />
     </section>
+    <LinksSection
+      v-if="additionalCategories.length > 0"
+      :links="
+        additionalCategories.map((course) => ({
+          text: course.name,
+          location: additionalLeagueCategoryLocation(
+            data?.league ?? '',
+            course,
+          ),
+        }))
+      "
+      light
+    >
+      Other Categories
+    </LinksSection>
     <LinksSection
       v-if="otherClasses.length > 0"
       :links="

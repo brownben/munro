@@ -158,6 +158,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                     },
                 ],
                 "groups": [],
+                "additional_league_classes": [],
             },
         )
 
@@ -274,6 +275,7 @@ class TestGetLeagueRoutes(TestCaseWithDatabase):
                     },
                 ],
                 "groups": [],
+                "additional_league_classes": [],
             },
         )
 
@@ -348,6 +350,7 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
                 "league": "Sprintelope 2021",
                 "class_name": "Long",
                 "classes": ["Long", "Multiple", "Overall", "Short"],
+                "additional_league_classes": [],
                 "events": [],
                 "results": [],
                 "eligibility": False,
@@ -365,6 +368,7 @@ class TestLeagueResultRoutes(TestCaseWithDatabase):
                 "eligibility": False,
                 "class_name": "Long",
                 "classes": ["Long", "Multiple", "Overall", "Short"],
+                "additional_league_classes": [],
                 "events": [
                     {
                         "compulsory": False,

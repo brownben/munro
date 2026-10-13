@@ -1,7 +1,8 @@
 from collections.abc import Iterable
 from typing import Any, cast
 
-from ..schemas import League, LeagueClass, LeagueGroup
+from ..schemas import AdditionalLeagueClass, League, LeagueClass, LeagueGroup
+from ..utils.additional_league_classes import parse_additional_league_classes
 from .tables import CompetitorPool as CompetitorPoolTable
 from .tables import League as LeagueTable
 from .tables import LeagueClass as LeagueClassTable
@@ -125,6 +126,20 @@ class Leagues:
             .first()
             .run()
         )
+
+    @staticmethod
+    async def get_additional_league_classes(name: str) -> list[AdditionalLeagueClass]:
+        record = (
+            await LeagueTable.select(LeagueTable.additional_league_classes)
+            .where(LeagueTable.name == name)
+            .first()
+            .run()
+        )
+
+        if not record:
+            return []
+
+        return parse_additional_league_classes(record["additional_league_classes"])
 
     @staticmethod
     async def get_by_competitor_pool(competitor_pool: str) -> Iterable[League]:

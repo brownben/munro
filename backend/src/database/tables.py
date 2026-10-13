@@ -29,6 +29,7 @@ class League(Table):
     scoring_method = Varchar(40)
     number_of_counting_events = Integer()
     competitor_pool = ForeignKey(CompetitorPool)
+    additional_league_classes = Text(null=True)
 
 
 class LeagueGroup(Table):
