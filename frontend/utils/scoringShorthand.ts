@@ -33,6 +33,11 @@ export const scoringShorthandToDescription: Record<string, [string, string]> = {
     'Points from File',
     'Converted to Points Per Hour with British Orienteering Speed Handicap',
   ],
+  longShortTime: ['Position Based Scoring', '(Long: 100 Max, Short 80 Max)'],
+  longShortFile: [
+    'Position Based Scoring',
+    '(Points from File - Long: 100 Max, Short 80 Max)',
+  ],
 }
 
 export const scoringOptions = [
@@ -56,6 +61,10 @@ export const scoringOptions = [
     text: 'Position Based (Staggered, 60 Max)',
   },
   {
+    value: 'longShortTime',
+    text: 'Position Based (Long: 100 Max, Short 80 Max)',
+  },
+  {
     value: 'timeAverage',
     text: 'Relative to Average Time (1000 Average)',
   },
@@ -72,6 +81,10 @@ export const scoringOptions = [
   {
     value: 'fileAllRanked',
     text: 'From Upload File - Re-ranked by Points (100 Max)',
+  },
+  {
+    value: 'longShortFile',
+    text: 'From Upload File - Re-ranked by Points (Long: 100 Max, Short: 80 Max)',
   },
   {
     value: 'filePointsPerHour',

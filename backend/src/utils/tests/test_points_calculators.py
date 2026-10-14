@@ -49,6 +49,26 @@ class TestPointsCalculators(unittest.TestCase):
             [7, 5, 8, 5, 0],
         )
 
+    def test_long_short_based(self) -> None:
+        results: list[Result] = [
+            create_result(course="Long", position=1, file_points=30),
+            create_result(course="LONG", position=2, file_points=20),
+            create_result(course="long", position=3, file_points=50, incomplete=True),
+            create_result(course="long", position=4, file_points=30),
+            create_result(course="short", position=1, file_points=10),
+            create_result(course="Short", position=2, file_points=5),
+            create_result(course="Medium", position=1, file_points=99),
+        ]
+
+        self.assertEqual(
+            get_points_for_results("longShortTime", results),
+            [100, 99, 0, 97, 80, 79, 0],
+        )
+        self.assertEqual(
+            get_points_for_results("longShortFile", results),
+            [100, 99, 0, 100, 80, 79, 0],
+        )
+
     def test_single_valid_result(self) -> None:
         results: list[Result] = [
             create_result(position=1, time=10, file_points=47),

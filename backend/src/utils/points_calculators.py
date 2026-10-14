@@ -387,6 +387,61 @@ class FileBasedAllRanked(PointsCalculator):
         return self._points_for_file_points.get(result.file_points or 0, 0)
 
 
+class LongAndShortBased(PointsCalculator):
+    """
+    Only results on the Long and Short courses score, 0 for any other course.
+
+    Long: 1st - 100, 2nd - 99, 3rd - 98... Short: 1st - 80, 2nd - 79, 3rd - 78...
+    Course names are matched case insensitively.
+
+    `longShortTime` uses the position of the result (like `PositionBased`).
+    `longShortFile` re-ranks each course by file points (like `FileBasedAllRanked`),
+    results with the same file points share the same score.
+    """
+
+    _start_values: ClassVar[dict[str, int]] = {"long": 100, "short": 80}
+    _points_for_file_points: dict[str, dict[float, int]]
+
+    def __init__(self, scoring_method: str):
+        self._use_file_points = scoring_method.startswith("longShortFile")
+
+    @staticmethod
+    def matches_scoring_method(scoring_method: str) -> bool:
+        return scoring_method.startswith(("longShortTime", "longShortFile"))
+
+    @staticmethod
+    def _course_key(course: str) -> str:
+        return course.strip().lower()
+
+    def calculate_required_stats(self, results: Iterable[Result]) -> None:
+        file_points_for_courses: dict[str, set[float]] = {
+            course: set() for course in self._start_values
+        }
+        for result in results:
+            course = self._course_key(result.course)
+            if course in self._start_values and is_valid_result(result):
+                file_points_for_courses[course].add(result.file_points or 0)
+
+        self._points_for_file_points = {
+            course: {
+                file_points: self._start_values[course] - rank
+                for rank, file_points in enumerate(sorted(values, reverse=True))
+            }
+            for course, values in file_points_for_courses.items()
+        }
+
+    def _points_calculator(self, result: Result, _age_class: str) -> int:
+        course = self._course_key(result.course)
+        start_value = self._start_values.get(course)
+        if start_value is None:
+            return 0
+
+        if self._use_file_points:
+            return self._points_for_file_points[course].get(result.file_points or 0, 0)
+
+        return start_value + 1 - result.position
+
+
 class Fallback(PointsCalculator):
     """Fallback points calculator to ensure one always matches, but just assigns 0"""
 
@@ -408,6 +463,7 @@ def get_matching_points_calculator(scoring_method: str) -> PointsCalculator:
         TimeRelativeToWinnerWelshAdjusted,
         TimeRelativeToAverageBased,
         TimeRelativeToTopBased,
+        LongAndShortBased,
         FileBasedAllRanked,
         FileBasedPointsPerHour,
         FileBased,
