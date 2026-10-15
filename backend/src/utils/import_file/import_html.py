@@ -1,3 +1,4 @@
+import html
 import json
 import re
 from collections.abc import Iterable
@@ -30,6 +31,7 @@ def parse_sitiming_script(script_tag_text: str) -> list[list[list[str]]]:
         script_text.replace("\\u003c", "<")
         .replace("\\u003e", ">")
         .replace("\\u0026nbsp;", "")
+        .replace("\\u0026", "&")
         .replace("\\", "")
     )
 
@@ -145,7 +147,7 @@ def process_html_file(file: str) -> Iterable[ImportedRecord]:
         cast(
             ImportedRecord,
             {
-                column: _get_value_in_row(row, position, column)
+                column: html.unescape(_get_value_in_row(row, position, column)).strip()
                 for column, position in column_mappings.items()
             },
         )

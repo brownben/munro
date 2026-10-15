@@ -197,3 +197,9 @@ class TestImportSITimingHTML(unittest.TestCase):
                 },
             ],
         )
+
+    def test_html_entities_in_names_are_decoded(self) -> None:
+        file = sample_sitiming_v4_html_file.replace("Bob Jones", "Bob &amp; Jo&#39;nes")
+        records = list(process_html_file(file))
+
+        self.assertEqual(records[1]["name"], "Bob & Jo'nes")
