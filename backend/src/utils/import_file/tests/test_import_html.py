@@ -1,6 +1,6 @@
 import unittest
 
-from ..import_file import ImportException
+from ..import_file import ImportException, import_results
 from ..import_html import process_html_file
 
 with open("src/utils/import_file/tests/sample/sitiming.html") as file:
@@ -203,3 +203,10 @@ class TestImportSITimingHTML(unittest.TestCase):
         records = list(process_html_file(file))
 
         self.assertEqual(records[1]["name"], "Bob & Jo'nes")
+
+    def test_non_competitive_position(self) -> None:
+        file = sample_sitiming_v4_html_file.replace('"2nd","2"', '"n/c","2"')
+        results = list(import_results(process_html_file, file, 2026))
+
+        self.assertTrue(results[1].incomplete)
+        self.assertFalse(results[0].incomplete)
