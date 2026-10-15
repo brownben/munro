@@ -111,6 +111,22 @@ useTitle({
         @file="form.file = $event"
       />
 
+      <p v-if="!form.file" class="col-span-2 text-gray-600 dark:text-gray-300">
+        Results available online?
+        <NuxtLink
+          :to="{
+            path: '/upload/url',
+            query: {
+              event_id: form.event_id || undefined,
+              upload_key: form.upload_key || undefined,
+            },
+          }"
+          class="text-main-700 hover:text-main-600 dark:text-main-600 dark:hover:text-main-500"
+        >
+          Import from a URL instead
+        </NuxtLink>
+      </p>
+
       <InputSwitch
         v-if="event?.results_uploaded"
         v-model="form.overwrite"
