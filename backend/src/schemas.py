@@ -22,7 +22,9 @@ class League(BaseModel):
 class AdditionalLeagueClass(BaseModel):
     name: str
     class_name: str
-    age_class: str
+    gender: Literal["M", "W"] | None = None
+    min_age: int | None = None
+    max_age: int | None = None
 
 
 class LeagueGroup(BaseModel):

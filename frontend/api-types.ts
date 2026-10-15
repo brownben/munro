@@ -61,7 +61,9 @@ export interface League {
 export interface AdditionalLeagueCategory {
   name: string
   class_name: string
-  age_class: string
+  gender: 'M' | 'W' | null
+  min_age: number | null
+  max_age: number | null
 }
 
 export interface LeagueOverview extends League {
