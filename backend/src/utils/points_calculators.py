@@ -370,12 +370,6 @@ def get_points_then_time(result: Result) -> tuple[int, int]:
     return (-(result.file_points or 0), result.time)
 
 
-def get_points_for_points_and_time_pairs(
-    rank_keys: Iterable[tuple[int, int]], start_value: int
-) -> dict[tuple[int, int], int]:
-    return {key: start_value - rank for rank, key in enumerate(sorted(rank_keys))}
-
-
 class FileBasedAllRanked(PointsCalculator):
     """
     Calculate points by ranking results across all courses by their file points.
@@ -400,9 +394,9 @@ class FileBasedAllRanked(PointsCalculator):
             for result in results
             if is_valid_result(result)
         }
-        self._points_for_rank_keys = get_points_for_points_and_time_pairs(
-            rank_keys, self._start_value
-        )
+        self._points_for_rank_keys = {
+            key: self._start_value - rank for rank, key in enumerate(sorted(rank_keys))
+        }
 
     def _points_calculator(self, result: Result, _age_class: str) -> int:
         return self._points_for_rank_keys.get(get_points_then_time(result), 0)
@@ -415,18 +409,15 @@ class LongAndShortBased(PointsCalculator):
     Long: 1st - 100, 2nd - 99, 3rd - 98... Short: 1st - 80, 2nd - 79, 3rd - 78...
     Course names are matched case insensitively.
 
-    `longShortTime` uses the position of the result (like `PositionBased`).
-    `longShortFile` re-ranks each course by file points (like `FileBasedAllRanked`),
-    results with the same file points are ranked by time, only results with the
+    Uses the position of the result (like `PositionBased`). For `longShortFile`
+    positions are assigned by file points then time, so only results with the
     same file points and time share the same score.
     """
 
     _start_values: ClassVar[dict[str, int]] = {"long": 100, "short": 80}
-    _points_for_rank_keys: dict[str, dict[tuple[int, int], int]]
 
     def __init__(self, scoring_method: str):
-        self._use_file_points = scoring_method.startswith("longShortFile")
-        if self._use_file_points:
+        if scoring_method.startswith("longShortFile"):
             self.visible_result_fields = VisibleResultFields(points=True, time=True)
 
     @staticmethod
@@ -437,35 +428,11 @@ class LongAndShortBased(PointsCalculator):
     def _course_key(course: str) -> str:
         return course.strip().lower()
 
-    def calculate_required_stats(self, results: Iterable[Result]) -> None:
-        if not self._use_file_points:
-            return
-
-        rank_keys_for_courses: dict[str, set[tuple[int, int]]] = {
-            course: set() for course in self._start_values
-        }
-        for result in results:
-            course = self._course_key(result.course)
-            if course in self._start_values and is_valid_result(result):
-                rank_keys_for_courses[course].add(get_points_then_time(result))
-
-        self._points_for_rank_keys = {
-            course: get_points_for_points_and_time_pairs(
-                rank_keys, self._start_values[course]
-            )
-            for course, rank_keys in rank_keys_for_courses.items()
-        }
-
     def _points_calculator(self, result: Result, _age_class: str) -> int:
         course = self._course_key(result.course)
         start_value = self._start_values.get(course)
         if start_value is None:
             return 0
-
-        if self._use_file_points:
-            return self._points_for_rank_keys[course].get(
-                get_points_then_time(result), 0
-            )
 
         return start_value + 1 - result.position
 

@@ -16,7 +16,7 @@ from ..schemas import (
     LeagueEventCreationRequest,
     Message,
 )
-from ..utils.assign_positions import assign_position_based_on_time
+from ..utils.assign_positions import assign_positions
 from ..utils.points_calculators import get_matching_points_calculator
 from .authentication import require_authentication
 
@@ -152,11 +152,12 @@ async def get_results_for_event(
     if not event:
         raise HTTP_404(f"Couldn't find event with the id `{id}`")
 
+    fields = get_matching_points_calculator(scoring_method).visible_result_fields
     return EventWithResults(
         **event.model_dump(),
-        results=assign_position_based_on_time(results or []),
+        results=assign_positions(results or [], fields),
         league=league,
-        show=get_matching_points_calculator(scoring_method).visible_result_fields,
+        show=fields,
     )
 
 

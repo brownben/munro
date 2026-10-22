@@ -2,6 +2,7 @@ import unittest
 from typing import Any
 
 from ...schemas import Result
+from ..assign_positions import assign_positions
 from ..points_calculators import (
     PointsCalculator,
     get_matching_points_calculator,
@@ -13,6 +14,18 @@ def get_points_for_results(
     results: list[Result],
 ) -> list[int]:
     points_calculator = get_matching_points_calculator(scoring_method)
+    points_calculator.calculate_required_stats(results)
+
+    return [points_calculator.calculate_points(result, "") for result in results]
+
+
+def get_points_for_positioned_results(
+    scoring_method: str,
+    results: list[Result],
+) -> list[int]:
+    """Assigns positions using the scoring method's fields, then calculates points"""
+    points_calculator = get_matching_points_calculator(scoring_method)
+    list(assign_positions(results, points_calculator.visible_result_fields))
     points_calculator.calculate_required_stats(results)
 
     return [points_calculator.calculate_points(result, "") for result in results]
@@ -67,9 +80,20 @@ class TestPointsCalculators(unittest.TestCase):
             get_points_for_results("longShortTime", results),
             [100, 99, 0, 97, 80, 79, 0],
         )
+
+        # Positions are assigned per course, so course names match exactly here
+        results = [
+            create_result(course="Long", time=10, file_points=30),
+            create_result(course="Long", time=20, file_points=20),
+            create_result(course="Long", time=30, file_points=50, incomplete=True),
+            create_result(course="Long", time=40, file_points=30),
+            create_result(course="Short", time=10, file_points=10),
+            create_result(course="Short", time=20, file_points=5),
+            create_result(course="Medium", time=10, file_points=99),
+        ]
         self.assertEqual(
-            get_points_for_results("longShortFile", results),
-            [100, 99, 0, 100, 80, 79, 0],
+            get_points_for_positioned_results("longShortFile", results),
+            [100, 98, 0, 99, 80, 79, 0],
         )
 
     def test_file_ranked_draws_split_by_time(self) -> None:
@@ -87,8 +111,8 @@ class TestPointsCalculators(unittest.TestCase):
             [98, 99, 99, 100, 96, 97],
         )
         self.assertEqual(
-            get_points_for_results("longShortFile", results),
-            [98, 99, 99, 100, 79, 80],
+            get_points_for_positioned_results("longShortFile", results),
+            [97, 99, 99, 100, 79, 80],
         )
 
     def test_single_valid_result(self) -> None:

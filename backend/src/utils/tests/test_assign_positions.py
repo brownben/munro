@@ -1,10 +1,14 @@
 import unittest
 
-from ...schemas import LeagueResult, Result
+from ...schemas import LeagueResult, Result, VisibleResultFields
 from ..assign_positions import (
     assign_position_based_on_points,
-    assign_position_based_on_time,
+    assign_positions,
 )
+
+TIME_ONLY = VisibleResultFields(points=False, time=True)
+POINTS_ONLY = VisibleResultFields(points=True, time=False)
+POINTS_THEN_TIME = VisibleResultFields(points=True, time=True)
 
 
 def create_league_result(total_points: int) -> LeagueResult:
@@ -77,7 +81,7 @@ class TestAssignPositionBasedOnPoints(unittest.TestCase):
         self.assertEqual([result.position for result in results], [1, 2, 2, 4])
 
 
-class TestAssignPositionBasedOnTime(unittest.TestCase):
+class TestAssignPositions(unittest.TestCase):
     def test_sequential_results_one_course(self) -> None:
         results = [
             create_event_result(60, "A"),
@@ -85,7 +89,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(120, "A"),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2, 3],
         )
 
@@ -96,7 +100,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(120, "A"),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 1, 3],
         )
 
@@ -106,7 +110,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(75, "A"),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2, 2],
         )
 
@@ -117,7 +121,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(120, "A"),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2, 2, 4],
         )
 
@@ -131,7 +135,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(121, "B"),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2, 3, 1, 2, 3],
         )
 
@@ -145,7 +149,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(121, "B"),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 1, 3, 1, 2, 2],
         )
 
@@ -159,7 +163,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(121, "B"),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [None, 1, 2, 1, None, 2],
         )
 
@@ -172,7 +176,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(0, "A", file_points=80),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2, 3],
         )
 
@@ -184,7 +188,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(0, "A", file_points=80),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2, 2, 4],
         )
 
@@ -195,7 +199,7 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(0, "A", file_points=-1),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2],
         )
 
@@ -209,6 +213,52 @@ class TestAssignPositionBasedOnTime(unittest.TestCase):
             create_event_result(0, "B", file_points=40),
         ]
         self.assertEqual(
-            [result.position for result in assign_position_based_on_time(results)],
+            [result.position for result in assign_positions(results, TIME_ONLY)],
             [1, 2, 1, 2],
+        )
+
+    def test_points_only_ignores_time(self) -> None:
+        results = [
+            create_event_result(60, "A", file_points=80),
+            create_event_result(90, "A", file_points=100),
+            create_event_result(75, "A", file_points=80),
+            create_event_result(120, "A", file_points=90),
+        ]
+        self.assertEqual(
+            [
+                (result.file_points, result.position)
+                for result in assign_positions(results, POINTS_ONLY)
+            ],
+            [(100, 1), (90, 2), (80, 3), (80, 3)],
+        )
+
+    def test_points_then_time(self) -> None:
+        results = [
+            create_event_result(60, "A", file_points=80),
+            create_event_result(90, "A", file_points=100),
+            create_event_result(75, "A", file_points=80),
+            create_event_result(75, "A", file_points=80),
+            create_event_result(30, "A", file_points=50),
+        ]
+        self.assertEqual(
+            [
+                (result.file_points, result.time, result.position)
+                for result in assign_positions(results, POINTS_THEN_TIME)
+            ],
+            [(100, 90, 1), (80, 60, 2), (80, 75, 3), (80, 75, 3), (50, 30, 5)],
+        )
+
+    def test_points_reset_between_courses(self) -> None:
+        results = [
+            create_event_result(60, "A", file_points=50),
+            create_event_result(60, "A", file_points=60),
+            create_event_result(60, "B", file_points=40),
+            create_event_result(60, "B", file_points=50, incomplete=True),
+        ]
+        self.assertEqual(
+            [
+                (result.course, result.file_points, result.position)
+                for result in assign_positions(results, POINTS_ONLY)
+            ],
+            [("A", 60, 1), ("A", 50, 2), ("B", 50, None), ("B", 40, 1)],
         )

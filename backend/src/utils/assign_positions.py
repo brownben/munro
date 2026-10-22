@@ -1,11 +1,8 @@
+import itertools
 from collections.abc import Iterable
 
-from ..schemas import EventResult, LeagueResult, Result
+from ..schemas import EventResult, LeagueResult, Result, VisibleResultFields
 from .dynamic_results import DYNAMIC_RESULT_TYPES
-
-# Sentinel for "no previous file_points seen yet" - distinct from any real value
-# (including 0 and None, both of which are valid file_points).
-_UNSET = object()
 
 
 def assign_position_based_on_points(
@@ -29,44 +26,47 @@ def assign_position_based_on_points(
         last_points = result.total_points
 
 
-def assign_position_based_on_time[TResult: Result | EventResult](
+def get_position_key(
+    result: Result | EventResult, fields: VisibleResultFields
+) -> tuple[int, int]:
+    """Key to order results by, lower is better. Results with the same key share a position"""
+    file_points = result.file_points or 0
+
+    if fields.points:
+        return (-file_points, result.time if fields.time else 0)
+
+    # Results without a time (points only uploads) fall back to file points
+    return (result.time, -file_points if result.time == 0 else 0)
+
+
+def assign_positions[TResult: Result | EventResult](
     results: Iterable[TResult],
+    fields: VisibleResultFields,
 ) -> Iterable[TResult]:
-    """Assign 1st, 2nd, 3rd, etc based off time, for results in different courses. Expects results to be sorted"""
+    """
+    Assign 1st, 2nd, 3rd, etc for results in different courses. Expects results to be grouped by course.
 
-    position = 0
-    last_position = 0
-    last_points = None
-    last_course: str | None = None
-    last_time = -1
+    Ranks on the fields used by the scoring method: time, points, or points then time.
+    """
 
-    for result in results:
-        if result.course != last_course:
-            position = 0
-            last_position = 0
-            last_time = -1
-            last_points = None
-            last_course = result.course
+    for _, course_results in itertools.groupby(results, lambda result: result.course):
+        position = 0
+        last_position = 0
+        last_position_key: tuple[int, int] | None = None
 
-        if result.incomplete or (result.type in DYNAMIC_RESULT_TYPES):
-            result.position = None
-        elif result.time == 0:
-            if result.file_points == last_points:
-                result.position = last_position
-                position += 1
-            else:
-                position += 1
-                result.position = position
+        for result in sorted(
+            course_results, key=lambda result: get_position_key(result, fields)
+        ):
+            if result.incomplete or (result.type in DYNAMIC_RESULT_TYPES):
+                result.position = None
+                yield result
+                continue
+
+            position += 1
+            position_key = get_position_key(result, fields)
+            if position_key != last_position_key:
                 last_position = position
-                last_points = result.file_points
-        elif result.time == last_time:
+                last_position_key = position_key
+
             result.position = last_position
-            position += 1
-        else:
-            position += 1
-
-            result.position = position
-            last_position = position
-            last_time = result.time
-
-        yield result
+            yield result

@@ -35,7 +35,7 @@ from ..schemas import (
 from ..utils.age_class import age_class_matches_filter
 from ..utils.assign_positions import (
     assign_position_based_on_points,
-    assign_position_based_on_time,
+    assign_positions,
 )
 from ..utils.club import club_matches_filter
 from ..utils.counting_results import counting_results_finder
@@ -329,14 +329,16 @@ async def get_league_results(
         event_index = len(events_with_results)
         events_with_results.append(event)
 
-        event_results = list(assign_position_based_on_time(event_results))
-
         scoring_method = (
             event.overridden_scoring_method
             or league_class.scoring_method
             or league.scoring_method
         )
         points_calculator = get_matching_points_calculator(scoring_method)
+
+        event_results = list(
+            assign_positions(event_results, points_calculator.visible_result_fields)
+        )
         points_calculator.calculate_required_stats(event_results)
 
         for result in event_results:
