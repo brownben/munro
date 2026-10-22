@@ -203,6 +203,7 @@ databaseFiles
 
 # Test databases
 *.db
+*.db-journal
 
 # Test Coverage Files
 coverage/
