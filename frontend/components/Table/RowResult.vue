@@ -46,7 +46,7 @@ defineProps({
       {{ result.club || ' ' }}
     </td>
     <td v-if="show.points" class="text-center">
-      {{ result.file_points }}
+      {{ (result.file_points ?? 0) / 10 }}
     </td>
     <td v-if="show.time" class="text-center">
       {{ elapsedTime(result.time) }}
