@@ -69,6 +69,25 @@ class TestPointsCalculators(unittest.TestCase):
             [100, 99, 0, 100, 80, 79, 0],
         )
 
+    def test_file_ranked_draws_split_by_time(self) -> None:
+        results: list[Result] = [
+            create_result(course="Long", time=30, file_points=20),
+            create_result(course="Long", time=20, file_points=20),
+            create_result(course="Long", time=20, file_points=20),
+            create_result(course="Long", time=10, file_points=30),
+            create_result(course="Short", time=15, file_points=5),
+            create_result(course="Short", time=10, file_points=5),
+        ]
+
+        self.assertEqual(
+            get_points_for_results("fileAllRanked", results),
+            [98, 99, 99, 100, 96, 97],
+        )
+        self.assertEqual(
+            get_points_for_results("longShortFile", results),
+            [98, 99, 99, 100, 79, 80],
+        )
+
     def test_single_valid_result(self) -> None:
         results: list[Result] = [
             create_result(position=1, time=10, file_points=47),
@@ -168,7 +187,7 @@ class TestPointsCalculators(unittest.TestCase):
 
         for scoring_method, expected_results in (
             ("file", [47, 52, 12, 36, 47, 0]),
-            ("fileAllRanked", [99, 100, 97, 98, 99, 0]),
+            ("fileAllRanked", [99, 100, 96, 97, 98, 0]),
             ("position", [100, 99, 98, 97, 96, 0]),
             ("position50", [50, 49, 48, 47, 46, 0]),
             ("position99", [99, 98, 97, 96, 95, 0]),
@@ -202,7 +221,7 @@ class TestPointsCalculators(unittest.TestCase):
 
         for scoring_method, expected_results in (
             ("file", [47, 47, 12, 0, 52, 36]),
-            ("fileAllRanked", [99, 99, 97, 0, 100, 98]),
+            ("fileAllRanked", [98, 99, 96, 0, 100, 97]),
             ("position", [96, 100, 98, 0, 99, 97]),
             ("position50", [46, 50, 48, 0, 49, 47]),
             ("position99", [95, 99, 97, 0, 98, 96]),

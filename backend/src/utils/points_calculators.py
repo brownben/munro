@@ -358,33 +358,45 @@ class FileBasedPointsPerHour(PointsCalculator):
         return round(points * 60 / minutes / 10)
 
 
+def get_points_then_time(result: Result) -> tuple[int, int]:
+    """Key which sorts results by most file points, then fastest time"""
+    return (-(result.file_points or 0), result.time)
+
+
+def get_points_for_points_and_time_pairs(
+    rank_keys: Iterable[tuple[int, int]], start_value: int
+) -> dict[tuple[int, int], int]:
+    return {key: start_value - rank for rank, key in enumerate(sorted(rank_keys))}
+
+
 class FileBasedAllRanked(PointsCalculator):
     """
     Calculate points by ranking results across all courses by their file points.
 
     The result(s) with the most file points get 100, the next 99, etc. Results
-    with the same file points share the same score.
+    with the same file points are ranked by time, only results with the same file
+    points and time share the same score.
     """
 
     _start_value = 100
-    _points_for_file_points: dict[float, int]
+    _points_for_rank_keys: dict[tuple[int, int], int]
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
         return scoring_method.startswith("fileAllRanked")
 
     def calculate_required_stats(self, results: Iterable[Result]) -> None:
-        distinct_file_points = sorted(
-            {result.file_points or 0 for result in results if is_valid_result(result)},
-            reverse=True,
-        )
-        self._points_for_file_points = {
-            file_points: self._start_value - rank
-            for rank, file_points in enumerate(distinct_file_points)
+        rank_keys = {
+            get_points_then_time(result)
+            for result in results
+            if is_valid_result(result)
         }
+        self._points_for_rank_keys = get_points_for_points_and_time_pairs(
+            rank_keys, self._start_value
+        )
 
     def _points_calculator(self, result: Result, _age_class: str) -> int:
-        return self._points_for_file_points.get(result.file_points or 0, 0)
+        return self._points_for_rank_keys.get(get_points_then_time(result), 0)
 
 
 class LongAndShortBased(PointsCalculator):
@@ -396,11 +408,12 @@ class LongAndShortBased(PointsCalculator):
 
     `longShortTime` uses the position of the result (like `PositionBased`).
     `longShortFile` re-ranks each course by file points (like `FileBasedAllRanked`),
-    results with the same file points share the same score.
+    results with the same file points are ranked by time, only results with the
+    same file points and time share the same score.
     """
 
     _start_values: ClassVar[dict[str, int]] = {"long": 100, "short": 80}
-    _points_for_file_points: dict[str, dict[float, int]]
+    _points_for_rank_keys: dict[str, dict[tuple[int, int], int]]
 
     def __init__(self, scoring_method: str):
         self._use_file_points = scoring_method.startswith("longShortFile")
@@ -414,20 +427,22 @@ class LongAndShortBased(PointsCalculator):
         return course.strip().lower()
 
     def calculate_required_stats(self, results: Iterable[Result]) -> None:
-        file_points_for_courses: dict[str, set[float]] = {
+        if not self._use_file_points:
+            return
+
+        rank_keys_for_courses: dict[str, set[tuple[int, int]]] = {
             course: set() for course in self._start_values
         }
         for result in results:
             course = self._course_key(result.course)
             if course in self._start_values and is_valid_result(result):
-                file_points_for_courses[course].add(result.file_points or 0)
+                rank_keys_for_courses[course].add(get_points_then_time(result))
 
-        self._points_for_file_points = {
-            course: {
-                file_points: self._start_values[course] - rank
-                for rank, file_points in enumerate(sorted(values, reverse=True))
-            }
-            for course, values in file_points_for_courses.items()
+        self._points_for_rank_keys = {
+            course: get_points_for_points_and_time_pairs(
+                rank_keys, self._start_values[course]
+            )
+            for course, rank_keys in rank_keys_for_courses.items()
         }
 
     def _points_calculator(self, result: Result, _age_class: str) -> int:
@@ -437,7 +452,9 @@ class LongAndShortBased(PointsCalculator):
             return 0
 
         if self._use_file_points:
-            return self._points_for_file_points[course].get(result.file_points or 0, 0)
+            return self._points_for_rank_keys[course].get(
+                get_points_then_time(result), 0
+            )
 
         return start_value + 1 - result.position
 
