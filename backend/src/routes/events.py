@@ -17,6 +17,7 @@ from ..schemas import (
     Message,
 )
 from ..utils.assign_positions import assign_position_based_on_time
+from ..utils.points_calculators import get_matching_points_calculator
 from .authentication import require_authentication
 
 router = APIRouter(
@@ -142,10 +143,10 @@ async def get_results_for_event(
         examples=["Tentsmuir2021-08-12"],
     ),
 ) -> EventWithResults:
-    event, results, league = await asyncio.gather(
+    event, results, (league, scoring_method) = await asyncio.gather(
         Events.get_by_id(id),
         Results.get_event_results(id),
-        Events.get_league_for_event(id),
+        Events.get_league_and_scoring_method_for_event(id),
     )
 
     if not event:
@@ -155,6 +156,7 @@ async def get_results_for_event(
         **event.model_dump(),
         results=assign_position_based_on_time(results or []),
         league=league,
+        show=get_matching_points_calculator(scoring_method).visible_result_fields,
     )
 
 

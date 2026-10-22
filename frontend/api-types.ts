@@ -135,10 +135,16 @@ export interface EventResult {
   file_points: number
 }
 
+export interface VisibleResultFields {
+  points: boolean
+  time: boolean
+}
+
 export interface EventResults {
   id?: string
   name: string
   league: string
+  show: VisibleResultFields
 
   date?: string
   organiser?: string

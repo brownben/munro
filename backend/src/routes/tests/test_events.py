@@ -286,6 +286,7 @@ class TestGetResultsForEvents(TestCaseWithDatabase):
                 "id": "TestEvent-2021-12-12",
                 "name": "Test Event",
                 "league": "Sprintelope 2021",
+                "show": {"points": False, "time": True},
                 "date": "2021-12-12",
                 "organiser": "Ben Brown",
                 "website": "https://example.com/test-event",

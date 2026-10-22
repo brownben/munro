@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import type { PropType } from 'vue'
-import { DYNAMIC_POINTS_TYPES } from '~/api-types'
+import { DYNAMIC_POINTS_TYPES, type VisibleResultFields } from '~/api-types'
 import type { EventResultWithAgeGender as EventResult } from '~/utils/ageClass'
 import { elapsedTime } from '~/utils/time'
 
 defineProps({
   result: { type: Object as PropType<EventResult>, required: true },
-  pointsNotTime: { type: Boolean, default: false },
+  show: {
+    type: Object as PropType<VisibleResultFields>,
+    default: () => ({ points: false, time: true }),
+  },
 })
 </script>
 <template>
@@ -42,13 +45,11 @@ defineProps({
     >
       {{ result.club || ' ' }}
     </td>
-    <td class="text-center">
-      <template v-if="pointsNotTime">
-        {{ result.file_points }}
-      </template>
-      <template v-else>
-        {{ elapsedTime(result.time) }}
-      </template>
+    <td v-if="show.points" class="text-center">
+      {{ result.file_points }}
+    </td>
+    <td v-if="show.time" class="text-center">
+      {{ elapsedTime(result.time) }}
     </td>
   </tr>
 </template>

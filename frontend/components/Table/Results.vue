@@ -2,10 +2,15 @@
 import type { PropType } from 'vue'
 import type { Filters } from '~/utils/filter'
 import type { EventResultWithAgeGender as EventResult } from '~/utils/ageClass'
+import type { VisibleResultFields } from '~/api-types'
 
 const props = defineProps({
   results: { type: Array as PropType<EventResult[]>, required: true },
   filters: { type: Object as PropType<Filters>, required: true },
+  show: {
+    type: Object as PropType<VisibleResultFields>,
+    default: () => ({ points: false, time: true }),
+  },
 })
 
 type Column =
@@ -17,10 +22,6 @@ const sortedResults = computed(() =>
   props.results
     .filter(matchingResults(props.filters))
     .sort(byProperty(ascending.value, activeColumn.value)),
-)
-
-const isPointsOnly = computed(() =>
-  props.results.every((result) => result.time === 0),
 )
 
 const changeSortPreference = (property: Column) => {
@@ -100,14 +101,30 @@ const ariaSorted = computed(
             />
           </button>
         </th>
-        <th class="text-center" :aria-sort="ariaSorted?.time">
+        <th
+          v-if="show.points"
+          class="text-center"
+          :aria-sort="ariaSorted?.file_points"
+        >
           <button
             type="button"
             class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
-            @click="changeSortPreference(isPointsOnly ? 'file_points' : 'time')"
+            @click="changeSortPreference('file_points')"
           >
-            <template v-if="isPointsOnly"> Points </template>
-            <template v-else> Time </template>
+            Points
+            <TableArrows
+              :active="activeColumn == 'file_points'"
+              :ascending="ascending"
+            />
+          </button>
+        </th>
+        <th v-if="show.time" class="text-center" :aria-sort="ariaSorted?.time">
+          <button
+            type="button"
+            class="ring-main-200 rounded-sm px-1 font-medium focus:outline-hidden focus-visible:ring-3"
+            @click="changeSortPreference('time')"
+          >
+            Time
             <TableArrows
               :active="activeColumn == 'time'"
               :ascending="ascending"
@@ -121,7 +138,7 @@ const ariaSorted = computed(
         v-for="result of sortedResults"
         :key="result.id"
         :result="result"
-        :points-not-time="isPointsOnly"
+        :show="show"
       />
     </tbody>
   </table>

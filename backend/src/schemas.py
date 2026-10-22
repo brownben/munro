@@ -239,10 +239,16 @@ class EventResult(BaseModel):
     file_points: int | None = None
 
 
+class VisibleResultFields(BaseModel):
+    points: bool
+    time: bool
+
+
 class EventWithResults(BaseModel):
     id: str | None = None
     name: str
     league: str
+    show: VisibleResultFields
 
     date: datetime.date | None = None
     organiser: str | None = None

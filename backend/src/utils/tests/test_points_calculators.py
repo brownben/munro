@@ -2,7 +2,10 @@ import unittest
 from typing import Any
 
 from ...schemas import Result
-from ..points_calculators import PointsCalculator, get_matching_points_calculator
+from ..points_calculators import (
+    PointsCalculator,
+    get_matching_points_calculator,
+)
 
 
 def get_points_for_results(
@@ -258,3 +261,22 @@ class TestPointsCalculators(unittest.TestCase):
             0,
         )
         self.assertEqual(PointsCalculator.matches_scoring_method(""), False)
+
+
+class TestVisibleResultFields(unittest.TestCase):
+    def test_visible_result_fields(self) -> None:
+        for scoring_method, expected in (
+            ("position", (False, True)),
+            ("timeAverage", (False, True)),
+            ("longShortTime", (False, True)),
+            ("", (False, True)),
+            ("file", (True, False)),
+            ("filePointsPerHour", (True, False)),
+            ("filePointsPerHourBofHandicap", (True, False)),
+            ("fileAllRanked", (True, True)),
+            ("longShortFile", (True, True)),
+        ):
+            fields = get_matching_points_calculator(
+                scoring_method
+            ).visible_result_fields
+            self.assertEqual((fields.points, fields.time), expected, scoring_method)

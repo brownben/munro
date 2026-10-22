@@ -121,18 +121,26 @@ class Events:
         )
 
     @staticmethod
-    async def get_league_for_event(id: str) -> str:
+    async def get_league_and_scoring_method_for_event(id: str) -> tuple[str, str]:
+        """Returns the league for an event and its scoring method (considering any override)"""
         event = (
-            await LeagueEventTable.select(LeagueEventTable.league)
+            await LeagueEventTable.select(
+                LeagueEventTable.league,
+                LeagueEventTable.overridden_scoring_method,
+                LeagueEventTable.league.scoring_method,
+            )
             .where(LeagueEventTable.event == id)
             .first()
             .run()
         )
 
         if not event:
-            return ""
+            return "", ""
 
-        return cast(str, event["league"])
+        scoring_method = (
+            event["overridden_scoring_method"] or event["league.scoring_method"] or ""
+        )
+        return cast(str, event["league"]), cast(str, scoring_method)
 
     @staticmethod
     async def update(

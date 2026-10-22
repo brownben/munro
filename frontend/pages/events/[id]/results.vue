@@ -97,7 +97,11 @@ if (event.value) {
         </NuxtLink>
       </div>
 
-      <TableResults :results="results[course] ?? []" :filters="filters" />
+      <TableResults
+        :results="results[course] ?? []"
+        :filters="filters"
+        :show="event.show"
+      />
     </section>
 
     <LinksSection

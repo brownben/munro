@@ -4,7 +4,7 @@ import re
 from collections.abc import Iterable
 from typing import ClassVar
 
-from ..schemas import Result
+from ..schemas import Result, VisibleResultFields
 from . import stats
 from .bof_handicap import BOF_HANDICAP_MODIFIER, get_bof_speed_ratio
 
@@ -24,6 +24,9 @@ class PointsCalculator:
 
     # Set when the scoring method contains the `BofHandicap` modifier
     uses_bof_handicap: bool = False
+
+    # Which fields are relevant to show in the event results
+    visible_result_fields = VisibleResultFields(points=False, time=True)
 
     def __init__(self, scoring_method: str):
         pass
@@ -306,6 +309,8 @@ class TimeRelativeToWinnerWelshAdjusted(PointsCalculator):
 class FileBased(PointsCalculator):
     """Calculate points fetched from the uploaded file"""
 
+    visible_result_fields = VisibleResultFields(points=True, time=False)
+
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
         return "file" in scoring_method
@@ -325,6 +330,8 @@ class FileBasedPointsPerHour(PointsCalculator):
     200 points on a 120-minute course -> 100
     If no duration is found, the points are unscaled.
     """
+
+    visible_result_fields = VisibleResultFields(points=True, time=False)
 
     _duration_pattern = re.compile(r"\d+(?:\.\d+)?")
     _minutes_for_courses: dict[str, float | None]
@@ -378,6 +385,8 @@ class FileBasedAllRanked(PointsCalculator):
     points and time share the same score.
     """
 
+    visible_result_fields = VisibleResultFields(points=True, time=True)
+
     _start_value = 100
     _points_for_rank_keys: dict[tuple[int, int], int]
 
@@ -417,6 +426,8 @@ class LongAndShortBased(PointsCalculator):
 
     def __init__(self, scoring_method: str):
         self._use_file_points = scoring_method.startswith("longShortFile")
+        if self._use_file_points:
+            self.visible_result_fields = VisibleResultFields(points=True, time=True)
 
     @staticmethod
     def matches_scoring_method(scoring_method: str) -> bool:
