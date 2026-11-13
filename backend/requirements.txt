@@ -108,7 +108,7 @@ requests==2.34.2
     # via munro
 six==1.17.0
     # via python-dateutil
-soupsieve==3.0.4
+soupsieve==4.0
     # via beautifulsoup4
 starlette==1.9.0
     # via fastapi
